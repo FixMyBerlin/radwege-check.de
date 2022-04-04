@@ -6,7 +6,7 @@ import { TextLink } from '~/components/Links/TextLink';
 
 const MyDataIndex = ({
   data: {
-    allScenesJson: { edges: sceneNodes },
+    allScenesCsv: { edges: sceneNodes },
   },
 }) => {
   console.log(sceneNodes);
@@ -40,7 +40,7 @@ export default MyDataIndex;
 
 export const query = graphql`
   query {
-    allScenesJson {
+    allScenesCsv {
       edges {
         node {
           title
@@ -50,7 +50,7 @@ export const query = graphql`
           vote4
           voteTotal
           sceneId
-          path: gatsbyPath(filePath: "/scenes/{scenesJson.sceneId}")
+          path: gatsbyPath(filePath: "/scenes/{scenesCsv.sceneId}")
         }
       }
     }

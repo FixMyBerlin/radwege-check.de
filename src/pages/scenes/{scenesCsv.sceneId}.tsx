@@ -3,7 +3,7 @@ import React from 'react';
 import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
 import { Layout } from '~/components/Layout';
 
-const MyData = ({ data: { scenesJson: scene } }) => {
+const MyData = ({ data: { scenesCsv: scene } }) => {
   return (
     <Layout padding={false}>
       <HelmetSeo
@@ -30,7 +30,7 @@ export default MyData;
 
 export const query = graphql`
   query ($sceneId: String!) {
-    scenesJson(sceneId: { eq: $sceneId }) {
+    scenesCsv(sceneId: { eq: $sceneId }) {
       title
       vote1
       vote2
@@ -38,7 +38,7 @@ export const query = graphql`
       vote3
       voteTotal
       sceneId
-      path: gatsbyPath(filePath: "/scenes/{scenesJson.sceneId}")
+      path: gatsbyPath(filePath: "/scenes/{scenesCsv.sceneId}")
     }
   }
 `;
