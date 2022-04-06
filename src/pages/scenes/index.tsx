@@ -2,8 +2,9 @@ import classNames from 'classnames';
 import { graphql } from 'gatsby';
 import itemsjs from 'itemsjs';
 import React, { useEffect, useMemo, useState } from 'react';
+import { SceneImage } from '~/components/components/SceneImage';
 import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
-import { Layout } from '~/components/Layout';
+import { FixedLayout } from '~/components/Layout';
 import { TextLink } from '~/components/Links/TextLink';
 
 const MyDataIndex = ({
@@ -169,7 +170,7 @@ const MyDataIndex = ({
   useEffect(
     () =>
       setSearchOption({
-        per_page: 10,
+        per_page: 1000,
         sort: 'vote4desc',
         filters: searchOptionFilters,
       }),
@@ -235,7 +236,7 @@ const MyDataIndex = ({
     aggregationKey,
     bucket,
   }: {
-    event: React.React.MouseEvent<HTMLAnchorElement>;
+    event: React.MouseEvent<HTMLAnchorElement>;
     aggregationKey: string;
     bucket: ResultBucketProps;
   }) => {
@@ -267,10 +268,10 @@ const MyDataIndex = ({
   };
 
   return (
-    <Layout padding={false}>
+    <FixedLayout>
       <HelmetSeo title="myData" description="TODO" image="TODO" />
-      <div className="mt-32 flex gap-5 bg-white">
-        <nav className="bg-gray-100 p-4">
+      <div className="">
+        <nav className="absolute inset-y-0 left-0 w-64 overflow-scroll bg-gray-100 p-4">
           <p className="mb-6">
             <a href="#reset" onClick={resetFilter} className="underline">
               Reset filter
@@ -313,7 +314,12 @@ const MyDataIndex = ({
                           }
                           className={classNames(
                             { 'bg-yellow-200': bucket.selected },
-                            'block w-full hover:underline '
+                            {
+                              'block w-full hover:underline': bucket.doc_count,
+                            },
+                            {
+                              'cursor-default text-gray-400': !bucket.doc_count,
+                            }
                           )}
                         >
                           {bucket.key || '(null)'} ({bucket.doc_count})
@@ -327,7 +333,7 @@ const MyDataIndex = ({
           )}
         </nav>
 
-        <section className="p-4">
+        <section className="absolute inset-y-0 left-64 right-0 overflow-scroll p-4">
           <h2 className="mb-6 flex justify-between font-bold">
             Results {results?.pagination?.total || '-'}{' '}
             <span className="font-normal text-neutral-500">
@@ -335,30 +341,48 @@ const MyDataIndex = ({
               {results?.timings?.total} ms
             </span>
           </h2>
-          <table>
+          <table className="prose">
             <thead>
               <tr>
-                {tableHead.map((key) => {
-                  const bucketActive = !!searchOptionFilters[key];
-                  return (
-                    <th
-                      key={key}
-                      className={classNames({ 'bg-orange-300': bucketActive })}
-                    >
-                      {key}
-                    </th>
-                  );
-                })}
+                <th> </th>
+                <th>Image</th>
+                {tableHead
+                  .filter((key) => !['path', '_id'].includes(key))
+                  .map((key) => {
+                    const bucketActive = !!searchOptionFilters[key];
+                    return (
+                      <th
+                        key={key}
+                        className={classNames({
+                          'bg-yellow-200': bucketActive,
+                        })}
+                      >
+                        {key}
+                      </th>
+                    );
+                  })}
+                <th> </th>
               </tr>
             </thead>
             <tbody>
-              {resultItems.map((scene) => (
+              {resultItems.map((scene, index) => (
                 <tr key={scene.sceneId}>
-                  {Object.keys(scene).map((key) => (
-                    <td key={key}>{scene[key]}</td>
-                  ))}
+                  <td>{index + 1}</td>
+                  <td className="p-0 align-middle">
+                    {/* todo types */}
+                    <SceneImage
+                      sceneId={scene.sceneId as string}
+                      className="my-0"
+                    />
+                  </td>
+                  {Object.keys(scene)
+                    .filter((key) => !['path', '_id'].includes(key))
+                    .map((key) => (
+                      <td key={key}>{scene[key]}</td>
+                    ))}
                   <td>
-                    <TextLink to={scene.path}>Details</TextLink>
+                    {/* todo types */}
+                    <TextLink to={scene.path as string}>Details</TextLink>
                   </td>
                 </tr>
               ))}
@@ -366,7 +390,7 @@ const MyDataIndex = ({
           </table>
         </section>
       </div>
-    </Layout>
+    </FixedLayout>
   );
 };
 
