@@ -144,11 +144,15 @@ const MyDataIndex = ({
     event.preventDefault();
     if (bucket.selected) {
       // Remove filter
-      setSearchOptionFilters((prevState) =>
-        prevState[aggregationKey].filter(
+      setSearchOptionFilters((prevState) => {
+        const filter = prevState[aggregationKey].filter(
           (currentKey) => currentKey !== bucket.key
-        )
-      );
+        );
+        return {
+          ...prevState,
+          [aggregationKey]: filter,
+        };
+      });
     } else {
       // Add filter
       setSearchOptionFilters((prevState) => {
