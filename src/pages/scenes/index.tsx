@@ -179,55 +179,54 @@ const MyDataIndex = ({
             </a>
           </p>
 
-          {results?.data?.aggregations &&
-            Object.entries(results?.data?.aggregations).map(
-              ([aggregationKey, value_]) => {
-                const value = value_ as ResultProps['data']['aggregations'][0];
-                const buckets = value.buckets as ResultBucketProps[];
-                const bucketHasSelected = buckets.some((b) => b.selected);
-                console.log({ buckets });
+          {Object.entries(results?.data?.aggregations || {}).map(
+            ([aggregationKey, value_]) => {
+              const value = value_ as ResultProps['data']['aggregations'][0];
+              const buckets = value.buckets as ResultBucketProps[];
+              const bucketHasSelected = buckets.some((b) => b.selected);
+              // console.log({ buckets });
 
-                return (
-                  <div
-                    key={aggregationKey}
-                    className={classNames(
-                      {
-                        'bg-yellow-50': bucketHasSelected,
-                      },
-                      'mb-5'
-                    )}
-                  >
-                    <h5>
-                      <strong>{value.title}</strong>
-                    </h5>
+              return (
+                <div
+                  key={aggregationKey}
+                  className={classNames(
+                    {
+                      'bg-yellow-50': bucketHasSelected,
+                    },
+                    'mb-5'
+                  )}
+                >
+                  <h5>
+                    <strong>{value.title}</strong>
+                  </h5>
 
-                    <ul>
-                      {buckets.map((bucket) => (
-                        <li key={bucket.key}>
-                          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                          <a
-                            href=""
-                            onClick={(event) =>
-                              handleFilterClick({
-                                event,
-                                aggregationKey,
-                                bucket,
-                              })
-                            }
-                            className={classNames(
-                              { 'bg-yellow-200': bucket.selected },
-                              'block w-full hover:underline '
-                            )}
-                          >
-                            {bucket.key || '(null)'} ({bucket.doc_count})
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              }
-            )}
+                  <ul>
+                    {buckets.map((bucket) => (
+                      <li key={bucket.key}>
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                        <a
+                          href=""
+                          onClick={(event) =>
+                            handleFilterClick({
+                              event,
+                              aggregationKey,
+                              bucket,
+                            })
+                          }
+                          className={classNames(
+                            { 'bg-yellow-200': bucket.selected },
+                            'block w-full hover:underline '
+                          )}
+                        >
+                          {bucket.key || '(null)'} ({bucket.doc_count})
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            }
+          )}
         </nav>
 
         <section className="p-4">
