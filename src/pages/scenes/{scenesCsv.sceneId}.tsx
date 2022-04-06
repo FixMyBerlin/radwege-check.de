@@ -4,10 +4,11 @@ import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
 import { Layout } from '~/components/Layout';
 
 const MyData = ({ data: { scenesCsv: scene } }) => {
+  console.table(scene);
   return (
     <Layout padding={false}>
       <HelmetSeo
-        title={`Titel: ${scene.title}`}
+        title={`Titel: ${scene.sceneId}`}
         description="TODO"
         image="TODO"
       />
@@ -31,13 +32,40 @@ export default MyData;
 export const query = graphql`
   query ($sceneId: String!) {
     scenesCsv(sceneId: { eq: $sceneId }) {
-      title
-      vote1
-      vote2
-      vote4
-      vote3
-      voteTotal
       sceneId
+      location
+      pointOfView
+      leftOfBicycleLane
+      divideLeftWidth
+      divideLeftCategory
+      divideLeftStructural
+      leftOfBicycleLaneWithStructuralDivide
+      bicycleLaneWidth
+      divideRightWidth
+      divideRightCategory
+      pavementWidth
+      pavementHasShows
+      bicycleLaneWidthUsable
+      vehicleLaneUsage
+      vehicleLaneMaxspeed
+      bicycleLaneLanes
+      bicycleLaneSurface
+      divideLeftMarking
+      divideRightMarking
+      parkingCategory
+      rightOfBicycleLane
+      divideIsPhysical
+      todoMotorVehicleDirection
+      bicycleStreetType
+      motorVehicleWidth
+      motorVehicleTrafficVolumen
+      vote0Unsafe
+      vote1RatherUnsafe
+      vote2Save
+      vote3VerySave
+      voteSum
+      voteCount
+      voteMeans
       path: gatsbyPath(filePath: "/scenes/{scenesCsv.sceneId}")
     }
   }

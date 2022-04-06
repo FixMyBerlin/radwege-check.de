@@ -26,25 +26,123 @@ const MyDataIndex = ({
         },
       },
       aggregations: {
+        location: { title: 'location', size: 10, conjuction: false },
+        pointOfView: { title: 'pointOfView', size: 10, conjuction: false },
+        leftOfBicycleLane: {
+          title: 'leftOfBicycleLane',
+          size: 10,
+          conjuction: false,
+        },
         divideLeftWidth: {
-          title: 'my divideLeftWidth',
-          size: 3,
-          conjunction: false,
+          title: 'divideLeftWidth',
+          size: 10,
+          conjuction: false,
         },
-        pavementWidth: {
-          title: 'my pavementWidth',
-          size: 3,
-          conjunction: false,
+        divideLeftCategory: {
+          title: 'divideLeftCategory',
+          size: 10,
+          conjuction: false,
         },
-        pavementHasShops: {
-          title: 'my pavementHasShops',
-          size: 3,
-          conjunction: false,
+        divideLeftStructural: {
+          title: 'divideLeftStructural',
+          size: 10,
+          conjuction: false,
+        },
+        leftOfBicycleLaneWithStructuralDivide: {
+          title: 'leftOfBicycleLaneWithStructuralDivide',
+          size: 10,
+          conjuction: false,
+        },
+        bicycleLaneWidth: {
+          title: 'bicycleLaneWidth',
+          size: 10,
+          conjuction: false,
+        },
+        divideRightWidth: {
+          title: 'divideRightWidth',
+          size: 10,
+          conjuction: false,
+        },
+        divideRightCategory: {
+          title: 'divideRightCategory',
+          size: 10,
+          conjuction: false,
+        },
+        pavementWidth: { title: 'pavementWidth', size: 10, conjuction: false },
+        pavementHasShows: {
+          title: 'pavementHasShows',
+          size: 10,
+          conjuction: false,
         },
         bicycleLaneWidthUsable: {
-          title: 'my bicycleLaneWidthUsable',
-          size: 3,
-          conjunction: false,
+          title: 'bicycleLaneWidthUsable',
+          size: 10,
+          conjuction: false,
+        },
+        vehicleLaneUsage: {
+          title: 'vehicleLaneUsage',
+          size: 10,
+          conjuction: false,
+        },
+        vehicleLaneMaxspeed: {
+          title: 'vehicleLaneMaxspeed',
+          size: 10,
+          conjuction: false,
+        },
+        bicycleLaneLanes: {
+          title: 'bicycleLaneLanes',
+          size: 10,
+          conjuction: false,
+        },
+        bicycleLaneSurface: {
+          title: 'bicycleLaneSurface',
+          size: 10,
+          conjuction: false,
+        },
+        divideLeftMarking: {
+          title: 'divideLeftMarking',
+          size: 10,
+          conjuction: false,
+        },
+        divideRightMarking: {
+          title: 'divideRightMarking',
+          size: 10,
+          conjuction: false,
+        },
+        parkingCategory: {
+          title: 'parkingCategory',
+          size: 10,
+          conjuction: false,
+        },
+        rightOfBicycleLane: {
+          title: 'rightOfBicycleLane',
+          size: 10,
+          conjuction: false,
+        },
+        divideIsPhysical: {
+          title: 'divideIsPhysical',
+          size: 10,
+          conjuction: false,
+        },
+        todoMotorVehicleDirection: {
+          title: 'todoMotorVehicleDirection',
+          size: 10,
+          conjuction: false,
+        },
+        bicycleStreetType: {
+          title: 'bicycleStreetType',
+          size: 10,
+          conjuction: false,
+        },
+        motorVehicleWidth: {
+          title: 'motorVehicleWidth',
+          size: 10,
+          conjuction: false,
+        },
+        motorVehicleTrafficVolumen: {
+          title: 'motorVehicleTrafficVolumen',
+          size: 10,
+          conjuction: false,
         },
       },
       searchableFields: [],
@@ -279,17 +377,40 @@ export const query = graphql`
     allScenesCsv {
       edges {
         node {
-          title
-          divideLeftWidth
-          pavementWidth
-          pavementHasShops
-          bicycleLaneWidthUsable
-          vote1
-          vote2
-          vote3
-          vote4
-          voteTotal
+          location
+          pointOfView
           sceneId
+          leftOfBicycleLane
+          divideLeftWidth
+          divideLeftCategory
+          divideLeftStructural
+          leftOfBicycleLaneWithStructuralDivide
+          bicycleLaneWidth
+          divideRightWidth
+          divideRightCategory
+          pavementWidth
+          pavementHasShows
+          bicycleLaneWidthUsable
+          vehicleLaneUsage
+          vehicleLaneMaxspeed
+          bicycleLaneLanes
+          bicycleLaneSurface
+          divideLeftMarking
+          divideRightMarking
+          parkingCategory
+          rightOfBicycleLane
+          divideIsPhysical
+          todoMotorVehicleDirection
+          bicycleStreetType
+          motorVehicleWidth
+          motorVehicleTrafficVolumen
+          vote0Unsafe
+          vote1RatherUnsafe
+          vote2Save
+          vote3VerySave
+          voteSum
+          voteCount
+          voteMeans
           path: gatsbyPath(filePath: "/scenes/{scenesCsv.sceneId}")
         }
       }
