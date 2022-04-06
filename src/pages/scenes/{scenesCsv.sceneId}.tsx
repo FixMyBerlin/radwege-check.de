@@ -1,5 +1,6 @@
 import { graphql } from 'gatsby';
 import React from 'react';
+import { SceneImage } from '~/components/components/SceneImage';
 import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
 import { Layout } from '~/components/Layout';
 
@@ -14,10 +15,7 @@ const MyData = ({ data: { scenesCsv: scene } }) => {
       />
       <div className="bg-white">
         <div className="mx-auto max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-          <img
-            src={`https://fmb-aws-bucket.s3.eu-central-1.amazonaws.com/KatasterKI/scenes/${scene.sceneId}.jpg`}
-            alt="Illustration der bewerteten Szene."
-          />
+          <SceneImage sceneId={scene.sceneId} />
           <textarea className="mt-20 h-60 w-full">
             {JSON.stringify(scene)}
           </textarea>
