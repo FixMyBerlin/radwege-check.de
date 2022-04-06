@@ -333,16 +333,17 @@ const MyDataIndex = ({
           )}
         </nav>
 
-        <section className="absolute inset-y-0 left-64 right-0 overflow-scroll p-4">
-          <h2 className="mb-6 flex justify-between font-bold">
+        <div className="absolute top-0 left-64 right-0 h-8 bg-slate-300 px-4 py-1 ">
+          <h2 className="flex justify-between font-bold">
             Results {results?.pagination?.total || '-'}{' '}
             <span className="font-normal text-neutral-500">
               {results?.pagination?.per_page} per page, in{' '}
               {results?.timings?.total} ms
             </span>
           </h2>
-          <table className="prose">
-            <thead>
+        </div>
+        <section className="absolute top-8 bottom-0 left-64 right-0 overflow-scroll p-4">
+          {/* <thead>
               <tr>
                 <th> </th>
                 <th>Image</th>
@@ -363,31 +364,105 @@ const MyDataIndex = ({
                   })}
                 <th> </th>
               </tr>
-            </thead>
-            <tbody>
-              {resultItems.map((scene, index) => (
-                <tr key={scene.sceneId}>
-                  <td>{index + 1}</td>
-                  <td className="p-0 align-middle">
-                    {/* todo types */}
-                    <SceneImage
-                      sceneId={scene.sceneId as string}
-                      className="my-0"
-                    />
-                  </td>
-                  {Object.keys(scene)
-                    .filter((key) => !['path', '_id'].includes(key))
-                    .map((key) => (
-                      <td key={key}>{scene[key]}</td>
-                    ))}
-                  <td>
+            </thead> */}
+          <div className="flex flex-row gap-4">
+            {resultItems.map((scene, index) => (
+              <div className="flex h-full w-64 flex-col" key={scene.sceneId}>
+                <div className="flex justify-between">
+                  <div>{index + 1}</div>
+                  <div>
                     {/* todo types */}
                     <TextLink to={scene.path as string}>Details</TextLink>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </div>
+                </div>
+                <div className="p-0 align-middle">
+                  {/* todo types */}
+                  <SceneImage
+                    sceneId={scene.sceneId as string}
+                    className="h-40 object-cover"
+                  />
+                </div>
+                {Object.keys(scene)
+                  .filter(
+                    (key) =>
+                      ![
+                        'path',
+                        '_id',
+                        'vote0Unsafe',
+                        'vote1RatherUnsafe',
+                        'vote2Save',
+                        'vote3VerySave',
+                        'voteSum',
+                      ].includes(key)
+                  )
+                  .map((key) => {
+                    const bucketActive = !!searchOptionFilters[key];
+                    return (
+                      <div
+                        key={key}
+                        className={classNames('group hover:bg-neutral-100', {
+                          'bg-yellow-50 font-bold': bucketActive,
+                        })}
+                      >
+                        <div className="text-xs text-neutral-300 group-hover:text-pink-700">
+                          {key}:
+                        </div>
+                        <div className="group-hover:text-pink-900">
+                          {scene[key] || '(null)'}
+                        </div>
+                      </div>
+                    );
+                  })}
+                <div className="text-xs">
+                  <strong>
+                    Bewertung Gut+SehrGut:{' '}
+                    {parseInt(scene.vote2Save as string, 10) +
+                      parseInt(scene.vote3VerySave as string, 10)}
+                  </strong>
+                  <div className="flex w-full flex-row ">
+                    <div
+                      style={{
+                        width: `${parseInt(scene.vote0Unsafe as string, 10)}%`,
+                      }}
+                      className="h-6 bg-red-300 "
+                    >
+                      {/* {scene.vote0Unsafe} */}
+                    </div>
+                    <div
+                      style={{
+                        width: `${parseInt(
+                          scene.vote1RatherUnsafe as string,
+                          10
+                        )}%`,
+                      }}
+                      className="h-6 bg-orange-300 "
+                    >
+                      {/* {scene.vote1RatherUnsafe} */}
+                    </div>
+                    <div
+                      style={{
+                        width: `${parseInt(scene.vote2Save as string, 10)}%`,
+                      }}
+                      className="h-6 bg-blue-300 "
+                    >
+                      {/* {scene.vote2Save} */}
+                    </div>
+                    <div
+                      style={{
+                        width: `${parseInt(
+                          scene.vote3VerySave as string,
+                          10
+                        )}%`,
+                      }}
+                      className="h-6 bg-green-300 "
+                    >
+                      {/* {scene.vote3VerySave} */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
       </div>
     </FixedLayout>
