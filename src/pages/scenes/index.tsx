@@ -240,9 +240,17 @@ const MyDataIndex = ({
           <table>
             <thead>
               <tr>
-                {tableHead.map((key) => (
-                  <th key={key}>{key}</th>
-                ))}
+                {tableHead.map((key) => {
+                  const bucketActive = !!searchOptionFilters[key];
+                  return (
+                    <th
+                      key={key}
+                      className={classNames({ 'bg-orange-300': bucketActive })}
+                    >
+                      {key}
+                    </th>
+                  );
+                })}
               </tr>
             </thead>
             <tbody>
