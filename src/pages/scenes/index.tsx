@@ -14,7 +14,10 @@ const MyDataIndex = ({
 }) => {
   // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
   const scenes = useMemo(
-    () => sceneNodes.map((list) => list.node),
+    () =>
+      sceneNodes
+        .map((list) => list.node)
+        .filter((scene) => scene.location !== 'secondary_road'),
     [sceneNodes]
   );
 
