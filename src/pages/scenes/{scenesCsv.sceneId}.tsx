@@ -5,7 +5,7 @@ import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
 import { Layout } from '~/components/Layout';
 
 const MyData = ({ data: { scenesCsv: scene } }) => {
-  console.table(scene);
+  // console.table(scene);
   return (
     <Layout padding={false}>
       <HelmetSeo
