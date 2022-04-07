@@ -223,11 +223,6 @@ const MyDataIndex = ({
   console.table(results?.pagination);
   console.table(results?.timings);
 
-  const tableHead = useMemo(
-    () => (scenes[0] ? Object.keys(scenes[0]) : []),
-    [scenes]
-  );
-
   const resetFilter = () => {
     setSearchOption((prevState) => ({ ...prevState, filters: {} }));
   };
