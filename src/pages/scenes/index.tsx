@@ -173,7 +173,7 @@ const MyDataIndex = ({
   useEffect(
     () =>
       setSearchOption({
-        per_page: 1000,
+        per_page: 200,
         sort: 'vote4desc',
         filters: searchOptionFilters,
       }),
