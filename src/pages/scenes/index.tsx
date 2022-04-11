@@ -283,50 +283,131 @@ const MyDataIndex = ({
 
   const resultItems = results?.data?.items || [];
 
-  console.table(resultItems);
-  console.table(results?.pagination);
-  console.table(results?.timings);
+  // console.table(resultItems);
+  // console.table(results?.pagination);
+  // console.table(results?.timings);
 
   const resetFilter = () => {
-    setSearchOption((prevState) => ({ ...prevState, filters: {} }));
+    setSearchOptionFilters(() => ({}));
   };
 
   // Add remove filter to the searchOptionFilters state.
   // This will trigger a useEffect to re-search.
   const handleFilterClick = ({
-    event,
     aggregationKey,
-    bucket,
+    buckets,
+    selectedBucket,
   }: {
-    event: React.MouseEvent<HTMLAnchorElement>;
     aggregationKey: string;
-    bucket: ResultBucketProps;
+    buckets: ResultBucketProps[];
+    selectedBucket: ResultBucketProps;
   }) => {
-    event.preventDefault();
-    if (bucket.selected) {
-      // Remove filter
+    // console.log({ allBucketKeys, prevAndNowSelectedBucketKeys });
+    // console.log({
+    //   searchOptionFilters,
+    //   aggregationKey,
+    //   buckets,
+    //   selectedBucket,
+    // });
+    // setSearchOptionFilters((prevState) => {
+    // 1. Get allBucketKeys
+    // 2. Remove all prevSelectedBucketKeys
+    // 3. Remove the currently selected bucketKey
+    // The rest is what we want to add as filter
+    // const allBucketKeys = buckets.map((bucket) => bucket.key);
+    // const allWithoutClicked = allBucketKeys.filter(
+    //   (k) => k !== selectedBucket.key
+    // );
+    // const prevFilter =
+    //   aggregationKey in prevState ? prevState[aggregationKey] : [];
+    // const allWithoutClickedAndPrev = allWithoutClicked.filter(
+    //   (k) => !prevFilter.includes(k)
+    // );
+    // const prevFilterWithoutClicked = prevFilter.filter(
+    //   (k) => k !== selectedBucket.key
+    // );
+    // const currentlySelectedBucketKeys = buckets
+    //   .filter((b) => b.selected)
+    //   .map((b) => b.key);
+    // const filter = allBucketKeys
+    //   .filter((k) => k !== prevFilterWithoutClicked)
+    //   .filter((k) => k !== selectedBucket.key);
+
+    // allBucketKeys.filter(k => k!==selectedBucket.key)
+
+    // console.log(
+    //   { '1: I clicked': selectedBucket.key },
+    //   { '2: Current Filter': prevFilter },
+    //   {
+    //     '3: Remove clicked from Current': prevFilterWithoutClicked,
+    //   },
+    //   { '4: Remove clicked from all': allWithoutClicked },
+    //   { '5: Remove all prev': allWithoutClickedAndPrev }
+    // );
+
+    const bucketHasNothingSelected = !buckets.some((b) => b.selected);
+    if (bucketHasNothingSelected) {
+      // Activate uiFilter (remove Filter)
       setSearchOptionFilters((prevState) => {
-        const filter = prevState[aggregationKey].filter(
-          (currentKey) => currentKey !== bucket.key
+        const allBucketKeys = buckets.map((bucket) => bucket.key);
+        const allWithoutClicked = allBucketKeys.filter(
+          (k) => k !== selectedBucket.key
         );
-        return {
-          ...prevState,
-          [aggregationKey]: filter,
-        };
+        const filter = allWithoutClicked;
+        console.log('FIRST', selectedBucket, aggregationKey, prevState, filter);
+
+        return { ...prevState, [aggregationKey]: filter };
+      });
+    } else if (selectedBucket.selected) {
+      // Activate uiFilter (remove Filter)
+      setSearchOptionFilters((prevState) => {
+        const prevFilter =
+          aggregationKey in prevState
+            ? [...prevState[aggregationKey], selectedBucket.key]
+            : [selectedBucket.key];
+        const filter = prevFilter.filter((k) => k !== selectedBucket.key);
+        console.log('IN', selectedBucket, aggregationKey, prevState, filter);
+
+        return { ...prevState, [aggregationKey]: filter };
       });
     } else {
-      // Add filter
+      // Deactivate uiFilter (add Filter)
       setSearchOptionFilters((prevState) => {
-        const filter =
+        const prevFilter =
           aggregationKey in prevState
-            ? [...prevState[aggregationKey], bucket.key]
-            : [bucket.key];
-        return {
-          ...prevState,
-          [aggregationKey]: filter,
-        };
+            ? [...prevState[aggregationKey], selectedBucket.key]
+            : [selectedBucket.key];
+        const filter = prevFilter;
+        console.log('OUT', selectedBucket, aggregationKey, prevState, filter);
+
+        return { ...prevState, [aggregationKey]: filter };
       });
     }
+    // });
+    // if (selectedBucket.selected) {
+    //   // Remove filter
+    //   setSearchOptionFilters((prevState) => {
+    //     const filter = prevState[aggregationKey].filter(
+    //       (currentKey) => currentKey !== selectedBucket.key
+    //     );
+    //     return {
+    //       ...prevState,
+    //       [aggregationKey]: filter,
+    //     };
+    //   });
+    // } else {
+    //   // Add filter
+    //   setSearchOptionFilters((prevState) => {
+    //     const filter =
+    //       aggregationKey in prevState
+    //         ? [...prevState[aggregationKey], selectedBucket.key]
+    //         : [selectedBucket.key];
+    //     return {
+    //       ...prevState,
+    //       [aggregationKey]: filter,
+    //     };
+    //   });
+    // }
   };
 
   return (
@@ -341,54 +422,90 @@ const MyDataIndex = ({
           </p>
 
           {Object.entries(results?.data?.aggregations || {}).map(
-            ([aggregationKey, value_]) => {
-              const value = value_ as ResultProps['data']['aggregations'][0];
-              const buckets = value.buckets as ResultBucketProps[];
-              const bucketHasSelected = buckets.some((b) => b.selected);
-              // console.log({ buckets });
+            ([aggregationKey, aggregation_]) => {
+              const aggregation =
+                aggregation_ as ResultProps['data']['aggregations'][0];
+              const buckets = aggregation.buckets as ResultBucketProps[];
+
+              // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
+              const anyOfGroupSelected = buckets.some((b) => b.selected);
+
+              // Filter some buckets
+              if (['vehicleLaneUsage'].includes(aggregationKey)) {
+                return null;
+              }
 
               return (
-                <div
-                  key={aggregationKey}
-                  className={classNames(
-                    {
-                      'bg-yellow-50': bucketHasSelected,
-                    },
-                    'mb-5'
-                  )}
-                >
+                <div key={aggregationKey} className={classNames('mb-5')}>
                   <h5>
-                    <strong>{value.title}</strong>
+                    <strong>{aggregation.title}</strong>
                   </h5>
 
-                  <ul>
-                    {buckets.map((bucket) => (
-                      <li key={bucket.key}>
-                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                        <a
-                          href=""
-                          onClick={(event) =>
-                            handleFilterClick({
-                              event,
-                              aggregationKey,
-                              bucket,
-                            })
-                          }
-                          className={classNames(
-                            { 'bg-yellow-200': bucket.selected },
-                            {
-                              'block w-full hover:underline': bucket.doc_count,
-                            },
-                            {
-                              'cursor-default text-gray-400': !bucket.doc_count,
+                  <span className="relative z-0 inline-flex rounded-md shadow-sm">
+                    {buckets
+                      .sort((a, b) =>
+                        // eslint-disable-next-line no-nested-ternary
+                        a.key > b.key ? 1 : b.key > a.key ? -1 : 0
+                      )
+                      .map((bucket, index) => {
+                        const uiSelected =
+                          bucket.selected || !anyOfGroupSelected;
+                        const uiCanpress = !!bucket.doc_count;
+                        const firstElement = index === 0;
+                        const lastElement = index === buckets.length - 1;
+
+                        return (
+                          <button
+                            key={bucket.key}
+                            type="button"
+                            className={classNames(
+                              'relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium',
+                              { 'rounded-l-md': firstElement },
+                              { '-ml-px': !firstElement },
+                              { 'rounded-r-md': lastElement },
+                              {
+                                'z-10 border-indigo-200 bg-indigo-50 shadow-inner':
+                                  uiSelected,
+                              },
+                              {
+                                'shadow-md': !uiSelected,
+                              },
+                              {
+                                'text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500':
+                                  uiCanpress,
+                              },
+                              {
+                                'z-10 cursor-default border-neutral-200 bg-neutral-100 text-neutral-500':
+                                  !uiCanpress,
+                              }
+                            )}
+                            onClick={() =>
+                              uiCanpress &&
+                              handleFilterClick({
+                                aggregationKey,
+                                buckets: aggregation.buckets,
+                                selectedBucket: bucket,
+                              })
                             }
-                          )}
-                        >
-                          {bucket.key || '(null)'} ({bucket.doc_count})
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                            // className={classNames(
+                            //   'mb-1 rounded border-neutral-100 px-1 py-0',
+                            //   { 'bg-neutral-200 shadow-inner': uiSelected },
+                            //   {
+                            //     'block w-full hover:bg-neutral-300': uiCanpress,
+                            //   },
+                            //   {
+                            //     'cursor-default text-gray-400': !uiCanpress,
+                            //   }
+                            // )}
+                          >
+                            {bucket.key || '(null)'} ({bucket.doc_count})
+                            {/* {bucket.selected ? '✓' : '✗'}
+                            {uiSelected ? '✓' : '✗'}
+                            {anyOfGroupSelected ? '✓' : '✗'} */}
+                          </button>
+                        );
+                      })}
+                  </span>
                 </div>
               );
             }
@@ -405,28 +522,6 @@ const MyDataIndex = ({
           </h2>
         </div>
         <section className="absolute top-8 bottom-0 left-64 right-0 overflow-scroll p-4">
-          {/* <thead>
-              <tr>
-                <th> </th>
-                <th>Image</th>
-                {tableHead
-                  .filter((key) => !['path', '_id'].includes(key))
-                  .map((key) => {
-                    const bucketActive = !!searchOptionFilters[key];
-                    return (
-                      <th
-                        key={key}
-                        className={classNames({
-                          'bg-yellow-200': bucketActive,
-                        })}
-                      >
-                        {key}
-                      </th>
-                    );
-                  })}
-                <th> </th>
-              </tr>
-            </thead> */}
           <div className="flex flex-row gap-4">
             {resultItems.map((scene, index) => (
               <div className="flex h-full w-64 flex-col" key={scene.sceneId}>
