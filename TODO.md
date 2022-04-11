@@ -16,3 +16,7 @@ query GetEntries {
 ```
 
 https://devinschulz.com/rename-fields-by-using-aliases-in-graphql/
+
+# `npm install --save-dev @types/itemsjs`
+
+Type Probleme…
