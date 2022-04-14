@@ -506,37 +506,7 @@ const MyDataIndex = ({
                     className="h-40 object-cover"
                   />
                 </div>
-                {Object.keys(scene)
-                  .filter(
-                    (key) =>
-                      ![
-                        'path',
-                        '_id',
-                        'vote0Unsafe',
-                        'vote1RatherUnsafe',
-                        'vote2Save',
-                        'vote3VerySave',
-                        'voteSum',
-                      ].includes(key)
-                  )
-                  .map((key) => {
-                    const bucketActive = !!searchOptionFilters[key];
-                    return (
-                      <div
-                        key={key}
-                        className={classNames('group hover:bg-neutral-100', {
-                          'bg-yellow-50 font-bold': bucketActive,
-                        })}
-                      >
-                        <div className="text-xs text-neutral-300 group-hover:text-pink-700">
-                          {key}:
-                        </div>
-                        <div className="group-hover:text-pink-900">
-                          {scene[key] || '(null)'}
-                        </div>
-                      </div>
-                    );
-                  })}
+
                 <div className="text-xs">
                   <strong>
                     Bewertung Gut+SehrGut:{' '}
@@ -588,6 +558,43 @@ const MyDataIndex = ({
                     {scene.vote2Save} – {scene.vote3VerySave}
                   </div>
                 </div>
+                {Object.keys(scene)
+                  .filter(
+                    (key) =>
+                      ![
+                        '_id',
+                        'path',
+                        'vote0Unsafe',
+                        'vote1RatherUnsafe',
+                        'vote2Save',
+                        'vote3VerySave',
+                        'voteCount',
+                        'voteMeans',
+                        'voteSum',
+                      ].includes(key)
+                  )
+                  .map((key) => {
+                    const bucketActive = !!searchOptionFilters[key];
+
+                    return (
+                      <div
+                        title={key}
+                        key={key}
+                        className={classNames('group hover:bg-neutral-100', {
+                          'bg-yellow-50 font-bold': bucketActive,
+                        })}
+                      >
+                        <div className="text-xs text-neutral-300 group-hover:text-pink-700">
+                          {aggregationTranslations[key]?.title || key}:
+                        </div>
+                        <div className="group-hover:text-pink-900">
+                          {aggregationTranslations[key]?.buckets[
+                            scene[key]
+                          ] || <span className="text-neutral-300">(todo)</span>}
+                        </div>
+                      </div>
+                    );
+                  })}
               </div>
             ))}
           </div>
