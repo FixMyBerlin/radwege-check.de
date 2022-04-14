@@ -6,7 +6,7 @@ import { SceneImage } from '~/components/components/SceneImage';
 import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
 import { FixedLayout } from '~/components/Layout';
 import { TextLink } from '~/components/Links/TextLink';
-import { aggregationTranslations } from './aggregationTranslations.const';
+import { aggregationTranslations } from '../../translations/aggregationTranslations.const';
 
 const MyDataIndex = ({
   data: {
