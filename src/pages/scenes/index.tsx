@@ -404,11 +404,9 @@ const MyDataIndex = ({
 
               return (
                 <div key={aggregationKey} className={classNames('mb-5')}>
-                  <h5>
-                    <strong>
-                      {aggregationTranslations[aggregationKey]?.title ||
-                        `TODO ${aggregationKey}`}
-                    </strong>
+                  <h5 title={aggregationKey} className="font-bold">
+                    {aggregationTranslations[aggregationKey]?.title ||
+                      `TODO ${aggregationKey}`}
                   </h5>
 
                   <span className="relative z-0 inline-flex rounded-md shadow-sm">
@@ -491,7 +489,10 @@ const MyDataIndex = ({
         <section className="absolute top-8 bottom-0 left-80 right-0 overflow-scroll p-4">
           <div className="flex flex-row gap-4">
             {resultItems.map((scene, index) => (
-              <div className="flex h-full w-80 flex-col" key={scene.sceneId}>
+              <div
+                className="flex h-full w-80 flex-col space-y-3"
+                key={scene.sceneId}
+              >
                 <div className="flex justify-between">
                   <div>{index + 1}</div>
                   <div>
@@ -556,6 +557,10 @@ const MyDataIndex = ({
                   <div>
                     {scene.vote0Unsafe} – {scene.vote1RatherUnsafe} –{' '}
                     {scene.vote2Save} – {scene.vote3VerySave}
+                    <br />
+                    Mittelwert: {scene.voteMeans}
+                    <br />
+                    Anzahl: {scene.voteCount}
                   </div>
                 </div>
                 {Object.keys(scene)
