@@ -4,7 +4,7 @@ import { SceneImage } from '~/components/components/SceneImage';
 import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
 import { Layout } from '~/components/Layout';
 
-const MyData = ({ data: { scenesCsv: scene } }) => {
+const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
   // console.table(scene);
   return (
     <Layout padding={false}>
@@ -29,42 +29,43 @@ export default MyData;
 
 export const query = graphql`
   query ($sceneId: String!) {
-    scenesCsv(sceneId: { eq: $sceneId }) {
+    scenesPrimaryCsv(sceneId: { eq: $sceneId }) {
       sceneId
-      location
-      pointOfView
-      leftOfBicycleLane
-      divideLeftWidth
-      divideLeftCategory
-      divideLeftStructural
-      leftOfBicycleLaneWithStructuralDivide
-      bicycleLaneWidth
-      divideRightWidth
-      divideRightCategory
-      pavementWidth
-      pavementHasShows
-      bicycleLaneWidthUsable
-      vehicleLaneUsage
-      vehicleLaneMaxspeed
       bicycleLaneLanes
       bicycleLaneSurface
-      divideLeftMarking
-      divideRightMarking
-      parkingCategory
-      rightOfBicycleLane
+      bicycleLaneWidth
+      bicycleLaneWidthName
+      bicycleLaneWidthUsable
       divideIsPhysical
-      todoMotorVehicleDirection
-      bicycleStreetType
-      motorVehicleWidth
+      divideLeftCategory
+      divideLeftMarking
+      divideLeftStructural
+      divideLeftWidth
+      divideLeftWidthName
+      divideRightCategory
+      divideRightMarking
+      divideRightWidth
+      divideRightWidthName
+      leftOfBicycleLane
+      leftOfBicycleLaneWithStructuralDivide
+      location
       motorVehicleTrafficVolumen
+      parkingCategory
+      pavementHasShops
+      pavementWidth
+      pavementWidthName
+      pointOfView
+      rightOfBicycleLane
+      vehicleLaneMaxspeed
+      vehicleLaneUsage
       vote0Unsafe
       vote1RatherUnsafe
       vote2Save
       vote3VerySave
-      voteSum
       voteCount
       voteMeans
-      path: gatsbyPath(filePath: "/scenes/{scenesCsv.sceneId}")
+      voteSum
+      path: gatsbyPath(filePath: "/scenes/{scenesPrimaryCsv.sceneId}")
     }
   }
 `;

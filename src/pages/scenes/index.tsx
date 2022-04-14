@@ -6,10 +6,11 @@ import { SceneImage } from '~/components/components/SceneImage';
 import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
 import { FixedLayout } from '~/components/Layout';
 import { TextLink } from '~/components/Links/TextLink';
+import { aggregationTranslations } from './aggregationTranslations.const';
 
 const MyDataIndex = ({
   data: {
-    allScenesCsv: { edges: sceneNodes },
+    allScenesPrimaryCsv: { edges: sceneNodes },
   },
 }) => {
   // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
@@ -51,6 +52,13 @@ const MyDataIndex = ({
           order: 'asc',
           conjunction: false,
         },
+        divideLeftWidthName: {
+          title: 'divideLeftWidthName',
+          size: 10,
+          sort: 'term',
+          order: 'asc',
+          conjunction: false,
+        },
         divideLeftWidth: {
           title: 'divideLeftWidth',
           size: 10,
@@ -74,6 +82,12 @@ const MyDataIndex = ({
         },
         leftOfBicycleLaneWithStructuralDivide: {
           title: 'leftOfBicycleLaneWithStructuralDivide',
+          sort: 'term',
+          order: 'asc',
+          conjunction: false,
+        },
+        bicycleLaneWidthName: {
+          title: 'bicycleLaneWidthName',
           size: 10,
           sort: 'term',
           order: 'asc',
@@ -81,6 +95,13 @@ const MyDataIndex = ({
         },
         bicycleLaneWidth: {
           title: 'bicycleLaneWidth',
+          size: 10,
+          sort: 'term',
+          order: 'asc',
+          conjunction: false,
+        },
+        divideRightWidthName: {
+          title: 'divideRightWidthName',
           size: 10,
           sort: 'term',
           order: 'asc',
@@ -100,6 +121,13 @@ const MyDataIndex = ({
           order: 'asc',
           conjunction: false,
         },
+        pavementWidthName: {
+          title: 'pavementWidthName',
+          size: 10,
+          sort: 'term',
+          order: 'asc',
+          conjunction: false,
+        },
         pavementWidth: {
           title: 'pavementWidth',
           size: 10,
@@ -107,8 +135,8 @@ const MyDataIndex = ({
           order: 'asc',
           conjunction: false,
         },
-        pavementHasShows: {
-          title: 'pavementHasShows',
+        pavementHasShops: {
+          title: 'pavementHasShops',
           size: 10,
           sort: 'term',
           order: 'asc',
@@ -179,27 +207,6 @@ const MyDataIndex = ({
         },
         divideIsPhysical: {
           title: 'divideIsPhysical',
-          size: 10,
-          sort: 'term',
-          order: 'asc',
-          conjunction: false,
-        },
-        todoMotorVehicleDirection: {
-          title: 'todoMotorVehicleDirection',
-          size: 10,
-          sort: 'term',
-          order: 'asc',
-          conjunction: false,
-        },
-        bicycleStreetType: {
-          title: 'bicycleStreetType',
-          size: 10,
-          sort: 'term',
-          order: 'asc',
-          conjunction: false,
-        },
-        motorVehicleWidth: {
-          title: 'motorVehicleWidth',
           size: 10,
           sort: 'term',
           order: 'asc',
@@ -302,59 +309,24 @@ const MyDataIndex = ({
     buckets: ResultBucketProps[];
     selectedBucket: ResultBucketProps;
   }) => {
-    // console.log({ allBucketKeys, prevAndNowSelectedBucketKeys });
-    // console.log({
-    //   searchOptionFilters,
-    //   aggregationKey,
-    //   buckets,
-    //   selectedBucket,
-    // });
-    // setSearchOptionFilters((prevState) => {
-    // 1. Get allBucketKeys
-    // 2. Remove all prevSelectedBucketKeys
-    // 3. Remove the currently selected bucketKey
-    // The rest is what we want to add as filter
-    // const allBucketKeys = buckets.map((bucket) => bucket.key);
-    // const allWithoutClicked = allBucketKeys.filter(
-    //   (k) => k !== selectedBucket.key
-    // );
-    // const prevFilter =
-    //   aggregationKey in prevState ? prevState[aggregationKey] : [];
-    // const allWithoutClickedAndPrev = allWithoutClicked.filter(
-    //   (k) => !prevFilter.includes(k)
-    // );
-    // const prevFilterWithoutClicked = prevFilter.filter(
-    //   (k) => k !== selectedBucket.key
-    // );
-    // const currentlySelectedBucketKeys = buckets
-    //   .filter((b) => b.selected)
-    //   .map((b) => b.key);
-    // const filter = allBucketKeys
-    //   .filter((k) => k !== prevFilterWithoutClicked)
-    //   .filter((k) => k !== selectedBucket.key);
-
-    // allBucketKeys.filter(k => k!==selectedBucket.key)
-
-    // console.log(
-    //   { '1: I clicked': selectedBucket.key },
-    //   { '2: Current Filter': prevFilter },
-    //   {
-    //     '3: Remove clicked from Current': prevFilterWithoutClicked,
-    //   },
-    //   { '4: Remove clicked from all': allWithoutClicked },
-    //   { '5: Remove all prev': allWithoutClickedAndPrev }
-    // );
-
     const bucketHasNothingSelected = !buckets.some((b) => b.selected);
     if (bucketHasNothingSelected) {
       // Activate uiFilter (remove Filter)
+      // Selecting the first bucket in an aggregation will not return bucket.selected for some reason.
+      // To work around this, we handle the first click manually.
       setSearchOptionFilters((prevState) => {
         const allBucketKeys = buckets.map((bucket) => bucket.key);
         const allWithoutClicked = allBucketKeys.filter(
           (k) => k !== selectedBucket.key
         );
         const filter = allWithoutClicked;
-        console.log('FIRST', selectedBucket, aggregationKey, prevState, filter);
+        console.log({
+          log: 'FIRST',
+          selectedBucket,
+          aggregationKey,
+          prevState,
+          filter,
+        });
 
         return { ...prevState, [aggregationKey]: filter };
       });
@@ -366,7 +338,13 @@ const MyDataIndex = ({
             ? [...prevState[aggregationKey], selectedBucket.key]
             : [selectedBucket.key];
         const filter = prevFilter.filter((k) => k !== selectedBucket.key);
-        console.log('IN', selectedBucket, aggregationKey, prevState, filter);
+        console.log({
+          log: 'IN',
+          selectedBucket,
+          aggregationKey,
+          prevState,
+          filter,
+        });
 
         return { ...prevState, [aggregationKey]: filter };
       });
@@ -378,43 +356,24 @@ const MyDataIndex = ({
             ? [...prevState[aggregationKey], selectedBucket.key]
             : [selectedBucket.key];
         const filter = prevFilter;
-        console.log('OUT', selectedBucket, aggregationKey, prevState, filter);
+        console.log({
+          log: 'OUT',
+          selectedBucket,
+          aggregationKey,
+          prevState,
+          filter,
+        });
 
         return { ...prevState, [aggregationKey]: filter };
       });
     }
-    // });
-    // if (selectedBucket.selected) {
-    //   // Remove filter
-    //   setSearchOptionFilters((prevState) => {
-    //     const filter = prevState[aggregationKey].filter(
-    //       (currentKey) => currentKey !== selectedBucket.key
-    //     );
-    //     return {
-    //       ...prevState,
-    //       [aggregationKey]: filter,
-    //     };
-    //   });
-    // } else {
-    //   // Add filter
-    //   setSearchOptionFilters((prevState) => {
-    //     const filter =
-    //       aggregationKey in prevState
-    //         ? [...prevState[aggregationKey], selectedBucket.key]
-    //         : [selectedBucket.key];
-    //     return {
-    //       ...prevState,
-    //       [aggregationKey]: filter,
-    //     };
-    //   });
-    // }
   };
 
   return (
     <FixedLayout>
       <HelmetSeo title="myData" description="TODO" image="TODO" />
       <div className="">
-        <nav className="absolute inset-y-0 left-0 w-64 overflow-scroll bg-gray-100 p-4">
+        <nav className="absolute inset-y-0 left-0 w-80 overflow-scroll bg-gray-100 p-4">
           <p className="mb-6">
             <a href="#reset" onClick={resetFilter} className="underline">
               Reset filter
@@ -422,23 +381,34 @@ const MyDataIndex = ({
           </p>
 
           {Object.entries(results?.data?.aggregations || {}).map(
-            ([aggregationKey, aggregation_]) => {
-              const aggregation =
-                aggregation_ as ResultProps['data']['aggregations'][0];
-              const buckets = aggregation.buckets as ResultBucketProps[];
+            ([aggregationKey, aggregation]) => {
+              const { buckets } = aggregation;
 
               // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
               const anyOfGroupSelected = buckets.some((b) => b.selected);
 
               // Filter some buckets
-              if (['vehicleLaneUsage'].includes(aggregationKey)) {
+              if (
+                [
+                  'vehicleLaneUsage',
+                  'bicycleLaneWidth',
+                  'divideLeftWidth',
+                  'divideLeftWidthName',
+                  'divideRightWidth',
+                  'leftOfBicycleLaneWithStructuralDivide',
+                  'pavementWidth',
+                ].includes(aggregationKey)
+              ) {
                 return null;
               }
 
               return (
                 <div key={aggregationKey} className={classNames('mb-5')}>
                   <h5>
-                    <strong>{aggregation.title}</strong>
+                    <strong>
+                      {aggregationTranslations[aggregationKey]?.title ||
+                        `TODO ${aggregationKey}`}
+                    </strong>
                   </h5>
 
                   <span className="relative z-0 inline-flex rounded-md shadow-sm">
@@ -459,7 +429,7 @@ const MyDataIndex = ({
                             key={bucket.key}
                             type="button"
                             className={classNames(
-                              'relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium',
+                              'relative inline-flex flex-col items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium',
                               { 'rounded-l-md': firstElement },
                               { '-ml-px': !firstElement },
                               { 'rounded-r-md': lastElement },
@@ -487,21 +457,18 @@ const MyDataIndex = ({
                                 selectedBucket: bucket,
                               })
                             }
-                            // className={classNames(
-                            //   'mb-1 rounded border-neutral-100 px-1 py-0',
-                            //   { 'bg-neutral-200 shadow-inner': uiSelected },
-                            //   {
-                            //     'block w-full hover:bg-neutral-300': uiCanpress,
-                            //   },
-                            //   {
-                            //     'cursor-default text-gray-400': !uiCanpress,
-                            //   }
-                            // )}
                           >
-                            {bucket.key || '(null)'} ({bucket.doc_count})
-                            {/* {bucket.selected ? '✓' : '✗'}
-                            {uiSelected ? '✓' : '✗'}
-                            {anyOfGroupSelected ? '✓' : '✗'} */}
+                            {aggregationTranslations[aggregationKey].buckets[
+                              bucket.key
+                            ] ||
+                              bucket.key ||
+                              '(todo)'}{' '}
+                            <small className="text-xs text-neutral-400">
+                              {uiSelected
+                                ? (results?.pagination?.total || 0) -
+                                  parseInt(bucket.doc_count, 10)
+                                : '-'}
+                            </small>
                           </button>
                         );
                       })}
@@ -512,7 +479,7 @@ const MyDataIndex = ({
           )}
         </nav>
 
-        <div className="absolute top-0 left-64 right-0 h-8 bg-slate-300 px-4 py-1 ">
+        <div className="absolute top-0 left-80 right-0 h-8 bg-slate-300 px-4 py-1 ">
           <h2 className="flex justify-between font-bold">
             Results {results?.pagination?.total || '-'}{' '}
             <span className="font-normal text-neutral-500">
@@ -521,10 +488,10 @@ const MyDataIndex = ({
             </span>
           </h2>
         </div>
-        <section className="absolute top-8 bottom-0 left-64 right-0 overflow-scroll p-4">
+        <section className="absolute top-8 bottom-0 left-80 right-0 overflow-scroll p-4">
           <div className="flex flex-row gap-4">
             {resultItems.map((scene, index) => (
-              <div className="flex h-full w-64 flex-col" key={scene.sceneId}>
+              <div className="flex h-full w-80 flex-col" key={scene.sceneId}>
                 <div className="flex justify-between">
                   <div>{index + 1}</div>
                   <div>
@@ -583,7 +550,7 @@ const MyDataIndex = ({
                       }}
                       className="h-6 bg-red-300 "
                     >
-                      {/* {scene.vote0Unsafe} */}
+                      {' '}
                     </div>
                     <div
                       style={{
@@ -594,7 +561,7 @@ const MyDataIndex = ({
                       }}
                       className="h-6 bg-orange-300 "
                     >
-                      {/* {scene.vote1RatherUnsafe} */}
+                      {' '}
                     </div>
                     <div
                       style={{
@@ -602,7 +569,7 @@ const MyDataIndex = ({
                       }}
                       className="h-6 bg-blue-300 "
                     >
-                      {/* {scene.vote2Save} */}
+                      {' '}
                     </div>
                     <div
                       style={{
@@ -613,8 +580,12 @@ const MyDataIndex = ({
                       }}
                       className="h-6 bg-green-300 "
                     >
-                      {/* {scene.vote3VerySave} */}
+                      {' '}
                     </div>
+                  </div>
+                  <div>
+                    {scene.vote0Unsafe} – {scene.vote1RatherUnsafe} –{' '}
+                    {scene.vote2Save} – {scene.vote3VerySave}
                   </div>
                 </div>
               </div>
@@ -630,44 +601,45 @@ export default MyDataIndex;
 
 export const query = graphql`
   query {
-    allScenesCsv {
+    allScenesPrimaryCsv {
       edges {
         node {
-          location
-          pointOfView
-          sceneId
-          leftOfBicycleLane
-          divideLeftWidth
-          divideLeftCategory
-          divideLeftStructural
-          leftOfBicycleLaneWithStructuralDivide
-          bicycleLaneWidth
-          divideRightWidth
-          divideRightCategory
-          pavementWidth
-          pavementHasShows
-          bicycleLaneWidthUsable
-          vehicleLaneUsage
-          vehicleLaneMaxspeed
           bicycleLaneLanes
           bicycleLaneSurface
-          divideLeftMarking
-          divideRightMarking
-          parkingCategory
-          rightOfBicycleLane
+          bicycleLaneWidth
+          bicycleLaneWidthName
+          bicycleLaneWidthUsable
           divideIsPhysical
-          todoMotorVehicleDirection
-          bicycleStreetType
-          motorVehicleWidth
+          divideLeftCategory
+          divideLeftMarking
+          divideLeftStructural
+          divideLeftWidth
+          divideLeftWidthName
+          divideRightCategory
+          divideRightMarking
+          divideRightWidth
+          divideRightWidthName
+          leftOfBicycleLane
+          leftOfBicycleLaneWithStructuralDivide
+          location
           motorVehicleTrafficVolumen
+          parkingCategory
+          pavementHasShops
+          pavementWidth
+          pavementWidthName
+          pointOfView
+          rightOfBicycleLane
+          sceneId
+          vehicleLaneMaxspeed
+          vehicleLaneUsage
           vote0Unsafe
           vote1RatherUnsafe
           vote2Save
           vote3VerySave
-          voteSum
           voteCount
           voteMeans
-          path: gatsbyPath(filePath: "/scenes/{scenesCsv.sceneId}")
+          voteSum
+          path: gatsbyPath(filePath: "/scenes/{scenesPrimaryCsv.sceneId}")
         }
       }
     }
