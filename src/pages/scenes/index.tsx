@@ -585,12 +585,16 @@ const MyDataIndex = ({
                       {' '}
                     </div>
                   </div>
-                  <strong>
-                    Bewertung Gut+SehrGut:{' '}
-                    {parseInt(scene.vote2Save as string, 10) +
-                      parseInt(scene.vote3VerySave as string, 10)}{' '}
-                    %
-                  </strong>
+                  <div
+                    className="text-center text-2xl font-thin"
+                    title="Summe der Bewertungen für Gut und Sehr gut."
+                  >
+                    <strong>
+                      {parseInt(scene.vote2Save as string, 10) +
+                        parseInt(scene.vote3VerySave as string, 10)}{' '}
+                      %
+                    </strong>
+                  </div>
                   <div className="flex justify-between">
                     <span>{scene.vote0Unsafe}</span>{' '}
                     <span className="text-neutral-300">–</span>{' '}
