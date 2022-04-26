@@ -295,10 +295,7 @@ const MyDataIndex = ({
   useEffect(() => {
     let sum = 0;
     resultItems.forEach((scene) => {
-      const score: number =
-        parseInt(scene.vote2Save as string, 10) +
-        parseInt(scene.vote3VerySave as string, 10);
-      sum += score;
+      sum += parseInt(scene.voteScore as string, 10);
     });
     // result.pagination.total wäre die Gesamtanzahl; aber hier würden wir nur die max-200 Ergebnisse für die Berechnung berücksichigen.
     const average = parseInt(`${sum / resultItems.length}`, 10);
@@ -589,11 +586,7 @@ const MyDataIndex = ({
                     className="text-center text-2xl font-thin"
                     title="Summe der Bewertungen für Gut und Sehr gut."
                   >
-                    <strong>
-                      {parseInt(scene.vote2Save as string, 10) +
-                        parseInt(scene.vote3VerySave as string, 10)}{' '}
-                      %
-                    </strong>
+                    <strong>{parseInt(scene.voteScore as string, 10)} %</strong>
                   </div>
                   <div className="flex justify-between">
                     <span>{scene.vote0Unsafe}</span>{' '}
