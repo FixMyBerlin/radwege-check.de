@@ -3,6 +3,15 @@ import React from 'react';
 import { Layout, MetaTags } from '~/components/Layout';
 import { SceneImage } from '~/components/Scenes';
 
+/*
+# GraphQL: Filter non "PointOfView=bicycle" Pages from generating
+
+- Option 1: Split CSV
+- Option 2: Migrate to CreatePage Calls (from File System Route)
+  > If you need to want to create pages for only some nodes in a collection (e.g. filtering out any product of type "Food") or customize the variables passed to the query, you should use the createPages API instead as File System Route API doesn’t support this at the moment.
+  > Quelle: https://www.gatsbyjs.com/docs/reference/routing/file-system-route-api/
+*/
+
 const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
   // console.table(scene);
   return (
