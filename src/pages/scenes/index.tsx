@@ -609,6 +609,7 @@ const MyDataIndex = ({
                     (key) =>
                       ![
                         '_id',
+                        'bicycleLaneLanes',
                         'bicycleLaneWidth',
                         'divideLeftWidth',
                         'divideRightWidth',
