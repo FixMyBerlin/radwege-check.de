@@ -615,6 +615,9 @@ const MyDataIndex = ({
                         'path',
                         'pavementWidth',
                         'sceneId',
+                        'sceneIdCount',
+                        'sceneIdPedestrian',
+                        'sceneIdVehicle',
                         'vote0Unsafe',
                         'vote1RatherUnsafe',
                         'vote2Save',
@@ -677,6 +680,37 @@ const MyDataIndex = ({
                       </div>
                     );
                   })}
+                <div>
+                  <div className="text-xs text-neutral-300 group-hover:text-pink-700">
+                    Blickwinkel:
+                  </div>
+                  <div className="grid grid-cols-2 gap-1">
+                    <div>
+                      {!!scene.sceneIdPedestrian && (
+                        <>
+                          Fußgänger:in
+                          <SceneImage
+                            sceneId={scene.sceneIdPedestrian}
+                            alt="Illustration der bewerteten Szene aus Blickwinkel einer Fußgänger:in"
+                            className="w-full rounded"
+                          />
+                        </>
+                      )}
+                    </div>
+                    <div>
+                      {!!scene.sceneIdVehicle && (
+                        <>
+                          Autofahrer:in
+                          <SceneImage
+                            sceneId={scene.sceneIdVehicle}
+                            alt="Illustration der bewerteten Szene aus Blickwinkel einer Autofahrer:in"
+                            className="w-full rounded"
+                          />
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
