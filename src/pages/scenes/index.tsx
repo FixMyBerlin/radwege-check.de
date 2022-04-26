@@ -381,6 +381,8 @@ const MyDataIndex = ({
     }
   };
 
+  let prevBucketValues = {};
+
   return (
     <FixedLayout>
       <MetaTags title="Safetycheck Prototyp" description="TODO" image="TODO" />
@@ -625,6 +627,16 @@ const MyDataIndex = ({
                   .map((key) => {
                     const bucketActive = !!searchOptionFilters[key];
 
+                    // This allows to indicate which cell changed from the prev Scene
+                    const prevBuckeValueChange =
+                      key in prevBucketValues
+                        ? prevBucketValues[key] !== scene[key]
+                        : false;
+                    prevBucketValues = {
+                      ...prevBucketValues,
+                      [key]: scene[key],
+                    };
+
                     return (
                       <div
                         title={key}
@@ -641,6 +653,11 @@ const MyDataIndex = ({
                         >
                           {aggregationTranslations[key]?.title || key}:
                         </div>
+                        {prevBuckeValueChange && (
+                          <div className="absolute -left-3 text-blue-300">
+                            〉
+                          </div>
+                        )}
                         <div className="group-hover:text-pink-900">
                           {aggregationTranslations[key]?.buckets[
                             scene[key]
