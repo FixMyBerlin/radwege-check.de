@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-import { SceneImage } from '~/components/components/SceneImage';
 import { Layout, MetaTags } from '~/components/Layout';
+import { SceneImage } from '~/components/Scenes';
 
 const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
   // console.table(scene);

@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import { graphql } from 'gatsby';
 import itemsjs from 'itemsjs';
 import React, { useEffect, useMemo, useState } from 'react';
-import { SceneImage } from '~/components/components/SceneImage';
 import { FixedLayout, MetaTags } from '~/components/Layout';
 import { TextLink } from '~/components/Links/TextLink';
+import { SceneImage } from '~/components/Scenes';
 import { aggregationTranslations } from '../../translations/aggregationTranslations.const';
 
 const MyDataIndex = ({
