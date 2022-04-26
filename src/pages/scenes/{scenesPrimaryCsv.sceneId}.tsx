@@ -14,19 +14,29 @@ const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
       />
       <div className="bg-white">
         <div className="mx-auto max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-          <SceneImage sceneId={scene.sceneId} />
-          {!!scene.sceneIdPedestrian && (
-            <SceneImage
-              sceneId={scene.sceneIdPedestrian}
-              alt="Illustration der bewerteten Szene aus Blickwinkel einer Fußgänger:in"
-            />
-          )}
-          {!!scene.sceneIdVehicle && (
-            <SceneImage
-              sceneId={scene.sceneIdVehicle}
-              alt="Illustration der bewerteten Szene aus Blickwinkel einer Autofahrer:in"
-            />
-          )}
+          <SceneImage sceneId={scene.sceneId} className="mb-5 w-full rounded" />
+          <div className="grid grid-cols-2 gap-5">
+            {!!scene.sceneIdPedestrian && (
+              <div>
+                Blickwinkel einer Fußgänger:in
+                <SceneImage
+                  sceneId={scene.sceneIdPedestrian}
+                  alt="Illustration der bewerteten Szene aus Blickwinkel einer Fußgänger:in"
+                  className="w-full rounded"
+                />
+              </div>
+            )}
+            {!!scene.sceneIdVehicle && (
+              <div>
+                Blickwinkel einer Autofahrer:in
+                <SceneImage
+                  sceneId={scene.sceneIdVehicle}
+                  alt="Illustration der bewerteten Szene aus Blickwinkel einer Autofahrer:in"
+                  className="w-full rounded"
+                />
+              </div>
+            )}
+          </div>
           <textarea className="mt-20 h-60 w-full">
             {JSON.stringify(scene)}
           </textarea>
@@ -79,6 +89,7 @@ export const query = graphql`
       vote3VerySave
       voteCount
       voteMeans
+      voteScore
       voteSum
       path: gatsbyPath(filePath: "/scenes/{scenesPrimaryCsv.sceneId}")
     }
