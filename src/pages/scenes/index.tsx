@@ -613,11 +613,16 @@ const MyDataIndex = ({
                       <div
                         title={key}
                         key={key}
-                        className={classNames('group hover:bg-neutral-100', {
-                          'bg-yellow-50 font-bold': bucketActive,
-                        })}
+                        className="group hover:bg-neutral-100"
                       >
-                        <div className="text-xs text-neutral-300 group-hover:text-pink-700">
+                        <div
+                          title={bucketActive ? 'Filter-Gruppe aktiv' : ''}
+                          className={classNames(
+                            'text-xs group-hover:text-pink-700',
+                            { 'text-neutral-300': !bucketActive },
+                            { 'font-bold text-neutral-400': bucketActive }
+                          )}
+                        >
                           {aggregationTranslations[key]?.title || key}:
                         </div>
                         <div className="group-hover:text-pink-900">
