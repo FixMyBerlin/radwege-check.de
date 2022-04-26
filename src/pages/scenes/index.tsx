@@ -292,6 +292,19 @@ const MyDataIndex = ({
   const [resultItems, setResultItems] = useState([]);
   useEffect(() => setResultItems(results?.data?.items || []), [results]);
 
+  const [resultScoreAverage, setResultScoreAverage] = useState(0);
+  useEffect(() => {
+    let sum = 0;
+    resultItems.forEach((scene) => {
+      const score: number =
+        parseInt(scene.vote2Save as string, 10) +
+        parseInt(scene.vote3VerySave as string, 10);
+      sum += score;
+    });
+    // result.pagination.total wäre die Gesamtanzahl; aber hier würden wir nur die max-200 Ergebnisse für die Berechnung berücksichigen.
+    const average = parseInt(`${sum / resultItems.length}`, 10);
+    setResultScoreAverage(average);
+  }, [resultItems]);
 
   // console.table(resultItems);
   // console.table(results?.pagination);
@@ -481,8 +494,20 @@ const MyDataIndex = ({
         </nav>
 
         <div className="absolute top-0 left-80 right-0 h-8 bg-slate-300 px-4 py-1 ">
-          <h2 className="flex justify-between font-bold">
-            Results {results?.pagination?.total || '-'}{' '}
+          <h2 className="flex justify-between">
+            <span>
+              <span className=" font-bold">
+                Ergebnisse {results?.pagination?.total || '-'}
+              </span>
+              <span
+                className="text-neutral-500"
+                title="Durchschnitt für die sichtbaren Ergebnisse (nicht für die Gesamt-Ergebnismenge)."
+              >
+                {' '}
+                (Durchschnitt Score: {resultScoreAverage || '-'})
+              </span>
+            </span>
+
             <span className="font-normal text-neutral-500">
               {results?.pagination?.per_page} per page, in{' '}
               {results?.timings?.total} ms
