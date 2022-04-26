@@ -499,18 +499,20 @@ const MyDataIndex = ({
                 Ergebnisse {results?.pagination?.total || '-'}
               </span>
               <span
-                className="text-neutral-500"
+                className="text-sm text-neutral-500"
                 title="Durchschnitt für die sichtbaren Ergebnisse (nicht für die Gesamt-Ergebnismenge)."
               >
                 {' '}
-                (Durchschnitt Score: {resultScoreAverage || '-'})
+                – Durchschnitt Score: {resultScoreAverage || '-'}
               </span>
             </span>
 
-            <span className="font-normal text-neutral-500">
-              {results?.pagination?.per_page} per page, in{' '}
-              {results?.timings?.total} ms
-            </span>
+            {results?.pagination?.total > 0 && (
+              <span className="text-sm font-normal text-neutral-500">
+                Die ersten {results?.pagination?.per_page} Ergebnisse werden
+                angezeigt.
+              </span>
+            )}
           </h2>
         </div>
         <section className="absolute top-8 bottom-0 left-80 right-0 overflow-scroll p-4">
