@@ -3,8 +3,7 @@ import { graphql } from 'gatsby';
 import itemsjs from 'itemsjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import { SceneImage } from '~/components/components/SceneImage';
-import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
-import { FixedLayout } from '~/components/Layout';
+import { FixedLayout, MetaTags } from '~/components/Layout';
 import { TextLink } from '~/components/Links/TextLink';
 import { aggregationTranslations } from '../../translations/aggregationTranslations.const';
 
@@ -387,7 +386,7 @@ const MyDataIndex = ({
 
   return (
     <FixedLayout>
-      <HelmetSeo title="Safetycheck Prototyp" description="TODO" image="TODO" />
+      <MetaTags title="Safetycheck Prototyp" description="TODO" image="TODO" />
       <div className="">
         <nav className="absolute inset-y-0 left-0 w-80 overflow-scroll bg-gray-100 p-4">
           <p className="mb-6">

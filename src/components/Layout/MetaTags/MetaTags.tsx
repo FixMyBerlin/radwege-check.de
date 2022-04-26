@@ -9,7 +9,7 @@ const seoDefaultValues = {
   baseUrl: 'https://TODO.url#seoDefaultValues.baseUrl',
 };
 
-type SeoProps = {
+type Props = {
   noindex?: boolean;
   title?: string | null;
   description?: string | null;
@@ -17,7 +17,7 @@ type SeoProps = {
   article?: boolean | null;
 };
 
-export const HelmetSeo: React.FC<SeoProps> = ({
+export const MetaTags: React.FC<Props> = ({
   noindex = false,
   title,
   description,

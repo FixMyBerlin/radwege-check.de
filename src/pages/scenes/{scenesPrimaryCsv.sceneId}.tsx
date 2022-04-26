@@ -1,14 +1,13 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 import { SceneImage } from '~/components/components/SceneImage';
-import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
-import { Layout } from '~/components/Layout';
+import { Layout, MetaTags } from '~/components/Layout';
 
 const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
   // console.table(scene);
   return (
     <Layout padding={false}>
-      <HelmetSeo
+      <MetaTags
         title={`Titel: ${scene.sceneId}`}
         description="TODO"
         image="TODO"

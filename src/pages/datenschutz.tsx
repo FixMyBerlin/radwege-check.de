@@ -1,11 +1,10 @@
 import React from 'react';
-import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
-import { LayoutArticle } from '~/components/Layout';
+import { LayoutArticle, MetaTags } from '~/components/Layout';
 
 const DatenschutzPage = () => {
   return (
     <LayoutArticle>
-      <HelmetSeo noindex title="Datenschutz" />
+      <MetaTags noindex title="Datenschutz" />
       <h1>Datenschutz</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate

@@ -1,13 +1,12 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
-import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
-import { Layout } from '~/components/Layout/Layout';
+import { Layout, MetaTags } from '~/components/Layout';
 import { ButtonLink } from '~/components/Links/ButtonLink';
 
 const NotFound: React.FC<PageProps> = () => {
   return (
     <Layout>
-      <HelmetSeo noindex title="404 | Seite nicht gefunden." />
+      <MetaTags noindex title="404 | Seite nicht gefunden." />
       <div className="min-h-full bg-white px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
         <div className="mx-auto max-w-max">
           <main className="sm:flex">
