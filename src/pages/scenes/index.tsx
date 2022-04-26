@@ -538,58 +538,71 @@ const MyDataIndex = ({
                 </div>
 
                 <div className="text-xs">
-                  <strong>
-                    Bewertung Gut+SehrGut:{' '}
-                    {parseInt(scene.vote2Save as string, 10) +
-                      parseInt(scene.vote3VerySave as string, 10)}
-                  </strong>
-                  <div className="flex w-full flex-row ">
+                  <div className="flex h-40 w-full flex-col">
                     <div
+                      title={scene.vote0Unsafe}
                       style={{
-                        width: `${parseInt(scene.vote0Unsafe as string, 10)}%`,
+                        height: `${parseInt(scene.vote0Unsafe as string, 10)}%`,
+                        backgroundColor: '#c01d1d',
                       }}
-                      className="h-6 bg-red-300 "
+                      className="w-full"
                     >
                       {' '}
                     </div>
                     <div
                       style={{
-                        width: `${parseInt(
+                        height: `${parseInt(
                           scene.vote1RatherUnsafe as string,
                           10
                         )}%`,
+                        backgroundColor: '#f08141',
                       }}
-                      className="h-6 bg-orange-300 "
+                      className="w-full bg-orange-300"
                     >
                       {' '}
                     </div>
                     <div
+                      title={scene.vote2Save}
                       style={{
-                        width: `${parseInt(scene.vote2Save as string, 10)}%`,
+                        height: `${parseInt(scene.vote2Save as string, 10)}%`,
+                        backgroundColor: '#abc759',
                       }}
-                      className="h-6 bg-blue-300 "
+                      className="w-full"
                     >
                       {' '}
                     </div>
                     <div
+                      title={scene.vote3VerySave}
                       style={{
-                        width: `${parseInt(
+                        height: `${parseInt(
                           scene.vote3VerySave as string,
                           10
                         )}%`,
+                        backgroundColor: '#45b834',
                       }}
-                      className="h-6 bg-green-300 "
+                      className="w-full"
                     >
                       {' '}
                     </div>
                   </div>
-                  <div>
-                    {scene.vote0Unsafe} – {scene.vote1RatherUnsafe} –{' '}
-                    {scene.vote2Save} – {scene.vote3VerySave}
-                    <br />
-                    Mittelwert: {scene.voteMeans}
-                    <br />
-                    Anzahl: {scene.voteCount}
+                  <strong>
+                    Bewertung Gut+SehrGut:{' '}
+                    {parseInt(scene.vote2Save as string, 10) +
+                      parseInt(scene.vote3VerySave as string, 10)}{' '}
+                    %
+                  </strong>
+                  <div className="flex justify-between">
+                    <span>{scene.vote0Unsafe}</span>{' '}
+                    <span className="text-neutral-300">–</span>{' '}
+                    <span>{scene.vote1RatherUnsafe}</span>{' '}
+                    <span className="text-neutral-300">–</span>
+                    <span>{scene.vote2Save}</span>{' '}
+                    <span className="text-neutral-300">–</span>{' '}
+                    <span>{scene.vote3VerySave}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Mittelwert: {scene.voteMeans || '–'}</span>
+                    <span>Anzahl: {scene.voteCount || '–'}</span>
                   </div>
                 </div>
                 {Object.keys(scene)
