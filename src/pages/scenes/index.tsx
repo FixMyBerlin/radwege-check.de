@@ -662,9 +662,10 @@ const MyDataIndex = ({
                           </div>
                         )}
                         <div className="group-hover:text-pink-900">
-                          {aggregationTranslations[key]?.buckets[
-                            scene[key]
-                          ] || <span className="text-neutral-300">(todo)</span>}
+                          {aggregationTranslations[key]?.buckets[scene[key]] ||
+                            scene[key] || (
+                              <span className="text-neutral-300">(todo)</span>
+                            )}
 
                           {key.includes('Name') && (
                             <span className="text-neutral-500">
