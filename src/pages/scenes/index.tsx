@@ -18,7 +18,8 @@ const MyDataIndex = ({
     () =>
       sceneNodes
         .map((list) => list.node)
-        .filter((scene) => scene.location !== 'secondary_road'),
+        .filter((scene) => scene.location !== 'secondary_road')
+        .filter((scene) => scene.pointOfView === 'bicycle'),
     [sceneNodes]
   );
 
@@ -38,13 +39,13 @@ const MyDataIndex = ({
           order: 'asc',
           conjunction: true,
         },
-        pointOfView: {
-          title: 'pointOfView',
-          size: 10,
-          sort: 'term',
-          order: 'asc',
-          conjunction: false,
-        },
+        // pointOfView: {
+        //   title: 'pointOfView',
+        //   size: 10,
+        //   sort: 'term',
+        //   order: 'asc',
+        //   conjunction: false,
+        // },
         leftOfBicycleLane: {
           title: 'leftOfBicycleLane',
           size: 10,
