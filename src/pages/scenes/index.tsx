@@ -289,7 +289,9 @@ const MyDataIndex = ({
     setResults(items.search(searchOption));
   }, [items, searchOption]);
 
-  const resultItems = results?.data?.items || [];
+  const [resultItems, setResultItems] = useState([]);
+  useEffect(() => setResultItems(results?.data?.items || []), [results]);
+
 
   // console.table(resultItems);
   // console.table(results?.pagination);
