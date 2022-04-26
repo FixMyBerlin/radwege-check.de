@@ -372,7 +372,7 @@ const MyDataIndex = ({
 
   return (
     <FixedLayout>
-      <HelmetSeo title="myData" description="TODO" image="TODO" />
+      <HelmetSeo title="Safetycheck Prototyp" description="TODO" image="TODO" />
       <div className="">
         <nav className="absolute inset-y-0 left-0 w-80 overflow-scroll bg-gray-100 p-4">
           <p className="mb-6">
