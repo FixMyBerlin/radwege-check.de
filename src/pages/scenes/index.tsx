@@ -610,7 +610,12 @@ const MyDataIndex = ({
                     (key) =>
                       ![
                         '_id',
+                        'bicycleLaneWidth',
+                        'divideLeftWidth',
+                        'divideRightWidth',
                         'path',
+                        'pavementWidth',
+                        'sceneId',
                         'vote0Unsafe',
                         'vote1RatherUnsafe',
                         'vote2Save',
@@ -643,6 +648,17 @@ const MyDataIndex = ({
                           {aggregationTranslations[key]?.buckets[
                             scene[key]
                           ] || <span className="text-neutral-300">(todo)</span>}
+
+                          {key.includes('Name') && (
+                            <span className="text-neutral-500">
+                              {/* TODO cleanup formatting of number */}{' '}
+                              {scene[`${key.replace('Name', '')}`].replace(
+                                '.',
+                                ','
+                              )}{' '}
+                              m
+                            </span>
+                          )}
                         </div>
                       </div>
                     );

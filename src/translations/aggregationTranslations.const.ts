@@ -26,8 +26,8 @@ export const aggregationTranslations = {
     title: 'Schutz Links Breite',
     buckets: {
       '-': 'kein Schutz',
-      narrow: 'schmal (0,25m)',
-      wide: 'breit (0,75m)',
+      narrow: 'schmal',
+      wide: 'breit',
     },
   },
   divideLeftCategory: {
@@ -52,16 +52,16 @@ export const aggregationTranslations = {
     title: 'RVA Breite',
     buckets: {
       '-': 'todo',
-      narrow: 'Schmal (2m)',
-      wide: 'Breit (3,5m)',
+      narrow: 'Schmal',
+      wide: 'Breit',
     },
   },
   divideRightWidthName: {
     title: 'Schutz Rechts Breite',
     buckets: {
       '-': 'Kein Schutz',
-      narrow: 'Schmal (0,25m)',
-      wide: 'Breit (0,75m)',
+      narrow: 'Schmal',
+      wide: 'Breit',
     },
   },
   divideRightCategory: {
@@ -76,7 +76,7 @@ export const aggregationTranslations = {
     title: 'Gehweg Breite',
     buckets: {
       '-': '-',
-      narrow: 'Schmal',
+      narrow: 'Schma',
       wide: 'Breit',
     },
   },
