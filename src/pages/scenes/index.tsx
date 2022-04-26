@@ -645,7 +645,7 @@ const MyDataIndex = ({
                       <div
                         title={key}
                         key={key}
-                        className="group hover:bg-neutral-100"
+                        className="group relative hover:bg-neutral-100"
                       >
                         <div
                           title={bucketActive ? 'Filter-Gruppe aktiv' : ''}
@@ -657,6 +657,7 @@ const MyDataIndex = ({
                         >
                           {aggregationTranslations[key]?.title || key}:
                         </div>
+
                         {prevBuckeValueChange && (
                           <div className="absolute -left-3 text-blue-300">
                             〉
