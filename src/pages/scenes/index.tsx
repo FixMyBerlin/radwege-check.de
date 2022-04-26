@@ -25,8 +25,8 @@ const MyDataIndex = ({
   const configuration = useMemo(() => {
     return {
       sortings: {
-        vote4desc: {
-          field: 'vote4',
+        voteScoreDesc: {
+          field: 'voteScore',
           order: 'desc',
         },
       },
@@ -245,7 +245,7 @@ const MyDataIndex = ({
     () =>
       setSearchOption({
         per_page: 200,
-        sort: 'vote4desc',
+        sort: 'voteScoreDesc',
         filters: searchOptionFilters,
       }),
     [searchOptionFilters]
@@ -721,6 +721,7 @@ export const query = graphql`
           vote3VerySave
           voteCount
           voteMeans
+          voteScore
           voteSum
           path: gatsbyPath(filePath: "/scenes/{scenesPrimaryCsv.sceneId}")
         }
