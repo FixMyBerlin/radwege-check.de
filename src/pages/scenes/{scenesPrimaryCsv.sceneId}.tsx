@@ -15,6 +15,18 @@ const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
       <div className="bg-white">
         <div className="mx-auto max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
           <SceneImage sceneId={scene.sceneId} />
+          {!!scene.sceneIdPedestrian && (
+            <SceneImage
+              sceneId={scene.sceneIdPedestrian}
+              alt="Illustration der bewerteten Szene aus Blickwinkel einer Fußgänger:in"
+            />
+          )}
+          {!!scene.sceneIdVehicle && (
+            <SceneImage
+              sceneId={scene.sceneIdVehicle}
+              alt="Illustration der bewerteten Szene aus Blickwinkel einer Autofahrer:in"
+            />
+          )}
           <textarea className="mt-20 h-60 w-full">
             {JSON.stringify(scene)}
           </textarea>
@@ -29,7 +41,6 @@ export default MyData;
 export const query = graphql`
   query ($sceneId: String!) {
     scenesPrimaryCsv(sceneId: { eq: $sceneId }) {
-      sceneId
       bicycleLaneLanes
       bicycleLaneSurface
       bicycleLaneWidth
@@ -55,6 +66,11 @@ export const query = graphql`
       pavementWidthName
       pointOfView
       rightOfBicycleLane
+      sceneId
+      sceneIdBicycle
+      sceneIdCount
+      sceneIdPedestrian
+      sceneIdVehicle
       vehicleLaneMaxspeed
       vehicleLaneUsage
       vote0Unsafe

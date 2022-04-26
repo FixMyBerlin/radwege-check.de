@@ -709,6 +709,10 @@ export const query = graphql`
           pointOfView
           rightOfBicycleLane
           sceneId
+          sceneIdBicycle
+          sceneIdCount
+          sceneIdPedestrian
+          sceneIdVehicle
           vehicleLaneMaxspeed
           vehicleLaneUsage
           vote0Unsafe
