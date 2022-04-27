@@ -1,33 +1,35 @@
 # scenes_primary
 
-sceneId
-location
-pointOfView
-leftOfBicycleLane
-divideLeftWidthName
-divideLeftWidth
-divideLeftCategory
-divideLeftStructural
-leftOfBicycleLaneWithStructuralDivide
-bicycleLaneWidthName
-bicycleLaneWidth
-divideRightWidthName
-divideRightWidth
-divideRightCategory
-pavementWidthName
-pavementWidth
-pavementHasShops
-bicycleLaneWidthUsable
-vehicleLaneUsage
-vehicleLaneMaxspeed
-bicycleLaneLanes
 bicycleLaneSurface
-divideLeftMarking
-divideRightMarking
-parkingCategory
-rightOfBicycleLane
-divideIsPhysical
+bicycleLaneWidth
+bicycleLaneWidthName
+bicycleLaneWidthUsable
+bufferLeft
+bufferLeftMarking
+bufferLeftWidth
+bufferProtectedPhysically
+bufferRight
+bufferRightMarking
+bufferRightWidth
+divideLeftStructural
+leftOfBicycleLane
+location
 motorVehicleTrafficVolumen
+parking
+pavementHasShops
+pavementWidth
+pavementWidthName
+pointOfView
+sceneId
+sceneIdCount
+sceneIdPedestrian
+sceneIdCar
+sceneNumber
+surroundings
+vehiclesLaneMaxspeed
+vehicleLaneUsage
+
+imageUrl
 
 # scenes_secondary
 
@@ -55,6 +57,9 @@ vote0Unsafe
 vote1RatherUnsafe
 vote2Save
 vote3VerySave
-voteSum
 voteCount
 voteMeans
+voteScore
+voteScorePedestrian
+voteScoreCar
+voteSum

@@ -28,6 +28,9 @@ const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
             {!!scene.sceneIdPedestrian && (
               <div>
                 Blickwinkel einer Fußgänger:in
+                <div className="text-xl font-light">
+                  {scene.voteScorePedestrian}
+                </div>
                 <SceneImage
                   sceneId={scene.sceneIdPedestrian}
                   alt="Illustration der bewerteten Szene aus Blickwinkel einer Fußgänger:in"
@@ -35,11 +38,12 @@ const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
                 />
               </div>
             )}
-            {!!scene.sceneIdVehicle && (
+            {!!scene.sceneIdCar && (
               <div>
                 Blickwinkel einer Autofahrer:in
+                <div className="text-xl font-light">{scene.voteScoreCar}</div>
                 <SceneImage
-                  sceneId={scene.sceneIdVehicle}
+                  sceneId={scene.sceneIdCar}
                   alt="Illustration der bewerteten Szene aus Blickwinkel einer Autofahrer:in"
                   className="w-full rounded"
                 />
@@ -60,38 +64,35 @@ export default MyData;
 export const query = graphql`
   query ($sceneId: String!) {
     scenesPrimaryCsv(sceneId: { eq: $sceneId }) {
-      bicycleLaneLanes
       bicycleLaneSurface
       bicycleLaneWidth
       bicycleLaneWidthName
       bicycleLaneWidthUsable
-      divideIsPhysical
-      divideLeftCategory
-      divideLeftMarking
+      bufferLeft
+      bufferLeftMarking
+      bufferLeftWidth
+      bufferProtectedPhysically
+      bufferRight
+      bufferRightMarking
+      bufferRightWidth
       divideLeftStructural
-      divideLeftWidth
-      divideLeftWidthName
-      divideRightCategory
-      divideRightMarking
-      divideRightWidth
-      divideRightWidthName
       leftOfBicycleLane
-      leftOfBicycleLaneWithStructuralDivide
       location
       motorVehicleTrafficVolumen
-      parkingCategory
+      parking
       pavementHasShops
       pavementWidth
       pavementWidthName
       pointOfView
-      rightOfBicycleLane
       sceneId
-      sceneIdBicycle
       sceneIdCount
       sceneIdPedestrian
-      sceneIdVehicle
+      sceneIdCar
+      sceneNumber
+      surroundings
       vehicleLaneMaxspeed
       vehicleLaneUsage
+
       vote0Unsafe
       vote1RatherUnsafe
       vote2Save
@@ -99,7 +100,10 @@ export const query = graphql`
       voteCount
       voteMeans
       voteScore
+      voteScorePedestrian
+      voteScoreCar
       voteSum
+
       path: gatsbyPath(filePath: "/scenes/{scenesPrimaryCsv.sceneId}")
     }
   }

@@ -278,7 +278,7 @@ const MyDataIndex = ({
                         'sceneId',
                         'sceneIdCount',
                         'sceneIdPedestrian',
-                        'sceneIdVehicle',
+                        'sceneIdCar',
                         'vote0Unsafe',
                         'vote1RatherUnsafe',
                         'vote2Save',
@@ -361,11 +361,11 @@ const MyDataIndex = ({
                       )}
                     </div>
                     <div>
-                      {!!scene.sceneIdVehicle && (
+                      {!!scene.sceneIdCar && (
                         <>
                           Autofahrer:in
                           <SceneImage
-                            sceneId={scene.sceneIdVehicle}
+                            sceneId={scene.sceneIdCar}
                             alt="Illustration der bewerteten Szene aus Blickwinkel einer Autofahrer:in"
                             className="w-full rounded"
                           />
@@ -390,38 +390,35 @@ export const query = graphql`
     allScenesPrimaryCsv {
       edges {
         node {
-          bicycleLaneLanes
           bicycleLaneSurface
           bicycleLaneWidth
           bicycleLaneWidthName
           bicycleLaneWidthUsable
-          divideIsPhysical
-          divideLeftCategory
-          divideLeftMarking
+          bufferLeft
+          bufferLeftMarking
+          bufferLeftWidth
+          bufferProtectedPhysically
+          bufferRight
+          bufferRightMarking
+          bufferRightWidth
           divideLeftStructural
-          divideLeftWidth
-          divideLeftWidthName
-          divideRightCategory
-          divideRightMarking
-          divideRightWidth
-          divideRightWidthName
           leftOfBicycleLane
-          leftOfBicycleLaneWithStructuralDivide
           location
           motorVehicleTrafficVolumen
-          parkingCategory
+          parking
           pavementHasShops
           pavementWidth
           pavementWidthName
           pointOfView
-          rightOfBicycleLane
           sceneId
-          sceneIdBicycle
           sceneIdCount
           sceneIdPedestrian
-          sceneIdVehicle
+          sceneIdCar
+          sceneNumber
+          surroundings
           vehicleLaneMaxspeed
           vehicleLaneUsage
+
           vote0Unsafe
           vote1RatherUnsafe
           vote2Save
@@ -429,7 +426,10 @@ export const query = graphql`
           voteCount
           voteMeans
           voteScore
+          voteScorePedestrian
+          voteScoreCar
           voteSum
+
           path: gatsbyPath(filePath: "/scenes/{scenesPrimaryCsv.sceneId}")
         }
       }
