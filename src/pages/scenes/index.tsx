@@ -4,7 +4,12 @@ import itemsjs from 'itemsjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import { FixedLayout, MetaTags } from '~/components/Layout';
 import { TextLink } from '~/components/Links/TextLink';
-import { SceneImage } from '~/components/Scenes';
+import {
+  Facets,
+  handleFilterClickProps,
+  SceneImage,
+} from '~/components/Scenes';
+import { ResultProps } from '~/components/Scenes/types';
 import { aggregationTranslations } from '../../translations/aggregationTranslations.const';
 
 const MyDataIndex = ({
@@ -252,35 +257,6 @@ const MyDataIndex = ({
   );
 
   // Filter the data
-  type ResultBucketProps = {
-    key: string;
-    doc_count: string;
-    selected: boolean;
-  };
-  type ResultProps = {
-    data: {
-      aggregations: {
-        [key: string]: {
-          title: string;
-          size: number;
-          buckets: Array<ResultBucketProps>;
-        };
-      };
-      allFilteredItems: null;
-      items: Array<{ [key: string]: number | string }>;
-    };
-    pagination: {
-      page: number;
-      per_page: number;
-      total: number;
-    };
-    timings: {
-      facets: number;
-      search: number;
-      sorting: number;
-      total: number;
-    };
-  };
   const [results, setResults] = useState<ResultProps>(null);
   useEffect(() => {
     if (!searchOption) return;
@@ -316,11 +292,7 @@ const MyDataIndex = ({
     aggregationKey,
     buckets,
     selectedBucket,
-  }: {
-    aggregationKey: string;
-    buckets: ResultBucketProps[];
-    selectedBucket: ResultBucketProps;
-  }) => {
+  }: handleFilterClickProps) => {
     const bucketHasNothingSelected = !buckets.some((b) => b.selected);
     if (bucketHasNothingSelected) {
       // Activate uiFilter (remove Filter)
@@ -387,109 +359,11 @@ const MyDataIndex = ({
     <FixedLayout>
       <MetaTags title="Safetycheck Prototyp" description="TODO" image="TODO" />
       <div className="">
-        <nav className="absolute inset-y-0 left-0 w-80 overflow-scroll bg-gray-100 p-4">
-          <p className="mb-6">
-            <a href="#reset" onClick={resetFilter} className="underline">
-              Reset filter
-            </a>
-          </p>
-
-          {Object.entries(results?.data?.aggregations || {}).map(
-            ([aggregationKey, aggregation]) => {
-              const { buckets } = aggregation;
-
-              // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
-              const anyOfGroupSelected = buckets.some((b) => b.selected);
-
-              // Filter some buckets
-              if (
-                [
-                  'vehicleLaneUsage',
-                  'bicycleLaneWidth',
-                  'divideLeftWidth',
-                  'divideLeftWidthName',
-                  'divideRightWidth',
-                  'leftOfBicycleLaneWithStructuralDivide',
-                  'pavementWidth',
-                ].includes(aggregationKey)
-              ) {
-                return null;
-              }
-
-              return (
-                <div key={aggregationKey} className={classNames('mb-5')}>
-                  <h5 title={aggregationKey} className="font-bold">
-                    {aggregationTranslations[aggregationKey]?.title ||
-                      `TODO ${aggregationKey}`}
-                  </h5>
-
-                  <span className="relative z-0 inline-flex rounded-md shadow-sm">
-                    {buckets
-                      .sort((a, b) =>
-                        // eslint-disable-next-line no-nested-ternary
-                        a.key > b.key ? 1 : b.key > a.key ? -1 : 0
-                      )
-                      .map((bucket, index) => {
-                        const uiSelected =
-                          bucket.selected || !anyOfGroupSelected;
-                        const uiCanpress = !!bucket.doc_count;
-                        const firstElement = index === 0;
-                        const lastElement = index === buckets.length - 1;
-
-                        return (
-                          <button
-                            key={bucket.key}
-                            type="button"
-                            className={classNames(
-                              'relative inline-flex flex-col items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium',
-                              { 'rounded-l-md': firstElement },
-                              { '-ml-px': !firstElement },
-                              { 'rounded-r-md': lastElement },
-                              {
-                                'z-10 border-indigo-200 bg-indigo-50 shadow-inner':
-                                  uiSelected,
-                              },
-                              {
-                                'shadow-md': !uiSelected,
-                              },
-                              {
-                                'text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500':
-                                  uiCanpress,
-                              },
-                              {
-                                'z-10 cursor-default border-neutral-200 bg-neutral-100 text-neutral-500':
-                                  !uiCanpress,
-                              }
-                            )}
-                            onClick={() =>
-                              uiCanpress &&
-                              handleFilterClick({
-                                aggregationKey,
-                                buckets: aggregation.buckets,
-                                selectedBucket: bucket,
-                              })
-                            }
-                          >
-                            {aggregationTranslations[aggregationKey].buckets[
-                              bucket.key
-                            ] ||
-                              bucket.key ||
-                              '(todo)'}{' '}
-                            <small className="text-xs text-neutral-400">
-                              {uiSelected
-                                ? (results?.pagination?.total || 0) -
-                                  parseInt(bucket.doc_count, 10)
-                                : '-'}
-                            </small>
-                          </button>
-                        );
-                      })}
-                  </span>
-                </div>
-              );
-            }
-          )}
-        </nav>
+        <Facets
+          results={results}
+          handleResetFilter={resetFilter}
+          handleFilterClick={handleFilterClick}
+        />
 
         <div className="absolute top-0 left-80 right-0 h-8 bg-slate-300 px-4 py-1 ">
           <h2 className="flex justify-between">
