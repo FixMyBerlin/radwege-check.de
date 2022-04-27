@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import { aggregationTranslations } from '~/translations/aggregationTranslations.const';
+import { aggregationTranslations } from '~/components/Scenes/constants';
 import { ResultBucketProps, ResultProps } from '../types';
 
 export type handleFilterClickProps = {

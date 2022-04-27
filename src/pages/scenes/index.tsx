@@ -10,9 +10,11 @@ import {
   SceneImage,
   TitleBar,
 } from '~/components/Scenes';
-import { configuration } from '~/components/Scenes/constants';
+import {
+  aggregationTranslations,
+  configuration,
+} from '~/components/Scenes/constants';
 import { ResultProps } from '~/components/Scenes/types';
-import { aggregationTranslations } from '../../translations/aggregationTranslations.const';
 
 const MyDataIndex = ({
   data: {
