@@ -250,7 +250,10 @@ const MyDataIndex = ({
     () =>
       setSearchOption({
         per_page: 200,
-        sort: 'voteScoreDesc',
+        sort: {
+          field: 'voteScore',
+          order: 'desc',
+        },
         filters: searchOptionFilters,
       }),
     [searchOptionFilters]
