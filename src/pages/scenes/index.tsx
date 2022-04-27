@@ -8,6 +8,7 @@ import {
   Facets,
   handleFilterClickProps,
   SceneImage,
+  TitleBar,
 } from '~/components/Scenes';
 import { configuration } from '~/components/Scenes/constants';
 import { ResultProps } from '~/components/Scenes/types';
@@ -166,29 +167,11 @@ const MyDataIndex = ({
           handleFilterClick={handleFilterClick}
         />
 
-        <div className="absolute top-0 left-80 right-0 h-8 bg-slate-300 px-4 py-1 ">
-          <h2 className="flex justify-between">
-            <span>
-              <span className=" font-bold">
-                Ergebnisse {results?.pagination?.total || '-'}
-              </span>
-              <span
-                className="text-sm text-neutral-500"
-                title="Durchschnitt für die sichtbaren Ergebnisse (nicht für die Gesamt-Ergebnismenge)."
-              >
-                {' '}
-                – Durchschnitt Score: {resultScoreAverage || '-'}
-              </span>
-            </span>
+        <TitleBar
+          pagination={results?.pagination}
+          resultScoreAverage={resultScoreAverage}
+        />
 
-            {results?.pagination?.total > 0 && (
-              <span className="text-sm font-normal text-neutral-500">
-                Die ersten {results?.pagination?.per_page} Ergebnisse werden
-                angezeigt.
-              </span>
-            )}
-          </h2>
-        </div>
         <section className="absolute top-8 bottom-0 left-80 right-0 overflow-scroll p-4">
           <div className="flex flex-row gap-4">
             {resultItems.map((scene, index) => (
