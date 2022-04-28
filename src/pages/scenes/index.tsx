@@ -2,13 +2,9 @@ import { graphql } from 'gatsby';
 import itemsjs from 'itemsjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import { FixedLayout, MetaTags } from '~/components/Layout';
-import {
-  Facets,
-  handleFilterClickProps,
-  Results,
-  TitleBar,
-} from '~/components/Scenes';
+import { Facets, Results, TitleBar } from '~/components/Scenes';
 import { configuration } from '~/components/Scenes/constants';
+import { HandleFilterClickProps } from '~/components/Scenes/Facets/Aggregation';
 import { ResultProps, SearchOptionProps } from '~/components/Scenes/types';
 
 const MyDataIndex = ({
@@ -73,7 +69,7 @@ const MyDataIndex = ({
     aggregationKey,
     buckets,
     selectedBucket,
-  }: handleFilterClickProps) => {
+  }: HandleFilterClickProps) => {
     const bucketHasNothingSelected = !buckets.some((b) => b.selected);
     if (bucketHasNothingSelected) {
       // Activate uiFilter (remove Filter)
