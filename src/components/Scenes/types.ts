@@ -1,8 +1,23 @@
+export type SearchOptionProps =
+  | {
+      per_page: string;
+      sort: {
+        field: string;
+        order: 'desc' | 'asc';
+      };
+      filters: Array<{ [key: string]: string }>;
+    }
+  | Record<string, unknown>;
+
 export type ResultBucketProps = {
   key: string;
   doc_count: string;
   selected: boolean;
 };
+
+export type ResultItemProps = { [key: string]: number | string };
+
+export type ResultItemsProps = Array<ResultItemProps>;
 
 export type ResultProps = {
   data: {
@@ -14,7 +29,7 @@ export type ResultProps = {
       };
     };
     allFilteredItems: null;
-    items: Array<{ [key: string]: number | string }>;
+    items: ResultItemsProps;
   };
   pagination: {
     page: number;
