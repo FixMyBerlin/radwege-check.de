@@ -4,6 +4,7 @@ import { TextLink } from '~/components/Links/TextLink';
 import { aggregationTranslations } from '../constants';
 import { SceneImage } from '../SceneImage/SceneImage';
 import { ResultItemProps, SearchOptionProps } from '../types';
+import { formatPercent } from '../utils';
 
 export type PrevBucketValues = { [key: string]: string | number };
 
@@ -40,7 +41,7 @@ export const Result: React.FC<Props> = ({
           <div
             title={`${scene.vote0Unsafe}`}
             style={{
-              height: `${parseInt(scene.vote0Unsafe as string, 10)}%`,
+              height: formatPercent({ value: scene.vote0Unsafe, unit: '%' }),
               backgroundColor: '#c01d1d',
             }}
             className="w-full"
@@ -49,7 +50,10 @@ export const Result: React.FC<Props> = ({
           </div>
           <div
             style={{
-              height: `${parseInt(scene.vote1RatherUnsafe as string, 10)}%`,
+              height: formatPercent({
+                value: scene.vote1RatherUnsafe,
+                unit: '%',
+              }),
               backgroundColor: '#f08141',
             }}
             className="w-full bg-orange-300"
@@ -59,7 +63,7 @@ export const Result: React.FC<Props> = ({
           <div
             title={`${scene.vote2Save}`}
             style={{
-              height: `${parseInt(scene.vote2Save as string, 10)}%`,
+              height: formatPercent({ value: scene.vote2Save, unit: '%' }),
               backgroundColor: '#abc759',
             }}
             className="w-full"
@@ -69,7 +73,7 @@ export const Result: React.FC<Props> = ({
           <div
             title={`${scene.vote3VerySave}`}
             style={{
-              height: `${parseInt(scene.vote3VerySave as string, 10)}%`,
+              height: formatPercent({ value: scene.vote3VerySave, unit: '%' }),
               backgroundColor: '#45b834',
             }}
             className="w-full"
@@ -81,16 +85,38 @@ export const Result: React.FC<Props> = ({
           className="text-center text-2xl font-thin"
           title="Summe der Bewertungen für Gut und Sehr gut."
         >
-          <strong>{parseInt(scene.voteScore as string, 10)} %</strong>
+          <strong>
+            {formatPercent({ value: scene.voteScore, precision: 0 })}
+          </strong>
         </div>
         <div className="flex justify-between">
-          <span>{scene.vote0Unsafe}</span>{' '}
-          <span className="text-neutral-300">–</span>{' '}
-          <span>{scene.vote1RatherUnsafe}</span>{' '}
-          <span className="text-neutral-300">–</span>
-          <span>{scene.vote2Save}</span>{' '}
-          <span className="text-neutral-300">–</span>{' '}
-          <span>{scene.vote3VerySave}</span>
+          <span>
+            {formatPercent({
+              value: scene.vote0Unsafe,
+              precision: 1,
+              unit: '%',
+            })}
+          </span>
+          <span className="text-neutral-300"> – </span>
+          <span>
+            {formatPercent({
+              value: scene.vote1RatherUnsafe,
+              precision: 1,
+              unit: '%',
+            })}
+          </span>
+          <span className="text-neutral-300"> – </span>
+          <span>
+            {formatPercent({ value: scene.vote2Save, precision: 1, unit: '%' })}
+          </span>
+          <span className="text-neutral-300"> – </span>
+          <span>
+            {formatPercent({
+              value: scene.vote3VerySave,
+              precision: 1,
+              unit: '%',
+            })}
+          </span>
         </div>
         <div className="flex justify-between">
           <span>Mittelwert: {scene.voteMeans || '–'}</span>
@@ -147,7 +173,13 @@ export const Result: React.FC<Props> = ({
           <div>
             {!!scene.sceneIdPedestrian && (
               <>
-                Fußgänger:in
+                Fußgänger:in{' '}
+                <abbr className="text-sm font-light">
+                  {formatPercent({
+                    value: scene.voteScorePedestrian,
+                    precision: 0,
+                  })}
+                </abbr>
                 {/* TODO Types */}
                 <SceneImage
                   sceneId={scene.sceneIdPedestrian as string}
@@ -160,7 +192,10 @@ export const Result: React.FC<Props> = ({
           <div>
             {!!scene.sceneIdCar && (
               <>
-                Autofahrer:in
+                Autofahrer:in{' '}
+                <abbr className="text-sm font-light">
+                  {formatPercent({ value: scene.voteScoreCar, precision: 0 })}
+                </abbr>
                 {/* TODO Types */}
                 <SceneImage
                   sceneId={scene.sceneIdCar as string}
