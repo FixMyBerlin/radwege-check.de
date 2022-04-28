@@ -14,6 +14,13 @@ export const configuration = {
       order: 'asc',
       conjunction: false,
     },
+    bicycleLaneWidthNumber: {
+      title: 'bicycleLaneWidthNumber',
+      size: 10,
+      sort: 'term',
+      order: 'asc',
+      conjunction: false,
+    },
     bicycleLaneWidth: {
       title: 'bicycleLaneWidth',
       size: 10,
@@ -21,15 +28,8 @@ export const configuration = {
       order: 'asc',
       conjunction: false,
     },
-    bicycleLaneWidthName: {
-      title: 'bicycleLaneWidthName',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: false,
-    },
-    bicycleLaneWidthUsable: {
-      title: 'bicycleLaneWidthUsable',
+    bicycleLaneUsableWidthNumber: {
+      title: 'bicycleLaneUsableWidthNumber',
       size: 10,
       sort: 'term',
       order: 'asc',
@@ -182,8 +182,8 @@ export const configuration = {
       order: 'asc',
       conjunction: false,
     },
-    vehiclesLaneMaxspeed: {
-      title: 'vehiclesLaneMaxspeed',
+    vehicleLaneMaxspeed: {
+      title: 'vehicleLaneMaxspeed',
       size: 10,
       sort: 'term',
       order: 'asc',

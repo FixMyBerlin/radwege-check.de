@@ -64,34 +64,34 @@ export default MyData;
 export const query = graphql`
   query ($sceneId: String!) {
     scenesPrimaryCsv(sceneId: { eq: $sceneId }) {
+      sceneId
+      sceneIdCar
+      sceneIdCount
+      sceneIdPedestrian
+
       bicycleLaneSurface
+      bicycleLaneUsableWidthNumber
       bicycleLaneWidth
-      bicycleLaneWidthName
-      bicycleLaneWidthUsable
-      bufferLeft
+      bicycleLaneWidthNumber
+      bufferHasPhysicalProtection
       bufferLeftMarking
+      bufferLeftPhysicalProtection
       bufferLeftWidth
-      bufferProtectedPhysically
-      bufferRight
+      bufferLeftWidthNumber
       bufferRightMarking
       bufferRightWidth
-      divideLeftStructural
+      bufferRightWidthNumber
       leftOfBicycleLane
       location
-      motorVehicleTrafficVolumen
       parking
       pavementHasShops
       pavementWidth
-      pavementWidthName
+      pavementWidthNumber
       pointOfView
-      sceneId
-      sceneIdCount
-      sceneIdPedestrian
-      sceneIdCar
-      sceneNumber
       surroundings
       vehicleLaneMaxspeed
       vehicleLaneUsage
+      vehicleTrafficVolume
 
       vote0Unsafe
       vote1RatherUnsafe
@@ -100,8 +100,8 @@ export const query = graphql`
       voteCount
       voteMeans
       voteScore
-      voteScorePedestrian
       voteScoreCar
+      voteScorePedestrian
       voteSum
 
       path: gatsbyPath(filePath: "/scenes/{scenesPrimaryCsv.sceneId}")
