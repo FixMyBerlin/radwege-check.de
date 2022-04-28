@@ -29,7 +29,7 @@ export const Facets: React.FC<Props> = ({
     <nav className="absolute inset-y-0 left-0 w-80 overflow-scroll bg-gray-100 p-4">
       <p className="mb-6">
         <a href="#reset" onClick={handleResetFilter} className="underline">
-          Reset filter
+          Filter zurücksetzen
         </a>
       </p>
 
@@ -40,16 +40,12 @@ export const Facets: React.FC<Props> = ({
           // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
           const anyOfGroupSelected = buckets.some((b) => b.selected);
 
-          // Filter some buckets
-          if ([].includes(aggregationKey)) {
-            return null;
-          }
-
           return (
             <div key={aggregationKey} className={classNames('mb-5')}>
-              <h5 title={aggregationKey} className="font-bold">
-                {aggregationTranslations[aggregationKey]?.title ||
-                  `TODO ${aggregationKey}`}
+              <h5 title={aggregationKey} className="mb-2 text-sm font-bold">
+                {aggregationTranslations[aggregationKey]?.title || (
+                  <TranslationMissing value={aggregationKey} />
+                )}
               </h5>
 
               <span className="relative z-0 inline-flex rounded-md shadow-sm">

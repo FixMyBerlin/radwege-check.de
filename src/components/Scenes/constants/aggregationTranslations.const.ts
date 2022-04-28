@@ -1,9 +1,33 @@
 export const aggregationTranslations = {
-  location: {
-    title: 'Verortung RVA',
+  // location: {
+  //   title: 'Verortung RVA',
+  //   buckets: {
+  //     pavement: 'Seitenraum',
+  //     primary_road: 'Straße',
+  //   },
+  // },
+  bicycleLaneWidth: {
+    title: 'Breite Radverkehrsanlage (RVA)',
     buckets: {
+      none: 'Keine',
+      narrow: 'Schmal',
+      wide: 'Breit',
+    },
+  },
+  leftOfBicycleLane: {
+    title: 'Lage RVA (Was liegt links der RVA?)',
+    buckets: {
+      car_lanes: 'Fahrspur',
+      green: 'Grünbereich',
+      parking_lane: 'Parkspur',
       pavement: 'Seitenraum',
-      primary_road: 'Straße',
+    },
+  },
+  parking: {
+    title: 'KfZ-Parken',
+    buckets: {
+      no_parking: 'Ja',
+      parking_lane: 'Nein',
     },
   },
   bicycleLaneSurface: {
@@ -11,14 +35,6 @@ export const aggregationTranslations = {
     buckets: {
       surface_asphalt: 'Asphalt',
       surface_green: 'Grünmarkierung',
-    },
-  },
-  bicycleLaneWidth: {
-    title: 'bicycleLaneWidth',
-    buckets: {
-      '-': 'todo',
-      narrow: 'schmal',
-      wide: 'breit',
     },
   },
   bufferLeftWidth: {
@@ -76,28 +92,12 @@ export const aggregationTranslations = {
       solid_line: 'durchgezogene',
     },
   },
-  leftOfBicycleLane: {
-    title: 'leftOfBicycleLane',
-    buckets: {
-      car_lanes: 'Fahrspur',
-      green: 'Grünbereich',
-      parking_lane: 'Parkspur',
-      pavement: 'Seitenraum',
-    },
-  },
   vehicleTrafficVolume: {
     title: 'Verkehrsaufkommen Straße',
     buckets: {
       '-': 'todo',
       high_traffic_volumen_with_heavy_vehicles: 'Hoch (inkl. LKW…)',
       low_traffic_volumen: 'Niedrig',
-    },
-  },
-  parking: {
-    title: 'parking',
-    buckets: {
-      no_parking: 'Kein Parken',
-      parking_lane: 'Parkspur',
     },
   },
   pavementHasShops: {
