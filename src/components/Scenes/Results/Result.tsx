@@ -11,34 +11,21 @@ export type PrevBucketValues = { [key: string]: string | number };
 
 type Props = {
   scene: ResultItemProps;
-  index: number;
   searchOptionFilters: SearchOptionProps;
 };
 
-export const Result: React.FC<Props> = ({
-  scene,
-  index,
-  searchOptionFilters,
-}) => {
+export const Result: React.FC<Props> = ({ scene, searchOptionFilters }) => {
   return (
     <div className="flex h-full w-80 flex-col space-y-3" key={scene.sceneId}>
-      <div className="flex justify-between">
-        <div>{index + 1}</div>
-        <div>
-          {/* todo types */}
-          <TextLink to={scene.path as string}>Details</TextLink>
-        </div>
-      </div>
-      <div className="p-0 align-middle">
+      <div>
         {/* todo types */}
         <SceneImage
           sceneId={scene.sceneId as string}
-          className="h-40 object-cover"
+          className="h-28 w-full object-cover"
         />
       </div>
-
-      <div className="text-xs">
-        <div className="flex h-40 w-full flex-col">
+      <div className="relative border-b  border-dotted text-xs">
+        <div className="mb-1 flex h-16 w-full flex-col">
           <div
             title={`${scene.vote0Unsafe}`}
             style={{
@@ -92,7 +79,7 @@ export const Result: React.FC<Props> = ({
           </div>
         </div>
         <div
-          className="text-center text-2xl font-thin"
+          className="absolute top-8 left-0 right-0 text-center text-2xl font-thin"
           title="Summe der Bewertungen für Gut und Sehr gut."
         >
           <strong>{formatPercent(scene.voteScore, { precision: 0 })}</strong>
@@ -142,7 +129,7 @@ export const Result: React.FC<Props> = ({
             <div
               title={key}
               key={key}
-              className="group relative hover:bg-neutral-100"
+              className="group relative border-b border-dotted hover:bg-neutral-100"
             >
               <div
                 title={bucketActive ? 'Filter-Gruppe aktiv' : ''}
@@ -173,7 +160,7 @@ export const Result: React.FC<Props> = ({
             </div>
           );
         })}
-      <div>
+      <div className="h-32">
         <div className="text-xs text-neutral-300 group-hover:text-pink-700">
           Blickwinkel:
         </div>
@@ -213,6 +200,10 @@ export const Result: React.FC<Props> = ({
             )}
           </div>
         </div>
+      </div>{' '}
+      <div>
+        {/* todo types */}
+        <TextLink to={scene.path as string}>Details</TextLink>
       </div>
     </div>
   );
