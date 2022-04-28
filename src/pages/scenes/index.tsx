@@ -3,8 +3,8 @@ import itemsjs from 'itemsjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import { FixedLayout, MetaTags } from '~/components/Layout';
 import { Facets, Results, TitleBar } from '~/components/Scenes';
-import { configuration } from '~/components/Scenes/constants';
-import { HandleFilterClickProps } from '~/components/Scenes/Facets/Aggregation';
+import { itemJsConfig } from '~/components/Scenes/constants';
+import { HandleFilterClickProps } from '~/components/Scenes/Facets/Bucket';
 import { ResultProps, SearchOptionProps } from '~/components/Scenes/types';
 
 const MyDataIndex = ({
@@ -25,9 +25,9 @@ const MyDataIndex = ({
   // Init itemjs with the set configuration and data (scenes).
   const [items, setItems] = useState(undefined);
   useEffect(() => {
-    if (!configuration) return;
-    setItems(itemsjs(scenes, configuration));
-  }, [scenes, configuration]);
+    if (!itemJsConfig) return;
+    setItems(itemsjs(scenes, itemJsConfig));
+  }, [scenes, itemJsConfig]);
 
   // The filters that we use for setSearchOption.
   // They are manage by handleFilterChange().
@@ -69,7 +69,10 @@ const MyDataIndex = ({
     aggregationKey,
     buckets,
     selectedBucket,
+    choiseMode,
   }: HandleFilterClickProps) => {
+    console.log({ choiseMode });
+
     const bucketHasNothingSelected = !buckets.some((b) => b.selected);
     if (bucketHasNothingSelected) {
       // Activate uiFilter (remove Filter)

@@ -1,12 +1,10 @@
-export const configuration = {
+// All the options that ItemsJS needs.
+// The title is not used translated here, but in aggregationConfig
+// conjuction === false # => choiseMode: 'single'
+// conjuction === true  # => choiseMode: 'multi'
+
+export const itemJsConfig = {
   aggregations: {
-    // location: {
-    //   title: 'location',
-    //   size: 10,
-    //   sort: 'term',
-    //   order: 'asc',
-    //   conjunction: true,
-    // },
     bicycleLaneWidth: {
       title: 'bicycleLaneWidth',
       size: 10,
@@ -35,20 +33,6 @@ export const configuration = {
       order: 'asc',
       conjunction: true,
     },
-    bufferLeftWidth: {
-      title: 'bufferLeftWidth',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: true,
-    },
-    bufferLeftMarking: {
-      title: 'bufferLeftMarking',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: true,
-    },
     bufferHasPhysicalProtection: {
       title: 'bufferHasPhysicalProtection',
       size: 10,
@@ -63,6 +47,20 @@ export const configuration = {
       order: 'asc',
       conjunction: true,
     },
+    bufferLeftWidth: {
+      title: 'bufferLeftWidth',
+      size: 10,
+      sort: 'term',
+      order: 'asc',
+      conjunction: true,
+    },
+    bufferLeftMarking: {
+      title: 'bufferLeftMarking',
+      size: 10,
+      sort: 'term',
+      order: 'asc',
+      conjunction: true,
+    },
     bufferRightWidth: {
       title: 'bufferRightWidth',
       size: 10,
@@ -72,6 +70,27 @@ export const configuration = {
     },
     bufferRightMarking: {
       title: 'bufferRightMarking',
+      size: 10,
+      sort: 'term',
+      order: 'asc',
+      conjunction: true,
+    },
+    vehicleTrafficVolume: {
+      title: 'vehicleTrafficVolume',
+      size: 10,
+      sort: 'term',
+      order: 'asc',
+      conjunction: true,
+    },
+    vehicleLaneMaxspeed: {
+      title: 'vehicleLaneMaxspeed',
+      size: 10,
+      sort: 'term',
+      order: 'asc',
+      conjunction: true,
+    },
+    vehicleLaneUsage: {
+      title: 'vehicleLaneUsage',
       size: 10,
       sort: 'term',
       order: 'asc',
@@ -93,27 +112,6 @@ export const configuration = {
     },
     surroundings: {
       title: 'surroundings',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: true,
-    },
-    vehicleLaneMaxspeed: {
-      title: 'vehicleLaneMaxspeed',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: true,
-    },
-    vehicleLaneUsage: {
-      title: 'vehicleLaneUsage',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: true,
-    },
-    vehicleTrafficVolume: {
-      title: 'vehicleTrafficVolume',
       size: 10,
       sort: 'term',
       order: 'asc',
