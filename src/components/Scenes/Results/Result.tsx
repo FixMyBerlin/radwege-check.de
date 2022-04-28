@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import { TextLink } from '~/components/Links/TextLink';
+import { TranslationMissing } from '~/components/TranslationMissing/TranslationMissing';
 import { aggregationTranslations } from '../constants';
 import { SceneImage } from '../SceneImage/SceneImage';
 import { ResultItemProps, SearchOptionProps } from '../types';
@@ -145,14 +146,16 @@ export const Result: React.FC<Props> = ({
                   { 'font-bold text-neutral-400': bucketActive }
                 )}
               >
-                {aggregationTranslations[key]?.title || key}:
+                {aggregationTranslations[key]?.title || (
+                  <TranslationMissing value={key} />
+                )}
+                :
               </div>
 
               <div className="group-hover:text-pink-900">
-                {aggregationTranslations[key]?.buckets[scene[key]] ||
-                  scene[key] || (
-                    <span className="text-neutral-300">(todo)</span>
-                  )}
+                {aggregationTranslations[key]?.buckets[scene[key]] || (
+                  <TranslationMissing value={scene[key]} />
+                )}
 
                 {key.includes('Name') && (
                   <span className="text-neutral-500">

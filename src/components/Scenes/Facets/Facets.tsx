@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import { aggregationTranslations } from '~/components/Scenes/constants';
+import { TranslationMissing } from '~/components/TranslationMissing/TranslationMissing';
 import { ResultBucketProps, ResultProps } from '../types';
 
 export type handleFilterClickProps = {
@@ -99,9 +100,7 @@ export const Facets: React.FC<Props> = ({
                       >
                         {aggregationTranslations[aggregationKey].buckets[
                           bucket.key
-                        ] ||
-                          bucket.key ||
-                          '(todo)'}{' '}
+                        ] || <TranslationMissing value={bucket.key} />}{' '}
                         <small className="text-xs text-neutral-400">
                           {uiSelected
                             ? (results?.pagination?.total || 0) -
