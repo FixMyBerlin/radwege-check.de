@@ -197,7 +197,6 @@ export const query = graphql`
           voteScore
           voteScoreCar
           voteScorePedestrian
-          voteSum
 
           path: gatsbyPath(filePath: "/scenes/{scenesPrimaryCsv.sceneId}")
         }

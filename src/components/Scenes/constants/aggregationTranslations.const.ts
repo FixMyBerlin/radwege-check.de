@@ -1,134 +1,103 @@
 export const aggregationTranslations = {
+  location: {
+    title: 'Verortung RVA',
+    buckets: {
+      pavement: 'Seitenraum',
+      primary_road: 'Straße',
+    },
+  },
   bicycleLaneSurface: {
-    title: 'bicycleLaneSurface',
+    title: 'Oberfläche RVA',
     buckets: {
-      surface_asphalt: 'surface_asphalt',
-      surface_green: 'surface_green',
+      surface_asphalt: 'Asphalt',
+      surface_green: 'Grünmarkierung',
     },
   },
-  bicycleLaneWidthNumberNumber: {
-    title: 'bicycleLaneWidthNumberNumber',
-    buckets: {
-      '2.0': '2,0 m',
-      '3.5': '3,5 m',
-    },
-  },
-  bicycleLaneWidthNumber: {
-    title: 'bicycleLaneWidthNumber',
+  bicycleLaneWidth: {
+    title: 'bicycleLaneWidth',
     buckets: {
       '-': 'todo',
-      narrow: 'narrow',
-      wide: 'wide',
+      narrow: 'schmal',
+      wide: 'breit',
     },
   },
-  bicycleLaneUsableWidthNumber: {
-    title: 'bicycleLaneUsableWidthNumber',
+  bufferLeftWidth: {
+    title: 'bufferLeftWidth',
     buckets: {
-      '0': '0 m',
-      '0.5': '0,5 m',
-      '1': '1 m',
-      '1.25': '1,25 m',
-      '1.5': '1,5 m',
-      '1.75': '1,75 m',
-      '2': '2 m',
-      '2.5': '2,5 m',
-      '2.75': '2,75 m',
-      '3': '3 m',
-    },
-  },
-  bufferLeft: {
-    title: 'bufferLeft',
-    buckets: {
-      narrow: 'narrow',
+      narrow: 'schmal',
       none: 'none',
-      wide: 'wide',
+      wide: 'breit',
     },
   },
   bufferLeftMarking: {
     title: 'bufferLeftMarking',
     buckets: {
-      dashed_line: 'dashed_line',
-      double_line: 'double_line',
-      grass_verge: 'grass_verge',
+      dashed_line: 'unterbrochen',
+      double_line: 'Doppellinie',
+      grass_verge: 'Grünstreifen',
       none: 'none',
-      paved_verge: 'paved_verge',
-      restricted_area: 'restricted_area',
-      solid_line: 'solid_line',
+      paved_verge: 'Aufpflasterung',
+      restricted_area: 'Sperrfläche',
+      solid_line: 'durchgezogene',
     },
   },
-  bufferLeftWidthNumber: {
-    title: 'bufferLeftWidthNumber',
+  bufferHasPhysicalProtection: {
+    title: 'bufferHasPhysicalProtection',
     buckets: {
-      '0.25': '0,25 m',
-      '0.75': '0,75 m',
-      none: 'none',
+      false: 'Ja',
+      true: 'Nein',
     },
   },
-  bufferProtectedPhysically: {
-    title: 'bufferProtectedPhysically',
+  bufferLeftPhysicalProtection: {
+    title: 'bufferLeftPhysicalProtection',
     buckets: {
-      false: 'false',
-      true: 'true',
+      bollard_high: 'Poller (hoch)',
+      bollard_small: 'Poller (niedrig)',
+      none: 'Keine',
+      planter: 'Blumenkästen',
     },
   },
-  bufferRight: {
-    title: 'bufferRight',
+  bufferRightWidth: {
+    title: 'bufferRightWidth',
     buckets: {
-      narrow: 'narrow',
+      narrow: 'schmal',
       none: 'none',
-      wide: 'wide',
+      wide: 'breit',
     },
   },
   bufferRightMarking: {
     title: 'bufferRightMarking',
     buckets: {
-      double_line: 'double_line',
-      grass_verge: 'grass_verge',
-      none: 'none',
-      paved_verge: 'paved_verge',
-      restricted_area: 'restricted_area',
-      solid_line: 'solid_line',
-    },
-  },
-  bufferRightWidthNumber: {
-    title: 'bufferRightWidthNumber',
-    buckets: {
-      '0.25': '0,25 m',
-      '0.75': '0,75 m',
-    },
-  },
-  divideLeftStructural: {
-    title: 'divideLeftStructural',
-    buckets: {
-      bollard_high: 'bollard_high',
-      bollard_small: 'bollard_small',
-      none: 'none',
-      planter: 'planter',
+      double_line: 'Doppellinie',
+      grass_verge: 'Grünstreifen',
+      none: 'Keine',
+      paved_verge: 'Aufpflasterung',
+      restricted_area: 'Sperrzone',
+      solid_line: 'durchgezogene',
     },
   },
   leftOfBicycleLane: {
     title: 'leftOfBicycleLane',
     buckets: {
-      car_lanes: 'car_lanes',
-      green: 'green',
-      parking_lane: 'parking_lane',
-      pavement: 'pavement',
+      car_lanes: 'Fahrspur',
+      green: 'Grünbereich',
+      parking_lane: 'Parkspur',
+      pavement: 'Seitenraum',
     },
   },
-  motorVehicleTrafficVolumen: {
-    title: 'motorVehicleTrafficVolumen',
+  vehicleTrafficVolume: {
+    title: 'Verkehrsaufkommen Straße',
     buckets: {
       '-': 'todo',
-      high_traffic_volumen_with_heavy_vehicles:
-        'high_traffic_volumen_with_heavy_vehicles',
-      low_traffic_volumen: 'low_traffic_volumen',
+      high_traffic_volumen_with_heavy_vehicles: 'Hoch (inkl. LKW…)',
+      low_traffic_volumen: 'Niedrig',
     },
   },
   parking: {
     title: 'parking',
     buckets: {
-      no_parking: 'no_parking',
-      parking_lane: 'parking_lane',
+      no_parking: 'Kein Parken',
+      parking_lane: 'Parkspur',
     },
   },
   pavementHasShops: {
@@ -138,27 +107,20 @@ export const aggregationTranslations = {
       true: 'Ja',
     },
   },
-  pavementWidthNumber: {
-    title: 'pavementWidthNumber',
-    buckets: {
-      '-': 'todo',
-      todo: 'todo',
-    },
-  },
   pavementWidth: {
     title: 'pavementWidth',
     buckets: {
       '-': 'todo',
-      narrow: 'narrow',
-      wide: 'wide',
+      narrow: 'schmal',
+      wide: 'breit',
     },
   },
   surroundings: {
     title: 'surroundings',
     buckets: {
-      park: 'park',
-      sidewalk: 'sidewalk',
-      street: 'street',
+      park: 'Park',
+      sidewalk: 'Gehweg',
+      street: 'Straße',
     },
   },
   vehicleLaneMaxspeed: {
@@ -167,17 +129,17 @@ export const aggregationTranslations = {
       '-': 'todo',
       '30': '30 km/h',
       '50': '50 km/h',
-      sidewalk: 'sidewalk',
+      sidewalk: 'Bürgersteig',
     },
   },
   vehicleLaneUsage: {
     title: 'vehicleLaneUsage',
     buckets: {
       '-': 'todo',
-      motor_vehicle_and_bus: 'motor_vehicle_and_bus',
-      motor_vehicle_and_tram: 'motor_vehicle_and_tram',
-      motor_vehicle_only: 'motor_vehicle_only',
-      motor_vehicle_only_one_way: 'motor_vehicle_only_one_way',
+      motor_vehicle_and_bus: 'Bus',
+      motor_vehicle_and_tram: 'Tram',
+      motor_vehicle_only: 'KfZ',
+      motor_vehicle_only_one_way: 'Einbahnstraße',
     },
   },
 };

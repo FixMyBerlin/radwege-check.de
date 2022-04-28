@@ -7,15 +7,15 @@ export const configuration = {
       order: 'asc',
       conjunction: true,
     },
-    bicycleLaneSurface: {
-      title: 'bicycleLaneSurface',
+    leftOfBicycleLane: {
+      title: 'leftOfBicycleLane',
       size: 10,
       sort: 'term',
       order: 'asc',
       conjunction: false,
     },
-    bicycleLaneWidthNumber: {
-      title: 'bicycleLaneWidthNumber',
+    bicycleLaneSurface: {
+      title: 'bicycleLaneSurface',
       size: 10,
       sort: 'term',
       order: 'asc',
@@ -28,15 +28,8 @@ export const configuration = {
       order: 'asc',
       conjunction: false,
     },
-    bicycleLaneUsableWidthNumber: {
-      title: 'bicycleLaneUsableWidthNumber',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: false,
-    },
-    bufferLeft: {
-      title: 'bufferLeft',
+    bufferLeftWidth: {
+      title: 'bufferLeftWidth',
       size: 10,
       sort: 'term',
       order: 'asc',
@@ -49,29 +42,15 @@ export const configuration = {
       order: 'asc',
       conjunction: false,
     },
-    bufferLeftWidth: {
-      title: 'bufferLeftWidth',
+    bufferHasPhysicalProtection: {
+      title: 'bufferHasPhysicalProtection',
       size: 10,
       sort: 'term',
       order: 'asc',
       conjunction: false,
     },
-    bufferProtectedPhysically: {
-      title: 'bufferProtectedPhysically',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: false,
-    },
-    bufferRight: {
-      title: 'bufferRight',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: false,
-    },
-    bufferRightMarking: {
-      title: 'bufferRightMarking',
+    bufferLeftPhysicalProtection: {
+      title: 'bufferLeftPhysicalProtection',
       size: 10,
       sort: 'term',
       order: 'asc',
@@ -84,22 +63,8 @@ export const configuration = {
       order: 'asc',
       conjunction: false,
     },
-    divideLeftStructural: {
-      title: 'divideLeftStructural',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: false,
-    },
-    leftOfBicycleLane: {
-      title: 'leftOfBicycleLane',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: false,
-    },
-    motorVehicleTrafficVolumen: {
-      title: 'motorVehicleTrafficVolumen',
+    bufferRightMarking: {
+      title: 'bufferRightMarking',
       size: 10,
       sort: 'term',
       order: 'asc',
@@ -126,55 +91,6 @@ export const configuration = {
       order: 'asc',
       conjunction: false,
     },
-    pavementWidthName: {
-      title: 'pavementWidthName',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: false,
-    },
-    pointOfView: {
-      title: 'pointOfView',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: false,
-    },
-    sceneId: {
-      title: 'sceneId',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: false,
-    },
-    sceneIdCount: {
-      title: 'sceneIdCount',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: false,
-    },
-    sceneIdPedestrian: {
-      title: 'sceneIdPedestrian',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: false,
-    },
-    sceneIdCar: {
-      title: 'sceneIdCar',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: false,
-    },
-    sceneNumber: {
-      title: 'sceneNumber',
-      size: 10,
-      sort: 'term',
-      order: 'asc',
-      conjunction: false,
-    },
     surroundings: {
       title: 'surroundings',
       size: 10,
@@ -191,6 +107,13 @@ export const configuration = {
     },
     vehicleLaneUsage: {
       title: 'vehicleLaneUsage',
+      size: 10,
+      sort: 'term',
+      order: 'asc',
+      conjunction: false,
+    },
+    vehicleTrafficVolume: {
+      title: 'vehicleTrafficVolume',
       size: 10,
       sort: 'term',
       order: 'asc',

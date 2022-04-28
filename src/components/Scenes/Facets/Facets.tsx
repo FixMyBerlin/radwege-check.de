@@ -40,17 +40,7 @@ export const Facets: React.FC<Props> = ({
           const anyOfGroupSelected = buckets.some((b) => b.selected);
 
           // Filter some buckets
-          if (
-            [
-              'vehicleLaneUsage',
-              'bicycleLaneWidth',
-              'divideLeftWidth',
-              'divideLeftWidthName',
-              'divideRightWidth',
-              'leftOfBicycleLaneWithStructuralDivide',
-              'pavementWidth',
-            ].includes(aggregationKey)
-          ) {
+          if ([].includes(aggregationKey)) {
             return null;
           }
 

@@ -124,7 +124,10 @@ export const Result: React.FC<Props> = ({
         </div>
       </div>
       {Object.keys(scene)
-        .filter((key) => !['_id'].includes(key))
+        .filter((key) => !['_id', 'pointOfView', 'path'].includes(key))
+        .filter((key) => !key.startsWith('vote'))
+        .filter((key) => !key.startsWith('sceneId'))
+        .filter((key) => !key.endsWith('WidthNumber'))
         .map((key) => {
           const bucketActive = !!searchOptionFilters[key];
 

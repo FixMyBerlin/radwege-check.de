@@ -38,7 +38,6 @@ voteMeans
 voteScore
 voteScoreCar
 voteScorePedestrian
-voteSum
 
 # scenes_secondary
 
