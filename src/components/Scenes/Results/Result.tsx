@@ -2,10 +2,10 @@ import classNames from 'classnames';
 import React from 'react';
 import { TextLink } from '~/components/Links/TextLink';
 import { TranslationMissing } from '~/components/TranslationMissing/TranslationMissing';
+import { formatMeter, formatPercent } from '~/components/utils';
 import { aggregationTranslations } from '../constants';
 import { SceneImage } from '../SceneImage/SceneImage';
 import { ResultItemProps, SearchOptionProps } from '../types';
-import { formatPercent } from '../utils';
 
 export type PrevBucketValues = { [key: string]: string | number };
 
@@ -157,14 +157,10 @@ export const Result: React.FC<Props> = ({
                   <TranslationMissing value={scene[key]} />
                 )}
 
-                {key.includes('Name') && (
-                  <span className="text-neutral-500">
-                    {/* TODO cleanup formatting of number */}{' '}
-                    {(scene[`${key.replace('Name', '')}`] as string).replace(
-                      '.',
-                      ','
-                    )}{' '}
-                    m
+                {key.includes('Width') && (
+                  <span className="text-sm text-neutral-500">
+                    {' '}
+                    {formatMeter({ value: scene[`${key}Number`] })}
                   </span>
                 )}
               </div>

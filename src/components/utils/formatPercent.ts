@@ -13,5 +13,6 @@ export const formatPercent = ({ value, precision = 2, unit = ' %' }: Props) => 
   //   formatted: input.toFixed(precision),
   // });
 
-  return `${input.toFixed(precision)}${unit}`;
+  // Note this replace will break once we also want 1.000,00 formats.
+  return `${input.toFixed(precision)}${unit}`.replace('.', ',');
 };
