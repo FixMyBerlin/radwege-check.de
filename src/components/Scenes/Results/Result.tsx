@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import { TextLink } from '~/components/Links/TextLink';
 import { TranslationMissing } from '~/components/TranslationMissing/TranslationMissing';
-import { formatMeter, formatPercent } from '~/components/utils';
+import { formatMeter, formatNumber, formatPercent } from '~/components/utils';
 import { aggregationTranslations } from '../constants';
 import { SceneImage } from '../SceneImage/SceneImage';
 import { ResultItemProps, SearchOptionProps } from '../types';
@@ -42,7 +42,10 @@ export const Result: React.FC<Props> = ({
           <div
             title={`${scene.vote0Unsafe}`}
             style={{
-              height: formatPercent({ value: scene.vote0Unsafe, unit: '%' }),
+              height: formatNumber(scene.vote0Unsafe, {
+                unit: '%',
+                delimiter: '.',
+              }),
               backgroundColor: '#c01d1d',
             }}
             className="w-full"
@@ -51,9 +54,9 @@ export const Result: React.FC<Props> = ({
           </div>
           <div
             style={{
-              height: formatPercent({
-                value: scene.vote1RatherUnsafe,
+              height: formatNumber(scene.vote1RatherUnsafe, {
                 unit: '%',
+                delimiter: '.',
               }),
               backgroundColor: '#f08141',
             }}
@@ -64,7 +67,10 @@ export const Result: React.FC<Props> = ({
           <div
             title={`${scene.vote2Save}`}
             style={{
-              height: formatPercent({ value: scene.vote2Save, unit: '%' }),
+              height: formatNumber(scene.vote2Save, {
+                unit: '%',
+                delimiter: '.',
+              }),
               backgroundColor: '#abc759',
             }}
             className="w-full"
@@ -74,7 +80,10 @@ export const Result: React.FC<Props> = ({
           <div
             title={`${scene.vote3VerySave}`}
             style={{
-              height: formatPercent({ value: scene.vote3VerySave, unit: '%' }),
+              height: formatNumber(scene.vote3VerySave, {
+                unit: '%',
+                delimiter: '.',
+              }),
               backgroundColor: '#45b834',
             }}
             className="w-full"
@@ -86,34 +95,29 @@ export const Result: React.FC<Props> = ({
           className="text-center text-2xl font-thin"
           title="Summe der Bewertungen für Gut und Sehr gut."
         >
-          <strong>
-            {formatPercent({ value: scene.voteScore, precision: 0 })}
-          </strong>
+          <strong>{formatPercent(scene.voteScore, { precision: 0 })}</strong>
         </div>
         <div className="flex justify-between">
           <span>
-            {formatPercent({
-              value: scene.vote0Unsafe,
+            {formatNumber(scene.vote0Unsafe, {
               precision: 1,
               unit: '%',
             })}
           </span>
-          <span className="text-neutral-300"> – </span>
+          <span className="text-neutral-300">・</span>
           <span>
-            {formatPercent({
-              value: scene.vote1RatherUnsafe,
+            {formatNumber(scene.vote1RatherUnsafe, {
               precision: 1,
               unit: '%',
             })}
           </span>
-          <span className="text-neutral-300"> – </span>
+          <span className="text-neutral-300">・</span>
           <span>
-            {formatPercent({ value: scene.vote2Save, precision: 1, unit: '%' })}
+            {formatNumber(scene.vote2Save, { precision: 1, unit: '%' })}
           </span>
-          <span className="text-neutral-300"> – </span>
+          <span className="text-neutral-300">・</span>
           <span>
-            {formatPercent({
-              value: scene.vote3VerySave,
+            {formatNumber(scene.vote3VerySave, {
               precision: 1,
               unit: '%',
             })}
@@ -121,7 +125,9 @@ export const Result: React.FC<Props> = ({
         </div>
         <div className="flex justify-between">
           <span>Mittelwert: {scene.voteMeans || '–'}</span>
-          <span>Anzahl: {scene.voteCount || '–'}</span>
+          <span>
+            Anzahl: {formatNumber(scene.voteCount, { precision: 0 }) || '–'}
+          </span>
         </div>
       </div>
       {Object.keys(scene)
@@ -160,7 +166,7 @@ export const Result: React.FC<Props> = ({
                 {key.includes('Width') && (
                   <span className="text-sm text-neutral-500">
                     {' '}
-                    {formatMeter({ value: scene[`${key}Number`] })}
+                    {formatMeter(scene[`${key}Number`], {})}
                   </span>
                 )}
               </div>
@@ -177,8 +183,7 @@ export const Result: React.FC<Props> = ({
               <>
                 Fußgänger:in{' '}
                 <abbr className="text-sm font-light">
-                  {formatPercent({
-                    value: scene.voteScorePedestrian,
+                  {formatPercent(scene.voteScorePedestrian, {
                     precision: 0,
                   })}
                 </abbr>
@@ -196,7 +201,7 @@ export const Result: React.FC<Props> = ({
               <>
                 Autofahrer:in{' '}
                 <abbr className="text-sm font-light">
-                  {formatPercent({ value: scene.voteScoreCar, precision: 0 })}
+                  {formatPercent(scene.voteScoreCar, { precision: 0 })}
                 </abbr>
                 {/* TODO Types */}
                 <SceneImage

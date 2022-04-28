@@ -1,2 +1,3 @@
-export * from './formatPercent';
 export * from './formatMeter';
+export * from './formatNumber';
+export * from './formatPercent';

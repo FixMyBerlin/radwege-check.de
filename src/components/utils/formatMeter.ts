@@ -1,7 +1,11 @@
-import { formatPercent } from './formatPercent';
+import { formatNumber } from './formatNumber';
 
-type Props = { value: number | string; precision?: number; unit?: string };
+type Props = { precision?: number };
 
-export const formatMeter = ({ value, precision = 1, unit = ' m' }: Props) => {
-  return formatPercent({ value, precision, unit });
+// Default unit has a non breaking space as special space character.
+export const formatMeter = (
+  value: number | string,
+  { precision = 2 }: Props
+) => {
+  return formatNumber(value, { precision, unit: ' m' });
 };

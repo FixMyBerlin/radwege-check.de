@@ -1,18 +1,11 @@
-type Props = { value: number | string; precision?: number; unit?: string };
+import { formatNumber } from './formatNumber';
+
+type Props = { precision?: number };
 
 // Default unit has a non breaking space as special space character.
-export const formatPercent = ({ value, precision = 2, unit = ' %' }: Props) => {
-  // Tranform stings to float and for that, transform 1,1 to 1.1 first.
-  const input =
-    typeof value === 'string' ? parseFloat(value.replace(',', '.')) : value;
-
-  // console.log({
-  //   value,
-  //   type: typeof value,
-  //   parsed: input,
-  //   formatted: input.toFixed(precision),
-  // });
-
-  // Note this replace will break once we also want 1.000,00 formats.
-  return `${input.toFixed(precision)}${unit}`.replace('.', ',');
+export const formatPercent = (
+  value: number | string,
+  { precision = 2 }: Props
+) => {
+  return formatNumber(value, { precision, unit: ' %' });
 };
