@@ -146,9 +146,15 @@ export const Result: React.FC<Props> = ({ scene, searchOptionFilters }) => {
               </div>
 
               <div className="group-hover:text-pink-900">
-                {aggregationConfig[key]?.buckets[scene[key]] || (
-                  <TranslationMissing value={scene[key]} />
-                )}
+                {
+                  <span
+                    // eslint-disable-next-line react/no-danger
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        aggregationConfig[key]?.buckets[scene[key]] || 'TODO',
+                    }}
+                  />
+                }
 
                 {key.includes('Width') && (
                   <span className="text-sm text-neutral-500">

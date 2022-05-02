@@ -1,20 +1,24 @@
 import classNames from 'classnames';
 import React from 'react';
-import { aggregationConfig } from '~/components/Scenes/constants';
+import { aggregationConfig, itemJsConfig } from '~/components/Scenes/constants';
 import { TranslationMissing } from '~/components/TextHelper/TranslationMissing';
 import { ResultProps } from '../types';
-import { Bucket, HandleFilterClick } from './Bucket';
+import { ButtonMultiChoice, HandleMultiChoice } from './ButtonMultiChoice';
+import { ButtonSingleChoice, HandleSingleChoice } from './ButtonSingleChoice';
+import { ButtonSingleChoiseDoesNotMatterOption } from './ButtonSingleChoiseDoesNotMatterOption';
 
 type Props = {
   results: ResultProps;
   handleResetFilter: () => void;
-  handleFilterClick: HandleFilterClick;
+  handleSingleChoice: HandleSingleChoice;
+  handleMultiChoice: HandleMultiChoice;
 };
 
 export const Facets: React.FC<Props> = ({
   results,
   handleResetFilter,
-  handleFilterClick,
+  handleSingleChoice,
+  handleMultiChoice,
 }) => {
   return (
     <nav className="absolute inset-y-0 left-0 w-80 overflow-scroll bg-gray-100 p-4">
@@ -27,14 +31,13 @@ export const Facets: React.FC<Props> = ({
       {Object.entries(results?.data?.aggregations || {}).map(
         ([aggregationKey, aggregation]) => {
           const { buckets } = aggregation;
-          const display = buckets.length < 4 ? 'line' : 'grid';
           const { showAsIcons } = aggregationConfig[aggregationKey];
           const { doesNotMatterOption } = aggregationConfig[aggregationKey];
 
           return (
             <div key={aggregationKey} className={classNames('mb-5')}>
               {!showAsIcons && (
-                <h5 title={aggregationKey} className="mb-2 text-sm font-bold">
+                <h5 title={aggregationKey} className="mb-1 text-sm font-bold">
                   {aggregationConfig[aggregationKey]?.title || (
                     <TranslationMissing value={aggregationKey} />
                   )}
@@ -43,35 +46,46 @@ export const Facets: React.FC<Props> = ({
 
               <div className={classNames('flex w-full flex-row')}>
                 {doesNotMatterOption && (
-                  <Bucket
+                  <ButtonSingleChoiseDoesNotMatterOption
                     key="doesNotMatterOption"
-                    keyValue="doesNotMatterOption"
                     buckets={buckets}
-                    bucket={null}
-                    index={-1}
                     aggregationKey={aggregationKey}
-                    handleFilterClick={handleFilterClick}
-                    paginationTotal={results?.pagination?.total}
-                    display={display}
+                    handleClick={handleSingleChoice}
                   />
                 )}
+                {/* TODO: Rework to use the aggregationConfig order of bucket.keys as sort order */}
                 {buckets
                   .sort((a, b) =>
                     // eslint-disable-next-line no-nested-ternary
                     a.key > b.key ? 1 : b.key > a.key ? -1 : 0
                   )
                   .map((bucket, index) => {
+                    const singleChoise =
+                      itemJsConfig.aggregations[aggregationKey].conjunction;
+
+                    if (singleChoise) {
+                      return (
+                        <ButtonSingleChoice
+                          key={bucket.key}
+                          buckets={buckets}
+                          bucket={bucket}
+                          index={index}
+                          aggregationKey={aggregationKey}
+                          handleClick={handleSingleChoice}
+                          paginationTotal={results?.pagination?.total}
+                        />
+                      );
+                    }
+
                     return (
-                      <Bucket
+                      <ButtonMultiChoice
                         key={bucket.key}
-                        keyValue={bucket.key}
                         buckets={buckets}
                         bucket={bucket}
                         index={index}
                         aggregationKey={aggregationKey}
-                        handleFilterClick={handleFilterClick}
+                        handleClick={handleMultiChoice}
                         paginationTotal={results?.pagination?.total}
-                        display={display}
                       />
                     );
                   })}

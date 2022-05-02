@@ -4,7 +4,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { FixedLayout, MetaTags } from '~/components/Layout';
 import { Facets, Results, TitleBar } from '~/components/Scenes';
 import { itemJsConfig } from '~/components/Scenes/constants';
-import { HandleFilterClickProps } from '~/components/Scenes/Facets/Bucket';
+import { HandleMultiChoiceProps } from '~/components/Scenes/Facets/ButtonMultiChoice';
+import { HandleSingleChoiceProps } from '~/components/Scenes/Facets/ButtonSingleChoice';
 import { ResultProps, SearchOptionProps } from '~/components/Scenes/types';
 
 const MyDataIndex = ({
@@ -63,29 +64,49 @@ const MyDataIndex = ({
     setSearchOptionFilters(() => ({}));
   };
 
+  // SingleChoice: Replace the key
+  // This will trigger a useEffect to re-search.
+  const handleSingleChoice = ({
+    aggregationKey,
+    selectedBucketKey,
+  }: HandleSingleChoiceProps) => {
+    setSearchOptionFilters((prevState) => {
+      const filter = selectedBucketKey ? [selectedBucketKey] : [];
+      console.log({
+        log: 'handleSingleChoice',
+        aggregationKey,
+        prevState,
+        filter,
+        selectedBucketKey,
+      });
+
+      return {
+        ...prevState,
+        [aggregationKey]: filter,
+      };
+    });
+  };
+
   // Add remove filter to the searchOptionFilters state.
   // This will trigger a useEffect to re-search.
-  const handleFilterClick = ({
+  const handleMultiChoice = ({
     aggregationKey,
     buckets,
     selectedBucket,
-    choiseMode,
-  }: HandleFilterClickProps) => {
-    console.log({ choiseMode });
-
+  }: HandleMultiChoiceProps) => {
     const bucketHasNothingSelected = !buckets.some((b) => b.selected);
     if (bucketHasNothingSelected) {
       // Activate uiFilter (remove Filter)
       // Selecting the first bucket in an aggregation will not return bucket.selected for some reason.
-      // To work around this, we handle the first click manually.
+      // To work around this, we handle the first  manually.
       setSearchOptionFilters((prevState) => {
         const allBucketKeys = buckets.map((bucket) => bucket.key);
-        const allWithoutClicked = allBucketKeys.filter(
+        const allWithouted = allBucketKeys.filter(
           (k) => k !== selectedBucket.key
         );
-        const filter = allWithoutClicked;
+        const filter = allWithouted;
         console.log({
-          log: 'FIRST',
+          log: 'handleMultiChoice FIRST',
           selectedBucket,
           aggregationKey,
           prevState,
@@ -103,7 +124,7 @@ const MyDataIndex = ({
             : [selectedBucket.key];
         const filter = prevFilter.filter((k) => k !== selectedBucket.key);
         console.log({
-          log: 'IN',
+          log: 'handleMultiChoice IN',
           selectedBucket,
           aggregationKey,
           prevState,
@@ -121,7 +142,7 @@ const MyDataIndex = ({
             : [selectedBucket.key];
         const filter = prevFilter;
         console.log({
-          log: 'OUT',
+          log: 'handleMultiChoice OUT',
           selectedBucket,
           aggregationKey,
           prevState,
@@ -140,7 +161,8 @@ const MyDataIndex = ({
         <Facets
           results={results}
           handleResetFilter={handleResetFilter}
-          handleFilterClick={handleFilterClick}
+          handleSingleChoice={handleSingleChoice}
+          handleMultiChoice={handleMultiChoice}
         />
 
         <TitleBar results={results} />

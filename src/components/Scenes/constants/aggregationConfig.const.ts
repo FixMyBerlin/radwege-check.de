@@ -36,9 +36,9 @@ export const aggregationConfig: AggregationConfig = {
   parking: {
     title: 'KfZ-Parken',
     buckets: {
-      no_parking: 'Ja',
-      parking_lane: 'Nein',
       doesNotMatterOption: 'Egal',
+      parking_lane: 'Ja',
+      no_parking: 'Nein',
     },
     doesNotMatterOption: true,
     showAsIcons: false,
@@ -47,7 +47,7 @@ export const aggregationConfig: AggregationConfig = {
     title: 'Oberfläche RVA',
     buckets: {
       surface_asphalt: 'Asphalt',
-      surface_green: 'Grünmarkierung',
+      surface_green: 'Grün&shy;markierung',
       doesNotMatterOption: 'Egal',
     },
     doesNotMatterOption: true,
@@ -126,7 +126,6 @@ export const aggregationConfig: AggregationConfig = {
   vehicleTrafficVolume: {
     title: 'KfZ-Verkehrsaufkommen',
     buckets: {
-      '-': 'todo',
       high_traffic_volumen_with_heavy_vehicles: 'Hoch',
       low_traffic_volumen: 'Niedrig',
       doesNotMatterOption: 'Egal',
@@ -137,10 +136,9 @@ export const aggregationConfig: AggregationConfig = {
   vehicleLaneMaxspeed: {
     title: 'Tempolimit',
     buckets: {
-      '-': 'todo',
       '30': '30 km/h',
       '50': '50 km/h',
-      sidewalk: 'Bürgersteig',
+      sidewalk: 'Bür&shy;ger&shy;steig',
       doesNotMatterOption: 'Egal',
     },
     doesNotMatterOption: true,
@@ -149,7 +147,6 @@ export const aggregationConfig: AggregationConfig = {
   vehicleLaneUsage: {
     title: 'Fahrbahn Nutzung',
     buckets: {
-      '-': 'todo',
       motor_vehicle_and_bus: 'Bus',
       motor_vehicle_and_tram: 'Tram',
       motor_vehicle_only: 'KfZ',
@@ -161,7 +158,6 @@ export const aggregationConfig: AggregationConfig = {
   pavementWidth: {
     title: 'Gehweg',
     buckets: {
-      '-': 'todo',
       narrow: 'Schmal',
       wide: 'Breit',
       doesNotMatterOption: 'Egal',
