@@ -32,3 +32,9 @@ This should make it possible to display all 3k rows in one view without issues.
 More docs at https://react-virtual.tanstack.com/docs/api
 
 Used by Placemark https://twitter.com/placemarkio/status/1417976468991315968
+
+# Fonts
+
+Prüfen, welche `.font-*` wir verwenden, dann in `gatsby-browser.js` die überflüssigen löschen.
+
+Liste: https://tailwindcss.com/docs/font-weight#setting-the-font-weight
