@@ -20,3 +20,15 @@ https://devinschulz.com/rename-fields-by-using-aliases-in-graphql/
 # `npm install --save-dev @types/itemsjs`
 
 Type Probleme…
+
+# Ergebnismenge Performance
+
+Test out https://react-virtual.tanstack.com/docs/overview
+
+This should make it possible to display all 3k rows in one view without issues.
+
+`npm install react-virtual --save`
+
+More docs at https://react-virtual.tanstack.com/docs/api
+
+Used by Placemark https://twitter.com/placemarkio/status/1417976468991315968
