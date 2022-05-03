@@ -4,7 +4,7 @@ import { Result } from './Result';
 
 type Props = {
   results: ResultProps;
-  searchOptionFilters: SearchOptionProps;
+  searchOptionFilters: SearchOptionProps['filters'];
 };
 
 export const Results: React.FC<Props> = ({ results, searchOptionFilters }) => {

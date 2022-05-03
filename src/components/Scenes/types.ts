@@ -1,13 +1,11 @@
-export type SearchOptionProps =
-  | {
-      per_page: string;
-      sort: {
-        field: string;
-        order: 'desc' | 'asc';
-      };
-      filters: Array<{ [key: string]: string }>;
-    }
-  | Record<string, unknown>;
+export type SearchOptionProps = {
+  per_page: string;
+  sort: {
+    field: string;
+    order: 'desc' | 'asc';
+  };
+  filters: { [key: string]: string[] };
+};
 
 export type ResultBucketProps = {
   key: string;

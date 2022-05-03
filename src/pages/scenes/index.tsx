@@ -1,6 +1,8 @@
 import { graphql } from 'gatsby';
 import itemsjs from 'itemsjs';
+import { parse, stringify } from 'query-string';
 import React, { useEffect, useMemo, useState } from 'react';
+import { JsonParam, useQueryParam } from 'use-query-params';
 import { FixedLayout, MetaTags } from '~/components/Layout';
 import { Facets, Results, TitleBar } from '~/components/Scenes';
 import { itemJsConfig } from '~/components/Scenes/constants';
@@ -30,39 +32,91 @@ const MyDataIndex = ({
     setItems(itemsjs(scenes, itemJsConfig));
   }, [scenes, itemJsConfig]);
 
+  // const [query, setQuery] = useQueryParams({
+  //   filters: withDefault(StringParam, ''),
+  //   bookarks: withDefault(ArrayParam, []),
+  // });
+  // const { queryFilters, queryBookmarks } = query;
+  // const filterParamToItemjs = (param) => {
+
+  //  }
+
+  const HandleSearchOptionFilterParam = {
+    encode: (searchOptionFilters: SearchOptionProps['filters']) => {
+      // Testing:
+      // $ node
+      // > const queryString = require('query-string');
+      // // Part 1: Use the given function
+      // > queryString.stringify({ foo: ['bar', 'baz'], bar: ['baz'], bar2: null }, { arrayFormat: 'comma', skipNull: true, skipEmptyString: true, strict: false });
+      // # => ('bar=baz&foo=bar,baz');
+      // // Part 1: Cleanup the string by replacing '=' and '&'
+      // // We do this since we hold the whole object in one param "filter"
+      // // and want a nice looking URL (no escaping) as well.
+      // > queryString.stringify({ foo: ['bar', 'baz'], bar: ['baz'], bar2: null }, { arrayFormat: 'comma', skipNull: true, skipEmptyString: true, strict: false }).replace(/=/g, ':').replace(/&/g, '|');
+      // # => ('bar:baz|foo:bar,baz');
+      const string = stringify(searchOptionFilters, {
+        arrayFormat: 'separator',
+        arrayFormatSeparator: ',',
+        skipNull: true,
+        skipEmptyString: true,
+      })
+        .replace(/=/g, ':')
+        .replace(/&/g, '|');
+      return string;
+    },
+    decode: (
+      searchOptionFilterString: string | undefined
+    ): SearchOptionProps['filters'] => {
+      if (searchOptionFilterString === undefined) return {};
+      const preparedString = searchOptionFilterString
+        .replace(/:/g, '=')
+        .replace(/\|/g, '&');
+      const parsedString = parse(preparedString, {
+        arrayFormat: 'separator',
+        arrayFormatSeparator: ',',
+      });
+      // For some reason, with this stringify->parse transformation we loose the array format for singleChoise values
+      // which breaks the search. So here we check if the values is a string and wrap it in an array.
+      const finalString = Object.fromEntries(
+        Object.keys(parsedString).map((key) => [
+          key,
+          typeof parsedString[key] === 'string'
+            ? [parsedString[key]]
+            : parsedString[key],
+        ])
+      );
+      return finalString as SearchOptionProps['filters'];
+    },
+  };
+
   // The filters that we use for setSearchOption.
   // They are manage by handleFilterChange().
   // ~~We do not use this inside the UI, which is based on the results object only.~~
   //  We do now, but we should maybe remove it again… – TODO
-  const [searchOptionFilters, setSearchOptionFilters] =
-    useState<SearchOptionProps>({});
-
-  // Specify the filters, on component mount for now
-  // https://github.com/itemsapi/itemsjs#itemsjssearchoptions
-  const [searchOption, setSearchOption] = useState(undefined);
-  useEffect(
-    () =>
-      setSearchOption({
-        per_page: 200,
-        sort: {
-          field: 'voteScore',
-          order: 'desc',
-        },
-        filters: searchOptionFilters,
-      }),
-    [searchOptionFilters]
+  const [searchOptionFilters, setSearchOptionFilters] = useQueryParam(
+    'filter',
+    JsonParam
+    // HandleSearchOptionFilterParam
   );
+  console.log({ searchOptionFilters });
 
   // Filter the data
   const [results, setResults] = useState<ResultProps>(null);
   useEffect(() => {
-    if (!searchOption) return;
-    setResults(items.search(searchOption));
-  }, [items, searchOption]);
+    if (!items) return;
 
-  const handleResetFilter = () => {
-    setSearchOptionFilters(() => ({}));
-  };
+    // https://github.com/itemsapi/itemsjs#itemsjssearchoptions
+    const searchOption = {
+      per_page: 200,
+      sort: { field: 'voteScore', order: 'desc' },
+      filters: searchOptionFilters,
+    };
+    console.warn(searchOption);
+
+    setResults(items.search(searchOption));
+  }, [items, searchOptionFilters]);
+
+  const handleResetFilter = () => setSearchOptionFilters([]);
 
   // SingleChoice: Replace the key
   // This will trigger a useEffect to re-search.
@@ -158,6 +212,10 @@ const MyDataIndex = ({
     <FixedLayout>
       <MetaTags title="Safetycheck Prototyp" description="TODO" image="TODO" />
       <div className="">
+        <textarea
+          className="absolute top-0 right-96 z-20 h-96 w-96"
+          defaultValue={JSON.stringify(searchOptionFilters, null, 2)}
+        />
         <Facets
           results={results}
           handleResetFilter={handleResetFilter}

@@ -11,7 +11,7 @@ export type PrevBucketValues = { [key: string]: string | number };
 
 type Props = {
   scene: ResultItemProps;
-  searchOptionFilters: SearchOptionProps;
+  searchOptionFilters: SearchOptionProps['filters'];
 };
 
 export const Result: React.FC<Props> = ({ scene, searchOptionFilters }) => {
@@ -118,12 +118,15 @@ export const Result: React.FC<Props> = ({ scene, searchOptionFilters }) => {
         </div>
       </div>
       {Object.keys(scene)
-        .filter((key) => !['_id', 'pointOfView', 'path'].includes(key))
+        .filter(
+          (key) => !['_id', 'pointOfView', 'path', 'location'].includes(key)
+        )
         .filter((key) => !key.startsWith('vote'))
         .filter((key) => !key.startsWith('sceneId'))
         .filter((key) => !key.endsWith('WidthNumber'))
         .map((key) => {
-          const bucketActive = !!searchOptionFilters[key];
+          const bucketActive =
+            searchOptionFilters && !!searchOptionFilters[key];
 
           return (
             <div
