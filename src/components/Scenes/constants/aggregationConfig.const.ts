@@ -26,7 +26,7 @@ export const aggregationConfig: AggregationConfig = {
   leftOfBicycleLane: {
     title: 'Lage der Radverkehrsanlage',
     buckets: {
-      car_lanes: 'Fahrbahn',
+      car_lanes: 'Fahr&shy;bahn',
       parking_lane: 'Rechts v. Parken',
       pavement: 'Seiten&shy;raum', // todo können wir nach dem nächsten csv update löschen
       // curb: 'Seiten&shy;raum',

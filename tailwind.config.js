@@ -30,7 +30,8 @@ module.exports = {
       }),
     },
     fontFamily: {
-      sans: ['Overpass', 'sans-serif'],
+      sans: ['Open Sans', 'Segoe UI', 'Tahoma', 'sans-serif'],
+      slap: ['Roboto Slab', 'serif'],
     },
   },
   plugins: [
