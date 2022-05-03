@@ -43,9 +43,9 @@ export const itemJsConfig = {
     bufferLeftPhysicalProtection: {
       title: 'bufferLeftPhysicalProtection',
       size: 10,
-      conjunction: true,
       sort: 'term', // not used
       order: 'asc', // not used
+      conjunction: false,
     },
     bufferLeftWidth: {
       title: 'bufferLeftWidth',
@@ -57,9 +57,9 @@ export const itemJsConfig = {
     bufferLeftMarking: {
       title: 'bufferLeftMarking',
       size: 10,
-      conjunction: true,
       sort: 'term', // not used
       order: 'asc', // not used
+      conjunction: false,
     },
     bufferRightWidth: {
       title: 'bufferRightWidth',
@@ -71,9 +71,9 @@ export const itemJsConfig = {
     bufferRightMarking: {
       title: 'bufferRightMarking',
       size: 10,
-      conjunction: true,
       sort: 'term', // not used
       order: 'asc', // not used
+      conjunction: false,
     },
     vehicleTrafficVolume: {
       title: 'vehicleTrafficVolume',
@@ -92,9 +92,9 @@ export const itemJsConfig = {
     vehicleLaneUsage: {
       title: 'vehicleLaneUsage',
       size: 10,
-      conjunction: true,
       sort: 'term', // not used
       order: 'asc', // not used
+      conjunction: false,
     },
     pavementHasShops: {
       title: 'pavementHasShops',

@@ -6,6 +6,7 @@ import { ResultProps } from '../types';
 import { ButtonMultiChoice, HandleMultiChoice } from './ButtonMultiChoice';
 import { ButtonSingleChoice, HandleSingleChoice } from './ButtonSingleChoice';
 import { ButtonSingleChoiseDoesNotMatterOption } from './ButtonSingleChoiseDoesNotMatterOption';
+import { checkBucketValueConsistency, checkDataConsistency } from './utils';
 
 type Props = {
   results: ResultProps;
@@ -40,6 +41,10 @@ export const Facets: React.FC<Props> = ({
           const sortedBuckets =
             aggregationConfig[aggregationKey]?.sortOrder ||
             Object.keys(aggregationConfig[aggregationKey].buckets);
+
+          checkDataConsistency({ aggregationKey });
+          const { keyFromItemjsMissingInTranslations } =
+            checkBucketValueConsistency({ aggregationKey, buckets });
 
           return (
             <div key={aggregationKey} className={classNames('mb-5')}>
@@ -83,6 +88,17 @@ export const Facets: React.FC<Props> = ({
                     );
                   })}
               </div>
+
+              {!!keyFromItemjsMissingInTranslations.length && (
+                <div className="text-xs text-neutral-500">
+                  Werte, die wir in den Daten bereinigen müssen:{' '}
+                  {keyFromItemjsMissingInTranslations.map((v) => (
+                    <code key={v} className="rounded-sm bg-red-100 px-1">
+                      {v}
+                    </code>
+                  ))}
+                </div>
+              )}
             </div>
           );
         }
