@@ -6,6 +6,7 @@ type AggregationConfig = {
   [key: string]: {
     title: string;
     buckets: { [key: string]: string };
+    sortOrder?: string[];
     doesNotMatterOption: boolean;
     showAsIcons: boolean; // has to be false if 'doesNotMatterOption' is true
   };
@@ -13,28 +14,29 @@ type AggregationConfig = {
 
 export const aggregationConfig: AggregationConfig = {
   bicycleLaneWidth: {
-    title: 'Breite Radverkehrsanlage (RVA)',
+    title: 'Radverkehrsanlage (RVA)',
     buckets: {
-      none: 'Keine',
-      narrow: 'Schmal',
-      wide: 'Breit',
+      wide: 'Breit (3&thinsp;m)',
+      narrow: 'Schmal (2&thinsp;m)',
+      none: 'Keine RVA',
     },
     doesNotMatterOption: false,
     showAsIcons: false,
   },
   leftOfBicycleLane: {
-    title: 'Lage RVA (Was liegt links der RVA?)',
+    title: 'Lage der Radverkehrsanlage',
     buckets: {
-      car_lanes: 'Fahrspur',
-      green: 'Grün&shy;bereich',
-      parking_lane: 'Parkspur',
-      pavement: 'Seiten&shy;raum',
+      car_lanes: 'Fahrbahn',
+      parking_lane: 'Rechts v. Parken',
+      pavement: 'Seiten&shy;raum', // todo können wir nach dem nächsten csv update löschen
+      // curb: 'Seiten&shy;raum',
+      green: 'Grün&shy;anlage',
     },
     doesNotMatterOption: false,
     showAsIcons: false,
   },
   parking: {
-    title: 'KfZ-Parken',
+    title: 'KfZ-Parken vorhanden',
     buckets: {
       doesNotMatterOption: 'Egal',
       parking_lane: 'Ja',
@@ -46,9 +48,9 @@ export const aggregationConfig: AggregationConfig = {
   bicycleLaneSurface: {
     title: 'Oberfläche RVA',
     buckets: {
+      doesNotMatterOption: 'Egal',
       surface_asphalt: 'Asphalt',
       surface_green: 'Grün&shy;markierung',
-      doesNotMatterOption: 'Egal',
     },
     doesNotMatterOption: true,
     showAsIcons: false,
@@ -56,9 +58,9 @@ export const aggregationConfig: AggregationConfig = {
   bufferHasPhysicalProtection: {
     title: 'Bauliche Trennung RVA',
     buckets: {
+      doesNotMatterOption: 'Egal',
       false: 'Ja',
       true: 'Nein',
-      doesNotMatterOption: 'Egal',
     },
     doesNotMatterOption: true,
     showAsIcons: false,
@@ -66,9 +68,9 @@ export const aggregationConfig: AggregationConfig = {
   bufferLeftPhysicalProtection: {
     title: 'Details der baulichen Trennung Links der RVA',
     buckets: {
+      none: 'Keine',
       bollard_high: 'Poller (hoch)',
       bollard_small: 'Poller (niedrig)',
-      none: 'Keine',
       planter: 'Blumenkästen',
     },
     doesNotMatterOption: false,
@@ -77,10 +79,10 @@ export const aggregationConfig: AggregationConfig = {
   bufferLeftWidth: {
     title: 'Markierung Links RVA',
     buckets: {
-      narrow: 'schmal',
-      none: 'none',
-      wide: 'breit',
       doesNotMatterOption: 'Egal',
+      narrow: 'schmal',
+      wide: 'breit',
+      none: 'none',
     },
     doesNotMatterOption: true,
     showAsIcons: false,
@@ -102,10 +104,10 @@ export const aggregationConfig: AggregationConfig = {
   bufferRightWidth: {
     title: 'Markierung Rechts RVA',
     buckets: {
-      narrow: 'schmal',
-      none: 'none',
-      wide: 'breit',
       doesNotMatterOption: 'Egal',
+      narrow: 'schmal',
+      wide: 'breit',
+      none: 'none',
     },
     doesNotMatterOption: true,
     showAsIcons: false,
@@ -126,9 +128,9 @@ export const aggregationConfig: AggregationConfig = {
   vehicleTrafficVolume: {
     title: 'KfZ-Verkehrsaufkommen',
     buckets: {
-      high_traffic_volumen_with_heavy_vehicles: 'Hoch',
-      low_traffic_volumen: 'Niedrig',
       doesNotMatterOption: 'Egal',
+      low_traffic_volumen: 'Niedrig',
+      high_traffic_volumen_with_heavy_vehicles: 'Hoch',
     },
     doesNotMatterOption: true,
     showAsIcons: false,
@@ -136,11 +138,12 @@ export const aggregationConfig: AggregationConfig = {
   vehicleLaneMaxspeed: {
     title: 'Tempolimit',
     buckets: {
+      doesNotMatterOption: 'Egal',
       '30': '30 km/h',
       '50': '50 km/h',
       sidewalk: 'Bür&shy;ger&shy;steig',
-      doesNotMatterOption: 'Egal',
     },
+    sortOrder: ['doesNotMatterOption', '30', '50', 'sidewalk'],
     doesNotMatterOption: true,
     showAsIcons: false,
   },
@@ -158,9 +161,9 @@ export const aggregationConfig: AggregationConfig = {
   pavementWidth: {
     title: 'Gehweg',
     buckets: {
+      doesNotMatterOption: 'Egal',
       narrow: 'Schmal',
       wide: 'Breit',
-      doesNotMatterOption: 'Egal',
     },
     doesNotMatterOption: true,
     showAsIcons: false,
@@ -168,9 +171,9 @@ export const aggregationConfig: AggregationConfig = {
   pavementHasShops: {
     title: 'Geschäfte / Cafétische',
     buckets: {
-      false: 'Nein',
-      true: 'Ja',
       doesNotMatterOption: 'Egal',
+      true: 'Ja',
+      false: 'Nein',
     },
     doesNotMatterOption: true,
     showAsIcons: false,
@@ -178,11 +181,12 @@ export const aggregationConfig: AggregationConfig = {
   surroundings: {
     title: 'surroundings',
     buckets: {
+      doesNotMatterOption: 'Egal',
       park: 'Park',
       sidewalk: 'Gehweg',
       street: 'Straße',
     },
-    doesNotMatterOption: false,
+    doesNotMatterOption: true,
     showAsIcons: false,
   },
 };

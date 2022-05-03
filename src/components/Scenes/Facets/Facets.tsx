@@ -34,6 +34,13 @@ export const Facets: React.FC<Props> = ({
           const { showAsIcons } = aggregationConfig[aggregationKey];
           const { doesNotMatterOption } = aggregationConfig[aggregationKey];
 
+          // We need a specific order for our Bucket values.
+          // We use the order of key from our aggregationConfig for that.
+          // However, for keys of type number that does not work, which is why we use a custom order via the `sortOrder` key.
+          const sortedBuckets =
+            aggregationConfig[aggregationKey]?.sortOrder ||
+            Object.keys(aggregationConfig[aggregationKey].buckets);
+
           return (
             <div key={aggregationKey} className={classNames('mb-5')}>
               {!showAsIcons && (
@@ -45,23 +52,9 @@ export const Facets: React.FC<Props> = ({
               )}
 
               <div className={classNames('flex w-full flex-row')}>
-                {doesNotMatterOption && (
-                  <ButtonSingleChoiseDoesNotMatterOption
-                    key="doesNotMatterOption"
-                    buckets={buckets}
-                    aggregationKey={aggregationKey}
-                    handleClick={handleSingleChoice}
-                  />
-                )}
-                {/* TODO: Rework to use the aggregationConfig order of bucket.keys as sort order */}
-                {buckets
-                  .sort((a, b) =>
-                    // eslint-disable-next-line no-nested-ternary
-                    a.key > b.key ? 1 : b.key > a.key ? -1 : 0
-                  )
-                  .map((bucket, index) => {
                     const singleChoise =
                       itemJsConfig.aggregations[aggregationKey].conjunction;
+                {sortedBuckets.map((bucketKey, index) => {
 
                     if (singleChoise) {
                       return (
