@@ -11,11 +11,11 @@ module.exports = {
   // TailwindCSS needs PostCSS, https://tailwindcss.com/docs/guides/gatsby
   plugins: [
     'gatsby-plugin-postcss',
-    `gatsby-transformer-csv`,
+    'gatsby-transformer-csv',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        path: `./src/scenes/`,
+        path: './src/scenes/',
       },
     },
     {
