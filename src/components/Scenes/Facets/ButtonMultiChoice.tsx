@@ -1,7 +1,7 @@
 import React from 'react';
 import { aggregationConfig } from '../constants';
 import { ResultBucketProps } from '../types';
-import { buttonClassNames } from './buttonClassNames';
+import { buttonClassNames } from './utils';
 
 export type HandleMultiChoiceProps = {
   aggregationKey: string;
