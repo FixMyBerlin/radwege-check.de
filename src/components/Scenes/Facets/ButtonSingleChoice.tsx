@@ -31,20 +31,20 @@ export const ButtonSingleChoice: React.FC<Props> = ({
   paginationTotal,
 }) => {
   const { showAsIcons } = aggregationConfig[aggregationKey];
-  const { doesNotMatterOption } = aggregationConfig[aggregationKey];
 
-  // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
-  const anyOfGroupSelected = buckets.some((b) => b.selected);
-  const uiSelected = doesNotMatterOption
-    ? bucket?.selected
-    : bucket?.selected || !anyOfGroupSelected;
-  const uiCanpress = doesNotMatterOption ? true : !!bucket?.doc_count;
-  const firstElement = doesNotMatterOption ? false : index === 0;
-  const lastElement = index === buckets.length - 1;
+  const uiSelected = bucket?.selected;
+  const uiCanpress = !bucket?.selected;
+  const firstElement = index === 0;
+  const lastElement = index === buckets.length;
+  // We might need something like this … – but then again, we should cleanup our data and have a mapping for all values.
+  // (This happens, because we don't translate all values.)
+  // const lastElement =
+  //   index === Object.keys(aggregationConfig[aggregationKey].buckets).length - 1;
 
-  const futureResult = uiSelected
-    ? (paginationTotal || 0) - parseInt(bucket?.doc_count, 10)
-    : '-';
+  // TODO, should we need this, we need to fix it
+  const resultTotal = paginationTotal;
+  const resultDiff = 0; // parseInt(bucket?.doc_count, 10) - paginationTotal;
+  const resultFuture = parseInt(bucket?.doc_count, 10);
 
   return (
     <button
@@ -56,6 +56,10 @@ export const ButtonSingleChoice: React.FC<Props> = ({
         uiSelected,
         uiCanpress,
       })}
+      onMouseOver={() =>
+        console.log({ resultTotal, resultDiff, resultFuture, bucket })
+      }
+      onFocus={() => ''}
       onClick={() =>
         uiCanpress &&
         handleClick({
@@ -63,9 +67,7 @@ export const ButtonSingleChoice: React.FC<Props> = ({
           selectedBucketKey: bucket.key,
         })
       }
-      title={`${
-        aggregationConfig[aggregationKey].buckets[bucket.key]
-      } – Ergebnisse ${futureResult}`}
+      title={`Ergebnisse ${resultFuture || '–'}`}
     >
       {showAsIcons ? (
         <span className="font-bold uppercase">

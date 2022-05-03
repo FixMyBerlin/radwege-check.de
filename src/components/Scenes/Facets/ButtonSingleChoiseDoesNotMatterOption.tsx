@@ -15,19 +15,18 @@ export const ButtonSingleChoiseDoesNotMatterOption: React.FC<Props> = ({
   buckets,
   handleClick,
 }) => {
-  const key = 'doesNotMatterOption';
-  // const { conjunction } = itemJsConfig.aggregations[aggregationKey];
+  const bucketKey = 'doesNotMatterOption';
 
   // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
   const anyOfGroupSelected = buckets.some((b) => b.selected);
   const uiSelected = !anyOfGroupSelected;
-  const uiCanpress = true; // TODO
+  const uiCanpress = anyOfGroupSelected;
   const firstElement = true;
   const lastElement = false;
 
   return (
     <button
-      key={`${aggregationKey}__${key}`}
+      key={`${aggregationKey}__${bucketKey}`}
       type="button"
       className={buttonClassNames({
         firstElement,
@@ -47,7 +46,8 @@ export const ButtonSingleChoiseDoesNotMatterOption: React.FC<Props> = ({
       <span
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
-          __html: aggregationConfig[aggregationKey].buckets[key] || 'TODO',
+          __html:
+            aggregationConfig[aggregationKey].buckets[bucketKey] || 'TODO',
         }}
       />
     </button>

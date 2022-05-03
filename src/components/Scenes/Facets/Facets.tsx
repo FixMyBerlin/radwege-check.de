@@ -57,36 +57,57 @@ export const Facets: React.FC<Props> = ({
               )}
 
               <div className={classNames('flex w-full flex-row')}>
-                    const singleChoise =
-                      itemJsConfig.aggregations[aggregationKey].conjunction;
                 {sortedBuckets.map((bucketKey, index) => {
-
-                    if (singleChoise) {
-                      return (
-                        <ButtonSingleChoice
-                          key={bucket.key}
-                          buckets={buckets}
-                          bucket={bucket}
-                          index={index}
-                          aggregationKey={aggregationKey}
-                          handleClick={handleSingleChoice}
-                          paginationTotal={results?.pagination?.total}
-                        />
-                      );
-                    }
-
+                  if (
+                    doesNotMatterOption &&
+                    bucketKey === 'doesNotMatterOption'
+                  ) {
                     return (
-                      <ButtonMultiChoice
-                        key={bucket.key}
+                      <ButtonSingleChoiseDoesNotMatterOption
+                        key="doesNotMatterOption"
+                        buckets={buckets}
+                        aggregationKey={aggregationKey}
+                        handleClick={handleSingleChoice}
+                      />
+                    );
+                  }
+
+                  const bucket = results.data.aggregations[
+                    aggregationKey
+                  ].buckets.filter((b) => b.key === bucketKey)?.[0];
+
+                  // Guard for `keyFromTranslationMissingInItemjs`
+                  if (!bucket) return null;
+
+                  const singleChoise =
+                    itemJsConfig.aggregations[aggregationKey].conjunction;
+
+                  if (singleChoise) {
+                    return (
+                      <ButtonSingleChoice
+                        key={bucketKey}
                         buckets={buckets}
                         bucket={bucket}
                         index={index}
                         aggregationKey={aggregationKey}
-                        handleClick={handleMultiChoice}
+                        handleClick={handleSingleChoice}
                         paginationTotal={results?.pagination?.total}
                       />
                     );
-                  })}
+                  }
+
+                  return (
+                    <ButtonMultiChoice
+                      key={bucketKey}
+                      buckets={buckets}
+                      bucket={bucket}
+                      index={index}
+                      aggregationKey={aggregationKey}
+                      handleClick={handleMultiChoice}
+                      paginationTotal={results?.pagination?.total}
+                    />
+                  );
+                })}
               </div>
 
               {!!keyFromItemjsMissingInTranslations.length && (

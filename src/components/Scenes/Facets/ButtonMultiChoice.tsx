@@ -33,13 +33,17 @@ export const ButtonMultiChoice: React.FC<Props> = ({
   paginationTotal,
 }) => {
   const { showAsIcons } = aggregationConfig[aggregationKey];
-
   // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
   const anyOfGroupSelected = buckets.some((b) => b.selected);
-  const results = parseInt(bucket?.doc_count, 10);
   const uiSelected = bucket?.selected || !anyOfGroupSelected;
-  const futureResult = uiSelected ? (paginationTotal || 0) - results : '-';
-  const uiCanpress = !!futureResult;
+
+  const resultTotal = paginationTotal;
+  const resultDiff = uiSelected
+    ? -parseInt(bucket?.doc_count, 10)
+    : parseInt(bucket?.doc_count, 10);
+  const resultFuture = resultTotal + resultDiff;
+
+  const uiCanpress = !!resultFuture || resultDiff === resultFuture;
   const firstElement = index === 0;
   const lastElement = index === buckets.length - 1;
 
@@ -61,11 +65,16 @@ export const ButtonMultiChoice: React.FC<Props> = ({
           selectedBucket: bucket,
         })
       }
-      title={`${
+      onMouseOver={() =>
+        console.log({ resultTotal, resultDiff, resultFuture, bucket })
+      }
+      onFocus={() => ''}
+      title={[
         showAsIcons
-          ? `${aggregationConfig[aggregationKey].buckets[bucket.key]} – `
-          : ''
-      }Ergebnisse ${futureResult}`}
+          ? `${aggregationConfig[aggregationKey].buckets[bucket.key]}`
+          : '',
+        resultFuture ? `Ergebnisse ${resultFuture}` : '',
+      ].join(' – ')}
     >
       {showAsIcons ? (
         <span className="font-bold uppercase">
