@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import React from 'react';
 import { aggregationConfig, itemJsConfig } from '~/components/Scenes/constants';
 import { TranslationMissing } from '~/components/TextHelper/TranslationMissing';
@@ -22,7 +21,7 @@ export const Facets: React.FC<Props> = ({
   handleMultiChoice,
 }) => {
   return (
-    <nav className="absolute inset-y-0 left-0 w-80 overflow-scroll bg-gray-100 p-4">
+    <nav className="absolute inset-y-0 left-0 w-72 overflow-scroll bg-gray-100 p-4">
       <p className="mb-6">
         <a href="#reset" onClick={handleResetFilter} className="underline">
           Filter zurücksetzen
@@ -47,16 +46,19 @@ export const Facets: React.FC<Props> = ({
             checkBucketValueConsistency({ aggregationKey, buckets });
 
           return (
-            <div key={aggregationKey} className={classNames('mb-5')}>
+            <div key={aggregationKey} className="mb-5">
               {!showAsIcons && (
-                <h5 title={aggregationKey} className="mb-1 text-sm font-bold">
+                <h5
+                  title={aggregationKey}
+                  className="mb-1 text-base font-semibold"
+                >
                   {aggregationConfig[aggregationKey]?.title || (
                     <TranslationMissing value={aggregationKey} />
                   )}
                 </h5>
               )}
 
-              <div className={classNames('flex w-full flex-row')}>
+              <div className="flex w-full flex-row font-condensed">
                 {sortedBuckets.map((bucketKey, index) => {
                   if (
                     doesNotMatterOption &&

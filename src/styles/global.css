@@ -1,18 +1,3 @@
-/* Set custom brand font */
-/* @font-face {
-  font-family: "FONTNAME_TODO";
-  src: url("../fonts/FONTNAME_TODO-VariableFont_wght.ttf") format('truetype-variations');
-  font-weight: 200 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "FONTNAME_TODO";
-  src: url("../fonts/FONTNAME_TODO-Italic-VariableFont_wght.ttf") format('truetype-variations');
-  font-weight: 200 900;
-  font-style: italic;
-} */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

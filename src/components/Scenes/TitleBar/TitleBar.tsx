@@ -21,7 +21,7 @@ export const TitleBar: React.FC<Props> = ({ results }) => {
   }, [resultItems]);
 
   return (
-    <div className="absolute top-0 left-80 right-0 h-8 bg-slate-300 px-4 py-1 ">
+    <div className="absolute top-0 left-72 right-0 h-8 bg-slate-300 px-4 py-1 ">
       <h2 className="flex justify-between">
         <span>
           <span className=" font-bold">

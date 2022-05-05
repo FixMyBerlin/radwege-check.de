@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@fontsource/open-sans": "4.5.8",
+    "@fontsource/open-sans-condensed": "4.5.5",
     "@fontsource/roboto-slab": "4.5.8",
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.6",
