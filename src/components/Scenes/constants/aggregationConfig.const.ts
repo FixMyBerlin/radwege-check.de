@@ -13,24 +13,24 @@ type AggregationConfig = {
 };
 
 export const aggregationConfig: AggregationConfig = {
-  bicycleLaneWidth: {
-    title: 'Radverkehrsanlage (RVA)',
-    buckets: {
-      wide: 'Breit (3&thinsp;m)',
-      narrow: 'Schmal (2&thinsp;m)',
-      none: 'Keine RVA',
-    },
-    doesNotMatterOption: false,
-    showAsIcons: false,
-  },
   leftOfBicycleLane: {
-    title: 'Lage der Radverkehrsanlage',
+    title: 'Lage der Radverkehrsführung',
     buckets: {
       car_lanes: 'Fahr&shy;bahn',
       parking_lane: 'Rechts v. Parken',
       pavement: 'Seiten&shy;raum', // todo können wir nach dem nächsten csv update löschen
       // curb: 'Seiten&shy;raum',
       green: 'Grün&shy;anlage',
+    },
+    doesNotMatterOption: false,
+    showAsIcons: false,
+  },
+  bicycleLaneWidth: {
+    title: 'Radverkehrsanlage (RVA)',
+    buckets: {
+      wide: 'Breit<br />(3&thinsp;m)',
+      narrow: 'Schmal<br />(2&thinsp;m)',
+      none: 'Keine RVA',
     },
     doesNotMatterOption: false,
     showAsIcons: false,
@@ -56,11 +56,11 @@ export const aggregationConfig: AggregationConfig = {
     showAsIcons: false,
   },
   bufferHasPhysicalProtection: {
-    title: 'Bauliche Trennung RVA',
+    title: 'Bauliche Trennung links RVA',
     buckets: {
       doesNotMatterOption: 'Egal',
-      false: 'Ja',
-      true: 'Nein',
+      true: 'Ja',
+      false: 'Nein',
     },
     doesNotMatterOption: true,
     showAsIcons: false,
@@ -80,9 +80,9 @@ export const aggregationConfig: AggregationConfig = {
     title: 'Markierung Links RVA',
     buckets: {
       doesNotMatterOption: 'Egal',
-      narrow: 'schmal',
-      wide: 'breit',
-      none: 'none',
+      narrow: 'Schmal',
+      wide: 'Breit',
+      none: 'Keine',
     },
     doesNotMatterOption: true,
     showAsIcons: false,
@@ -105,9 +105,9 @@ export const aggregationConfig: AggregationConfig = {
     title: 'Markierung Rechts RVA',
     buckets: {
       doesNotMatterOption: 'Egal',
-      narrow: 'schmal',
-      wide: 'breit',
-      none: 'none',
+      narrow: 'Schmal',
+      wide: 'Breit',
+      none: 'Keine',
     },
     doesNotMatterOption: true,
     showAsIcons: false,
@@ -131,6 +131,7 @@ export const aggregationConfig: AggregationConfig = {
       doesNotMatterOption: 'Egal',
       low_traffic_volumen: 'Niedrig',
       high_traffic_volumen_with_heavy_vehicles: 'Hoch',
+      '-': 'todo',
     },
     doesNotMatterOption: true,
     showAsIcons: false,
@@ -142,6 +143,7 @@ export const aggregationConfig: AggregationConfig = {
       '30': '30 km/h',
       '50': '50 km/h',
       sidewalk: 'Bür&shy;ger&shy;steig',
+      '-': 'todo',
     },
     sortOrder: ['doesNotMatterOption', '30', '50', 'sidewalk'],
     doesNotMatterOption: true,
@@ -154,6 +156,7 @@ export const aggregationConfig: AggregationConfig = {
       motor_vehicle_and_tram: 'Tram',
       motor_vehicle_only: 'KfZ',
       motor_vehicle_only_one_way: 'Einbahnstraße',
+      '-': 'todo',
     },
     doesNotMatterOption: false,
     showAsIcons: true,
@@ -164,6 +167,7 @@ export const aggregationConfig: AggregationConfig = {
       doesNotMatterOption: 'Egal',
       narrow: 'Schmal',
       wide: 'Breit',
+      '-': 'todo',
     },
     doesNotMatterOption: true,
     showAsIcons: false,

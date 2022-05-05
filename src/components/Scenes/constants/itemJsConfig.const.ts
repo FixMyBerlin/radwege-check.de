@@ -5,15 +5,15 @@
 
 export const itemJsConfig = {
   aggregations: {
-    bicycleLaneWidth: {
-      title: 'bicycleLaneWidth',
+    leftOfBicycleLane: {
+      title: 'leftOfBicycleLane',
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
       conjunction: false,
     },
-    leftOfBicycleLane: {
-      title: 'leftOfBicycleLane',
+    bicycleLaneWidth: {
+      title: 'bicycleLaneWidth',
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
