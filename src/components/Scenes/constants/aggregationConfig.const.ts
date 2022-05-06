@@ -18,8 +18,7 @@ export const aggregationConfig: AggregationConfig = {
     buckets: {
       car_lanes: 'Fahr&shy;bahn',
       parking_lane: 'Rechts v. Parken',
-      pavement: 'Seiten&shy;raum', // todo können wir nach dem nächsten csv update löschen
-      // curb: 'Seiten&shy;raum',
+      curb: 'Seiten&shy;raum',
       green: 'Grün&shy;anlage',
     },
     doesNotMatterOption: false,
@@ -145,7 +144,7 @@ export const aggregationConfig: AggregationConfig = {
       sidewalk: 'Bür&shy;ger&shy;steig',
       '-': 'todo',
     },
-    sortOrder: ['doesNotMatterOption', '30', '50', 'sidewalk'],
+    sortOrder: ['doesNotMatterOption', '30', '50', 'sidewalk', '-'],
     doesNotMatterOption: true,
     showAsIcons: false,
   },
