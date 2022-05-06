@@ -43,7 +43,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
     : parseInt(bucket?.doc_count, 10);
   const resultFuture = resultTotal + resultDiff;
 
-  const uiCanpress = !!resultFuture || resultDiff === resultFuture;
+  const uiCanpress = resultFuture !== 0 || resultDiff !== resultFuture;
   const firstElement = index === 0;
   const lastElement = index === buckets.length - 1;
 
