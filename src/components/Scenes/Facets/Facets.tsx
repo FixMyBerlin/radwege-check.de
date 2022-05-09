@@ -29,9 +29,13 @@ export const Facets: React.FC<Props> = ({
   return (
     <nav className="absolute inset-y-0 left-0 w-72 overflow-scroll bg-gray-100 p-4">
       <p className="mb-6">
-        <a href="#reset" onClick={handleResetFilter} className="underline">
+        <button
+          type="button"
+          onClick={handleResetFilter}
+          className="underline hover:bg-yellow-100"
+        >
           Filter zurücksetzen
-        </a>
+        </button>
       </p>
 
       {Object.entries(results?.data?.aggregations || {}).map(
