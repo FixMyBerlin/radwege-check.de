@@ -1,7 +1,7 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
 import { Layout, MetaTags } from '~/components/Layout';
-import { ButtonLink } from '~/components/links';
+import { Link } from '~/components/Link';
 
 const NotFound: React.FC<PageProps> = () => {
   return (
@@ -23,7 +23,9 @@ const NotFound: React.FC<PageProps> = () => {
                 </p>
               </div>
               <div className="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
-                <ButtonLink to="/">Startseite</ButtonLink>
+                <Link button to="/">
+                  Startseite
+                </Link>
               </div>
             </div>
           </main>

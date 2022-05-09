@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextLink } from '~/components/links';
+import { Link } from '~/components/Link';
 import { SceneImage } from '../SceneImage/SceneImage';
 import { ResultItemProps, SearchOptionProps } from '../types';
 import { Bookmark } from './Bookmark';
@@ -59,7 +59,7 @@ export const ResultColumn: React.FC<Props> = ({
 
       <div>
         {/* todo types */}
-        <TextLink to={scene.path as string}>Details</TextLink>
+        <Link to={scene.path as string}>Details</Link>
       </div>
     </div>
   );

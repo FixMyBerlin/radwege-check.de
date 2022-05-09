@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink } from '~/components/links';
+import { Link } from '~/components/Link';
 import { FooterNewsletter, FooterSocialIcons } from '.';
 import { FooterLinks } from './FooterLinks/FooterLinks';
 import { footerLinks } from './FooterLinks/footerLinks.const';
@@ -57,9 +57,14 @@ export const Footer: React.FC = () => {
               </g>
             </svg>{' '}
             von{' '}
-            <ExternalLink href="https://www.fixmycity.de" newWindow>
+            <Link
+              external
+              blank
+              to="https://www.fixmycity.de"
+              classNameOverwrite="hover:underline active:underline"
+            >
               FixMyCity.de
-            </ExternalLink>
+            </Link>
           </p>
         </div>
       </div>
