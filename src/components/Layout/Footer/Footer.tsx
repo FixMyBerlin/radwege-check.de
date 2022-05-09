@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink } from '~/components/Links/ExternalLink';
+import { ExternalLink } from '~/components/links';
 import { FooterNewsletter, FooterSocialIcons } from '.';
 import { FooterLinks } from './FooterLinks/FooterLinks';
 import { footerLinks } from './FooterLinks/footerLinks.const';

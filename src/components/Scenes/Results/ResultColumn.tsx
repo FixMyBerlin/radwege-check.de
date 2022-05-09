@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextLink } from '~/components/Links/TextLink';
+import { TextLink } from '~/components/links';
 import { SceneImage } from '../SceneImage/SceneImage';
 import { ResultItemProps, SearchOptionProps } from '../types';
 import { Bookmark } from './Bookmark';

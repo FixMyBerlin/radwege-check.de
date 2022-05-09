@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink } from '~/components/Links/ExternalLink';
+import { ExternalLink } from '~/components/links';
 import { footerSocialIcons } from './footerSocialIcons.const';
 
 export const FooterSocialIcons = () => {

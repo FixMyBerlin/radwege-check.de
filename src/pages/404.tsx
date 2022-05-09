@@ -1,7 +1,7 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
 import { Layout, MetaTags } from '~/components/Layout';
-import { ButtonLink } from '~/components/Links/ButtonLink';
+import { ButtonLink } from '~/components/links';
 
 const NotFound: React.FC<PageProps> = () => {
   return (
