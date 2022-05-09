@@ -7,12 +7,22 @@ type AggregationConfig = {
     title: string;
     buckets: { [key: string]: string };
     sortOrder?: string[];
-    doesNotMatterOption: boolean;
-    showAsIcons: boolean; // has to be false if 'doesNotMatterOption' is true
+    choiceMode: 'multi' | 'single';
+    showAsIcons: boolean; // has to be false if 'choiceMode' is true
   };
 };
 
 export const aggregationConfig: AggregationConfig = {
+  bicycleLaneWidth: {
+    title: 'Radverkehrsanlage (RVA)',
+    buckets: {
+      wide: 'Breit<br />(3&thinsp;m)',
+      narrow: 'Schmal<br />(2&thinsp;m)',
+      none: 'Keine RVA',
+    },
+    choiceMode: 'multi',
+    showAsIcons: false,
+  },
   leftOfBicycleLane: {
     title: 'Lage der Radverkehrsführung',
     buckets: {
@@ -21,47 +31,37 @@ export const aggregationConfig: AggregationConfig = {
       curb: 'Seiten&shy;raum',
       green: 'Grün&shy;anlage',
     },
-    doesNotMatterOption: false,
-    showAsIcons: false,
-  },
-  bicycleLaneWidth: {
-    title: 'Radverkehrsanlage (RVA)',
-    buckets: {
-      wide: 'Breit<br />(3&thinsp;m)',
-      narrow: 'Schmal<br />(2&thinsp;m)',
-      none: 'Keine RVA',
-    },
-    doesNotMatterOption: false,
+    choiceMode: 'multi',
     showAsIcons: false,
   },
   parking: {
     title: 'KfZ-Parken vorhanden',
     buckets: {
-      doesNotMatterOption: 'Egal',
+      bothButton: 'Egal',
       parking_lane: 'Ja',
       no_parking: 'Nein',
     },
-    doesNotMatterOption: true,
+    choiceMode: 'single',
     showAsIcons: false,
   },
   bicycleLaneSurface: {
     title: 'Oberfläche RVA',
     buckets: {
-      doesNotMatterOption: 'Egal',
+      bothButton: 'Egal',
       surface_asphalt: 'Asphalt',
       surface_green: 'Grün&shy;markierung',
     },
-    doesNotMatterOption: true,
+    choiceMode: 'single',
     showAsIcons: false,
   },
   bufferHasPhysicalProtection: {
     title: 'Bauliche Trennung links RVA',
     buckets: {
-      doesNotMatterOption: 'Egal',
+      bothButton: 'Egal',
       true: 'Ja',
       false: 'Nein',
     },
-    doesNotMatterOption: true,
+    choiceMode: 'single',
     showAsIcons: false,
   },
   bufferLeftPhysicalProtection: {
@@ -72,18 +72,18 @@ export const aggregationConfig: AggregationConfig = {
       bollard_small: 'Poller (niedrig)',
       planter: 'Blumenkästen',
     },
-    doesNotMatterOption: false,
+    choiceMode: 'multi',
     showAsIcons: true,
   },
   bufferLeftWidth: {
     title: 'Markierung Links RVA',
     buckets: {
-      doesNotMatterOption: 'Egal',
+      bothButton: 'Egal',
       narrow: 'Schmal',
       wide: 'Breit',
       none: 'Keine',
     },
-    doesNotMatterOption: true,
+    choiceMode: 'single',
     showAsIcons: false,
   },
   bufferLeftMarking: {
@@ -97,18 +97,18 @@ export const aggregationConfig: AggregationConfig = {
       restricted_area: 'Sperrfläche',
       solid_line: 'durchgezogene',
     },
-    doesNotMatterOption: false,
+    choiceMode: 'multi',
     showAsIcons: true,
   },
   bufferRightWidth: {
     title: 'Markierung Rechts RVA',
     buckets: {
-      doesNotMatterOption: 'Egal',
+      bothButton: 'Egal',
       narrow: 'Schmal',
       wide: 'Breit',
       none: 'Keine',
     },
-    doesNotMatterOption: true,
+    choiceMode: 'single',
     showAsIcons: false,
   },
   bufferRightMarking: {
@@ -121,31 +121,31 @@ export const aggregationConfig: AggregationConfig = {
       restricted_area: 'Sperrzone',
       solid_line: 'durchgezogene',
     },
-    doesNotMatterOption: false,
+    choiceMode: 'multi',
     showAsIcons: true,
   },
   vehicleTrafficVolume: {
     title: 'KfZ-Verkehrsaufkommen',
     buckets: {
-      doesNotMatterOption: 'Egal',
+      bothButton: 'Egal',
       low_traffic_volumen: 'Niedrig',
       high_traffic_volumen_with_heavy_vehicles: 'Hoch',
       '-': 'todo',
     },
-    doesNotMatterOption: true,
+    choiceMode: 'single',
     showAsIcons: false,
   },
   vehicleLaneMaxspeed: {
     title: 'Tempolimit',
     buckets: {
-      doesNotMatterOption: 'Egal',
+      bothButton: 'Egal',
       '30': '30 km/h',
       '50': '50 km/h',
       sidewalk: 'Bür&shy;ger&shy;steig',
       '-': 'todo',
     },
-    sortOrder: ['doesNotMatterOption', '30', '50', 'sidewalk', '-'],
-    doesNotMatterOption: true,
+    sortOrder: ['choiceMode', '30', '50', 'sidewalk', '-'],
+    choiceMode: 'single',
     showAsIcons: false,
   },
   vehicleLaneUsage: {
@@ -157,39 +157,39 @@ export const aggregationConfig: AggregationConfig = {
       motor_vehicle_only_one_way: 'Einbahnstraße',
       '-': 'todo',
     },
-    doesNotMatterOption: false,
+    choiceMode: 'multi',
     showAsIcons: true,
   },
   pavementWidth: {
     title: 'Gehweg',
     buckets: {
-      doesNotMatterOption: 'Egal',
+      bothButton: 'Egal',
       narrow: 'Schmal',
       wide: 'Breit',
       '-': 'todo',
     },
-    doesNotMatterOption: true,
+    choiceMode: 'single',
     showAsIcons: false,
   },
   pavementHasShops: {
     title: 'Geschäfte / Cafétische',
     buckets: {
-      doesNotMatterOption: 'Egal',
+      bothButton: 'Egal',
       true: 'Ja',
       false: 'Nein',
     },
-    doesNotMatterOption: true,
+    choiceMode: 'single',
     showAsIcons: false,
   },
   surroundings: {
     title: 'surroundings',
     buckets: {
-      doesNotMatterOption: 'Egal',
+      bothButton: 'Egal',
       park: 'Park',
       sidewalk: 'Gehweg',
       street: 'Straße',
     },
-    doesNotMatterOption: true,
+    choiceMode: 'single',
     showAsIcons: false,
   },
 };

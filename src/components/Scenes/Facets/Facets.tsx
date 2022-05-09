@@ -1,10 +1,16 @@
 import React from 'react';
-import { aggregationConfig, itemJsConfig } from '~/components/Scenes/constants';
+import { aggregationConfig } from '~/components/Scenes/constants';
 import { TranslationMissing } from '~/components/TextHelper/TranslationMissing';
 import { ResultProps } from '../types';
-import { ButtonMultiChoice, HandleMultiChoice } from './ButtonMultiChoice';
-import { ButtonSingleChoice, HandleSingleChoice } from './ButtonSingleChoice';
-import { ButtonSingleChoiseDoesNotMatterOption } from './ButtonSingleChoiseDoesNotMatterOption';
+import {
+  ButtonMultiChoice,
+  HandleMultiChoice,
+} from './ButtonMultiChoice/ButtonMultiChoice';
+import {
+  ButtonSingleChoice,
+  HandleSingleChoice,
+} from './ButtonSingleChoice/ButtonSingleChoice';
+import { ButtonSingleChoiceBoth } from './ButtonSingleChoice/ButtonSingleChoiceBoth';
 import { checkBucketValueConsistency, checkDataConsistency } from './utils';
 
 type Props = {
@@ -32,7 +38,6 @@ export const Facets: React.FC<Props> = ({
         ([aggregationKey, aggregation]) => {
           const { buckets } = aggregation;
           const { showAsIcons } = aggregationConfig[aggregationKey];
-          const { doesNotMatterOption } = aggregationConfig[aggregationKey];
 
           // We need a specific order for our Bucket values.
           // We use the order of key from our aggregationConfig for that.
@@ -60,13 +65,11 @@ export const Facets: React.FC<Props> = ({
 
               <div className="flex w-full flex-row font-condensed">
                 {sortedBuckets.map((bucketKey, index) => {
-                  if (
-                    doesNotMatterOption &&
-                    bucketKey === 'doesNotMatterOption'
-                  ) {
+                  if (bucketKey === 'bothButton') {
                     return (
-                      <ButtonSingleChoiseDoesNotMatterOption
-                        key="doesNotMatterOption"
+                      <ButtonSingleChoiceBoth
+                        key="bothButton"
+                        bucketKey="bothButton"
                         buckets={buckets}
                         aggregationKey={aggregationKey}
                         handleClick={handleSingleChoice}
@@ -82,7 +85,7 @@ export const Facets: React.FC<Props> = ({
                   if (!bucket) return null;
 
                   const singleChoise =
-                    itemJsConfig.aggregations[aggregationKey].conjunction;
+                    aggregationConfig[aggregationKey].choiceMode === 'single';
 
                   if (singleChoise) {
                     return (

@@ -6,8 +6,8 @@ import { StringParam, useQueryParam } from 'use-query-params';
 import { FixedLayout, MetaTags } from '~/components/Layout';
 import { Facets, Results, TitleBar } from '~/components/Scenes';
 import { itemJsConfig } from '~/components/Scenes/constants';
-import { HandleMultiChoiceProps } from '~/components/Scenes/Facets/ButtonMultiChoice';
-import { HandleSingleChoiceProps } from '~/components/Scenes/Facets/ButtonSingleChoice';
+import { HandleMultiChoiceProps } from '~/components/Scenes/Facets/ButtonMultiChoice/ButtonMultiChoice';
+import { HandleSingleChoiceProps } from '~/components/Scenes/Facets/ButtonSingleChoice/ButtonSingleChoice';
 import { ResultProps, SearchOptionProps } from '~/components/Scenes/types';
 
 const MyDataIndex = ({

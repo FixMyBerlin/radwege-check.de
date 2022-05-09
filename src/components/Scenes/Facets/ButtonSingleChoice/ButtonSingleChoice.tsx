@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 import React from 'react';
-import { aggregationConfig } from '../constants';
-import { ResultBucketProps } from '../types';
-import { buttonClassNames } from './utils';
+import { aggregationConfig } from '../../constants';
+import { ResultBucketProps } from '../../types';
+import { buttonClassNames } from '../utils';
+import { useResults } from './useResults';
 
 export type HandleSingleChoiceProps = {
   aggregationKey: string;
@@ -33,14 +34,12 @@ export const ButtonSingleChoice: React.FC<Props> = ({
 }) => {
   const { showAsIcons } = aggregationConfig[aggregationKey];
 
-  const resultTotal = paginationTotal;
-  const resultDiff = resultTotal - parseInt(bucket?.doc_count, 10) || 0;
-  const resultFuture = parseInt(bucket?.doc_count, 10) || 0;
+  const { resultTotal, resultFuture, uiSelected, uiCanpress } = useResults({
+    total: paginationTotal,
+    bucketCount: bucket?.doc_count,
+    bucketSelected: bucket?.selected,
+  });
 
-  const uiSelected = bucket?.selected;
-  const uiCanpress = !bucket?.selected;
-  const uiCanpressTEST =
-    !bucket?.selected && (resultFuture !== 0 || resultDiff !== 0);
   const firstElement = index === 0;
   const lastElement = index === buckets.length;
 
@@ -60,12 +59,10 @@ export const ButtonSingleChoice: React.FC<Props> = ({
       onMouseOver={() =>
         console.log({
           resultTotal,
-          resultDiff,
           resultFuture,
           bucket,
           uiSelected,
           uiCanpress,
-          uiCanpressTEST,
         })
       }
       onFocus={() => ''}

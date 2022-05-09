@@ -1,22 +1,22 @@
 import React from 'react';
-import { aggregationConfig } from '../constants';
-import { ResultBucketProps } from '../types';
-import { buttonClassNames } from './utils';
+import { aggregationConfig } from '../../constants';
+import { ResultBucketProps } from '../../types';
+import { buttonClassNames } from '../utils';
 import { HandleSingleChoice } from './ButtonSingleChoice';
 
 type Props = {
   aggregationKey: string;
+  bucketKey: string;
   buckets: ResultBucketProps[];
   handleClick: HandleSingleChoice;
 };
 
-export const ButtonSingleChoiseDoesNotMatterOption: React.FC<Props> = ({
+export const ButtonSingleChoiceBoth: React.FC<Props> = ({
   aggregationKey,
+  bucketKey,
   buckets,
   handleClick,
 }) => {
-  const bucketKey = 'doesNotMatterOption';
-
   // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
   const anyOfGroupSelected = buckets.some((b) => b.selected);
   const uiSelected = !anyOfGroupSelected;

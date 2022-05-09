@@ -13,7 +13,8 @@
     "type-check": "tsc",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [

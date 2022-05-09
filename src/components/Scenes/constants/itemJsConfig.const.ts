@@ -1,7 +1,7 @@
 // All the options that ItemsJS needs.
 // The title is not used translated here, but in aggregationConfig
-// conjuction === false # => choiseMode: 'single'
-// conjuction === true  # => choiseMode: 'multi'
+// conjuction is always false since this will show the bucket_count for each bucket.
+// The `choiceMode` (single | multi) is configured via aggregationConfig
 
 export const itemJsConfig = {
   aggregations: {
@@ -24,21 +24,21 @@ export const itemJsConfig = {
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
-      conjunction: true,
+      conjunction: false,
     },
     bicycleLaneSurface: {
       title: 'bicycleLaneSurface',
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
-      conjunction: true,
+      conjunction: false,
     },
     bufferHasPhysicalProtection: {
       title: 'bufferHasPhysicalProtection',
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
-      conjunction: true,
+      conjunction: false,
     },
     bufferLeftPhysicalProtection: {
       title: 'bufferLeftPhysicalProtection',
@@ -52,7 +52,7 @@ export const itemJsConfig = {
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
-      conjunction: true,
+      conjunction: false,
     },
     bufferLeftMarking: {
       title: 'bufferLeftMarking',
@@ -66,7 +66,7 @@ export const itemJsConfig = {
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
-      conjunction: true,
+      conjunction: false,
     },
     bufferRightMarking: {
       title: 'bufferRightMarking',
@@ -80,14 +80,14 @@ export const itemJsConfig = {
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
-      conjunction: true,
+      conjunction: false,
     },
     vehicleLaneMaxspeed: {
       title: 'vehicleLaneMaxspeed',
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
-      conjunction: true,
+      conjunction: false,
     },
     vehicleLaneUsage: {
       title: 'vehicleLaneUsage',
@@ -101,21 +101,21 @@ export const itemJsConfig = {
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
-      conjunction: true,
+      conjunction: false,
     },
     pavementWidth: {
       title: 'pavementWidth',
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
-      conjunction: true,
+      conjunction: false,
     },
     surroundings: {
       title: 'surroundings',
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
-      conjunction: true,
+      conjunction: false,
     },
   },
   searchableFields: [],

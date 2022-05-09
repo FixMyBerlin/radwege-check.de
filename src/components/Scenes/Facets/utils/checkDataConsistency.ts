@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { aggregationConfig, itemJsConfig } from '../../constants';
+import { aggregationConfig } from '../../constants';
 
 type Props = {
   aggregationKey: string;
@@ -10,33 +10,23 @@ type Props = {
 // We could try moving those checks in TS, but that needs restructuring and more knowledge of TS.
 export const checkDataConsistency = ({ aggregationKey }: Props) => {
   const { showAsIcons } = aggregationConfig[aggregationKey];
-  const { doesNotMatterOption } = aggregationConfig[aggregationKey];
+  const { choiceMode } = aggregationConfig[aggregationKey];
 
   if (
-    doesNotMatterOption !==
-    itemJsConfig.aggregations[aggregationKey].conjunction
-  ) {
-    console.log({
-      ERROR: `aggregationConfig[ID].doesNotMatterOption and itemJsConfig.aggregations[ID].conjunction need to be the same.`,
-      aggregationKey,
-    });
-  }
-
-  if (
-    doesNotMatterOption === true &&
+    choiceMode === 'single' &&
     Object.keys(aggregationConfig[aggregationKey].buckets).filter(
-      (k) => k === 'doesNotMatterOption'
+      (k) => k === 'choiceMode'
     ).length === 0
   ) {
     console.log({
-      ERROR: `When doesNotMatterOption is true there needs to be  "doesNotMatterOption" as well.`,
+      ERROR: `When choiceMode is 'single' there needs to be "bothButton" as well.`,
       aggregationKey,
     });
   }
 
-  if (showAsIcons === true && doesNotMatterOption === true) {
+  if (showAsIcons === true && choiceMode === 'single') {
     console.log({
-      ERROR: `When aggregationConfig[ID].showAsIcons is true, aggregationConfig[ID].doesNotMatterOption needs to be false.`,
+      ERROR: `When aggregationConfig[ID].showAsIcons is true, aggregationConfig[ID].choiceMode needs to be 'multi'.`,
       aggregationKey,
     });
   }
