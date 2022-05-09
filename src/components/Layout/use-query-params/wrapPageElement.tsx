@@ -20,7 +20,7 @@ export const wrapPageElement = ({ element, props: { location } }) => {
   // Ref to the wrapper library https://github.com/pbeshai/use-query-params/pull/88/files
   // `encode` option in query-string https://github.com/sindresorhus/query-string#encode
   // `strict` option in query-string https://github.com/sindresorhus/query-string#strict; not sure if this does something
-  const stringifyOptions = { encode: false, strict: true };
+  const stringifyOptions = { encode: false, strict: false };
   return (
     <QueryParamProvider
       history={history}
