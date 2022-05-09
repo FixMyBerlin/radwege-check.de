@@ -1,16 +1,10 @@
 import React from 'react';
 import { aggregationConfig } from '~/components/Scenes/constants';
-import { TranslationMissing } from '~/components/TextHelper/TranslationMissing';
 import { ResultProps } from '../types';
-import {
-  ButtonMultiChoice,
-  HandleMultiChoice,
-} from './ButtonMultiChoice/ButtonMultiChoice';
-import {
-  ButtonSingleChoice,
-  HandleSingleChoice,
-} from './ButtonSingleChoice/ButtonSingleChoice';
-import { ButtonSingleChoiceBoth } from './ButtonSingleChoice/ButtonSingleChoiceBoth';
+import { HandleMultiChoice } from './ButtonMultiChoice/ButtonMultiChoice';
+import { HandleSingleChoice } from './ButtonSingleChoice/ButtonSingleChoice';
+import { FacetsButtons } from './FacetsButtons';
+import { FacetsHeadline } from './FacetsHeadline';
 import { checkBucketValueConsistency, checkDataConsistency } from './utils';
 
 type Props = {
@@ -43,81 +37,24 @@ export const Facets: React.FC<Props> = ({
           const { buckets } = aggregation;
           const { showAsIcons } = aggregationConfig[aggregationKey];
 
-          // We need a specific order for our Bucket values.
-          // We use the order of key from our aggregationConfig for that.
-          // However, for keys of type number that does not work, which is why we use a custom order via the `sortOrder` key.
-          const sortedBuckets =
-            aggregationConfig[aggregationKey]?.sortOrder ||
-            Object.keys(aggregationConfig[aggregationKey].buckets);
-
           checkDataConsistency({ aggregationKey });
           const { keyFromItemjsMissingInTranslations } =
             checkBucketValueConsistency({ aggregationKey, buckets });
 
           return (
             <div key={aggregationKey} className="mb-5">
-              {!showAsIcons && (
-                <h5
-                  title={aggregationKey}
-                  className="mb-1 text-base font-semibold"
-                >
-                  {aggregationConfig[aggregationKey]?.title || (
-                    <TranslationMissing value={aggregationKey} />
-                  )}
-                </h5>
-              )}
+              <FacetsHeadline
+                visible={!showAsIcons}
+                aggregationKey={aggregationKey}
+              />
 
-              <div className="flex w-full flex-row font-condensed">
-                {sortedBuckets.map((bucketKey, index) => {
-                  if (bucketKey === 'bothButton') {
-                    return (
-                      <ButtonSingleChoiceBoth
-                        key="bothButton"
-                        bucketKey="bothButton"
-                        buckets={buckets}
-                        aggregationKey={aggregationKey}
-                        handleClick={handleSingleChoice}
-                      />
-                    );
-                  }
-
-                  const bucket = results.data.aggregations[
-                    aggregationKey
-                  ].buckets.filter((b) => b.key === bucketKey)?.[0];
-
-                  // Guard for `keyFromTranslationMissingInItemjs`
-                  if (!bucket) return null;
-
-                  const singleChoise =
-                    aggregationConfig[aggregationKey].choiceMode === 'single';
-
-                  if (singleChoise) {
-                    return (
-                      <ButtonSingleChoice
-                        key={bucketKey}
-                        buckets={buckets}
-                        bucket={bucket}
-                        index={index}
-                        aggregationKey={aggregationKey}
-                        handleClick={handleSingleChoice}
-                        paginationTotal={results?.pagination?.total}
-                      />
-                    );
-                  }
-
-                  return (
-                    <ButtonMultiChoice
-                      key={bucketKey}
-                      buckets={buckets}
-                      bucket={bucket}
-                      index={index}
-                      aggregationKey={aggregationKey}
-                      handleClick={handleMultiChoice}
-                      paginationTotal={results?.pagination?.total}
-                    />
-                  );
-                })}
-              </div>
+              <FacetsButtons
+                aggregationKey={aggregationKey}
+                results={results}
+                buckets={buckets}
+                handleSingleChoice={handleSingleChoice}
+                handleMultiChoice={handleMultiChoice}
+              />
 
               {!!keyFromItemjsMissingInTranslations.length && (
                 <div className="text-xs text-neutral-500">

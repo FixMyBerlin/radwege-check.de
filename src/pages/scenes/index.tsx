@@ -124,10 +124,7 @@ const MyDataIndex = ({
         selectedBucketKey,
       });
 
-      return encodeFilter({
-        ...prevState,
-        [aggregationKey]: filter,
-      });
+      return encodeFilter({ ...prevState, [aggregationKey]: filter });
     });
   };
 
