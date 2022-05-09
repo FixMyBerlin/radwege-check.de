@@ -24,6 +24,7 @@ export const ResultColumn: React.FC<Props> = ({
       key={scene.sceneId}
     >
       <div className="relative">
+        <Bookmark active />
         {/* todo types */}
         <SceneImage
           sceneId={scene.sceneId as string}
