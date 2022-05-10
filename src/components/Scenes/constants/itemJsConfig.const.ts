@@ -110,13 +110,6 @@ export const itemJsConfig = {
       order: 'asc', // not used
       conjunction: false,
     },
-    surroundings: {
-      title: 'surroundings',
-      size: 10,
-      sort: 'term', // not used
-      order: 'asc', // not used
-      conjunction: false,
-    },
   },
   searchableFields: [],
   native_search_enabled: false,

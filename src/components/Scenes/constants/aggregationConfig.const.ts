@@ -13,23 +13,24 @@ type AggregationConfig = {
 };
 
 export const aggregationConfig: AggregationConfig = {
-  bicycleLaneWidth: {
-    title: 'Radverkehrsanlage (RVA)',
-    buckets: {
-      wide: 'Breit<br />(3&thinsp;m)',
-      narrow: 'Schmal<br />(2&thinsp;m)',
-      none: 'Keine RVA',
-    },
-    choiceMode: 'multi',
-    showAsIcons: false,
-  },
   leftOfBicycleLane: {
-    title: 'Lage der Radverkehrsführung',
+    title: 'Führung des Radverkehrs',
     buckets: {
       car_lanes: 'Fahr&shy;bahn',
       parking_lane: 'Rechts v. Parken',
       curb: 'Seiten&shy;raum',
       green: 'Grün&shy;anlage',
+    },
+    choiceMode: 'multi',
+    showAsIcons: false,
+  },
+  bicycleLaneWidth: {
+    title: 'Radverkehrsanlage (RVA)',
+    buckets: {
+      wide: 'Breit<br />(3,5&thinsp;m)',
+      narrow: 'Schmal<br />(2&thinsp;m)',
+      shared_bus_lane: 'Busspur Fahrrad frei',
+      none: 'Keine RVA',
     },
     choiceMode: 'multi',
     showAsIcons: false,
@@ -71,6 +72,7 @@ export const aggregationConfig: AggregationConfig = {
       bollard_high: 'Poller (hoch)',
       bollard_small: 'Poller (niedrig)',
       planter: 'Blumenkästen',
+      green: 'Grünanlage',
     },
     choiceMode: 'multi',
     showAsIcons: true,
@@ -129,8 +131,7 @@ export const aggregationConfig: AggregationConfig = {
     buckets: {
       bothButton: 'Egal',
       low_traffic_volumen: 'Niedrig',
-      high_traffic_volumen_with_heavy_vehicles: 'Hoch',
-      '-': 'todo',
+      high_traffic_volumen_with_heavy_vehicles: 'Hoch (mit LKW)', // Schwerlastverkehr ggf. im Tooltipp erwähnen
     },
     choiceMode: 'single',
     showAsIcons: false,
@@ -140,9 +141,7 @@ export const aggregationConfig: AggregationConfig = {
     buckets: {
       bothButton: 'Egal',
       '30': '30 km/h',
-      '50': '50 km/h',
-      sidewalk: 'Bür&shy;ger&shy;steig',
-      '-': 'todo',
+      '50': 'Keins',
     },
     sortOrder: ['choiceMode', '30', '50', 'sidewalk', '-'],
     choiceMode: 'single',
@@ -151,14 +150,13 @@ export const aggregationConfig: AggregationConfig = {
   vehicleLaneUsage: {
     title: 'Fahrbahn Nutzung',
     buckets: {
-      motor_vehicle_and_bus: 'Bus',
-      motor_vehicle_and_tram: 'Tram',
-      motor_vehicle_only: 'KfZ',
-      motor_vehicle_only_one_way: 'Einbahnstraße',
-      '-': 'todo',
+      bothButton: 'Egal',
+      motor_vehicle_and_tram: 'Fahrspur mit Tram',
+      motor_vehicle_only: 'Eine Fahrspur',
+      motor_vehicle_only_one_way: 'Zwei Fahrspuren',
     },
-    choiceMode: 'multi',
-    showAsIcons: true,
+    choiceMode: 'single',
+    showAsIcons: false,
   },
   pavementWidth: {
     title: 'Gehweg',
@@ -177,17 +175,6 @@ export const aggregationConfig: AggregationConfig = {
       bothButton: 'Egal',
       true: 'Ja',
       false: 'Nein',
-    },
-    choiceMode: 'single',
-    showAsIcons: false,
-  },
-  surroundings: {
-    title: 'surroundings',
-    buckets: {
-      bothButton: 'Egal',
-      park: 'Park',
-      sidewalk: 'Gehweg',
-      street: 'Straße',
     },
     choiceMode: 'single',
     showAsIcons: false,
