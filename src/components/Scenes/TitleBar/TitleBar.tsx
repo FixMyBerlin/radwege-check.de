@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { formatPercent } from '~/components/utils';
 import { ResultProps } from '../types';
 
 type Props = {
@@ -20,28 +21,29 @@ export const TitleBar: React.FC<Props> = ({ results }) => {
     setResultScoreAverage(average);
   }, [resultItems]);
 
-  return (
-    <div className="absolute top-0 left-72 right-0 h-8 bg-slate-300 px-4 py-1 ">
-      <h2 className="flex justify-between">
-        <span>
-          <span className=" font-bold">
-            Ergebnisse {pagination?.total || '-'}
-          </span>
-          <span
-            className="text-sm text-neutral-500"
-            title="Durchschnitt für die sichtbaren Ergebnisse (nicht für die Gesamt-Ergebnismenge)."
-          >
-            {' '}
-            – Durchschnitt Score: {resultScoreAverage || '-'}
-          </span>
-        </span>
+  const total = pagination?.total || 0;
+  const perPage = pagination?.per_page || 0;
 
-        {pagination?.total > 0 && (
-          <span className="text-sm font-normal text-neutral-500">
-            Die ersten {pagination?.per_page} Ergebnisse werden angezeigt.
+  return (
+    <section className="absolute top-0 left-72 right-0 z-10 flex h-16 items-center bg-yellow-50 px-4 py-1 shadow-[0_0px_10px_0_rgba(0,_0,_0,_0.2)]">
+      <h1 className="flex w-full items-center justify-between text-xl">
+        <strong
+          className="font-bold"
+          title={
+            total > perPage &&
+            `Die ersten ${perPage} Ergebnisse werden angezeigt.`
+          }
+        >
+          {total || '-'} Ergebnisse
+        </strong>
+        {/* TODO: Find a way to show the average for a given filter-set for > 200 results. */}
+        {total <= perPage && resultScoreAverage && (
+          <span className="ml-3 text-sm text-neutral-500">
+            {' '}
+            Ø Score {formatPercent(resultScoreAverage, { precision: 0 }) || '-'}
           </span>
         )}
-      </h2>
-    </div>
+      </h1>
+    </section>
   );
 };

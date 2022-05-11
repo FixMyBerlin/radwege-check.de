@@ -1,12 +1,12 @@
 import React from 'react';
 import { formatNumber, formatPercent } from '~/components/utils';
-import { ResultItemProps } from '../types';
+import { ResultItemProps } from '../../types';
 
 type Props = { scene: ResultItemProps };
 
 export const ResultStackedBarchart: React.FC<Props> = ({ scene }) => {
   return (
-    <div className="relative border-b  border-dotted text-xs">
+    <section className="relative border-b  border-dotted text-xs">
       <div className="mb-1 flex h-16 w-full flex-col">
         <div
           title={`${scene.vote0Unsafe}`}
@@ -98,6 +98,6 @@ export const ResultStackedBarchart: React.FC<Props> = ({ scene }) => {
           Anzahl: {formatNumber(scene.voteCount, { precision: 0 }) || '–'}
         </span>
       </div> */}
-    </div>
+    </section>
   );
 };

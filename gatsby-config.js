@@ -27,5 +27,16 @@ module.exports = {
         excludes: ['/kontakt/', '/datenschutz/'],
       },
     },
+    {
+      // Docs https://www.gatsbyjs.com/plugins/gatsby-plugin-react-svg/
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          // include: /\.inline\.svg$/,
+          // Remove SVG props that fail conversion to dom
+          omitKeys: ['xmlnsSerif', 'serifId'],
+        },
+      },
+    },
   ],
 };

@@ -88,7 +88,6 @@ export const query = graphql`
       pavementWidth
       pavementWidthNumber
       pointOfView
-      surroundings
       vehicleLaneMaxspeed
       vehicleLaneUsage
       vehicleTrafficVolume

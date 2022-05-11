@@ -9,50 +9,59 @@ type Props = {
   keyName: string;
   bucketActive: boolean;
   scene: ResultItemProps;
+  groupEndIndicator: boolean;
 };
 
 export const ResultCell: React.FC<Props> = ({
   keyName,
   bucketActive,
   scene,
+  groupEndIndicator,
 }) => {
+  const titleTranslation = aggregationConfig[keyName]?.resultTitle ||
+    aggregationConfig[keyName]?.title || <TranslationMissing value={keyName} />;
+
+  const bucketTranslation =
+    aggregationConfig[keyName]?.resultBuckets?.[scene[keyName]] ||
+    aggregationConfig[keyName]?.buckets[scene[keyName]] ||
+    'TODO';
+
   return (
-    <div
-      title={keyName}
-      className="group relative border-b border-dotted hover:bg-neutral-100"
+    <section
+      title={`${keyName}: ${scene[keyName]}`}
+      className={classNames(
+        'border-b py-3.5 hover:bg-stone-50',
+        groupEndIndicator ? 'border-dashed border-gray-300' : 'border-dotted'
+      )}
     >
-      <div
+      <h3
         title={bucketActive ? 'Filter-Gruppe aktiv' : ''}
-        className={classNames(
-          'text-xs group-hover:text-pink-700',
-          { 'text-neutral-300': !bucketActive },
-          { 'font-bold text-neutral-400': bucketActive }
-        )}
+        className="mb-0.5 flex items-center justify-between text-xxs font-semibold"
       >
-        {aggregationConfig[keyName]?.title || (
-          <TranslationMissing value={keyName} />
+        {titleTranslation}
+        {bucketActive && (
+          <>
+            {' '}
+            <span className="font-xl mr-1 inline-flex h-2 w-2 content-center items-center rounded-full bg-yellow-200 text-yellow-200">
+              ・
+            </span>
+          </>
         )}
-        :
-      </div>
+      </h3>
 
-      <div className="group-hover:text-pink-900">
-        {
-          <span
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html:
-                aggregationConfig[keyName]?.buckets[scene[keyName]] || 'TODO',
-            }}
-          />
-        }
+      <p className="leading-tight text-neutral-800">
+        <span
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: bucketTranslation }}
+        />
 
-        {keyName.includes('Width') && (
-          <span className="text-sm text-neutral-500">
+        {keyName.includes('Width') && scene[`${keyName}Number`] && (
+          <span className="ml-1 font-light text-neutral-500">
             {' '}
             {formatMeter(scene[`${keyName}Number`], {})}
           </span>
         )}
-      </div>
-    </div>
+      </p>
+    </section>
   );
 };

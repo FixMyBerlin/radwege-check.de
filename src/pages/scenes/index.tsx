@@ -201,21 +201,20 @@ const MyDataIndex = ({
   return (
     <FixedLayout>
       <MetaTags title="Safetycheck Prototyp" description="TODO" image="TODO" />
-      <div className="">
-        <Facets
-          results={results}
-          handleResetFilter={handleResetFilter}
-          handleSingleChoice={handleSingleChoice}
-          handleMultiChoice={handleMultiChoice}
-        />
 
-        <TitleBar results={results} />
+      <Facets
+        results={results}
+        handleResetFilter={handleResetFilter}
+        handleSingleChoice={handleSingleChoice}
+        handleMultiChoice={handleMultiChoice}
+      />
 
-        <Results
-          results={results}
-          searchOptionFilters={decodeFilter(searchOptionFilters)}
-        />
-      </div>
+      <TitleBar results={results} />
+
+      <Results
+        results={results}
+        searchOptionFilters={decodeFilter(searchOptionFilters)}
+      />
     </FixedLayout>
   );
 };
@@ -251,7 +250,6 @@ export const query = graphql`
           pavementWidth
           pavementWidthNumber
           pointOfView
-          surroundings
           vehicleLaneMaxspeed
           vehicleLaneUsage
           vehicleTrafficVolume

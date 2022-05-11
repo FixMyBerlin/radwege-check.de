@@ -1,7 +1,9 @@
+import classNames from 'classnames';
 import React from 'react';
 import { aggregationConfig } from '../../constants';
 import { ResultBucketProps } from '../../types';
 import { buttonClassNames } from '../utils';
+import { Icons } from './Icons';
 
 export type HandleMultiChoiceProps = {
   aggregationKey: string;
@@ -51,12 +53,15 @@ export const ButtonMultiChoice: React.FC<Props> = ({
     <button
       key={bucket.key}
       type="button"
-      className={buttonClassNames({
-        firstElement,
-        lastElement,
-        uiSelected,
-        uiCanpress,
-      })}
+      className={classNames(
+        buttonClassNames({
+          firstElement,
+          lastElement,
+          uiSelected,
+          uiCanpress,
+        }),
+        { '-mt-1.5 !h-10': showAsIcons }
+      )}
       onClick={() =>
         uiCanpress &&
         handleClick({
@@ -77,10 +82,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
       ].join(' – ')}
     >
       {showAsIcons ? (
-        <span className="font-bold uppercase">
-          {aggregationConfig[aggregationKey].buckets[bucket.key]?.charAt(0) ||
-            'TODO'}
-        </span>
+        <Icons forValue={bucket.key} />
       ) : (
         <span
           // eslint-disable-next-line react/no-danger

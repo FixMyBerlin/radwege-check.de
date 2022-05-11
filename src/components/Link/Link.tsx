@@ -1,8 +1,10 @@
+import classNames from 'classnames';
 import { Link as GatsbyLink } from 'gatsby';
 import React from 'react';
 
 type Props = {
   to: string;
+  className?: string;
   blank?: boolean;
   external?: boolean;
 } & (
@@ -13,6 +15,7 @@ type Props = {
 export const Link: React.FC<Props> = ({
   to,
   classNameOverwrite,
+  className,
   blank = false,
   external = false,
   button = false,
@@ -22,7 +25,10 @@ export const Link: React.FC<Props> = ({
     'text-emerald-500 hover:text-emerald-600 hover:underline active:underline';
   const buttonStyles =
     'inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500';
-  const classes = classNameOverwrite || (button ? buttonStyles : linkStyles);
+  const classes = classNames(
+    className,
+    classNameOverwrite || (button ? buttonStyles : linkStyles)
+  );
 
   type NewWindowProps = {
     target?: string;

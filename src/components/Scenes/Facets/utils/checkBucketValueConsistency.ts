@@ -29,7 +29,7 @@ export const checkBucketValueConsistency = ({
     aggregationConfig[aggregationKey].buckets
   )
     .filter((key) => !bucketKeysFromItemJs.includes(key))
-    .filter((key) => key !== 'doesNotMatterOption');
+    .filter((key) => key !== 'bothButton');
 
   if (keyFromTranslationMissingInItemjs.length) {
     // eslint-disable-next-line no-console

@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        inner: 'inset 1px 1px 4px 0 rgba(0, 0, 0, 0.5);',
+        inner: 'inset 1px 1px 3px 0 rgb(177 158 54)',
       },
+      fontSize: { xxs: '0.7rem' },
       typography: ({ theme }) => ({
         pink: {
           css: {

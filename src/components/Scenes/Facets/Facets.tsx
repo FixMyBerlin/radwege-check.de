@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import { aggregationConfig } from '~/components/Scenes/constants';
 import { ResultProps } from '../types';
@@ -21,7 +22,8 @@ export const Facets: React.FC<Props> = ({
   handleMultiChoice,
 }) => {
   return (
-    <nav className="absolute inset-y-0 left-0 w-72 overflow-scroll bg-gray-100 p-4">
+    <nav className="absolute inset-y-0 left-0 z-20 w-72 overflow-y-scroll bg-gray-100 p-4 shadow-[0_0_10px_0_rgba(0,_0,_0,_0.2)]">
+      <h1 className="sr-only">Ergebnisse filtern</h1>
       <p className="mb-6">
         <button
           type="button"
@@ -35,14 +37,21 @@ export const Facets: React.FC<Props> = ({
       {Object.entries(results?.data?.aggregations || {}).map(
         ([aggregationKey, aggregation]) => {
           const { buckets } = aggregation;
-          const { showAsIcons } = aggregationConfig[aggregationKey];
+          const { showAsIcons, groupEndIndicator } =
+            aggregationConfig[aggregationKey];
 
           checkDataConsistency({ aggregationKey });
           const { keyFromItemjsMissingInTranslations } =
             checkBucketValueConsistency({ aggregationKey, buckets });
 
           return (
-            <div key={aggregationKey} className="mb-5">
+            <section
+              key={aggregationKey}
+              className={classNames('mb-5', {
+                '!mb-4 border-b border-dashed border-gray-300 pb-5':
+                  groupEndIndicator,
+              })}
+            >
               <FacetsHeadline
                 visible={!showAsIcons}
                 aggregationKey={aggregationKey}
@@ -66,7 +75,7 @@ export const Facets: React.FC<Props> = ({
                   ))}
                 </div>
               )}
-            </div>
+            </section>
           );
         }
       )}

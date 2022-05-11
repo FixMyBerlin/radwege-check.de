@@ -11,16 +11,14 @@ export const Results: React.FC<Props> = ({ results, searchOptionFilters }) => {
   const resultItems = results?.data?.items || [];
 
   return (
-    <section className="absolute top-8 bottom-0 left-72 right-0 overflow-scroll p-4">
-      <div className="flex flex-row gap-4">
-        {resultItems.map((scene) => (
-          <ResultColumn
-            key={scene.sceneId}
-            scene={scene}
-            searchOptionFilters={searchOptionFilters}
-          />
-        ))}
-      </div>
-    </section>
+    <div className="absolute right-0 top-16 bottom-0 left-72 z-0 flex flex-row gap-4  overflow-scroll p-4">
+      {resultItems.map((scene) => (
+        <ResultColumn
+          key={scene.sceneId}
+          scene={scene}
+          searchOptionFilters={searchOptionFilters}
+        />
+      ))}
+    </div>
   );
 };

@@ -4,11 +4,22 @@
 
 type AggregationConfig = {
   [key: string]: {
+    /** @desc Translation of the "Headline" of Facets (aggregations) for FilterSidebar and Results. */
     title: string;
+    /** @desc Optional overwrite the "Headline" for Results. */
+    resultTitle?: string;
+    /** @desc Specify translations for FilterSidebar and Results (unless overwritten) AND order of facetButtons (unless overwritten) */
     buckets: { [key: string]: string };
+    /** @desc Optinally overwrite translations for Results. */
+    resultBuckets?: { [key: string]: string };
+    /** @desc Optinally overwrite sort order of facetButtons. */
     sortOrder?: string[];
+    /** @desc FilterSidebar: How the facetButtons behave on click and visually. */
     choiceMode: 'multi' | 'single';
-    showAsIcons: boolean; // has to be false if 'choiceMode' is true
+    /** @desc FilterSidebar: Switch from text to icon view. Has to be `false` if `choiseMode` is 'single'. */
+    showAsIcons: boolean;
+    /** @desc FilterSidebar: Show a a line below the facet to indicate the end of a logical group. */
+    groupEndIndicator?: boolean;
   };
 };
 
@@ -26,24 +37,36 @@ export const aggregationConfig: AggregationConfig = {
   },
   bicycleLaneWidth: {
     title: 'Radverkehrsanlage (RVA)',
+    resultTitle: 'Radverkehrsanlage',
     buckets: {
       wide: 'Breit<br />(3,5&thinsp;m)',
       narrow: 'Schmal<br />(2&thinsp;m)',
       shared_bus_lane: 'Busspur Fahrrad frei',
       none: 'Keine RVA',
     },
+    resultBuckets: {
+      wide: 'Breite RVA',
+      narrow: 'Schmale RVA',
+      shared_bus_lane: 'Busspur mit Fahrrad frei',
+    },
     choiceMode: 'multi',
     showAsIcons: false,
   },
   parking: {
     title: 'KfZ-Parken vorhanden',
+    resultTitle: 'KfZ-Parken',
     buckets: {
       bothButton: 'Egal',
       parking_lane: 'Ja',
       no_parking: 'Nein',
     },
+    resultBuckets: {
+      parking_lane: 'Mit Parkspur',
+      no_parking: 'Ohne Parkspur',
+    },
     choiceMode: 'single',
     showAsIcons: false,
+    groupEndIndicator: true,
   },
   bicycleLaneSurface: {
     title: 'Oberfläche RVA',
@@ -56,7 +79,8 @@ export const aggregationConfig: AggregationConfig = {
     showAsIcons: false,
   },
   bufferHasPhysicalProtection: {
-    title: 'Bauliche Trennung links RVA',
+    title: 'Bauliche Trennung Links RVA',
+    resultTitle: 'Bauliche Trennung Links',
     buckets: {
       bothButton: 'Egal',
       true: 'Ja',
@@ -66,7 +90,8 @@ export const aggregationConfig: AggregationConfig = {
     showAsIcons: false,
   },
   bufferLeftPhysicalProtection: {
-    title: 'Details der baulichen Trennung Links der RVA',
+    title: 'Art der baulichen Trennung Links der RVA',
+    resultTitle: 'Art der baul. Trennung Links',
     buckets: {
       none: 'Keine',
       bollard_high: 'Poller (hoch)',
@@ -76,9 +101,11 @@ export const aggregationConfig: AggregationConfig = {
     },
     choiceMode: 'multi',
     showAsIcons: true,
+    groupEndIndicator: true,
   },
   bufferLeftWidth: {
     title: 'Markierung Links RVA',
+    resultTitle: 'Markierung Links',
     buckets: {
       bothButton: 'Egal',
       narrow: 'Schmal',
@@ -89,21 +116,23 @@ export const aggregationConfig: AggregationConfig = {
     showAsIcons: false,
   },
   bufferLeftMarking: {
-    title: 'Details der Marierung Links der RVA',
+    title: 'Art der Marierung Links der RVA',
+    resultTitle: 'Art der Markierung Links',
     buckets: {
-      dashed_line: 'unterbrochen',
+      none: 'Keine',
+      dashed_line: 'Unterbrochen Linie',
+      solid_line: 'Durchgezogene Linie',
       double_line: 'Doppellinie',
-      grass_verge: 'Grünstreifen',
-      none: 'none',
+      restricted_area: 'Sperrzone',
       paved_verge: 'Aufpflasterung',
-      restricted_area: 'Sperrfläche',
-      solid_line: 'durchgezogene',
+      grass_verge: 'Grünstreifen',
     },
     choiceMode: 'multi',
     showAsIcons: true,
   },
   bufferRightWidth: {
     title: 'Markierung Rechts RVA',
+    resultTitle: 'Markierung Rechts',
     buckets: {
       bothButton: 'Egal',
       narrow: 'Schmal',
@@ -114,24 +143,30 @@ export const aggregationConfig: AggregationConfig = {
     showAsIcons: false,
   },
   bufferRightMarking: {
-    title: 'Details der Markierung Rechts der RVA',
+    title: 'Art der Markierung Rechts der RVA',
+    resultTitle: 'Art der Markierung Rechts',
     buckets: {
-      double_line: 'Doppellinie',
-      grass_verge: 'Grünstreifen',
       none: 'Keine',
-      paved_verge: 'Aufpflasterung',
+      solid_line: 'Durchgezogene Linie',
+      double_line: 'Doppellinie',
       restricted_area: 'Sperrzone',
-      solid_line: 'durchgezogene',
+      paved_verge: 'Aufpflasterung',
+      grass_verge: 'Grünstreifen',
     },
     choiceMode: 'multi',
     showAsIcons: true,
+    groupEndIndicator: true,
   },
   vehicleTrafficVolume: {
     title: 'KfZ-Verkehrsaufkommen',
     buckets: {
       bothButton: 'Egal',
       low_traffic_volumen: 'Niedrig',
-      high_traffic_volumen_with_heavy_vehicles: 'Hoch (mit LKW)', // Schwerlastverkehr ggf. im Tooltipp erwähnen
+      high_traffic_volumen_with_heavy_vehicles: 'Hoch (mit LKW)',
+    },
+    resultBuckets: {
+      low_traffic_volumen: 'Niedrig (ohne Schwerlastverkehr)',
+      high_traffic_volumen_with_heavy_vehicles: 'Hoch (mit Schwerlastverkehr)',
     },
     choiceMode: 'single',
     showAsIcons: false,
@@ -143,12 +178,16 @@ export const aggregationConfig: AggregationConfig = {
       '30': '30 km/h',
       '50': 'Keins',
     },
-    sortOrder: ['choiceMode', '30', '50', 'sidewalk', '-'],
+    resultBuckets: {
+      '50': 'Kein Limit (50 km/h)',
+    },
+    sortOrder: ['bothButton', '30', '50'],
     choiceMode: 'single',
     showAsIcons: false,
   },
   vehicleLaneUsage: {
     title: 'Fahrbahn Nutzung',
+    resultTitle: 'Nutzung der Fahrbahn',
     buckets: {
       bothButton: 'Egal',
       motor_vehicle_and_tram: 'Fahrspur mit Tram',
@@ -157,14 +196,15 @@ export const aggregationConfig: AggregationConfig = {
     },
     choiceMode: 'single',
     showAsIcons: false,
+    groupEndIndicator: true,
   },
   pavementWidth: {
     title: 'Gehweg',
+    resultTitle: 'Gehwegbreite',
     buckets: {
       bothButton: 'Egal',
       narrow: 'Schmal',
       wide: 'Breit',
-      '-': 'todo',
     },
     choiceMode: 'single',
     showAsIcons: false,
@@ -175,6 +215,10 @@ export const aggregationConfig: AggregationConfig = {
       bothButton: 'Egal',
       true: 'Ja',
       false: 'Nein',
+    },
+    resultBuckets: {
+      true: 'Ja (mit Tischen, Auslage)',
+      false: 'Nein (reiner Gehweg)',
     },
     choiceMode: 'single',
     showAsIcons: false,

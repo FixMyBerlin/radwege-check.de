@@ -15,7 +15,7 @@ export const checkDataConsistency = ({ aggregationKey }: Props) => {
   if (
     choiceMode === 'single' &&
     Object.keys(aggregationConfig[aggregationKey].buckets).filter(
-      (k) => k === 'choiceMode'
+      (k) => k === 'bothButton'
     ).length === 0
   ) {
     console.log({

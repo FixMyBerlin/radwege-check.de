@@ -8,7 +8,7 @@ type Props = { scene: ResultItemProps };
 
 export const ResultOtherScenes: React.FC<Props> = ({ scene }) => {
   return (
-    <div className="mb-4 h-24">
+    <section className="mb-4 h-24 flex-none">
       <div className="sr-only text-xs text-neutral-300 group-hover:text-pink-700">
         Blickwinkel:
       </div>
@@ -60,6 +60,6 @@ export const ResultOtherScenes: React.FC<Props> = ({ scene }) => {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
