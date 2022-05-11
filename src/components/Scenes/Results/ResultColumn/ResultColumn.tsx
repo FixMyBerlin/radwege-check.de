@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from '~/components/Link';
 import { aggregationConfig } from '../../constants';
 import { SceneImage } from '../../SceneImage';
 import { ResultItemProps, SearchOptionProps } from '../../types';
 import { Bookmark } from '../bookmark/Bookmark';
 import { ResultCell } from '../ResultCell';
-import { ResultOtherScenes } from '../ResultOtherScenes';
 import { ResultStackedBarchart } from '../ResultStackedBarchart';
 
 export type PrevBucketValues = { [key: string]: string | number };
@@ -19,23 +18,25 @@ export const ResultColumn: React.FC<Props> = ({
   scene,
   searchOptionFilters,
 }) => {
+  const [sceneImage, setSceneImage] = useState(scene.sceneId);
+  const handleImageChange = (sceneId: string) => setSceneImage(sceneId);
+
   return (
     <article className="h-full w-48 flex-none" key={scene.sceneId}>
       <h2 className="sr-only">
         <Link to={scene.path as string}>Szene {scene.sceneId}</Link>
       </h2>
-      <section className="relative">
+
+      <section className="relative mb-2">
         <Bookmark active />
         {/* todo types */}
         <SceneImage
-          sceneId={scene.sceneId as string}
+          sceneId={sceneImage as string}
           className="h-36 w-full object-cover object-bottom"
         />
       </section>
 
-      <ResultStackedBarchart scene={scene} />
-
-      <ResultOtherScenes scene={scene} />
+      <ResultStackedBarchart scene={scene} handleHover={handleImageChange} />
 
       {Object.keys(aggregationConfig).map((key) => {
         const bucketActive = searchOptionFilters && !!searchOptionFilters[key];

@@ -1,71 +1,60 @@
 import React from 'react';
-import { formatNumber, formatPercent } from '~/components/utils';
+import { formatNumber } from '~/components/utils';
 import { ResultItemProps } from '../../types';
+import BikeIcon from './assets/bike-icon.svg';
+import CarIcon from './assets/car-icon.svg';
+import PedestrianIcon from './assets/pedestrian-icon.svg';
+import { BarChart } from './BarChart';
+import { OtherIconNumber } from './OtherIconNumber';
 
-type Props = { scene: ResultItemProps };
+type Props = {
+  scene: ResultItemProps;
+  handleHover: (sceneId: string) => void;
+};
 
-export const ResultStackedBarchart: React.FC<Props> = ({ scene }) => {
+export const ResultStackedBarchart: React.FC<Props> = ({
+  scene,
+  handleHover,
+}) => {
   return (
-    <section className="relative border-b  border-dotted text-xs">
-      <div className="mb-1 flex h-16 w-full flex-col">
-        <div
-          title={`${scene.vote0Unsafe}`}
-          style={{
-            height: formatNumber(scene.vote0Unsafe, {
-              unit: '%',
-              delimiter: '.',
-            }),
-            backgroundColor: '#c01d1d',
-          }}
-          className="w-full"
-        >
-          {' '}
-        </div>
-        <div
-          style={{
-            height: formatNumber(scene.vote1RatherUnsafe, {
-              unit: '%',
-              delimiter: '.',
-            }),
-            backgroundColor: '#f08141',
-          }}
-          className="w-full bg-orange-300"
-        >
-          {' '}
-        </div>
-        <div
-          title={`${scene.vote2Save}`}
-          style={{
-            height: formatNumber(scene.vote2Save, {
-              unit: '%',
-              delimiter: '.',
-            }),
-            backgroundColor: '#abc759',
-          }}
-          className="w-full"
-        >
-          {' '}
-        </div>
-        <div
-          title={`${scene.vote3VerySave}`}
-          style={{
-            height: formatNumber(scene.vote3VerySave, {
-              unit: '%',
-              delimiter: '.',
-            }),
-            backgroundColor: '#45b834',
-          }}
-          className="w-full"
-        >
-          {' '}
-        </div>
-      </div>
+    <section className="relative grid h-20 grid-cols-2 gap-1 border-b border-dotted text-xs">
       <div
-        className="absolute top-8 left-0 right-0 text-center text-2xl font-thin"
-        title="Summe der Bewertungen für Gut und Sehr gut."
+        className="grid h-full grid-cols-2"
+        title="Der 'Score' ist die Summe der Bewertungen für Gut und Sehr gut."
       >
-        <strong>{formatPercent(scene.voteScore, { precision: 0 })}</strong>
+        <div className="col-span-2 flex h-8 flex-none items-center">
+          <BikeIcon className="mr-1.5 h-8 w-8" />
+          <strong
+            className="text-2xl font-semibold"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: formatNumber(scene.voteScore, {
+                precision: 0,
+                unit: '&thinsp;%',
+              }),
+            }}
+          />
+        </div>
+        <div>
+          <OtherIconNumber
+            otherSceneId={scene.sceneIdCar as string}
+            otherVoteScore={scene.voteScoreCar as number}
+            handleMouseOver={handleHover}
+            handleMouseOut={() => handleHover(scene.sceneId as string)}
+            icon={<CarIcon className="h-auto w-5" />}
+          />
+        </div>
+        <div>
+          <OtherIconNumber
+            otherSceneId={scene.sceneIdPedestrian as string}
+            otherVoteScore={scene.voteScorePedestrian as number}
+            handleMouseOver={handleHover}
+            handleMouseOut={() => handleHover(scene.sceneId as string)}
+            icon={<PedestrianIcon className="h-5 w-auto" />}
+          />
+        </div>
       </div>
+      <BarChart scene={scene} />
       {/* <div className="flex justify-between">
         <span>
           {formatNumber(scene.vote0Unsafe, {
