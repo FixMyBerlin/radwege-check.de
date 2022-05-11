@@ -3,6 +3,7 @@ import React from 'react';
 import { TranslationMissing } from '~/components/TextHelper';
 import { formatMeter } from '~/components/utils';
 import { aggregationConfig } from '../constants';
+import { Icons } from '../Facets/ButtonMultiChoice/Icons';
 import { ResultItemProps } from '../types';
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
   bucketActive: boolean;
   scene: ResultItemProps;
   groupEndIndicator: boolean;
+  showIcon: boolean;
 };
 
 export const ResultCell: React.FC<Props> = ({
@@ -17,6 +19,7 @@ export const ResultCell: React.FC<Props> = ({
   bucketActive,
   scene,
   groupEndIndicator,
+  showIcon,
 }) => {
   const titleTranslation = aggregationConfig[keyName]?.resultTitle ||
     aggregationConfig[keyName]?.title || <TranslationMissing value={keyName} />;
@@ -49,7 +52,7 @@ export const ResultCell: React.FC<Props> = ({
         )}
       </h3>
 
-      <p className="leading-tight text-neutral-800">
+      <p className="w-ful relative leading-tight text-neutral-800">
         <span
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: bucketTranslation }}
@@ -59,6 +62,13 @@ export const ResultCell: React.FC<Props> = ({
           <span className="ml-1 font-light text-neutral-500">
             {' '}
             {formatMeter(scene[`${keyName}Number`], {})}
+          </span>
+        )}
+
+        {showIcon && (
+          <span className="absolute right-1 top-0 text-xxs">
+            {/* TODO Fix types */}
+            <Icons forValue={scene[keyName] as string} className="scale-75" />
           </span>
         )}
       </p>

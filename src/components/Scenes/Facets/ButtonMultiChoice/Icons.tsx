@@ -1,39 +1,45 @@
+import classNames from 'classnames';
 import React from 'react';
 import DashedLine from './assets/dashed_line-icon.svg';
-import SolidLine from './assets/solid_line-icon.svg';
 import DoubleLine from './assets/double_line-icon.svg';
-import RestrictedArea from './assets/restricted_area-icon.svg';
-import PavedVerge from './assets/paved_verge-icon.svg';
 import GrassVerge from './assets/grass_verge-icon.svg';
+import PavedVerge from './assets/paved_verge-icon.svg';
+import RestrictedArea from './assets/restricted_area-icon.svg';
+import SolidLine from './assets/solid_line-icon.svg';
 
 type Props = {
   forValue: string;
+  className?: string;
 };
 
-export const Icons: React.FC<Props> = ({ forValue }) => {
+export const Icons: React.FC<Props> = ({ forValue, className }) => {
   switch (forValue) {
     case 'none':
-      return <>NONE</>; // TODO <None />;
+      return <span className={className}>NONE</span>; // TODO <None />;
 
     case 'dashed_line':
-      return <DashedLine />;
+      return <DashedLine className={className} />;
 
     case 'solid_line':
-      return <SolidLine />;
+      return <SolidLine className={className} />;
 
     case 'double_line':
-      return <DoubleLine />;
+      return <DoubleLine className={className} />;
 
     case 'restricted_area':
-      return <RestrictedArea />;
+      return <RestrictedArea className={className} />;
 
     case 'paved_verge':
-      return <PavedVerge />;
+      return <PavedVerge className={className} />;
 
     case 'grass_verge':
-      return <GrassVerge />;
+      return <GrassVerge className={className} />;
 
     default:
-      return <span className="font-semibold uppercase">{forValue[0]}</span>; // TODO <None />;
+      return (
+        <span className={classNames(className, 'font-semibold uppercase')}>
+          {forValue[0]}
+        </span>
+      ); // TODO <None />;
   }
 };

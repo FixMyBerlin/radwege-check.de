@@ -47,6 +47,7 @@ export const ResultColumn: React.FC<Props> = ({
             scene={scene}
             bucketActive={bucketActive}
             groupEndIndicator={aggregationConfig[key]?.groupEndIndicator}
+            showIcon={aggregationConfig[key]?.showAsIcons}
           />
         );
       })}
