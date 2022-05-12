@@ -15,25 +15,53 @@ type Props = {
 export const Icons: React.FC<Props> = ({ forValue, className }) => {
   switch (forValue) {
     case 'none':
-      return <span className={className}>NONE</span>; // TODO <None />;
+      return (
+        <span className={classNames(className, 'children:stroke-gray-600')}>
+          NONE
+        </span>
+      ); // TODO <None />;
 
     case 'dashed_line':
-      return <DashedLine className={className} />;
+      return (
+        <DashedLine
+          className={classNames(className, 'children:stroke-gray-600')}
+        />
+      );
 
     case 'solid_line':
-      return <SolidLine className={className} />;
+      return (
+        <SolidLine
+          className={classNames(className, 'children:stroke-gray-600')}
+        />
+      );
 
     case 'double_line':
-      return <DoubleLine className={className} />;
+      return (
+        <DoubleLine
+          className={classNames(className, 'children:stroke-gray-600')}
+        />
+      );
 
     case 'restricted_area':
-      return <RestrictedArea className={className} />;
+      return (
+        <RestrictedArea
+          className={classNames(className, 'children:stroke-gray-600')}
+        />
+      );
 
     case 'paved_verge':
-      return <PavedVerge className={className} />;
+      return (
+        <PavedVerge
+          className={classNames(className, 'children:fill-gray-600')}
+        />
+      );
 
     case 'grass_verge':
-      return <GrassVerge className={className} />;
+      return (
+        <GrassVerge
+          className={classNames(className, 'children:stroke-gray-600')}
+        />
+      );
 
     default:
       return (
