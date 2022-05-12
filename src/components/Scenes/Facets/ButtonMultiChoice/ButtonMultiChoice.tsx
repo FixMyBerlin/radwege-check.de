@@ -70,10 +70,6 @@ export const ButtonMultiChoice: React.FC<Props> = ({
           selectedBucket: bucket,
         })
       }
-      onMouseOver={() =>
-        console.log({ resultTotal, resultDiff, resultFuture, bucket })
-      }
-      onFocus={() => ''}
       title={[
         showAsIcons
           ? `${aggregationConfig[aggregationKey].buckets[bucket.key]}`

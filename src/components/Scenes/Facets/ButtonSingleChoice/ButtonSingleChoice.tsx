@@ -34,7 +34,7 @@ export const ButtonSingleChoice: React.FC<Props> = ({
 }) => {
   const { showAsIcons } = aggregationConfig[aggregationKey];
 
-  const { resultTotal, resultFuture, uiSelected, uiCanpress } = useResults({
+  const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
     bucketCount: bucket?.doc_count,
     bucketSelected: bucket?.selected,
@@ -53,19 +53,8 @@ export const ButtonSingleChoice: React.FC<Props> = ({
           lastElement,
           uiSelected,
           uiCanpress,
-        }),
-        { '!text-red-300': uiCanpress }
-      )}
-      onMouseOver={() =>
-        console.log({
-          resultTotal,
-          resultFuture,
-          bucket,
-          uiSelected,
-          uiCanpress,
         })
-      }
-      onFocus={() => ''}
+      )}
       onClick={() =>
         uiCanpress &&
         handleClick({
