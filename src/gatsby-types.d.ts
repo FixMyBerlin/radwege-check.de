@@ -650,19 +650,19 @@ type FileFieldsEnum =
   | 'childScenesPrimaryCsv.vote0Unsafe'
   | 'childScenesPrimaryCsv.vote1RatherUnsafe'
   | 'childScenesPrimaryCsv.vote2Save'
-  | 'childScenesPrimaryCsv.vote3CarVerySave'
   | 'childScenesPrimaryCsv.vote3VerySave'
   | 'childScenesPrimaryCsv.voteCar0Unsafe'
   | 'childScenesPrimaryCsv.voteCar1RatherUnsafe'
   | 'childScenesPrimaryCsv.voteCar2Save'
+  | 'childScenesPrimaryCsv.voteCar3VerySave'
   | 'childScenesPrimaryCsv.voteCarCount'
   | 'childScenesPrimaryCsv.voteCarMeans'
   | 'childScenesPrimaryCsv.voteCarScore'
   | 'childScenesPrimaryCsv.voteCount'
   | 'childScenesPrimaryCsv.voteMeans'
-  | 'childScenesPrimaryCsv.votePedestiran2Save'
   | 'childScenesPrimaryCsv.votePedestrian0Unsafe'
   | 'childScenesPrimaryCsv.votePedestrian1RatherUnsafe'
+  | 'childScenesPrimaryCsv.votePedestrian2Save'
   | 'childScenesPrimaryCsv.votePedestrian3VerySave'
   | 'childScenesPrimaryCsv.votePedestrianCount'
   | 'childScenesPrimaryCsv.votePedestrianMeans'
@@ -831,19 +831,19 @@ type FileFieldsEnum =
   | 'childrenScenesPrimaryCsv.vote0Unsafe'
   | 'childrenScenesPrimaryCsv.vote1RatherUnsafe'
   | 'childrenScenesPrimaryCsv.vote2Save'
-  | 'childrenScenesPrimaryCsv.vote3CarVerySave'
   | 'childrenScenesPrimaryCsv.vote3VerySave'
   | 'childrenScenesPrimaryCsv.voteCar0Unsafe'
   | 'childrenScenesPrimaryCsv.voteCar1RatherUnsafe'
   | 'childrenScenesPrimaryCsv.voteCar2Save'
+  | 'childrenScenesPrimaryCsv.voteCar3VerySave'
   | 'childrenScenesPrimaryCsv.voteCarCount'
   | 'childrenScenesPrimaryCsv.voteCarMeans'
   | 'childrenScenesPrimaryCsv.voteCarScore'
   | 'childrenScenesPrimaryCsv.voteCount'
   | 'childrenScenesPrimaryCsv.voteMeans'
-  | 'childrenScenesPrimaryCsv.votePedestiran2Save'
   | 'childrenScenesPrimaryCsv.votePedestrian0Unsafe'
   | 'childrenScenesPrimaryCsv.votePedestrian1RatherUnsafe'
+  | 'childrenScenesPrimaryCsv.votePedestrian2Save'
   | 'childrenScenesPrimaryCsv.votePedestrian3VerySave'
   | 'childrenScenesPrimaryCsv.votePedestrianCount'
   | 'childrenScenesPrimaryCsv.votePedestrianMeans'
@@ -1439,19 +1439,19 @@ type Query_scenesPrimaryCsvArgs = {
   vote0Unsafe: InputMaybe<StringQueryOperatorInput>;
   vote1RatherUnsafe: InputMaybe<StringQueryOperatorInput>;
   vote2Save: InputMaybe<StringQueryOperatorInput>;
-  vote3CarVerySave: InputMaybe<StringQueryOperatorInput>;
   vote3VerySave: InputMaybe<StringQueryOperatorInput>;
   voteCar0Unsafe: InputMaybe<StringQueryOperatorInput>;
   voteCar1RatherUnsafe: InputMaybe<StringQueryOperatorInput>;
   voteCar2Save: InputMaybe<StringQueryOperatorInput>;
+  voteCar3VerySave: InputMaybe<StringQueryOperatorInput>;
   voteCarCount: InputMaybe<StringQueryOperatorInput>;
   voteCarMeans: InputMaybe<StringQueryOperatorInput>;
   voteCarScore: InputMaybe<StringQueryOperatorInput>;
   voteCount: InputMaybe<StringQueryOperatorInput>;
   voteMeans: InputMaybe<StringQueryOperatorInput>;
-  votePedestiran2Save: InputMaybe<StringQueryOperatorInput>;
   votePedestrian0Unsafe: InputMaybe<StringQueryOperatorInput>;
   votePedestrian1RatherUnsafe: InputMaybe<StringQueryOperatorInput>;
+  votePedestrian2Save: InputMaybe<StringQueryOperatorInput>;
   votePedestrian3VerySave: InputMaybe<StringQueryOperatorInput>;
   votePedestrianCount: InputMaybe<StringQueryOperatorInput>;
   votePedestrianMeans: InputMaybe<StringQueryOperatorInput>;
@@ -1630,19 +1630,19 @@ type ScenesPrimaryCsv = Node & {
   readonly vote0Unsafe: Maybe<Scalars['String']>;
   readonly vote1RatherUnsafe: Maybe<Scalars['String']>;
   readonly vote2Save: Maybe<Scalars['String']>;
-  readonly vote3CarVerySave: Maybe<Scalars['String']>;
   readonly vote3VerySave: Maybe<Scalars['String']>;
   readonly voteCar0Unsafe: Maybe<Scalars['String']>;
   readonly voteCar1RatherUnsafe: Maybe<Scalars['String']>;
   readonly voteCar2Save: Maybe<Scalars['String']>;
+  readonly voteCar3VerySave: Maybe<Scalars['String']>;
   readonly voteCarCount: Maybe<Scalars['String']>;
   readonly voteCarMeans: Maybe<Scalars['String']>;
   readonly voteCarScore: Maybe<Scalars['String']>;
   readonly voteCount: Maybe<Scalars['String']>;
   readonly voteMeans: Maybe<Scalars['String']>;
-  readonly votePedestiran2Save: Maybe<Scalars['String']>;
   readonly votePedestrian0Unsafe: Maybe<Scalars['String']>;
   readonly votePedestrian1RatherUnsafe: Maybe<Scalars['String']>;
+  readonly votePedestrian2Save: Maybe<Scalars['String']>;
   readonly votePedestrian3VerySave: Maybe<Scalars['String']>;
   readonly votePedestrianCount: Maybe<Scalars['String']>;
   readonly votePedestrianMeans: Maybe<Scalars['String']>;
@@ -1845,19 +1845,19 @@ type ScenesPrimaryCsvFieldsEnum =
   | 'vote0Unsafe'
   | 'vote1RatherUnsafe'
   | 'vote2Save'
-  | 'vote3CarVerySave'
   | 'vote3VerySave'
   | 'voteCar0Unsafe'
   | 'voteCar1RatherUnsafe'
   | 'voteCar2Save'
+  | 'voteCar3VerySave'
   | 'voteCarCount'
   | 'voteCarMeans'
   | 'voteCarScore'
   | 'voteCount'
   | 'voteMeans'
-  | 'votePedestiran2Save'
   | 'votePedestrian0Unsafe'
   | 'votePedestrian1RatherUnsafe'
+  | 'votePedestrian2Save'
   | 'votePedestrian3VerySave'
   | 'votePedestrianCount'
   | 'votePedestrianMeans'
@@ -1927,19 +1927,19 @@ type ScenesPrimaryCsvFilterInput = {
   readonly vote0Unsafe: InputMaybe<StringQueryOperatorInput>;
   readonly vote1RatherUnsafe: InputMaybe<StringQueryOperatorInput>;
   readonly vote2Save: InputMaybe<StringQueryOperatorInput>;
-  readonly vote3CarVerySave: InputMaybe<StringQueryOperatorInput>;
   readonly vote3VerySave: InputMaybe<StringQueryOperatorInput>;
   readonly voteCar0Unsafe: InputMaybe<StringQueryOperatorInput>;
   readonly voteCar1RatherUnsafe: InputMaybe<StringQueryOperatorInput>;
   readonly voteCar2Save: InputMaybe<StringQueryOperatorInput>;
+  readonly voteCar3VerySave: InputMaybe<StringQueryOperatorInput>;
   readonly voteCarCount: InputMaybe<StringQueryOperatorInput>;
   readonly voteCarMeans: InputMaybe<StringQueryOperatorInput>;
   readonly voteCarScore: InputMaybe<StringQueryOperatorInput>;
   readonly voteCount: InputMaybe<StringQueryOperatorInput>;
   readonly voteMeans: InputMaybe<StringQueryOperatorInput>;
-  readonly votePedestiran2Save: InputMaybe<StringQueryOperatorInput>;
   readonly votePedestrian0Unsafe: InputMaybe<StringQueryOperatorInput>;
   readonly votePedestrian1RatherUnsafe: InputMaybe<StringQueryOperatorInput>;
+  readonly votePedestrian2Save: InputMaybe<StringQueryOperatorInput>;
   readonly votePedestrian3VerySave: InputMaybe<StringQueryOperatorInput>;
   readonly votePedestrianCount: InputMaybe<StringQueryOperatorInput>;
   readonly votePedestrianMeans: InputMaybe<StringQueryOperatorInput>;

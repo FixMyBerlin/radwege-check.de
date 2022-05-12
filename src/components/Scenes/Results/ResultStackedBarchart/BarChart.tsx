@@ -1,16 +1,33 @@
+import classNames from 'classnames';
 import React from 'react';
 import { formatNumber } from '~/components/utils';
-import { ResultItemProps } from '../../types';
 
-type Props = { scene: ResultItemProps };
+type Props = {
+  // Those types are weird because our GraphQL results are not parsed.
+  // But no problem, our helper `formatNumber` (…) will handle this.
+  vote0Unsafe: string | number;
+  vote1RatherUnsafe: string | number;
+  vote2Save: string | number;
+  vote3VerySave: string | number;
+  className?: string;
+};
 
-export const BarChart: React.FC<Props> = ({ scene }) => {
+export const BarChart: React.FC<Props> = ({
+  vote0Unsafe,
+  vote1RatherUnsafe,
+  vote2Save,
+  vote3VerySave,
+  className,
+}) => {
+  if (!(vote0Unsafe && vote1RatherUnsafe && vote2Save && vote3VerySave))
+    return null;
+
   return (
-    <div className="mb-1 flex w-full flex-col">
+    <div className={classNames(className, 'mb-1 flex w-full flex-col')}>
       <div
-        title={`${scene.vote0Unsafe}`}
+        title={`${vote0Unsafe}`}
         style={{
-          height: formatNumber(scene.vote0Unsafe, {
+          height: formatNumber(vote0Unsafe, {
             unit: '%',
             delimiter: '.',
           }),
@@ -22,7 +39,7 @@ export const BarChart: React.FC<Props> = ({ scene }) => {
       </div>
       <div
         style={{
-          height: formatNumber(scene.vote1RatherUnsafe, {
+          height: formatNumber(vote1RatherUnsafe, {
             unit: '%',
             delimiter: '.',
           }),
@@ -33,9 +50,9 @@ export const BarChart: React.FC<Props> = ({ scene }) => {
         {' '}
       </div>
       <div
-        title={`${scene.vote2Save}`}
+        title={`${vote2Save}`}
         style={{
-          height: formatNumber(scene.vote2Save, {
+          height: formatNumber(vote2Save, {
             unit: '%',
             delimiter: '.',
           }),
@@ -46,9 +63,9 @@ export const BarChart: React.FC<Props> = ({ scene }) => {
         {' '}
       </div>
       <div
-        title={`${scene.vote3VerySave}`}
+        title={`${vote3VerySave}`}
         style={{
-          height: formatNumber(scene.vote3VerySave, {
+          height: formatNumber(vote3VerySave, {
             unit: '%',
             delimiter: '.',
           }),

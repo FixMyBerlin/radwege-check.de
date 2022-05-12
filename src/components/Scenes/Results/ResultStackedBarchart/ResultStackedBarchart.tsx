@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React from 'react';
 import { formatNumber } from '~/components/utils';
 import { ResultItemProps } from '../../types';
@@ -17,12 +18,12 @@ export const ResultStackedBarchart: React.FC<Props> = ({
   handleHover,
 }) => {
   return (
-    <section className="relative grid h-20 grid-cols-2 gap-1 border-b border-dotted text-xs">
-      <div
-        className="grid h-full grid-cols-2"
-        title="Der 'Score' ist die Summe der Bewertungen für Gut und Sehr gut."
-      >
-        <div className="col-span-2 flex h-8 flex-none items-center justify-center">
+    <section
+      className="relative grid grid-cols-5 gap-1 border-b border-dotted text-xs"
+      title="Der 'Score' ist die Summe der Bewertungen für Gut und Sehr gut."
+    >
+      <div className="col-span-3 flex h-full flex-none flex-col items-center justify-center">
+        <div className="flex h-8 flex-none items-center justify-center">
           <BikeIcon className="mr-1.5 h-8 w-8" />
           <strong
             className="text-2xl font-semibold"
@@ -35,26 +36,70 @@ export const ResultStackedBarchart: React.FC<Props> = ({
             }}
           />
         </div>
-        <div>
-          <OtherIconNumber
-            otherSceneId={scene.sceneIdCar as string}
-            otherVoteScore={scene.voteCarScore as number}
-            handleMouseOver={handleHover}
-            handleMouseOut={() => handleHover(scene.sceneId as string)}
-            icon={<CarIcon className="h-auto w-5" />}
-          />
-        </div>
-        <div>
-          <OtherIconNumber
-            otherSceneId={scene.sceneIdPedestrian as string}
-            otherVoteScore={scene.votePedestrianScore as number}
-            handleMouseOver={handleHover}
-            handleMouseOut={() => handleHover(scene.sceneId as string)}
-            icon={<PedestrianIcon className="h-5 w-auto" />}
-          />
-        </div>
+        <BarChart
+          vote0Unsafe={scene.vote0Unsafe}
+          vote1RatherUnsafe={scene.vote1RatherUnsafe}
+          vote2Save={scene.vote2Save}
+          vote3VerySave={scene.vote3VerySave}
+          className="h-20"
+        />
       </div>
-      <BarChart scene={scene} />
+      <div>
+        {scene.sceneIdCar ? (
+          <div
+            // TODO Fix types
+            onMouseOver={() => handleHover(scene.sceneIdCar as string)}
+            onMouseOut={() => handleHover(scene.sceneId as string)}
+            className="cursor-pointer"
+          >
+            <OtherIconNumber
+              otherSceneId={scene.sceneIdCar as string}
+              otherVoteScore={scene.voteCarScore as number}
+              icon={<CarIcon className="h-auto w-5" />}
+            />
+            <BarChart
+              vote0Unsafe={scene.voteCar0Unsafe}
+              vote1RatherUnsafe={scene.voteCar1RatherUnsafe}
+              vote2Save={scene.voteCar2Save}
+              vote3VerySave={scene.voteCar3VerySave}
+              className="h-20"
+            />
+          </div>
+        ) : (
+          <>
+            <div className="h-8" />
+            <div className="h-20 bg-gray-50" />
+          </>
+        )}
+      </div>
+      <div>
+        {scene.sceneIdPedestrian ? (
+          <div
+            // TODO Fix types
+            onMouseOver={() => handleHover(scene.sceneIdPedestrian as string)}
+            onMouseOut={() => handleHover(scene.sceneId as string)}
+            className="cursor-pointer"
+          >
+            <OtherIconNumber
+              otherSceneId={scene.sceneIdPedestrian as string}
+              otherVoteScore={scene.votePedestrianScore as number}
+              icon={<PedestrianIcon className="h-5 w-auto" />}
+            />
+            <BarChart
+              vote0Unsafe={scene.votePedestrian0Unsafe}
+              vote1RatherUnsafe={scene.votePedestrian1RatherUnsafe}
+              vote2Save={scene.votePedestrian2Save}
+              vote3VerySave={scene.votePedestrian3VerySave}
+              className="h-20"
+            />
+          </div>
+        ) : (
+          <>
+            <div className="h-8" />
+            <div className="h-20 bg-gray-50" />
+          </>
+        )}
+      </div>
       {/* <div className="flex justify-between">
         <span>
           {formatNumber(scene.vote0Unsafe, {

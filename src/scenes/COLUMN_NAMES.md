@@ -32,7 +32,6 @@ vehicleTrafficVolume
 vote0Unsafe
 vote1RatherUnsafe
 vote2Save
-vote3CarVerySave
 vote3VerySave
 voteCount
 voteMeans
@@ -40,12 +39,13 @@ voteScore
 voteCar0Unsafe
 voteCar1RatherUnsafe
 voteCar2Save
+voteCar3VerySave
 voteCarCount
 voteCarMeans
 voteCarScore
-votePedestiran2Save
 votePedestrian0Unsafe
 votePedestrian1RatherUnsafe
+votePedestrian2Save
 votePedestrian3VerySave
 votePedestrianCount
 votePedestrianMeans

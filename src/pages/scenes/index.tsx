@@ -257,7 +257,7 @@ export const query = graphql`
           vote0Unsafe
           vote1RatherUnsafe
           vote2Save
-          vote3CarVerySave
+          voteCar3VerySave
           vote3VerySave
           voteCount
           voteMeans
@@ -268,9 +268,9 @@ export const query = graphql`
           voteCarCount
           voteCarMeans
           voteCarScore
-          votePedestiran2Save
           votePedestrian0Unsafe
           votePedestrian1RatherUnsafe
+          votePedestrian2Save
           votePedestrian3VerySave
           votePedestrianCount
           votePedestrianMeans
