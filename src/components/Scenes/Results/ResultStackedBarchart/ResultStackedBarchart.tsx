@@ -45,34 +45,6 @@ export const ResultStackedBarchart: React.FC<Props> = ({
         />
       </div>
       <div>
-        {scene.sceneIdCar ? (
-          <div
-            // TODO Fix types
-            onMouseOver={() => handleHover(scene.sceneIdCar as string)}
-            onMouseOut={() => handleHover(scene.sceneId as string)}
-            className="cursor-pointer"
-          >
-            <OtherIconNumber
-              otherSceneId={scene.sceneIdCar as string}
-              otherVoteScore={scene.voteCarScore as number}
-              icon={<CarIcon className="h-auto w-5" />}
-            />
-            <BarChart
-              vote0Unsafe={scene.voteCar0Unsafe}
-              vote1RatherUnsafe={scene.voteCar1RatherUnsafe}
-              vote2Save={scene.voteCar2Save}
-              vote3VerySave={scene.voteCar3VerySave}
-              className="h-20"
-            />
-          </div>
-        ) : (
-          <>
-            <div className="h-8" />
-            <div className="h-20 bg-gray-50" />
-          </>
-        )}
-      </div>
-      <div>
         {scene.sceneIdPedestrian ? (
           <div
             // TODO Fix types
@@ -96,7 +68,41 @@ export const ResultStackedBarchart: React.FC<Props> = ({
         ) : (
           <>
             <div className="h-8" />
-            <div className="h-20 bg-gray-50" />
+            <div
+              className="h-20 bg-gray-50"
+              title="Diese Szene wurde nicht aus dem Blickwinkel von Fußgängern bewertet."
+            />
+          </>
+        )}
+      </div>
+      <div>
+        {scene.sceneIdCar ? (
+          <div
+            // TODO Fix types
+            onMouseOver={() => handleHover(scene.sceneIdCar as string)}
+            onMouseOut={() => handleHover(scene.sceneId as string)}
+            className="cursor-pointer"
+          >
+            <OtherIconNumber
+              otherSceneId={scene.sceneIdCar as string}
+              otherVoteScore={scene.voteCarScore as number}
+              icon={<CarIcon className="h-auto w-5" />}
+            />
+            <BarChart
+              vote0Unsafe={scene.voteCar0Unsafe}
+              vote1RatherUnsafe={scene.voteCar1RatherUnsafe}
+              vote2Save={scene.voteCar2Save}
+              vote3VerySave={scene.voteCar3VerySave}
+              className="h-20"
+            />
+          </div>
+        ) : (
+          <>
+            <div className="h-8" />
+            <div
+              className="h-20 bg-gray-50"
+              title="Diese Szene wurde nicht aus dem Blickwinkel von Autofahrer bewertet."
+            />
           </>
         )}
       </div>
