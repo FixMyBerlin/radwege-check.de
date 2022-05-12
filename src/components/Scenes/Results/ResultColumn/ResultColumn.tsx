@@ -24,7 +24,7 @@ export const ResultColumn: React.FC<Props> = ({
   const handleImageChange = (sceneId: string) => setSceneImage(sceneId);
 
   return (
-    <article className="h-full w-48 flex-none" key={scene.sceneId}>
+    <article className="h-full w-48 flex-none">
       <h2 className="sr-only">
         <Link to={scene.path as string}>Szene {scene.sceneId}</Link>
       </h2>
