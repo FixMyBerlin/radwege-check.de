@@ -96,15 +96,15 @@ export const itemJsConfig = {
       order: 'asc', // not used
       conjunction: false, // always false
     },
-    pavementHasShops: {
-      title: 'pavementHasShops',
+    pavementWidth: {
+      title: 'pavementWidth',
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
       conjunction: false, // always false
     },
-    pavementWidth: {
-      title: 'pavementWidth',
+    pavementHasShops: {
+      title: 'pavementHasShops',
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
