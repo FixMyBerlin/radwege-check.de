@@ -30,8 +30,9 @@ export const TitleBar: React.FC<Props> = ({ results }) => {
         <strong
           className="font-bold"
           title={
-            total > perPage &&
-            `Die ersten ${perPage} Ergebnisse werden angezeigt.`
+            total > perPage
+              ? `Die ersten ${perPage} Ergebnisse werden angezeigt.`
+              : ''
           }
         >
           {total || '-'} Ergebnisse
