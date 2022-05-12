@@ -99,7 +99,6 @@ const MyDataIndex = ({
       sort: { field: 'voteScore', order: 'desc' },
       filters: decodeFilter(searchOptionFilters),
     };
-    console.warn(searchOption);
 
     setResults(items.search(searchOption));
   }, [items, searchOptionFilters]);
