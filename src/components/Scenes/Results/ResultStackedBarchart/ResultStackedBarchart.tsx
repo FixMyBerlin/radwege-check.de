@@ -22,7 +22,7 @@ export const ResultStackedBarchart: React.FC<Props> = ({
         className="grid h-full grid-cols-2"
         title="Der 'Score' ist die Summe der Bewertungen für Gut und Sehr gut."
       >
-        <div className="col-span-2 flex h-8 flex-none items-center">
+        <div className="col-span-2 flex h-8 flex-none items-center justify-center">
           <BikeIcon className="mr-1.5 h-8 w-8" />
           <strong
             className="text-2xl font-semibold"
