@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 import itemsjs from 'itemsjs';
 import { parse, stringify } from 'query-string';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -14,7 +14,7 @@ const MyDataIndex = ({
   data: {
     allScenesPrimaryCsv: { edges: sceneNodes },
   },
-}) => {
+}: PageProps<Queries.Query>) => {
   // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
   const scenes = useMemo(
     () =>

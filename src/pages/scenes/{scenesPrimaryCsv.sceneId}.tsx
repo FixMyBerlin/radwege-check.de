@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 import React from 'react';
 import { Layout, MetaTags } from '~/components/Layout';
 import { SceneImage } from '~/components/Scenes';
@@ -12,7 +12,9 @@ import { SceneImage } from '~/components/Scenes';
   > Quelle: https://www.gatsbyjs.com/docs/reference/routing/file-system-route-api/
 */
 
-const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
+const MyData = ({
+  data: { scenesPrimaryCsv: scene },
+}: PageProps<Queries.Query>) => {
   // console.table(scene);
   return (
     <Layout padding={false}>

@@ -5,6 +5,11 @@ module.exports = {
     description: 'TODO siteMeta.description',
   },
 
+  // https://www.gatsbyjs.com/docs/reference/release-notes/v4.14/#experimental-graphql-typegen
+  flags: {
+    GRAPHQL_TYPEGEN: true,
+  },
+
   // Since `gatsby-plugin-typescript` is automatically included in Gatsby you
   // don't need to define it here (just if you need to change the options)
 
