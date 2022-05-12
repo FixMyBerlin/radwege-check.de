@@ -32,12 +32,24 @@ vehicleTrafficVolume
 vote0Unsafe
 vote1RatherUnsafe
 vote2Save
+vote3CarVerySave
 vote3VerySave
 voteCount
 voteMeans
 voteScore
-voteScoreCar
-voteScorePedestrian
+voteCar0Unsafe
+voteCar1RatherUnsafe
+voteCar2Save
+voteCarCount
+voteCarMeans
+voteCarScore
+votePedestiran2Save
+votePedestrian0Unsafe
+votePedestrian1RatherUnsafe
+votePedestrian3VerySave
+votePedestrianCount
+votePedestrianMeans
+votePedestrianScore
 
 # scenes_secondary
 

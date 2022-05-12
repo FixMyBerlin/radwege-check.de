@@ -22,7 +22,7 @@ const MyData = ({
               <div>
                 Blickwinkel einer Fußgänger:in
                 <div className="text-xl font-light">
-                  {scene.voteScorePedestrian}
+                  {scene.votePedestrianScore}
                 </div>
                 <SceneImage
                   sceneId={scene.sceneIdPedestrian}
@@ -34,7 +34,7 @@ const MyData = ({
             {!!scene.sceneIdCar && (
               <div>
                 Blickwinkel einer Autofahrer:in
-                <div className="text-xl font-light">{scene.voteScoreCar}</div>
+                <div className="text-xl font-light">{scene.voteCarScore}</div>
                 <SceneImage
                   sceneId={scene.sceneIdCar}
                   alt="Illustration der bewerteten Szene aus Blickwinkel einer Autofahrer:in"
@@ -88,12 +88,24 @@ export const query = graphql`
       vote0Unsafe
       vote1RatherUnsafe
       vote2Save
+      vote3CarVerySave
       vote3VerySave
       voteCount
       voteMeans
       voteScore
-      voteScoreCar
-      voteScorePedestrian
+      voteCar0Unsafe
+      voteCar1RatherUnsafe
+      voteCar2Save
+      voteCarCount
+      voteCarMeans
+      voteCarScore
+      votePedestiran2Save
+      votePedestrian0Unsafe
+      votePedestrian1RatherUnsafe
+      votePedestrian3VerySave
+      votePedestrianCount
+      votePedestrianMeans
+      votePedestrianScore
 
       path: gatsbyPath(filePath: "/scenes/{scenesPrimaryCsv.sceneId}")
     }

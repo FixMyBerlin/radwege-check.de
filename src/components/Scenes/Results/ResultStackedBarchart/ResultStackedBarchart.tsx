@@ -38,7 +38,7 @@ export const ResultStackedBarchart: React.FC<Props> = ({
         <div>
           <OtherIconNumber
             otherSceneId={scene.sceneIdCar as string}
-            otherVoteScore={scene.voteScoreCar as number}
+            otherVoteScore={scene.voteCarScore as number}
             handleMouseOver={handleHover}
             handleMouseOut={() => handleHover(scene.sceneId as string)}
             icon={<CarIcon className="h-auto w-5" />}
@@ -47,7 +47,7 @@ export const ResultStackedBarchart: React.FC<Props> = ({
         <div>
           <OtherIconNumber
             otherSceneId={scene.sceneIdPedestrian as string}
-            otherVoteScore={scene.voteScorePedestrian as number}
+            otherVoteScore={scene.votePedestrianScore as number}
             handleMouseOver={handleHover}
             handleMouseOut={() => handleHover(scene.sceneId as string)}
             icon={<PedestrianIcon className="h-5 w-auto" />}
