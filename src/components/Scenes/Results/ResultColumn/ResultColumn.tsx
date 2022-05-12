@@ -11,11 +11,13 @@ export type PrevBucketValues = { [key: string]: string | number };
 
 type Props = {
   scene: ResultItemProps;
+  index: number;
   searchOptionFilters: SearchOptionProps['filters'];
 };
 
 export const ResultColumn: React.FC<Props> = ({
   scene,
+  index,
   searchOptionFilters,
 }) => {
   const [sceneImage, setSceneImage] = useState(scene.sceneId);
@@ -33,6 +35,7 @@ export const ResultColumn: React.FC<Props> = ({
         <SceneImage
           sceneId={sceneImage as string}
           className="h-36 w-full object-cover object-bottom"
+          lazy={index > 10}
         />
       </section>
 
