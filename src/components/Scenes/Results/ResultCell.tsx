@@ -45,7 +45,10 @@ export const ResultCell: React.FC<Props> = ({
         {bucketActive && (
           <>
             {' '}
-            <span className="font-xl mr-1 inline-flex h-2 w-2 content-center items-center rounded-full bg-yellow-200 text-yellow-200">
+            <span
+              className="font-xl mr-1 inline-flex h-2 w-2 cursor-help content-center items-center rounded-full bg-yellow-200 text-yellow-200"
+              title="Für diese Gruppe ist ein Filter aktiv."
+            >
               ・
             </span>
           </>
