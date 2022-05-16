@@ -114,14 +114,6 @@ const MyDataIndex = ({
     setSearchOptionFilters((prevStateString) => {
       const prevState = decodeFilter(prevStateString);
       const filter = selectedBucketKey ? [selectedBucketKey] : [];
-      console.log({
-        log: 'handleSingleChoice',
-        aggregationKey,
-        prevState,
-        prevStateString,
-        filter,
-        selectedBucketKey,
-      });
 
       return encodeFilter({ ...prevState, [aggregationKey]: filter });
     });
@@ -146,13 +138,6 @@ const MyDataIndex = ({
           (k) => k !== selectedBucket.key
         );
         const filter = allWithouted;
-        console.log({
-          log: 'handleMultiChoice FIRST',
-          selectedBucket,
-          aggregationKey,
-          prevState,
-          filter,
-        });
 
         return encodeFilter({ ...prevState, [aggregationKey]: filter });
       });
@@ -165,13 +150,6 @@ const MyDataIndex = ({
             ? [...prevState[aggregationKey], selectedBucket.key]
             : [selectedBucket.key];
         const filter = prevFilter.filter((k) => k !== selectedBucket.key);
-        console.log({
-          log: 'handleMultiChoice IN',
-          selectedBucket,
-          aggregationKey,
-          prevState,
-          filter,
-        });
 
         return encodeFilter({ ...prevState, [aggregationKey]: filter });
       });
@@ -184,13 +162,6 @@ const MyDataIndex = ({
             ? [...prevState[aggregationKey], selectedBucket.key]
             : [selectedBucket.key];
         const filter = prevFilter;
-        console.log({
-          log: 'handleMultiChoice OUT',
-          selectedBucket,
-          aggregationKey,
-          prevState,
-          filter,
-        });
 
         return encodeFilter({ ...prevState, [aggregationKey]: filter });
       });
