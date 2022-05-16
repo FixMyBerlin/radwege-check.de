@@ -20,7 +20,6 @@ const MyDataIndex = ({
     () =>
       sceneNodes
         .map((list) => list.node)
-        .filter((scene) => scene.location !== 'secondary_road')
         .filter((scene) => scene.pointOfView === 'bicycle'),
     [sceneNodes]
   );
