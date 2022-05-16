@@ -35,12 +35,12 @@ export const ButtonSingleChoiceBoth: React.FC<Props> = ({
         uiCanpress,
       })}
       onClick={() =>
-        uiCanpress &&
         handleClick({
           aggregationKey,
           selectedBucketKey: null,
         })
       }
+      disabled={!uiCanpress}
       title=""
     >
       <span

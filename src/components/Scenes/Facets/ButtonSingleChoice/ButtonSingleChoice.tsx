@@ -56,12 +56,12 @@ export const ButtonSingleChoice: React.FC<Props> = ({
         })
       )}
       onClick={() =>
-        uiCanpress &&
         handleClick({
           aggregationKey,
           selectedBucketKey: bucket.key,
         })
       }
+      disabled={!uiCanpress}
       title={`Ergebnisse ${resultFuture}`}
     >
       {showAsIcons ? (

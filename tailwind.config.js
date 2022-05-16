@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        inner: 'inset 1px 1px 3px 0 rgb(177 158 54)',
+        innerYellow: 'inset 1px 1px 3px 0px rgb(180 155 0)',
+        innerGray: 'inset 1px 1px 3px 0 rgb(209 213 219)', // gray-300
       },
       fontSize: { xxs: '0.7rem' },
       typography: ({ theme }) => ({

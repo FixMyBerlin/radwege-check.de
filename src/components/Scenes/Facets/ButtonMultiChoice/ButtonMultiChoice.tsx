@@ -4,6 +4,7 @@ import { aggregationConfig } from '../../constants';
 import { ResultBucketProps } from '../../types';
 import { buttonClassNames } from '../utils';
 import { Icons } from './Icons';
+import { useResults } from './useResults';
 
 export type HandleMultiChoiceProps = {
   aggregationKey: string;
@@ -35,17 +36,12 @@ export const ButtonMultiChoice: React.FC<Props> = ({
   paginationTotal,
 }) => {
   const { showAsIcons } = aggregationConfig[aggregationKey];
-  // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
-  const anyOfGroupSelected = buckets.some((b) => b.selected);
-  const uiSelected = bucket?.selected || !anyOfGroupSelected;
-
-  const resultTotal = paginationTotal;
-  const resultDiff = uiSelected
-    ? -parseInt(bucket?.doc_count, 10)
-    : parseInt(bucket?.doc_count, 10);
-  const resultFuture = resultTotal + resultDiff;
-
-  const uiCanpress = resultFuture !== 0 || resultDiff !== resultFuture;
+  const { resultFuture, uiSelected, uiCanpress } = useResults({
+    total: paginationTotal,
+    bucketCount: bucket?.doc_count,
+    bucketSelected: bucket?.selected,
+    anySelected: buckets.some((b) => b.selected),
+  });
   const firstElement = index === 0;
   const lastElement = index === buckets.length - 1;
 
@@ -63,13 +59,13 @@ export const ButtonMultiChoice: React.FC<Props> = ({
         { '-mt-1.5 !h-10': showAsIcons }
       )}
       onClick={() =>
-        uiCanpress &&
         handleClick({
           aggregationKey,
           buckets,
           selectedBucket: bucket,
         })
       }
+      disabled={!uiCanpress}
       title={[
         showAsIcons
           ? `${aggregationConfig[aggregationKey].buckets[bucket.key]}`

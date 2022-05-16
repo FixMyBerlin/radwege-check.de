@@ -1,11 +1,26 @@
-export const useResults = ({ total, bucketCount, bucketSelected }) => {
-  const resultTotal = total;
-  const resultDiff = resultTotal - parseInt(bucketCount, 10) || 0;
-  const resultFuture = parseInt(bucketCount, 10) || 0;
+type Props = {
+  total: number;
+  bucketCount: number;
+  bucketSelected: boolean;
+};
 
-  const uiSelected = bucketSelected;
+export const useResults = ({ total, bucketCount, bucketSelected }: Props) => {
+  const resultTotal = total;
+  const resultFuture = bucketCount || 0;
+  const resultDiff = resultTotal - resultFuture;
+
+  const showSelectedWhenSelected = bucketSelected;
+  const showSelectedWhenFutureResultsEqCurrentResults =
+    resultTotal === resultFuture;
+
+  const uiSelected =
+    showSelectedWhenSelected || showSelectedWhenFutureResultsEqCurrentResults;
+
+  const allowPressWhenFutureResults = resultFuture !== 0;
+  const allowPreesWhenResultsWouldChange = resultDiff !== 0;
+
   const uiCanpress =
-    !bucketSelected && (resultFuture !== 0 || resultDiff !== 0);
+    allowPressWhenFutureResults && allowPreesWhenResultsWouldChange;
 
   return { resultTotal, resultFuture, uiSelected, uiCanpress };
 };

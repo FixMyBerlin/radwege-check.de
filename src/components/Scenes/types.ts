@@ -9,7 +9,7 @@ export type SearchOptionProps = {
 
 export type ResultBucketProps = {
   key: string;
-  doc_count: string;
+  doc_count: number;
   selected: boolean;
 };
 
