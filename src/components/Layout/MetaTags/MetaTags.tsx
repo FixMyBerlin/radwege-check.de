@@ -6,7 +6,7 @@ import SocialSharingImage from './assets/social-sharing-default.png';
 const seoDefaultValues = {
   defaultTitle: 'TODO seoDefaultValues.defaultTitle',
   defaultDescription: 'TODO seoDefaultValues.defaultDescription',
-  baseUrl: 'https://TODO.url#seoDefaultValues.baseUrl',
+  baseUrl: 'https://radwege-check.de',
 };
 
 type Props = {
