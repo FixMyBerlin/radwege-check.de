@@ -34,7 +34,7 @@ export const ButtonSingleChoice: React.FC<Props> = ({
 }) => {
   const { showAsIcons } = aggregationConfig[aggregationKey];
 
-  const { resultFuture, uiSelected, uiCanpress } = useResults({
+  const { resultTotal, resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
     bucketCount: bucket?.doc_count,
     bucketSelected: bucket?.selected,
@@ -62,7 +62,14 @@ export const ButtonSingleChoice: React.FC<Props> = ({
         })
       }
       disabled={!uiCanpress}
-      title={`Ergebnisse ${resultFuture}`}
+      title={
+        // eslint-disable-next-line no-nested-ternary
+        resultTotal === resultFuture
+          ? 'Auswahl nicht möglich da keine Änderung der Ergebnisse.'
+          : resultFuture === 0
+          ? 'Auswahl nicht möglich da sie zu 0 Ergebnissen führen würde'
+          : `Ergebnisse ${resultFuture || 'todo'}`
+      }
     >
       {showAsIcons ? (
         <span className="font-bold uppercase">

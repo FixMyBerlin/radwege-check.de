@@ -12,8 +12,9 @@ export const useResults = ({
   anySelected, // For our uiSelected: aggregations with no selected buckets are shows as "all selected".
 }: Props) => {
   const resultTotal = total;
-  const resultDiff = bucketCount;
-  const resultFuture = resultTotal - resultDiff;
+  // `resultFuture` (and `resultDiff`) is special for how multiChoice works:
+  const resultDiff = bucketSelected ? -bucketCount : bucketCount;
+  const resultFuture = resultTotal + resultDiff;
 
   const uiSelected = bucketSelected || !anySelected;
 

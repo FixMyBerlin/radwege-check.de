@@ -36,7 +36,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
   paginationTotal,
 }) => {
   const { showAsIcons } = aggregationConfig[aggregationKey];
-  const { resultFuture, uiSelected, uiCanpress } = useResults({
+  const { resultTotal, resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
     bucketCount: bucket?.doc_count,
     bucketSelected: bucket?.selected,
@@ -70,8 +70,12 @@ export const ButtonMultiChoice: React.FC<Props> = ({
         showAsIcons
           ? `${aggregationConfig[aggregationKey].buckets[bucket.key]}`
           : '',
-        resultFuture ? `Ergebnisse ${resultFuture}` : '',
-      ].join(' – ')}
+        resultTotal === resultFuture
+          ? 'Auswahl nicht möglich da keine Änderung der Ergebnisse.'
+          : `Ergebnisse ${resultFuture || 'todo'}`,
+      ]
+        .filter((k) => !!k)
+        .join(' – ')}
     >
       {showAsIcons ? (
         <Icons forValue={bucket.key} />
