@@ -23,7 +23,7 @@ export const BarChart: React.FC<Props> = ({
     return null;
 
   return (
-    <div className={classNames(className, 'mb-1 flex w-full flex-col')}>
+    <div className={classNames(className, 'flex w-full flex-col')}>
       <div
         title={`${vote0Unsafe}`}
         style={{

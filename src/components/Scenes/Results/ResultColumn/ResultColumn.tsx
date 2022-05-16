@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from '~/components/Link';
-import { aggregationConfig } from '../../constants';
 import { SceneImage } from '../../SceneImage';
 import { ResultItemProps, SearchOptionProps } from '../../types';
 import { Bookmark } from '../bookmark/Bookmark';
-import { ResultCell } from '../ResultCell';
+import { ResultCells } from '../ResultCells';
 import { ResultStackedBarchart } from '../ResultStackedBarchart';
 
 export type PrevBucketValues = { [key: string]: string | number };
 
 type Props = {
   scene: ResultItemProps;
-  index: number;
-  searchOptionFilters: SearchOptionProps['filters'];
+  index?: number;
+  searchOptionFilters?: SearchOptionProps['filters'];
 };
 
 export const ResultColumn: React.FC<Props> = ({
   scene,
-  index,
-  searchOptionFilters,
+  index = 0,
+  searchOptionFilters = {},
 }) => {
   const [sceneImage, setSceneImage] = useState(scene.sceneId);
   const handleImageChange = (sceneId: string) => setSceneImage(sceneId);
@@ -39,22 +38,11 @@ export const ResultColumn: React.FC<Props> = ({
         />
       </section>
 
-      <ResultStackedBarchart scene={scene} handleHover={handleImageChange} />
+      <div className="h-28">
+        <ResultStackedBarchart scene={scene} handleHover={handleImageChange} />
+      </div>
 
-      {Object.keys(aggregationConfig).map((key) => {
-        const bucketActive = searchOptionFilters && !!searchOptionFilters[key];
-
-        return (
-          <ResultCell
-            key={key}
-            keyName={key}
-            scene={scene}
-            bucketActive={bucketActive}
-            groupEndIndicator={aggregationConfig[key]?.groupEndIndicator}
-            showIcon={aggregationConfig[key]?.showAsIcons}
-          />
-        );
-      })}
+      <ResultCells scene={scene} searchOptionFilters={searchOptionFilters} />
 
       <section className="py-3">
         {/* todo types */}
