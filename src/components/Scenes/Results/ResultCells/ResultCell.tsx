@@ -71,7 +71,7 @@ export const ResultCell: React.FC<Props> = ({
         {showIcon && (
           <span className="absolute right-1 top-0 text-xxs">
             {/* TODO Fix types */}
-            <Icons forValue={scene[keyName] as string} className="scale-75" />
+            <Icons forValue={scene[keyName]} className="scale-75" />
           </span>
         )}
       </p>

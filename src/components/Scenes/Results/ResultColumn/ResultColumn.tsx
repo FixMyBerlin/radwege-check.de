@@ -25,7 +25,7 @@ export const ResultColumn: React.FC<Props> = ({
   return (
     <article className="h-full w-48 flex-none">
       <h2 className="sr-only">
-        <Link to={scene.path as string}>Szene {scene.sceneId}</Link>
+        <Link to={scene.path}>Szene {scene.sceneId}</Link>
       </h2>
 
       <section className="relative mb-2">
@@ -46,7 +46,7 @@ export const ResultColumn: React.FC<Props> = ({
 
       <section className="py-3">
         {/* todo types */}
-        <Link button blank to={scene.path as string}>
+        <Link button blank to={scene.path}>
           Details
         </Link>
       </section>

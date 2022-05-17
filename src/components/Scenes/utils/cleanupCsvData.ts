@@ -23,15 +23,14 @@ export const cleanupCsvData = (input) => {
           key.includes('Means') ||
           key.includes('WidthNumber'))
       ) {
-        cleaned[index][key] =
-          parseFloat((value as string).replace(',', '.')) ||
-          cleaned[index][key];
+        cleaned[index][key] = parseFloat(cleaned[index][key].replace(',', '.'));
       }
 
       // Change values `"true"` to boolean values `true`
-      if (typeof cleaned[index][key] === 'string' && key.includes('Has')) {
-        cleaned[index][key] = key === 'true';
-      }
+      //  => This is a bad idea; it causes issues with the loockup of data based on the boolean key.
+      // if (typeof cleaned[index][key] === 'string' && key.includes('Has')) {
+      //   cleaned[index][key] = key === 'true';
+      // }
     })
   );
 

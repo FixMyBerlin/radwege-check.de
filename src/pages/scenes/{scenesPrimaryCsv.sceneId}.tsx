@@ -33,9 +33,9 @@ const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
       scene.voteCarMeans,
     ],
     'Anzahl Antworten': [
-      parseInt(scene.voteCount, 10),
-      parseInt(scene.votePedestrianCount, 10),
-      parseInt(scene.voteCarCount, 10),
+      Math.round(scene.voteCount),
+      Math.round(scene.votePedestrianCount),
+      Math.round(scene.voteCarCount),
     ],
   };
 

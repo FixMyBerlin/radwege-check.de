@@ -19,10 +19,10 @@ export const TitleBar: React.FC<Props> = ({
   useEffect(() => {
     let sum = 0;
     resultItems.forEach((scene) => {
-      sum += parseInt(scene.voteScore as string, 10);
+      sum += scene.voteScore;
     });
     // result.pagination.total wäre die Gesamtanzahl; aber hier würden wir nur die max-200 Ergebnisse für die Berechnung berücksichigen.
-    const average = parseInt(`${sum / resultItems.length}`, 10);
+    const average = Math.round(sum / resultItems.length);
     setResultScoreAverage(average);
   }, [resultItems]);
 

@@ -33,8 +33,8 @@ export const OtherIconNumberBarchart: React.FC<Props> = ({
 }) => {
   const IconNumber = (
     <OtherIconNumber
-      otherSceneId={sceneId as string}
-      otherVoteScore={voteScore as number}
+      otherSceneId={sceneId}
+      otherVoteScore={voteScore}
       icon={icon}
       className="h-8"
     />

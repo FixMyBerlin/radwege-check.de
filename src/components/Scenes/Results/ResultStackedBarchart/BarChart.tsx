@@ -1,16 +1,14 @@
 import classNames from 'classnames';
 import React from 'react';
-import { formatNumber } from '~/components/utils';
+import { formatPercent } from '~/components/utils';
+import { ResultItemProps } from '../../types';
 
 type Props = {
-  // Those types are weird because our GraphQL results are not parsed.
-  // But no problem, our helper `formatNumber` (…) will handle this.
-  vote0Unsafe: string | number;
-  vote1RatherUnsafe: string | number;
-  vote2Save: string | number;
-  vote3VerySave: string | number;
   className?: string;
-};
+} & Pick<
+  ResultItemProps,
+  'vote0Unsafe' | 'vote1RatherUnsafe' | 'vote2Save' | 'vote3VerySave'
+>;
 
 export const BarChart: React.FC<Props> = ({
   vote0Unsafe,
@@ -19,62 +17,33 @@ export const BarChart: React.FC<Props> = ({
   vote3VerySave,
   className,
 }) => {
-  if (!(vote0Unsafe && vote1RatherUnsafe && vote2Save && vote3VerySave))
+  // We need to sum, otherwise a vote of 0 will break the chart.
+  // We only want to guard against empty charts.
+  if (!(vote0Unsafe + vote1RatherUnsafe + vote2Save + vote3VerySave))
     return null;
+
+  const bars = [
+    { key: 'vote0Unsafe', value: vote0Unsafe, color: '#c01d1d' },
+    { key: 'vote1RatherUnsafe', value: vote1RatherUnsafe, color: '#f08141' },
+    { key: 'vote2Save', value: vote2Save, color: '#abc759' },
+    { key: 'vote3VerySave', value: vote3VerySave, color: '#45b834' },
+  ];
 
   return (
     <div className={classNames(className, 'flex w-full flex-col')}>
-      <div
-        title={`${vote0Unsafe}`}
-        style={{
-          height: formatNumber(vote0Unsafe, {
-            unit: '%',
-            delimiter: '.',
-          }),
-          backgroundColor: '#c01d1d',
-        }}
-        className="w-full"
-      >
-        {' '}
-      </div>
-      <div
-        style={{
-          height: formatNumber(vote1RatherUnsafe, {
-            unit: '%',
-            delimiter: '.',
-          }),
-          backgroundColor: '#f08141',
-        }}
-        className="w-full bg-orange-300"
-      >
-        {' '}
-      </div>
-      <div
-        title={`${vote2Save}`}
-        style={{
-          height: formatNumber(vote2Save, {
-            unit: '%',
-            delimiter: '.',
-          }),
-          backgroundColor: '#abc759',
-        }}
-        className="w-full"
-      >
-        {' '}
-      </div>
-      <div
-        title={`${vote3VerySave}`}
-        style={{
-          height: formatNumber(vote3VerySave, {
-            unit: '%',
-            delimiter: '.',
-          }),
-          backgroundColor: '#45b834',
-        }}
-        className="w-full"
-      >
-        {' '}
-      </div>
+      {bars.map(({ key, value, color }) => (
+        <div
+          key={key}
+          title={formatPercent(value, {})}
+          style={{
+            height: `${value}%`,
+            backgroundColor: color,
+          }}
+          className="w-full"
+        >
+          {' '}
+        </div>
+      ))}
     </div>
   );
 };

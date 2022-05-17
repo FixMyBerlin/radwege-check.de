@@ -21,13 +21,13 @@ export const ResultStackedBarchart: React.FC<Props> = ({
   classNameBarchartHeight,
   iconWhenEmpty,
 }) => {
-  const handleHoverProps = useCallback((sceneId: string | number) => {
+  const handleHoverProps = useCallback((sceneId: string) => {
     if (!handleHover) return {};
     if (!sceneId) return {};
 
     return {
-      handleMouseOver: () => handleHover(sceneId as string),
-      handleMouseOut: () => handleHover(scene.sceneId as string),
+      handleMouseOver: () => handleHover(sceneId),
+      handleMouseOut: () => handleHover(scene.sceneId),
     };
   }, []);
 
@@ -59,24 +59,24 @@ export const ResultStackedBarchart: React.FC<Props> = ({
         />
       </div>
       <OtherIconNumberBarchart
-        sceneId={scene.sceneId as string}
-        vote0Unsafe={scene.votePedestrian0Unsafe as number}
-        vote1RatherUnsafe={scene.votePedestrian1RatherUnsafe as number}
-        vote2Save={scene.votePedestrian2Save as number}
-        vote3VerySave={scene.votePedestrian3VerySave as number}
-        voteScore={scene.votePedestrianScore as number}
+        sceneId={scene.sceneId}
+        vote0Unsafe={scene.votePedestrian0Unsafe}
+        vote1RatherUnsafe={scene.votePedestrian1RatherUnsafe}
+        vote2Save={scene.votePedestrian2Save}
+        vote3VerySave={scene.votePedestrian3VerySave}
+        voteScore={scene.votePedestrianScore}
         {...handleHoverProps(scene.sceneIdPedestrian)}
         classNameBarchartHeight={classNameBarchartHeight}
         icon={<PedestrianIcon className="h-5 w-auto" />}
         iconWhenEmpty={iconWhenEmpty}
       />
       <OtherIconNumberBarchart
-        sceneId={scene.sceneId as string}
-        vote0Unsafe={scene.voteCar0Unsafe as number}
-        vote1RatherUnsafe={scene.voteCar1RatherUnsafe as number}
-        vote2Save={scene.voteCar2Save as number}
-        vote3VerySave={scene.voteCar3VerySave as number}
-        voteScore={scene.voteCarScore as number}
+        sceneId={scene.sceneId}
+        vote0Unsafe={scene.voteCar0Unsafe}
+        vote1RatherUnsafe={scene.voteCar1RatherUnsafe}
+        vote2Save={scene.voteCar2Save}
+        vote3VerySave={scene.voteCar3VerySave}
+        voteScore={scene.voteCarScore}
         {...handleHoverProps(scene.sceneIdCar)}
         classNameBarchartHeight={classNameBarchartHeight}
         icon={<CarIcon className="h-5 w-auto" />}
