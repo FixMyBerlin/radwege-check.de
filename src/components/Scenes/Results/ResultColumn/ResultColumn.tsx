@@ -38,7 +38,7 @@ export const ResultColumn: React.FC<Props> = ({
         />
       </section>
 
-      <div className="h-28">
+      <div className="mb-1 h-28">
         <ResultStackedBarchart scene={scene} handleHover={handleImageChange} />
       </div>
 
