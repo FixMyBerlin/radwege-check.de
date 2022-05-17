@@ -40,7 +40,7 @@ const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
   };
 
   return (
-    <Layout padding={false}>
+    <Layout>
       <MetaTags
         article
         title={`Titel: ${scene.sceneId}`}
