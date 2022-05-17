@@ -3,10 +3,13 @@ import { Link as GatsbyLink } from 'gatsby';
 import React from 'react';
 
 type Props = {
+  /** @desc Internal Link, external Link, e-mail-address (will add the `mailto:` automatically) */
   to: string;
   className?: string;
   blank?: boolean;
   external?: boolean;
+  mailSubject?: string;
+  mailBody?: string;
 } & (
   | { classNameOverwrite: string; button?: false }
   | { classNameOverwrite?: undefined; button?: boolean }
@@ -19,6 +22,8 @@ export const Link: React.FC<Props> = ({
   blank = false,
   external = false,
   button = false,
+  mailSubject,
+  mailBody,
   children,
 }) => {
   const linkStyles =
@@ -30,6 +35,14 @@ export const Link: React.FC<Props> = ({
     classNameOverwrite || (button ? buttonStyles : linkStyles)
   );
 
+  let mailto: string;
+  if (to.includes('@')) {
+    const url = new URL(`mailto:${to}`);
+    if (mailSubject) url.searchParams.set('subject', mailSubject);
+    if (mailBody) url.searchParams.set('body', mailBody);
+    mailto = url.toString();
+  }
+
   type NewWindowProps = {
     target?: string;
     rel?: string;
@@ -40,9 +53,9 @@ export const Link: React.FC<Props> = ({
     rel: external ? 'noopener noreferrer' : undefined,
   };
 
-  if (blank) {
+  if (blank || mailto) {
     return (
-      <a href={to} className={classes} {...newWindowProps}>
+      <a href={mailto || to} className={classes} {...newWindowProps}>
         {children}
       </a>
     );
