@@ -1,5 +1,3 @@
-const plugin = require('tailwindcss/plugin');
-
 /* eslint-disable global-require */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -40,9 +38,6 @@ module.exports = {
     },
   },
   plugins: [
-    plugin(({ addVariant }) => {
-      addVariant('children', '& > *');
-    }),
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
     require('@tailwindcss/line-clamp'),
