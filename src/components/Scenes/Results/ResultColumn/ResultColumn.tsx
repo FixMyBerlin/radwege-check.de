@@ -28,14 +28,16 @@ export const ResultColumn: React.FC<Props> = ({
         <Link to={scene.path}>Szene {scene.sceneId}</Link>
       </h2>
 
-      <section className="relative mb-2">
-        <Bookmark active />
-        {/* todo types */}
-        <SceneImage
-          sceneId={sceneImage as string}
-          className="h-36 w-full object-cover object-bottom"
-          lazy={index > 10}
-        />
+      <section className="mb-2">
+        <Link to={scene.path} blank classNameOverwrite="relative">
+          <Bookmark active />
+          {/* todo types */}
+          <SceneImage
+            sceneId={sceneImage}
+            className="h-36 w-full object-cover object-bottom"
+            lazy={index > 10}
+          />
+        </Link>
       </section>
 
       <div className="mb-1 h-28">
