@@ -43,22 +43,30 @@ const MyDataIndex = ({
     StringParam
   );
 
+  const [searchOrder, setSearchOrder] = useQueryParam('order', StringParam);
+
   // ItemsJS Filter the data
   const [results, setResults] = useState<ResultProps>(null);
   useEffect(() => {
     if (!items) return;
 
+    // We don't add a default order to the useQueryParam so the url param is gone by default.
+    const order = searchOrder || 'desc';
+
     // https://github.com/itemsapi/itemsjs#itemsjssearchoptions
     const searchOption = {
       per_page: 200,
-      sort: { field: 'voteScore', order: 'desc' },
+      sort: { field: 'voteScore', order },
       filters: decodeFilter(searchOptionFilters),
     };
 
     setResults(items.search(searchOption));
   }, [items, searchOptionFilters]);
 
-  const handleResetFilter = () => setSearchOptionFilters(undefined);
+  const handleResetFilter = () => {
+    setSearchOptionFilters(undefined);
+    setSearchOrder(undefined);
+  };
 
   // SingleChoice: Replace the key
   // This will trigger a useEffect to re-search.
@@ -134,7 +142,11 @@ const MyDataIndex = ({
         handleMultiChoice={handleMultiChoice}
       />
 
-      <TitleBar results={results} />
+      <TitleBar
+        results={results}
+        searchOrder={searchOrder}
+        setSearchOrder={setSearchOrder}
+      />
 
       <Results
         results={results}
