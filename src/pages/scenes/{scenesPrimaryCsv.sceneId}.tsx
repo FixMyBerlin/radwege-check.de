@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { graphql, PageProps } from 'gatsby';
+import { graphql } from 'gatsby';
 import React from 'react';
 import { Layout, MetaTags } from '~/components/Layout';
 import { SceneImage } from '~/components/Scenes';
@@ -7,9 +7,7 @@ import { ResultCells } from '~/components/Scenes/Results/ResultCells';
 import { ResultStackedBarchart } from '~/components/Scenes/Results/ResultStackedBarchart';
 import { ResultItemProps } from '~/components/Scenes/types';
 
-const MyData = ({
-  data: { scenesPrimaryCsv: scene },
-}: PageProps<Queries.Query>) => {
+const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
   // console.table(scene);
 
   const table = {
