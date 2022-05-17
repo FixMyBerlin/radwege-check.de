@@ -1,4 +1,8 @@
-export type footerMenuItemProps = { name: string; to: string };
+export type footerMenuItemProps = {
+  name: string;
+  to: string;
+  external?: boolean;
+};
 type footerMenuProp = {
   [key: string]: footerMenuItemProps[];
 };
@@ -10,6 +14,7 @@ export const footerLinks: footerMenuProp = {
     {
       name: 'Auswertung Subjektive Sicherheit',
       to: 'https://fixmyberlin.de/research/subjektive-sicherheit',
+      external: true,
     },
   ],
   formal: [

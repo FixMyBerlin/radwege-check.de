@@ -54,7 +54,7 @@ export const Link: React.FC<Props> = ({
     rel: external ? 'noopener noreferrer' : undefined,
   };
 
-  if (blank || mailto) {
+  if (external || blank || mailto) {
     return (
       <a href={mailto || to} className={classes} {...newWindowProps}>
         {children}

@@ -1,5 +1,5 @@
-import { Link } from 'gatsby';
 import React from 'react';
+import { Link } from '~/components/Link';
 import { footerMenuItemProps } from './footerLinks.const';
 
 type Props = {
@@ -24,6 +24,7 @@ export const FooterLinks: React.FC<Props> = ({
             <Link
               to={item.to}
               className="text-base text-slate-300 hover:text-white"
+              external={item.external}
             >
               {item.name}
             </Link>
