@@ -8,7 +8,11 @@ import { itemJsConfig } from '~/components/Scenes/constants';
 import { HandleMultiChoiceProps } from '~/components/Scenes/Facets/ButtonMultiChoice/ButtonMultiChoice';
 import { HandleSingleChoiceProps } from '~/components/Scenes/Facets/ButtonSingleChoice/ButtonSingleChoice';
 import { ResultProps } from '~/components/Scenes/types';
-import { decodeFilter, encodeFilter } from '~/components/Scenes/utils';
+import {
+  cleanupCsvData,
+  decodeFilter,
+  encodeFilter,
+} from '~/components/Scenes/utils';
 
 const MyDataIndex = ({
   data: {
@@ -16,13 +20,7 @@ const MyDataIndex = ({
   },
 }) => {
   // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
-  const scenes = useMemo(
-    () =>
-      sceneNodes
-        .map((list) => list.node)
-        .filter((scene) => scene.pointOfView === 'bicycle'),
-    [sceneNodes]
-  );
+  const scenes = useMemo(() => cleanupCsvData(sceneNodes), [sceneNodes]);
 
   // Init itemjs with the set configuration and data (scenes).
   const [items, setItems] = useState(undefined);
