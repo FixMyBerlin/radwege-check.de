@@ -1,6 +1,7 @@
 import React from 'react';
-import { buttonStyles, Link } from '../Link';
-import { presets } from './presets.const';
+import { Link } from '../Link';
+import { PresetSlider } from './PresetSlider';
+import { presetSlides } from './presetSlides.const';
 
 export const Presets: React.FC = () => {
   return (
@@ -28,29 +29,7 @@ export const Presets: React.FC = () => {
             </div>
           </nav>
         </div>
-        <ul className="mb-3 flex flex-row gap-4 rounded-md bg-stone-300 p-4">
-          {Object.entries(presets).map(([presetName, preset]) => {
-            return (
-              <li key={presetName}>
-                <Link
-                  button
-                  to={preset.url}
-                  classNameOverwrite="flex h-80 w-80 flex-col justify-between rounded-md bg-white p-3 shadow-lg group"
-                >
-                  <>
-                    <h3 className="h-24 font-semibold group-hover:underline">
-                      {preset.title}
-                    </h3>
-                    {preset.image}
-                    <div className={buttonStyles}>
-                      {preset.results} Ergebnisse
-                    </div>
-                  </>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <PresetSlider slides={presetSlides} />
         <p>
           <Link button to="/scenes">
             Alle 1.7000 Ergebnisse
