@@ -186,13 +186,13 @@ export const aggregationConfig: AggregationConfig = {
     showAsIcons: false,
   },
   vehicleLaneUsage: {
-    title: 'Fahrbahn Nutzung',
-    resultTitle: 'Nutzung der Fahrbahn',
+    title: 'Fahrstreifen Nutzung',
+    resultTitle: 'Nutzung der Fahrstreifen',
     buckets: {
       bothButton: 'Egal',
-      motor_vehicle_and_tram: 'Fahrspur mit Tram',
-      motor_vehicle_only: 'Eine Fahrspur',
-      motor_vehicle_only_one_way: 'Zwei Fahrspuren',
+      motor_vehicle_and_tram: 'Fahrstreifen mit Tram',
+      motor_vehicle_only: 'Eine Fahrstreifen',
+      motor_vehicle_only_one_way: 'Zwei Fahrstreifen',
     },
     choiceMode: 'single',
     showAsIcons: false,
