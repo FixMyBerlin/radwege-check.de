@@ -11,13 +11,13 @@ const KontaktPage: React.FC<PageProps> = ({ location }) => {
         title="Kontakt &amp; Impressum"
         description="Kontakt zum Team von FixMyCity."
       />
+
       <h1>Kontakt</h1>
       <p>
         <Link to="hello@fixmycity.de" button>
           hello@fixmycity.de
         </Link>
       </p>
-
       <p>
         Du findest uns auch auf{' '}
         <Link external blank to="https://twitter.com/fixmyberlin">
@@ -54,26 +54,6 @@ const KontaktPage: React.FC<PageProps> = ({ location }) => {
         Verantwortlicher i.S.v. § 55 Rundfunkstaatsvertrag (RStV): Boris Hekele
       </p>
 
-      <h1>OpenSource</h1>
-      <p>
-        Der{' '}
-        <Link external to="https://github.com/FixMyBerlin/fixmy.safetycheck">
-          Quellcode dieser Website
-        </Link>{' '}
-        ist OpenSource auf GitHub .
-      </p>
-      <h1>Urheberrechte Fotos</h1>
-      <p>
-        Wenn nicht anders angegeben stehen die auf dieser Website verwendeten
-        Fotos unter{' '}
-        <Link
-          external
-          to="https://creativecommons.org/licenses/by-nc/4.0/deed.de"
-        >
-          Creative Commons-Lizenz BY-NC 4.0
-        </Link>
-        .
-      </p>
       <h1>Förderung</h1>
       <p>
         Diese Website wird TODO{' '}

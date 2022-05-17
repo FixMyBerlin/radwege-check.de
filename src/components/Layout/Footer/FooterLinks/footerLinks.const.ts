@@ -6,7 +6,8 @@ type footerMenuProp = {
 export const footerLinks: footerMenuProp = {
   content: [{ name: 'Auswertung', to: '/auswertung/' }],
   formal: [
-    { name: 'Kontakt', to: '/kontakt/' },
+    { name: 'Kontakt & Impressum', to: '/kontakt/' },
     { name: 'Datenschuzt', to: '/datenschutz/' },
+    { name: 'OpenData, OpenSource, Lizenzen', to: '/open-data/' },
   ],
 };
