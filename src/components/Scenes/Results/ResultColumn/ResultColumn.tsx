@@ -11,13 +11,13 @@ export type PrevBucketValues = { [key: string]: string | number };
 type Props = {
   scene: ResultItemProps;
   index?: number;
-  searchOptionFilters?: SearchOptionProps['filters'];
+  searchFilters?: SearchOptionProps['filters'];
 };
 
 export const ResultColumn: React.FC<Props> = ({
   scene,
   index = 0,
-  searchOptionFilters = {},
+  searchFilters = {},
 }) => {
   const [sceneImage, setSceneImage] = useState(scene.sceneId);
   const handleImageChange = (sceneId: string) => setSceneImage(sceneId);
@@ -42,7 +42,7 @@ export const ResultColumn: React.FC<Props> = ({
         <ResultStackedBarchart scene={scene} handleHover={handleImageChange} />
       </div>
 
-      <ResultCells scene={scene} searchOptionFilters={searchOptionFilters} />
+      <ResultCells scene={scene} searchFilters={searchFilters} />
 
       <section className="py-3">
         {/* todo types */}

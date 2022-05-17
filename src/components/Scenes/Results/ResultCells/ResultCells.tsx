@@ -5,17 +5,14 @@ import { ResultCell } from './ResultCell';
 
 type Props = {
   scene: ResultItemProps;
-  searchOptionFilters?: SearchOptionProps['filters'];
+  searchFilters?: SearchOptionProps['filters'];
 };
 
-export const ResultCells: React.FC<Props> = ({
-  scene,
-  searchOptionFilters,
-}) => {
+export const ResultCells: React.FC<Props> = ({ scene, searchFilters }) => {
   return (
     <>
       {Object.keys(aggregationConfig).map((key) => {
-        const bucketActive = searchOptionFilters && !!searchOptionFilters[key];
+        const bucketActive = searchFilters && !!searchFilters[key];
 
         return (
           <ResultCell

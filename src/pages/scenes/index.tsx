@@ -38,7 +38,7 @@ const MyDataIndex = ({
   //   We tried a custom paramConfig (instead of StringParam) but that caused loops.
   // ~~We do not use this inside the UI, which is based on the results object only.~~
   //   TBD: We do now, but we should maybe remove it again… – TODO
-  const [searchOptionFilters, setSearchOptionFilters] = useQueryParam(
+  const [searchFilters, setSearchFilters] = useQueryParam(
     'filter',
     StringParam
   );
@@ -57,14 +57,14 @@ const MyDataIndex = ({
     const searchOption = {
       per_page: 200,
       sort: { field: 'voteScore', order },
-      filters: decodeFilter(searchOptionFilters),
+      filters: decodeFilter(searchFilters),
     };
 
     setResults(items.search(searchOption));
-  }, [items, searchOptionFilters]);
+  }, [items, searchFilters]);
 
   const handleResetFilter = () => {
-    setSearchOptionFilters(undefined);
+    setSearchFilters(undefined);
     setSearchOrder(undefined);
   };
 
@@ -74,7 +74,7 @@ const MyDataIndex = ({
     aggregationKey,
     selectedBucketKey,
   }: HandleSingleChoiceProps) => {
-    setSearchOptionFilters((prevStateString) => {
+    setSearchFilters((prevStateString) => {
       const prevState = decodeFilter(prevStateString);
       const filter = selectedBucketKey ? [selectedBucketKey] : [];
 
@@ -82,7 +82,7 @@ const MyDataIndex = ({
     });
   };
 
-  // Add remove filter to the searchOptionFilters state.
+  // Add remove filter to the searchFilters state.
   // This will trigger a useEffect to re-search.
   const handleMultiChoice = ({
     aggregationKey,
@@ -94,7 +94,7 @@ const MyDataIndex = ({
       // Activate uiFilter (remove Filter)
       // Selecting the first bucket in an aggregation will not return bucket.selected for some reason.
       // To work around this, we handle the first  manually.
-      setSearchOptionFilters((prevStateString) => {
+      setSearchFilters((prevStateString) => {
         const prevState = decodeFilter(prevStateString);
         const allBucketKeys = buckets.map((bucket) => bucket.key);
         const allWithouted = allBucketKeys.filter(
@@ -106,7 +106,7 @@ const MyDataIndex = ({
       });
     } else if (selectedBucket.selected) {
       // Activate uiFilter (remove Filter)
-      setSearchOptionFilters((prevStateString) => {
+      setSearchFilters((prevStateString) => {
         const prevState = decodeFilter(prevStateString);
         const prevFilter =
           aggregationKey in prevState
@@ -118,7 +118,7 @@ const MyDataIndex = ({
       });
     } else {
       // Deactivate uiFilter (add Filter)
-      setSearchOptionFilters((prevStateString) => {
+      setSearchFilters((prevStateString) => {
         const prevState = decodeFilter(prevStateString);
         const prevFilter =
           aggregationKey in prevState
@@ -148,10 +148,7 @@ const MyDataIndex = ({
         setSearchOrder={setSearchOrder}
       />
 
-      <Results
-        results={results}
-        searchOptionFilters={decodeFilter(searchOptionFilters)}
-      />
+      <Results results={results} searchFilters={decodeFilter(searchFilters)} />
     </FixedLayout>
   );
 };

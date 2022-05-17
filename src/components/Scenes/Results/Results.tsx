@@ -4,10 +4,10 @@ import { ResultColumn } from './ResultColumn';
 
 type Props = {
   results: ResultProps;
-  searchOptionFilters: SearchOptionProps['filters'];
+  searchFilters: SearchOptionProps['filters'];
 };
 
-export const Results: React.FC<Props> = ({ results, searchOptionFilters }) => {
+export const Results: React.FC<Props> = ({ results, searchFilters }) => {
   const resultItems = results?.data?.items || [];
 
   return (
@@ -17,7 +17,7 @@ export const Results: React.FC<Props> = ({ results, searchOptionFilters }) => {
           key={scene.sceneId}
           scene={scene}
           index={index}
-          searchOptionFilters={searchOptionFilters}
+          searchFilters={searchFilters}
         />
       ))}
     </div>
