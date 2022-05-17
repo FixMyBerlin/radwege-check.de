@@ -4,10 +4,17 @@ type footerMenuProp = {
 };
 
 export const footerLinks: footerMenuProp = {
-  content: [{ name: 'Auswertung', to: '/auswertung/' }],
+  results: [
+    { name: 'Hauptstraßen', to: '/hauptstrassen/' },
+    { name: 'Nebenstraßen', to: '/nebenstrassen/' },
+    {
+      name: 'Auswertung Subjektive Sicherheit',
+      to: 'https://fixmyberlin.de/research/subjektive-sicherheit',
+    },
+  ],
   formal: [
     { name: 'Kontakt & Impressum', to: '/kontakt/' },
-    { name: 'Datenschuzt', to: '/datenschutz/' },
+    { name: 'Datenschutz', to: '/datenschutz/' },
     { name: 'OpenData, OpenSource, Lizenzen', to: '/open-data/' },
   ],
 };
