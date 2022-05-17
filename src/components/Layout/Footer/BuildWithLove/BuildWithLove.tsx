@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from '~/components/Link';
 
-type Props = never;
-
-export const BuildWithLove: React.FC<Props> = () => {
+export const BuildWithLove: React.FC = () => {
   return (
     <>
       Gebaut mit{' '}
