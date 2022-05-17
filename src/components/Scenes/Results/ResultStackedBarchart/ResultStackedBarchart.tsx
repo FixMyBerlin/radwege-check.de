@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { formatNumber } from '~/components/utils';
 import { ResultItemProps } from '../../types';
 import BikeIcon from './assets/bike-icon.svg';
@@ -21,6 +21,16 @@ export const ResultStackedBarchart: React.FC<Props> = ({
   classNameBarchartHeight,
   iconWhenEmpty,
 }) => {
+  const handleHoverProps = useCallback((sceneId: string | number) => {
+    if (!handleHover) return {};
+    if (!sceneId) return {};
+
+    return {
+      handleMouseOver: () => handleHover(sceneId as string),
+      handleMouseOut: () => handleHover(scene.sceneId as string),
+    };
+  }, []);
+
   return (
     <section
       className="relative grid h-full grid-cols-5 gap-1 border-b border-dotted text-xs"
@@ -55,12 +65,7 @@ export const ResultStackedBarchart: React.FC<Props> = ({
         vote2Save={scene.votePedestrian2Save as number}
         vote3VerySave={scene.votePedestrian3VerySave as number}
         voteScore={scene.votePedestrianScore as number}
-        handleMouseOver={() =>
-          handleHover && handleHover(scene.sceneIdPedestrian as string)
-        }
-        handleMouseOut={() =>
-          handleHover && handleHover(scene.sceneId as string)
-        }
+        {...handleHoverProps(scene.sceneIdPedestrian)}
         classNameBarchartHeight={classNameBarchartHeight}
         icon={<PedestrianIcon className="h-5 w-auto" />}
         iconWhenEmpty={iconWhenEmpty}
@@ -72,12 +77,7 @@ export const ResultStackedBarchart: React.FC<Props> = ({
         vote2Save={scene.voteCar2Save as number}
         vote3VerySave={scene.voteCar3VerySave as number}
         voteScore={scene.voteCarScore as number}
-        handleMouseOver={() =>
-          handleHover && handleHover(scene.sceneIdCar as string)
-        }
-        handleMouseOut={() =>
-          handleHover && handleHover(scene.sceneId as string)
-        }
+        {...handleHoverProps(scene.sceneIdCar)}
         classNameBarchartHeight={classNameBarchartHeight}
         icon={<CarIcon className="h-5 w-auto" />}
         iconWhenEmpty={iconWhenEmpty}

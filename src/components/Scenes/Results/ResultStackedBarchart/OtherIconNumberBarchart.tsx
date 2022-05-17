@@ -10,8 +10,8 @@ type Props = {
   vote2Save: number;
   vote3VerySave: number;
   voteScore: number;
-  handleMouseOver: () => void;
-  handleMouseOut: () => void;
+  handleMouseOver?: () => void;
+  handleMouseOut?: () => void;
   classNameBarchartHeight: string;
   icon: React.ReactElement;
   /** @docs Default false; Show the icon + fallback-number even if no otherScene present */
