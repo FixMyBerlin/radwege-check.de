@@ -1,7 +1,12 @@
-export const cleanupCsvData = (input) => {
-  const flattened = input.map((list) => list.node);
+import { ResultItemProps } from '../types';
 
-  const filtered = flattened.filter((scene) => scene.pointOfView === 'bicycle');
+/**
+ * We paste the data from our Google Spreadsheet CSV export without further cleanup.
+ * That makes for an easy update process from Spreadsheet to Gatsby.
+ * This helper will cleanup the bad data types for undefined and number data.
+ */
+export const cleanupCsvData = (input): ResultItemProps[] => {
+  const filtered = input.filter((scene) => scene.pointOfView === 'bicycle');
 
   const cleaned = [];
   filtered.forEach((row, index) =>
@@ -40,7 +45,7 @@ export const cleanupCsvData = (input) => {
   //   filt: filtered[0],
   //   clean: cleaned[0],
   // });
-  console.table(filtered[0]);
-  console.table(cleaned[0]);
+  // console.table(filtered[0]);
+  // console.table(cleaned[0]);
   return cleaned;
 };

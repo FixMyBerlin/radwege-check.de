@@ -19,8 +19,12 @@ const MyDataIndex = ({
     allScenesPrimaryCsv: { edges: sceneNodes },
   },
 }) => {
-  // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
-  const scenes = useMemo(() => cleanupCsvData(sceneNodes), [sceneNodes]);
+  const scenes = useMemo(() => {
+    // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
+    const flattened = sceneNodes.map((list) => list.node);
+    // Clean the data
+    return cleanupCsvData(flattened);
+  }, [sceneNodes]);
 
   // Init itemjs with the set configuration and data (scenes).
   const [items, setItems] = useState(undefined);

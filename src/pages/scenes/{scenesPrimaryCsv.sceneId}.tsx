@@ -1,36 +1,45 @@
 import classNames from 'classnames';
 import { graphql } from 'gatsby';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Layout, MetaTags } from '~/components/Layout';
 import { SceneImage } from '~/components/Scenes';
 import { ResultCells } from '~/components/Scenes/Results/ResultCells';
 import { ResultStackedBarchart } from '~/components/Scenes/Results/ResultStackedBarchart';
 import { ResultItemProps } from '~/components/Scenes/types';
+import { cleanupCsvData } from '~/components/Scenes/utils';
+import { formatNumber, formatPercent } from '~/components/utils';
 
-const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
-  // console.table(scene);
+const MyData = ({ data }) => {
+  const scene = useMemo(
+    () => cleanupCsvData([data.scenesPrimaryCsv])[0],
+    [data]
+  );
 
   const table = {
     'Sehr schlecht': [
-      scene.vote0Unsafe,
-      scene.votePedestrian0Unsafe,
-      scene.voteCar0Unsafe,
+      formatPercent(scene.vote0Unsafe, {}),
+      formatPercent(scene.votePedestrian0Unsafe, {}),
+      formatPercent(scene.voteCar0Unsafe, {}),
     ],
     Schlecht: [
-      scene.vote1RatherUnsafe,
-      scene.votePedestrian1RatherUnsafe,
-      scene.voteCar1RatherUnsafe,
+      formatPercent(scene.vote1RatherUnsafe, {}),
+      formatPercent(scene.votePedestrian1RatherUnsafe, {}),
+      formatPercent(scene.voteCar1RatherUnsafe, {}),
     ],
-    Gut: [scene.vote2Save, scene.votePedestrian2Save, scene.voteCar2Save],
+    Gut: [
+      formatPercent(scene.vote2Save, {}),
+      formatPercent(scene.votePedestrian2Save, {}),
+      formatPercent(scene.voteCar2Save, {}),
+    ],
     'Sehr gut': [
-      scene.vote3VerySave,
-      scene.votePedestrian3VerySave,
-      scene.voteCar3VerySave,
+      formatPercent(scene.vote3VerySave, {}),
+      formatPercent(scene.votePedestrian3VerySave, {}),
+      formatPercent(scene.voteCar3VerySave, {}),
     ],
     Mittelwert: [
-      scene.voteMeans,
-      scene.votePedestrianMeans,
-      scene.voteCarMeans,
+      formatNumber(scene.voteMeans, {}),
+      formatNumber(scene.votePedestrianMeans, {}),
+      formatNumber(scene.voteCarMeans, {}),
     ],
     'Anzahl Antworten': [
       Math.round(scene.voteCount),
@@ -43,7 +52,7 @@ const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
     <Layout>
       <MetaTags
         article
-        title={`Titel: ${scene.sceneId}`}
+        title={`Szene ${scene.sceneId}`}
         description="TODO"
         image="TODO"
       />
@@ -97,6 +106,7 @@ const MyData = ({ data: { scenesPrimaryCsv: scene } }) => {
               {Object.keys(table).map((key) => {
                 return (
                   <tr
+                    key={key}
                     className={classNames(key === 'Mittelwert' && 'border-t')}
                   >
                     <th className="w-2/5 text-left font-semibold">{key}</th>
