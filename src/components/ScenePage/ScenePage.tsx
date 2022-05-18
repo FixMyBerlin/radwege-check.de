@@ -59,25 +59,27 @@ export const ScenePage: React.FC<Props> = ({ scene }) => {
             iconWhenEmpty
           />
           <table className="mt-1 w-full text-xxs">
-            {Object.keys(table).map((key) => {
-              return (
-                <tr
-                  key={key}
-                  className={classNames(key === 'Mittelwert' && 'border-t')}
-                >
-                  <th className="w-2/5 text-left font-semibold">{key}</th>
-                  <td className="w-1/5 pr-2 text-right">
-                    {table[key][0] || '-'}
-                  </td>
-                  <td className="w-1/5 pr-2 text-right">
-                    {table[key][1] || '-'}
-                  </td>
-                  <td className="w-1/5 pr-2 text-right">
-                    {table[key][2] || '-'}
-                  </td>
-                </tr>
-              );
-            })}
+            <tbody>
+              {Object.keys(table).map((key) => {
+                return (
+                  <tr
+                    key={key}
+                    className={classNames(key === 'Mittelwert' && 'border-t')}
+                  >
+                    <th className="w-2/5 text-left font-semibold">{key}</th>
+                    <td className="w-1/5 pr-2 text-right">
+                      {table[key][0] || '-'}
+                    </td>
+                    <td className="w-1/5 pr-2 text-right">
+                      {table[key][1] || '-'}
+                    </td>
+                    <td className="w-1/5 pr-2 text-right">
+                      {table[key][2] || '-'}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </div>
