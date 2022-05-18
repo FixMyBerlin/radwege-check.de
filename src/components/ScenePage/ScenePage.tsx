@@ -12,20 +12,20 @@ export const ScenePage: React.FC<Props> = ({ scene }) => {
   const table = dataTable(scene);
 
   return (
-    <div className="mb-6 flex h-full w-auto flex-col items-center bg-white pt-6">
+    <div className="items-center bg-white p-3 lg:flex lg:flex-col lg:px-0 lg:py-6">
       <h1 className="mb-6 w-full max-w-7xl text-2xl">
         Szene <code>{scene.sceneId}</code>
       </h1>
-      <div className="grid max-w-7xl grid-cols-4 gap-6">
-        <div className="rounded bg-blue-50 p-6">
+      <div className="flex max-w-7xl flex-col gap-6 lg:grid lg:grid-cols-4">
+        <div className="order-2 rounded bg-blue-50 p-6 lg:order-none">
           <ResultCells scene={scene} />
         </div>
-        <div className="col-span-2">
+        <div className="order-1 col-span-2 lg:order-none">
           <SceneImage
             sceneId={scene.sceneId}
             className="mb-5 h-96 w-full rounded object-cover object-bottom"
           />
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-2 gap-5 text-xs lg:text-base">
             {scene.sceneIdPedestrian ? (
               <div>
                 Blickwinkel einer Fußgänger:in
@@ -52,7 +52,7 @@ export const ScenePage: React.FC<Props> = ({ scene }) => {
             )}
           </div>
         </div>
-        <div className="flex h-96 flex-col">
+        <div className="order-3 flex h-96 flex-col lg:order-none">
           <ResultStackedBarchart
             scene={scene}
             classNameBarchartHeight="h-full"
