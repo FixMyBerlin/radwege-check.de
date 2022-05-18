@@ -4,43 +4,12 @@ import { SceneImage } from '../Scenes';
 import { ResultCells } from '../Scenes/Results/ResultCells';
 import { ResultStackedBarchart } from '../Scenes/Results/ResultStackedBarchart';
 import { HauptstrasseSceneProps } from '../Scenes/types';
-import { formatNumber, formatPercent } from '../utils';
+import { dataTable } from './dataTable';
 
 type Props = { scene: HauptstrasseSceneProps };
 
 export const ScenePage: React.FC<Props> = ({ scene }) => {
-  const table = {
-    'Sehr schlecht': [
-      formatPercent(scene.vote0Unsafe, {}),
-      formatPercent(scene.votePedestrian0Unsafe, {}),
-      formatPercent(scene.voteCar0Unsafe, {}),
-    ],
-    Schlecht: [
-      formatPercent(scene.vote1RatherUnsafe, {}),
-      formatPercent(scene.votePedestrian1RatherUnsafe, {}),
-      formatPercent(scene.voteCar1RatherUnsafe, {}),
-    ],
-    Gut: [
-      formatPercent(scene.vote2Save, {}),
-      formatPercent(scene.votePedestrian2Save, {}),
-      formatPercent(scene.voteCar2Save, {}),
-    ],
-    'Sehr gut': [
-      formatPercent(scene.vote3VerySave, {}),
-      formatPercent(scene.votePedestrian3VerySave, {}),
-      formatPercent(scene.voteCar3VerySave, {}),
-    ],
-    Mittelwert: [
-      formatNumber(scene.voteMeans, {}),
-      formatNumber(scene.votePedestrianMeans, {}),
-      formatNumber(scene.voteCarMeans, {}),
-    ],
-    'Anzahl Antworten': [
-      Math.round(scene.voteCount),
-      Math.round(scene.votePedestrianCount),
-      Math.round(scene.voteCarCount),
-    ],
-  };
+  const table = dataTable(scene);
 
   return (
     <div className="mb-6 flex h-full w-auto flex-col items-center bg-white pt-6">
