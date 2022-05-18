@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { useCallback } from 'react';
 import { formatNumber } from '~/components/utils';
-import { ResultItemProps } from '../../types';
+import { HauptstrasseSceneProps } from '../../types';
 import BikeIcon from './assets/bike-icon.svg';
 import CarIcon from './assets/car-icon.svg';
 import PedestrianIcon from './assets/pedestrian-icon.svg';
@@ -9,7 +9,7 @@ import { BarChart } from './BarChart';
 import { OtherIconNumberBarchart } from './OtherIconNumberBarchart';
 
 type Props = {
-  scene: ResultItemProps;
+  scene: HauptstrasseSceneProps;
   handleHover?: (sceneId: string) => void;
   classNameBarchartHeight?: string;
   iconWhenEmpty?: boolean;

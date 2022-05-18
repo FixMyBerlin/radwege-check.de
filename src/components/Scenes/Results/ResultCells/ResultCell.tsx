@@ -4,12 +4,12 @@ import { TranslationMissing } from '~/components/TextHelper';
 import { formatMeter } from '~/components/utils';
 import { aggregationConfig } from '../../constants';
 import { Icons } from '../../Facets/ButtonMultiChoice/Icons';
-import { ResultItemProps } from '../../types';
+import { HauptstrasseSceneProps } from '../../types';
 
 type Props = {
   keyName: string;
   bucketActive: boolean;
-  scene: ResultItemProps;
+  scene: HauptstrasseSceneProps;
   groupEndIndicator: boolean;
   showIcon: boolean;
 };

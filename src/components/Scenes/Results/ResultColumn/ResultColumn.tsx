@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from '~/components/Link';
 import { SceneImage } from '../../SceneImage';
-import { ResultItemProps, SearchOptionProps } from '../../types';
+import { HauptstrasseSceneProps, SearchOptionProps } from '../../types';
 import { Bookmark } from '../bookmark/Bookmark';
 import { ResultCells } from '../ResultCells';
 import { ResultStackedBarchart } from '../ResultStackedBarchart';
@@ -9,7 +9,7 @@ import { ResultStackedBarchart } from '../ResultStackedBarchart';
 export type PrevBucketValues = { [key: string]: string | number };
 
 type Props = {
-  scene: ResultItemProps;
+  scene: HauptstrasseSceneProps;
   index?: number;
   searchFilters?: SearchOptionProps['filters'];
 };

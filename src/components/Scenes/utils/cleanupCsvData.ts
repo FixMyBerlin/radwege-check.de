@@ -1,11 +1,11 @@
-import { ResultItemProps } from '../types';
+import { HauptstrasseSceneProps } from '../types';
 
 /**
  * We paste the data from our Google Spreadsheet CSV export without further cleanup.
  * That makes for an easy update process from Spreadsheet to Gatsby.
  * This helper will cleanup the bad data types for undefined and number data.
  */
-export const cleanupCsvData = (input): ResultItemProps[] => {
+export const cleanupCsvData = (input): HauptstrasseSceneProps[] => {
   const filtered = input.filter((scene) => scene.pointOfView === 'bicycle');
 
   const cleaned = [];

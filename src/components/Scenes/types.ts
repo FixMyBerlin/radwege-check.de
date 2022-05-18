@@ -13,7 +13,15 @@ export type ResultBucketProps = {
   selected: boolean;
 };
 
-export type ResultItemProps = {
+export type NebenstrasseSceneProps = {
+  sceneId: string;
+
+  pointOfView: string;
+
+  path: string;
+};
+
+export type HauptstrasseSceneProps = {
   sceneId: string;
   sceneIdCar: string;
   sceneIdPedestrian: string;
@@ -67,7 +75,7 @@ export type ResultItemProps = {
   path: string;
 };
 
-export type ResultItemsProps = Array<ResultItemProps>;
+export type ResultItemsProps = Array<HauptstrasseSceneProps>;
 
 export type ResultProps = {
   data: {

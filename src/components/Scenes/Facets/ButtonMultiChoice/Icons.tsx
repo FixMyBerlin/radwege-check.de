@@ -38,7 +38,7 @@ export const Icons: React.FC<Props> = ({ forValue, className }) => {
     default:
       return (
         <span className={classNames(className, 'font-semibold uppercase')}>
-          {forValue[0]}
+          {forValue?.[0]}
         </span>
       ); // TODO <None />;
   }

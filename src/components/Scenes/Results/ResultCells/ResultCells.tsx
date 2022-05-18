@@ -1,10 +1,10 @@
 import React from 'react';
 import { aggregationConfig } from '../../constants';
-import { ResultItemProps, SearchOptionProps } from '../../types';
+import { HauptstrasseSceneProps, SearchOptionProps } from '../../types';
 import { ResultCell } from './ResultCell';
 
 type Props = {
-  scene: ResultItemProps;
+  scene: HauptstrasseSceneProps;
   searchFilters?: SearchOptionProps['filters'];
 };
 
