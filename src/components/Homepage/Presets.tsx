@@ -31,7 +31,7 @@ export const Presets: React.FC = () => {
         </div>
         <PresetSlider slides={presetSlides} />
         <p>
-          <Link button to="/scenes">
+          <Link button to="/hauptstrassen">
             Alle 1.7000 Ergebnisse
           </Link>
         </p>

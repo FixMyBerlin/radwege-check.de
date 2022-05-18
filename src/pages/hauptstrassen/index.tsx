@@ -73,7 +73,9 @@ export const query = graphql`
           votePedestrianMeans
           votePedestrianScore
 
-          path: gatsbyPath(filePath: "/scenes/{scenesPrimaryCsv.sceneId}")
+          path: gatsbyPath(
+            filePath: "/hauptstrassen/{scenesPrimaryCsv.sceneId}"
+          )
         }
       }
     }
