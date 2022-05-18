@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import useEmblaCarousel from 'embla-carousel-react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { buttonStyles, Link } from '../Link';
+import { SceneImage } from '../Scenes';
 import { PresetSlides } from './presetSlides.const';
 
 type Props = { slides: PresetSlides };
@@ -14,46 +15,41 @@ export const PresetSlider: React.FC<Props> = ({ slides }) => {
     draggable: true,
     align: 'start',
     skipSnaps: true,
+    inViewThreshold: 0.95,
   });
-  const [allowNext, setAllowNext] = useState(true);
-  const [allowPrev, setAllowPrev] = useState(false);
 
-  const scrollPrev = useCallback(() => {
+  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
+  const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
+
+  const scrollPrev = useCallback(
+    () => emblaApi && emblaApi.scrollPrev(),
+    [emblaApi]
+  );
+  const scrollNext = useCallback(
+    () => emblaApi && emblaApi.scrollNext(),
+    [emblaApi]
+  );
+
+  const onSelect = useCallback(() => {
     if (!emblaApi) return;
-    emblaApi.scrollPrev();
+    setPrevBtnEnabled(emblaApi.canScrollPrev());
+    // TODO: Make user we stopp scrolling earlier, once the lat element is in view. See 16a9ccb.
+    setNextBtnEnabled(emblaApi.canScrollNext());
   }, [emblaApi]);
 
-  const scrollNext = useCallback(() => {
+  useEffect(() => {
     if (!emblaApi) return;
-
-    // We want the slider to stopp sliding when the last element is in view.
-    // Which we calcualte based on the index _AND_ the fact that only 3 slides are still in view
-    // (otherwise it would stopp even with the last element half in view).
-    const maxSlidesInView = Math.max(...emblaApi.slidesInView());
-    const numberOfSlidesInView = emblaApi.slidesInView().length;
-    const maxSlides = Object.keys(slides).length - 1;
-    // console.log({
-    //   slidesInView: emblaApi.slidesInView(),
-    //   maxSlidesInView,
-    //   maxSlides,
-    //   numberOfSlidesInView,
-    // });
-    if (maxSlidesInView === maxSlides && numberOfSlidesInView <= 4) {
-      setAllowNext(false);
-    } else {
-      // TODO that does not work… maybe the slides updates outside of react?
-      setAllowNext(true);
-      emblaApi.scrollNext();
-    }
-  }, [emblaApi]);
+    emblaApi.on('select', onSelect);
+    onSelect();
+  }, [emblaApi, onSelect]);
 
   useEffect(() => {
     if (emblaApi) emblaApi.reInit();
   }, [emblaApi, slides]);
 
   return (
-    <div className="mb-3 overflow-hidden rounded-md bg-stone-300 p-4">
-      <div ref={emblaRef}>
+    <div className="mb-3 flex flex-col justify-center gap-3 overflow-hidden rounded-md bg-stone-300 p-4">
+      <div ref={emblaRef} className="overflow-hidden">
         <ul className="flex flex-row gap-4">
           {Object.entries(slides).map(([presetName, preset]) => {
             return (
@@ -67,9 +63,21 @@ export const PresetSlider: React.FC<Props> = ({ slides }) => {
                     <h3 className="h-24 font-semibold group-hover:underline">
                       {preset.title}
                     </h3>
-                    {preset.image}
-                    <div className={buttonStyles}>
-                      {preset.results} Ergebnisse
+                    <div className="relative">
+                      {preset.sceneIdForImage && (
+                        <SceneImage
+                          sceneId={preset.sceneIdForImage}
+                          className="rounded object-cover object-bottom"
+                        />
+                      )}
+                      <div
+                        className={classNames(
+                          buttonStyles,
+                          'absolute bottom-3 right-3'
+                        )}
+                      >
+                        {preset.results} Ergebnisse
+                      </div>
                     </div>
                   </>
                 </Link>
@@ -78,20 +86,32 @@ export const PresetSlider: React.FC<Props> = ({ slides }) => {
           })}
         </ul>
       </div>
-      <button
-        type="button"
-        className={classNames({ 'bg-red-400': allowPrev })}
-        onClick={scrollPrev}
-      >
-        <ChevronLeftIcon className="h-8 w-8" />
-      </button>
-      <button
-        type="button"
-        className={classNames({ 'bg-red-400': allowNext })}
-        onClick={scrollNext}
-      >
-        <ChevronRightIcon className="h-8 w-8" />
-      </button>
+      <div className="flex justify-center">
+        <button
+          type="button"
+          className={classNames(
+            prevBtnEnabled
+              ? 'text-stone-800 hover:text-yellow-600'
+              : 'text-stone-400'
+          )}
+          disabled={!prevBtnEnabled}
+          onClick={scrollPrev}
+        >
+          <ChevronLeftIcon className="h-8 w-8" />
+        </button>
+        <button
+          type="button"
+          className={classNames(
+            nextBtnEnabled
+              ? 'text-stone-800 hover:text-yellow-600'
+              : 'text-stone-400'
+          )}
+          disabled={!nextBtnEnabled}
+          onClick={scrollNext}
+        >
+          <ChevronRightIcon className="h-8 w-8" />
+        </button>
+      </div>
     </div>
   );
 };
