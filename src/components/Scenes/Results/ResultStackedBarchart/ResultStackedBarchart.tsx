@@ -40,7 +40,7 @@ export const ResultStackedBarchart: React.FC<Props> = ({
         <div className="flex h-8 flex-none items-center justify-center">
           <BikeIcon className="mr-1.5 h-8 w-8" />
           <strong
-            className="text-2xl font-semibold"
+            className="whitespace-nowrap text-2xl font-semibold"
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: formatNumber(scene.voteScore, {

@@ -5,12 +5,14 @@ import { SearchOrder, SearchOrderProps } from './SearchOrder';
 
 type Props = {
   results: ResultProps;
+  mobileFacets?: React.ReactNode;
 } & SearchOrderProps;
 
 export const TitleBar: React.FC<Props> = ({
   results,
   searchOrder,
   setSearchOrder,
+  mobileFacets,
 }) => {
   const resultItems = results?.data?.items || [];
   const pagination = results?.pagination;
@@ -30,32 +32,30 @@ export const TitleBar: React.FC<Props> = ({
   const perPage = pagination?.per_page || 0;
 
   return (
-    <section className="absolute top-0 left-72 right-0 z-10 flex h-16 items-center bg-yellow-50 px-4 py-1 shadow-[0_0px_10px_0_rgba(0,_0,_0,_0.2)]">
-      <div className="flex w-full items-center justify-between text-xl">
-        <h1
-          className="font-bold"
-          title={
-            total > perPage
-              ? `Die ersten ${perPage} Ergebnisse werden angezeigt.`
-              : ''
-          }
-        >
-          {total || '-'} Ergebnisse
-        </h1>
-        <div>
-          {/* TODO: Find a way to show the average for a given filter-set for > 200 results. */}
-          {total <= perPage && resultScoreAverage && (
-            <span className="ml-3 text-sm text-neutral-500">
-              {' '}
-              Ø Score{' '}
-              {formatPercent(resultScoreAverage, { precision: 0 }) || '-'}
-            </span>
-          )}
-          <SearchOrder
-            searchOrder={searchOrder}
-            setSearchOrder={setSearchOrder}
-          />
-        </div>
+    <section className="z-10 flex h-16 flex-row items-center justify-between bg-yellow-50 px-4 py-1 text-xl shadow-[0_0px_10px_0_rgba(0,_0,_0,_0.2)]">
+      {mobileFacets}
+      <h1
+        className="font-bold"
+        title={
+          total > perPage
+            ? `Die ersten ${perPage} Ergebnisse werden angezeigt.`
+            : ''
+        }
+      >
+        {total || '-'} Ergebnisse
+      </h1>
+      <div>
+        {/* TODO: Find a way to show the average for a given filter-set for > 200 results. */}
+        {total <= perPage && resultScoreAverage && (
+          <span className="ml-3 text-sm text-neutral-500">
+            {' '}
+            Ø Score {formatPercent(resultScoreAverage, { precision: 0 }) || '-'}
+          </span>
+        )}
+        <SearchOrder
+          searchOrder={searchOrder}
+          setSearchOrder={setSearchOrder}
+        />
       </div>
     </section>
   );

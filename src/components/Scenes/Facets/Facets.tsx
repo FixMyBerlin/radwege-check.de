@@ -8,21 +8,23 @@ import { FacetsButtons } from './FacetsButtons';
 import { FacetsHeadline } from './FacetsHeadline';
 import { checkBucketValueConsistency, checkDataConsistency } from './utils';
 
-type Props = {
+export type FacetsProps = {
   results: ResultProps;
   handleResetFilter: () => void;
   handleSingleChoice: HandleSingleChoice;
   handleMultiChoice: HandleMultiChoice;
+  className?: string;
 };
 
-export const Facets: React.FC<Props> = ({
+export const Facets: React.FC<FacetsProps> = ({
   results,
   handleResetFilter,
   handleSingleChoice,
   handleMultiChoice,
+  className,
 }) => {
   return (
-    <nav className="absolute inset-y-0 left-0 z-20 w-72 overflow-y-scroll bg-gray-100 p-4 shadow-[0_0_10px_0_rgba(0,_0,_0,_0.2)]">
+    <nav className={classNames(className, 'overflow-scroll')}>
       <h1 className="sr-only">Ergebnisse filtern</h1>
       <p className="mb-6">
         <button
