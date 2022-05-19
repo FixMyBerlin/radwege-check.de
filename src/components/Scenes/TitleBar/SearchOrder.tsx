@@ -1,7 +1,7 @@
 import { Menu, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import React, { Fragment } from 'react';
-import { ChevronDownIcon } from '@heroicons/react/solid';
+import { ChevronDownIcon } from '@heroicons/react/outline';
 
 export type SearchOrderProps = {
   searchOrder: string;

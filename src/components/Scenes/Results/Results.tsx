@@ -11,7 +11,7 @@ export const Results: React.FC<Props> = ({ results, searchFilters }) => {
   const resultItems = results?.data?.items || [];
 
   return (
-    <div className="z-0 flex h-full flex-grow snap-x snap-proximity flex-row gap-3 overflow-scroll overscroll-contain py-4">
+    <div className="z-0 flex h-full flex-grow snap-x snap-proximity flex-row overflow-scroll overscroll-contain py-4">
       {resultItems.map((scene, index) => (
         <ResultColumn
           key={scene.sceneId}
