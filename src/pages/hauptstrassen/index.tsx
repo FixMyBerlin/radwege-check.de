@@ -11,7 +11,7 @@ const MyDataIndex = ({
   return (
     <FixedLayout>
       <MetaTags title="Safetycheck Prototyp" description="TODO" image="TODO" />
-      <Scenes rawScenes={sceneNodes} />;
+      <Scenes rawScenes={sceneNodes} />
     </FixedLayout>
   );
 };
