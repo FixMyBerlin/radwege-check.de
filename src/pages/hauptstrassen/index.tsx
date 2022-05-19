@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-import { FixedLayout, MetaTags } from '~/components/Layout';
+import { LayoutScenes, MetaTags } from '~/components/Layout';
 import { Scenes } from '~/components/Scenes';
 
 const MyDataIndex = ({
@@ -9,10 +9,10 @@ const MyDataIndex = ({
   },
 }) => {
   return (
-    <FixedLayout>
+    <LayoutScenes>
       <MetaTags title="Safetycheck Prototyp" description="TODO" image="TODO" />
       <Scenes rawScenes={sceneNodes} />
-    </FixedLayout>
+    </LayoutScenes>
   );
 };
 
