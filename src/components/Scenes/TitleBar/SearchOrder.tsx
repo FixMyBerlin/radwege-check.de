@@ -34,23 +34,30 @@ export const SearchOrder = ({ searchOrder, setSearchOrder }) => {
       >
         <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            {searchOrderValues.map((value) => (
-              <Menu.Item key={value.id}>
-                <button
-                  type="button"
-                  onClick={() => setSearchOrder(value.id)}
-                  disabled={value.id === searchOrder}
-                  className={classNames(
-                    {
-                      'bg-yellow-50 text-gray-500': value.id === searchOrder,
-                    },
-                    'block w-full px-4 py-2 text-left text-sm'
-                  )}
-                >
-                  {value.name}
-                </button>
-              </Menu.Item>
-            ))}
+            {searchOrderValues.map((value) => {
+              // When no searchOrder is given, we treat that as the default 'desc'
+              const selected = searchOrder
+                ? value.id === searchOrder
+                : value.id === 'desc';
+
+              return (
+                <Menu.Item key={value.id}>
+                  <button
+                    type="button"
+                    onClick={() => setSearchOrder(value.id)}
+                    disabled={selected}
+                    className={classNames(
+                      {
+                        'bg-yellow-50 text-gray-500': selected,
+                      },
+                      'block w-full px-4 py-2 text-left text-sm'
+                    )}
+                  >
+                    {value.name}
+                  </button>
+                </Menu.Item>
+              );
+            })}
           </div>
         </Menu.Items>
       </Transition>
