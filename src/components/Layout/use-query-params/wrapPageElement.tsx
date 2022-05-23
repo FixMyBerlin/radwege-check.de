@@ -1,4 +1,4 @@
-import { navigate } from 'gatsby';
+import { GatsbyBrowser, navigate } from 'gatsby';
 import React from 'react';
 import { QueryParamProvider } from 'use-query-params';
 
@@ -15,7 +15,10 @@ const history = {
   },
 };
 
-export const wrapPageElement = ({ element, props: { location } }) => {
+export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({
+  element,
+  props: { location },
+}) => {
   // Make sure the URLs look nicer.
   // Ref to the wrapper library https://github.com/pbeshai/use-query-params/pull/88/files
   // `encode` option in query-string https://github.com/sindresorhus/query-string#encode
