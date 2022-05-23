@@ -1,9 +1,8 @@
-import { PageProps } from 'gatsby';
 import React from 'react';
 import { Layout, MetaTags } from '~/components/Layout';
 import { Link } from '~/components/Link';
 
-const NotFound: React.FC<PageProps> = () => {
+const NotFound: React.FC = () => {
   return (
     <Layout>
       <MetaTags noindex title="404 | Seite nicht gefunden." />
@@ -34,4 +33,5 @@ const NotFound: React.FC<PageProps> = () => {
     </Layout>
   );
 };
+
 export default NotFound;
