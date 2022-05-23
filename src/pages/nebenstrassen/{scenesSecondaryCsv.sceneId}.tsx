@@ -27,7 +27,10 @@ export default MyData;
 
 export const query = graphql`
   query ($sceneId: String!) {
-    scenesSecondaryCsv(sceneId: { eq: $sceneId }) {
+    scenesSecondaryCsv(
+      sceneId: { eq: $sceneId }
+      pointOfView: { eq: "bicycle" }
+    ) {
       sceneId
 
       pointOfView

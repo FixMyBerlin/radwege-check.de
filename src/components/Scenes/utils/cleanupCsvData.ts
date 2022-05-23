@@ -6,10 +6,8 @@ import { HauptstrasseSceneProps } from '../types';
  * This helper will cleanup the bad data types for undefined and number data.
  */
 export const cleanupCsvData = (input): HauptstrasseSceneProps[] => {
-  const filtered = input.filter((scene) => scene.pointOfView === 'bicycle');
-
   const cleaned = [];
-  filtered.forEach((row, index) =>
+  input.forEach((row, index) =>
     Object.entries(row).forEach(([key, value]) => {
       // Prefill with what we have, maybe overwrite it next…
       cleaned[index] ||= {};

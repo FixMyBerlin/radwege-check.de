@@ -20,7 +20,7 @@ export default MyDataIndex;
 
 export const query = graphql`
   query {
-    allScenesSecondaryCsv {
+    allScenesSecondaryCsv(filter: { pointOfView: { eq: "bicycle" } }) {
       edges {
         node {
           sceneId
