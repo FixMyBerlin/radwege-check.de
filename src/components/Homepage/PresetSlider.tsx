@@ -6,9 +6,13 @@ import { buttonStyles, Link } from '../Link';
 import { SceneImage } from '../Scenes';
 import { Presets } from '../Scenes/constants/presets.const';
 
-type Props = { slides: Presets };
+type Props = {
+  filterUrl: `/${'hauptstrassen' | 'nebenstrassen'}/?filter=`;
+  slides: Presets;
+};
 
-export const PresetSlider: React.FC<Props> = ({ slides }) => {
+// TODO: This need to be able to switch from scenesPrimary to scenesSeconary
+export const PresetSlider: React.FC<Props> = ({ filterUrl, slides }) => {
   // https://www.embla-carousel.com/api/options/
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
@@ -52,11 +56,13 @@ export const PresetSlider: React.FC<Props> = ({ slides }) => {
       <div ref={emblaRef} className="overflow-hidden">
         <ul className="flex flex-row gap-4">
           {Object.entries(slides).map(([presetName, preset]) => {
+            const url = `${filterUrl}${preset.searchFilterString}`;
+
             return (
               <li key={presetName} className="">
                 <Link
                   button
-                  to={preset.url}
+                  to={url}
                   classNameOverwrite="flex h-80 w-80 flex-col justify-between rounded-md bg-white p-3 shadow-lg group"
                 >
                   <>

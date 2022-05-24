@@ -2,6 +2,7 @@ import itemsjs from 'itemsjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import { StringParam, useQueryParam } from 'use-query-params';
 import { itemJsConfig } from './constants';
+import { Presets } from './constants/presets.const';
 import {
   Facets,
   HandleMultiChoiceProps,
@@ -13,9 +14,12 @@ import { TitleBar } from './TitleBar';
 import { ResultProps } from './types';
 import { cleanupCsvData, decodeFilter, encodeFilter } from './utils';
 
-type Props = { rawScenes: any };
+type Props = {
+  rawScenes: any;
+  presets: Presets;
+};
 
-export const Scenes: React.FC<Props> = ({ rawScenes }) => {
+export const Scenes: React.FC<Props> = ({ rawScenes, presets }) => {
   const scenes = useMemo(() => {
     // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
     const flattened = rawScenes.map((list) => list.node);
@@ -61,6 +65,39 @@ export const Scenes: React.FC<Props> = ({ rawScenes }) => {
 
     setResults(items.search(searchOption));
   }, [items, searchFilters]);
+
+  const [currentPresetKey, setCurrentPresetKey] = useState(null);
+
+  // When selecting a preset, we update the search.
+  // The currentPresetKey is updated in an useEffect.
+  // This way, we also handle the case when the page is loaded with searchFilters that match a preset.searchFilterString.
+  const handlePresetClick = (presetKey: string) => {
+    console.log({
+      presets,
+      a: presetKey,
+      string: presets[presetKey].searchFilterString,
+    });
+    setSearchFilters(presets[presetKey].searchFilterString);
+  };
+
+  useEffect(() => {
+    if (!searchFilters) {
+      setCurrentPresetKey(null);
+      return;
+    }
+
+    const presetKeyMatchingUrlFilters = Object.entries(presets)
+      .map(([key, values]) =>
+        values.searchFilterString === searchFilters ? key : undefined
+      )
+      .filter((v) => v !== undefined);
+
+    if (presetKeyMatchingUrlFilters.length) {
+      setCurrentPresetKey(presetKeyMatchingUrlFilters[0]);
+    } else {
+      setCurrentPresetKey('custom');
+    }
+  }, [presets, searchFilters]);
 
   const handleResetFilter = () => {
     setSearchFilters(undefined);
@@ -138,6 +175,9 @@ export const Scenes: React.FC<Props> = ({ rawScenes }) => {
         handleResetFilter={searchFilters && handleResetFilter}
         handleSingleChoice={handleSingleChoice}
         handleMultiChoice={handleMultiChoice}
+        presets={presets}
+        currentPresetKey={currentPresetKey}
+        handlePresetClick={handlePresetClick}
       />
 
       {/* The `w-1 + grow` combo is required to get the with + overflow scroll right. */}
@@ -152,6 +192,9 @@ export const Scenes: React.FC<Props> = ({ rawScenes }) => {
               handleResetFilter={searchFilters && handleResetFilter}
               handleSingleChoice={handleSingleChoice}
               handleMultiChoice={handleMultiChoice}
+              presets={presets}
+              currentPresetKey={currentPresetKey}
+              handlePresetClick={handlePresetClick}
             />
           }
         />

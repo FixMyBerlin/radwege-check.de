@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '../Link';
 import { PresetSlider } from './PresetSlider';
-import { presets } from '../Scenes/constants/presets.const';
+import { presetsScenesPrimary } from '../Scenes/constants/presets.const';
 
 export const Presets: React.FC = () => {
   return (
@@ -29,7 +29,11 @@ export const Presets: React.FC = () => {
             </div>
           </nav>
         </div>
-        <PresetSlider slides={presets} />
+        <PresetSlider
+          slides={presetsScenesPrimary}
+          // TODO abstract based on the tab navigation change…
+          filterUrl="/hauptstrassen/?filter="
+        />
         <p>
           <Link button to="/hauptstrassen">
             Alle 1.7000 Ergebnisse

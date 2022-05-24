@@ -6,6 +6,7 @@ import { HandleMultiChoice } from './ButtonMultiChoice/ButtonMultiChoice';
 import { HandleSingleChoice } from './ButtonSingleChoice/ButtonSingleChoice';
 import { FacetsButtons } from './FacetsButtons';
 import { FacetsHeadline } from './FacetsHeadline';
+import { PresetDropdown, PresetDropdownProps } from './PresetDropdown';
 import { checkBucketValueConsistency, checkDataConsistency } from './utils';
 
 export type FacetsProps = {
@@ -15,18 +16,28 @@ export type FacetsProps = {
   handleSingleChoice: HandleSingleChoice;
   handleMultiChoice: HandleMultiChoice;
   className?: string;
-};
+} & PresetDropdownProps;
 
 export const Facets: React.FC<FacetsProps> = ({
   results,
   handleResetFilter,
   handleSingleChoice,
   handleMultiChoice,
+  presets,
+  currentPresetKey,
+  handlePresetClick,
   className,
 }) => {
   return (
     <nav className={classNames(className, 'overflow-scroll')}>
       <h1 className="sr-only">Ergebnisse filtern</h1>
+
+      <PresetDropdown
+        presets={presets}
+        currentPresetKey={currentPresetKey}
+        handlePresetClick={handlePresetClick}
+      />
+
       <p className="mb-6">
         <button
           type="button"

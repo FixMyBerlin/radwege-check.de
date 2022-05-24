@@ -2,6 +2,7 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import { LayoutScenes, MetaTags } from '~/components/Layout';
 import { Scenes } from '~/components/Scenes';
+import { presetsScenesPrimary } from '~/components/Scenes/constants/presets.const';
 
 const MyDataIndex = ({
   data: {
@@ -11,7 +12,7 @@ const MyDataIndex = ({
   return (
     <LayoutScenes>
       <MetaTags title="Safetycheck Prototyp" description="TODO" image="TODO" />
-      <Scenes rawScenes={sceneNodes} />
+      <Scenes rawScenes={sceneNodes} presets={presetsScenesPrimary} />
     </LayoutScenes>
   );
 };

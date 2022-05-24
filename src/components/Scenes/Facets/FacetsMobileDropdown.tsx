@@ -8,6 +8,9 @@ export const FacetsMobileDropdown: React.FC<FacetsProps> = ({
   handleResetFilter,
   handleSingleChoice,
   handleMultiChoice,
+  presets,
+  currentPresetKey,
+  handlePresetClick,
 }) => {
   return (
     <Menu as="div" className="relative inline-block text-left lg:hidden">
@@ -31,6 +34,9 @@ export const FacetsMobileDropdown: React.FC<FacetsProps> = ({
             handleResetFilter={handleResetFilter}
             handleSingleChoice={handleSingleChoice}
             handleMultiChoice={handleMultiChoice}
+            presets={presets}
+            currentPresetKey={currentPresetKey}
+            handlePresetClick={handlePresetClick}
           />
         </Menu.Items>
       </Transition>
