@@ -5,14 +5,20 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { buttonStyles, Link } from '../Link';
 import { SceneImage } from '../Scenes';
 import { Presets } from '../Scenes/constants/presets.const';
+import { FilterUrlProp } from './Presets';
 
-type Props = {
-  filterUrl: `/${'hauptstrassen' | 'nebenstrassen'}/?filter=`;
+export type Props = {
+  filterUrl: FilterUrlProp;
   slides: Presets;
+  className?: string;
 };
 
 // TODO: This need to be able to switch from scenesPrimary to scenesSeconary
-export const PresetSlider: React.FC<Props> = ({ filterUrl, slides }) => {
+export const PresetSlider: React.FC<Props> = ({
+  filterUrl,
+  slides,
+  className,
+}) => {
   // https://www.embla-carousel.com/api/options/
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
@@ -51,11 +57,22 @@ export const PresetSlider: React.FC<Props> = ({ filterUrl, slides }) => {
     if (emblaApi) emblaApi.reInit();
   }, [emblaApi, slides]);
 
+  const slideEntries = Object.entries(slides);
+
   return (
-    <div className="mb-3 flex flex-col justify-center gap-3 overflow-hidden rounded-md bg-stone-300 p-4">
+    <div
+      className={classNames(
+        className,
+        'mb-3 flex flex-col justify-center gap-3 overflow-hidden bg-stone-300 p-4'
+      )}
+    >
       <div ref={emblaRef} className="overflow-hidden">
         <ul className="flex flex-row gap-4">
-          {Object.entries(slides).map(([presetName, preset]) => {
+          {!slideEntries.length && (
+            <div className="h-80 w-full text-center">Under construction…</div>
+          )}
+
+          {slideEntries.map(([presetName, preset]) => {
             const url = `${filterUrl}${preset.searchFilterString}`;
 
             return (
