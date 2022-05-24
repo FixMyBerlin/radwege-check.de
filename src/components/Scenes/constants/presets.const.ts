@@ -1,15 +1,15 @@
-type PresetSlide = {
+type Preset = {
   title: string;
   sceneIdForImage: string | null;
   results: number;
   url: string;
 };
 
-export type PresetSlides = {
-  [key: string]: PresetSlide;
+export type Presets = {
+  [key: string]: Preset;
 };
 
-export const presetSlides: PresetSlides = {
+export const presets: Presets = {
   'main-poller': {
     title: 'Breite Radwege mit Pollern an Hauptstraßen',
     sceneIdForImage: 'MS_C_573',

@@ -4,9 +4,9 @@ import useEmblaCarousel from 'embla-carousel-react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { buttonStyles, Link } from '../Link';
 import { SceneImage } from '../Scenes';
-import { PresetSlides } from './presetSlides.const';
+import { Presets } from '../Scenes/constants/presets.const';
 
-type Props = { slides: PresetSlides };
+type Props = { slides: Presets };
 
 export const PresetSlider: React.FC<Props> = ({ slides }) => {
   // https://www.embla-carousel.com/api/options/

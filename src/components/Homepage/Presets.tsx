@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '../Link';
 import { PresetSlider } from './PresetSlider';
-import { presetSlides } from './presetSlides.const';
+import { presets } from '../Scenes/constants/presets.const';
 
 export const Presets: React.FC = () => {
   return (
@@ -29,7 +29,7 @@ export const Presets: React.FC = () => {
             </div>
           </nav>
         </div>
-        <PresetSlider slides={presetSlides} />
+        <PresetSlider slides={presets} />
         <p>
           <Link button to="/hauptstrassen">
             Alle 1.7000 Ergebnisse
