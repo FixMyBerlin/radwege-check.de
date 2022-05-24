@@ -1,6 +1,7 @@
 import itemsjs from 'itemsjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import { StringParam, useQueryParam } from 'use-query-params';
+import { MetaTags } from '../Layout';
 import { itemJsConfig } from './constants';
 import { Presets } from './constants/presets.const';
 import {
@@ -17,9 +18,11 @@ import { cleanupCsvData, decodeFilter, encodeFilter } from './utils';
 type Props = {
   rawScenes: any;
   presets: Presets;
+  /** @desc https://<domain>/pathname without searchParams */
+  pageUrl: string;
 };
 
-export const Scenes: React.FC<Props> = ({ rawScenes, presets }) => {
+export const Scenes: React.FC<Props> = ({ rawScenes, presets, pageUrl }) => {
   const scenes = useMemo(() => {
     // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
     const flattened = rawScenes.map((list) => list.node);
@@ -167,43 +170,55 @@ export const Scenes: React.FC<Props> = ({ rawScenes, presets }) => {
     }
   };
 
+  const seoNoindex = currentPresetKey === 'custom';
+  const seoCanonicalUrl = seoNoindex ? pageUrl : null;
+
   return (
-    <div className="flex h-screen flex-row">
-      <Facets
-        className="z-20 hidden w-72 flex-none overflow-scroll overscroll-contain bg-gray-100 p-4 shadow-[0_0_10px_0_rgba(0,_0,_0,_0.2)] lg:block"
-        results={results}
-        handleResetFilter={searchFilters && handleResetFilter}
-        handleSingleChoice={handleSingleChoice}
-        handleMultiChoice={handleMultiChoice}
-        presets={presets}
-        currentPresetKey={currentPresetKey}
-        handlePresetClick={handlePresetClick}
+    <>
+      <MetaTags
+        noindex={seoNoindex}
+        canonicalUrl={seoCanonicalUrl}
+        title="Safetycheck Prototyp"
+        description="TODO"
+        image="TODO"
       />
-
-      {/* The `w-1 + grow` combo is required to get the with + overflow scroll right. */}
-      <div className="flex w-1 grow flex-col">
-        <TitleBar
+      <div className="flex h-screen flex-row">
+        <Facets
+          className="z-20 hidden w-72 flex-none overflow-scroll overscroll-contain bg-gray-100 p-4 shadow-[0_0_10px_0_rgba(0,_0,_0,_0.2)] lg:block"
           results={results}
-          searchOrder={searchOrder}
-          setSearchOrder={setSearchOrder}
-          mobileFacets={
-            <FacetsMobileDropdown
-              results={results}
-              handleResetFilter={searchFilters && handleResetFilter}
-              handleSingleChoice={handleSingleChoice}
-              handleMultiChoice={handleMultiChoice}
-              presets={presets}
-              currentPresetKey={currentPresetKey}
-              handlePresetClick={handlePresetClick}
-            />
-          }
+          handleResetFilter={searchFilters && handleResetFilter}
+          handleSingleChoice={handleSingleChoice}
+          handleMultiChoice={handleMultiChoice}
+          presets={presets}
+          currentPresetKey={currentPresetKey}
+          handlePresetClick={handlePresetClick}
         />
 
-        <Results
-          results={results}
-          searchFilters={decodeFilter(searchFilters)}
-        />
+        {/* The `w-1 + grow` combo is required to get the with + overflow scroll right. */}
+        <div className="flex w-1 grow flex-col">
+          <TitleBar
+            results={results}
+            searchOrder={searchOrder}
+            setSearchOrder={setSearchOrder}
+            mobileFacets={
+              <FacetsMobileDropdown
+                results={results}
+                handleResetFilter={searchFilters && handleResetFilter}
+                handleSingleChoice={handleSingleChoice}
+                handleMultiChoice={handleMultiChoice}
+                presets={presets}
+                currentPresetKey={currentPresetKey}
+                handlePresetClick={handlePresetClick}
+              />
+            }
+          />
+
+          <Results
+            results={results}
+            searchFilters={decodeFilter(searchFilters)}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };

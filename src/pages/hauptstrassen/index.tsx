@@ -1,18 +1,23 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-import { LayoutScenes, MetaTags } from '~/components/Layout';
+import { LayoutScenes } from '~/components/Layout';
 import { Scenes } from '~/components/Scenes';
 import { presetsScenesPrimary } from '~/components/Scenes/constants/presets.const';
 
 const MyDataIndex = ({
+  location,
   data: {
     allScenesPrimaryCsv: { edges: sceneNodes },
   },
 }) => {
   return (
     <LayoutScenes>
-      <MetaTags title="Safetycheck Prototyp" description="TODO" image="TODO" />
-      <Scenes rawScenes={sceneNodes} presets={presetsScenesPrimary} />
+      {/* <MetaTags> are part of <Scenes> */}
+      <Scenes
+        rawScenes={sceneNodes}
+        presets={presetsScenesPrimary}
+        pageUrl={`${location.origin}${location.pathname}`}
+      />
     </LayoutScenes>
   );
 };

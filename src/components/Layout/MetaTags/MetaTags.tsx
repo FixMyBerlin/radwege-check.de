@@ -11,14 +11,16 @@ const seoDefaultValues = {
 
 type Props = {
   noindex?: boolean;
-  title?: string | null;
-  description?: string | null;
-  image?: string | null;
-  article?: boolean | null;
+  canonicalUrl?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
 };
 
 export const MetaTags: React.FC<Props> = ({
   noindex = false,
+  canonicalUrl,
   title,
   description,
   image,
@@ -32,11 +34,17 @@ export const MetaTags: React.FC<Props> = ({
     image: `${baseUrl}${image || SocialSharingImage}`,
   };
 
+  const canonicalTag = canonicalUrl && (
+    <link rel="canonical" href={canonicalUrl} />
+  );
+
   if (noindex === true) {
     return (
       <Helmet>
         <title>{seo.title}</title>
         <meta name="robots" content="noindex" />
+
+        {canonicalTag}
       </Helmet>
     );
   }
@@ -48,6 +56,8 @@ export const MetaTags: React.FC<Props> = ({
       <title>{seo.title}</title>
       <meta property="og:title" content={seo.title} />
       <meta name="twitter:title" content={seo.title} />
+
+      {canonicalTag}
 
       <meta name="description" content={seo.description} />
       <meta property="og:description" content={seo.description} />
