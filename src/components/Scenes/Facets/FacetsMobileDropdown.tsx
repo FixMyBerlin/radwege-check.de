@@ -3,7 +3,7 @@ import { ChevronDownIcon } from '@heroicons/react/outline';
 import React, { Fragment } from 'react';
 import { Facets, FacetsProps } from './Facets';
 
-export const FacetsMobile: React.FC<FacetsProps> = ({
+export const FacetsMobileDropdown: React.FC<FacetsProps> = ({
   results,
   handleResetFilter,
   handleSingleChoice,

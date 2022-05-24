@@ -3,12 +3,15 @@ import classNames from 'classnames';
 import React, { Fragment } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 
-export type SearchOrderProps = {
+export type SearchOrderDropdownProps = {
   searchOrder: string;
   setSearchOrder: (order: string) => void;
 };
 
-export const SearchOrder = ({ searchOrder, setSearchOrder }) => {
+export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
+  searchOrder,
+  setSearchOrder,
+}) => {
   const searchOrderValues = [
     { id: 'desc', name: 'Beste Ergebnisse zuerst' },
     { id: 'asc', name: 'Schlechteste Ergebnisse zuerst' },

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { formatPercent } from '~/components/utils';
 import { ResultProps } from '../types';
-import { SearchOrder, SearchOrderProps } from './SearchOrder';
+import {
+  SearchOrderDropdown,
+  SearchOrderDropdownProps,
+} from './SearchOrderDropdown';
 
 type Props = {
   results: ResultProps;
   mobileFacets?: React.ReactNode;
-} & SearchOrderProps;
+} & SearchOrderDropdownProps;
 
 export const TitleBar: React.FC<Props> = ({
   results,
@@ -52,7 +55,7 @@ export const TitleBar: React.FC<Props> = ({
             Ø Score {formatPercent(resultScoreAverage, { precision: 0 }) || '-'}
           </span>
         )}
-        <SearchOrder
+        <SearchOrderDropdown
           searchOrder={searchOrder}
           setSearchOrder={setSearchOrder}
         />

@@ -7,7 +7,7 @@ import {
   HandleMultiChoiceProps,
   HandleSingleChoiceProps,
 } from './Facets';
-import { FacetsMobile } from './Facets/FacetsMobile';
+import { FacetsMobileDropdown } from './Facets/FacetsMobileDropdown';
 import { Results } from './Results';
 import { TitleBar } from './TitleBar';
 import { ResultProps } from './types';
@@ -147,7 +147,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes }) => {
           searchOrder={searchOrder}
           setSearchOrder={setSearchOrder}
           mobileFacets={
-            <FacetsMobile
+            <FacetsMobileDropdown
               results={results}
               handleResetFilter={searchFilters && handleResetFilter}
               handleSingleChoice={handleSingleChoice}
