@@ -1,6 +1,7 @@
 import { StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { LayoutArticle, MetaTags } from '~/components/Layout';
+import { Link } from '~/components/Link';
 
 const DatenschutzPage = () => {
   return (
@@ -77,9 +78,6 @@ const DatenschutzPage = () => {
         <li>
           <a href="#m54">Tracking Opt-Out (Matomo)</a>
         </li>
-        <li>
-          <a href="#m29">Datenschutzbestimmung (Maptiler)</a>
-        </li>
       </ul>
       <h2 id="m3">Verantwortlicher</h2>
       <p>
@@ -92,17 +90,13 @@ const DatenschutzPage = () => {
       Vertretungsberechtigte Personen: <p>Boris Hekele und Heiko Rintelen</p>
       E-Mail-Adresse:{' '}
       <p>
-        <a href="mailto:info@fixmycity.de">info@fixmycity.de</a>
+        <Link to="mailto:info@fixmycity.de">info@fixmycity.de</Link>
       </p>
       Impressum:{' '}
       <p>
-        <a
-          href="https://www.fixmycity.de/impressum"
-          target="_blank"
-          rel="noreferrer"
-        >
-          https://www.fixmycity.de/impressum
-        </a>
+        <Link to="https://www.fixmycity.de/impressum" external blank>
+          fixmycity.de/impressum
+        </Link>
       </p>
       <h2 id="mOverview">Übersicht der Verarbeitungen</h2>
       <p>
@@ -246,13 +240,13 @@ const DatenschutzPage = () => {
         EU-Kommission, beim Vorliegen von Zertifizierungen oder verbindlicher
         internen Datenschutzvorschriften verarbeiten (Art. 44 bis 49 DSGVO,
         Informationsseite der EU-Kommission:{' '}
-        <a
-          href="https://ec.europa.eu/info/law/law-topic/data-protection/international-dimension-data-protection_de"
-          target="_blank"
-          rel="noreferrer"
+        <Link
+          to="https://ec.europa.eu/info/law/law-topic/data-protection/international-dimension-data-protection_de"
+          external
+          blank
         >
           https://ec.europa.eu/info/law/law-topic/data-protection/international-dimension-data-protection_de
-        </a>
+        </Link>
         ).
       </p>
       <h2 id="m12">Löschung von Daten</h2>
@@ -350,37 +344,29 @@ const DatenschutzPage = () => {
           Rechenkapazitäten); <strong>Dienstanbieter:</strong> Amazon Web
           Services, Inc., 410 Terry Avenue North, Seattle WA 98109, USA;{' '}
           <strong>Website:</strong>{' '}
-          <a href="https://aws.amazon.com/de/" target="_blank" rel="noreferrer">
+          <Link to="https://aws.amazon.com/de/" external blank>
             https://aws.amazon.com/de/
-          </a>
+          </Link>
           ; <strong>Datenschutzerklärung:</strong>{' '}
-          <a
-            href="https://aws.amazon.com/de/privacy/?nc1=f_pr"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <Link to="https://aws.amazon.com/de/privacy/?nc1=f_pr" external blank>
             https://aws.amazon.com/de/privacy/?nc1=f_pr
-          </a>
+          </Link>
           ;{' '}
           <strong>
             Standardvertragsklauseln (Gewährleistung Datenschutzniveau bei
             Verarbeitung in Drittländern):
           </strong>{' '}
-          <a
-            href="https://aws.amazon.com/de/service-terms/"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <Link to="https://aws.amazon.com/de/service-terms/" external blank>
             https://aws.amazon.com/de/service-terms/
-          </a>
+          </Link>
           ; <strong>Auftragsverarbeitungsvertrag:</strong>{' '}
-          <a
-            href="https://d1.awsstatic.com/legal/aws-gdpr/AWS_GDPR_DPA.pdf"
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to="https://d1.awsstatic.com/legal/aws-gdpr/AWS_GDPR_DPA.pdf"
+            external
+            blank
           >
             https://d1.awsstatic.com/legal/aws-gdpr/AWS_GDPR_DPA.pdf
-          </a>
+          </Link>
           .
         </li>
       </ul>
@@ -501,8 +487,10 @@ const DatenschutzPage = () => {
         nachzuweisen, dass es in Übereinstimmung mit dem Gesetz durchgeführt
         wurde.
       </p>
-      <strong>Inhalte:</strong>{' '}
-      <p>Informationen zu uns, unseren Leistungen und Aktionen.</p>
+      <p>
+        <strong>Inhalte:</strong> Informationen zu uns, unseren Leistungen und
+        Aktionen.
+      </p>
       <ul>
         <li>
           <strong>Verarbeitete Datenarten:</strong> Bestandsdaten (z.B. Namen,
@@ -558,17 +546,13 @@ const DatenschutzPage = () => {
           E-Mail-Marketing-Plattform; <strong>Dienstanbieter:</strong> Mailjet
           SAS,13-13 bis, rue de l’Aubrac, 75012 Paris, Frankreich;{' '}
           <strong>Website:</strong>{' '}
-          <a href="https://www.mailjet.de" target="_blank" rel="noreferrer">
+          <Link to="https://www.mailjet.de" external blank>
             https://www.mailjet.de
-          </a>
+          </Link>
           ; <strong>Datenschutzerklärung:</strong>{' '}
-          <a
-            href="https://www.mailjet.de/privacy-policy"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <Link to="https://www.mailjet.de/privacy-policy" external blank>
             https://www.mailjet.de/privacy-policy
-          </a>
+          </Link>
           .
         </li>
       </ul>
@@ -664,9 +648,9 @@ const DatenschutzPage = () => {
           einzelner Nutzer nicht möglich sind. Die im Rahmen der Nutzung von
           Matomo erhobenen Daten der Nutzer werden nur von uns verarbeitet und
           nicht mit Dritten geteilt; <strong>Website:</strong>{' '}
-          <a href="https://matomo.org/" target="_blank" rel="noreferrer">
-            https://matomo.org/
-          </a>
+          <Link to="https://matomo.org/" external blank>
+            matomo.org
+          </Link>
           .
         </li>
       </ul>
@@ -817,26 +801,19 @@ const DatenschutzPage = () => {
           das Löschen.{' '}
         </li>
       </ul>
-      <p>
-        <a
-          href="https://datenschutz-generator.de/"
-          title="Rechtstext von Dr. Schwenke - für weitere Informationen bitte anklicken."
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-        >
-          <StaticImage
-            src="https://datenschutz-generator.de/wp-content/plugins/ts-dsg/images/dsg-seal/dsg-seal-pp-de.png"
-            alt="Rechtstext von Dr. Schwenke - für weitere Informationen bitte anklicken."
-            width={250}
-            height={250}
-          />
-        </a>
-      </p>
+      <Link to="https://datenschutz-generator.de/" external blank>
+        <StaticImage
+          src="https://datenschutz-generator.de/wp-content/plugins/ts-dsg/images/dsg-seal/dsg-seal-pp-de.png"
+          alt="Rechtstext von Dr. Schwenke - für weitere Informationen bitte anklicken."
+          width={250}
+          height={250}
+        />
+      </Link>
       <h2 id="m54">Tracking Opt-Out (Matomo)</h2>
       <iframe
         title="Matomo Opt Out Tracking"
         className="h-52 w-full border-0"
-        src="https://s.radschnellverbindungen.info/index.php?module=CoreAdminHome&action=optOut&language=de&backgroundColor=f0fdf4&fontColor=374151&fontSize=16px&fontFamily=Overpass"
+        src="https://s.radwege-check.de/index.php?module=CoreAdminHome&action=optOut&language=de&backgroundColor=f0fdf4&fontColor=374151&fontSize=16px&fontFamily=Arial"
       />
     </LayoutArticle>
   );
