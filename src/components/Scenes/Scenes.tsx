@@ -135,7 +135,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes }) => {
       <Facets
         className="z-20 hidden w-72 flex-none overflow-scroll overscroll-contain bg-gray-100 p-4 shadow-[0_0_10px_0_rgba(0,_0,_0,_0.2)] lg:block"
         results={results}
-        handleResetFilter={handleResetFilter}
+        handleResetFilter={searchFilters && handleResetFilter}
         handleSingleChoice={handleSingleChoice}
         handleMultiChoice={handleMultiChoice}
       />
@@ -149,7 +149,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes }) => {
           mobileFacets={
             <FacetsMobile
               results={results}
-              handleResetFilter={handleResetFilter}
+              handleResetFilter={searchFilters && handleResetFilter}
               handleSingleChoice={handleSingleChoice}
               handleMultiChoice={handleMultiChoice}
             />

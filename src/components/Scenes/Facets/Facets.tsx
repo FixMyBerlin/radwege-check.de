@@ -10,7 +10,8 @@ import { checkBucketValueConsistency, checkDataConsistency } from './utils';
 
 export type FacetsProps = {
   results: ResultProps;
-  handleResetFilter: () => void;
+  /** @desc Reset filters; undefined if no filter active. */
+  handleResetFilter: undefined | (() => void);
   handleSingleChoice: HandleSingleChoice;
   handleMultiChoice: HandleMultiChoice;
   className?: string;
@@ -30,7 +31,13 @@ export const Facets: React.FC<FacetsProps> = ({
         <button
           type="button"
           onClick={handleResetFilter}
-          className="underline hover:bg-yellow-100"
+          className={classNames(
+            handleResetFilter
+              ? 'hover:bg-yellow-100'
+              : 'cursor-not-allowed text-gray-500 decoration-gray-300',
+            'underline'
+          )}
+          disabled={!handleResetFilter}
         >
           Filter zurücksetzen
         </button>
