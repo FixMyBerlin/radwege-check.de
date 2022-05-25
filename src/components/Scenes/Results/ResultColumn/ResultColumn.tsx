@@ -29,7 +29,6 @@ export const ResultColumn: React.FC<Props> = ({
 
       <section className="mb-2">
         <Link to={scene.path} blank classNameOverwrite="relative">
-          {/* todo types */}
           <SceneImage
             sceneId={sceneImage}
             className="h-36 w-full object-cover object-bottom"
@@ -45,7 +44,6 @@ export const ResultColumn: React.FC<Props> = ({
       <ResultCells scene={scene} searchFilters={searchFilters} />
 
       <section className="py-3">
-        {/* todo types */}
         <Link button blank to={scene.path}>
           Details
         </Link>
