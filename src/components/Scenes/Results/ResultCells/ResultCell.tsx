@@ -3,7 +3,7 @@ import React from 'react';
 import { TranslationMissing } from '~/components/TextHelper';
 import { formatMeter } from '~/components/utils';
 import { aggregationConfig } from '../../constants';
-import { Icons } from '../../Facets/ButtonMultiChoice/Icons';
+import { Icons } from '../../Facets/ButtonSingleChoice/Icons';
 import { HauptstrasseSceneProps } from '../../types';
 
 type Props = {

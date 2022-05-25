@@ -95,16 +95,17 @@ export const aggregationConfig: AggregationConfig = {
     showAsIcons: false,
   },
   bufferLeftPhysicalProtection: {
-    title: 'Art der baulichen Trennung Links der RVA',
+    title: 'Einzelne bauliche Trennung auswählen',
     resultTitle: 'Art der baul. Trennung Links',
     buckets: {
+      bothButton: 'Egal',
       none: 'Keine',
       bollard_high: 'Poller (hoch)',
       bollard_small: 'Poller (niedrig)',
       planter: 'Blumenkästen',
       green: 'Grünanlage',
     },
-    choiceMode: 'multi',
+    choiceMode: 'single',
     showAsIcons: true,
     groupEndIndicator: true,
   },
@@ -121,9 +122,10 @@ export const aggregationConfig: AggregationConfig = {
     showAsIcons: false,
   },
   bufferLeftMarking: {
-    title: 'Art der Marierung Links der RVA',
+    title: 'Einzelne Markierungsart auswählen',
     resultTitle: 'Art der Markierung Links',
     buckets: {
+      bothButton: 'Egal',
       none: 'Keine',
       dashed_line: 'Unterbrochen Linie',
       solid_line: 'Durchgezogene Linie',
@@ -132,7 +134,7 @@ export const aggregationConfig: AggregationConfig = {
       paved_verge: 'Aufpflasterung',
       grass_verge: 'Grünstreifen',
     },
-    choiceMode: 'multi',
+    choiceMode: 'single',
     showAsIcons: true,
   },
   bufferRightWidth: {
@@ -148,9 +150,10 @@ export const aggregationConfig: AggregationConfig = {
     showAsIcons: false,
   },
   bufferRightMarking: {
-    title: 'Art der Markierung Rechts der RVA',
+    title: 'Einzelne Markierungsart auswählen',
     resultTitle: 'Art der Markierung Rechts',
     buckets: {
+      bothButton: 'Egal',
       none: 'Keine',
       solid_line: 'Durchgezogene Linie',
       double_line: 'Doppellinie',
@@ -158,7 +161,7 @@ export const aggregationConfig: AggregationConfig = {
       paved_verge: 'Aufpflasterung',
       grass_verge: 'Grünstreifen',
     },
-    choiceMode: 'multi',
+    choiceMode: 'single',
     showAsIcons: true,
     groupEndIndicator: true,
   },

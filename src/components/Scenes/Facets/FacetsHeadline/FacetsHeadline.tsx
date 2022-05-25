@@ -4,13 +4,14 @@ import { TranslationMissing } from '~/components/TextHelper';
 import { aggregationConfig } from '../../constants';
 
 type Props = {
-  visible: boolean;
   aggregationKey: string;
+  /** Change styles for icon aggregations */
+  forIcons?: boolean;
 };
 
 export const FacetsHeadline: React.FC<Props> = ({
-  visible,
   aggregationKey,
+  forIcons,
 }) => {
   const title = aggregationConfig[aggregationKey]?.title;
   const text = title || <TranslationMissing value={aggregationKey} />;
@@ -18,9 +19,10 @@ export const FacetsHeadline: React.FC<Props> = ({
   return (
     <h2
       title={aggregationKey}
-      className={classNames('mb-1 text-sm font-semibold', {
-        'sr-only': !(visible && title),
-      })}
+      className={classNames(
+        'mb-1',
+        forIcons ? 'text-xs' : 'text-sm font-semibold'
+      )}
     >
       {text}
     </h2>

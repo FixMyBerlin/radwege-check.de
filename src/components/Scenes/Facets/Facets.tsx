@@ -83,7 +83,7 @@ export const Facets: React.FC<FacetsProps> = ({
 
           return (
             <section key={aggregationKey} className={classNames('mb-5')}>
-              <FacetsHeadline visible aggregationKey={aggregationKey} />
+              <FacetsHeadline aggregationKey={aggregationKey} />
 
               <FacetsButtons
                 aggregationKey={aggregationKey}
@@ -106,14 +106,18 @@ export const Facets: React.FC<FacetsProps> = ({
           return (
             <section
               key={aggregationKey}
-              className={classNames('mb-5', {
-                '!mb-4 border-b border-dashed border-gray-300 pb-5':
-                  groupEndIndicator,
-              })}
+              className={classNames(
+                { 'mb-5': !groupEndIndicator },
+                { '-mt-3': showAsIcons },
+                {
+                  'mb-4 border-b border-dashed border-gray-300 pb-5':
+                    groupEndIndicator,
+                }
+              )}
             >
               <FacetsHeadline
-                visible={!showAsIcons}
                 aggregationKey={aggregationKey}
+                forIcons={showAsIcons}
               />
 
               <FacetsButtons

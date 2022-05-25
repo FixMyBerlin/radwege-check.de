@@ -3,6 +3,7 @@ import React from 'react';
 import { aggregationConfig } from '../../constants';
 import { ResultBucketProps } from '../../types';
 import { buttonClassNames } from '../utils';
+import { Icons } from './Icons';
 import { useResults } from './useResults';
 
 export type HandleSingleChoiceProps = {
@@ -53,7 +54,8 @@ export const ButtonSingleChoice: React.FC<Props> = ({
           lastElement,
           uiSelected,
           uiCanpress,
-        })
+        }),
+        { '!h-8': showAsIcons }
       )}
       onClick={() =>
         handleClick({
@@ -62,20 +64,22 @@ export const ButtonSingleChoice: React.FC<Props> = ({
         })
       }
       disabled={!uiCanpress}
-      title={
+      title={[
+        showAsIcons
+          ? `${aggregationConfig[aggregationKey].buckets[bucket.key]}`
+          : '',
         // eslint-disable-next-line no-nested-ternary
         resultTotal === resultFuture
           ? 'Auswahl nicht möglich da keine Änderung der Ergebnisse.'
           : resultFuture === 0
           ? 'Auswahl nicht möglich da sie zu 0 Ergebnissen führen würde'
-          : `Ergebnisse ${resultFuture || 'todo'}`
-      }
+          : `Ergebnisse ${resultFuture || 'todo'}`,
+      ]
+        .filter((k) => !!k)
+        .join(' – ')}
     >
       {showAsIcons ? (
-        <span className="font-bold uppercase">
-          {aggregationConfig[aggregationKey].buckets[bucket.key]?.charAt(0) ||
-            'TODO'}
-        </span>
+        <Icons forValue={bucket.key} className="scale-75" />
       ) : (
         <span
           // eslint-disable-next-line react/no-danger

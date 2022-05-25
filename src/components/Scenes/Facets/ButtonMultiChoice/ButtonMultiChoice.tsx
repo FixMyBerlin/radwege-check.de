@@ -3,7 +3,6 @@ import React from 'react';
 import { aggregationConfig } from '../../constants';
 import { ResultBucketProps } from '../../types';
 import { buttonClassNames } from '../utils';
-import { Icons } from './Icons';
 import { useResults } from './useResults';
 
 export type HandleMultiChoiceProps = {
@@ -35,7 +34,6 @@ export const ButtonMultiChoice: React.FC<Props> = ({
   index,
   paginationTotal,
 }) => {
-  const { showAsIcons } = aggregationConfig[aggregationKey];
   const { resultTotal, resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
     bucketCount: bucket?.doc_count,
@@ -55,8 +53,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
           lastElement,
           uiSelected,
           uiCanpress,
-        }),
-        { '-mt-1.5 !h-10': showAsIcons }
+        })
       )}
       onClick={() =>
         handleClick({
@@ -66,28 +63,19 @@ export const ButtonMultiChoice: React.FC<Props> = ({
         })
       }
       disabled={!uiCanpress}
-      title={[
-        showAsIcons
-          ? `${aggregationConfig[aggregationKey].buckets[bucket.key]}`
-          : '',
+      title={
         resultTotal === resultFuture
           ? 'Auswahl nicht möglich da keine Änderung der Ergebnisse.'
-          : `Ergebnisse ${resultFuture || 'todo'}`,
-      ]
-        .filter((k) => !!k)
-        .join(' – ')}
+          : `Ergebnisse ${resultFuture || 'todo'}`
+      }
     >
-      {showAsIcons ? (
-        <Icons forValue={bucket.key} />
-      ) : (
-        <span
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html:
-              aggregationConfig[aggregationKey].buckets[bucket.key] || 'TODO',
-          }}
-        />
-      )}
+      <span
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html:
+            aggregationConfig[aggregationKey].buckets[bucket.key] || 'TODO',
+        }}
+      />
     </button>
   );
 };

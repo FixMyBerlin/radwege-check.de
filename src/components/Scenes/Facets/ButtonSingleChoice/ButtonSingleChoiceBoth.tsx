@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import { aggregationConfig } from '../../constants';
 import { ResultBucketProps } from '../../types';
@@ -17,6 +18,8 @@ export const ButtonSingleChoiceBoth: React.FC<Props> = ({
   buckets,
   handleClick,
 }) => {
+  const { showAsIcons } = aggregationConfig[aggregationKey];
+
   // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
   const anyOfGroupSelected = buckets.some((b) => b.selected);
   const uiSelected = !anyOfGroupSelected;
@@ -28,12 +31,15 @@ export const ButtonSingleChoiceBoth: React.FC<Props> = ({
     <button
       key={`${aggregationKey}__${bucketKey}`}
       type="button"
-      className={buttonClassNames({
-        firstElement,
-        lastElement,
-        uiSelected,
-        uiCanpress,
-      })}
+      className={classNames(
+        buttonClassNames({
+          firstElement,
+          lastElement,
+          uiSelected,
+          uiCanpress,
+        }),
+        { '!h-8': showAsIcons }
+      )}
       onClick={() =>
         handleClick({
           aggregationKey,
