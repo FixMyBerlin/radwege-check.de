@@ -60,10 +60,6 @@ export const Facets: React.FC<FacetsProps> = ({
           const { showAsIcons, groupEndIndicator } =
             aggregationConfig[aggregationKey];
 
-          checkDataConsistency({ aggregationKey });
-          const { keyFromItemjsMissingInTranslations } =
-            checkBucketValueConsistency({ aggregationKey, buckets });
-
           return (
             <section
               key={aggregationKey}
@@ -84,17 +80,6 @@ export const Facets: React.FC<FacetsProps> = ({
                 handleSingleChoice={handleSingleChoice}
                 handleMultiChoice={handleMultiChoice}
               />
-
-              {!!keyFromItemjsMissingInTranslations.length && (
-                <div className="text-xs text-neutral-500">
-                  Werte, die wir in den Daten bereinigen müssen:{' '}
-                  {keyFromItemjsMissingInTranslations.map((v) => (
-                    <code key={v} className="rounded-sm bg-red-100 px-1">
-                      {v}
-                    </code>
-                  ))}
-                </div>
-              )}
             </section>
           );
         }
