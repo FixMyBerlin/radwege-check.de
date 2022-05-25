@@ -1,9 +1,13 @@
 import classNames from 'classnames';
 import React from 'react';
+import BollardHigh from './assets/bollard_high-icon.svg';
+import BollardSmall from './assets/bollard_small-icon.svg';
 import DashedLine from './assets/dashed_line-icon.svg';
 import DoubleLine from './assets/double_line-icon.svg';
 import GrassVerge from './assets/grass_verge-icon.svg';
+import Green from './assets/green-icon.svg';
 import PavedVerge from './assets/paved_verge-icon.svg';
+import Planter from './assets/planter-icon.svg';
 import RestrictedArea from './assets/restricted_area-icon.svg';
 import SolidLine from './assets/solid_line-icon.svg';
 
@@ -34,6 +38,18 @@ export const Icons: React.FC<Props> = ({ forValue, className }) => {
 
     case 'grass_verge':
       return <GrassVerge className={className} />;
+
+    case 'bollard_high':
+      return <BollardHigh className={className} />;
+
+    case 'bollard_small':
+      return <BollardSmall className={className} />;
+
+    case 'planter':
+      return <Planter className={className} />;
+
+    case 'green':
+      return <Green className={className} />;
 
     default:
       return (
