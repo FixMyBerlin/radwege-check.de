@@ -24,9 +24,9 @@ export const checkDataConsistency = ({ aggregationKey }: Props) => {
     });
   }
 
-  if (showAsIcons === true && choiceMode === 'single') {
+  if (showAsIcons === true && choiceMode === 'multi') {
     console.log({
-      ERROR: `When aggregationConfig[ID].showAsIcons is true, aggregationConfig[ID].choiceMode needs to be 'multi'.`,
+      ERROR: `When aggregationConfig[ID].showAsIcons is true, aggregationConfig[ID].choiceMode needs to be 'single'.`,
       aggregationKey,
     });
   }
