@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from '~/components/Link';
 import { SceneImage } from '../../SceneImage';
 import { HauptstrasseSceneProps, SearchOptionProps } from '../../types';
-import { Bookmark } from '../bookmark/Bookmark';
 import { ResultCells } from '../ResultCells';
 import { ResultStackedBarchart } from '../ResultStackedBarchart';
 
@@ -30,7 +29,6 @@ export const ResultColumn: React.FC<Props> = ({
 
       <section className="mb-2">
         <Link to={scene.path} blank classNameOverwrite="relative">
-          <Bookmark active />
           {/* todo types */}
           <SceneImage
             sceneId={sceneImage}
