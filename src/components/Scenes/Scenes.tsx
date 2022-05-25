@@ -4,13 +4,13 @@ import { StringParam, useQueryParam } from 'use-query-params';
 import { MetaTags } from '../Layout';
 import { itemJsConfig } from './constants';
 import { Presets } from './constants/presets.const';
+import { Results } from './Results';
 import {
   Facets,
   HandleMultiChoiceProps,
   HandleSingleChoiceProps,
 } from './Facets';
 import { FacetsMobileDropdown } from './Facets/FacetsMobileDropdown';
-import { Results } from './Results';
 import { TitleBar } from './TitleBar';
 import { ResultProps } from './types';
 import { cleanupCsvData, decodeFilter, encodeFilter } from './utils';
@@ -184,7 +184,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, presets, pageUrl }) => {
       />
       <div className="flex h-screen flex-row">
         <Facets
-          className="z-20 hidden w-72 flex-none overflow-scroll overscroll-contain bg-gray-100 p-4 shadow-[0_0_10px_0_rgba(0,_0,_0,_0.2)] lg:block"
+          className="z-20 hidden w-72 flex-none overflow-scroll overscroll-contain bg-gray-100 shadow-[0_0_10px_0_rgba(0,_0,_0,_0.2)] lg:block"
           results={results}
           handleResetFilter={searchFilters && handleResetFilter}
           handleSingleChoice={handleSingleChoice}
@@ -192,6 +192,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, presets, pageUrl }) => {
           presets={presets}
           currentPresetKey={currentPresetKey}
           handlePresetClick={handlePresetClick}
+          showLogo
         />
 
         {/* The `w-1 + grow` combo is required to get the with + overflow scroll right. */}

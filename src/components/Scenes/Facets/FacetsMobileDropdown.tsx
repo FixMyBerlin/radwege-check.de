@@ -3,7 +3,9 @@ import { ChevronDownIcon } from '@heroicons/react/outline';
 import React, { Fragment } from 'react';
 import { Facets, FacetsProps } from './Facets';
 
-export const FacetsMobileDropdown: React.FC<FacetsProps> = ({
+type Props = Omit<FacetsProps, 'showLogo'>;
+
+export const FacetsMobileDropdown: React.FC<Props> = ({
   results,
   handleResetFilter,
   handleSingleChoice,
@@ -28,7 +30,7 @@ export const FacetsMobileDropdown: React.FC<FacetsProps> = ({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute mt-2 h-[90vh] w-80 origin-top-right overflow-y-scroll overscroll-contain rounded-md bg-white p-4 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute mt-2 h-[90vh] w-80 origin-top-right overflow-y-scroll overscroll-contain rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <Facets
             results={results}
             handleResetFilter={handleResetFilter}
@@ -37,6 +39,7 @@ export const FacetsMobileDropdown: React.FC<FacetsProps> = ({
             presets={presets}
             currentPresetKey={currentPresetKey}
             handlePresetClick={handlePresetClick}
+            showLogo={false}
           />
         </Menu.Items>
       </Transition>

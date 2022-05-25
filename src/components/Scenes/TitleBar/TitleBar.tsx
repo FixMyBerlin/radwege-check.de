@@ -35,7 +35,7 @@ export const TitleBar: React.FC<Props> = ({
   const perPage = pagination?.per_page || 0;
 
   return (
-    <section className="z-10 flex h-16 flex-row items-center justify-between bg-yellow-50 px-4 py-1 text-lg shadow-[0_0px_10px_0_rgba(0,_0,_0,_0.2)] lg:text-xl">
+    <section className="z-10 flex h-14 flex-none flex-row items-center justify-between bg-yellow-50 px-4 py-1 text-lg shadow-[0_0px_10px_0_rgba(0,_0,_0,_0.2)] lg:text-xl">
       {mobileFacets}
       <h1
         className="px-3 text-center font-bold leading-none lg:p-0 lg:text-left"

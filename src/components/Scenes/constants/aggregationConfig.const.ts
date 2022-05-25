@@ -18,8 +18,10 @@ type AggregationConfig = {
     choiceMode: 'multi' | 'single';
     /** @desc FilterSidebar: Switch from text to icon view. Has to be `false` if `choiseMode` is 'single'. */
     showAsIcons: boolean;
-    /** @desc FilterSidebar: Show a a line below the facet to indicate the end of a logical group. */
+    /** @desc FilterSidebar: Show a line below the facet to indicate the end of a logical group. */
     groupEndIndicator?: boolean;
+    /** @desc FilterSidebar: Highlight this group with a background */
+    primaryGroup?: boolean;
   };
 };
 
@@ -34,6 +36,7 @@ export const aggregationConfig: AggregationConfig = {
     },
     choiceMode: 'multi',
     showAsIcons: false,
+    primaryGroup: true,
   },
   bicycleLaneWidth: {
     title: 'Radverkehrsanlage (RVA)',
@@ -51,6 +54,7 @@ export const aggregationConfig: AggregationConfig = {
     },
     choiceMode: 'multi',
     showAsIcons: false,
+    primaryGroup: true,
   },
   parking: {
     title: 'KfZ-Parken vorhanden',
@@ -67,6 +71,7 @@ export const aggregationConfig: AggregationConfig = {
     choiceMode: 'single',
     showAsIcons: false,
     groupEndIndicator: true,
+    primaryGroup: true,
   },
   bicycleLaneSurface: {
     title: 'Oberfläche RVA',
