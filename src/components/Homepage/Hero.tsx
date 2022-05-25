@@ -10,9 +10,7 @@ export const Hero: React.FC = () => {
         alt="Workflow"
       />
 
-      <h1 className="mb-4 font-slap text-5xl font-semibold">
-        Mach den Radwege-Check
-      </h1>
+      <h1 className="mb-4 text-5xl font-bold">Mach den Radwege-Check</h1>
 
       <h2 className="mb-6 text-2xl">
         Vergleiche Radverkehrsführungsformen nach ihrer subjektiven Sicherheit.

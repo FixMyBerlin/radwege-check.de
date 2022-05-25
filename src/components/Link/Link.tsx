@@ -18,7 +18,7 @@ type Props = {
 const linkStyles =
   'text-emerald-500 hover:text-emerald-600 hover:underline active:underline';
 export const buttonStyles =
-  'inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 group-hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500';
+  'inline-flex items-center px-4 py-2 border border-transparent font-semibold rounded-md shadow-sm text-gray-800 bg-yellow-500 hover:bg-yellow-400 group-hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500';
 
 export const Link: React.FC<Props> = ({
   to,

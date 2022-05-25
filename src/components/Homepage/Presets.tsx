@@ -34,9 +34,9 @@ export const Presets: React.FC = () => {
 
   const pickTabClasses = (category: SceneCategory) => {
     return tabActive(category)
-      ? 'h-full w-full p-3'
+      ? 'h-full w-full p-3 font-semibold'
       : classNames(
-          'h-full w-full bg-[#fff8e8] p-3 hover:underline',
+          'h-full w-full bg-[#fff8e8] p-3 hover:underline font-semibold',
           tabActive('primary') ? 'rounded-bl-md' : 'rounded-br-md'
         );
   };
@@ -47,9 +47,12 @@ export const Presets: React.FC = () => {
         <div className="flex justify-between">
           <div className="flex-grow bg-stone-300">
             <h2
-              className={classNames('w-full bg-[#fff8e8] py-3 font-bold', {
-                'rounded-br-md': tabActive('primary'),
-              })}
+              className={classNames(
+                'w-full bg-[#fff8e8] py-3 text-2xl font-semibold',
+                {
+                  'rounded-br-md': tabActive('primary'),
+                }
+              )}
             >
               Welche Radwege willst du vergleichen?
             </h2>

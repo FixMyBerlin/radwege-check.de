@@ -32,9 +32,9 @@ module.exports = {
       }),
     },
     fontFamily: {
-      sans: ['Open Sans', 'Segoe UI', 'Tahoma', 'sans-serif'],
-      condensed: ['Open Sans Condensed', 'sans-serif'],
-      slap: ['Roboto Slab', 'serif'],
+      sans: ['Barlow', 'Segoe UI', 'Tahoma', 'sans-serif'],
+      condensed: ['Barlow Condensed', 'sans-serif'],
+      semi: ['Barlow Semi Condensed', 'sans-serif'],
     },
   },
   plugins: [

@@ -80,27 +80,28 @@ export const PresetSlider: React.FC<Props> = ({
                 <Link
                   button
                   to={url}
-                  classNameOverwrite="flex h-80 w-80 flex-col justify-between rounded-md bg-white p-3 shadow-lg group"
+                  classNameOverwrite="flex relative h-80 w-80 flex-col justify-between rounded-md bg-white shadow-lg group"
                 >
                   <>
-                    <h3 className="h-24 font-semibold group-hover:underline">
+                    <h3 className="m-3 h-24 font-semi text-2xl leading-7 group-hover:underline">
                       {preset.title}
                     </h3>
-                    <div className="relative">
-                      {preset.sceneIdForImage && (
+
+                    {preset.sceneIdForImage && (
+                      <div className="overflow-hidden rounded-b">
                         <SceneImage
                           sceneId={preset.sceneIdForImage}
-                          className="rounded object-cover object-bottom"
+                          className="object-cover object-bottom"
                         />
-                      )}
-                      <div
-                        className={classNames(
-                          buttonStyles,
-                          'absolute bottom-3 right-3'
-                        )}
-                      >
-                        {preset.results} Ergebnisse
                       </div>
+                    )}
+                    <div
+                      className={classNames(
+                        buttonStyles,
+                        'absolute bottom-3 right-3'
+                      )}
+                    >
+                      {preset.results} Ergebnisse
                     </div>
                   </>
                 </Link>
