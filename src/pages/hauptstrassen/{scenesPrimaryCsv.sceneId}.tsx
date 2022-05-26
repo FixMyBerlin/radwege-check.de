@@ -3,12 +3,9 @@ import React, { useMemo } from 'react';
 import { Layout, MetaTags } from '~/components/Layout';
 import { ScenePage } from '~/components/ScenePage';
 import { cleanupCsvData } from '~/components/Scenes/utils';
-import NotFound from '../404';
 
 const MyData = ({ data: { scenesPrimaryCsv: rawScene } }) => {
   const scene = useMemo(() => cleanupCsvData([rawScene || {}])[0], [rawScene]);
-
-  if (!scene) return <NotFound />;
 
   return (
     <Layout>
@@ -27,10 +24,7 @@ export default MyData;
 
 export const query = graphql`
   query ($sceneId: String!) {
-    scenesPrimaryCsv(
-      sceneId: { eq: $sceneId }
-      pointOfView: { eq: "bicycle" }
-    ) {
+    scenesPrimaryCsv(sceneId: { eq: $sceneId }) {
       sceneId
       sceneIdCar
       sceneIdCount
@@ -54,7 +48,6 @@ export const query = graphql`
       pavementHasShops
       pavementWidth
       pavementWidthNumber
-      pointOfView
       vehicleLaneMaxspeed
       vehicleLaneUsage
       vehicleTrafficVolume

@@ -1,4 +1,11 @@
 module.exports = {
+  // Required by 'gatsby-plugin-sitemap' Plugin
+  siteMetadata: {
+    title: 'TODO siteMeta.title',
+    siteUrl: 'https://radwege-check.de',
+    description: 'TODO siteMeta.description',
+  },
+
   // Since `gatsby-plugin-typescript` is automatically included in Gatsby you
   // don't need to define it here (just if you need to change the options)
 

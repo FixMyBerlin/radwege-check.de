@@ -26,7 +26,7 @@ export default MyDataIndex;
 
 export const query = graphql`
   query {
-    allScenesPrimaryCsv(filter: { pointOfView: { eq: "bicycle" } }) {
+    allScenesPrimaryCsv {
       edges {
         node {
           sceneId
@@ -52,7 +52,6 @@ export const query = graphql`
           pavementHasShops
           pavementWidth
           pavementWidthNumber
-          pointOfView
           vehicleLaneMaxspeed
           vehicleLaneUsage
           vehicleTrafficVolume

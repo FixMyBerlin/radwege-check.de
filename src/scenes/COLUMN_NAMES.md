@@ -23,7 +23,6 @@ parking
 pavementHasShops
 pavementWidth
 pavementWidthNumber
-pointOfView
 surroundings
 vehicleLaneMaxspeed
 vehicleLaneUsage
@@ -55,7 +54,6 @@ votePedestrianScore
 
 imageUrl
 location
-pointOfView
 sceneId
 parkingCategory
 todoMotorVehicleDirection

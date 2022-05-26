@@ -16,8 +16,6 @@ export type ResultBucketProps = {
 export type NebenstrasseSceneProps = {
   sceneId: string;
 
-  pointOfView: string;
-
   path: string;
 };
 
@@ -45,7 +43,6 @@ export type HauptstrasseSceneProps = {
   pavementHasShops: boolean;
   pavementWidth: string;
   pavementWidthNumber: number | undefined;
-  pointOfView: string;
   vehicleLaneMaxspeed: string;
   vehicleLaneUsage: string;
   vehicleTrafficVolume: string;

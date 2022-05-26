@@ -27,12 +27,10 @@ export default MyDataIndex;
 
 export const query = graphql`
   query {
-    allScenesSecondaryCsv(filter: { pointOfView: { eq: "bicycle" } }) {
+    allScenesSecondaryCsv {
       edges {
         node {
           sceneId
-
-          pointOfView
 
           path: gatsbyPath(
             filePath: "/nebenstrassen/{scenesSecondaryCsv.sceneId}"
