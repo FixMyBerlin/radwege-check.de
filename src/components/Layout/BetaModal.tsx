@@ -21,7 +21,7 @@ export const BetaModal = () => {
       <h2 className="mt-8 font-semi text-xl font-semibold">Schreib uns:</h2>
       <p>Was gefällt dir, was kann besser gehen?</p>
       <p>
-        <Link to="mailto:hallo@fixmycity.de">hallo@fixmycity.de</Link>
+        <Link to="mailto:hello@fixmycity.de">hello@fixmycity.de</Link>
       </p>
     </Modal>
   );
