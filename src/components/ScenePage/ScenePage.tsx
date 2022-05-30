@@ -28,7 +28,7 @@ export const ScenePage: React.FC<Props> = ({ category, scene }) => {
         Szene <code>{scene.sceneId}</code>
       </h1>
       <div className="flex max-w-7xl flex-col gap-6 lg:grid lg:grid-cols-4">
-        <div className="order-2 lg:order-none">
+        <div className="order-3 lg:order-none">
           <p className="px-6 pt-0 pb-3">
             <strong className="text-xxs font-semibold">Straßenklasse</strong>
             <br />
@@ -76,7 +76,7 @@ export const ScenePage: React.FC<Props> = ({ category, scene }) => {
           </div>
         </div>
 
-        <div className="order-3 flex h-96 flex-col lg:order-none">
+        <div className="order-2 flex h-96 flex-col lg:order-none">
           <p className="mb-5 flex items-center">
             Durchschnittliche Bewertungen dieser Szene zur subjektiven
             Sicherheit{' '}
