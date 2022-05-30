@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
-import { aggregationConfig } from '../../constants';
-import { ResultBucketProps } from '../../types';
+import { useAggregationConfig } from '../../hooks';
+import { ResultBucketProps, SceneCategory } from '../../types';
 import { buttonClassNames } from '../utils';
 import { useResults } from './useResults';
 
@@ -19,6 +19,7 @@ export type HandleMultiChoice = ({
 
 type Props = {
   aggregationKey: string;
+  category: SceneCategory;
   bucket: ResultBucketProps;
   buckets: ResultBucketProps[];
   handleClick: HandleMultiChoice;
@@ -28,6 +29,7 @@ type Props = {
 
 export const ButtonMultiChoice: React.FC<Props> = ({
   aggregationKey,
+  category,
   bucket,
   buckets,
   handleClick,
@@ -42,6 +44,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
   });
   const firstElement = index === 0;
   const lastElement = index === buckets.length - 1;
+  const aggregationConfig = useAggregationConfig(category);
 
   return (
     <button

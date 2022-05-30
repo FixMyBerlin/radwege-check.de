@@ -1,12 +1,12 @@
 import classNames from 'classnames';
 import React from 'react';
 import { formatPercent } from '~/components/utils';
-import { HauptstrasseSceneProps } from '../../types';
+import { ScenePrimaryProps } from '../../types';
 
 type Props = {
   className?: string;
 } & Pick<
-  HauptstrasseSceneProps,
+  ScenePrimaryProps,
   'vote0Unsafe' | 'vote1RatherUnsafe' | 'vote2Save' | 'vote3VerySave'
 >;
 

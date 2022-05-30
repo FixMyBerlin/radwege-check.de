@@ -1,21 +1,6 @@
-export type Preset = {
-  title: string;
-  sceneIdForImage: string | null;
-  results: number;
-  searchFilterString: string;
-};
+import { PresetsScenes } from './types';
 
-export type Presets = { [key: string]: Preset };
-
-// TODO Try to get this working with TS magic…
-//   https://bobbyhadz.com/blog/typescript-create-type-from-object-keys
-// export type Presets = typeof presets;
-// export type PresetKeys = keyof typeof presets | 'custom';
-// ^- this needs an 'as const' on the object below.
-
-export const presetsScenesSecondary = {};
-
-export const presetsScenesPrimary = {
+export const presetsScenesPrimary: PresetsScenes = {
   'main-poller': {
     title: 'Breite Radwege mit Pollern an Hauptstraßen',
     sceneIdForImage: 'MS_C_573',

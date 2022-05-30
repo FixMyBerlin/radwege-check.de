@@ -2,7 +2,7 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import { LayoutScenes } from '~/components/Layout';
 import { Scenes } from '~/components/Scenes';
-import { presetsScenesPrimary } from '~/components/Scenes/constants/presets.const';
+import { presetsScenesPrimary } from '~/components/Scenes/constants';
 
 const MyDataIndex = ({
   location,
@@ -14,6 +14,7 @@ const MyDataIndex = ({
     <LayoutScenes>
       {/* <MetaTags> are part of <Scenes> */}
       <Scenes
+        category="primary"
         rawScenes={sceneNodes}
         presets={presetsScenesPrimary}
         pageUrl={`${location.origin}${location.pathname}`}

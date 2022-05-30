@@ -4,12 +4,12 @@ import useEmblaCarousel from 'embla-carousel-react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { buttonStyles, Link } from '../Link';
 import { SceneImage } from '../Scenes';
-import { Presets } from '../Scenes/constants/presets.const';
+import { PresetsScenes } from '../Scenes/constants';
 import { FilterUrlProp } from './Presets';
 
 export type Props = {
   filterUrl: FilterUrlProp;
-  slides: Presets;
+  slides: PresetsScenes;
   className?: string;
 };
 

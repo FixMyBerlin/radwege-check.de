@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React from 'react';
 import { Link } from '~/components/Link';
-import { aggregationConfig } from '~/components/Scenes/constants';
-import { ResultProps } from '../types';
+import { useAggregationConfig } from '../hooks';
+import { ResultProps, SceneCategory } from '../types';
 import { HandleMultiChoice } from './ButtonMultiChoice/ButtonMultiChoice';
 import { HandleSingleChoice } from './ButtonSingleChoice/ButtonSingleChoice';
 import { FacetsButtons } from './FacetsButtons';
@@ -10,6 +10,7 @@ import { FacetsHeadline } from './FacetsHeadline';
 import { PresetDropdown, PresetDropdownProps } from './PresetDropdown';
 
 export type FacetsProps = {
+  category: SceneCategory;
   results: ResultProps;
   /** @desc Reset filters; undefined if no filter active. */
   handleResetFilter: undefined | (() => void);
@@ -20,6 +21,7 @@ export type FacetsProps = {
 } & PresetDropdownProps;
 
 export const Facets: React.FC<FacetsProps> = ({
+  category,
   results,
   handleResetFilter,
   handleSingleChoice,
@@ -31,12 +33,15 @@ export const Facets: React.FC<FacetsProps> = ({
   showLogo,
 }) => {
   const aggregations = results?.data?.aggregations;
+  const aggregationConfig = useAggregationConfig(category);
 
-  const primaryAggregationEntries = Object.entries(aggregations || {}).filter(
+  const mainAggregationEntries = Object.entries(aggregations || {}).filter(
     ([key, _v]) => aggregationConfig[key].primaryGroup === true
   );
 
-  const secondaryAggregationEntries = Object.entries(aggregations || {});
+  const furtherAggregationEntries = Object.entries(aggregations || {}).filter(
+    ([key, _v]) => !aggregationConfig[key].primaryGroup
+  );
 
   return (
     <nav className={classNames(className, 'overflow-scroll')}>
@@ -78,15 +83,19 @@ export const Facets: React.FC<FacetsProps> = ({
           </button>
         </p>
 
-        {primaryAggregationEntries.map(([aggregationKey, aggregation]) => {
+        {mainAggregationEntries.map(([aggregationKey, aggregation]) => {
           const { buckets } = aggregation;
 
           return (
             <section key={aggregationKey} className={classNames('mb-5')}>
-              <FacetsHeadline aggregationKey={aggregationKey} />
+              <FacetsHeadline
+                category={category}
+                aggregationKey={aggregationKey}
+              />
 
               <FacetsButtons
                 aggregationKey={aggregationKey}
+                category={category}
                 results={results}
                 buckets={buckets}
                 handleSingleChoice={handleSingleChoice}
@@ -98,7 +107,7 @@ export const Facets: React.FC<FacetsProps> = ({
       </div>
 
       <div className="px-3">
-        {secondaryAggregationEntries.map(([aggregationKey, aggregation]) => {
+        {furtherAggregationEntries.map(([aggregationKey, aggregation]) => {
           const { buckets } = aggregation;
           const { showAsIcons, groupEndIndicator } =
             aggregationConfig[aggregationKey];
@@ -116,12 +125,14 @@ export const Facets: React.FC<FacetsProps> = ({
               )}
             >
               <FacetsHeadline
+                category={category}
                 aggregationKey={aggregationKey}
                 forIcons={showAsIcons}
               />
 
               <FacetsButtons
                 aggregationKey={aggregationKey}
+                category={category}
                 results={results}
                 buckets={buckets}
                 handleSingleChoice={handleSingleChoice}

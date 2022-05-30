@@ -1,11 +1,11 @@
-import { HauptstrasseSceneProps } from '../types';
+import { ScenePrimaryProps } from '../types';
 
 /**
  * We paste the data from our Google Spreadsheet CSV export without further cleanup.
  * That makes for an easy update process from Spreadsheet to Gatsby.
  * This helper will cleanup the bad data types for undefined and number data.
  */
-export const cleanupCsvData = (input): HauptstrasseSceneProps[] => {
+export const cleanupCsvData = (input): ScenePrimaryProps[] => {
   const cleaned = [];
   input.forEach((row, index) =>
     Object.entries(row).forEach(([key, value]) => {

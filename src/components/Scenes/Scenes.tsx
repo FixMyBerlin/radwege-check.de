@@ -2,33 +2,47 @@ import itemsjs from 'itemsjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import { StringParam, useQueryParam } from 'use-query-params';
 import { MetaTags } from '../Layout';
-import { itemJsConfig } from './constants';
-import { Presets } from './constants/presets.const';
-import { Results } from './Results';
+import {
+  itemJsConfigPrimary,
+  itemJsConfigSecondary,
+  PresetsScenes,
+} from './constants';
 import {
   Facets,
   HandleMultiChoiceProps,
   HandleSingleChoiceProps,
 } from './Facets';
 import { FacetsMobileDropdown } from './Facets/FacetsMobileDropdown';
+import { useAggregationConfig } from './hooks';
+import { Results } from './Results';
 import { TitleBar } from './TitleBar';
-import { ResultProps } from './types';
+import { ResultProps, SceneCategory } from './types';
 import { cleanupCsvData, decodeFilter, encodeFilter } from './utils';
 
 type Props = {
+  category: SceneCategory;
   rawScenes: any;
-  presets: Presets;
+  presets: PresetsScenes;
   /** @desc https://<domain>/pathname without searchParams */
   pageUrl: string;
 };
 
-export const Scenes: React.FC<Props> = ({ rawScenes, presets, pageUrl }) => {
+export const Scenes: React.FC<Props> = ({
+  category,
+  rawScenes,
+  presets,
+  pageUrl,
+}) => {
   const scenes = useMemo(() => {
     // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
     const flattened = rawScenes.map((list) => list.node);
     // Clean the data
     return cleanupCsvData(flattened);
   }, [rawScenes]);
+
+  const itemJsConfig =
+    category === 'primary' ? itemJsConfigPrimary : itemJsConfigSecondary;
+  const aggregationConfig = useAggregationConfig(category);
 
   // Init itemjs with the set configuration and data (scenes).
   const [items, setItems] = useState(undefined);
@@ -51,6 +65,9 @@ export const Scenes: React.FC<Props> = ({ rawScenes, presets, pageUrl }) => {
 
   const [searchOrder, setSearchOrder] = useQueryParam('order', StringParam);
 
+  const decodeFilterWithAggregation = (filterString: string) =>
+    decodeFilter(filterString, aggregationConfig);
+
   // ItemsJS Filter the data
   const [results, setResults] = useState<ResultProps>(null);
   useEffect(() => {
@@ -63,7 +80,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, presets, pageUrl }) => {
     const searchOption = {
       per_page: 200,
       sort: { field: 'voteScore', order },
-      filters: decodeFilter(searchFilters),
+      filters: decodeFilterWithAggregation(searchFilters),
     };
 
     setResults(items.search(searchOption));
@@ -114,7 +131,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, presets, pageUrl }) => {
     selectedBucketKey,
   }: HandleSingleChoiceProps) => {
     setSearchFilters((prevStateString) => {
-      const prevState = decodeFilter(prevStateString);
+      const prevState = decodeFilterWithAggregation(prevStateString);
       const filter = selectedBucketKey ? [selectedBucketKey] : [];
 
       return encodeFilter({ ...prevState, [aggregationKey]: filter });
@@ -134,7 +151,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, presets, pageUrl }) => {
       // Selecting the first bucket in an aggregation will not return bucket.selected for some reason.
       // To work around this, we handle the first  manually.
       setSearchFilters((prevStateString) => {
-        const prevState = decodeFilter(prevStateString);
+        const prevState = decodeFilterWithAggregation(prevStateString);
         const allBucketKeys = buckets.map((bucket) => bucket.key);
         const allWithouted = allBucketKeys.filter(
           (k) => k !== selectedBucket.key
@@ -146,7 +163,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, presets, pageUrl }) => {
     } else if (selectedBucket.selected) {
       // Activate uiFilter (remove Filter)
       setSearchFilters((prevStateString) => {
-        const prevState = decodeFilter(prevStateString);
+        const prevState = decodeFilterWithAggregation(prevStateString);
         const prevFilter =
           aggregationKey in prevState
             ? [...prevState[aggregationKey], selectedBucket.key]
@@ -158,7 +175,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, presets, pageUrl }) => {
     } else {
       // Deactivate uiFilter (add Filter)
       setSearchFilters((prevStateString) => {
-        const prevState = decodeFilter(prevStateString);
+        const prevState = decodeFilterWithAggregation(prevStateString);
         const prevFilter =
           aggregationKey in prevState
             ? [...prevState[aggregationKey], selectedBucket.key]
@@ -184,6 +201,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, presets, pageUrl }) => {
       />
       <div className="flex h-screen flex-row">
         <Facets
+          category={category}
           className="z-20 hidden w-72 flex-none overflow-scroll overscroll-contain bg-gray-100 shadow-[0_0_10px_0_rgba(0,_0,_0,_0.2)] lg:block"
           results={results}
           handleResetFilter={searchFilters && handleResetFilter}
@@ -203,6 +221,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, presets, pageUrl }) => {
             setSearchOrder={setSearchOrder}
             mobileFacets={
               <FacetsMobileDropdown
+                category={category}
                 results={results}
                 handleResetFilter={searchFilters && handleResetFilter}
                 handleSingleChoice={handleSingleChoice}
@@ -215,8 +234,9 @@ export const Scenes: React.FC<Props> = ({ rawScenes, presets, pageUrl }) => {
           />
 
           <Results
+            category={category}
             results={results}
-            searchFilters={decodeFilter(searchFilters)}
+            searchFilters={decodeFilterWithAggregation(searchFilters)}
           />
         </div>
       </div>

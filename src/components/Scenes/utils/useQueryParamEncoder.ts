@@ -1,5 +1,5 @@
 import { parse, stringify } from 'query-string';
-import { aggregationConfig } from '../constants';
+import { AggregationConfig } from '../constants';
 import { SearchOptionProps } from '../types';
 
 export const encodeFilter = (
@@ -28,7 +28,8 @@ export const encodeFilter = (
 };
 
 export const decodeFilter = (
-  filterString: string
+  filterString: string,
+  aggregationConfig: AggregationConfig
 ): SearchOptionProps['filters'] => {
   // Guard: Make sure our input does at least have one key-value-pair
   if (filterString === undefined) return {};

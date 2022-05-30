@@ -2,9 +2,10 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
 import { Link } from '../Link';
 import {
-  presetsScenesSecondary,
   presetsScenesPrimary,
-} from '../Scenes/constants/presets.const';
+  presetsScenesSecondary,
+} from '../Scenes/constants';
+import { SceneCategory } from '../Scenes/types';
 import { PresetSlider } from './PresetSlider';
 
 export type FilterUrlProp = `/${'hauptstrassen' | 'nebenstrassen'}/?filter=`;
@@ -15,7 +16,6 @@ type FilterUrlBySceneCategory = {
 };
 
 export const Presets: React.FC = () => {
-  type SceneCategory = 'primary' | 'secondary';
   const [sceneCategory, setSceneCategory] = useState<SceneCategory>('primary');
   const scenesBySceneCategory = {
     primary: presetsScenesPrimary,

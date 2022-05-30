@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { useCallback } from 'react';
 import { formatNumber } from '~/components/utils';
-import { HauptstrasseSceneProps } from '../../types';
+import { ScenePrimaryProps, SceneSecondaryProps } from '../../types';
 import BikeIcon from './assets/bike-icon.svg';
 import CarIcon from './assets/car-icon.svg';
 import PedestrianIcon from './assets/pedestrian-icon.svg';
@@ -9,7 +9,7 @@ import { BarChart } from './BarChart';
 import { OtherIconNumberBarchart } from './OtherIconNumberBarchart';
 
 type Props = {
-  scene: HauptstrasseSceneProps;
+  scene: ScenePrimaryProps | SceneSecondaryProps;
   handleHover?: (sceneId: string) => void;
   classNameBarchartHeight?: string;
   iconWhenEmpty?: boolean;
@@ -58,18 +58,20 @@ export const ResultStackedBarchart: React.FC<Props> = ({
           className={classNames(classNameBarchartHeight || 'h-20')}
         />
       </div>
-      <OtherIconNumberBarchart
-        sceneId={scene.sceneId}
-        vote0Unsafe={scene.votePedestrian0Unsafe}
-        vote1RatherUnsafe={scene.votePedestrian1RatherUnsafe}
-        vote2Save={scene.votePedestrian2Save}
-        vote3VerySave={scene.votePedestrian3VerySave}
-        voteScore={scene.votePedestrianScore}
-        {...handleHoverProps(scene.sceneIdPedestrian)}
-        classNameBarchartHeight={classNameBarchartHeight}
-        icon={<PedestrianIcon className="h-5 w-auto" />}
-        iconWhenEmpty={iconWhenEmpty}
-      />
+      {'sceneIdPedestrian' in scene && (
+        <OtherIconNumberBarchart
+          sceneId={scene.sceneId}
+          vote0Unsafe={scene.votePedestrian0Unsafe}
+          vote1RatherUnsafe={scene.votePedestrian1RatherUnsafe}
+          vote2Save={scene.votePedestrian2Save}
+          vote3VerySave={scene.votePedestrian3VerySave}
+          voteScore={scene.votePedestrianScore}
+          {...handleHoverProps(scene.sceneIdPedestrian)}
+          classNameBarchartHeight={classNameBarchartHeight}
+          icon={<PedestrianIcon className="h-5 w-auto" />}
+          iconWhenEmpty={iconWhenEmpty}
+        />
+      )}
       <OtherIconNumberBarchart
         sceneId={scene.sceneId}
         vote0Unsafe={scene.voteCar0Unsafe}

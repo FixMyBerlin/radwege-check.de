@@ -2,25 +2,33 @@ import classNames from 'classnames';
 import React from 'react';
 import { TranslationMissing } from '~/components/TextHelper';
 import { formatMeter } from '~/components/utils';
-import { aggregationConfig } from '../../constants';
 import { Icons } from '../../Facets/ButtonSingleChoice/Icons';
-import { HauptstrasseSceneProps } from '../../types';
+import { useAggregationConfig } from '../../hooks';
+import {
+  ScenePrimaryProps,
+  SceneSecondaryProps,
+  SceneCategory,
+} from '../../types';
 
 type Props = {
+  category: SceneCategory;
   keyName: string;
   bucketActive: boolean;
-  scene: HauptstrasseSceneProps;
+  scene: ScenePrimaryProps | SceneSecondaryProps;
   groupEndIndicator: boolean;
   showIcon: boolean;
 };
 
 export const ResultCell: React.FC<Props> = ({
+  category,
   keyName,
   bucketActive,
   scene,
   groupEndIndicator,
   showIcon,
 }) => {
+  const aggregationConfig = useAggregationConfig(category);
+
   const titleTranslation = aggregationConfig[keyName]?.resultTitle ||
     aggregationConfig[keyName]?.title || <TranslationMissing value={keyName} />;
 

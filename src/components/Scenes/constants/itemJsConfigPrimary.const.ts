@@ -3,7 +3,7 @@
 // conjuction is always false since this will show the bucket_count for each bucket.
 // The `choiceMode` (single | multi) is configured via aggregationConfig
 
-export const itemJsConfig = {
+export const itemJsConfigPrimary = {
   aggregations: {
     leftOfBicycleLane: {
       title: 'leftOfBicycleLane',

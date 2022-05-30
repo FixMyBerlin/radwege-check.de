@@ -2,10 +2,10 @@ import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
 import React, { Fragment } from 'react';
-import { Presets, presetsScenesPrimary } from '../../constants/presets.const';
+import { PresetsScenes } from '../../constants';
 
 export type PresetDropdownProps = {
-  presets: Presets;
+  presets: PresetsScenes;
   currentPresetKey: string;
   handlePresetClick: (presetKey: string) => void;
 };
@@ -16,7 +16,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
   handlePresetClick,
 }) => {
   const isCustom = currentPresetKey === 'custom';
-  const presetTitle = presetsScenesPrimary[currentPresetKey]?.title;
+  const presetTitle = presets[currentPresetKey]?.title;
   const isPreset = !!presetTitle;
 
   return (

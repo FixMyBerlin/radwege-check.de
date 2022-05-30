@@ -3,13 +3,22 @@ import React from 'react';
 import { SceneImage } from '../Scenes';
 import { ResultCells } from '../Scenes/Results/ResultCells';
 import { ResultStackedBarchart } from '../Scenes/Results/ResultStackedBarchart';
-import { HauptstrasseSceneProps } from '../Scenes/types';
+import {
+  ScenePrimaryProps,
+  SceneSecondaryProps,
+  SceneCategory,
+} from '../Scenes/types';
 import { dataTable } from './dataTable';
 
-type Props = { scene: HauptstrasseSceneProps };
+type Props = {
+  category: SceneCategory;
+  scene: ScenePrimaryProps | SceneSecondaryProps;
+};
 
-export const ScenePage: React.FC<Props> = ({ scene }) => {
+export const ScenePage: React.FC<Props> = ({ category, scene }) => {
   const table = dataTable(scene);
+  const categoryTranslation =
+    category === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse';
 
   return (
     <div className="items-center bg-white p-3 lg:flex lg:flex-col lg:px-0 lg:py-6">
@@ -18,7 +27,8 @@ export const ScenePage: React.FC<Props> = ({ scene }) => {
       </h1>
       <div className="flex max-w-7xl flex-col gap-6 lg:grid lg:grid-cols-4">
         <div className="order-2 rounded bg-blue-50 p-6 lg:order-none">
-          <ResultCells scene={scene} />
+          <p>Straßenklasse: {categoryTranslation}</p>
+          <ResultCells category={category} scene={scene} />
         </div>
         <div className="order-1 col-span-2 lg:order-none">
           <SceneImage
@@ -26,7 +36,7 @@ export const ScenePage: React.FC<Props> = ({ scene }) => {
             className="mb-5 h-96 w-full rounded object-cover object-bottom"
           />
           <div className="grid grid-cols-2 gap-5 text-xs lg:text-base">
-            {scene.sceneIdPedestrian ? (
+            {'sceneIdPedestrian' in scene ? (
               <div>
                 Blickwinkel einer Fußgänger:in
                 <SceneImage
@@ -38,7 +48,7 @@ export const ScenePage: React.FC<Props> = ({ scene }) => {
             ) : (
               <div className="rounded bg-gray-50" />
             )}
-            {scene.sceneIdCar ? (
+            {'sceneIdCar' in scene ? (
               <div>
                 Blickwinkel einer Autofahrer:in
                 <SceneImage

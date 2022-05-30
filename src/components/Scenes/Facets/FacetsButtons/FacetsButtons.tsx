@@ -1,6 +1,6 @@
 import React from 'react';
-import { aggregationConfig } from '../../constants';
-import { ResultBucketProps, ResultProps } from '../../types';
+import { useAggregationConfig } from '../../hooks';
+import { ResultBucketProps, ResultProps, SceneCategory } from '../../types';
 import {
   ButtonMultiChoice,
   HandleMultiChoice,
@@ -14,6 +14,7 @@ import { checkBucketValueConsistency, checkDataConsistency } from '../utils';
 
 type Props = {
   aggregationKey: string;
+  category: SceneCategory;
   results: ResultProps;
   buckets: ResultBucketProps[];
   handleSingleChoice?: HandleSingleChoice;
@@ -22,13 +23,15 @@ type Props = {
 
 export const FacetsButtons: React.FC<Props> = ({
   aggregationKey,
+  category,
   results,
   buckets,
   handleSingleChoice,
   handleMultiChoice,
 }) => {
-  checkDataConsistency({ aggregationKey });
+  checkDataConsistency({ category, aggregationKey });
   const { keyFromItemjsMissingInTranslations } = checkBucketValueConsistency({
+    category,
     aggregationKey,
     buckets,
   });
@@ -36,6 +39,7 @@ export const FacetsButtons: React.FC<Props> = ({
   // We need a specific order for our Bucket values.
   // We use the order of key from our aggregationConfig for that.
   // However, for keys of type number that does not work, which is why we use a custom order via the `sortOrder` key.
+  const aggregationConfig = useAggregationConfig(category);
   const sortedBuckets =
     aggregationConfig[aggregationKey]?.sortOrder ||
     Object.keys(aggregationConfig[aggregationKey].buckets);
@@ -48,6 +52,7 @@ export const FacetsButtons: React.FC<Props> = ({
             return (
               <ButtonSingleChoiceBoth
                 key="bothButton"
+                category={category}
                 bucketKey="bothButton"
                 buckets={buckets}
                 aggregationKey={aggregationKey}
@@ -66,6 +71,7 @@ export const FacetsButtons: React.FC<Props> = ({
             return (
               <ButtonSingleChoice
                 key={bucketKey}
+                category={category}
                 buckets={buckets}
                 bucket={bucket}
                 index={index}
@@ -78,6 +84,7 @@ export const FacetsButtons: React.FC<Props> = ({
           return (
             <ButtonMultiChoice
               key={bucketKey}
+              category={category}
               buckets={buckets}
               bucket={bucket}
               index={index}

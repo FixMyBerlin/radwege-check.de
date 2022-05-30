@@ -1,14 +1,26 @@
 import React from 'react';
-import { aggregationConfig } from '../../constants';
-import { HauptstrasseSceneProps, SearchOptionProps } from '../../types';
+import { useAggregationConfig } from '../../hooks';
+import {
+  ScenePrimaryProps,
+  SceneSecondaryProps,
+  SceneCategory,
+  SearchOptionProps,
+} from '../../types';
 import { ResultCell } from './ResultCell';
 
 type Props = {
-  scene: HauptstrasseSceneProps;
+  category: SceneCategory;
+  scene: ScenePrimaryProps | SceneSecondaryProps;
   searchFilters?: SearchOptionProps['filters'];
 };
 
-export const ResultCells: React.FC<Props> = ({ scene, searchFilters }) => {
+export const ResultCells: React.FC<Props> = ({
+  category,
+  scene,
+  searchFilters,
+}) => {
+  const aggregationConfig = useAggregationConfig(category);
+
   return (
     <>
       {Object.keys(aggregationConfig).map((key) => {
@@ -16,6 +28,7 @@ export const ResultCells: React.FC<Props> = ({ scene, searchFilters }) => {
 
         return (
           <ResultCell
+            category={category}
             key={key}
             keyName={key}
             scene={scene}

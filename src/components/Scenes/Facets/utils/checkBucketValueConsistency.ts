@@ -1,16 +1,22 @@
-import { aggregationConfig } from '../../constants';
-import { ResultBucketProps } from '../../types';
+import { useAggregationConfig } from '../../hooks';
+import { ResultBucketProps, SceneCategory } from '../../types';
 
-type Props = { aggregationKey: string; buckets: Array<ResultBucketProps> };
+type Props = {
+  category: SceneCategory;
+  aggregationKey: string;
+  buckets: Array<ResultBucketProps>;
+};
 type ReturnProps = {
   keyFromItemjsMissingInTranslations: string[];
   keyFromTranslationMissingInItemjs: string[];
 };
 
 export const checkBucketValueConsistency = ({
+  category,
   aggregationKey,
   buckets,
 }: Props): ReturnProps => {
+  const aggregationConfig = useAggregationConfig(category);
   const bucketKeysFromItemJs = buckets.map((b) => b.key);
   const keyFromItemjsMissingInTranslations = bucketKeysFromItemJs.filter(
     (key) => aggregationConfig[aggregationKey].buckets[key] === undefined

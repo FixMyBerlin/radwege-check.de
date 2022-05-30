@@ -15,7 +15,7 @@ const MyData = ({ data: { scenesPrimaryCsv: rawScene } }) => {
         description="TODO"
         image="TODO"
       />
-      <ScenePage scene={scene} />
+      <ScenePage category="primary" scene={scene} />
     </Layout>
   );
 };

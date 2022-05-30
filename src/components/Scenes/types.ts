@@ -13,13 +13,40 @@ export type ResultBucketProps = {
   selected: boolean;
 };
 
-export type NebenstrasseSceneProps = {
+export type SceneCategory = 'primary' | 'secondary';
+
+export type SceneSecondaryProps = {
   sceneId: string;
+  sceneIdCar: string;
+  sceneIdPedestrian: never;
+  sceneIdCount: number;
+
+  vote0Unsafe: number;
+  vote1RatherUnsafe: number;
+  vote2Save: number;
+  voteCar3VerySave: number;
+  vote3VerySave: number;
+  voteCount: number;
+  voteMeans: number;
+  voteScore: number;
+  voteCar0Unsafe: number | undefined;
+  voteCar1RatherUnsafe: number | undefined;
+  voteCar2Save: number | undefined;
+  voteCarCount: number | undefined;
+  voteCarMeans: number | undefined;
+  voteCarScore: number | undefined;
+  votePedestrian0Unsafe: never;
+  votePedestrian1RatherUnsafe: never;
+  votePedestrian2Save: never;
+  votePedestrian3VerySave: never;
+  votePedestrianCount: never;
+  votePedestrianMeans: never;
+  votePedestrianScore: never;
 
   path: string;
 };
 
-export type HauptstrasseSceneProps = {
+export type ScenePrimaryProps = {
   sceneId: string;
   sceneIdCar: string;
   sceneIdPedestrian: string;
@@ -72,7 +99,7 @@ export type HauptstrasseSceneProps = {
   path: string;
 };
 
-export type ResultItemsProps = Array<HauptstrasseSceneProps>;
+export type ResultItemsProps = Array<ScenePrimaryProps | SceneSecondaryProps>;
 
 export type ResultProps = {
   data: {
