@@ -6,7 +6,12 @@ import PersonDigging from './assets/person-digging-icon.svg';
 
 export const BetaModal = () => {
   return (
-    <Modal title="Beta" titleIcon={<PersonDigging />} closeButton="Alles klar">
+    <Modal
+      title="Beta"
+      titleIcon={<PersonDigging />}
+      closeButton="Alles klar"
+      className="print:hidden"
+    >
       <p>
         Willkommen! <br />
         Der Radwege check befindet sich in der Testphase. Wir entwickeln ihn zur

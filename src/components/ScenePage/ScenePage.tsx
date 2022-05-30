@@ -1,7 +1,7 @@
 import { InformationCircleIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
 import React from 'react';
-import { Link } from '../Link';
+import { Link, PrintButton, TwitterButton } from '../Link';
 import { SceneImage } from '../Scenes';
 import { ResultCells } from '../Scenes/Results/ResultCells';
 import { ResultStackedBarchart } from '../Scenes/Results/ResultStackedBarchart';
@@ -10,14 +10,16 @@ import {
   ScenePrimaryProps,
   SceneSecondaryProps,
 } from '../Scenes/types';
+import { formatNumber } from '../utils';
 import { dataTable } from './dataTable';
 
 type Props = {
   category: SceneCategory;
   scene: ScenePrimaryProps | SceneSecondaryProps;
+  pageUrl: string;
 };
 
-export const ScenePage: React.FC<Props> = ({ category, scene }) => {
+export const ScenePage: React.FC<Props> = ({ category, scene, pageUrl }) => {
   const table = dataTable(scene);
   const categoryTranslation =
     category === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse';
@@ -27,6 +29,19 @@ export const ScenePage: React.FC<Props> = ({ category, scene }) => {
       <h1 className="mb-6 w-full max-w-7xl text-2xl">
         Szene <code>{scene.sceneId}</code>
       </h1>
+
+      <div className="fixed bottom-5 right-5 flex flex-col gap-2 print:hidden">
+        <TwitterButton
+          url={pageUrl}
+          text={`Subjektive Sicherheit ${formatNumber(scene.voteScore, {
+            unit: '%',
+            precision: 0,
+          })}`}
+          hashtags="verkehrswende"
+        />
+        <PrintButton />
+      </div>
+
       <div className="flex max-w-7xl flex-col gap-6 lg:grid lg:grid-cols-4">
         <div className="order-3 lg:order-none">
           <p className="px-6 pt-0 pb-3">

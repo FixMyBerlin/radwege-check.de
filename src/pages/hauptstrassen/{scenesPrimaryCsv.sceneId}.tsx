@@ -4,7 +4,7 @@ import { Layout, MetaTags } from '~/components/Layout';
 import { ScenePage } from '~/components/ScenePage';
 import { cleanupCsvData } from '~/components/Scenes/utils';
 
-const MyData = ({ data: { scenesPrimaryCsv: rawScene } }) => {
+const MyData = ({ location, data: { scenesPrimaryCsv: rawScene } }) => {
   const scene = useMemo(() => cleanupCsvData([rawScene || {}])[0], [rawScene]);
 
   return (
@@ -15,7 +15,11 @@ const MyData = ({ data: { scenesPrimaryCsv: rawScene } }) => {
         description="TODO"
         image="TODO"
       />
-      <ScenePage category="primary" scene={scene} />
+      <ScenePage
+        category="primary"
+        scene={scene}
+        pageUrl={`${location.origin}${location.pathname}`}
+      />
     </Layout>
   );
 };

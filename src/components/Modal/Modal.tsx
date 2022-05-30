@@ -7,6 +7,7 @@ type Props = {
   title: string;
   titleIcon?: React.ReactNode;
   closeButton?: string;
+  className?: string;
   children: React.ReactNode;
 };
 
@@ -14,13 +15,18 @@ export const Modal: React.FC<Props> = ({
   title,
   titleIcon,
   closeButton,
+  className,
   children,
 }) => {
   const [open, setOpen] = useState(true);
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-50" onClose={setOpen}>
+      <Dialog
+        as="div"
+        className={classNames(className, 'relative z-50')}
+        onClose={setOpen}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

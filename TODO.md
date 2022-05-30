@@ -1,3 +1,15 @@
+# Print
+
+```
+@page {
+  size: A4 landscape;
+  size: 287mm 210mm;
+}
+```
+
+- https://css-tricks.com/css-tricks-finally-gets-a-print-stylesheet/
+- https://davidwalsh.name/css-page-breaks
+
 # GraphQl: Whitespace in Columns
 
 "Has Whitespace" => "Has_Whitespace"
