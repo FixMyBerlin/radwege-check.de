@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import { Footer } from '.';
+import { BetaModal } from './BetaModal';
 
 type Props = {
   className?: string;
@@ -16,6 +17,7 @@ export const Layout: React.FC<Props> = ({
 }) => {
   return (
     <div className="flex h-full flex-col">
+      <BetaModal />
       <main
         className={classNames(
           className,
