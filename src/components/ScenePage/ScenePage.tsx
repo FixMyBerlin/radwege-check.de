@@ -1,7 +1,8 @@
 import { InformationCircleIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
 import React from 'react';
-import { Link, PrintButton, TwitterButton } from '../Link';
+import { PrintButton, TwitterButton } from '../Link';
+import { Popover } from '../Popover';
 import { SceneImage } from '../Scenes';
 import { ResultCells } from '../Scenes/Results/ResultCells';
 import { ResultStackedBarchart } from '../Scenes/Results/ResultStackedBarchart';
@@ -94,14 +95,29 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pageUrl }) => {
         <div className="order-2 flex h-96 flex-col lg:order-none">
           <p className="mb-5 flex items-center">
             Durchschnittliche Bewertungen dieser Szene zur subjektiven
-            Sicherheit{' '}
-            <Link
-              to="https://fixmyberlin.de/research/subjektive-sicherheit"
-              external
-              blank
+            Sicherheit.{' '}
+            <Popover
+              buttonText={
+                <>
+                  <InformationCircleIcon
+                    className="h-6 w-6"
+                    aria-hidden="true"
+                  />
+                  <span className="sr-only">Mehr erfahren…</span>
+                </>
+              }
             >
-              <InformationCircleIcon className="h-6 w-6" />
-            </Link>
+              Die Zahlen zur Bewertung der Radverkehrsführungsformen basieren
+              aus einer umfassenden Online Umfrage, die Ergebnisse können hier
+              nachgelesen werden. Die oberste große Zahl gibt den Prozentsatz
+              aller Bewertungen „sicher“ und „eher sicher“ an. Die weiteren
+              Zahlen und die farbigen Balken entsprechen den vier
+              Bewertungsmöglichkeiten „sicher“ „eher sicher“, eher „unsicher“
+              und „unsicher“. Anzahl der Bewertungen gibt an wie viele
+              Bewertungen zu dieser Szene in der Umfrage abgegeben wurden. Der
+              Mittelwert gibt den Durchschnitt aller Bewertungen an zwischen 0
+              (unsicher) und 3 (sicher).
+            </Popover>
           </p>
           <ResultStackedBarchart
             scene={scene}
