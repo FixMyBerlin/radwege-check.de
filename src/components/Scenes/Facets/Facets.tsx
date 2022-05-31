@@ -1,13 +1,12 @@
 import classNames from 'classnames';
 import React from 'react';
-import { footerLegalLinks } from '~/components/Layout/Footer/FooterLinks/footerLinks.const';
-import { Link } from '~/components/Link';
 import { useAggregationConfig } from '../hooks';
 import { ResultProps, SceneCategory } from '../types';
 import { HandleMultiChoice } from './ButtonMultiChoice/ButtonMultiChoice';
 import { HandleSingleChoice } from './ButtonSingleChoice/ButtonSingleChoice';
 import { FacetsButtons } from './FacetsButtons';
 import { FacetsHeadline } from './FacetsHeadline';
+import { FooterLinks } from './FooterLinks';
 import { Logo } from './Logo';
 import { PresetDropdown, PresetDropdownProps } from './PresetDropdown';
 import { ResetFilterButton } from './ResetFilterButton';
@@ -123,13 +122,7 @@ export const Facets: React.FC<FacetsProps> = ({
         })}
       </div>
 
-      <section className="mx-3 mt-10 flex gap-3 border-t border-gray-300 py-3">
-        {footerLegalLinks.map((line) => (
-          <Link className="whitespace-nowrap text-gray-500" to={line.to}>
-            {line.name}
-          </Link>
-        ))}
-      </section>
+      <FooterLinks />
     </nav>
   );
 };
