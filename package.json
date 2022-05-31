@@ -10,6 +10,7 @@
     "cs": "npm run clean && npm run start",
     "build": "gatsby build",
     "serve": "gatsby serve",
+    "build-serve": "npm run build && npm run serve",
     "clean": "gatsby clean",
     "bleach": "rm -rf node_modules/ && npm install && npm run cs",
     "type-check": "tsc",
