@@ -1,5 +1,6 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
+import { LogoBmdv } from '~/components/Homepage/LogoBmdv';
 import { LayoutArticle, MetaTags } from '~/components/Layout';
 import { Link } from '~/components/Link';
 
@@ -63,9 +64,12 @@ const KontaktPage: React.FC<PageProps> = ({ location }) => {
 
       <h1 className="mt-12 border-t border-gray-300 pt-12">Förderung</h1>
       <p>
-        Diese Website wird TODO{' '}
-        <Link external to="#todo">
-          Projektsteckbrief TODO
+        <Link
+          external
+          blank
+          to="https://www.mobilitaetsforum.bund.de/DE/Themen/Wissenspool/Projekte/Projektbeispiele/Projekte/RVA-Safetycheck.html"
+        >
+          <LogoBmdv />
         </Link>
       </p>
     </LayoutArticle>
