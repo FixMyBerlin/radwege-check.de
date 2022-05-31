@@ -30,7 +30,7 @@ const KontaktPage: React.FC<PageProps> = ({ location }) => {
         .
       </p>
 
-      <h1>Impressum</h1>
+      <h1 className="mt-12 border-t border-gray-300 pt-12">Impressum</h1>
       <p>
         <strong>FixMyCity GmbH</strong>
         <br />
@@ -54,7 +54,7 @@ const KontaktPage: React.FC<PageProps> = ({ location }) => {
         Verantwortlicher i.S.v. § 55 Rundfunkstaatsvertrag (RStV): Boris Hekele
       </p>
 
-      <h1>Förderung</h1>
+      <h1 className="mt-12 border-t border-gray-300 pt-12">Förderung</h1>
       <p>
         Diese Website wird TODO{' '}
         <Link external to="#todo">
