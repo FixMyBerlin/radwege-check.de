@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from './Link';
 import TwitterIcon from './assets/twitter-icon.svg'; // https://fontawesome.com/icons/twitter?s=brands
+import { domain } from '../utils';
 
 type Props = {
   url: string;
@@ -18,8 +19,10 @@ export const TwitterButton: React.FC<Props> = ({
   via = 'fixmyberlin',
   hashtags,
 }) => {
+  const fullUrl = url.startsWith('http') ? url : `${domain}${url}`;
+
   const shareUrl = new URL('https://twitter.com/intent/tweet');
-  shareUrl.searchParams.set('url', url);
+  shareUrl.searchParams.set('url', fullUrl);
   shareUrl.searchParams.set('text', text);
   shareUrl.searchParams.set('via', via);
   shareUrl.searchParams.set('hashtags', hashtags);
