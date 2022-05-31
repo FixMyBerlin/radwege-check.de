@@ -17,14 +17,14 @@ export const Hero: React.FC = () => {
       </h2>
 
       <p className="max-w-prose">
-        Der Radwege-Check lässt dich zielgenau 1.784&nbsp;Varianten von
-        Radinfrastuktur vergleichen und zeigt über 400.000&nbsp;Bewertungen
-        dieser Infrastrukturen von über 22.000 der{' '}
+        Der Radwege-Check lässt dich 1.784 Straßenszenen vergleichen, basierend
+        auf 400.000 Bewertungen zu ihrer subjektiven Sicherheit{' '}
         <Link
           to="https://fixmyberlin.de/research/subjektive-sicherheit"
           external
+          blank
         >
-          Online-Umfrage Straßencheck
+          im Straßencheck
         </Link>
         .
       </p>
