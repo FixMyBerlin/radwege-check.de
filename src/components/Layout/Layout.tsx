@@ -21,14 +21,7 @@ export const Layout: React.FC<Props> = ({
   return (
     <div className="flex h-full flex-col">
       {!hideBetaModal && <BetaModal />}
-      <main
-        className={classNames(
-          className,
-          'z-0 flex-grow bg-green-50 shadow-md shadow-green-900/20'
-        )}
-      >
-        {children}
-      </main>
+      <main className={classNames(className, 'z-0 flex-grow')}>{children}</main>
       <Footer />
     </div>
   );
