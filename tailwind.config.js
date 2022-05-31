@@ -3,6 +3,9 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      colors: {
+        'brand-light-yellow': '#fff8e8',
+      },
       boxShadow: {
         innerYellow: 'inset 1px 1px 3px 0px rgb(180 155 0)',
         innerGray: 'inset 1px 1px 3px 0 rgb(209 213 219)', // gray-300

@@ -36,19 +36,19 @@ export const Presets: React.FC = () => {
     return tabActive(category)
       ? 'h-full w-full p-3 font-semibold'
       : classNames(
-          'h-full w-full bg-[#fff8e8] p-3 hover:underline font-semibold',
+          'h-full w-full bg-brand-light-yellow p-3 hover:underline font-semibold',
           tabActive('primary') ? 'rounded-bl-md' : 'rounded-br-md'
         );
   };
 
   return (
-    <section className="bg-[#fff8e8] pb-12">
+    <section className="bg-brand-light-yellow pb-12">
       <div className="mx-auto max-w-6xl">
         <div className="flex justify-between">
           <div className="flex-grow bg-stone-300">
             <h2
               className={classNames(
-                'w-full bg-[#fff8e8] py-3 text-2xl font-semibold',
+                'w-full bg-brand-light-yellow py-3 text-2xl font-semibold',
                 {
                   'rounded-br-md': tabActive('primary'),
                 }

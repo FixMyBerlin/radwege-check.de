@@ -3,7 +3,7 @@ import { Link } from '../Link';
 
 export const Hero: React.FC = () => {
   return (
-    <section className="flex w-full flex-col items-center bg-[#fff8e8] pb-12 text-gray-700">
+    <section className="flex w-full flex-col items-center bg-brand-light-yellow pb-12 text-gray-700">
       <img
         className="my-8 h-12"
         src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
