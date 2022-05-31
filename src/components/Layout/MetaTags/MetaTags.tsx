@@ -1,74 +1,77 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import SocialSharingImage from './assets/social-sharing-default.png';
+import { domain } from '~/components/utils';
 
 // FYI, https://www.gatsbyjs.com/docs/add-seo-component/ suggest to use useStaticQuery but I don't see why, yet
 const seoDefaultValues = {
-  defaultTitle: 'TODO seoDefaultValues.defaultTitle',
-  defaultDescription: 'TODO seoDefaultValues.defaultDescription',
-  baseUrl: 'https://radwege-check.de',
+  defaultTitle: 'Radwege-Check',
+  defaultDescription:
+    'In diesem Online-Tool kannst du 1.700 Varianten von Fahrrad-Führungsformen nach ihrer Bewertung zur subjektiven Sicherheit vergleichen. Basierend auf über 400.000 Bewertungen.',
 };
 
 type Props = {
   noindex?: boolean;
-  canonicalUrl?: string;
+  canonicalPath?: string;
   title?: string;
+  sharingTitle?: string;
   description?: string;
-  image?: string;
+  imagePath?: string;
+  imageUrl?: string | `https://${string}`;
+  imageSize?: { width: number; height: number };
   article?: boolean;
 };
 
 export const MetaTags: React.FC<Props> = ({
   noindex = false,
-  canonicalUrl,
+  canonicalPath,
   title,
+  sharingTitle,
   description,
-  image,
+  imagePath,
+  imageUrl,
+  imageSize,
   article,
 }) => {
-  const { defaultTitle, defaultDescription, baseUrl } = seoDefaultValues;
+  const { defaultTitle, defaultDescription } = seoDefaultValues;
 
-  const seo = {
+  const withDefaults = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    image: `${baseUrl}${image || SocialSharingImage}`,
+    image:
+      imageUrl ||
+      (imagePath && `${domain || ''}${imagePath}`) ||
+      `${domain || ''}/social-sharing/default.png`,
   };
-
-  const canonicalTag = canonicalUrl && (
-    <link rel="canonical" href={canonicalUrl} />
-  );
-
-  if (noindex === true) {
-    return (
-      <Helmet>
-        <title>{seo.title}</title>
-        <meta name="robots" content="noindex" />
-
-        {canonicalTag}
-      </Helmet>
-    );
-  }
 
   // FYI, we do not inlcude the url meta tags since there was an issue with specs and `useLocation`.
   //  Since we do not need this field, its OK to remove it.
   return (
     <Helmet>
-      <title>{seo.title}</title>
-      <meta property="og:title" content={seo.title} />
-      <meta name="twitter:title" content={seo.title} />
+      <title>{withDefaults.title}</title>
+      <meta property="og:title" content={sharingTitle || withDefaults.title} />
+      <meta name="twitter:title" content={sharingTitle || withDefaults.title} />
 
-      {canonicalTag}
+      {canonicalPath ? (
+        <link rel="canonical" href={`${domain}${canonicalPath}`} />
+      ) : null}
 
-      <meta name="description" content={seo.description} />
-      <meta property="og:description" content={seo.description} />
-      <meta name="twitter:description" content={seo.description} />
+      {noindex === true ? <meta name="robots" content="noindex" /> : null}
 
-      <meta name="image" content={seo.image} />
-      <meta property="og:image" content={seo.image} />
-      <meta name="twitter:image" content={seo.image} />
+      <meta name="description" content={withDefaults.description} />
+      <meta property="og:description" content={withDefaults.description} />
+      <meta name="twitter:description" content={withDefaults.description} />
 
-      {(article ? true : null) && <meta property="og:type" content="article" />}
+      <meta name="image" content={withDefaults.image} />
+      <meta property="og:image" content={withDefaults.image} />
+      <meta name="twitter:image" content={withDefaults.image} />
+
       <meta name="twitter:card" content="summary_large_image" />
+
+      {Object.entries(imageSize || {}).map(([key, value]) => (
+        <meta property={`og:image:${key}`} content={`${value}`} />
+      ))}
+
+      {article ? <meta property="og:type" content="article" /> : null}
     </Helmet>
   );
 };

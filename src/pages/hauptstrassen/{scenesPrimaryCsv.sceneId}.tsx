@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import React, { useMemo } from 'react';
-import { Layout, MetaTags } from '~/components/Layout';
+import { Layout } from '~/components/Layout';
 import { ScenePage } from '~/components/ScenePage';
 import { cleanupCsvData } from '~/components/Scenes/utils';
 
@@ -9,16 +9,10 @@ const MyData = ({ location, data: { scenesPrimaryCsv: rawScene } }) => {
 
   return (
     <Layout>
-      <MetaTags
-        article
-        title={`Szene ${scene.sceneId}`}
-        description="TODO"
-        image="TODO"
-      />
       <ScenePage
         category="primary"
         scene={scene}
-        pageUrl={`${location.origin}${location.pathname}`}
+        pagePath={location.pathname}
       />
     </Layout>
   );

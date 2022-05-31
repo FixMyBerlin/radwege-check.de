@@ -6,11 +6,7 @@ import { Link } from '~/components/Link';
 const DatenschutzPage = () => {
   return (
     <LayoutArticle>
-      <MetaTags
-        noindex
-        title="Datenschutz"
-        description="Informationen über die Handhabung Ihrer Daten und rechtliche Hinweise zur Datenverarbeitung."
-      />
+      <MetaTags noindex title="Radwege-Check | Datenschutz" />
       <h1>Datenschutzerklärung</h1>
       <h2 id="m14">Einleitung</h2>
       <p>

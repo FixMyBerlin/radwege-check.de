@@ -17,7 +17,7 @@ const MyDataIndex = ({
         category="primary"
         rawScenes={sceneNodes}
         presets={presetsScenesPrimary}
-        pageUrl={`${location.origin}${location.pathname}`}
+        pagePath={location.pathname}
       />
     </LayoutScenes>
   );

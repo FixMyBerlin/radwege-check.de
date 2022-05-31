@@ -7,11 +7,7 @@ import { Link } from '~/components/Link';
 const KontaktPage: React.FC<PageProps> = ({ location }) => {
   return (
     <LayoutArticle location={location}>
-      <MetaTags
-        noindex
-        title="Kontakt &amp; Impressum"
-        description="Kontakt zum Team von FixMyCity."
-      />
+      <MetaTags noindex title="Radwege-Check | Kontakt &amp; Impressum" />
 
       <h1>Kontakt</h1>
       <p>

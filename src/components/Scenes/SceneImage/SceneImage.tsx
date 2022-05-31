@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
+import { sceneImageUrl } from './sceneImageUrl';
 
 type Props = {
   sceneId: string;
@@ -15,15 +16,13 @@ export const SceneImage: React.VFC<Props> = ({
   alt,
   lazy,
 }) => {
-  const VERSION_PREFIX = '01_';
-
   // Set for images "below the fold" to optimize performance. More at https://web.dev/lcp-lazy-loading/
   type LazyLoadingImageProp = { loading: 'lazy' } | undefined;
   const lazyLoad: LazyLoadingImageProp = lazy ? { loading: 'lazy' } : undefined;
 
   return (
     <img
-      src={`https://fmb-aws-bucket.s3.eu-central-1.amazonaws.com/KatasterKI/scenes/${VERSION_PREFIX}${sceneId}.jpg`}
+      src={sceneImageUrl(sceneId)}
       alt={alt || 'Illustration der bewerteten Szene.'}
       className={classNames(className)}
       {...lazyLoad}

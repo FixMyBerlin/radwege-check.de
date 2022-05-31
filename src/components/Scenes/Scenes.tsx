@@ -15,6 +15,7 @@ import {
 import { FacetsMobileDropdown } from './Facets/FacetsMobileDropdown';
 import { useAggregationConfig } from './hooks';
 import { Results } from './Results';
+import { sceneImageUrl } from './SceneImage';
 import { TitleBar } from './TitleBar';
 import { ResultProps, SceneCategory } from './types';
 import { cleanupCsvData, decodeFilter, encodeFilter } from './utils';
@@ -24,14 +25,14 @@ type Props = {
   rawScenes: any;
   presets: PresetsScenes;
   /** @desc https://<domain>/pathname without searchParams */
-  pageUrl: string;
+  pagePath: string;
 };
 
 export const Scenes: React.FC<Props> = ({
   category,
   rawScenes,
   presets,
-  pageUrl,
+  pagePath,
 }) => {
   const scenes = useMemo(() => {
     // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
@@ -187,18 +188,27 @@ export const Scenes: React.FC<Props> = ({
     }
   };
 
-  const seoNoindex = currentPresetKey === 'custom';
-  const seoCanonicalUrl = seoNoindex ? pageUrl : null;
+  const seoPresetIsActive = Object.keys(presets).includes(currentPresetKey);
+  const seoCategoryTranslation =
+    category === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse';
 
   return (
     <>
       <MetaTags
-        noindex={seoNoindex}
-        canonicalUrl={seoCanonicalUrl}
-        title="Safetycheck Prototyp"
-        description="TODO"
-        image="TODO"
+        noindex={!seoPresetIsActive}
+        canonicalPath={seoPresetIsActive ? pagePath : null}
+        title={
+          seoPresetIsActive
+            ? `Radwege-Check: ${presets[currentPresetKey].title} (${seoCategoryTranslation})`
+            : `Radwege-Check ${seoCategoryTranslation} – Alle Varianten filtern`
+        }
+        imageUrl={
+          !seoPresetIsActive &&
+          sceneImageUrl(results?.data?.items?.[0]?.sceneId)
+        }
+        imagePath={seoPresetIsActive && '/#TODO'}
       />
+
       <div className="flex h-screen flex-row">
         <Facets
           category={category}
