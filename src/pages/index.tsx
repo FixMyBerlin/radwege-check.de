@@ -1,6 +1,6 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
-import { Hero, Presets } from '~/components/Homepage';
+import { Hero, Logos, Presets } from '~/components/Homepage';
 import { Layout, MetaTags } from '~/components/Layout';
 
 const IndexPage: React.FC<PageProps> = ({ location }) => {
@@ -13,6 +13,7 @@ const IndexPage: React.FC<PageProps> = ({ location }) => {
       />
       <Hero />
       <Presets />
+      <Logos />
     </Layout>
   );
 };
