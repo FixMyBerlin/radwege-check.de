@@ -38,10 +38,17 @@ const KontaktPage: React.FC<PageProps> = ({ location }) => {
         <br />
         12049 Berlin
         <br />
-        E-Mail-Adresse: <Link to="hello@fixmycity.de">hello@fixmycity.de</Link>
+        <Link to="hello@fixmycity.de">hello@fixmycity.de</Link>
         <br />
         Telefon: 030 / 549 08 665
         <br />
+        <Link blank to="https://www.fixmycity.de">
+          www.fixmycity.de
+        </Link>
+        ,{' '}
+        <Link blank to="https://www.fixmyberlin.de">
+          www.fixmyberlin.de
+        </Link>
       </p>
       <p>Gesellschafter: Boris Hekele und Heiko Rintelen</p>
       <p>
