@@ -22,7 +22,8 @@ If you find any bugs, feel free to open an issue.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for more information.
+This project is licensed under the AGPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for more information.
+It contains dependencies which have different Licenses, see [`package.json`](./package.json).
 
 ## Thanks
 
