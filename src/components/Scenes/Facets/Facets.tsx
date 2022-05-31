@@ -8,6 +8,7 @@ import { HandleMultiChoice } from './ButtonMultiChoice/ButtonMultiChoice';
 import { HandleSingleChoice } from './ButtonSingleChoice/ButtonSingleChoice';
 import { FacetsButtons } from './FacetsButtons';
 import { FacetsHeadline } from './FacetsHeadline';
+import { Logo } from './Logo';
 import { PresetDropdown, PresetDropdownProps } from './PresetDropdown';
 import { ResetFilterButton } from './ResetFilterButton';
 
@@ -47,17 +48,8 @@ export const Facets: React.FC<FacetsProps> = ({
 
   return (
     <nav className={classNames(className, 'overflow-scroll')}>
-      {showLogo && (
-        <div className="relative flex h-14 items-center bg-yellow-50 py-1 px-3 shadow-md">
-          <Link to="/" classNameOverwrite="h-8">
-            <img
-              className="h-full"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-              alt="Workflow"
-            />
-          </Link>
-        </div>
-      )}
+      <Logo visible={showLogo} />
+
       <div
         className={classNames('z-0 mb-4 bg-gray-200 px-3 pt-5 pb-1 shadow-md')}
       >
