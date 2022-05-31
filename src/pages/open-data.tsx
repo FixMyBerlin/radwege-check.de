@@ -2,8 +2,12 @@ import { PageProps } from 'gatsby';
 import React from 'react';
 import { LayoutArticle, MetaTags } from '~/components/Layout';
 import { Link } from '~/components/Link';
+import CommingSoon from './CommingSoon';
 
 const KontaktPage: React.FC<PageProps> = ({ location }) => {
+  // TEMP Deactivate page for breta release
+  return <CommingSoon />;
+
   return (
     <LayoutArticle location={location}>
       <MetaTags

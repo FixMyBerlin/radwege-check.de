@@ -3,6 +3,7 @@ import React from 'react';
 import { LayoutScenes } from '~/components/Layout';
 import { Scenes } from '~/components/Scenes';
 import { presetsScenesSecondary } from '~/components/Scenes/constants';
+import CommingSoon from '../CommingSoon';
 
 const MyDataIndex = ({
   location,
@@ -10,6 +11,9 @@ const MyDataIndex = ({
     allScenesSecondaryCsv: { edges: sceneNodes },
   },
 }) => {
+  // TEMP Deactivate page for breta release
+  return <CommingSoon />;
+
   return (
     <LayoutScenes>
       {/* <MetaTags> are part of <Scenes> */}
