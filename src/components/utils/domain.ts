@@ -8,3 +8,11 @@ export const domain =
   process.env.CONTEXT === 'production'
     ? process.env.URL
     : process.env.DEPLOY_PRIME_URL || 'https://radwege-check.de';
+
+// Let's see what the Netlify build log tells us…
+console.log({
+  context: process.env.CONTEXT,
+  url: process.env.URL,
+  prime_url: process.env.DEPLOY_PRIME_URL,
+  env: process.env,
+});
