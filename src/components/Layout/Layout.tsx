@@ -7,7 +7,7 @@ type Props = {
   className?: string;
   /** @description to access the current location; see links in readme. */
   location?: any; // TODO: define type
-  hideBetaModal: boolean;
+  hideBetaModal?: boolean;
   children: React.ReactNode;
 };
 
