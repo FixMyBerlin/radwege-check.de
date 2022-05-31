@@ -31,6 +31,11 @@ module.exports = {
             '--tw-prose-th-borders': theme('colors.slate[300]'),
             '--tw-prose-td-borders': theme('colors.slate[200]'),
           },
+      typography: {
+        DEFAULT: {
+          // Tell the plugin to not add any classes to anchor tags
+          // since we always use the Link component which is styled already.
+          css: { a: false },
         },
       }),
     },
