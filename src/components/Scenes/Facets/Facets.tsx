@@ -9,6 +9,7 @@ import { HandleSingleChoice } from './ButtonSingleChoice/ButtonSingleChoice';
 import { FacetsButtons } from './FacetsButtons';
 import { FacetsHeadline } from './FacetsHeadline';
 import { PresetDropdown, PresetDropdownProps } from './PresetDropdown';
+import { ResetFilterButton } from './ResetFilterButton';
 
 export type FacetsProps = {
   category: SceneCategory;
@@ -68,21 +69,7 @@ export const Facets: React.FC<FacetsProps> = ({
           handlePresetClick={handlePresetClick}
         />
 
-        <p className="mb-6">
-          <button
-            type="button"
-            onClick={handleResetFilter}
-            className={classNames(
-              handleResetFilter
-                ? 'hover:bg-yellow-100'
-                : 'cursor-not-allowed text-gray-500 decoration-gray-300',
-              'underline'
-            )}
-            disabled={!handleResetFilter}
-          >
-            Filter zurücksetzen
-          </button>
-        </p>
+        <ResetFilterButton onClick={handleResetFilter} />
 
         {mainAggregationEntries.map(([aggregationKey, aggregation]) => {
           const { buckets } = aggregation;
