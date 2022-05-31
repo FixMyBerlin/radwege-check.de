@@ -42,22 +42,22 @@ module.exports = {
         },
       },
     },
-    {
-      // Docs https://www.gatsbyjs.com/plugins/gatsby-plugin-matomo/
-      resolve: 'gatsby-plugin-matomo',
-      options: {
-        siteId: '6',
-        matomoUrl: 'https://s.radwege-check.de',
-        siteUrl: 'https://s.radwege-check.de',
-        requireConsent: false,
-        requireCookieConsent: true,
-        disableCookies: true,
-        respectDnt: true,
-        // ↓ We filter all hits from non-production urls; so setting `dev:true` is fine.
-        //   Settings via https://s.fixmycity.de/index.php?module=SitesManager&action=index&idSite=6&period=day&date=yesterday&showaddsite=false
-        //   > Zeichne Besuche und Aktionen nur auf, wenn die Aktions-URL mit einer der oben genannten URLs beginnt.
-        dev: true,
-      },
-    },
+    // {
+    //   // Docs https://www.gatsbyjs.com/plugins/gatsby-plugin-matomo/
+    //   resolve: 'gatsby-plugin-matomo',
+    //   options: {
+    //     siteId: '6',
+    //     matomoUrl: 'https://s.radwege-check.de',
+    //     siteUrl: 'https://s.radwege-check.de',
+    //     requireConsent: false,
+    //     requireCookieConsent: true,
+    //     disableCookies: true,
+    //     respectDnt: true,
+    //     // ↓ We filter all hits from non-production urls; so setting `dev:true` is fine.
+    //     //   Settings via https://s.fixmycity.de/index.php?module=SitesManager&action=index&idSite=6&period=day&date=yesterday&showaddsite=false
+    //     //   > Zeichne Besuche und Aktionen nur auf, wenn die Aktions-URL mit einer der oben genannten URLs beginnt.
+    //     dev: true,
+    //   },
+    // },
   ],
 };
