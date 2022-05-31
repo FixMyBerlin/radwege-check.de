@@ -36,6 +36,7 @@
     "@tailwindcss/typography": "^0.5.2",
     "classnames": "^2.3.1",
     "embla-carousel-react": "6.2.0",
+    "fs-extra": "10.1.0",
     "gatsby": "4.14.0",
     "gatsby-plugin-image": "2.14.1",
     "gatsby-plugin-matomo": "0.13.0",
