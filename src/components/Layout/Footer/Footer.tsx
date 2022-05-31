@@ -1,5 +1,5 @@
 import React from 'react';
-import { FooterNewsletter, FooterSocialIcons } from '.';
+import { FooterSocialIcons } from '.';
 import { BuildWithLove } from './BuildWithLove';
 import { FooterLinks } from './FooterLinks/FooterLinks';
 import { footerLinks } from './FooterLinks/footerLinks.const';
@@ -20,7 +20,6 @@ export const Footer: React.FC = () => {
               className="mt-12 md:mt-0"
             />
           </div>
-          <FooterNewsletter />
         </div>
         <div className="mt-8 border-t border-stone-900 pt-8 md:flex md:items-center md:justify-between">
           <FooterSocialIcons />
