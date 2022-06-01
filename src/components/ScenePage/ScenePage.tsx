@@ -39,13 +39,17 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
       />
 
       <div className="items-center bg-white p-3 lg:flex lg:flex-col lg:px-0 lg:py-6">
-        <div className="mb-5 grid w-full max-w-7xl grid-cols-4 gap-6">
-          <div className="ml-5">
-            <Link to="/" classNameOverwrite="h-8" title="Zur Startseite…">
-              <Logo className="h-10" alt="Radwege-Check" />
+        <div className="mb-5 flex w-full max-w-7xl items-start gap-4 lg:grid lg:grid-cols-4 lg:gap-6">
+          <div className="mt-1 lg:mt-0 lg:ml-5">
+            <Link
+              to="/"
+              classNameOverwrite="block h-10 w-10 overflow-hidden lg:overflow-visible lg:w-auto"
+              title="Zur Startseite…"
+            >
+              <Logo className="h-full" alt="Radwege-Check" />
             </Link>
           </div>
-          <h1 className="col-span-3 mb-6 w-full max-w-7xl text-2xl">
+          <h1 className="col-span-3 w-full text-2xl">
             Szene {categoryTranslation}, ID <code>#{scene.sceneId}</code>
           </h1>
         </div>
