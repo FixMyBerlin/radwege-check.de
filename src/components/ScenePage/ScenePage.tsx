@@ -42,7 +42,7 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
           Szene <code>{scene.sceneId}</code>
         </h1>
 
-        <div className="fixed bottom-5 right-5 flex flex-col gap-2 print:hidden">
+        <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 print:hidden">
           <TwitterButton
             url={pagePath}
             text={`Subjektive Sicherheit ${formatNumber(scene.voteScore, {

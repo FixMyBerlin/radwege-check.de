@@ -33,7 +33,7 @@ export const TwitterButton: React.FC<Props> = ({
       blank
       external
       button
-      className="flex flex-row items-center gap-0.5"
+      className="flex flex-row items-center gap-0.5 shadow-md"
     >
       <TwitterIcon className="mt-0.5 h-4 w-4" /> Teilen
     </Link>
