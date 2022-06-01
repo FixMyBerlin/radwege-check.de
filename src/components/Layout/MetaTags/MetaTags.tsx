@@ -43,15 +43,6 @@ export const MetaTags: React.FC<Props> = ({
       `${domain || ''}/social-sharing/default.png`,
   };
 
-  // Let's see what the Netlify build log tells us…
-  console.log({
-    context: process.env.CONTEXT,
-    url: process.env.URL,
-    prime_url: process.env.DEPLOY_PRIME_URL,
-    domain,
-    withDefaults,
-  });
-
   // FYI, we do not inlcude the url meta tags since there was an issue with specs and `useLocation`.
   //  Since we do not need this field, its OK to remove it.
   return (
