@@ -1,16 +1,19 @@
-# [TODO.info](https://TODO.info/)
+<div align="center">
+  <img src="src/components/assets/radwegecheck-logo-mehrfarbig.svg" height="80" />
+  <h1 align="center"><a href="https://radwege-check.de">radwege-check.de</a></h1>
+</div>
+
+## Contributions
+
+If you find any bugs, feel free to open an issue.
 
 ## Develop
 
 - Use asdf or nvm to install NodeJS
 - Use `npm run` to see a list of commands like `npm run start`
-- Use `npm run build && npx serve public` to test the build
 - Use `npx eslint --print-config .eslintrc` to check the `.eslintrc` for errors
 
 ### Gatsby KnowHow
-
-- Internal links with `<Link>`, external Links with our own `<ExternalLink>` (which uses `<a>`).
-  More https://www.gatsbyjs.com/docs/linking-between-pages/
 
 - About `location`
   https://www.gatsbyjs.com/docs/reference/release-notes/migrating-from-v1-to-v2/#4-pass-history-location-and-match-props-to-layout
@@ -18,8 +21,12 @@
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for more information.
+This project is licensed under the AGPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for more information.
+It contains dependencies which have different Licenses, see [`package.json`](./package.json).
 
 ## Thanks
 
-- Gatsby starter by João Pedro Schmitz, https://github.com/jpedroschmitz/gatsby-starter-ts
+- This site is build using [Gatsby](https://www.gatsbyjs.com/) which allows us to manage our data in a convenient way in a spreadsheet, export as CSV and generate static content based on this.
+- We used a [Gatsby starter](https://github.com/jpedroschmitz/gatsby-starter-ts) by João Pedro Schmitz.
+- The search filtering is provided [ItemsJS](https://github.com/itemsapi/itemsjs) which allows us to provide advanded filtering right in the browser.
+- We rely heavily on [Tailwind CSS](https://tailwindcss.com/), [Tailwind UI](https://tailwindui.com/) and [Headless UI](https://headlessui.dev/).

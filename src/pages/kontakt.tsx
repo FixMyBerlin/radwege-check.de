@@ -1,18 +1,72 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
-import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
-import { LayoutArticle } from '~/components/Layout';
+import { LogoBmdv } from '~/components/Homepage/LogoBmdv';
+import { LayoutArticle, MetaTags } from '~/components/Layout';
+import { Link } from '~/components/Link';
 
 const KontaktPage: React.FC<PageProps> = ({ location }) => {
   return (
     <LayoutArticle location={location}>
-      <HelmetSeo noindex title="Kontakt" />
+      <MetaTags noindex title="Radwege-Check | Kontakt &amp; Impressum" />
+
       <h1>Kontakt</h1>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-        dolorem fuga excepturi expedita delectus neque, soluta in vitae
-        perspiciatis amet provident a quaerat nemo suscipit quasi debitis
-        impedit, fugiat officiis.
+        <Link to="hello@fixmycity.de" button>
+          hello@fixmycity.de
+        </Link>
+      </p>
+      <p>
+        Du findest uns auch auf{' '}
+        <Link external blank to="https://twitter.com/fixmyberlin">
+          Twitter
+        </Link>{' '}
+        und{' '}
+        <Link external blank to="https://www.linkedin.com/company/fixmycity">
+          LinkedIn
+        </Link>
+        .
+      </p>
+
+      <h1 className="mt-12 border-t border-gray-300 pt-12">Impressum</h1>
+      <p>
+        <strong>FixMyCity GmbH</strong>
+        <br />
+        Karlsgartenstraße 12
+        <br />
+        12049 Berlin
+        <br />
+        <Link to="hello@fixmycity.de">hello@fixmycity.de</Link>
+        <br />
+        Telefon: 030 / 549 08 665
+        <br />
+        <Link blank to="https://www.fixmycity.de">
+          www.fixmycity.de
+        </Link>
+        ,{' '}
+        <Link blank to="https://www.fixmyberlin.de">
+          www.fixmyberlin.de
+        </Link>
+      </p>
+      <p>Gesellschafter: Boris Hekele und Heiko Rintelen</p>
+      <p>
+        Registergericht: Amtsgericht Berlin-Charlottenburg
+        <br />
+        Registernummer: HRB 205031 B
+      </p>
+      <p>Umsatzsteuer-Identifikationsnummer gem. § 27a UStG: DE323489466</p>
+      <p>
+        Verantwortlicher i.S.v. § 55 Rundfunkstaatsvertrag (RStV): Boris Hekele
+      </p>
+
+      <h1 className="mt-12 border-t border-gray-300 pt-12">Förderung</h1>
+      <p>
+        <Link
+          external
+          blank
+          to="https://www.mobilitaetsforum.bund.de/DE/Themen/Wissenspool/Projekte/Projektbeispiele/Projekte/RVA-Safetycheck.html"
+        >
+          <LogoBmdv />
+        </Link>
       </p>
     </LayoutArticle>
   );

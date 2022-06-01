@@ -1,12 +1,11 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
-import { HelmetSeo } from '~/components/Helmet/HelmetSeo';
-import { LayoutArticle } from '~/components/Layout';
+import { LayoutArticle, MetaTags } from '~/components/Layout';
 
 const AuswertungPage: React.FC<PageProps> = ({ location }) => {
   return (
     <LayoutArticle location={location}>
-      <HelmetSeo title="Auswertung" description="TODO" image="TODO" />
+      <MetaTags article title="Auswertung" description="TODO" />
       <h1>Auswertung</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate

@@ -1,34 +1,27 @@
 import classNames from 'classnames';
 import React from 'react';
-import { Footer, Navigation } from '.';
+import { Footer } from '.';
+import { BetaModal } from './BetaModal';
 
 type Props = {
   className?: string;
+  /** @description to access the current location; see links in readme. */
   location?: any; // TODO: define type
-  padding?: boolean;
-  navigation?: boolean;
+  hideBetaModal?: boolean;
+  children: React.ReactNode;
 };
 
 // TODO: Maybe we need to prevent the layout from unmounting, see https://www.gatsbyjs.com/docs/how-to/routing/layout-components/#how-to-prevent-layout-components-from-unmounting
 export const Layout: React.FC<Props> = ({
-  className = '',
-  navigation = true,
-  location,
-  padding = true,
+  className,
+  location: _location, // TODO later… or remove
+  hideBetaModal = false,
   children,
 }) => {
   return (
     <div className="flex h-full flex-col">
-      {navigation && <Navigation location={location} />}
-      <main
-        className={classNames(
-          className,
-          { 'p-5 pt-14': padding },
-          'z-0 flex-grow bg-green-50 shadow-md shadow-green-900/20'
-        )}
-      >
-        {children}
-      </main>
+      {!hideBetaModal && <BetaModal />}
+      <main className={classNames(className, 'z-0 flex-grow')}>{children}</main>
       <Footer />
     </div>
   );
