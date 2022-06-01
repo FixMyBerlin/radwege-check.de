@@ -206,7 +206,6 @@ export const Scenes: React.FC<Props> = ({
           !seoPresetIsActive &&
           sceneImageUrl(results?.data?.items?.[0]?.sceneId)
         }
-        imagePath={seoPresetIsActive && '/#TODO'}
       />
 
       <div className="flex h-screen flex-row">

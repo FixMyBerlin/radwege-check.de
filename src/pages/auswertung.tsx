@@ -5,12 +5,7 @@ import { LayoutArticle, MetaTags } from '~/components/Layout';
 const AuswertungPage: React.FC<PageProps> = ({ location }) => {
   return (
     <LayoutArticle location={location}>
-      <MetaTags
-        article
-        title="Auswertung"
-        description="TODO"
-        imagePath="/#TODO"
-      />
+      <MetaTags article title="Auswertung" description="TODO" />
       <h1>Auswertung</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
