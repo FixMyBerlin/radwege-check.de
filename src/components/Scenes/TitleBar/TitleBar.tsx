@@ -38,7 +38,11 @@ export const TitleBar: React.FC<Props> = ({
 
   return (
     <section className="z-10 flex h-14 flex-none flex-row items-center justify-between bg-yellow-50 px-3 py-1 text-lg shadow-[0_0px_10px_0_rgba(0,_0,_0,_0.2)] lg:px-4 lg:text-xl">
-      <Link to="/" classNameOverwrite="-ml-0.5 h-8 lg:hidden">
+      <Link
+        to="/"
+        classNameOverwrite="-ml-0.5 h-8 lg:hidden"
+        title="Zur Startseite…"
+      >
         <LogoIcon className="h-8 w-8" alt="Radwege-Check" />
       </Link>
 

@@ -12,6 +12,7 @@ type Props = {
   button?: boolean;
   mailSubject?: string;
   mailBody?: string;
+  title?: string;
   children: React.ReactNode;
 };
 
@@ -29,6 +30,7 @@ export const Link: React.FC<Props> = ({
   button = false,
   mailSubject,
   mailBody,
+  title,
   children,
 }) => {
   const classes = classNames(
@@ -56,14 +58,19 @@ export const Link: React.FC<Props> = ({
 
   if (external || blank || mailto) {
     return (
-      <a href={mailto || to} className={classes} {...newWindowProps}>
+      <a
+        href={mailto || to}
+        className={classes}
+        {...newWindowProps}
+        title={title}
+      >
         {children}
       </a>
     );
   }
 
   return (
-    <GatsbyLink to={to} className={classes}>
+    <GatsbyLink to={to} className={classes} title={title}>
       {children}
     </GatsbyLink>
   );
