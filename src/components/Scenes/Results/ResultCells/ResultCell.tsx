@@ -1,23 +1,23 @@
-import classNames from 'classnames';
-import React from 'react';
-import { TranslationMissing } from '~/components/TextHelper';
-import { formatMeter } from '~/components/utils';
-import { Icons } from '../../Facets/ButtonSingleChoice/Icons';
-import { useAggregationConfig } from '../../hooks';
+import classNames from 'classnames'
+import React from 'react'
+import { TranslationMissing } from '~/components/TextHelper'
+import { formatMeter } from '~/components/utils'
+import { Icons } from '../../Facets/ButtonSingleChoice/Icons'
+import { useAggregationConfig } from '../../hooks'
 import {
   ScenePrimaryProps,
   SceneSecondaryProps,
   SceneCategory,
-} from '../../types';
+} from '../../types'
 
 type Props = {
-  category: SceneCategory;
-  keyName: string;
-  bucketActive: boolean;
-  scene: ScenePrimaryProps | SceneSecondaryProps;
-  groupEndIndicator: boolean;
-  showIcon: boolean;
-};
+  category: SceneCategory
+  keyName: string
+  bucketActive: boolean
+  scene: ScenePrimaryProps | SceneSecondaryProps
+  groupEndIndicator: boolean
+  showIcon: boolean
+}
 
 export const ResultCell: React.FC<Props> = ({
   category,
@@ -27,15 +27,15 @@ export const ResultCell: React.FC<Props> = ({
   groupEndIndicator,
   showIcon,
 }) => {
-  const aggregationConfig = useAggregationConfig(category);
+  const aggregationConfig = useAggregationConfig(category)
 
   const titleTranslation = aggregationConfig[keyName]?.resultTitle ||
-    aggregationConfig[keyName]?.title || <TranslationMissing value={keyName} />;
+    aggregationConfig[keyName]?.title || <TranslationMissing value={keyName} />
 
   const bucketTranslation =
     aggregationConfig[keyName]?.resultBuckets?.[scene[keyName]] ||
     aggregationConfig[keyName]?.buckets[scene[keyName]] ||
-    'TODO';
+    'TODO'
 
   return (
     <section
@@ -84,5 +84,5 @@ export const ResultCell: React.FC<Props> = ({
         )}
       </p>
     </section>
-  );
-};
+  )
+}

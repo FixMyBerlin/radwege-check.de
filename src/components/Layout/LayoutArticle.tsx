@@ -1,11 +1,11 @@
-import React from 'react';
-import { Layout } from '~/components/Layout/Layout';
-import { ArticleLogo } from './ArticleLogo';
+import React from 'react'
+import { Layout } from '~/components/Layout/Layout'
+import { ArticleLogo } from './ArticleLogo'
 
 type Props = {
-  location?: any; // TODO: define type
-  hideBetaModal?: boolean;
-};
+  location?: any // TODO: define type
+  hideBetaModal?: boolean
+}
 
 export const LayoutArticle: React.FC<Props> = ({
   location,
@@ -23,5 +23,5 @@ export const LayoutArticle: React.FC<Props> = ({
         {children}
       </article>
     </Layout>
-  );
-};
+  )
+}

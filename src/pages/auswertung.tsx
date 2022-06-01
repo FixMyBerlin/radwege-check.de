@@ -1,6 +1,6 @@
-import { PageProps } from 'gatsby';
-import React from 'react';
-import { LayoutArticle, MetaTags } from '~/components/Layout';
+import { PageProps } from 'gatsby'
+import React from 'react'
+import { LayoutArticle, MetaTags } from '~/components/Layout'
 
 const AuswertungPage: React.FC<PageProps> = ({ location }) => {
   return (
@@ -14,7 +14,7 @@ const AuswertungPage: React.FC<PageProps> = ({ location }) => {
         impedit, fugiat officiis.
       </p>
     </LayoutArticle>
-  );
-};
+  )
+}
 
-export default AuswertungPage;
+export default AuswertungPage

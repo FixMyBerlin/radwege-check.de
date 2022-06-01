@@ -1,13 +1,13 @@
-import classNames from 'classnames';
-import React from 'react';
-import { sceneImageUrl } from './sceneImageUrl';
+import classNames from 'classnames'
+import React from 'react'
+import { sceneImageUrl } from './sceneImageUrl'
 
 type Props = {
-  sceneId: string;
-  className?: string;
-  alt?: string;
-  lazy?: boolean;
-};
+  sceneId: string
+  className?: string
+  alt?: string
+  lazy?: boolean
+}
 
 // Files are stored at https://s3.console.aws.amazon.com/s3/buckets/fmb-aws-bucket?region=eu-central-1&prefix=KatasterKI/scenes/&showversions=false
 export const SceneImage: React.VFC<Props> = ({
@@ -17,8 +17,8 @@ export const SceneImage: React.VFC<Props> = ({
   lazy,
 }) => {
   // Set for images "below the fold" to optimize performance. More at https://web.dev/lcp-lazy-loading/
-  type LazyLoadingImageProp = { loading: 'lazy' } | undefined;
-  const lazyLoad: LazyLoadingImageProp = lazy ? { loading: 'lazy' } : undefined;
+  type LazyLoadingImageProp = { loading: 'lazy' } | undefined
+  const lazyLoad: LazyLoadingImageProp = lazy ? { loading: 'lazy' } : undefined
 
   return (
     <img
@@ -27,5 +27,5 @@ export const SceneImage: React.VFC<Props> = ({
       className={classNames(className)}
       {...lazyLoad}
     />
-  );
-};
+  )
+}

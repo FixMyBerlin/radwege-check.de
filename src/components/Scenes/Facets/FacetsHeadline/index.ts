@@ -1,1 +1,1 @@
-export * from './FacetsHeadline';
+export * from './FacetsHeadline'

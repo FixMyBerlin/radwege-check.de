@@ -15,4 +15,4 @@ export const itemJsConfigSecondary = {
   },
   searchableFields: [],
   native_search_enabled: false,
-};
+}

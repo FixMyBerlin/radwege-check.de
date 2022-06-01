@@ -1,31 +1,31 @@
-import classNames from 'classnames';
-import React from 'react';
-import { useAggregationConfig } from '../../hooks';
-import { ResultBucketProps, SceneCategory } from '../../types';
-import { buttonClassNames } from '../utils';
-import { useResults } from './useResults';
+import classNames from 'classnames'
+import React from 'react'
+import { useAggregationConfig } from '../../hooks'
+import { ResultBucketProps, SceneCategory } from '../../types'
+import { buttonClassNames } from '../utils'
+import { useResults } from './useResults'
 
 export type HandleMultiChoiceProps = {
-  aggregationKey: string;
-  buckets: ResultBucketProps[];
-  selectedBucket: ResultBucketProps;
-};
+  aggregationKey: string
+  buckets: ResultBucketProps[]
+  selectedBucket: ResultBucketProps
+}
 
 export type HandleMultiChoice = ({
   aggregationKey,
   buckets,
   selectedBucket,
-}: HandleMultiChoiceProps) => void;
+}: HandleMultiChoiceProps) => void
 
 type Props = {
-  aggregationKey: string;
-  category: SceneCategory;
-  bucket: ResultBucketProps;
-  buckets: ResultBucketProps[];
-  handleClick: HandleMultiChoice;
-  index: number;
-  paginationTotal: number;
-};
+  aggregationKey: string
+  category: SceneCategory
+  bucket: ResultBucketProps
+  buckets: ResultBucketProps[]
+  handleClick: HandleMultiChoice
+  index: number
+  paginationTotal: number
+}
 
 export const ButtonMultiChoice: React.FC<Props> = ({
   aggregationKey,
@@ -41,10 +41,10 @@ export const ButtonMultiChoice: React.FC<Props> = ({
     bucketCount: bucket?.doc_count,
     bucketSelected: bucket?.selected,
     anySelected: buckets.some((b) => b.selected),
-  });
-  const firstElement = index === 0;
-  const lastElement = index === buckets.length - 1;
-  const aggregationConfig = useAggregationConfig(category);
+  })
+  const firstElement = index === 0
+  const lastElement = index === buckets.length - 1
+  const aggregationConfig = useAggregationConfig(category)
 
   return (
     <button
@@ -80,5 +80,5 @@ export const ButtonMultiChoice: React.FC<Props> = ({
         }}
       />
     </button>
-  );
-};
+  )
+}

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
 type Props = {
-  className?: string;
-};
+  className?: string
+}
 
 /**
  * An iFrame that shows the subscription form for the newsletter
@@ -11,7 +11,7 @@ type Props = {
  * Code inspired by https://github.com/FixMyBerlin/fixmy.frontend/blob/master/src/components2/NewsletterWidget/NewsletterWidget.tsx
  */
 export const NewsletterWidget: React.VFC<Props> = ({ className }) => {
-  const src = 'https://app.mailjet.com/widget/iframe/2YIa/EGM?v=4';
+  const src = 'https://app.mailjet.com/widget/iframe/2YIa/EGM?v=4'
 
   return (
     <iframe
@@ -22,5 +22,5 @@ export const NewsletterWidget: React.VFC<Props> = ({ className }) => {
       className={className}
       src={src}
     />
-  );
-};
+  )
+}

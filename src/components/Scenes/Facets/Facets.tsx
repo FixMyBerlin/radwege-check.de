@@ -1,26 +1,26 @@
-import classNames from 'classnames';
-import React from 'react';
-import { useAggregationConfig } from '../hooks';
-import { ResultProps, SceneCategory } from '../types';
-import { HandleMultiChoice } from './ButtonMultiChoice/ButtonMultiChoice';
-import { HandleSingleChoice } from './ButtonSingleChoice/ButtonSingleChoice';
-import { FacetsButtons } from './FacetsButtons';
-import { FacetsHeadline } from './FacetsHeadline';
-import { FooterLinks } from './FooterLinks';
-import { Logo } from './Logo';
-import { PresetDropdown, PresetDropdownProps } from './PresetDropdown';
-import { ResetFilterButton } from './ResetFilterButton';
+import classNames from 'classnames'
+import React from 'react'
+import { useAggregationConfig } from '../hooks'
+import { ResultProps, SceneCategory } from '../types'
+import { HandleMultiChoice } from './ButtonMultiChoice/ButtonMultiChoice'
+import { HandleSingleChoice } from './ButtonSingleChoice/ButtonSingleChoice'
+import { FacetsButtons } from './FacetsButtons'
+import { FacetsHeadline } from './FacetsHeadline'
+import { FooterLinks } from './FooterLinks'
+import { Logo } from './Logo'
+import { PresetDropdown, PresetDropdownProps } from './PresetDropdown'
+import { ResetFilterButton } from './ResetFilterButton'
 
 export type FacetsProps = {
-  category: SceneCategory;
-  results: ResultProps;
+  category: SceneCategory
+  results: ResultProps
   /** @desc Reset filters; undefined if no filter active. */
-  handleResetFilter: undefined | (() => void);
-  handleSingleChoice: HandleSingleChoice;
-  handleMultiChoice: HandleMultiChoice;
-  className?: string;
-  showLogo: boolean;
-} & PresetDropdownProps;
+  handleResetFilter: undefined | (() => void)
+  handleSingleChoice: HandleSingleChoice
+  handleMultiChoice: HandleMultiChoice
+  className?: string
+  showLogo: boolean
+} & PresetDropdownProps
 
 export const Facets: React.FC<FacetsProps> = ({
   category,
@@ -34,16 +34,16 @@ export const Facets: React.FC<FacetsProps> = ({
   className,
   showLogo,
 }) => {
-  const aggregations = results?.data?.aggregations;
-  const aggregationConfig = useAggregationConfig(category);
+  const aggregations = results?.data?.aggregations
+  const aggregationConfig = useAggregationConfig(category)
 
   const mainAggregations = Object.entries(aggregations || {}).filter(
     ([key, _v]) => aggregationConfig[key].primaryGroup === true
-  );
+  )
 
   const furtherAggregations = Object.entries(aggregations || {}).filter(
     ([key, _v]) => !aggregationConfig[key].primaryGroup
-  );
+  )
 
   return (
     <nav className={classNames(className, 'overflow-scroll')}>
@@ -63,7 +63,7 @@ export const Facets: React.FC<FacetsProps> = ({
         <ResetFilterButton onClick={handleResetFilter} />
 
         {mainAggregations.map(([aggregationKey, aggregation]) => {
-          const { buckets } = aggregation;
+          const { buckets } = aggregation
 
           return (
             <section key={aggregationKey} className={classNames('mb-5')}>
@@ -81,15 +81,15 @@ export const Facets: React.FC<FacetsProps> = ({
                 handleMultiChoice={handleMultiChoice}
               />
             </section>
-          );
+          )
         })}
       </div>
 
       <div className="px-3">
         {furtherAggregations.map(([aggregationKey, aggregation]) => {
-          const { buckets } = aggregation;
+          const { buckets } = aggregation
           const { showAsIcons, groupEndIndicator } =
-            aggregationConfig[aggregationKey];
+            aggregationConfig[aggregationKey]
 
           return (
             <section
@@ -118,11 +118,11 @@ export const Facets: React.FC<FacetsProps> = ({
                 handleMultiChoice={handleMultiChoice}
               />
             </section>
-          );
+          )
         })}
       </div>
 
       <FooterLinks />
     </nav>
-  );
-};
+  )
+}

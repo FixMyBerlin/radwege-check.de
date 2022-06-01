@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from '../Link';
-import { Modal } from '../Modal';
-import { NewsletterWidget } from '../NewsletterWidget';
-import PersonDigging from './assets/person-digging-icon.svg';
+import React from 'react'
+import { Link } from '../Link'
+import { Modal } from '../Modal'
+import { NewsletterWidget } from '../NewsletterWidget'
+import PersonDigging from './assets/person-digging-icon.svg'
 
 export const BetaModal = () => {
   return (
@@ -29,5 +29,5 @@ export const BetaModal = () => {
         <Link to="mailto:hello@fixmycity.de">hello@fixmycity.de</Link>
       </p>
     </Modal>
-  );
-};
+  )
+}

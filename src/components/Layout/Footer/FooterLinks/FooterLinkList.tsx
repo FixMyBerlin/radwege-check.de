@@ -1,12 +1,12 @@
-import classNames from 'classnames';
-import React from 'react';
-import { Link } from '~/components/Link';
-import { footerMenuItemProps } from '../const/footerLinks.const';
+import classNames from 'classnames'
+import React from 'react'
+import { Link } from '~/components/Link'
+import { footerMenuItemProps } from '../const/footerLinks.const'
 
 type Props = {
-  linkList: footerMenuItemProps[];
-  className?: string;
-};
+  linkList: footerMenuItemProps[]
+  className?: string
+}
 
 export const FooterLinkList: React.FC<Props> = ({ linkList, className }) => {
   return (
@@ -23,5 +23,5 @@ export const FooterLinkList: React.FC<Props> = ({ linkList, className }) => {
         </li>
       ))}
     </ul>
-  );
-};
+  )
+}

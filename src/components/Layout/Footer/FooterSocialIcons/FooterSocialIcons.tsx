@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from '~/components/Link';
-import { footerSocialIcons } from './footerSocialIcons.const';
+import React from 'react'
+import { Link } from '~/components/Link'
+import { footerSocialIcons } from './footerSocialIcons.const'
 
 export const FooterSocialIcons = () => {
   return (
@@ -18,5 +18,5 @@ export const FooterSocialIcons = () => {
         </Link>
       ))}
     </div>
-  );
-};
+  )
+}

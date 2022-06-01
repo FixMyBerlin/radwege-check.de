@@ -1,6 +1,6 @@
-import React from 'react';
-import LogoIconColor from '~/components/assets/radwegecheck-logo-bildmarke-mehrfarbig.svg';
-import { Link } from '../Link';
+import React from 'react'
+import LogoIconColor from '~/components/assets/radwegecheck-logo-bildmarke-mehrfarbig.svg'
+import { Link } from '../Link'
 
 export const Hero: React.FC = () => {
   return (
@@ -26,5 +26,5 @@ export const Hero: React.FC = () => {
         .
       </p>
     </section>
-  );
-};
+  )
+}

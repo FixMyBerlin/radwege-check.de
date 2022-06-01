@@ -1,2 +1,2 @@
-export * from './FooterSocialIcons/FooterSocialIcons';
-export * from './FooterLinks/FooterLinkList';
+export * from './FooterSocialIcons/FooterSocialIcons'
+export * from './FooterLinks/FooterLinkList'

@@ -1,1 +1,1 @@
-export * from './footerLinks.const';
+export * from './footerLinks.const'

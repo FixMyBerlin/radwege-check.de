@@ -1,18 +1,18 @@
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
-import classNames from 'classnames';
-import useEmblaCarousel from 'embla-carousel-react';
-import React, { useCallback, useEffect, useState } from 'react';
-import { buttonStyles, Link } from '../Link';
-import { SceneImage } from '../Scenes';
-import { PresetsScenes } from '../Scenes/constants';
-import { formatPercent } from '../utils';
-import { FilterUrlProp } from './Presets';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
+import classNames from 'classnames'
+import useEmblaCarousel from 'embla-carousel-react'
+import React, { useCallback, useEffect, useState } from 'react'
+import { buttonStyles, Link } from '../Link'
+import { SceneImage } from '../Scenes'
+import { PresetsScenes } from '../Scenes/constants'
+import { formatPercent } from '../utils'
+import { FilterUrlProp } from './Presets'
 
 export type Props = {
-  filterUrl: FilterUrlProp;
-  slides: PresetsScenes;
-  className?: string;
-};
+  filterUrl: FilterUrlProp
+  slides: PresetsScenes
+  className?: string
+}
 
 // TODO: This need to be able to switch from scenesPrimary to scenesSeconary
 export const PresetSlider: React.FC<Props> = ({
@@ -27,38 +27,38 @@ export const PresetSlider: React.FC<Props> = ({
     align: 'start',
     skipSnaps: true,
     inViewThreshold: 0.95,
-  });
+  })
 
-  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
-  const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
+  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
+  const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
 
   const scrollPrev = useCallback(
     () => emblaApi && emblaApi.scrollPrev(),
     [emblaApi]
-  );
+  )
   const scrollNext = useCallback(
     () => emblaApi && emblaApi.scrollNext(),
     [emblaApi]
-  );
+  )
 
   const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setPrevBtnEnabled(emblaApi.canScrollPrev());
+    if (!emblaApi) return
+    setPrevBtnEnabled(emblaApi.canScrollPrev())
     // TODO: Make user we stopp scrolling earlier, once the lat element is in view. See 16a9ccb.
-    setNextBtnEnabled(emblaApi.canScrollNext());
-  }, [emblaApi]);
+    setNextBtnEnabled(emblaApi.canScrollNext())
+  }, [emblaApi])
 
   useEffect(() => {
-    if (!emblaApi) return;
-    emblaApi.on('select', onSelect);
-    onSelect();
-  }, [emblaApi, onSelect]);
+    if (!emblaApi) return
+    emblaApi.on('select', onSelect)
+    onSelect()
+  }, [emblaApi, onSelect])
 
   useEffect(() => {
-    if (emblaApi) emblaApi.reInit();
-  }, [emblaApi, slides]);
+    if (emblaApi) emblaApi.reInit()
+  }, [emblaApi, slides])
 
-  const slideEntries = Object.entries(slides);
+  const slideEntries = Object.entries(slides)
 
   return (
     <div
@@ -76,7 +76,7 @@ export const PresetSlider: React.FC<Props> = ({
           )}
 
           {slideEntries.map(([presetName, preset]) => {
-            const url = `${filterUrl}${preset.searchFilterString}`;
+            const url = `${filterUrl}${preset.searchFilterString}`
 
             return (
               <li key={presetName} className="">
@@ -120,7 +120,7 @@ export const PresetSlider: React.FC<Props> = ({
                   </>
                 </Link>
               </li>
-            );
+            )
           })}
         </ul>
       </div>
@@ -151,5 +151,5 @@ export const PresetSlider: React.FC<Props> = ({
         </button>
       </div>
     </div>
-  );
-};
+  )
+}

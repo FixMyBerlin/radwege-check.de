@@ -1,8 +1,8 @@
-import { PageProps } from 'gatsby';
-import React from 'react';
-import { LogoBmdv } from '~/components/Homepage/LogoBmdv';
-import { LayoutArticle, MetaTags } from '~/components/Layout';
-import { Link } from '~/components/Link';
+import { PageProps } from 'gatsby'
+import React from 'react'
+import { LogoBmdv } from '~/components/Homepage/LogoBmdv'
+import { LayoutArticle, MetaTags } from '~/components/Layout'
+import { Link } from '~/components/Link'
 
 const KontaktPage: React.FC<PageProps> = ({ location }) => {
   return (
@@ -69,7 +69,7 @@ const KontaktPage: React.FC<PageProps> = ({ location }) => {
         </Link>
       </p>
     </LayoutArticle>
-  );
-};
+  )
+}
 
-export default KontaktPage;
+export default KontaktPage

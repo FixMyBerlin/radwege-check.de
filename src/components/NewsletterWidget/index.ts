@@ -1,1 +1,1 @@
-export * from './NewsletterWidget';
+export * from './NewsletterWidget'

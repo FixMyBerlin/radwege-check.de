@@ -1,17 +1,17 @@
-import { Popover as HeadlessUiPopover, Transition } from '@headlessui/react';
-import React, { useState } from 'react';
-import { usePopper } from 'react-popper';
+import { Popover as HeadlessUiPopover, Transition } from '@headlessui/react'
+import React, { useState } from 'react'
+import { usePopper } from 'react-popper'
 
 type Props = {
-  buttonText: React.ReactNode | string;
-  children: React.ReactNode;
-};
+  buttonText: React.ReactNode | string
+  children: React.ReactNode
+}
 
 export const Popover: React.FC<Props> = ({ buttonText, children }) => {
   const [referenceElement, setReferenceElement] =
-    useState<HTMLButtonElement | null>();
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>();
-  const { styles, attributes } = usePopper(referenceElement, popperElement);
+    useState<HTMLButtonElement | null>()
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>()
+  const { styles, attributes } = usePopper(referenceElement, popperElement)
 
   return (
     <HeadlessUiPopover className="z-10">
@@ -37,5 +37,5 @@ export const Popover: React.FC<Props> = ({ buttonText, children }) => {
         </HeadlessUiPopover.Panel>
       </Transition>
     </HeadlessUiPopover>
-  );
-};
+  )
+}

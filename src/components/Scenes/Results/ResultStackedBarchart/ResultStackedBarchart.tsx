@@ -1,19 +1,19 @@
-import classNames from 'classnames';
-import React, { useCallback } from 'react';
-import { formatNumber } from '~/components/utils';
-import { ScenePrimaryProps, SceneSecondaryProps } from '../../types';
-import BikeIcon from './assets/bike-icon.svg';
-import CarIcon from './assets/car-icon.svg';
-import PedestrianIcon from './assets/pedestrian-icon.svg';
-import { BarChart } from './BarChart';
-import { OtherIconNumberBarchart } from './OtherIconNumberBarchart';
+import classNames from 'classnames'
+import React, { useCallback } from 'react'
+import { formatNumber } from '~/components/utils'
+import { ScenePrimaryProps, SceneSecondaryProps } from '../../types'
+import BikeIcon from './assets/bike-icon.svg'
+import CarIcon from './assets/car-icon.svg'
+import PedestrianIcon from './assets/pedestrian-icon.svg'
+import { BarChart } from './BarChart'
+import { OtherIconNumberBarchart } from './OtherIconNumberBarchart'
 
 type Props = {
-  scene: ScenePrimaryProps | SceneSecondaryProps;
-  handleHover?: (sceneId: string) => void;
-  classNameBarchartHeight?: string;
-  iconWhenEmpty?: boolean;
-};
+  scene: ScenePrimaryProps | SceneSecondaryProps
+  handleHover?: (sceneId: string) => void
+  classNameBarchartHeight?: string
+  iconWhenEmpty?: boolean
+}
 
 export const ResultStackedBarchart: React.FC<Props> = ({
   scene,
@@ -22,14 +22,14 @@ export const ResultStackedBarchart: React.FC<Props> = ({
   iconWhenEmpty,
 }) => {
   const handleHoverProps = useCallback((sceneId: string) => {
-    if (!handleHover) return {};
-    if (!sceneId) return {};
+    if (!handleHover) return {}
+    if (!sceneId) return {}
 
     return {
       handleMouseOver: () => handleHover(sceneId),
       handleMouseOut: () => handleHover(scene.sceneId),
-    };
-  }, []);
+    }
+  }, [])
 
   return (
     <section
@@ -92,5 +92,5 @@ export const ResultStackedBarchart: React.FC<Props> = ({
         </span>
       </div> */}
     </section>
-  );
-};
+  )
+}

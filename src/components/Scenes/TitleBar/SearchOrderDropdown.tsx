@@ -1,16 +1,16 @@
-import { Menu, Transition } from '@headlessui/react';
+import { Menu, Transition } from '@headlessui/react'
 import {
   ChevronDownIcon,
   SortAscendingIcon,
   SortDescendingIcon,
-} from '@heroicons/react/outline';
-import classNames from 'classnames';
-import React, { Fragment } from 'react';
+} from '@heroicons/react/outline'
+import classNames from 'classnames'
+import React, { Fragment } from 'react'
 
 export type SearchOrderDropdownProps = {
-  searchOrder: string;
-  setSearchOrder: (order: string) => void;
-};
+  searchOrder: string
+  setSearchOrder: (order: string) => void
+}
 
 export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
   searchOrder,
@@ -25,7 +25,7 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
       name: 'Schlechteste Ergebnisse zuerst',
       icon: <SortAscendingIcon className="h-4 w-4" />,
     },
-  };
+  }
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -57,7 +57,7 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
               // When no searchOrder is given, we treat that as the default 'desc'
               const selected = searchOrder
                 ? key === searchOrder
-                : key === 'desc';
+                : key === 'desc'
 
               return (
                 <Menu.Item key={key}>
@@ -75,11 +75,11 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
                     {values.name}
                   </button>
                 </Menu.Item>
-              );
+              )
             })}
           </div>
         </Menu.Items>
       </Transition>
     </Menu>
-  );
-};
+  )
+}

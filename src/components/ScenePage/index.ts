@@ -1,1 +1,1 @@
-export * from './ScenePage';
+export * from './ScenePage'

@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from '~/components/Link';
-import { SceneImage } from '../../SceneImage';
+import React, { useState } from 'react'
+import { Link } from '~/components/Link'
+import { SceneImage } from '../../SceneImage'
 import {
   ScenePrimaryProps,
   SceneSecondaryProps,
   SceneCategory,
   SearchOptionProps,
-} from '../../types';
-import { ResultCells } from '../ResultCells';
-import { ResultStackedBarchart } from '../ResultStackedBarchart';
+} from '../../types'
+import { ResultCells } from '../ResultCells'
+import { ResultStackedBarchart } from '../ResultStackedBarchart'
 
-export type PrevBucketValues = { [key: string]: string | number };
+export type PrevBucketValues = { [key: string]: string | number }
 
 type Props = {
-  category: SceneCategory;
-  scene: ScenePrimaryProps | SceneSecondaryProps;
-  index?: number;
-  searchFilters?: SearchOptionProps['filters'];
-};
+  category: SceneCategory
+  scene: ScenePrimaryProps | SceneSecondaryProps
+  index?: number
+  searchFilters?: SearchOptionProps['filters']
+}
 
 export const ResultColumn: React.FC<Props> = ({
   category,
@@ -25,11 +25,11 @@ export const ResultColumn: React.FC<Props> = ({
   index = 0,
   searchFilters = {},
 }) => {
-  const [sceneImage, setSceneImage] = useState(scene.sceneId);
-  const handleImageChange = (sceneId: string) => setSceneImage(sceneId);
+  const [sceneImage, setSceneImage] = useState(scene.sceneId)
+  const handleImageChange = (sceneId: string) => setSceneImage(sceneId)
 
   return (
-    <article className="box-content h-full w-56 flex-none snap-start px-1.5 first:pl-4 lg:w-48 lg:px-2">
+    <article className="box-content h-full w-56 flex-none snap-start py-4 px-1.5 first:pl-4 lg:w-48 lg:px-2">
       <h2 className="sr-only">
         <Link to={scene.path}>Szene {scene.sceneId}</Link>
       </h2>
@@ -60,5 +60,5 @@ export const ResultColumn: React.FC<Props> = ({
         </Link>
       </section>
     </article>
-  );
-};
+  )
+}

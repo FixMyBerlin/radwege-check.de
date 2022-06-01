@@ -1,25 +1,25 @@
-import React from 'react';
-import { useAggregationConfig } from '../../hooks';
-import { ResultBucketProps, ResultProps, SceneCategory } from '../../types';
+import React from 'react'
+import { useAggregationConfig } from '../../hooks'
+import { ResultBucketProps, ResultProps, SceneCategory } from '../../types'
 import {
   ButtonMultiChoice,
   HandleMultiChoice,
-} from '../ButtonMultiChoice/ButtonMultiChoice';
+} from '../ButtonMultiChoice/ButtonMultiChoice'
 import {
   ButtonSingleChoice,
   HandleSingleChoice,
-} from '../ButtonSingleChoice/ButtonSingleChoice';
-import { ButtonSingleChoiceBoth } from '../ButtonSingleChoice/ButtonSingleChoiceBoth';
-import { checkBucketValueConsistency, checkDataConsistency } from '../utils';
+} from '../ButtonSingleChoice/ButtonSingleChoice'
+import { ButtonSingleChoiceBoth } from '../ButtonSingleChoice/ButtonSingleChoiceBoth'
+import { checkBucketValueConsistency, checkDataConsistency } from '../utils'
 
 type Props = {
-  aggregationKey: string;
-  category: SceneCategory;
-  results: ResultProps;
-  buckets: ResultBucketProps[];
-  handleSingleChoice?: HandleSingleChoice;
-  handleMultiChoice?: HandleMultiChoice;
-};
+  aggregationKey: string
+  category: SceneCategory
+  results: ResultProps
+  buckets: ResultBucketProps[]
+  handleSingleChoice?: HandleSingleChoice
+  handleMultiChoice?: HandleMultiChoice
+}
 
 export const FacetsButtons: React.FC<Props> = ({
   aggregationKey,
@@ -29,20 +29,20 @@ export const FacetsButtons: React.FC<Props> = ({
   handleSingleChoice,
   handleMultiChoice,
 }) => {
-  checkDataConsistency({ category, aggregationKey });
+  checkDataConsistency({ category, aggregationKey })
   const { keyFromItemjsMissingInTranslations } = checkBucketValueConsistency({
     category,
     aggregationKey,
     buckets,
-  });
+  })
 
   // We need a specific order for our Bucket values.
   // We use the order of key from our aggregationConfig for that.
   // However, for keys of type number that does not work, which is why we use a custom order via the `sortOrder` key.
-  const aggregationConfig = useAggregationConfig(category);
+  const aggregationConfig = useAggregationConfig(category)
   const sortedBuckets =
     aggregationConfig[aggregationKey]?.sortOrder ||
-    Object.keys(aggregationConfig[aggregationKey].buckets);
+    Object.keys(aggregationConfig[aggregationKey].buckets)
 
   return (
     <>
@@ -58,15 +58,15 @@ export const FacetsButtons: React.FC<Props> = ({
                 aggregationKey={aggregationKey}
                 handleClick={handleSingleChoice}
               />
-            );
+            )
           }
           const bucket = results.data.aggregations[
             aggregationKey
-          ].buckets.filter((b) => b.key === bucketKey)?.[0];
+          ].buckets.filter((b) => b.key === bucketKey)?.[0]
           // Guard for `keyFromTranslationMissingInItemjs`
-          if (!bucket) return null;
+          if (!bucket) return null
           const singleChoise =
-            aggregationConfig[aggregationKey].choiceMode === 'single';
+            aggregationConfig[aggregationKey].choiceMode === 'single'
           if (singleChoise) {
             return (
               <ButtonSingleChoice
@@ -79,7 +79,7 @@ export const FacetsButtons: React.FC<Props> = ({
                 handleClick={handleSingleChoice}
                 paginationTotal={results?.pagination?.total}
               />
-            );
+            )
           }
           return (
             <ButtonMultiChoice
@@ -92,7 +92,7 @@ export const FacetsButtons: React.FC<Props> = ({
               handleClick={handleMultiChoice}
               paginationTotal={results?.pagination?.total}
             />
-          );
+          )
         })}
       </div>
 
@@ -107,5 +107,5 @@ export const FacetsButtons: React.FC<Props> = ({
         </div>
       )}
     </>
-  );
-};
+  )
+}

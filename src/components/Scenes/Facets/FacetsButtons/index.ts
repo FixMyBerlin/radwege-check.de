@@ -1,1 +1,1 @@
-export * from './FacetsButtons';
+export * from './FacetsButtons'
