@@ -1,8 +1,11 @@
 import { PageProps } from 'gatsby'
 import React from 'react'
 import { LayoutArticle, MetaTags } from '~/components/Layout'
+import CommingSoon from './CommingSoon'
 
 const AuswertungPage: React.FC<PageProps> = ({ location }) => {
+  return <CommingSoon />
+
   return (
     <LayoutArticle location={location}>
       <MetaTags article title="Auswertung" description="TODO" />
