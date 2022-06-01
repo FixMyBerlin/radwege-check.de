@@ -11,7 +11,7 @@ export const FooterSocialIcons = () => {
           to={item.href}
           external
           blank
-          classNameOverwrite="text-slate-400 hover:text-slate-300"
+          classNameOverwrite="text-stone-100 hover:text-yellow-100"
         >
           <span className="sr-only">{item.name}</span>
           <item.icon className="h-6 w-6" aria-hidden="true" />

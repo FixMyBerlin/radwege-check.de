@@ -13,14 +13,16 @@ export const footerLegalLinks: footerMenuItemProps[] = [
 ];
 
 export const footerLinks: footerMenuProp = {
-  results: [
-    { name: 'Hauptstraßen', to: '/hauptstrassen/' },
-    { name: 'Nebenstraßen', to: '/nebenstrassen/' },
+  report: [
     {
-      name: 'Auswertung Subjektive Sicherheit',
+      name: 'Forschungsergebnisse Subjektive Sicherheit',
       to: 'https://fixmyberlin.de/research/subjektive-sicherheit',
       external: true,
     },
+  ],
+  results: [
+    { name: 'Hauptstraßen', to: '/hauptstrassen/' },
+    { name: 'Nebenstraßen', to: '/nebenstrassen/' },
   ],
   formal: [
     ...footerLegalLinks,
