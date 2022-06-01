@@ -54,9 +54,10 @@ module.exports = {
         start_url: '/',
         background_color: 'white',
         theme_color: '#fff8e8',
-        display: 'standalone',
+        display: 'minimal-ui', // https://developer.mozilla.org/en-US/docs/Web/Manifest/display#values
         icon: 'src/components/assets/radwegecheck-logo-bildmarke-mehrfarbig.svg',
         legacy: false,
+        lang: 'de-DE', // https://developer.mozilla.org/en-US/docs/Web/Manifest/lang
       },
     },
     // {
@@ -77,4 +78,4 @@ module.exports = {
     //   },
     // },
   ],
-};
+}
