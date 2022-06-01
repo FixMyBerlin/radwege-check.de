@@ -11,6 +11,7 @@ const IndexPage: React.FC<PageProps> = ({ location }) => {
         sharingTitle="Vergleiche 1.700 Radinfrastrukturen. Mach den Radwege-Check."
         imagePath="/#TODO"
       />
+
       <Hero />
       <Presets />
       <Logos />

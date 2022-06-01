@@ -42,9 +42,9 @@ export const Presets: React.FC = () => {
   };
 
   return (
-    <section className="bg-brand-light-yellow pb-12">
+    <section className="bg-brand-light-yellow px-4 pb-12 lg:px-0">
       <div className="mx-auto max-w-6xl">
-        <div className="flex justify-between">
+        <div className="flex flex-col items-end lg:flex-row lg:justify-between">
           <div className="flex-grow bg-stone-300">
             <h2
               className={classNames(
