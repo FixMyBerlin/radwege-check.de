@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from '~/components/Link';
 import { formatPercent } from '~/components/utils';
 import { ResultProps } from '../types';
 import {
@@ -36,6 +37,14 @@ export const TitleBar: React.FC<Props> = ({
 
   return (
     <section className="z-10 flex h-14 flex-none flex-row items-center justify-between bg-yellow-50 px-4 py-1 text-lg shadow-[0_0px_10px_0_rgba(0,_0,_0,_0.2)] lg:text-xl">
+      <Link to="/" classNameOverwrite="h-8 lg:hidden">
+        <img
+          className="h-full"
+          src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+          alt="Workflow"
+        />
+      </Link>
+
       {mobileFacets}
       <h1
         className="px-3 text-center font-bold leading-none lg:p-0 lg:text-left"
