@@ -1,7 +1,11 @@
 import { Menu, Transition } from '@headlessui/react';
+import {
+  ChevronDownIcon,
+  SortAscendingIcon,
+  SortDescendingIcon,
+} from '@heroicons/react/outline';
 import classNames from 'classnames';
 import React, { Fragment } from 'react';
-import { ChevronDownIcon } from '@heroicons/react/outline';
 
 export type SearchOrderDropdownProps = {
   searchOrder: string;
@@ -12,17 +16,29 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
   searchOrder,
   setSearchOrder,
 }) => {
-  const searchOrderValues = [
-    { id: 'desc', name: 'Beste Ergebnisse zuerst' },
-    { id: 'asc', name: 'Schlechteste Ergebnisse zuerst' },
-  ];
+  const searchOrderValues = {
+    desc: {
+      name: 'Beste Ergebnisse zuerst',
+      icon: <SortDescendingIcon className="h-4 w-4" />,
+    },
+    asc: {
+      name: 'Schlechteste Ergebnisse zuerst',
+      icon: <SortAscendingIcon className="h-4 w-4" />,
+    },
+  };
 
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-          Sortierung
-          <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+        <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 lg:px-4">
+          <span className="hidden lg:inline">Sortierung</span>
+          <span className="lg:hidden">
+            {searchOrderValues[searchOrder || 'desc'].icon}
+          </span>
+          <ChevronDownIcon
+            className="-mr-1 ml-2 hidden h-5 w-5 lg:block"
+            aria-hidden="true"
+          />
         </Menu.Button>
       </div>
 
@@ -37,17 +53,17 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
       >
         <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            {searchOrderValues.map((value) => {
+            {Object.entries(searchOrderValues).map(([key, values]) => {
               // When no searchOrder is given, we treat that as the default 'desc'
               const selected = searchOrder
-                ? value.id === searchOrder
-                : value.id === 'desc';
+                ? key === searchOrder
+                : key === 'desc';
 
               return (
-                <Menu.Item key={value.id}>
+                <Menu.Item key={key}>
                   <button
                     type="button"
-                    onClick={() => setSearchOrder(value.id)}
+                    onClick={() => setSearchOrder(key)}
                     disabled={selected}
                     className={classNames(
                       {
@@ -56,7 +72,7 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
                       'block w-full px-4 py-2 text-left text-sm'
                     )}
                   >
-                    {value.name}
+                    {values.name}
                   </button>
                 </Menu.Item>
               );
