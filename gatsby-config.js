@@ -45,6 +45,20 @@ module.exports = {
         },
       },
     },
+    {
+      // Docs https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Radwege-Check',
+        short_name: 'Radwege-Check',
+        start_url: '/',
+        background_color: 'white',
+        theme_color: '#fff8e8',
+        display: 'standalone',
+        icon: 'src/components/assets/radwegecheck-logo-bildmarke-mehrfarbig.svg',
+        legacy: false,
+      },
+    },
     // {
     //   // Docs https://www.gatsbyjs.com/plugins/gatsby-plugin-matomo/
     //   resolve: 'gatsby-plugin-matomo',
