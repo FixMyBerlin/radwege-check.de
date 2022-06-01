@@ -27,8 +27,8 @@ module.exports = {
     },
     {
       // Docs https://www.gatsbyjs.com/plugins/gatsby-plugin-sitemap/
-      // https://todo.info/sitemap/sitemap-index.xml // only links
-      // https://todo.info/sitemap/sitemap-0.xml // content
+      // https://radwege-check.de/sitemap/sitemap-index.xml // only links
+      // https://radwege-check.de/sitemap/sitemap-0.xml // content
       resolve: 'gatsby-plugin-sitemap',
       options: {
         excludes: ['/kontakt/', '/datenschutz/'],
