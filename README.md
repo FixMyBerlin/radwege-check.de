@@ -1,5 +1,5 @@
 <div align="center">
-  <!--<img src="src/images/logo.svg" height="80" />-->
+  <img src="src/components/assets/radwegecheck-logo-mehrfarbig.svg" height="80" />
   <h1 align="center"><a href="https://radwege-check.de">radwege-check.de</a></h1>
 </div>
 

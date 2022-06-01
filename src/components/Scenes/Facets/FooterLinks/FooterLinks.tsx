@@ -1,5 +1,5 @@
 import React from 'react';
-import { footerLegalLinks } from '~/components/Layout/Footer/FooterLinks/footerLinks.const';
+import { footerLegalLinks } from '~/components/Layout/Footer/const/footerLinks.const';
 import { Link } from '~/components/Link';
 
 export const FooterLinks: React.FC = () => {

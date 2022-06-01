@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import LogoIcon from '~/components/assets/radwegecheck-logo-bildmarke.svg';
 import { Link } from '~/components/Link';
 import { formatPercent } from '~/components/utils';
 import { ResultProps } from '../types';
@@ -37,12 +38,8 @@ export const TitleBar: React.FC<Props> = ({
 
   return (
     <section className="z-10 flex h-14 flex-none flex-row items-center justify-between bg-yellow-50 px-3 py-1 text-lg shadow-[0_0px_10px_0_rgba(0,_0,_0,_0.2)] lg:px-4 lg:text-xl">
-      <Link to="/" classNameOverwrite="h-8 lg:hidden">
-        <img
-          className="h-full"
-          src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-          alt="Workflow"
-        />
+      <Link to="/" classNameOverwrite="-ml-0.5 h-8 lg:hidden">
+        <LogoIcon className="h-8 w-8" alt="Radwege-Check" />
       </Link>
 
       {mobileFacets}

@@ -1,14 +1,11 @@
 import React from 'react';
+import LogoIconColor from '~/components/assets/radwegecheck-logo-bildmarke-mehrfarbig.svg';
 import { Link } from '../Link';
 
 export const Hero: React.FC = () => {
   return (
     <section className="flex w-full flex-col items-center bg-brand-light-yellow px-4 pb-12 text-gray-700 lg:px-0">
-      <img
-        className="my-8 h-12"
-        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-        alt="Workflow"
-      />
+      <LogoIconColor className="mt-8 mb-4 h-20" alt="Radwege-Check" />
 
       <h1 className="mb-4 text-5xl font-bold">Mach den Radwege-Check</h1>
 
