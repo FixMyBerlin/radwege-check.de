@@ -7,7 +7,7 @@ export const LayoutScenes: React.FC<Props> = ({ children }) => {
   return (
     <>
       <BetaModal />
-      <main className="h-screen w-screen">{children}</main>;
+      <main className="h-screen w-screen">{children}</main>
     </>
   );
 };

@@ -23,7 +23,6 @@ const MyDataIndex = ({
         presets={presetsScenesSecondary}
         pagePath={location.pathname}
       />
-      ;
     </LayoutScenes>
   );
 };
