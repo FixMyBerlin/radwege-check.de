@@ -36,7 +36,7 @@ export const TitleBar: React.FC<Props> = ({
   const perPage = pagination?.per_page || 0;
 
   return (
-    <section className="z-10 flex h-14 flex-none flex-row items-center justify-between bg-yellow-50 px-4 py-1 text-lg shadow-[0_0px_10px_0_rgba(0,_0,_0,_0.2)] lg:text-xl">
+    <section className="z-10 flex h-14 flex-none flex-row items-center justify-between bg-yellow-50 px-3 py-1 text-lg shadow-[0_0px_10px_0_rgba(0,_0,_0,_0.2)] lg:px-4 lg:text-xl">
       <Link to="/" classNameOverwrite="h-8 lg:hidden">
         <img
           className="h-full"
@@ -46,8 +46,9 @@ export const TitleBar: React.FC<Props> = ({
       </Link>
 
       {mobileFacets}
+
       <h1
-        className="px-3 text-center font-bold leading-none lg:p-0 lg:text-left"
+        className="text-center font-bold leading-none lg:p-0 lg:px-3 lg:text-left"
         title={
           total > perPage
             ? `Die ersten ${perPage} Ergebnisse werden angezeigt.`
@@ -56,10 +57,10 @@ export const TitleBar: React.FC<Props> = ({
       >
         {total || '-'} Ergebnisse
       </h1>
-      <div>
+      <div className="flex items-center gap-1 lg:gap-5">
         {/* TODO: Find a way to show the average for a given filter-set for > 200 results. */}
         {total <= perPage && resultScoreAverage && (
-          <span className="ml-3 text-sm text-neutral-500">
+          <span className="text-sm text-neutral-500 lg:ml-3">
             {' '}
             Ø Score {formatPercent(resultScoreAverage, { precision: 0 }) || '-'}
           </span>

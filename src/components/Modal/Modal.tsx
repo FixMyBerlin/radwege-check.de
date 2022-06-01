@@ -24,7 +24,7 @@ export const Modal: React.FC<Props> = ({
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
-        className={classNames(className, 'relative z-50')}
+        className={classNames(className, 'relaftive z-50')}
         onClose={setOpen}
       >
         <Transition.Child
@@ -36,11 +36,11 @@ export const Modal: React.FC<Props> = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 z-20 w-screen bg-gray-500/75 transition-opacity" />
         </Transition.Child>
 
-        <div className="fixed inset-0 z-10 overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div className="fixed inset-0 z-50 w-screen overflow-y-auto">
+          <div className="flex min-h-full items-start justify-center p-4 pt-16 text-center sm:items-center sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
