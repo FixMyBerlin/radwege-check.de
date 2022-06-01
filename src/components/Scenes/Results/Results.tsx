@@ -16,7 +16,7 @@ export const Results: React.FC<Props> = ({
   const resultItems = results?.data?.items || []
 
   return (
-    <div className="z-0 flex h-full flex-grow snap-both snap-proximity flex-row overflow-scroll overscroll-contain">
+    <div className="snap-x-not-y z-0 flex h-full flex-grow flex-row overflow-scroll overscroll-contain">
       {resultItems.map((scene, index) => (
         <ResultColumn
           category={category}

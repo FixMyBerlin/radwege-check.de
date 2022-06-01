@@ -14,3 +14,10 @@
     @apply text-slate-800;
   }
 }
+
+@layer components {
+  .snap-x-not-y {
+    scroll-snap-type: x mandatory;
+    scroll-snap-type: y proximity;
+  }
+}
