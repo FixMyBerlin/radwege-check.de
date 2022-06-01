@@ -14,7 +14,9 @@ export const Footer: React.FC = () => {
       <div className="flex flex-col items-start justify-between lg:flex-row">
         <section className="flex w-full flex-row justify-between lg:w-auto lg:flex-col">
           <div>
-            <Logo className="h-12 fill-white" alt="Radwege-Check" />
+            <Link to="/" classNameOverwrite="" title="Zur Startseite…">
+              <Logo className="h-12 fill-white" alt="Radwege-Check" />
+            </Link>
             <Link
               external
               to="https://www.fixmycity.de"
