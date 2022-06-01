@@ -37,11 +37,11 @@ export const Facets: React.FC<FacetsProps> = ({
   const aggregations = results?.data?.aggregations;
   const aggregationConfig = useAggregationConfig(category);
 
-  const mainAggregationEntries = Object.entries(aggregations || {}).filter(
+  const mainAggregations = Object.entries(aggregations || {}).filter(
     ([key, _v]) => aggregationConfig[key].primaryGroup === true
   );
 
-  const furtherAggregationEntries = Object.entries(aggregations || {}).filter(
+  const furtherAggregations = Object.entries(aggregations || {}).filter(
     ([key, _v]) => !aggregationConfig[key].primaryGroup
   );
 
@@ -62,7 +62,7 @@ export const Facets: React.FC<FacetsProps> = ({
 
         <ResetFilterButton onClick={handleResetFilter} />
 
-        {mainAggregationEntries.map(([aggregationKey, aggregation]) => {
+        {mainAggregations.map(([aggregationKey, aggregation]) => {
           const { buckets } = aggregation;
 
           return (
@@ -86,7 +86,7 @@ export const Facets: React.FC<FacetsProps> = ({
       </div>
 
       <div className="px-3">
-        {furtherAggregationEntries.map(([aggregationKey, aggregation]) => {
+        {furtherAggregations.map(([aggregationKey, aggregation]) => {
           const { buckets } = aggregation;
           const { showAsIcons, groupEndIndicator } =
             aggregationConfig[aggregationKey];
