@@ -1,23 +1,23 @@
-import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/outline';
-import classNames from 'classnames';
-import React, { Fragment } from 'react';
-import { PresetsScenes } from '../../constants';
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/outline'
+import classNames from 'classnames'
+import React, { Fragment } from 'react'
+import { PresetsScenes } from '../../constants'
 
 export type PresetDropdownProps = {
-  presets: PresetsScenes;
-  currentPresetKey: string;
-  handlePresetClick: (presetKey: string) => void;
-};
+  presets: PresetsScenes
+  currentPresetKey: string
+  handlePresetClick: (presetKey: string) => void
+}
 
 export const PresetDropdown: React.FC<PresetDropdownProps> = ({
   presets,
   currentPresetKey,
   handlePresetClick,
 }) => {
-  const isCustom = currentPresetKey === 'custom';
-  const presetTitle = presets[currentPresetKey]?.title;
-  const isPreset = !!presetTitle;
+  const isCustom = currentPresetKey === 'custom'
+  const presetTitle = presets[currentPresetKey]?.title
+  const isPreset = !!presetTitle
 
   return (
     <Menu as="div" className="relative mb-5 inline-block w-full text-left">
@@ -42,7 +42,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
         <Menu.Items className="absolute left-0 z-50 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {Object.entries(presets).map(([key, preset]) => {
-              const selected = currentPresetKey === key;
+              const selected = currentPresetKey === key
 
               return (
                 <Menu.Item key={key}>
@@ -60,7 +60,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
                     {preset.title}
                   </button>
                 </Menu.Item>
-              );
+              )
             })}
             {currentPresetKey === 'custom' && (
               <Menu.Item key="custom">
@@ -82,5 +82,5 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
         </Menu.Items>
       </Transition>
     </Menu>
-  );
-};
+  )
+}

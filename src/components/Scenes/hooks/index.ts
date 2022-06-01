@@ -1,1 +1,1 @@
-export * from './useAggregationConfig';
+export * from './useAggregationConfig'

@@ -1,9 +1,9 @@
-import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/outline';
-import React, { Fragment } from 'react';
-import { Facets, FacetsProps } from './Facets';
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/outline'
+import React, { Fragment } from 'react'
+import { Facets, FacetsProps } from './Facets'
 
-type Props = Omit<FacetsProps, 'showLogo'>;
+type Props = Omit<FacetsProps, 'showLogo'>
 
 export const FacetsMobileDropdown: React.FC<Props> = ({
   category,
@@ -46,5 +46,5 @@ export const FacetsMobileDropdown: React.FC<Props> = ({
         </Menu.Items>
       </Transition>
     </Menu>
-  );
-};
+  )
+}

@@ -1,1 +1,1 @@
-export * from './ResultStackedBarchart';
+export * from './ResultStackedBarchart'

@@ -1,6 +1,6 @@
-import React from 'react';
-import LogoColor from '~/components/assets/radwegecheck-logo-mehrfarbig.svg';
-import { Link } from '~/components/Link';
+import React from 'react'
+import LogoColor from '~/components/assets/radwegecheck-logo-mehrfarbig.svg'
+import { Link } from '~/components/Link'
 
 export const ArticleLogo: React.FC = () => {
   return (
@@ -9,5 +9,5 @@ export const ArticleLogo: React.FC = () => {
         <LogoColor className="mt-6 h-16" alt="Radwege-Check" />
       </Link>
     </section>
-  );
-};
+  )
+}

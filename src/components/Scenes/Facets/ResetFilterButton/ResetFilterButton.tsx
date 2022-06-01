@@ -1,9 +1,9 @@
-import classNames from 'classnames';
-import React from 'react';
+import classNames from 'classnames'
+import React from 'react'
 
 type Props = {
-  onClick: () => void;
-};
+  onClick: () => void
+}
 
 export const ResetFilterButton: React.FC<Props> = ({ onClick }) => {
   return (
@@ -22,5 +22,5 @@ export const ResetFilterButton: React.FC<Props> = ({ onClick }) => {
         Filter zurücksetzen
       </button>
     </p>
-  );
-};
+  )
+}

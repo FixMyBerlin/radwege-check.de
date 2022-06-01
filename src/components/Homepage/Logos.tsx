@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from '../Link';
-import { LogoBmdv } from './LogoBmdv';
+import React from 'react'
+import { Link } from '../Link'
+import { LogoBmdv } from './LogoBmdv'
 
 export const Logos: React.FC = () => {
   return (
@@ -13,5 +13,5 @@ export const Logos: React.FC = () => {
         <LogoBmdv />
       </Link>
     </section>
-  );
-};
+  )
+}

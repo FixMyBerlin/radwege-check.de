@@ -1,5 +1,5 @@
-import { StaticImage } from 'gatsby-plugin-image';
-import React from 'react';
+import { StaticImage } from 'gatsby-plugin-image'
+import React from 'react'
 
 export const LogoBmdv: React.FC = () => {
   return (
@@ -9,5 +9,5 @@ export const LogoBmdv: React.FC = () => {
       width={200}
       height={200}
     />
-  );
-};
+  )
+}

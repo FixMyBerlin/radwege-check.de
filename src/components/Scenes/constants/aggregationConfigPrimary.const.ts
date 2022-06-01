@@ -2,7 +2,7 @@
 // Our own custom options like "showAsIcon"
 // Everyhting from ItemsJS is in itemJsConfig.
 
-import { AggregationConfig } from './types';
+import { AggregationConfig } from './types'
 
 export const aggregationConfigPrimary: AggregationConfig = {
   leftOfBicycleLane: {
@@ -210,4 +210,4 @@ export const aggregationConfigPrimary: AggregationConfig = {
     choiceMode: 'single',
     showAsIcons: false,
   },
-};
+}

@@ -1,17 +1,17 @@
-import classNames from 'classnames';
-import React from 'react';
-import { useAggregationConfig } from '../../hooks';
-import { ResultBucketProps, SceneCategory } from '../../types';
-import { buttonClassNames } from '../utils';
-import { HandleSingleChoice } from './ButtonSingleChoice';
+import classNames from 'classnames'
+import React from 'react'
+import { useAggregationConfig } from '../../hooks'
+import { ResultBucketProps, SceneCategory } from '../../types'
+import { buttonClassNames } from '../utils'
+import { HandleSingleChoice } from './ButtonSingleChoice'
 
 type Props = {
-  aggregationKey: string;
-  category: SceneCategory;
-  bucketKey: string;
-  buckets: ResultBucketProps[];
-  handleClick: HandleSingleChoice;
-};
+  aggregationKey: string
+  category: SceneCategory
+  bucketKey: string
+  buckets: ResultBucketProps[]
+  handleClick: HandleSingleChoice
+}
 
 export const ButtonSingleChoiceBoth: React.FC<Props> = ({
   aggregationKey,
@@ -20,15 +20,15 @@ export const ButtonSingleChoiceBoth: React.FC<Props> = ({
   buckets,
   handleClick,
 }) => {
-  const aggregationConfig = useAggregationConfig(category);
-  const { showAsIcons } = aggregationConfig[aggregationKey];
+  const aggregationConfig = useAggregationConfig(category)
+  const { showAsIcons } = aggregationConfig[aggregationKey]
 
   // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
-  const anyOfGroupSelected = buckets.some((b) => b.selected);
-  const uiSelected = !anyOfGroupSelected;
-  const uiCanpress = anyOfGroupSelected;
-  const firstElement = true;
-  const lastElement = false;
+  const anyOfGroupSelected = buckets.some((b) => b.selected)
+  const uiSelected = !anyOfGroupSelected
+  const uiCanpress = anyOfGroupSelected
+  const firstElement = true
+  const lastElement = false
 
   return (
     <button
@@ -60,5 +60,5 @@ export const ButtonSingleChoiceBoth: React.FC<Props> = ({
         }}
       />
     </button>
-  );
-};
+  )
+}

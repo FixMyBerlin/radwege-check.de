@@ -1,25 +1,25 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import { domain } from '~/components/utils';
+import React from 'react'
+import { Helmet } from 'react-helmet'
+import { domain } from '~/components/utils'
 
 // FYI, https://www.gatsbyjs.com/docs/add-seo-component/ suggest to use useStaticQuery but I don't see why, yet
 const seoDefaultValues = {
   defaultTitle: 'Radwege-Check',
   defaultDescription:
     'In diesem Online-Tool kannst du 1.700 Varianten von Fahrrad-Führungsformen nach ihrer Bewertung zur subjektiven Sicherheit vergleichen. Basierend auf über 400.000 Bewertungen.',
-};
+}
 
 type Props = {
-  noindex?: boolean;
-  canonicalPath?: string;
-  title?: string;
-  sharingTitle?: string;
-  description?: string;
-  imagePath?: string;
-  imageUrl?: string | `https://${string}`;
-  imageSize?: { width: number; height: number };
-  article?: boolean;
-};
+  noindex?: boolean
+  canonicalPath?: string
+  title?: string
+  sharingTitle?: string
+  description?: string
+  imagePath?: string
+  imageUrl?: string | `https://${string}`
+  imageSize?: { width: number; height: number }
+  article?: boolean
+}
 
 export const MetaTags: React.FC<Props> = ({
   noindex = false,
@@ -32,7 +32,7 @@ export const MetaTags: React.FC<Props> = ({
   imageSize,
   article,
 }) => {
-  const { defaultTitle, defaultDescription } = seoDefaultValues;
+  const { defaultTitle, defaultDescription } = seoDefaultValues
 
   const withDefaults = {
     title: title || defaultTitle,
@@ -41,7 +41,7 @@ export const MetaTags: React.FC<Props> = ({
       imageUrl ||
       (imagePath && `${domain() || ''}${imagePath}`) ||
       `${domain() || ''}/social-sharing/default.png`,
-  };
+  }
 
   // FYI, we do not inlcude the url meta tags since there was an issue with specs and `useLocation`.
   //  Since we do not need this field, its OK to remove it.
@@ -73,5 +73,5 @@ export const MetaTags: React.FC<Props> = ({
 
       {article ? <meta property="og:type" content="article" /> : null}
     </Helmet>
-  );
-};
+  )
+}

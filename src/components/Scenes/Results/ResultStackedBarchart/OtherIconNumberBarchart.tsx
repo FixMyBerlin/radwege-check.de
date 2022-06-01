@@ -1,22 +1,22 @@
-import classNames from 'classnames';
-import React from 'react';
-import { BarChart } from './BarChart';
-import { OtherIconNumber } from './OtherIconNumber';
+import classNames from 'classnames'
+import React from 'react'
+import { BarChart } from './BarChart'
+import { OtherIconNumber } from './OtherIconNumber'
 
 type Props = {
-  sceneId: string;
-  vote0Unsafe: number;
-  vote1RatherUnsafe: number;
-  vote2Save: number;
-  vote3VerySave: number;
-  voteScore: number;
-  handleMouseOver?: () => void;
-  handleMouseOut?: () => void;
-  classNameBarchartHeight: string;
-  icon: React.ReactElement;
+  sceneId: string
+  vote0Unsafe: number
+  vote1RatherUnsafe: number
+  vote2Save: number
+  vote3VerySave: number
+  voteScore: number
+  handleMouseOver?: () => void
+  handleMouseOut?: () => void
+  classNameBarchartHeight: string
+  icon: React.ReactElement
   /** @docs Default false; Show the icon + fallback-number even if no otherScene present */
-  iconWhenEmpty?: boolean;
-};
+  iconWhenEmpty?: boolean
+}
 
 export const OtherIconNumberBarchart: React.FC<Props> = ({
   sceneId,
@@ -38,7 +38,7 @@ export const OtherIconNumberBarchart: React.FC<Props> = ({
       icon={icon}
       className="h-8"
     />
-  );
+  )
 
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
@@ -74,5 +74,5 @@ export const OtherIconNumberBarchart: React.FC<Props> = ({
         </>
       )}
     </div>
-  );
-};
+  )
+}

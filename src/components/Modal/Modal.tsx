@@ -1,15 +1,15 @@
-import React, { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import classNames from 'classnames';
-import { buttonStyles } from '../Link';
+import React, { Fragment, useState } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import classNames from 'classnames'
+import { buttonStyles } from '../Link'
 
 type Props = {
-  title: string;
-  titleIcon?: React.ReactNode;
-  closeButton?: string;
-  className?: string;
-  children: React.ReactNode;
-};
+  title: string
+  titleIcon?: React.ReactNode
+  closeButton?: string
+  className?: string
+  children: React.ReactNode
+}
 
 export const Modal: React.FC<Props> = ({
   title,
@@ -18,7 +18,7 @@ export const Modal: React.FC<Props> = ({
   className,
   children,
 }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(true)
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -87,5 +87,5 @@ export const Modal: React.FC<Props> = ({
         </div>
       </Dialog>
     </Transition.Root>
-  );
-};
+  )
+}

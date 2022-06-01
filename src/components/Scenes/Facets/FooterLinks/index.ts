@@ -1,1 +1,1 @@
-export * from './FooterLinks';
+export * from './FooterLinks'

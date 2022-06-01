@@ -1,13 +1,13 @@
-import classNames from 'classnames';
+import classNames from 'classnames'
 
 type Props = {
-  firstElement: boolean;
-  lastElement: boolean;
+  firstElement: boolean
+  lastElement: boolean
   /** @docs Style the Button as pressed in. */
-  uiSelected: boolean;
+  uiSelected: boolean
   /** @docs Style the Button as clickable or grayed out. */
-  uiCanpress: boolean;
-};
+  uiCanpress: boolean
+}
 
 export const buttonClassNames = ({
   firstElement,
@@ -40,5 +40,5 @@ export const buttonClassNames = ({
     {
       'shadow-md bg-neutral-100 text-neutral-600': !uiSelected && !uiCanpress,
     }
-  );
-};
+  )
+}

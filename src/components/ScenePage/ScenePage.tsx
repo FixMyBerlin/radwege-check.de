@@ -1,32 +1,32 @@
-import { InformationCircleIcon } from '@heroicons/react/outline';
-import classNames from 'classnames';
-import React from 'react';
-import Logo from '~/components/assets/radwegecheck-logo.svg';
-import { MetaTags } from '../Layout';
-import { Link, PrintButton, TwitterButton } from '../Link';
-import { Popover } from '../Popover';
-import { SceneImage } from '../Scenes';
-import { ResultCells } from '../Scenes/Results/ResultCells';
-import { ResultStackedBarchart } from '../Scenes/Results/ResultStackedBarchart';
-import { sceneImageUrl } from '../Scenes/SceneImage';
+import { InformationCircleIcon } from '@heroicons/react/outline'
+import classNames from 'classnames'
+import React from 'react'
+import Logo from '~/components/assets/radwegecheck-logo.svg'
+import { MetaTags } from '../Layout'
+import { Link, PrintButton, TwitterButton } from '../Link'
+import { Popover } from '../Popover'
+import { SceneImage } from '../Scenes'
+import { ResultCells } from '../Scenes/Results/ResultCells'
+import { ResultStackedBarchart } from '../Scenes/Results/ResultStackedBarchart'
+import { sceneImageUrl } from '../Scenes/SceneImage'
 import {
   SceneCategory,
   ScenePrimaryProps,
   SceneSecondaryProps,
-} from '../Scenes/types';
-import { formatNumber } from '../utils';
-import { dataTable } from './dataTable';
+} from '../Scenes/types'
+import { formatNumber } from '../utils'
+import { dataTable } from './dataTable'
 
 type Props = {
-  category: SceneCategory;
-  scene: ScenePrimaryProps | SceneSecondaryProps;
-  pagePath: string;
-};
+  category: SceneCategory
+  scene: ScenePrimaryProps | SceneSecondaryProps
+  pagePath: string
+}
 
 export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
-  const table = dataTable(scene);
+  const table = dataTable(scene)
   const categoryTranslation =
-    category === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse';
+    category === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
 
   return (
     <>
@@ -174,7 +174,7 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
                         {table[key][2] || '-'}
                       </td>
                     </tr>
-                  );
+                  )
                 })}
               </tbody>
             </table>
@@ -182,5 +182,5 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}

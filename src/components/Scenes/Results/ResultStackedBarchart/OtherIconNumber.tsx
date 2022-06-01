@@ -1,13 +1,13 @@
-import classNames from 'classnames';
-import React from 'react';
-import { formatNumber } from '~/components/utils';
+import classNames from 'classnames'
+import React from 'react'
+import { formatNumber } from '~/components/utils'
 
 type Props = {
-  otherSceneId: string;
-  otherVoteScore: number;
-  icon: React.ReactElement;
-  className?: string;
-};
+  otherSceneId: string
+  otherVoteScore: number
+  icon: React.ReactElement
+  className?: string
+}
 
 export const OtherIconNumber: React.FC<Props> = ({
   otherSceneId,
@@ -15,7 +15,7 @@ export const OtherIconNumber: React.FC<Props> = ({
   icon,
   className,
 }) => {
-  if (!otherSceneId) return null;
+  if (!otherSceneId) return null
 
   return (
     <div
@@ -40,5 +40,5 @@ export const OtherIconNumber: React.FC<Props> = ({
         '–'
       )}
     </div>
-  );
-};
+  )
+}

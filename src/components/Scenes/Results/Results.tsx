@@ -1,19 +1,19 @@
-import React from 'react';
-import { ResultProps, SceneCategory, SearchOptionProps } from '../types';
-import { ResultColumn } from './ResultColumn';
+import React from 'react'
+import { ResultProps, SceneCategory, SearchOptionProps } from '../types'
+import { ResultColumn } from './ResultColumn'
 
 type Props = {
-  category: SceneCategory;
-  results: ResultProps;
-  searchFilters: SearchOptionProps['filters'];
-};
+  category: SceneCategory
+  results: ResultProps
+  searchFilters: SearchOptionProps['filters']
+}
 
 export const Results: React.FC<Props> = ({
   category,
   results,
   searchFilters,
 }) => {
-  const resultItems = results?.data?.items || [];
+  const resultItems = results?.data?.items || []
 
   return (
     <div className="z-0 flex h-full flex-grow snap-both snap-proximity flex-row overflow-scroll overscroll-contain">
@@ -27,5 +27,5 @@ export const Results: React.FC<Props> = ({
         />
       ))}
     </div>
-  );
-};
+  )
+}

@@ -1,6 +1,6 @@
-import { parse, stringify } from 'query-string';
-import { AggregationConfig } from '../constants';
-import { SearchOptionProps } from '../types';
+import { parse, stringify } from 'query-string'
+import { AggregationConfig } from '../constants'
+import { SearchOptionProps } from '../types'
 
 export const encodeFilter = (
   filterObject: SearchOptionProps['filters']
@@ -23,26 +23,26 @@ export const encodeFilter = (
     skipEmptyString: true,
   })
     .replace(/=/g, ':')
-    .replace(/&/g, '|');
-  return string;
-};
+    .replace(/&/g, '|')
+  return string
+}
 
 export const decodeFilter = (
   filterString: string,
   aggregationConfig: AggregationConfig
 ): SearchOptionProps['filters'] => {
   // Guard: Make sure our input does at least have one key-value-pair
-  if (filterString === undefined) return {};
-  if (!filterString.includes(':')) return {};
+  if (filterString === undefined) return {}
+  if (!filterString.includes(':')) return {}
 
   // Undo the custom replacement from encodeFilter
-  const preparedString = filterString.replace(/:/g, '=').replace(/\|/g, '&');
+  const preparedString = filterString.replace(/:/g, '=').replace(/\|/g, '&')
 
   // Now lets create our result object
   const resultRaw = parse(preparedString, {
     arrayFormat: 'separator',
     arrayFormatSeparator: ',',
-  });
+  })
 
   // For some reason, with this stringify->parse transformation we loose the array format for singleChoise values
   // which breaks the search. So here we check if the values is a string and wrap it in an array.
@@ -51,51 +51,51 @@ export const decodeFilter = (
       key,
       typeof resultRaw[key] === 'string' ? [resultRaw[key]] : resultRaw[key],
     ])
-  ) as SearchOptionProps['filters'];
+  ) as SearchOptionProps['filters']
 
   // Guard: Before we go, we need to make sure only allowed values make it into ItemsJS.
   // Otherwise the app breaks…
-  const safeKeys = Object.keys(aggregationConfig);
+  const safeKeys = Object.keys(aggregationConfig)
   const safeValues = Object.keys(aggregationConfig)
     .map((key) => Object.keys(aggregationConfig[key].buckets))
-    .flat();
-  const removedKeys = [];
-  const removedValues = [];
+    .flat()
+  const removedKeys = []
+  const removedValues = []
   const resultSafe = Object.fromEntries(
     Object.entries(resultFiexd).map(([key, values]) => {
-      const valuesClone = [...values];
+      const valuesClone = [...values]
       // If the key is unknown, remove it all.
       if (!safeKeys.includes(key)) {
-        removedKeys.push(key);
-        return [];
+        removedKeys.push(key)
+        return []
       }
       // Check all values, remove those that we don't know.
       values.forEach((value, index) => {
         if (!safeValues.includes(value)) {
-          removedValues.push(value);
-          delete valuesClone[index];
+          removedValues.push(value)
+          delete valuesClone[index]
         }
-      });
+      })
       // Now cleanup the values typeof undefined.
-      const cleanValues = valuesClone.filter((v) => v !== undefined);
+      const cleanValues = valuesClone.filter((v) => v !== undefined)
       // And if all values are gone, remove the whole key
       if (cleanValues.length === 0) {
-        removedKeys.push(key);
-        return [];
+        removedKeys.push(key)
+        return []
       }
-      return [key, cleanValues];
+      return [key, cleanValues]
     })
-  );
+  )
   // This is still not enough…
   // We now have { undefined: undefined } object entries, which we now remove…
   Object.keys(resultSafe).forEach((key) => {
     if (key === undefined) {
-      delete resultSafe[key];
+      delete resultSafe[key]
     }
     if (resultSafe[key] === undefined) {
-      delete resultSafe[key];
+      delete resultSafe[key]
     }
-  });
+  })
 
   if (removedKeys.length || removedValues.length) {
     // eslint-disable-next-line no-console
@@ -104,8 +104,8 @@ export const decodeFilter = (
       removedKeys,
       removedValues,
       resultSafe,
-    });
+    })
   }
 
-  return resultSafe;
-};
+  return resultSafe
+}

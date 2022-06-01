@@ -1,30 +1,30 @@
-import React from 'react';
-import { useAggregationConfig } from '../../hooks';
+import React from 'react'
+import { useAggregationConfig } from '../../hooks'
 import {
   ScenePrimaryProps,
   SceneSecondaryProps,
   SceneCategory,
   SearchOptionProps,
-} from '../../types';
-import { ResultCell } from './ResultCell';
+} from '../../types'
+import { ResultCell } from './ResultCell'
 
 type Props = {
-  category: SceneCategory;
-  scene: ScenePrimaryProps | SceneSecondaryProps;
-  searchFilters?: SearchOptionProps['filters'];
-};
+  category: SceneCategory
+  scene: ScenePrimaryProps | SceneSecondaryProps
+  searchFilters?: SearchOptionProps['filters']
+}
 
 export const ResultCells: React.FC<Props> = ({
   category,
   scene,
   searchFilters,
 }) => {
-  const aggregationConfig = useAggregationConfig(category);
+  const aggregationConfig = useAggregationConfig(category)
 
   return (
     <>
       {Object.keys(aggregationConfig).map((key) => {
-        const bucketActive = searchFilters && !!searchFilters[key];
+        const bucketActive = searchFilters && !!searchFilters[key]
 
         return (
           <ResultCell
@@ -36,8 +36,8 @@ export const ResultCells: React.FC<Props> = ({
             groupEndIndicator={aggregationConfig[key]?.groupEndIndicator}
             showIcon={aggregationConfig[key]?.showAsIcons}
           />
-        );
+        )
       })}
     </>
-  );
-};
+  )
+}

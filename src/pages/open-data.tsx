@@ -1,12 +1,12 @@
-import { PageProps } from 'gatsby';
-import React from 'react';
-import { LayoutArticle, MetaTags } from '~/components/Layout';
-import { Link } from '~/components/Link';
-import CommingSoon from './CommingSoon';
+import { PageProps } from 'gatsby'
+import React from 'react'
+import { LayoutArticle, MetaTags } from '~/components/Layout'
+import { Link } from '~/components/Link'
+import CommingSoon from './CommingSoon'
 
 const KontaktPage: React.FC<PageProps> = ({ location }) => {
   // TEMP Deactivate page for breta release
-  return <CommingSoon />;
+  return <CommingSoon />
 
   return (
     <LayoutArticle location={location}>
@@ -51,7 +51,7 @@ const KontaktPage: React.FC<PageProps> = ({ location }) => {
         ist OpenSource auf GitHub .
       </p>
     </LayoutArticle>
-  );
-};
+  )
+}
 
-export default KontaktPage;
+export default KontaktPage

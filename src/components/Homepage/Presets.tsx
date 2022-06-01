@@ -1,36 +1,36 @@
-import classNames from 'classnames';
-import React, { useState } from 'react';
-import { Link } from '../Link';
+import classNames from 'classnames'
+import React, { useState } from 'react'
+import { Link } from '../Link'
 import {
   presetsScenesPrimary,
   presetsScenesSecondary,
-} from '../Scenes/constants';
-import { SceneCategory } from '../Scenes/types';
-import { PresetSlider } from './PresetSlider';
+} from '../Scenes/constants'
+import { SceneCategory } from '../Scenes/types'
+import { PresetSlider } from './PresetSlider'
 
-export type FilterUrlProp = `/${'hauptstrassen' | 'nebenstrassen'}/?filter=`;
+export type FilterUrlProp = `/${'hauptstrassen' | 'nebenstrassen'}/?filter=`
 
 type FilterUrlBySceneCategory = {
-  primary: FilterUrlProp;
-  secondary: FilterUrlProp;
-};
+  primary: FilterUrlProp
+  secondary: FilterUrlProp
+}
 
 export const Presets: React.FC = () => {
-  const [sceneCategory, setSceneCategory] = useState<SceneCategory>('primary');
+  const [sceneCategory, setSceneCategory] = useState<SceneCategory>('primary')
   const scenesBySceneCategory = {
     primary: presetsScenesPrimary,
     secondary: presetsScenesSecondary,
-  };
+  }
   const allButtonBySceneCategory = {
     primary: { url: '/hauptstrassen/', total: 1700 },
     secondary: { url: '/nebenstrassen/', total: 123 },
-  };
+  }
   const filterUrlBySceneCategory: FilterUrlBySceneCategory = {
     primary: '/hauptstrassen/?filter=',
     secondary: '/nebenstrassen/?filter=',
-  };
+  }
 
-  const tabActive = (category: SceneCategory) => category === sceneCategory;
+  const tabActive = (category: SceneCategory) => category === sceneCategory
 
   const pickTabClasses = (category: SceneCategory) => {
     return tabActive(category)
@@ -38,8 +38,8 @@ export const Presets: React.FC = () => {
       : classNames(
           'h-full w-full bg-brand-light-yellow p-3 hover:underline font-semibold',
           tabActive('primary') ? 'rounded-bl-md' : 'rounded-br-md'
-        );
-  };
+        )
+  }
 
   return (
     <section className="bg-brand-light-yellow px-4 pb-12 lg:px-0">
@@ -104,5 +104,5 @@ export const Presets: React.FC = () => {
         </p>
       </div>
     </section>
-  );
-};
+  )
+}

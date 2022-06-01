@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import LogoIcon from '~/components/assets/radwegecheck-logo-bildmarke.svg';
-import { Link } from '~/components/Link';
-import { formatPercent } from '~/components/utils';
-import { ResultProps } from '../types';
+import React, { useEffect, useState } from 'react'
+import LogoIcon from '~/components/assets/radwegecheck-logo-bildmarke.svg'
+import { Link } from '~/components/Link'
+import { formatPercent } from '~/components/utils'
+import { ResultProps } from '../types'
 import {
   SearchOrderDropdown,
   SearchOrderDropdownProps,
-} from './SearchOrderDropdown';
+} from './SearchOrderDropdown'
 
 type Props = {
-  results: ResultProps;
-  mobileFacets?: React.ReactNode;
-} & SearchOrderDropdownProps;
+  results: ResultProps
+  mobileFacets?: React.ReactNode
+} & SearchOrderDropdownProps
 
 export const TitleBar: React.FC<Props> = ({
   results,
@@ -19,22 +19,22 @@ export const TitleBar: React.FC<Props> = ({
   setSearchOrder,
   mobileFacets,
 }) => {
-  const resultItems = results?.data?.items || [];
-  const pagination = results?.pagination;
+  const resultItems = results?.data?.items || []
+  const pagination = results?.pagination
 
-  const [resultScoreAverage, setResultScoreAverage] = useState(0);
+  const [resultScoreAverage, setResultScoreAverage] = useState(0)
   useEffect(() => {
-    let sum = 0;
+    let sum = 0
     resultItems.forEach((scene) => {
-      sum += scene.voteScore;
-    });
+      sum += scene.voteScore
+    })
     // result.pagination.total wäre die Gesamtanzahl; aber hier würden wir nur die max-200 Ergebnisse für die Berechnung berücksichigen.
-    const average = Math.round(sum / resultItems.length);
-    setResultScoreAverage(average);
-  }, [resultItems]);
+    const average = Math.round(sum / resultItems.length)
+    setResultScoreAverage(average)
+  }, [resultItems])
 
-  const total = pagination?.total || 0;
-  const perPage = pagination?.per_page || 0;
+  const total = pagination?.total || 0
+  const perPage = pagination?.per_page || 0
 
   return (
     <section className="z-10 flex h-14 flex-none flex-row items-center justify-between bg-yellow-50 px-3 py-1 text-lg shadow-[0_0px_10px_0_rgba(0,_0,_0,_0.2)] lg:px-4 lg:text-xl">
@@ -72,5 +72,5 @@ export const TitleBar: React.FC<Props> = ({
         />
       </div>
     </section>
-  );
-};
+  )
+}

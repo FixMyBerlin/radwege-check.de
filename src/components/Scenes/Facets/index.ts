@@ -1,3 +1,3 @@
-export * from './ButtonMultiChoice/ButtonMultiChoice';
-export * from './ButtonSingleChoice/ButtonSingleChoice';
-export * from './Facets';
+export * from './ButtonMultiChoice/ButtonMultiChoice'
+export * from './ButtonSingleChoice/ButtonSingleChoice'
+export * from './Facets'

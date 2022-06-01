@@ -1,7 +1,7 @@
-import { StaticImage } from 'gatsby-plugin-image';
-import React from 'react';
-import { LayoutArticle, MetaTags } from '~/components/Layout';
-import { Link } from '~/components/Link';
+import { StaticImage } from 'gatsby-plugin-image'
+import React from 'react'
+import { LayoutArticle, MetaTags } from '~/components/Layout'
+import { Link } from '~/components/Link'
 
 const DatenschutzPage = () => {
   return (
@@ -812,7 +812,7 @@ const DatenschutzPage = () => {
         src="https://s.radwege-check.de/index.php?module=CoreAdminHome&action=optOut&language=de&backgroundColor=f0fdf4&fontColor=374151&fontSize=16px&fontFamily=Arial"
       />
     </LayoutArticle>
-  );
-};
+  )
+}
 
-export default DatenschutzPage;
+export default DatenschutzPage

@@ -1,15 +1,15 @@
-import { graphql } from 'gatsby';
-import React, { useMemo } from 'react';
-import { Layout } from '~/components/Layout';
-import { ScenePage } from '~/components/ScenePage';
-import { cleanupCsvData } from '~/components/Scenes/utils';
-import CommingSoon from '../CommingSoon';
+import { graphql } from 'gatsby'
+import React, { useMemo } from 'react'
+import { Layout } from '~/components/Layout'
+import { ScenePage } from '~/components/ScenePage'
+import { cleanupCsvData } from '~/components/Scenes/utils'
+import CommingSoon from '../CommingSoon'
 
 const MyData = ({ location, data: { scenesSecondaryCsv: rawScene } }) => {
-  const scene = useMemo(() => cleanupCsvData([rawScene || {}])[0], [rawScene]);
+  const scene = useMemo(() => cleanupCsvData([rawScene || {}])[0], [rawScene])
 
   // TEMP Deactivate page for breta release
-  return <CommingSoon />;
+  return <CommingSoon />
 
   return (
     <Layout>
@@ -19,10 +19,10 @@ const MyData = ({ location, data: { scenesSecondaryCsv: rawScene } }) => {
         pagePath={location.pathname}
       />
     </Layout>
-  );
-};
+  )
+}
 
-export default MyData;
+export default MyData
 
 export const query = graphql`
   query ($sceneId: String!) {
@@ -32,4 +32,4 @@ export const query = graphql`
       path: gatsbyPath(filePath: "/nebenstrassen/{scenesSecondaryCsv.sceneId}")
     }
   }
-`;
+`

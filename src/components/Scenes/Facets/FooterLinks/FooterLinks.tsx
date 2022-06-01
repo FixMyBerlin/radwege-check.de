@@ -1,6 +1,6 @@
-import React from 'react';
-import { footerLegalLinks } from '~/components/Layout/Footer/const/footerLinks.const';
-import { Link } from '~/components/Link';
+import React from 'react'
+import { footerLegalLinks } from '~/components/Layout/Footer/const/footerLinks.const'
+import { Link } from '~/components/Link'
 
 export const FooterLinks: React.FC = () => {
   return (
@@ -15,5 +15,5 @@ export const FooterLinks: React.FC = () => {
         </Link>
       ))}
     </section>
-  );
-};
+  )
+}

@@ -1,4 +1,4 @@
-import { formatNumber, formatPercent } from '../utils';
+import { formatNumber, formatPercent } from '../utils'
 
 export const dataTable = (scene) => {
   return {
@@ -32,5 +32,5 @@ export const dataTable = (scene) => {
       Math.round(scene.votePedestrianCount),
       Math.round(scene.voteCarCount),
     ],
-  };
-};
+  }
+}

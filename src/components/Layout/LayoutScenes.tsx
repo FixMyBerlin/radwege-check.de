@@ -1,7 +1,7 @@
-import React from 'react';
-import { BetaModal } from './BetaModal';
+import React from 'react'
+import { BetaModal } from './BetaModal'
 
-type Props = { children: React.ReactNode };
+type Props = { children: React.ReactNode }
 
 export const LayoutScenes: React.FC<Props> = ({ children }) => {
   return (
@@ -9,5 +9,5 @@ export const LayoutScenes: React.FC<Props> = ({ children }) => {
       <BetaModal />
       <main className="h-screen w-screen">{children}</main>
     </>
-  );
-};
+  )
+}

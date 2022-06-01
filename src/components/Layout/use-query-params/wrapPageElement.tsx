@@ -1,19 +1,19 @@
-import { GatsbyBrowser, navigate } from 'gatsby';
-import React from 'react';
-import { QueryParamProvider } from 'use-query-params';
+import { GatsbyBrowser, navigate } from 'gatsby'
+import React from 'react'
+import { QueryParamProvider } from 'use-query-params'
 
 function generatePath(location) {
-  return location.pathname + location.search;
+  return location.pathname + location.search
 }
 
 const history = {
   push: (location) => {
-    navigate(generatePath(location), { replace: false, state: location.state });
+    navigate(generatePath(location), { replace: false, state: location.state })
   },
   replace: (location) => {
-    navigate(generatePath(location), { replace: true, state: location.state });
+    navigate(generatePath(location), { replace: true, state: location.state })
   },
-};
+}
 
 export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({
   element,
@@ -23,7 +23,7 @@ export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({
   // Ref to the wrapper library https://github.com/pbeshai/use-query-params/pull/88/files
   // `encode` option in query-string https://github.com/sindresorhus/query-string#encode
   // `strict` option in query-string https://github.com/sindresorhus/query-string#strict; not sure if this does something
-  const stringifyOptions = { encode: false, strict: false };
+  const stringifyOptions = { encode: false, strict: false }
   return (
     <QueryParamProvider
       history={history}
@@ -32,5 +32,5 @@ export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({
     >
       {element}
     </QueryParamProvider>
-  );
-};
+  )
+}

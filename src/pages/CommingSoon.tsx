@@ -1,7 +1,7 @@
-import React from 'react';
-import { LayoutArticle, MetaTags } from '~/components/Layout';
-import { Link } from '~/components/Link';
-import { NewsletterWidget } from '~/components/NewsletterWidget';
+import React from 'react'
+import { LayoutArticle, MetaTags } from '~/components/Layout'
+import { Link } from '~/components/Link'
+import { NewsletterWidget } from '~/components/NewsletterWidget'
 
 const CommingSoon: React.FC = () => {
   return (
@@ -34,7 +34,7 @@ const CommingSoon: React.FC = () => {
         </div>
       </div>
     </LayoutArticle>
-  );
-};
+  )
+}
 
-export default CommingSoon;
+export default CommingSoon

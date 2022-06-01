@@ -1,6 +1,6 @@
-import React from 'react';
-import { LayoutArticle, MetaTags } from '~/components/Layout';
-import { Link } from '~/components/Link';
+import React from 'react'
+import { LayoutArticle, MetaTags } from '~/components/Layout'
+import { Link } from '~/components/Link'
 
 const NotFound: React.FC = () => {
   return (
@@ -28,7 +28,7 @@ const NotFound: React.FC = () => {
         </div>
       </div>
     </LayoutArticle>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

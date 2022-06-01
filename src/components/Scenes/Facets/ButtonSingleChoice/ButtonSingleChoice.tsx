@@ -1,30 +1,30 @@
-import classNames from 'classnames';
-import React from 'react';
-import { useAggregationConfig } from '../../hooks';
-import { ResultBucketProps, SceneCategory } from '../../types';
-import { buttonClassNames } from '../utils';
-import { Icons } from './Icons';
-import { useResults } from './useResults';
+import classNames from 'classnames'
+import React from 'react'
+import { useAggregationConfig } from '../../hooks'
+import { ResultBucketProps, SceneCategory } from '../../types'
+import { buttonClassNames } from '../utils'
+import { Icons } from './Icons'
+import { useResults } from './useResults'
 
 export type HandleSingleChoiceProps = {
-  aggregationKey: string;
-  selectedBucketKey: string | null;
-};
+  aggregationKey: string
+  selectedBucketKey: string | null
+}
 
 export type HandleSingleChoice = ({
   aggregationKey,
   selectedBucketKey,
-}: HandleSingleChoiceProps) => void;
+}: HandleSingleChoiceProps) => void
 
 type Props = {
-  aggregationKey: string;
-  category: SceneCategory;
-  bucket: ResultBucketProps;
-  buckets: ResultBucketProps[];
-  handleClick: HandleSingleChoice;
-  index: number;
-  paginationTotal: number;
-};
+  aggregationKey: string
+  category: SceneCategory
+  bucket: ResultBucketProps
+  buckets: ResultBucketProps[]
+  handleClick: HandleSingleChoice
+  index: number
+  paginationTotal: number
+}
 
 export const ButtonSingleChoice: React.FC<Props> = ({
   aggregationKey,
@@ -35,17 +35,17 @@ export const ButtonSingleChoice: React.FC<Props> = ({
   index,
   paginationTotal,
 }) => {
-  const aggregationConfig = useAggregationConfig(category);
-  const { showAsIcons } = aggregationConfig[aggregationKey];
+  const aggregationConfig = useAggregationConfig(category)
+  const { showAsIcons } = aggregationConfig[aggregationKey]
 
   const { resultTotal, resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
     bucketCount: bucket?.doc_count,
     bucketSelected: bucket?.selected,
-  });
+  })
 
-  const firstElement = index === 0;
-  const lastElement = index === buckets.length;
+  const firstElement = index === 0
+  const lastElement = index === buckets.length
 
   return (
     <button
@@ -93,5 +93,5 @@ export const ButtonSingleChoice: React.FC<Props> = ({
         />
       )}
     </button>
-  );
-};
+  )
+}

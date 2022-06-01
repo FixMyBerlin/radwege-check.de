@@ -1,1 +1,1 @@
-export * from './ArticleLogo';
+export * from './ArticleLogo'

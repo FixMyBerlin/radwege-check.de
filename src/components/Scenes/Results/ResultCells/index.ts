@@ -1,2 +1,2 @@
-export * from './ResultCells';
-export * from './ResultCell';
+export * from './ResultCells'
+export * from './ResultCell'

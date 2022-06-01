@@ -1,4 +1,4 @@
-import { PresetsScenes } from './types';
+import { PresetsScenes } from './types'
 
 export const presetsScenesPrimary: PresetsScenes = {
   wideBollard: {
@@ -47,4 +47,4 @@ export const presetsScenesPrimary: PresetsScenes = {
     averageScore: 19,
     searchFilterString: 'bicycleLaneWidth:none,shared_bus_lane',
   },
-};
+}

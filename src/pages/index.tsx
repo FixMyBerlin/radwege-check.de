@@ -1,7 +1,7 @@
-import { PageProps } from 'gatsby';
-import React from 'react';
-import { Hero, Logos, Presets } from '~/components/Homepage';
-import { Layout, MetaTags } from '~/components/Layout';
+import { PageProps } from 'gatsby'
+import React from 'react'
+import { Hero, Logos, Presets } from '~/components/Homepage'
+import { Layout, MetaTags } from '~/components/Layout'
 
 const IndexPage: React.FC<PageProps> = ({ location }) => {
   return (
@@ -15,7 +15,7 @@ const IndexPage: React.FC<PageProps> = ({ location }) => {
       <Presets />
       <Logos />
     </Layout>
-  );
-};
+  )
+}
 
-export default IndexPage;
+export default IndexPage

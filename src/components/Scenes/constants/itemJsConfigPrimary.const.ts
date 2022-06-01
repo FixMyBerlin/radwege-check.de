@@ -113,4 +113,4 @@ export const itemJsConfigPrimary = {
   },
   searchableFields: [],
   native_search_enabled: false,
-};
+}

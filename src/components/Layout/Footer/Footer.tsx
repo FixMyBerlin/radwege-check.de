@@ -1,9 +1,9 @@
-import React from 'react';
-import Logo from '~/components/assets/radwegecheck-logo.svg';
-import { Link } from '~/components/Link';
-import { FooterSocialIcons } from '.';
-import { footerLinks } from './const';
-import { FooterLinkList } from './FooterLinks/FooterLinkList';
+import React from 'react'
+import Logo from '~/components/assets/radwegecheck-logo.svg'
+import { Link } from '~/components/Link'
+import { FooterSocialIcons } from '.'
+import { footerLinks } from './const'
+import { FooterLinkList } from './FooterLinks/FooterLinkList'
 
 export const Footer: React.FC = () => {
   return (
@@ -47,5 +47,5 @@ export const Footer: React.FC = () => {
         </section>
       </div>
     </footer>
-  );
-};
+  )
+}

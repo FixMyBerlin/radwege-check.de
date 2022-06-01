@@ -1,8 +1,8 @@
-import { graphql } from 'gatsby';
-import React from 'react';
-import { LayoutScenes } from '~/components/Layout';
-import { Scenes } from '~/components/Scenes';
-import { presetsScenesPrimary } from '~/components/Scenes/constants';
+import { graphql } from 'gatsby'
+import React from 'react'
+import { LayoutScenes } from '~/components/Layout'
+import { Scenes } from '~/components/Scenes'
+import { presetsScenesPrimary } from '~/components/Scenes/constants'
 
 const MyDataIndex = ({
   location,
@@ -20,10 +20,10 @@ const MyDataIndex = ({
         pagePath={location.pathname}
       />
     </LayoutScenes>
-  );
-};
+  )
+}
 
-export default MyDataIndex;
+export default MyDataIndex
 
 export const query = graphql`
   query {
@@ -86,4 +86,4 @@ export const query = graphql`
       }
     }
   }
-`;
+`

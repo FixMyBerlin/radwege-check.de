@@ -1,32 +1,32 @@
-import itemsjs from 'itemsjs';
-import React, { useEffect, useMemo, useState } from 'react';
-import { StringParam, useQueryParam } from 'use-query-params';
-import { MetaTags } from '../Layout';
+import itemsjs from 'itemsjs'
+import React, { useEffect, useMemo, useState } from 'react'
+import { StringParam, useQueryParam } from 'use-query-params'
+import { MetaTags } from '../Layout'
 import {
   itemJsConfigPrimary,
   itemJsConfigSecondary,
   PresetsScenes,
-} from './constants';
+} from './constants'
 import {
   Facets,
   HandleMultiChoiceProps,
   HandleSingleChoiceProps,
-} from './Facets';
-import { FacetsMobileDropdown } from './Facets/FacetsMobileDropdown';
-import { useAggregationConfig } from './hooks';
-import { Results } from './Results';
-import { sceneImageUrl } from './SceneImage';
-import { TitleBar } from './TitleBar';
-import { ResultProps, SceneCategory } from './types';
-import { cleanupCsvData, decodeFilter, encodeFilter } from './utils';
+} from './Facets'
+import { FacetsMobileDropdown } from './Facets/FacetsMobileDropdown'
+import { useAggregationConfig } from './hooks'
+import { Results } from './Results'
+import { sceneImageUrl } from './SceneImage'
+import { TitleBar } from './TitleBar'
+import { ResultProps, SceneCategory } from './types'
+import { cleanupCsvData, decodeFilter, encodeFilter } from './utils'
 
 type Props = {
-  category: SceneCategory;
-  rawScenes: any;
-  presets: PresetsScenes;
+  category: SceneCategory
+  rawScenes: any
+  presets: PresetsScenes
   /** @desc https://<domain>/pathname without searchParams */
-  pagePath: string;
-};
+  pagePath: string
+}
 
 export const Scenes: React.FC<Props> = ({
   category,
@@ -36,21 +36,21 @@ export const Scenes: React.FC<Props> = ({
 }) => {
   const scenes = useMemo(() => {
     // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
-    const flattened = rawScenes.map((list) => list.node);
+    const flattened = rawScenes.map((list) => list.node)
     // Clean the data
-    return cleanupCsvData(flattened);
-  }, [rawScenes]);
+    return cleanupCsvData(flattened)
+  }, [rawScenes])
 
   const itemJsConfig =
-    category === 'primary' ? itemJsConfigPrimary : itemJsConfigSecondary;
-  const aggregationConfig = useAggregationConfig(category);
+    category === 'primary' ? itemJsConfigPrimary : itemJsConfigSecondary
+  const aggregationConfig = useAggregationConfig(category)
 
   // Init itemjs with the set configuration and data (scenes).
-  const [items, setItems] = useState(undefined);
+  const [items, setItems] = useState(undefined)
   useEffect(() => {
-    if (!itemJsConfig) return;
-    setItems(itemsjs(scenes, itemJsConfig));
-  }, [scenes, itemJsConfig]);
+    if (!itemJsConfig) return
+    setItems(itemsjs(scenes, itemJsConfig))
+  }, [scenes, itemJsConfig])
 
   // The filters that we use for setSearchOption.
   // They are update them by handleSingelChoice(), handleMultiChoice().
@@ -59,35 +59,32 @@ export const Scenes: React.FC<Props> = ({
   //   We tried a custom paramConfig (instead of StringParam) but that caused loops.
   // ~~We do not use this inside the UI, which is based on the results object only.~~
   //   TBD: We do now, but we should maybe remove it again… – TODO
-  const [searchFilters, setSearchFilters] = useQueryParam(
-    'filter',
-    StringParam
-  );
+  const [searchFilters, setSearchFilters] = useQueryParam('filter', StringParam)
 
-  const [searchOrder, setSearchOrder] = useQueryParam('order', StringParam);
+  const [searchOrder, setSearchOrder] = useQueryParam('order', StringParam)
 
   const decodeFilterWithAggregation = (filterString: string) =>
-    decodeFilter(filterString, aggregationConfig);
+    decodeFilter(filterString, aggregationConfig)
 
   // ItemsJS Filter the data
-  const [results, setResults] = useState<ResultProps>(null);
+  const [results, setResults] = useState<ResultProps>(null)
   useEffect(() => {
-    if (!items) return;
+    if (!items) return
 
     // We don't add a default order to the useQueryParam so the url param is gone by default.
-    const order = searchOrder || 'desc';
+    const order = searchOrder || 'desc'
 
     // https://github.com/itemsapi/itemsjs#itemsjssearchoptions
     const searchOption = {
       per_page: 200,
       sort: { field: 'voteScore', order },
       filters: decodeFilterWithAggregation(searchFilters),
-    };
+    }
 
-    setResults(items.search(searchOption));
-  }, [items, searchFilters]);
+    setResults(items.search(searchOption))
+  }, [items, searchFilters])
 
-  const [currentPresetKey, setCurrentPresetKey] = useState(null);
+  const [currentPresetKey, setCurrentPresetKey] = useState(null)
 
   // When selecting a preset, we update the search.
   // The currentPresetKey is updated in an useEffect.
@@ -97,33 +94,33 @@ export const Scenes: React.FC<Props> = ({
       presets,
       a: presetKey,
       string: presets[presetKey].searchFilterString,
-    });
-    setSearchFilters(presets[presetKey].searchFilterString);
-  };
+    })
+    setSearchFilters(presets[presetKey].searchFilterString)
+  }
 
   useEffect(() => {
     if (!searchFilters) {
-      setCurrentPresetKey(null);
-      return;
+      setCurrentPresetKey(null)
+      return
     }
 
     const presetKeyMatchingUrlFilters = Object.entries(presets)
       .map(([key, values]) =>
         values.searchFilterString === searchFilters ? key : undefined
       )
-      .filter((v) => v !== undefined);
+      .filter((v) => v !== undefined)
 
     if (presetKeyMatchingUrlFilters.length) {
-      setCurrentPresetKey(presetKeyMatchingUrlFilters[0]);
+      setCurrentPresetKey(presetKeyMatchingUrlFilters[0])
     } else {
-      setCurrentPresetKey('custom');
+      setCurrentPresetKey('custom')
     }
-  }, [presets, searchFilters]);
+  }, [presets, searchFilters])
 
   const handleResetFilter = () => {
-    setSearchFilters(undefined);
-    setSearchOrder(undefined);
-  };
+    setSearchFilters(undefined)
+    setSearchOrder(undefined)
+  }
 
   // SingleChoice: Replace the key
   // This will trigger a useEffect to re-search.
@@ -132,12 +129,12 @@ export const Scenes: React.FC<Props> = ({
     selectedBucketKey,
   }: HandleSingleChoiceProps) => {
     setSearchFilters((prevStateString) => {
-      const prevState = decodeFilterWithAggregation(prevStateString);
-      const filter = selectedBucketKey ? [selectedBucketKey] : [];
+      const prevState = decodeFilterWithAggregation(prevStateString)
+      const filter = selectedBucketKey ? [selectedBucketKey] : []
 
-      return encodeFilter({ ...prevState, [aggregationKey]: filter });
-    });
-  };
+      return encodeFilter({ ...prevState, [aggregationKey]: filter })
+    })
+  }
 
   // Add remove filter to the searchFilters state.
   // This will trigger a useEffect to re-search.
@@ -146,51 +143,51 @@ export const Scenes: React.FC<Props> = ({
     buckets,
     selectedBucket,
   }: HandleMultiChoiceProps) => {
-    const bucketHasNothingSelected = !buckets.some((b) => b.selected);
+    const bucketHasNothingSelected = !buckets.some((b) => b.selected)
     if (bucketHasNothingSelected) {
       // Activate uiFilter (remove Filter)
       // Selecting the first bucket in an aggregation will not return bucket.selected for some reason.
       // To work around this, we handle the first  manually.
       setSearchFilters((prevStateString) => {
-        const prevState = decodeFilterWithAggregation(prevStateString);
-        const allBucketKeys = buckets.map((bucket) => bucket.key);
+        const prevState = decodeFilterWithAggregation(prevStateString)
+        const allBucketKeys = buckets.map((bucket) => bucket.key)
         const allWithouted = allBucketKeys.filter(
           (k) => k !== selectedBucket.key
-        );
-        const filter = allWithouted;
+        )
+        const filter = allWithouted
 
-        return encodeFilter({ ...prevState, [aggregationKey]: filter });
-      });
+        return encodeFilter({ ...prevState, [aggregationKey]: filter })
+      })
     } else if (selectedBucket.selected) {
       // Activate uiFilter (remove Filter)
       setSearchFilters((prevStateString) => {
-        const prevState = decodeFilterWithAggregation(prevStateString);
+        const prevState = decodeFilterWithAggregation(prevStateString)
         const prevFilter =
           aggregationKey in prevState
             ? [...prevState[aggregationKey], selectedBucket.key]
-            : [selectedBucket.key];
-        const filter = prevFilter.filter((k) => k !== selectedBucket.key);
+            : [selectedBucket.key]
+        const filter = prevFilter.filter((k) => k !== selectedBucket.key)
 
-        return encodeFilter({ ...prevState, [aggregationKey]: filter });
-      });
+        return encodeFilter({ ...prevState, [aggregationKey]: filter })
+      })
     } else {
       // Deactivate uiFilter (add Filter)
       setSearchFilters((prevStateString) => {
-        const prevState = decodeFilterWithAggregation(prevStateString);
+        const prevState = decodeFilterWithAggregation(prevStateString)
         const prevFilter =
           aggregationKey in prevState
             ? [...prevState[aggregationKey], selectedBucket.key]
-            : [selectedBucket.key];
-        const filter = prevFilter;
+            : [selectedBucket.key]
+        const filter = prevFilter
 
-        return encodeFilter({ ...prevState, [aggregationKey]: filter });
-      });
+        return encodeFilter({ ...prevState, [aggregationKey]: filter })
+      })
     }
-  };
+  }
 
-  const seoPresetIsActive = Object.keys(presets).includes(currentPresetKey);
+  const seoPresetIsActive = Object.keys(presets).includes(currentPresetKey)
   const seoCategoryTranslation =
-    category === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse';
+    category === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
 
   return (
     <>
@@ -250,5 +247,5 @@ export const Scenes: React.FC<Props> = ({
         </div>
       </div>
     </>
-  );
-};
+  )
+}
