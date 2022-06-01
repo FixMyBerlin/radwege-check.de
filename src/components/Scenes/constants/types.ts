@@ -24,7 +24,8 @@ export type AggregationConfig = {
 export type PresetScene = {
   title: string;
   sceneIdForImage: string | null;
-  results: number;
+  resultTotal: number;
+  averageScore: number;
   searchFilterString: string;
 };
 

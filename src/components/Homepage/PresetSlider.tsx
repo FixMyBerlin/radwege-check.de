@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { buttonStyles, Link } from '../Link';
 import { SceneImage } from '../Scenes';
 import { PresetsScenes } from '../Scenes/constants';
+import { formatPercent } from '../utils';
 import { FilterUrlProp } from './Presets';
 
 export type Props = {
@@ -99,11 +100,22 @@ export const PresetSlider: React.FC<Props> = ({
                     )}
                     <div
                       className={classNames(
+                        'absolute right-3 bottom-16 inline-flex items-center rounded-md border border-transparent bg-white/80 px-4 py-2 font-sans font-medium text-gray-800 shadow-sm'
+                      )}
+                    >
+                      {' '}
+                      {formatPercent(preset.averageScore, {
+                        precision: 0,
+                      })}{' '}
+                      Ø Score
+                    </div>
+                    <div
+                      className={classNames(
                         buttonStyles,
                         'absolute bottom-3 right-3'
                       )}
                     >
-                      {preset.results} Ergebnisse
+                      {preset.resultTotal} Ergebnisse
                     </div>
                   </>
                 </Link>

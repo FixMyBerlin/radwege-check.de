@@ -1,40 +1,50 @@
 import { PresetsScenes } from './types';
 
 export const presetsScenesPrimary: PresetsScenes = {
-  'main-poller': {
-    title: 'Breite Radwege mit Pollern an Hauptstraßen',
+  wideBollard: {
+    title: 'Breite Radstreifen mit Pollern auf Fahrbahn',
     sceneIdForImage: 'MS_C_573',
-    results: 80,
-    searchFilterString: 'bicycleLaneWidth:wide|leftOfBicycleLane:car_lanes',
+    resultTotal: 80,
+    averageScore: 95,
+    searchFilterString:
+      'bicycleLaneWidth:wide|bufferHasPhysicalProtection:true|leftOfBicycleLane:car_lanes',
   },
-  mischverkehr: {
-    title: 'Führung Rad im Mischverkehr',
-    sceneIdForImage: 'MS_C_573',
-    results: 18,
-    searchFilterString: 'bicycleLaneWidth:wide',
+  sidewalkShops: {
+    title: 'Radwege im Seitenraum mit Geschäften und schmalen Gehwegen',
+    sceneIdForImage: 'CP_C_837',
+    resultTotal: 180,
+    averageScore: 76,
+    searchFilterString:
+      'leftOfBicycleLane:car_lanes,curb|pavementHasShops:true|pavementWidth:narrow',
   },
-  'seitenraum-geschaefte': {
-    title: 'Radwege im Seitenraum bei Geschäftsstraßen und schmalen Gehwegen',
-    sceneIdForImage: 'MS_C_573',
-    results: 180,
-    searchFilterString: 'leftOfBicycleLane:car_lanes',
+  narrowParkingRight: {
+    title: 'Schmale Radstreifen mit Kfz-Parken rechts',
+    sceneIdForImage: 'MS_C_871',
+    resultTotal: 128,
+    averageScore: 42,
+    searchFilterString:
+      'bicycleLaneWidth:narrow|leftOfBicycleLane:car_lanes|parking:parking_lane',
   },
-  foo1: {
-    title: 'Foo 1',
-    sceneIdForImage: 'MS_C_573',
-    results: 80,
-    searchFilterString: 'bicycleLaneWidth:narrow|leftOfBicycleLane:car_lanes',
+  rightOfParking: {
+    title: 'Radführung rechts von Kfz-Parken',
+    sceneIdForImage: 'MS_C_606',
+    resultTotal: 16,
+    averageScore: 93,
+    searchFilterString: 'leftOfBicycleLane:parking_lane',
   },
-  foo2: {
-    title: 'Foo 2',
-    sceneIdForImage: 'MS_C_573',
-    results: 18,
-    searchFilterString: 'bicycleLaneWidth:wide|leftOfBicycleLane:car_lanes',
+  sidewalkNarrowBuffer: {
+    title: 'Radwege im Seitenraum ohne Geschäfte (Trennung links schmal)',
+    sceneIdForImage: 'CP_C_1289',
+    resultTotal: 90,
+    averageScore: 90,
+    searchFilterString:
+      'bicycleLaneWidth:narrow,none,shared_bus_lane,wide|bufferLeftWidth:narrow|bufferRightWidth:narrow|leftOfBicycleLane:curb|pavementHasShops:false|pavementWidth:narrow',
   },
-  foo4: {
-    title: 'Foo 3',
-    sceneIdForImage: 'MS_C_573',
-    results: 180,
-    searchFilterString: 'bicycleLaneWidth:wide|leftOfBicycleLane:car_lanes',
+  mixedTrafficBus: {
+    title: 'Führung im Mischverkehr (inkl. Busspur)',
+    sceneIdForImage: 'MS_C_1336',
+    resultTotal: 18,
+    averageScore: 19,
+    searchFilterString: 'bicycleLaneWidth:none,shared_bus_lane',
   },
 };
