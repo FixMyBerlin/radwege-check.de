@@ -1,6 +1,7 @@
 import { InformationCircleIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
 import React from 'react';
+import Logo from '~/components/assets/radwegecheck-logo.svg';
 import { MetaTags } from '../Layout';
 import { Link, PrintButton, TwitterButton } from '../Link';
 import { Popover } from '../Popover';
@@ -31,16 +32,23 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
     <>
       <MetaTags
         article
-        title={`Diese Fahrrad-Führungsform hat ${scene.voteScore} sichere Bewertungen (${categoryTranslation}, ID ${scene.sceneId})`}
+        title={`Diese Fahrrad-Führungsform hat ${scene.voteScore} sichere Bewertungen (${categoryTranslation}, ID #${scene.sceneId})`}
         description="Eine von 1.700 Radverkehrsführungsformen aus dem Radwege-Check. Jetzt ausprobieren!"
         imageUrl={sceneImageUrl(scene.sceneId)}
         imageSize={{ width: 1240, height: 930 }}
       />
 
       <div className="items-center bg-white p-3 lg:flex lg:flex-col lg:px-0 lg:py-6">
-        <h1 className="mb-6 w-full max-w-7xl text-2xl">
-          Szene <code>{scene.sceneId}</code>
-        </h1>
+        <div className="mb-5 grid w-full max-w-7xl grid-cols-4 gap-6">
+          <div className="ml-5">
+            <Link to="/" classNameOverwrite="h-8" title="Zur Startseite…">
+              <Logo className="h-10" alt="Radwege-Check" />
+            </Link>
+          </div>
+          <h1 className="col-span-3 mb-6 w-full max-w-7xl text-2xl">
+            Szene {categoryTranslation}, ID <code>#{scene.sceneId}</code>
+          </h1>
+        </div>
 
         <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 print:hidden">
           <TwitterButton
