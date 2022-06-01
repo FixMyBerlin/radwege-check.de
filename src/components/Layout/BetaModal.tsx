@@ -14,7 +14,7 @@ export const BetaModal = () => {
     >
       <p>
         Willkommen! <br />
-        Der Radwege check befindet sich in der Testphase. Wir entwickeln ihn zur
+        Der Radwege-Check befindet sich in der Testphase. Wir entwickeln ihn zur
         Zeit von Woche zu Woche weiter.
       </p>
 
