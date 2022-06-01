@@ -39,8 +39,8 @@ export const MetaTags: React.FC<Props> = ({
     description: description || defaultDescription,
     image:
       imageUrl ||
-      (imagePath && `${domain || ''}${imagePath}`) ||
-      `${domain || ''}/social-sharing/default.png`,
+      (imagePath && `${domain() || ''}${imagePath}`) ||
+      `${domain() || ''}/social-sharing/default.png`,
   };
 
   // FYI, we do not inlcude the url meta tags since there was an issue with specs and `useLocation`.

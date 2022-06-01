@@ -19,7 +19,7 @@ export const TwitterButton: React.FC<Props> = ({
   via = 'fixmyberlin',
   hashtags,
 }) => {
-  const fullUrl = url.startsWith('http') ? url : `${domain}${url}`;
+  const fullUrl = url.startsWith('http') ? url : `${domain()}${url}`;
 
   const shareUrl = new URL('https://twitter.com/intent/tweet');
   shareUrl.searchParams.set('url', fullUrl);
