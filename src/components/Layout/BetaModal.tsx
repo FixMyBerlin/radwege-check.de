@@ -8,7 +8,7 @@ export const BetaModal = () => {
   return (
     <Modal
       title="Beta"
-      titleIcon={<PersonDigging />}
+      titleIcon={<PersonDigging className="h-10 w-10" />}
       closeButton="Alles klar"
       className="print:hidden"
     >

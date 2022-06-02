@@ -6,7 +6,7 @@ export const PrintButton: React.FC = () => {
   return (
     <button
       type="button"
-      className={classNames(buttonStyles, 'shadow-md')}
+      className={classNames(buttonStyles, 'hidden shadow-md lg:inline-flex')}
       onClick={() => window.print()}
     >
       Drucken

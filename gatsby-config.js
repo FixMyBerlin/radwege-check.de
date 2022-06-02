@@ -27,8 +27,8 @@ module.exports = {
     },
     {
       // Docs https://www.gatsbyjs.com/plugins/gatsby-plugin-sitemap/
-      // https://todo.info/sitemap/sitemap-index.xml // only links
-      // https://todo.info/sitemap/sitemap-0.xml // content
+      // https://radwege-check.de/sitemap/sitemap-index.xml // only links
+      // https://radwege-check.de/sitemap/sitemap-0.xml // content
       resolve: 'gatsby-plugin-sitemap',
       options: {
         excludes: ['/kontakt/', '/datenschutz/'],
@@ -54,9 +54,10 @@ module.exports = {
         start_url: '/',
         background_color: 'white',
         theme_color: '#fff8e8',
-        display: 'standalone',
+        display: 'minimal-ui', // https://developer.mozilla.org/en-US/docs/Web/Manifest/display#values
         icon: 'src/components/assets/radwegecheck-logo-bildmarke-mehrfarbig.svg',
         legacy: false,
+        lang: 'de-DE', // https://developer.mozilla.org/en-US/docs/Web/Manifest/lang
       },
     },
     // {
@@ -77,4 +78,4 @@ module.exports = {
     //   },
     // },
   ],
-};
+}

@@ -30,7 +30,7 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 lg:px-4">
+        <Menu.Button className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 bg-white px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 lg:px-4">
           <span className="hidden lg:inline">Sortierung</span>
           <span className="lg:hidden">
             {searchOrderValues[searchOrder || 'desc'].icon}
@@ -67,7 +67,7 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
                     disabled={selected}
                     className={classNames(
                       {
-                        'bg-yellow-50 text-gray-500': selected,
+                        'bg-brand-light-yellow text-gray-500': selected,
                       },
                       'block w-full px-4 py-2 text-left text-sm'
                     )}
