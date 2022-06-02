@@ -1,10 +1,10 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import classNames from 'classnames'
 import React from 'react'
-import { useAggregationConfig } from '../../hooks'
-import { ResultBucketProps, SceneCategory } from '../../types'
-import { buttonClassNames } from '../utils'
-import { Icons } from './Icons'
+import { useAggregationConfig } from '../../../hooks'
+import { ResultBucketProps, SceneCategory } from '../../../types'
 import { useResults } from './useResults'
+import { buttonClassNames } from './utils'
 
 export type HandleSingleChoiceProps = {
   aggregationKey: string
@@ -36,41 +36,31 @@ export const ButtonSingleChoice: React.FC<Props> = ({
   paginationTotal,
 }) => {
   const aggregationConfig = useAggregationConfig(category)
-  const { showAsIcons } = aggregationConfig[aggregationKey]
 
   const { resultTotal, resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
-    bucketCount: bucket?.doc_count,
-    bucketSelected: bucket?.selected,
+    bucketCount: bucket.doc_count,
+    bucketSelected: bucket.selected,
   })
 
   const firstElement = index === 0
   const lastElement = index === buckets.length
 
+  const { labelClasses, inputClasses } = buttonClassNames({
+    firstElement,
+    lastElement,
+    uiSelected,
+    uiCanpress,
+  })
+
+  const formKey = `${aggregationKey}-${bucket.key}`
+
   return (
-    <button
-      key={bucket.key}
-      type="button"
-      className={classNames(
-        buttonClassNames({
-          firstElement,
-          lastElement,
-          uiSelected,
-          uiCanpress,
-        }),
-        { '!h-8': showAsIcons }
-      )}
-      onClick={() =>
-        handleClick({
-          aggregationKey,
-          selectedBucketKey: bucket.key,
-        })
-      }
-      disabled={!uiCanpress}
+    <label
+      htmlFor={formKey}
+      className={classNames(labelClasses)}
       title={[
-        showAsIcons
-          ? `${aggregationConfig[aggregationKey].buckets[bucket.key]}`
-          : '',
+        `${aggregationConfig[aggregationKey].buckets[bucket.key]}`,
         // eslint-disable-next-line no-nested-ternary
         resultTotal === resultFuture
           ? 'Auswahl nicht möglich da keine Änderung der Ergebnisse.'
@@ -81,17 +71,28 @@ export const ButtonSingleChoice: React.FC<Props> = ({
         .filter((k) => !!k)
         .join(' – ')}
     >
-      {showAsIcons ? (
-        <Icons forValue={bucket.key} className="scale-75" />
-      ) : (
-        <span
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html:
-              aggregationConfig[aggregationKey].buckets[bucket.key] || 'TODO',
-          }}
-        />
-      )}
-    </button>
+      <input
+        id={formKey}
+        name={aggregationKey}
+        type="radio"
+        checked={uiSelected}
+        defaultChecked={uiSelected}
+        disabled={!uiCanpress}
+        onChange={() =>
+          handleClick({
+            aggregationKey,
+            selectedBucketKey: bucket.key,
+          })
+        }
+        className={classNames(inputClasses)}
+      />
+      <span
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html:
+            aggregationConfig[aggregationKey].buckets[bucket.key] || 'TODO',
+        }}
+      />
+    </label>
   )
 }
