@@ -15,9 +15,10 @@ export const buttonClassNames = ({
   uiSelected,
   uiCanpress,
 }: Props) => {
-  return classNames(
-    'inline-flex h-12 w-full flex-col items-center justify-center border border-gray-300 p-1 text-sm font-medium leading-4',
+  const buttonClasses = classNames(
+    'flex w-full flex-col items-center justify-start border border-gray-300 p-1 text-sm font-medium leading-4',
     '[word-break:break-word] [hyphens:auto]',
+    'flex flex-col',
     { 'rounded-l-md': firstElement },
     { '-ml-px': !firstElement },
     { 'rounded-r-md': lastElement },
@@ -29,10 +30,10 @@ export const buttonClassNames = ({
       'z-10 ': uiSelected,
     },
     {
-      'bg-white shadow-innerGray': uiSelected && !uiCanpress,
+      'bg-yellow-50 shadow-innerYellow': uiSelected && uiCanpress,
     },
     {
-      'bg-yellow-50 shadow-innerYellow': uiSelected && uiCanpress,
+      'bg-white shadow-innerGray': uiSelected && !uiCanpress,
     },
     {
       'shadow-md bg-yellow-50 text-gray-700': !uiSelected && uiCanpress,
@@ -41,4 +42,19 @@ export const buttonClassNames = ({
       'shadow-md bg-neutral-100 text-neutral-600': !uiSelected && !uiCanpress,
     }
   )
+  const iconClasses = classNames(
+    {
+      'text-gray-900': uiSelected && uiCanpress,
+    },
+    {
+      'text-gray-900': uiSelected && !uiCanpress,
+    },
+    {
+      'text-gray-900/10': !uiSelected && uiCanpress,
+    },
+    {
+      'text-gray-900/10': !uiSelected && !uiCanpress,
+    }
+  )
+  return { buttonClasses, iconClasses }
 }

@@ -1,16 +1,12 @@
+import classNames from 'classnames'
 import React from 'react'
 import { useAggregationConfig } from '../../hooks'
 import { ResultBucketProps, ResultProps, SceneCategory } from '../../types'
-import {
-  ButtonMultiChoice,
-  HandleMultiChoice,
-} from '../ButtonMultiChoice/ButtonMultiChoice'
-import {
-  ButtonSingleChoice,
-  HandleSingleChoice,
-} from '../ButtonSingleChoice/ButtonSingleChoice'
-import { ButtonSingleChoiceBoth } from '../ButtonSingleChoice/ButtonSingleChoiceBoth'
+import { ButtonIcon } from './ButtonIcon'
+import { ButtonMultiChoice, HandleMultiChoice } from './ButtonMultiChoice'
+import { ButtonSingleChoice, HandleSingleChoice } from './ButtonSingleChoice'
 import { checkBucketValueConsistency, checkDataConsistency } from '../utils'
+import { ButtonSingleChoiceNoChoice } from './ButtonSingleChoiceNoChoice'
 
 type Props = {
   aggregationKey: string
@@ -44,16 +40,22 @@ export const FacetsButtons: React.FC<Props> = ({
     aggregationConfig[aggregationKey]?.sortOrder ||
     Object.keys(aggregationConfig[aggregationKey].buckets)
 
+  const { showAsIcons, choiceMode } = aggregationConfig[aggregationKey]
+
   return (
     <>
-      <div className="flex w-full flex-row font-condensed">
+      <div
+        className={classNames('flex w-full flex-row font-condensed', {
+          'gap-1': choiceMode === 'multi',
+        })}
+      >
         {sortedBuckets.map((bucketKey, index) => {
-          if (bucketKey === 'bothButton') {
+          if (bucketKey === 'noChoice') {
             return (
-              <ButtonSingleChoiceBoth
-                key="bothButton"
+              <ButtonSingleChoiceNoChoice
+                key="noChoice"
                 category={category}
-                bucketKey="bothButton"
+                bucketKey="noChoice"
                 buckets={buckets}
                 aggregationKey={aggregationKey}
                 handleClick={handleSingleChoice}
@@ -65,9 +67,21 @@ export const FacetsButtons: React.FC<Props> = ({
           ].buckets.filter((b) => b.key === bucketKey)?.[0]
           // Guard for `keyFromTranslationMissingInItemjs`
           if (!bucket) return null
-          const singleChoise =
-            aggregationConfig[aggregationKey].choiceMode === 'single'
-          if (singleChoise) {
+
+          if (showAsIcons) {
+            return (
+              <ButtonIcon
+                key={bucketKey}
+                category={category}
+                bucket={bucket}
+                aggregationKey={aggregationKey}
+                handleClick={handleSingleChoice}
+                paginationTotal={results?.pagination?.total}
+              />
+            )
+          }
+
+          if (choiceMode === 'single') {
             return (
               <ButtonSingleChoice
                 key={bucketKey}
@@ -81,13 +95,13 @@ export const FacetsButtons: React.FC<Props> = ({
               />
             )
           }
+
           return (
             <ButtonMultiChoice
               key={bucketKey}
               category={category}
               buckets={buckets}
               bucket={bucket}
-              index={index}
               aggregationKey={aggregationKey}
               handleClick={handleMultiChoice}
               paginationTotal={results?.pagination?.total}

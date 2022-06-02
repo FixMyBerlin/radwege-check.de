@@ -1,7 +1,8 @@
+import { CheckIcon } from '@heroicons/react/outline'
 import classNames from 'classnames'
 import React from 'react'
-import { useAggregationConfig } from '../../hooks'
-import { ResultBucketProps, SceneCategory } from '../../types'
+import { useAggregationConfig } from '../../../hooks'
+import { ResultBucketProps, SceneCategory } from '../../../types'
 import { buttonClassNames } from '../utils'
 import { useResults } from './useResults'
 
@@ -23,7 +24,6 @@ type Props = {
   bucket: ResultBucketProps
   buckets: ResultBucketProps[]
   handleClick: HandleMultiChoice
-  index: number
   paginationTotal: number
 }
 
@@ -33,7 +33,6 @@ export const ButtonMultiChoice: React.FC<Props> = ({
   bucket,
   buckets,
   handleClick,
-  index,
   paginationTotal,
 }) => {
   const { resultTotal, resultFuture, uiSelected, uiCanpress } = useResults({
@@ -42,22 +41,20 @@ export const ButtonMultiChoice: React.FC<Props> = ({
     bucketSelected: bucket?.selected,
     anySelected: buckets.some((b) => b.selected),
   })
-  const firstElement = index === 0
-  const lastElement = index === buckets.length - 1
   const aggregationConfig = useAggregationConfig(category)
+
+  const { buttonClasses, iconClasses } = buttonClassNames({
+    firstElement: true,
+    lastElement: true,
+    uiSelected,
+    uiCanpress,
+  })
 
   return (
     <button
       key={bucket.key}
       type="button"
-      className={classNames(
-        buttonClassNames({
-          firstElement,
-          lastElement,
-          uiSelected,
-          uiCanpress,
-        })
-      )}
+      className={classNames(buttonClasses)}
       onClick={() =>
         handleClick({
           aggregationKey,
@@ -72,7 +69,10 @@ export const ButtonMultiChoice: React.FC<Props> = ({
           : `Ergebnisse ${resultFuture || 'todo'}`
       }
     >
-      <span
+      <div className="mt-1 flex flex-none justify-center">
+        <CheckIcon className={classNames(iconClasses, 'h-6')} />
+      </div>
+      <div
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html:

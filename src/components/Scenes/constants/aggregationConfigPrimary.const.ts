@@ -39,7 +39,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
     title: 'KfZ-Parken vorhanden',
     resultTitle: 'KfZ-Parken',
     buckets: {
-      bothButton: 'Egal',
+      noChoice: 'Egal',
       parking_lane: 'Ja',
       no_parking: 'Nein',
     },
@@ -55,7 +55,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
   bicycleLaneSurface: {
     title: 'Oberfläche RVA',
     buckets: {
-      bothButton: 'Egal',
+      noChoice: 'Egal',
       surface_asphalt: 'Asphalt',
       surface_green: 'Grün&shy;markierung',
     },
@@ -66,7 +66,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
     title: 'Bauliche Trennung Links RVA',
     resultTitle: 'Bauliche Trennung Links',
     buckets: {
-      bothButton: 'Egal',
+      noChoice: 'Egal',
       true: 'Ja',
       false: 'Nein',
     },
@@ -77,7 +77,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
     title: 'Einzelne bauliche Trennung auswählen',
     resultTitle: 'Art der baul. Trennung Links',
     buckets: {
-      bothButton: 'Egal',
+      noChoice: 'Egal',
       none: 'Keine',
       bollard_high: 'Poller (hoch)',
       bollard_small: 'Poller (niedrig)',
@@ -92,7 +92,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
     title: 'Markierung Links RVA',
     resultTitle: 'Markierung Links',
     buckets: {
-      bothButton: 'Egal',
+      noChoice: 'Egal',
       narrow: 'Schmal',
       wide: 'Breit',
       none: 'Keine',
@@ -104,7 +104,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
     title: 'Einzelne Markierungsart auswählen',
     resultTitle: 'Art der Markierung Links',
     buckets: {
-      bothButton: 'Egal',
+      noChoice: 'Egal',
       none: 'Keine',
       dashed_line: 'Unterbrochen Linie',
       solid_line: 'Durchgezogene Linie',
@@ -120,7 +120,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
     title: 'Markierung Rechts RVA',
     resultTitle: 'Markierung Rechts',
     buckets: {
-      bothButton: 'Egal',
+      noChoice: 'Egal',
       narrow: 'Schmal',
       wide: 'Breit',
       none: 'Keine',
@@ -132,7 +132,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
     title: 'Einzelne Markierungsart auswählen',
     resultTitle: 'Art der Markierung Rechts',
     buckets: {
-      bothButton: 'Egal',
+      noChoice: 'Egal',
       none: 'Keine',
       solid_line: 'Durchgezogene Linie',
       double_line: 'Doppellinie',
@@ -147,7 +147,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
   vehicleTrafficVolume: {
     title: 'KfZ-Verkehrsaufkommen',
     buckets: {
-      bothButton: 'Egal',
+      noChoice: 'Egal',
       low_traffic_volumen: 'Niedrig',
       high_traffic_volumen_with_heavy_vehicles: 'Hoch (mit LKW)',
     },
@@ -161,14 +161,14 @@ export const aggregationConfigPrimary: AggregationConfig = {
   vehicleLaneMaxspeed: {
     title: 'Tempolimit',
     buckets: {
-      bothButton: 'Egal',
+      noChoice: 'Egal',
       '30': '30 km/h',
       '50': 'Keins',
     },
     resultBuckets: {
       '50': 'Kein Limit (50 km/h)',
     },
-    sortOrder: ['bothButton', '30', '50'],
+    sortOrder: ['noChoice', '30', '50'],
     choiceMode: 'single',
     showAsIcons: false,
   },
@@ -176,7 +176,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
     title: 'Fahrstreifen Nutzung',
     resultTitle: 'Nutzung der Fahrstreifen',
     buckets: {
-      bothButton: 'Egal',
+      noChoice: 'Egal',
       motor_vehicle_and_tram: 'Fahrstreifen mit Tram',
       motor_vehicle_only: 'Eine Fahrstreifen',
       motor_vehicle_only_one_way: 'Zwei Fahrstreifen',
@@ -189,7 +189,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
     title: 'Gehweg',
     resultTitle: 'Gehwegbreite',
     buckets: {
-      bothButton: 'Egal',
+      noChoice: 'Egal',
       narrow: 'Schmal',
       wide: 'Breit',
     },
@@ -199,7 +199,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
   pavementHasShops: {
     title: 'Geschäfte / Cafétische',
     buckets: {
-      bothButton: 'Egal',
+      noChoice: 'Egal',
       true: 'Ja',
       false: 'Nein',
     },

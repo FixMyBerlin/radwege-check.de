@@ -1,9 +1,10 @@
 import classNames from 'classnames'
 import React from 'react'
-import { useAggregationConfig } from '../../hooks'
-import { ResultBucketProps, SceneCategory } from '../../types'
-import { buttonClassNames } from '../utils'
-import { HandleSingleChoice } from './ButtonSingleChoice'
+import { useAggregationConfig } from '../../../hooks'
+import { ResultBucketProps, SceneCategory } from '../../../types'
+import CircleIcon from '../assets/circle-icon.svg'
+import { HandleSingleChoice } from '../ButtonSingleChoice/ButtonSingleChoice'
+import { buttonClassNames, buttonIconClassNames } from '../utils'
 
 type Props = {
   aggregationKey: string
@@ -13,7 +14,7 @@ type Props = {
   handleClick: HandleSingleChoice
 }
 
-export const ButtonSingleChoiceBoth: React.FC<Props> = ({
+export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
   aggregationKey,
   category,
   bucketKey,
@@ -30,19 +31,32 @@ export const ButtonSingleChoiceBoth: React.FC<Props> = ({
   const firstElement = true
   const lastElement = false
 
+  let buttonClasses
+  let iconClasses
+
+  if (showAsIcons) {
+    const assignIconClasses = buttonIconClassNames({
+      uiSelected,
+      uiCanpress,
+    })
+    buttonClasses = assignIconClasses.buttonClasses
+    iconClasses = assignIconClasses.iconClasses
+  } else {
+    const assignButtonClasses = buttonClassNames({
+      firstElement,
+      lastElement,
+      uiSelected,
+      uiCanpress,
+    })
+    buttonClasses = assignButtonClasses.buttonClasses
+    iconClasses = assignButtonClasses.iconClasses
+  }
+
   return (
     <button
       key={`${aggregationKey}__${bucketKey}`}
       type="button"
-      className={classNames(
-        buttonClassNames({
-          firstElement,
-          lastElement,
-          uiSelected,
-          uiCanpress,
-        }),
-        { '!h-8': showAsIcons }
-      )}
+      className={classNames(buttonClasses)}
       onClick={() =>
         handleClick({
           aggregationKey,
@@ -52,12 +66,18 @@ export const ButtonSingleChoiceBoth: React.FC<Props> = ({
       disabled={!uiCanpress}
       title=""
     >
+      {!showAsIcons && (
+        <div className="my-1 flex flex-none justify-center">
+          <CircleIcon className={classNames(iconClasses, 'h-4')} />
+        </div>
+      )}
       <span
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html:
             aggregationConfig[aggregationKey].buckets[bucketKey] || 'TODO',
         }}
+        className={classNames(showAsIcons && iconClasses)}
       />
     </button>
   )

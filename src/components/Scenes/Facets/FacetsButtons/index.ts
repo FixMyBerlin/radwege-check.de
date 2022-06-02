@@ -1,1 +1,5 @@
+export * from './ButtonIcon'
+export * from './ButtonMultiChoice'
+export * from './ButtonSingleChoice'
+export * from './ButtonSingleChoiceNoChoice'
 export * from './FacetsButtons'
