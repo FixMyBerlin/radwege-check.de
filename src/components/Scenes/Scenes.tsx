@@ -1,5 +1,6 @@
 import itemsjs from 'itemsjs'
 import React, { useEffect, useMemo, useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { StringParam, useQueryParam } from 'use-query-params'
 import { MetaTags } from '../Layout'
 import {
@@ -191,6 +192,12 @@ export const Scenes: React.FC<Props> = ({
 
   return (
     <>
+      {/* This is needed for iOS */}
+      <Helmet
+        bodyAttributes={{
+          class: 'fixed overflow-hidden w-full min-h-full flex',
+        }}
+      />
       <MetaTags
         noindex={!seoPresetIsActive}
         canonicalPath={seoPresetIsActive ? pagePath : null}
@@ -205,7 +212,7 @@ export const Scenes: React.FC<Props> = ({
         }
       />
 
-      <div className="flex h-screen flex-row">
+      <div className="flex h-screen min-h-full w-full flex-row overflow-hidden">
         <Facets
           category={category}
           className="z-20 hidden w-72 flex-none bg-gray-100 shadow-[0_0_10px_0_rgba(0,_0,_0,_0.2)] lg:block"
