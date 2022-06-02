@@ -67,7 +67,7 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
                     disabled={selected}
                     className={classNames(
                       {
-                        'bg-yellow-50 text-gray-500': selected,
+                        'bg-brand-light-yellow text-gray-500': selected,
                       },
                       'block w-full px-4 py-2 text-left text-sm'
                     )}
