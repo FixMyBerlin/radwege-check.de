@@ -19,43 +19,47 @@ type Props = {
 export const Icons: React.FC<Props> = ({ forValue, className }) => {
   switch (forValue) {
     case 'none':
-      return <span className={className}>NONE</span> // TODO <None />;
+      return (
+        <span className="" title={forValue}>
+          Keine
+        </span>
+      ) // TODO <None />;
 
     case 'dashed_line':
-      return <DashedLine className={className} />
+      return <DashedLine className={className} title={forValue} />
 
     case 'solid_line':
-      return <SolidLine className={className} />
+      return <SolidLine className={className} title={forValue} />
 
     case 'double_line':
-      return <DoubleLine className={className} />
+      return <DoubleLine className={className} title={forValue} />
 
     case 'restricted_area':
-      return <RestrictedArea className={className} />
+      return <RestrictedArea className={className} title={forValue} />
 
     case 'paved_verge':
-      return <PavedVerge className={className} />
+      return <PavedVerge className={className} title={forValue} />
 
     case 'grass_verge':
-      return <GrassVerge className={className} />
+      return <GrassVerge className={className} title={forValue} />
 
     case 'bollard_high':
-      return <BollardHigh className={className} />
+      return <BollardHigh className={className} title={forValue} />
 
     case 'bollard_small':
-      return <BollardSmall className={className} />
+      return <BollardSmall className={className} title={forValue} />
 
     case 'planter':
-      return <Planter className={className} />
+      return <Planter className={className} title={forValue} />
 
     case 'green':
-      return <Green className={className} />
+      return <Green className={className} title={forValue} />
 
     default:
       return (
-        <span className={classNames(className, 'font-semibold uppercase')}>
+        <span className={classNames(className)} title={forValue}>
           {forValue?.[0]}
         </span>
-      ) // TODO <None />;
+      ) // TODO <None /title={forValue}>;
   }
 }

@@ -1,16 +1,15 @@
+import classNames from 'classnames'
 import React from 'react'
 import { useAggregationConfig } from '../../hooks'
 import { ResultBucketProps, ResultProps, SceneCategory } from '../../types'
-import {
-  ButtonMultiChoice,
-  HandleMultiChoice,
-} from '../ButtonMultiChoice/ButtonMultiChoice'
+import { checkBucketValueConsistency, checkDataConsistency } from '../utils'
+import { ButtonIcon, ButtonIconNoChoice } from './ButtonIcon'
+import { ButtonMultiChoice, HandleMultiChoice } from './ButtonMultiChoice'
 import {
   ButtonSingleChoice,
+  ButtonSingleChoiceNoChoice,
   HandleSingleChoice,
-} from '../ButtonSingleChoice/ButtonSingleChoice'
-import { ButtonSingleChoiceBoth } from '../ButtonSingleChoice/ButtonSingleChoiceBoth'
-import { checkBucketValueConsistency, checkDataConsistency } from '../utils'
+} from './ButtonSingleChoice'
 
 type Props = {
   aggregationKey: string
@@ -44,30 +43,66 @@ export const FacetsButtons: React.FC<Props> = ({
     aggregationConfig[aggregationKey]?.sortOrder ||
     Object.keys(aggregationConfig[aggregationKey].buckets)
 
+  const { showAsIcons, choiceMode } = aggregationConfig[aggregationKey]
+
   return (
     <>
-      <div className="flex w-full flex-row font-condensed">
+      <div
+        className={classNames(
+          'w-full font-condensed',
+          choiceMode === 'multi' ? 'grid grid-cols-4' : 'group flex flex-row'
+        )}
+      >
         {sortedBuckets.map((bucketKey, index) => {
-          if (bucketKey === 'bothButton') {
-            return (
-              <ButtonSingleChoiceBoth
-                key="bothButton"
-                category={category}
-                bucketKey="bothButton"
-                buckets={buckets}
-                aggregationKey={aggregationKey}
-                handleClick={handleSingleChoice}
-              />
-            )
+          if (bucketKey === 'noChoice') {
+            if (showAsIcons) {
+              return (
+                <ButtonIconNoChoice
+                  key="noChoice"
+                  category={category}
+                  bucketKey="noChoice"
+                  buckets={buckets}
+                  aggregationKey={aggregationKey}
+                  handleClick={handleSingleChoice}
+                />
+              )
+            }
+
+            if (choiceMode === 'single') {
+              return (
+                <ButtonSingleChoiceNoChoice
+                  key="noChoice"
+                  category={category}
+                  bucketKey="noChoice"
+                  buckets={buckets}
+                  aggregationKey={aggregationKey}
+                  handleClick={handleSingleChoice}
+                />
+              )
+            }
           }
+
           const bucket = results.data.aggregations[
             aggregationKey
           ].buckets.filter((b) => b.key === bucketKey)?.[0]
+
           // Guard for `keyFromTranslationMissingInItemjs`
           if (!bucket) return null
-          const singleChoise =
-            aggregationConfig[aggregationKey].choiceMode === 'single'
-          if (singleChoise) {
+
+          if (showAsIcons) {
+            return (
+              <ButtonIcon
+                key={bucketKey}
+                category={category}
+                bucket={bucket}
+                aggregationKey={aggregationKey}
+                handleClick={handleSingleChoice}
+                paginationTotal={results?.pagination?.total}
+              />
+            )
+          }
+
+          if (choiceMode === 'single') {
             return (
               <ButtonSingleChoice
                 key={bucketKey}
@@ -81,13 +116,13 @@ export const FacetsButtons: React.FC<Props> = ({
               />
             )
           }
+
           return (
             <ButtonMultiChoice
               key={bucketKey}
               category={category}
               buckets={buckets}
               bucket={bucket}
-              index={index}
               aggregationKey={aggregationKey}
               handleClick={handleMultiChoice}
               paginationTotal={results?.pagination?.total}
