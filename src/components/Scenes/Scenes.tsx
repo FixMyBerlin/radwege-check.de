@@ -208,7 +208,7 @@ export const Scenes: React.FC<Props> = ({
       <div className="flex h-screen flex-row">
         <Facets
           category={category}
-          className="z-20 hidden w-72 flex-none overflow-scroll overscroll-contain bg-gray-100 shadow-[0_0_10px_0_rgba(0,_0,_0,_0.2)] lg:block"
+          className="z-20 hidden w-72 flex-none bg-gray-100 shadow-[0_0_10px_0_rgba(0,_0,_0,_0.2)] lg:block"
           results={results}
           handleResetFilter={searchFilters && handleResetFilter}
           handleSingleChoice={handleSingleChoice}

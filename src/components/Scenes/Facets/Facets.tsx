@@ -46,7 +46,9 @@ export const Facets: React.FC<FacetsProps> = ({
   )
 
   return (
-    <nav className={classNames(className, 'overflow-scroll')}>
+    <nav
+      className={classNames(className, 'overflow-y-scroll overscroll-contain')}
+    >
       <Logo visible={showLogo} />
 
       <div
