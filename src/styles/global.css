@@ -15,7 +15,8 @@
   }
 }
 
-@layer components {
+@layer utilities {
+  /* See https://github.com/tailwindlabs/tailwindcss/discussions/8487 */
   .snap-x-not-y {
     scroll-snap-type: x mandatory;
     scroll-snap-type: y proximity;
