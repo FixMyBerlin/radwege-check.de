@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React, { useState } from 'react'
 import { Link } from '~/components/Link'
 import { SceneImage } from '../../SceneImage'
@@ -28,8 +29,15 @@ export const ResultColumn: React.FC<Props> = ({
   const [sceneImage, setSceneImage] = useState(scene.sceneId)
   const handleImageChange = (sceneId: string) => setSceneImage(sceneId)
 
+  const safeZoneForIosSafariNavigationBar = 'mb-[35rem] lg:mb-0'
+
   return (
-    <article className="box-content h-full w-56 flex-none snap-start py-4 px-1.5 first:pl-4 lg:w-48 lg:px-2">
+    <article
+      className={classNames(
+        safeZoneForIosSafariNavigationBar,
+        'box-content h-full w-56 flex-none snap-start py-4 px-1.5 first:pl-4 lg:w-48 lg:px-2'
+      )}
+    >
       <h2 className="sr-only">
         <Link to={scene.path}>Szene {scene.sceneId}</Link>
       </h2>
