@@ -6,7 +6,7 @@
   "license": "AGPL-3.0",
   "keywords": [],
   "scripts": {
-    "start": "gatsby develop",
+    "start": "gatsby develop --open",
     "mobile": "gatsby develop -H 0.0.0.0",
     "cs": "npm run clean && npm run start",
     "build": "gatsby build",
