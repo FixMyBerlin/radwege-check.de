@@ -3,13 +3,14 @@ import React, { useState } from 'react'
 import { Link } from '~/components/Link'
 import { SceneImage } from '../../SceneImage'
 import {
+  SceneCategory,
   ScenePrimaryProps,
   SceneSecondaryProps,
-  SceneCategory,
   SearchOptionProps,
 } from '../../types'
 import { ResultCells } from '../ResultCells'
-import { ResultStackedBarchart } from '../ResultStackedBarchart'
+import { ResultNumbers } from '../ResultNumbers'
+import { ShowTableProps } from '../Results'
 
 export type PrevBucketValues = { [key: string]: string | number }
 
@@ -18,13 +19,15 @@ type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps
   index?: number
   searchFilters?: SearchOptionProps['filters']
-}
+} & ShowTableProps
 
 export const ResultColumn: React.FC<Props> = ({
   category,
   scene,
   index = 0,
   searchFilters = {},
+  showTable,
+  setShowTable,
 }) => {
   const [sceneImage, setSceneImage] = useState(scene.sceneId)
   const handleImageChange = (sceneId: string) => setSceneImage(sceneId)
@@ -52,9 +55,17 @@ export const ResultColumn: React.FC<Props> = ({
         </Link>
       </section>
 
-      <div className="mb-1 h-28">
-        <ResultStackedBarchart scene={scene} handleHover={handleImageChange} />
-      </div>
+      <ResultNumbers
+        scene={scene}
+        handleHover={handleImageChange}
+        showTable={showTable}
+        setShowTable={setShowTable}
+        wrapperClass={classNames(
+          'border-b border-dotted py-2 lg:py-3.5',
+          showTable ? 'h-96' : 'h-40'
+        )}
+        chartClass="border-b border-dotted"
+      />
 
       <ResultCells
         category={category}

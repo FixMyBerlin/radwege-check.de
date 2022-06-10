@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ResultProps, SceneCategory, SearchOptionProps } from '../types'
 import { ResultColumn } from './ResultColumn'
 
@@ -8,12 +8,19 @@ type Props = {
   searchFilters: SearchOptionProps['filters']
 }
 
+export type ShowTableProps = {
+  showTable: boolean
+  setShowTable: null | ((showTable: boolean) => void) // null if not used
+}
+
 export const Results: React.FC<Props> = ({
   category,
   results,
   searchFilters,
 }) => {
   const resultItems = results?.data?.items || []
+
+  const [showTable, setShowTable] = useState(false)
 
   return (
     <div className="snap-x-not-y z-0 flex h-full flex-grow flex-row overflow-scroll overscroll-contain">
@@ -24,6 +31,8 @@ export const Results: React.FC<Props> = ({
           scene={scene}
           index={index}
           searchFilters={searchFilters}
+          showTable={showTable}
+          setShowTable={setShowTable}
         />
       ))}
     </div>

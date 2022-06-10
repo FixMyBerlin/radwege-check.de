@@ -6,6 +6,7 @@ import '@fontsource/barlow/600.css' // .font-semibold
 import '@fontsource/barlow/700.css' // .font-bold
 // Variants: https://www.npmjs.com/package/@fontsource/barlow-semi-condensed
 import '@fontsource/barlow-semi-condensed' // 400; .font-normal .font-semi
+import '@fontsource/barlow-semi-condensed/500.css' // .font-medium .font-semi
 import '@fontsource/barlow-semi-condensed/600.css' // .font-semibold .font-semi
 import '@fontsource/barlow-semi-condensed/700.css' // .font-bold .font-semi
 // Variants: https://www.npmjs.com/package/@fontsource/barlow-semi-condensed

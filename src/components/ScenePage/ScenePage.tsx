@@ -1,5 +1,4 @@
 import { InformationCircleIcon } from '@heroicons/react/outline'
-import classNames from 'classnames'
 import React from 'react'
 import Logo from '~/components/assets/radwegecheck-logo.svg'
 import { MetaTags } from '../Layout'
@@ -7,7 +6,7 @@ import { Link, PrintButton, TwitterButton } from '../Link'
 import { Popover } from '../Popover'
 import { SceneImage } from '../Scenes'
 import { ResultCells } from '../Scenes/Results/ResultCells'
-import { ResultStackedBarchart } from '../Scenes/Results/ResultStackedBarchart'
+import { ResultNumbers } from '../Scenes/Results/ResultNumbers'
 import { sceneImageUrl } from '../Scenes/SceneImage'
 import {
   SceneCategory,
@@ -15,7 +14,6 @@ import {
   SceneSecondaryProps,
 } from '../Scenes/types'
 import { formatNumber } from '../utils'
-import { dataTable } from './dataTable'
 
 type Props = {
   category: SceneCategory
@@ -24,7 +22,6 @@ type Props = {
 }
 
 export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
-  const table = dataTable(scene)
   const categoryTranslation =
     category === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
 
@@ -116,7 +113,7 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
           </div>
 
           <div className="order-2 flex h-96 flex-col lg:order-none">
-            <div className="mb-5 flex items-center">
+            <div className="flex items-center">
               Durchschnittliche Bewertungen dieser Szene zur subjektiven
               Sicherheit.{' '}
               <Popover
@@ -150,34 +147,12 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
                 (sicher).
               </Popover>
             </div>
-            <ResultStackedBarchart
+            <ResultNumbers
               scene={scene}
-              classNameBarchartHeight="h-full"
-              iconWhenEmpty
+              showTable
+              setShowTable={null}
+              wrapperClass="h-full"
             />
-            <table className="mt-1 w-full text-xxs">
-              <tbody>
-                {Object.keys(table).map((key) => {
-                  return (
-                    <tr
-                      key={key}
-                      className={classNames(key === 'Mittelwert' && 'border-t')}
-                    >
-                      <th className="w-2/5 text-left font-semibold">{key}</th>
-                      <td className="w-1/5 pr-2 text-right">
-                        {table[key][0] || '-'}
-                      </td>
-                      <td className="w-1/5 pr-2 text-right">
-                        {table[key][1] || '-'}
-                      </td>
-                      <td className="w-1/5 pr-2 text-right">
-                        {table[key][2] || '-'}
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
