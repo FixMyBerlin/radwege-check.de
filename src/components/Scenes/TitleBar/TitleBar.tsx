@@ -64,7 +64,7 @@ export const TitleBar: React.FC<Props> = ({
           <div className="text-center text-sm leading-4 text-neutral-500 lg:ml-3">
             {' '}
             Ø Score
-            <br className="lg:hidden" />
+            <br className="lg:hidden" />{' '}
             {formatPercent(resultScoreAverage, { precision: 0 }) || '-'}
           </div>
         )}
