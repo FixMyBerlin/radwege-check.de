@@ -100,7 +100,7 @@ export const PresetSlider: React.FC<Props> = ({
                     )}
                     <div
                       className={classNames(
-                        'absolute right-3 bottom-16 inline-flex items-center rounded-md border border-transparent bg-white/80 px-4 py-2 font-sans font-medium text-gray-800 shadow-sm'
+                        'absolute right-3 bottom-16 inline-flex items-center rounded-md border border-transparent bg-white/80 px-4 py-2 font-sans font-normal text-gray-800 shadow-sm'
                       )}
                     >
                       {' '}

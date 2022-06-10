@@ -16,7 +16,7 @@ export const buttonClassNames = ({
   uiCanpress,
 }: Props) => {
   return classNames(
-    'inline-flex h-12 w-full flex-col items-center justify-center border border-gray-300 p-1 text-sm font-medium leading-4',
+    'inline-flex h-12 w-full flex-col items-center justify-center border border-gray-300 p-1 text-sm font-normal leading-4',
     '[word-break:break-word] [hyphens:auto]',
     { 'rounded-l-md': firstElement },
     { '-ml-px': !firstElement },
