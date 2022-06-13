@@ -5,7 +5,7 @@ import { NewsletterWidget } from '~/components/NewsletterWidget'
 
 const CommingSoon: React.FC = () => {
   return (
-    <LayoutArticle hideBetaModal>
+    <LayoutArticle>
       <MetaTags
         noindex
         title="Radwege-Check | Diese Seite ist noch in Arbeit."

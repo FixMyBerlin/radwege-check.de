@@ -4,20 +4,11 @@ import { ArticleLogo } from './ArticleLogo'
 
 type Props = {
   location?: any // TODO: define type
-  hideBetaModal?: boolean
 }
 
-export const LayoutArticle: React.FC<Props> = ({
-  location,
-  hideBetaModal,
-  children,
-}) => {
+export const LayoutArticle: React.FC<Props> = ({ location, children }) => {
   return (
-    <Layout
-      location={location}
-      hideBetaModal={hideBetaModal}
-      className="bg-white"
-    >
+    <Layout location={location} className="bg-white">
       <ArticleLogo />
       <article className="prose mx-auto -mt-20 mb-20 max-w-2xl bg-white p-5 pt-8 lg:rounded-md lg:p-10">
         {children}
