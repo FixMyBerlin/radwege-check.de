@@ -42,7 +42,9 @@ export const ResultCell: React.FC<Props> = ({
       title={`${keyName}: ${scene[keyName]}`}
       className={classNames(
         'border-b py-2 hover:bg-stone-50 lg:py-3.5',
-        groupEndIndicator ? 'border-dashed border-gray-300' : 'border-dotted'
+        groupEndIndicator
+          ? 'border-dashed border-stone-300'
+          : 'border-dotted border-stone-200'
       )}
     >
       <h3
