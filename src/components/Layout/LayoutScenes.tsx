@@ -1,5 +1,4 @@
 import React from 'react'
-import { BetaModal } from './BetaModal'
 
 type Props = {
   children: React.ReactNode
