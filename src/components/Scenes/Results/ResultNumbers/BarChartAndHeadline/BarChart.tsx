@@ -1,4 +1,3 @@
-import classNames from 'classnames'
 import React from 'react'
 import { formatPercent } from '~/components/utils'
 import { ScenePrimaryProps } from '../../../types'

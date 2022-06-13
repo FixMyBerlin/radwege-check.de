@@ -91,11 +91,6 @@ export const Scenes: React.FC<Props> = ({
   // The currentPresetKey is updated in an useEffect.
   // This way, we also handle the case when the page is loaded with searchFilters that match a preset.searchFilterString.
   const handlePresetClick = (presetKey: string) => {
-    console.log({
-      presets,
-      a: presetKey,
-      string: presets[presetKey].searchFilterString,
-    })
     setSearchFilters(presets[presetKey].searchFilterString)
   }
 
