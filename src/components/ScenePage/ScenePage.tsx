@@ -13,6 +13,7 @@ import {
   ScenePrimaryProps,
   SceneSecondaryProps,
 } from '../Scenes/types'
+import { titlePrimaryScene } from '../Scenes/utils'
 import { formatNumber } from '../utils'
 
 type Props = {
@@ -46,8 +47,8 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
               <Logo className="h-full" alt="Radwege-Check" />
             </Link>
           </div>
-          <h1 className="col-span-3 w-full text-2xl">
-            Szene {categoryTranslation}, ID <code>#{scene.sceneId}</code>
+          <h1 className="silbentrennung col-span-3 w-full text-2xl lg:h-14">
+            {titlePrimaryScene(scene)}
           </h1>
         </div>
 
