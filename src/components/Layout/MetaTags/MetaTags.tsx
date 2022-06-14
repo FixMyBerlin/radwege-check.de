@@ -68,7 +68,7 @@ export const MetaTags: React.FC<Props> = ({
       <meta name="twitter:card" content="summary_large_image" />
 
       {Object.entries(imageSize || {}).map(([key, value]) => (
-        <meta property={`og:image:${key}`} content={`${value}`} />
+        <meta key={key} property={`og:image:${key}`} content={`${value}`} />
       ))}
 
       {article ? <meta property="og:type" content="article" /> : null}
