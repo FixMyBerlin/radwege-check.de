@@ -44,7 +44,6 @@ export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
         name={aggregationKey}
         type="radio"
         checked={uiSelected}
-        defaultChecked={uiSelected}
         disabled={!uiCanpress}
         onChange={() =>
           handleClick({

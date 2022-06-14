@@ -66,7 +66,6 @@ export const ButtonMultiChoice: React.FC<Props> = ({
         name={aggregationKey}
         type="checkbox"
         checked={uiSelected}
-        defaultChecked={uiSelected}
         disabled={!uiCanpress}
         onChange={() =>
           handleClick({
