@@ -38,7 +38,7 @@ export const ResultColumn: React.FC<Props> = ({
     <article
       className={classNames(
         safeZoneForIosSafariNavigationBar,
-        'box-content h-full w-56 flex-none snap-start py-4 px-1.5 first:pl-4 lg:w-48 lg:px-2'
+        '_snap-start box-content h-full w-56 flex-none py-4 px-1.5 first:pl-4 lg:w-48 lg:px-2'
       )}
     >
       <h2 className="sr-only">
