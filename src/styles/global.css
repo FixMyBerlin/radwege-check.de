@@ -25,4 +25,9 @@
     scroll-snap-type: y none;
     */
   }
+
+  .silbentrennung {
+    word-break: break-word;
+    hyphens: auto;
+  }
 }
