@@ -33,11 +33,13 @@ export const Footer: React.FC = () => {
         <section>
           <div className="mt-8 flex flex-col gap-10 lg:mt-1 lg:flex-row lg:gap-12">
             <div className="lg:w-[14rem]">
-              <h3 className="mb-3 text-stone-300">Woher stammen die Daten?</h3>
+              <h3 className="mb-3 font-semibold text-stone-100">
+                Über die Daten:
+              </h3>
               <FooterLinkList linkList={footerLinks.report} />
             </div>
             <div className="lg:w-[14rem]">
-              <h3 className="mb-3 text-stone-300">Ergebnisse</h3>
+              <h3 className="mb-3 font-semibold text-stone-100">Ergebnisse:</h3>
               <FooterLinkList linkList={footerLinks.results} />
             </div>
             <div className="lg:w-[14rem]">
