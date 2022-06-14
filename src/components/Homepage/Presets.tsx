@@ -99,7 +99,11 @@ export const Presets: React.FC = () => {
         />
         <p>
           <Link button to={allButtonBySceneCategory[sceneCategory].url}>
-            Alle {allButtonBySceneCategory[sceneCategory].total} Ergebnisse
+            Alle{' '}
+            {Number(
+              allButtonBySceneCategory[sceneCategory].total
+            ).toLocaleString()}{' '}
+            Ergebnisse
           </Link>
         </p>
       </div>
