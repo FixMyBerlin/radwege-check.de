@@ -56,7 +56,7 @@ export const TitleBar: React.FC<Props> = ({
             : ''
         }
       >
-        {total || '-'} Ergebnisse
+        {Number(total).toLocaleString() || '-'} Ergebnisse
       </h1>
       <div className="flex items-center gap-2 lg:gap-5">
         {/* TODO: Find a way to show the average for a given filter-set for > 200 results. */}
