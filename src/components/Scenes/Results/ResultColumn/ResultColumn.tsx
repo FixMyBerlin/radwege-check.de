@@ -32,7 +32,7 @@ export const ResultColumn: React.FC<Props> = ({
   const [sceneImage, setSceneImage] = useState(scene.sceneId)
   const handleImageChange = (sceneId: string) => setSceneImage(sceneId)
 
-  const safeZoneForIosSafariNavigationBar = 'mb-[35rem] lg:mb-0'
+  const safeZoneForIosSafariNavigationBar = 'mb-[40rem] lg:mb-0'
 
   return (
     <article
