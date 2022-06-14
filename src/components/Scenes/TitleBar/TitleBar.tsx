@@ -60,14 +60,14 @@ export const TitleBar: React.FC<Props> = ({
       </h1>
       <div className="flex items-center gap-2 lg:gap-5">
         {/* TODO: Find a way to show the average for a given filter-set for > 200 results. */}
-        {total <= perPage && resultScoreAverage && (
+        {resultScoreAverage && total <= perPage ? (
           <div className="text-center text-sm leading-4 text-neutral-500 lg:ml-3">
             {' '}
             Ø Score
             <br className="lg:hidden" />{' '}
             {formatPercent(resultScoreAverage, { precision: 0 }) || '-'}
           </div>
-        )}
+        ) : null}
         <SearchOrderDropdown
           searchOrder={searchOrder}
           setSearchOrder={setSearchOrder}
