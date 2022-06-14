@@ -51,7 +51,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
       htmlFor={formKey}
       className={classNames(
         'flex w-full flex-col items-center justify-start gap-1 border-r border-gray-300 px-1 py-1 text-center leading-4 first:pl-0 last:border-r-0 last:pr-0',
-        '[word-break:break-word] [hyphens:auto]',
+        'silbentrennung',
         { 'cursor-pointer hover:bg-yellow-50': uiCanpress },
         { 'cursor-not-allowed': !uiCanpress }
       )}
