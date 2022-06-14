@@ -1,9 +1,8 @@
-import classNames from 'classnames'
 import React from 'react'
-import { useAggregationConfig } from '../../hooks'
-import { ResultBucketProps, SceneCategory } from '../../types'
-import { buttonClassNames } from '../utils'
+import { useAggregationConfig } from '../../../hooks'
+import { ResultBucketProps, SceneCategory } from '../../../types'
 import { HandleSingleChoice } from './ButtonSingleChoice'
+import { buttonClassNames } from './utils'
 
 type Props = {
   aggregationKey: string
@@ -13,7 +12,7 @@ type Props = {
   handleClick: HandleSingleChoice
 }
 
-export const ButtonSingleChoiceBoth: React.FC<Props> = ({
+export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
   aggregationKey,
   category,
   bucketKey,
@@ -21,7 +20,6 @@ export const ButtonSingleChoiceBoth: React.FC<Props> = ({
   handleClick,
 }) => {
   const aggregationConfig = useAggregationConfig(category)
-  const { showAsIcons } = aggregationConfig[aggregationKey]
 
   // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
   const anyOfGroupSelected = buckets.some((b) => b.selected)
@@ -30,28 +28,31 @@ export const ButtonSingleChoiceBoth: React.FC<Props> = ({
   const firstElement = true
   const lastElement = false
 
+  const { labelClasses, inputClasses } = buttonClassNames({
+    firstElement,
+    lastElement,
+    uiSelected,
+    uiCanpress,
+  })
+
+  const formKey = `${aggregationKey}-${bucketKey}`
+
   return (
-    <button
-      key={`${aggregationKey}__${bucketKey}`}
-      type="button"
-      className={classNames(
-        buttonClassNames({
-          firstElement,
-          lastElement,
-          uiSelected,
-          uiCanpress,
-        }),
-        { '!h-8': showAsIcons }
-      )}
-      onClick={() =>
-        handleClick({
-          aggregationKey,
-          selectedBucketKey: null,
-        })
-      }
-      disabled={!uiCanpress}
-      title=""
-    >
+    <label htmlFor={formKey} className={labelClasses} title="">
+      <input
+        id={formKey}
+        name={aggregationKey}
+        type="radio"
+        checked={uiSelected}
+        disabled={!uiCanpress}
+        onChange={() =>
+          handleClick({
+            aggregationKey,
+            selectedBucketKey: null,
+          })
+        }
+        className={inputClasses}
+      />
       <span
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
@@ -59,6 +60,6 @@ export const ButtonSingleChoiceBoth: React.FC<Props> = ({
             aggregationConfig[aggregationKey].buckets[bucketKey] || 'TODO',
         }}
       />
-    </button>
+    </label>
   )
 }

@@ -2,9 +2,11 @@ import classNames from 'classnames'
 import React from 'react'
 import { useAggregationConfig } from '../hooks'
 import { ResultProps, SceneCategory } from '../types'
-import { HandleMultiChoice } from './ButtonMultiChoice/ButtonMultiChoice'
-import { HandleSingleChoice } from './ButtonSingleChoice/ButtonSingleChoice'
-import { FacetsButtons } from './FacetsButtons'
+import {
+  FacetsButtons,
+  HandleMultiChoice,
+  HandleSingleChoice,
+} from './FacetsButtons'
 import { FacetsHeadline } from './FacetsHeadline'
 import { FooterLinks } from './FooterLinks'
 import { Logo } from './Logo'

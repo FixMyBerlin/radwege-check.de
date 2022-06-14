@@ -1,13 +1,14 @@
 import React, { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import classNames from 'classnames'
-import { buttonStyles } from '../Link'
+import { buttonStyles, Link } from '../Link'
 
 type Props = {
   title: string
   titleIcon?: React.ReactNode
   closeButton?: string
   className?: string
+  showLegalLine?: boolean
   children: React.ReactNode
 }
 
@@ -16,6 +17,7 @@ export const Modal: React.FC<Props> = ({
   titleIcon,
   closeButton,
   className,
+  showLegalLine = false,
   children,
 }) => {
   const [open, setOpen] = useState(true)
@@ -80,6 +82,16 @@ export const Modal: React.FC<Props> = ({
                       {closeButton}
                     </button>
                   </div>
+                )}
+                {showLegalLine && (
+                  <p className="text-xss mt-4 space-x-5 text-center">
+                    <Link to="/datenschutz" className="text-xxs text-gray-500">
+                      Datenschutz
+                    </Link>
+                    <Link to="/kontakt" className="text-xxs text-gray-500">
+                      Impressum
+                    </Link>
+                  </p>
                 )}
               </Dialog.Panel>
             </Transition.Child>

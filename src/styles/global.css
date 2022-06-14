@@ -17,8 +17,17 @@
 
 @layer utilities {
   /* See https://github.com/tailwindlabs/tailwindcss/discussions/8487 */
-  .snap-x-not-y {
+  ._snap-x-not-y {
+    /*
+    // I give up, this feature is not ready for prime time, yet.
+    // Desktop (esp. Firefox) and mobile browsers behave very differently and make the page unusable when broken…
     scroll-snap-type: x mandatory;
     scroll-snap-type: y none;
+    */
+  }
+
+  .silbentrennung {
+    word-break: break-word;
+    hyphens: auto;
   }
 }

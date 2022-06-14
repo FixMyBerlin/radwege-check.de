@@ -18,11 +18,11 @@ export const checkDataConsistency = ({ category, aggregationKey }: Props) => {
   if (
     choiceMode === 'single' &&
     Object.keys(aggregationConfig[aggregationKey].buckets).filter(
-      (k) => k === 'bothButton'
+      (k) => k === 'noChoice'
     ).length === 0
   ) {
     console.log({
-      ERROR: `When choiceMode is 'single' there needs to be "bothButton" as well.`,
+      ERROR: `When choiceMode is 'single' there needs to be "noChoice" as well.`,
       aggregationKey,
     })
   }

@@ -115,7 +115,7 @@ export const PresetSlider: React.FC<Props> = ({
                         'absolute bottom-3 right-3'
                       )}
                     >
-                      {preset.resultTotal} Ergebnisse
+                      {Number(preset.resultTotal).toLocaleString()} Ergebnisse
                     </div>
                   </>
                 </Link>

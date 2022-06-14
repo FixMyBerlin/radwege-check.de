@@ -7,7 +7,7 @@ type Props = {
   className?: string
   /** @description to access the current location; see links in readme. */
   location?: any // TODO: define type
-  hideBetaModal?: boolean
+  showBetaModal?: boolean
   children: React.ReactNode
 }
 
@@ -15,12 +15,12 @@ type Props = {
 export const Layout: React.FC<Props> = ({
   className,
   location: _location, // TODO later… or remove
-  hideBetaModal = false,
+  showBetaModal = false,
   children,
 }) => {
   return (
     <div className="flex h-full flex-col">
-      {!hideBetaModal && <BetaModal />}
+      {showBetaModal && <BetaModal />}
       <main className={classNames(className, 'z-0 flex-grow')}>{children}</main>
       <Footer />
     </div>

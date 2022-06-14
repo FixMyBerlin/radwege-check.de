@@ -10,7 +10,7 @@ export const ResetFilterButton: React.FC<Props> = ({ onClick }) => {
     <p className="mb-6">
       <button
         type="button"
-        onClick={onClick}
+        onClick={onClick && onClick}
         className={classNames(
           onClick
             ? 'hover:bg-yellow-100'

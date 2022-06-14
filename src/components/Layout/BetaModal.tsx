@@ -11,11 +11,12 @@ export const BetaModal = () => {
       titleIcon={<PersonDigging className="h-10 w-10" />}
       closeButton="Alles klar"
       className="print:hidden"
+      showLegalLine
     >
       <p>
         Willkommen! <br />
-        Der Radwege-Check befindet sich in der Testphase. Wir entwickeln ihn zur
-        Zeit von Woche zu Woche weiter.
+        Der Radwege-Check befindet sich in der Testphase. <br />
+        Wir entwickeln ihn zur Zeit von Woche zu Woche weiter.
       </p>
 
       <h2 className="mt-8 font-semi text-xl font-semibold">

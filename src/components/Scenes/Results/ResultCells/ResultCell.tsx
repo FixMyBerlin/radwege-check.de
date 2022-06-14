@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import React from 'react'
 import { TranslationMissing } from '~/components/TextHelper'
 import { formatMeter } from '~/components/utils'
-import { Icons } from '../../Facets/ButtonSingleChoice/Icons'
+import { Icons } from '../../Facets/FacetsButtons'
 import { useAggregationConfig } from '../../hooks'
 import {
   ScenePrimaryProps,

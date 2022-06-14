@@ -25,7 +25,7 @@ export const FacetsHeadline: React.FC<Props> = ({
       title={aggregationKey}
       className={classNames(
         'mb-1',
-        forIcons ? 'text-xs' : 'text-sm font-semibold'
+        forIcons ? 'text-xs' : 'font-semi font-semibold'
       )}
     >
       {text}
