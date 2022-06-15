@@ -14,7 +14,7 @@ type Props = {
   mailBody?: string
   title?: string
   children: React.ReactNode
-}
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>
 
 const linkStyles =
   'text-emerald-500 hover:text-emerald-600 hover:underline active:underline'
@@ -30,8 +30,8 @@ export const Link: React.FC<Props> = ({
   button = false,
   mailSubject,
   mailBody,
-  title,
   children,
+  ...props
 }) => {
   const classes = classNames(
     className,
@@ -58,19 +58,14 @@ export const Link: React.FC<Props> = ({
 
   if (external || blank || mailto) {
     return (
-      <a
-        href={mailto || to}
-        className={classes}
-        {...newWindowProps}
-        title={title}
-      >
+      <a href={mailto || to} className={classes} {...newWindowProps} {...props}>
         {children}
       </a>
     )
   }
 
   return (
-    <GatsbyLink to={to} className={classes} title={title}>
+    <GatsbyLink to={to} className={classes} {...props}>
       {children}
     </GatsbyLink>
   )
