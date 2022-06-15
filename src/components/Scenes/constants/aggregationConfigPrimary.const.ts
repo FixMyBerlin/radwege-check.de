@@ -149,7 +149,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
     buckets: {
       noChoice: 'Egal',
       low_traffic_volumen: 'Niedrig',
-      high_traffic_volumen_with_heavy_vehicles: 'Hoch (mit LKW)',
+      high_traffic_volumen_with_heavy_vehicles: 'Hoch<br />(mit LKW)',
     },
     resultBuckets: {
       low_traffic_volumen: 'Niedrig (ohne Schwerlastverkehr)',
