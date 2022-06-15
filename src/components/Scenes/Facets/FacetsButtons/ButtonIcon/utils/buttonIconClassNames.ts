@@ -12,15 +12,15 @@ export const buttonIconClassNames = ({ uiSelected, uiCanpress }: Props) => {
       'hover:bg-yellow-50': uiCanpress,
     },
     {
+      'cursor-not-allowed': !uiCanpress,
+    },
+    {
       'border-b-2 border-b-brand-yellow': uiSelected,
     }
   )
   const iconClasses = classNames(
     {
       'cursor-pointer border-gray-300 text-gray-600': uiCanpress,
-    },
-    {
-      'cursor-not-allowed': !uiCanpress,
     },
     {
       'text-gray-600': !uiCanpress && uiSelected,

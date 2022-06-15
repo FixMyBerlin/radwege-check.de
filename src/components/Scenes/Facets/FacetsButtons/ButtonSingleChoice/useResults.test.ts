@@ -8,9 +8,8 @@ describe('useResults()', () => {
       bucketSelected: false,
     })
     expect(results).toMatchObject({
-      resultTotal: 0,
       resultFuture: 0,
-      uiSelected: true, // we show an empty result as selected
+      uiSelected: false,
       uiCanpress: false,
     })
   })
@@ -22,9 +21,8 @@ describe('useResults()', () => {
       bucketSelected: false,
     })
     expect(results).toMatchObject({
-      resultTotal: 100,
       resultFuture: 100,
-      uiSelected: true, // we show a result that would not change anything as selected
+      uiSelected: false,
       uiCanpress: false,
     })
   })
@@ -36,7 +34,6 @@ describe('useResults()', () => {
       bucketSelected: false,
     })
     expect(results).toMatchObject({
-      resultTotal: 100,
       resultFuture: 10,
       uiSelected: false,
       uiCanpress: true,
@@ -50,7 +47,6 @@ describe('useResults()', () => {
       bucketSelected: true,
     })
     expect(results).toMatchObject({
-      resultTotal: 100,
       resultFuture: 100,
       uiSelected: true,
       uiCanpress: false,
