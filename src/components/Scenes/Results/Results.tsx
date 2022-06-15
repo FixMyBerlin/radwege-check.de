@@ -23,9 +23,10 @@ export const Results: React.FC<Props> = ({
 
   const [showTable, setShowTable] = useState(false)
 
+  // We force the scroll position to left-top whenever the results changed.
+  // Otherwise users might not notice that results change "left" of what they are looking at.
   useEffect(() => {
-    resultsRef.current.scrollLeft = 0
-    resultsRef.current.scrollTop = 0
+    resultsRef.current.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }, [resultItems])
 
   return (
