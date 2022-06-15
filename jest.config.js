@@ -1,3 +1,4 @@
+/** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = {
   cacheDirectory: '<rootDir>/.cache/unit',
   globals: {
@@ -24,7 +25,7 @@ module.exports = {
     '\\.cache',
     '<rootDir>.*/public',
   ],
-  testURL: `http://localhost`,
+  testEnvironmentOptions: { url: `http://localhost` },
   transform: { '^.+\\.[tj]sx?$': 'ts-jest' },
   transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
 }
