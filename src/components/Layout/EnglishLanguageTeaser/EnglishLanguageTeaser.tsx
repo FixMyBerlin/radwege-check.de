@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import React from 'react'
+import { isDev } from '~/components/utils'
 import { Link } from '../../Link'
 import GoogleTranslateLogo from './assets/google-translate-logo.svg'
 
@@ -13,7 +14,6 @@ export const EnglishLanguageTeaser: React.FC<Props> = ({ positionBottom }) => {
   // Show only if user does not speak German
   // … but show always on DEV.
   const speaksDe = navigator.languages.some((l) => l.includes('de'))
-  const isDev = window.location.host.includes('localhost')
   if (speaksDe && !isDev) return null
 
   // Build translations URL and keep existing params
