@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import React from 'react'
+import { Spinner } from '~/components/Spinner'
 import { useAggregationConfig } from '../hooks'
 import { ResultProps, SceneCategory } from '../types'
 import {
@@ -22,6 +23,7 @@ export type FacetsProps = {
   handleMultiChoice: HandleMultiChoice
   className?: string
   showLogo: boolean
+  showSpinner: boolean
 } & PresetDropdownProps
 
 export const Facets: React.FC<FacetsProps> = ({
@@ -35,6 +37,7 @@ export const Facets: React.FC<FacetsProps> = ({
   handlePresetClick,
   className,
   showLogo,
+  showSpinner,
 }) => {
   const aggregations = results?.data?.aggregations
   const aggregationConfig = useAggregationConfig(category)
@@ -49,9 +52,17 @@ export const Facets: React.FC<FacetsProps> = ({
 
   return (
     <nav
-      className={classNames(className, 'overflow-y-scroll overscroll-contain')}
+      className={classNames(
+        className,
+        'relative overflow-y-scroll overscroll-contain'
+      )}
     >
       <Logo visible={showLogo} />
+
+      <Spinner
+        visible={showSpinner}
+        className="absolute top-20 right-4 xl:top-4"
+      />
 
       <div
         className={classNames('z-0 mb-4 bg-gray-200 px-3 pt-5 pb-1 shadow-md')}
@@ -88,7 +99,6 @@ export const Facets: React.FC<FacetsProps> = ({
           )
         })}
       </div>
-
       <div className="px-3">
         {furtherAggregations.map(([aggregationKey, aggregation]) => {
           const { buckets } = aggregation
@@ -125,7 +135,6 @@ export const Facets: React.FC<FacetsProps> = ({
           )
         })}
       </div>
-
       <FooterLinks />
     </nav>
   )
