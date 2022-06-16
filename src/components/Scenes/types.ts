@@ -18,6 +18,7 @@ export type SceneCategory = 'primary' | 'secondary'
 export type SceneSecondaryProps = {
   sceneId: string
   sceneIdCar: string
+  sceneIdPedestrian: never
 
   parkingCategory
   carriagewayDirection
@@ -41,6 +42,14 @@ export type SceneSecondaryProps = {
   voteCarCount: number | undefined
   voteCarMeans: number | undefined
   voteCarScore: number | undefined
+
+  votePedestrian0Unsafe: never
+  votePedestrian1RatherUnsafe: never
+  votePedestrian2Save: never
+  votePedestrian3VerySave: never
+  votePedestrianCount: never
+  votePedestrianMeans: never
+  votePedestrianScore: never
 
   path: string
 }
