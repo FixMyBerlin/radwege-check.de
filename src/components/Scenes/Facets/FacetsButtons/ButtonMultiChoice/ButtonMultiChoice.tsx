@@ -1,9 +1,10 @@
-import { renderToString } from 'react-dom/server'
 import classNames from 'classnames'
 import React from 'react'
+import { renderToString } from 'react-dom/server'
+import { isDev } from '~/components/utils'
 import { useAggregationConfig } from '../../../hooks'
-import { ResultBucketProps, SceneCategory } from '../../../types'
 import BikeIcon from '../../../Results/ResultNumbers/assets/bike-icon.svg'
+import { ResultBucketProps, SceneCategory } from '../../../types'
 import { useResults } from './useResults'
 
 export type HandleMultiChoiceProps = {
@@ -35,7 +36,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
   handleClick,
   paginationTotal,
 }) => {
-  const { resultTotal, resultFuture, uiSelected, uiCanpress } = useResults({
+  const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
     bucketCount: bucket?.doc_count,
     bucketSelected: bucket?.selected,
@@ -55,11 +56,23 @@ export const ButtonMultiChoice: React.FC<Props> = ({
         { 'cursor-pointer hover:bg-yellow-50': uiCanpress },
         { 'cursor-not-allowed': !uiCanpress }
       )}
-      title={
-        resultTotal === resultFuture
-          ? 'Auswahl nicht möglich da keine Änderung der Ergebnisse.'
-          : `Ergebnisse ${resultFuture || 'todo'}`
-      }
+      title={[
+        uiCanpress
+          ? `Ergebnisse ${resultFuture ?? 'todo'}`
+          : 'Auswahl würde die Ergebnisse nicht verändern.',
+        isDev &&
+          JSON.stringify({
+            resultFuture,
+            uiSelected,
+            uiCanpress,
+            total: paginationTotal,
+            bucketCount: bucket?.doc_count,
+            bucketSelected: bucket?.selected,
+            anySelected: buckets.some((b) => b.selected),
+          }),
+      ]
+        .filter(Boolean)
+        .join('\n')}
     >
       <input
         id={formKey}
@@ -98,9 +111,11 @@ export const ButtonMultiChoice: React.FC<Props> = ({
         dangerouslySetInnerHTML={{
           __html:
             aggregationConfig[aggregationKey].buckets[bucket.key].replace(
-              'Fahrrad',
+              'Fahrrad ',
               renderToString(
-                <BikeIcon className="inline h-3 w-auto align-baseline" />
+                <>
+                  <BikeIcon className="inline h-3 w-auto align-baseline" />{' '}
+                </>
               )
             ) || 'TODO',
         }}

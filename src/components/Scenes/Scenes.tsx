@@ -46,6 +46,8 @@ export const Scenes: React.FC<Props> = ({
     category === 'primary' ? itemJsConfigPrimary : itemJsConfigSecondary
   const aggregationConfig = useAggregationConfig(category)
 
+  const [showSpinner, setShowSpinner] = useState(true)
+
   // Init itemjs with the set configuration and data (scenes).
   const [items, setItems] = useState(undefined)
   useEffect(() => {
@@ -83,6 +85,7 @@ export const Scenes: React.FC<Props> = ({
     }
 
     setResults(items.search(searchOption))
+    setShowSpinner(false)
   }, [items, searchFilters])
 
   const [currentPresetKey, setCurrentPresetKey] = useState(null)
@@ -91,6 +94,7 @@ export const Scenes: React.FC<Props> = ({
   // The currentPresetKey is updated in an useEffect.
   // This way, we also handle the case when the page is loaded with searchFilters that match a preset.searchFilterString.
   const handlePresetClick = (presetKey: string) => {
+    setShowSpinner(true)
     setSearchFilters(presets[presetKey].searchFilterString)
   }
 
@@ -114,6 +118,7 @@ export const Scenes: React.FC<Props> = ({
   }, [presets, searchFilters])
 
   const handleResetFilter = () => {
+    setShowSpinner(true)
     setSearchFilters(undefined)
     setSearchOrder(undefined)
   }
@@ -124,6 +129,7 @@ export const Scenes: React.FC<Props> = ({
     aggregationKey,
     selectedBucketKey,
   }: HandleSingleChoiceProps) => {
+    setShowSpinner(true)
     setSearchFilters((prevStateString) => {
       const prevState = decodeFilterWithAggregation(prevStateString)
       const filter = selectedBucketKey ? [selectedBucketKey] : []
@@ -139,6 +145,7 @@ export const Scenes: React.FC<Props> = ({
     buckets,
     selectedBucket,
   }: HandleMultiChoiceProps) => {
+    setShowSpinner(true)
     const bucketHasNothingSelected = !buckets.some((b) => b.selected)
     if (bucketHasNothingSelected) {
       // Activate uiFilter (remove Filter)
@@ -219,6 +226,7 @@ export const Scenes: React.FC<Props> = ({
           currentPresetKey={currentPresetKey}
           handlePresetClick={handlePresetClick}
           showLogo
+          showSpinner={showSpinner}
         />
 
         {/* The `w-1 + grow` combo is required to get the with + overflow scroll right. */}
@@ -237,6 +245,7 @@ export const Scenes: React.FC<Props> = ({
                 presets={presets}
                 currentPresetKey={currentPresetKey}
                 handlePresetClick={handlePresetClick}
+                showSpinner={showSpinner}
               />
             }
           />

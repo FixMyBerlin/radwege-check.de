@@ -5,8 +5,36 @@
 
 export const itemJsConfigSecondary = {
   aggregations: {
-    leftOfBicycleLane: {
-      title: 'leftOfBicycleLane',
+    bicycleStreetType: {
+      title: 'bicycleStreetType',
+      size: 10,
+      sort: 'term', // not used
+      order: 'asc', // not used
+      conjunction: false, // always false
+    },
+    parkingCategory: {
+      title: 'parkingCategoryo',
+      size: 10,
+      sort: 'term', // not used
+      order: 'asc', // not used
+      conjunction: false, // always false
+    },
+    carriagewayDirection: {
+      title: 'carriagewayDirection',
+      size: 10,
+      sort: 'term', // not used
+      order: 'asc', // not used
+      conjunction: false, // always false
+    },
+    carriagewayWidth: {
+      title: 'carriagewayWidth',
+      size: 10,
+      sort: 'term', // not used
+      order: 'asc', // not used
+      conjunction: false, // always false
+    },
+    motorVehicleTrafficVolumen: {
+      title: 'motorVehicleTrafficVolumen',
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used

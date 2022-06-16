@@ -19,22 +19,30 @@ export type SceneSecondaryProps = {
   sceneId: string
   sceneIdCar: string
   sceneIdPedestrian: never
-  sceneIdCount: number
+
+  parkingCategory
+  carriagewayDirection
+  bicycleStreetType
+  carriagewayWidth
+  carriagewayWidthNumber
+  motorVehicleTrafficVolumen
 
   vote0Unsafe: number
   vote1RatherUnsafe: number
   vote2Save: number
-  voteCar3VerySave: number
   vote3VerySave: number
   voteCount: number
   voteMeans: number
   voteScore: number
+
   voteCar0Unsafe: number | undefined
   voteCar1RatherUnsafe: number | undefined
   voteCar2Save: number | undefined
+  voteCar3VerySave: number
   voteCarCount: number | undefined
   voteCarMeans: number | undefined
   voteCarScore: number | undefined
+
   votePedestrian0Unsafe: never
   votePedestrian1RatherUnsafe: never
   votePedestrian2Save: never
@@ -50,7 +58,6 @@ export type ScenePrimaryProps = {
   sceneId: string
   sceneIdCar: string
   sceneIdPedestrian: string
-  sceneIdCount: number
 
   bicycleLaneSurface: string
   bicycleLaneUsableWidthNumber: number | undefined
@@ -77,17 +84,19 @@ export type ScenePrimaryProps = {
   vote0Unsafe: number
   vote1RatherUnsafe: number
   vote2Save: number
-  voteCar3VerySave: number
   vote3VerySave: number
   voteCount: number
   voteMeans: number
   voteScore: number
+
   voteCar0Unsafe: number | undefined
   voteCar1RatherUnsafe: number | undefined
   voteCar2Save: number | undefined
+  voteCar3VerySave: number
   voteCarCount: number | undefined
   voteCarMeans: number | undefined
   voteCarScore: number | undefined
+
   votePedestrian0Unsafe: number | undefined
   votePedestrian1RatherUnsafe: number | undefined
   votePedestrian2Save: number | undefined

@@ -11,9 +11,9 @@ export const useResults = ({
   bucketSelected,
   anySelected, // For our uiSelected: aggregations with no selected buckets are shows as "all selected".
 }: Props) => {
-  const resultTotal = total
   // `resultFuture` (and `resultDiff`) is special for how multiChoice works:
-  const resultDiff = bucketSelected ? -bucketCount : bucketCount
+  const resultDiff = bucketSelected || !anySelected ? -bucketCount : bucketCount
+  const resultTotal = total
   const resultFuture = resultTotal + resultDiff
 
   const uiSelected = bucketSelected || !anySelected
@@ -24,5 +24,5 @@ export const useResults = ({
   const uiCanpress =
     allowPressWhenFutureResults && allowPressWhenResultsWouldChange
 
-  return { resultTotal, resultFuture, uiSelected, uiCanpress }
+  return { resultFuture, uiSelected, uiCanpress }
 }

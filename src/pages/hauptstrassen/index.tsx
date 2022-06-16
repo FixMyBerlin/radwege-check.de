@@ -32,7 +32,6 @@ export const query = graphql`
         node {
           sceneId
           sceneIdCar
-          sceneIdCount
           sceneIdPedestrian
 
           bicycleLaneSurface

@@ -1,7 +1,9 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import classNames from 'classnames'
 import React from 'react'
+import { renderToString } from 'react-dom/server'
+import { isDev } from '~/components/utils'
 import { useAggregationConfig } from '../../../hooks'
+import BikeIcon from '../../../Results/ResultNumbers/assets/bike-icon.svg'
 import { ResultBucketProps, SceneCategory } from '../../../types'
 import { useResults } from './useResults'
 import { buttonClassNames } from './utils'
@@ -37,7 +39,7 @@ export const ButtonSingleChoice: React.FC<Props> = ({
 }) => {
   const aggregationConfig = useAggregationConfig(category)
 
-  const { resultTotal, resultFuture, uiSelected, uiCanpress } = useResults({
+  const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
     bucketCount: bucket.doc_count,
     bucketSelected: bucket.selected,
@@ -60,16 +62,24 @@ export const ButtonSingleChoice: React.FC<Props> = ({
       htmlFor={formKey}
       className={classNames(labelClasses)}
       title={[
-        `${aggregationConfig[aggregationKey].buckets[bucket.key]}`,
         // eslint-disable-next-line no-nested-ternary
-        resultTotal === resultFuture
-          ? 'Auswahl nicht möglich da keine Änderung der Ergebnisse.'
-          : resultFuture === 0
-          ? 'Auswahl nicht möglich da sie zu 0 Ergebnissen führen würde'
-          : `Ergebnisse ${resultFuture || 'todo'}`,
+        resultFuture === 0
+          ? 'Auswahl würde 0 Ergebnisse zeigen.'
+          : uiCanpress
+          ? `Ergebnisse ${resultFuture ?? 'todo'}`
+          : 'Auswahl würde die Ergebnisse nicht verändern.',
+        isDev &&
+          JSON.stringify({
+            resultFuture,
+            uiSelected,
+            uiCanpress,
+            total: paginationTotal,
+            bucketCount: bucket.doc_count,
+            bucketSelected: bucket.selected,
+          }),
       ]
-        .filter((k) => !!k)
-        .join(' – ')}
+        .filter(Boolean)
+        .join('\n')}
     >
       <input
         id={formKey}
@@ -89,7 +99,14 @@ export const ButtonSingleChoice: React.FC<Props> = ({
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html:
-            aggregationConfig[aggregationKey].buckets[bucket.key] || 'TODO',
+            aggregationConfig[aggregationKey].buckets[bucket.key].replace(
+              'Fahrrad ',
+              renderToString(
+                <>
+                  <BikeIcon className="inline h-3 w-auto align-baseline" />{' '}
+                </>
+              )
+            ) || 'TODO',
         }}
       />
     </label>

@@ -14,6 +14,7 @@ export const FacetsMobileDropdown: React.FC<Props> = ({
   presets,
   currentPresetKey,
   handlePresetClick,
+  showSpinner,
 }) => {
   return (
     <Menu as="div" className="relative inline-block text-left lg:hidden">
@@ -45,6 +46,7 @@ export const FacetsMobileDropdown: React.FC<Props> = ({
             currentPresetKey={currentPresetKey}
             handlePresetClick={handlePresetClick}
             showLogo={false}
+            showSpinner={showSpinner}
           />
         </Menu.Items>
       </Transition>

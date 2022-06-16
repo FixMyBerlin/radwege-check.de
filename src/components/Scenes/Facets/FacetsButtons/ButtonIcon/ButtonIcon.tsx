@@ -1,11 +1,11 @@
-import classNames from 'classnames'
 import React from 'react'
+import { isDev } from '~/components/utils'
 import { useAggregationConfig } from '../../../hooks'
 import { ResultBucketProps, SceneCategory } from '../../../types'
 import { HandleSingleChoice } from '../ButtonSingleChoice'
 import { useResults } from '../ButtonSingleChoice/useResults'
-import { buttonIconClassNames } from './utils'
 import { Icons } from './Icons'
+import { buttonIconClassNames } from './utils'
 
 type Props = {
   aggregationKey: string
@@ -24,7 +24,7 @@ export const ButtonIcon: React.FC<Props> = ({
 }) => {
   const aggregationConfig = useAggregationConfig(category)
 
-  const { resultTotal, resultFuture, uiSelected, uiCanpress } = useResults({
+  const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
     bucketCount: bucket?.doc_count,
     bucketSelected: bucket?.selected,
@@ -48,21 +48,24 @@ export const ButtonIcon: React.FC<Props> = ({
       }
       disabled={!uiCanpress}
       title={[
-        `${aggregationConfig[aggregationKey].buckets[bucket.key]}`,
-        // eslint-disable-next-line no-nested-ternary
-        resultTotal === resultFuture
-          ? 'Auswahl nicht möglich da keine Änderung der Ergebnisse.'
-          : resultFuture === 0
-          ? 'Auswahl nicht möglich da sie zu 0 Ergebnissen führen würde'
-          : `Ergebnisse ${resultFuture || 'todo'}`,
+        aggregationConfig[aggregationKey].buckets[bucket.key],
+        resultFuture === 0
+          ? 'Auswahl würde 0 Ergebnisse zeigen.'
+          : `Ergebnisse ${resultFuture ?? 'todo'}`,
+        isDev &&
+          JSON.stringify({
+            resultFuture,
+            uiSelected,
+            uiCanpress,
+            total: paginationTotal,
+            bucketCount: bucket?.doc_count,
+            bucketSelected: bucket?.selected,
+          }),
       ]
-        .filter((k) => !!k)
-        .join(' – ')}
+        .filter(Boolean)
+        .join('\n')}
     >
-      <Icons
-        forValue={bucket.key}
-        className={classNames(iconClasses, 'scale-75')}
-      />
+      <Icons forValue={bucket.key} className={iconClasses} />
     </button>
   )
 }
