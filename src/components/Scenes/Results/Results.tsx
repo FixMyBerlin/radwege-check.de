@@ -1,12 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ResultProps, SceneCategory, SearchOptionProps } from '../types'
-import { ResultColumn } from './ResultColumn'
+import {
+  ResultItemsProps,
+  ResultProps,
+  SceneCategory,
+  SearchOptionProps,
+} from '../types'
+import { HandleBookmarkProp, ResultColumn } from './ResultColumn'
 
 type Props = {
   category: SceneCategory
   results: ResultProps
+  bookmarkResults: ResultItemsProps
   searchFilters: SearchOptionProps['filters']
-}
+} & HandleBookmarkProp
 
 export type ShowTableProps = {
   showTable: boolean
@@ -16,7 +22,10 @@ export type ShowTableProps = {
 export const Results: React.FC<Props> = ({
   category,
   results,
+  bookmarkResults,
   searchFilters,
+  handleBookmark,
+  bookmarks,
 }) => {
   const resultItems = results?.data?.items || []
   const resultsRef = useRef<HTMLDivElement>()
@@ -34,6 +43,24 @@ export const Results: React.FC<Props> = ({
       ref={resultsRef}
       className="_snap-x-not-y z-0 flex h-full flex-grow flex-row overflow-scroll overscroll-contain"
     >
+      {bookmarkResults && (
+        <div className="flex flex-row bg-brand-light-yellow">
+          {bookmarkResults.map((scene, index) => (
+            <ResultColumn
+              category={category}
+              key={`bookmark-${scene.sceneId}`}
+              scene={scene}
+              index={index}
+              searchFilters={searchFilters}
+              showTable={showTable}
+              setShowTable={setShowTable}
+              handleBookmark={handleBookmark}
+              bookmarks={bookmarks}
+            />
+          ))}
+        </div>
+      )}
+
       {resultItems.map((scene, index) => (
         <ResultColumn
           category={category}
@@ -43,6 +70,8 @@ export const Results: React.FC<Props> = ({
           searchFilters={searchFilters}
           showTable={showTable}
           setShowTable={setShowTable}
+          handleBookmark={handleBookmark}
+          bookmarks={bookmarks}
         />
       ))}
     </div>

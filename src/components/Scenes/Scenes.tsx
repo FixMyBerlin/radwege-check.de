@@ -1,5 +1,5 @@
 import itemsjs from 'itemsjs'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { StringParam, useQueryParam } from 'use-query-params'
 import { MetaTags } from '../Layout'
@@ -19,7 +19,12 @@ import { Results } from './Results'
 import { sceneImageUrl } from './SceneImage'
 import { TitleBar } from './TitleBar'
 import { ResultProps, SceneCategory } from './types'
-import { cleanupCsvData, decodeFilter, encodeFilter } from './utils'
+import {
+  cleanupCsvData,
+  CommaArrayParam,
+  decodeFilter,
+  encodeFilter,
+} from './utils'
 
 type Props = {
   category: SceneCategory
@@ -42,8 +47,11 @@ export const Scenes: React.FC<Props> = ({
     return cleanupCsvData(flattened)
   }, [rawScenes])
 
-  const itemJsConfig =
-    category === 'primary' ? itemJsConfigPrimary : itemJsConfigSecondary
+  const itemJsConfig = useMemo(
+    () =>
+      category === 'primary' ? itemJsConfigPrimary : itemJsConfigSecondary,
+    [category]
+  )
   const aggregationConfig = useAggregationConfig(category)
 
   const [showSpinner, setShowSpinner] = useState(true)
@@ -53,6 +61,7 @@ export const Scenes: React.FC<Props> = ({
   useEffect(() => {
     if (!itemJsConfig) return
     setItems(itemsjs(scenes, itemJsConfig))
+    console.log('this rerenders when I select/deselect a bookmark; why?')
   }, [scenes, itemJsConfig])
 
   // The filters that we use for setSearchOption.
@@ -90,14 +99,6 @@ export const Scenes: React.FC<Props> = ({
 
   const [currentPresetKey, setCurrentPresetKey] = useState(null)
 
-  // When selecting a preset, we update the search.
-  // The currentPresetKey is updated in an useEffect.
-  // This way, we also handle the case when the page is loaded with searchFilters that match a preset.searchFilterString.
-  const handlePresetClick = (presetKey: string) => {
-    setShowSpinner(true)
-    setSearchFilters(presets[presetKey].searchFilterString)
-  }
-
   useEffect(() => {
     if (!searchFilters) {
       setCurrentPresetKey(null)
@@ -116,6 +117,18 @@ export const Scenes: React.FC<Props> = ({
       setCurrentPresetKey('custom')
     }
   }, [presets, searchFilters])
+
+  /*
+    === DATA: Click handler ===
+  */
+
+  // When selecting a preset, we update the search.
+  // The currentPresetKey is updated in an useEffect.
+  // This way, we also handle the case when the page is loaded with searchFilters that match a preset.searchFilterString.
+  const handlePresetClick = (presetKey: string) => {
+    setShowSpinner(true)
+    setSearchFilters(presets[presetKey].searchFilterString)
+  }
 
   const handleResetFilter = () => {
     setShowSpinner(true)
@@ -188,6 +201,56 @@ export const Scenes: React.FC<Props> = ({
     }
   }
 
+  /*
+    === BOOKMARKS ===
+  */
+
+  const [bookmarkArray, setBookmarkArray] = useQueryParam(
+    'bookmarks',
+    CommaArrayParam
+  )
+  // const [showBookmarks, setShowBookmarks] = useState(false)
+
+  const handleBookmark = useCallback(
+    (sceneId: string) => {
+      const bookmarks = bookmarkArray || []
+      const isBookmarked = bookmarkArray?.includes(sceneId)
+      if (isBookmarked) {
+        // remove
+        const bookmarksWithoutPassedSceneId = bookmarks
+          ?.filter((b) => b !== sceneId)
+          .sort((a, b) => a.localeCompare(b))
+        if (bookmarksWithoutPassedSceneId.length === 0) {
+          // remove key from url
+          setBookmarkArray(undefined, 'replaceIn')
+        } else {
+          // remove value from list in url
+          setBookmarkArray(bookmarksWithoutPassedSceneId, 'replaceIn')
+        }
+        // setShowBookmarks(false)
+      } else {
+        // add
+        setBookmarkArray(
+          [...bookmarks, sceneId].sort((a, b) => a.localeCompare(b)),
+          'replaceIn'
+        )
+      }
+    },
+    [bookmarkArray, setBookmarkArray]
+  )
+
+  const bookmarkResults = useMemo(
+    () =>
+      (bookmarkArray || [])
+        .map((sceneId) => scenes.find((s) => s.sceneId === sceneId))
+        .filter(Boolean),
+    [bookmarkArray, scenes]
+  )
+
+  /*
+    === RENDERING ===
+  */
+
   const seoPresetIsActive = Object.keys(presets).includes(currentPresetKey)
   const seoCategoryTranslation =
     category === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
@@ -253,7 +316,10 @@ export const Scenes: React.FC<Props> = ({
           <Results
             category={category}
             results={results}
+            bookmarkResults={bookmarkResults}
             searchFilters={decodeFilterWithAggregation(searchFilters)}
+            handleBookmark={handleBookmark}
+            bookmarks={bookmarkArray}
           />
         </div>
       </div>
