@@ -3,6 +3,7 @@ import React from 'react'
 import { LayoutScenes } from '~/components/Layout'
 import { Scenes } from '~/components/Scenes'
 import { presetsScenesSecondary } from '~/components/Scenes/constants'
+import { isProduction } from '~/components/utils'
 import CommingSoon from '../CommingSoon'
 
 const MyDataIndex = ({
@@ -11,8 +12,8 @@ const MyDataIndex = ({
     allScenesSecondaryCsv: { edges: sceneNodes },
   },
 }) => {
-  // TEMP Deactivate page for breta release
-  return <CommingSoon />
+  // TEMP deactivated on production while we finish this up
+  if (isProduction) return <CommingSoon />
 
   return (
     <LayoutScenes>
