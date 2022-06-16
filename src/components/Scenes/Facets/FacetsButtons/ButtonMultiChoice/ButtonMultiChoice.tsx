@@ -111,9 +111,11 @@ export const ButtonMultiChoice: React.FC<Props> = ({
         dangerouslySetInnerHTML={{
           __html:
             aggregationConfig[aggregationKey].buckets[bucket.key].replace(
-              'Fahrrad',
+              'Fahrrad ',
               renderToString(
-                <BikeIcon className="inline h-3 w-auto align-baseline" />
+                <>
+                  <BikeIcon className="inline h-3 w-auto align-baseline" />{' '}
+                </>
               )
             ) || 'TODO',
         }}
