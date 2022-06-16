@@ -51,19 +51,27 @@ votePedestrianScore
 
 # scenes_secondary
 
-imageUrl
-location
 sceneId
+sceneIdCar
 parkingCategory
-todoMotorVehicleDirection
+carriagewayDirection
 bicycleStreetType
-motorVehicleWidthName
-motorVehicleWidth
+carriagewayWidth
+carriagewayWidthNumber
 motorVehicleTrafficVolumen
+
+voteCarScore
+voteCar0Unsafe
+voteCar1RatherUnsafe
+voteCar2Save
+voteCar3VerySave
+voteCarCount
+voteCarMeans
+
+voteScore
 vote0Unsafe
 vote1RatherUnsafe
 vote2Save
 vote3VerySave
-voteSum
 voteCount
 voteMeans

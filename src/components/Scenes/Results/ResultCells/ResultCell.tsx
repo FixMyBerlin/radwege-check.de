@@ -71,16 +71,16 @@ export const ResultCell: React.FC<Props> = ({
           dangerouslySetInnerHTML={{ __html: bucketTranslation }}
         />
 
-        {keyName.includes('Width') && scene[`${keyName}Number`] && (
-          <span className="ml-1 font-light text-neutral-500">
-            {' '}
-            {formatMeter(scene[`${keyName}Number`], {})}
-          </span>
-        )}
+        {keyName.includes('Width') &&
+          !Number.isNaN(scene[`${keyName}Number`]) && (
+            <span className="ml-1 font-light text-neutral-500">
+              {' '}
+              {formatMeter(scene[`${keyName}Number`], {})}
+            </span>
+          )}
 
         {showIcon && (
           <span className="absolute right-1 top-0 text-xxs">
-            {/* TODO Fix types */}
             <Icons forValue={scene[keyName]} className="scale-75" />
           </span>
         )}

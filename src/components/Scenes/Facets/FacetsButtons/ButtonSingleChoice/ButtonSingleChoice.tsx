@@ -1,8 +1,9 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import classNames from 'classnames'
 import React from 'react'
+import { renderToString } from 'react-dom/server'
 import { isDev } from '~/components/utils'
 import { useAggregationConfig } from '../../../hooks'
+import BikeIcon from '../../../Results/ResultNumbers/assets/bike-icon.svg'
 import { ResultBucketProps, SceneCategory } from '../../../types'
 import { useResults } from './useResults'
 import { buttonClassNames } from './utils'
@@ -98,7 +99,14 @@ export const ButtonSingleChoice: React.FC<Props> = ({
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html:
-            aggregationConfig[aggregationKey].buckets[bucket.key] || 'TODO',
+            aggregationConfig[aggregationKey].buckets[bucket.key].replace(
+              'Fahrrad ',
+              renderToString(
+                <>
+                  <BikeIcon className="inline h-3 w-auto align-baseline" />{' '}
+                </>
+              )
+            ) || 'TODO',
         }}
       />
     </label>
