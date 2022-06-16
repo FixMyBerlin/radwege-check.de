@@ -2,7 +2,6 @@
 
 sceneId
 sceneIdCar
-sceneIdCount
 sceneIdPedestrian
 
 bicycleLaneSurface

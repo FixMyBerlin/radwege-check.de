@@ -25,7 +25,6 @@ export const query = graphql`
     scenesPrimaryCsv(sceneId: { eq: $sceneId }) {
       sceneId
       sceneIdCar
-      sceneIdCount
       sceneIdPedestrian
 
       bicycleLaneSurface
