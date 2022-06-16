@@ -136,7 +136,7 @@ export const FacetsButtons: React.FC<Props> = ({
           Werte, die wir in den Daten bereinigen müssen:{' '}
           {keyFromItemjsMissingInTranslations.map((v) => (
             <code key={v} className="rounded-sm bg-red-100 px-1">
-              {v}
+              {v}{' '}
             </code>
           ))}
         </div>
