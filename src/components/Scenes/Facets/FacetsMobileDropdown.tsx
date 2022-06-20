@@ -6,12 +6,10 @@ import { Facets, FacetsProps } from './Facets'
 type Props = Omit<FacetsProps, 'showLogo'>
 
 export const FacetsMobileDropdown: React.FC<Props> = ({
-  category,
   results,
   handleResetFilter,
   handleSingleChoice,
   handleMultiChoice,
-  presets,
   handlePresetClick,
   showSpinner,
 }) => {
@@ -36,12 +34,10 @@ export const FacetsMobileDropdown: React.FC<Props> = ({
       >
         <Menu.Items className="absolute mt-2 h-[75vh] w-80 origin-top-right overflow-scroll overscroll-contain rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <Facets
-            category={category}
             results={results}
             handleResetFilter={handleResetFilter}
             handleSingleChoice={handleSingleChoice}
             handleMultiChoice={handleMultiChoice}
-            presets={presets}
             handlePresetClick={handlePresetClick}
             showLogo={false}
             showSpinner={showSpinner}

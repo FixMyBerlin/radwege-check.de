@@ -1,8 +1,9 @@
 import classNames from 'classnames'
 import React from 'react'
+import { useStore } from 'zustand'
 import { Spinner } from '~/components/Spinner'
-import { useAggregationConfig } from '../hooks'
-import { ResultProps, SceneCategory } from '../types'
+import { useStoreExperimentData } from '../store'
+import { ResultProps } from '../types'
 import {
   FacetsButtons,
   HandleMultiChoice,
@@ -15,7 +16,6 @@ import { PresetDropdown, PresetDropdownProps } from './PresetDropdown'
 import { ResetFilterButton } from './ResetFilterButton'
 
 export type FacetsProps = {
-  category: SceneCategory
   results: ResultProps
   /** @desc Reset filters; undefined if no filter active. */
   handleResetFilter: undefined | (() => void)
@@ -27,19 +27,17 @@ export type FacetsProps = {
 } & PresetDropdownProps
 
 export const Facets: React.FC<FacetsProps> = ({
-  category,
   results,
   handleResetFilter,
   handleSingleChoice,
   handleMultiChoice,
-  presets,
   handlePresetClick,
   className,
   showLogo,
   showSpinner,
 }) => {
   const aggregations = results?.data?.aggregations
-  const aggregationConfig = useAggregationConfig(category)
+  const { aggregationConfig } = useStore(useStoreExperimentData)
 
   const mainAggregations = Object.entries(aggregations || {}).filter(
     ([key, _v]) => aggregationConfig[key].primaryGroup === true
@@ -68,10 +66,7 @@ export const Facets: React.FC<FacetsProps> = ({
       >
         <h1 className="sr-only">Ergebnisse filtern</h1>
 
-        <PresetDropdown
-          presets={presets}
-          handlePresetClick={handlePresetClick}
-        />
+        <PresetDropdown handlePresetClick={handlePresetClick} />
 
         <ResetFilterButton onClick={handleResetFilter} />
 
@@ -80,14 +75,10 @@ export const Facets: React.FC<FacetsProps> = ({
 
           return (
             <section key={aggregationKey} className={classNames('mb-5')}>
-              <FacetsHeadline
-                category={category}
-                aggregationKey={aggregationKey}
-              />
+              <FacetsHeadline aggregationKey={aggregationKey} />
 
               <FacetsButtons
                 aggregationKey={aggregationKey}
-                category={category}
                 results={results}
                 buckets={buckets}
                 handleSingleChoice={handleSingleChoice}
@@ -116,14 +107,12 @@ export const Facets: React.FC<FacetsProps> = ({
               )}
             >
               <FacetsHeadline
-                category={category}
                 aggregationKey={aggregationKey}
                 forIcons={showAsIcons}
               />
 
               <FacetsButtons
                 aggregationKey={aggregationKey}
-                category={category}
                 results={results}
                 buckets={buckets}
                 handleSingleChoice={handleSingleChoice}

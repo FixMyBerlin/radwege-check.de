@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { Link } from '~/components/Link'
 import { SceneImage } from '../../SceneImage'
 import {
-  SceneCategory,
   ScenePrimaryProps,
   SceneSecondaryProps,
   SearchOptionProps,
@@ -21,7 +20,6 @@ export type HandleBookmarkProp = {
 }
 
 type Props = {
-  category: SceneCategory
   scene: ScenePrimaryProps | SceneSecondaryProps
   index?: number
   searchFilters?: SearchOptionProps['filters']
@@ -29,7 +27,6 @@ type Props = {
   HandleBookmarkProp
 
 export const ResultColumn: React.FC<Props> = ({
-  category,
   scene,
   index = 0,
   searchFilters = {},
@@ -96,11 +93,7 @@ export const ResultColumn: React.FC<Props> = ({
         chartClass="border-b border-dotted"
       />
 
-      <ResultCells
-        category={category}
-        scene={scene}
-        searchFilters={searchFilters}
-      />
+      <ResultCells scene={scene} searchFilters={searchFilters} />
 
       <section className="py-3">
         <Link button blank to={scene.path}>

@@ -1,5 +1,6 @@
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
+import { useStore } from 'zustand'
 import Logo from '~/components/assets/radwegecheck-logo.svg'
 import { MetaTags } from '../Layout'
 import { Link, PrintButton, TwitterButton } from '../Link'
@@ -8,22 +9,19 @@ import { SceneImage } from '../Scenes'
 import { ResultCells } from '../Scenes/Results/ResultCells'
 import { ResultNumbers } from '../Scenes/Results/ResultNumbers'
 import { sceneImageUrl } from '../Scenes/SceneImage'
-import {
-  SceneCategory,
-  ScenePrimaryProps,
-  SceneSecondaryProps,
-} from '../Scenes/types'
+import { useStoreExperimentData } from '../Scenes/store'
+import { ScenePrimaryProps, SceneSecondaryProps } from '../Scenes/types'
 import { formatNumber } from '../utils'
 
 type Props = {
-  category: SceneCategory
   scene: ScenePrimaryProps | SceneSecondaryProps
   pagePath: string
 }
 
-export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
+export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
+  const { experimentTextKey } = useStore(useStoreExperimentData)
   const categoryTranslation =
-    category === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
+    experimentTextKey === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
 
   return (
     <>
@@ -71,7 +69,7 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
               {categoryTranslation}
             </p>
             <div className="rounded bg-blue-50 p-6">
-              <ResultCells category={category} scene={scene} />
+              <ResultCells scene={scene} />
             </div>
           </div>
 

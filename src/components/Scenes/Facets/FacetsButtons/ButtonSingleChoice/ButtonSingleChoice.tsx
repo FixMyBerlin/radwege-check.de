@@ -1,10 +1,11 @@
 import classNames from 'classnames'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
+import { useStore } from 'zustand'
+import { useStoreExperimentData } from '~/components/Scenes/store'
 import { isDev } from '~/components/utils'
-import { useAggregationConfig } from '../../../hooks'
 import BikeIcon from '../../../Results/ResultNumbers/assets/bike-icon.svg'
-import { ResultBucketProps, SceneCategory } from '../../../types'
+import { ResultBucketProps } from '../../../types'
 import { useResults } from './useResults'
 import { buttonClassNames } from './utils'
 
@@ -20,7 +21,6 @@ export type HandleSingleChoice = ({
 
 type Props = {
   aggregationKey: string
-  category: SceneCategory
   bucket: ResultBucketProps
   buckets: ResultBucketProps[]
   handleClick: HandleSingleChoice
@@ -30,14 +30,13 @@ type Props = {
 
 export const ButtonSingleChoice: React.FC<Props> = ({
   aggregationKey,
-  category,
   bucket,
   buckets,
   handleClick,
   index,
   paginationTotal,
 }) => {
-  const aggregationConfig = useAggregationConfig(category)
+  const { aggregationConfig } = useStore(useStoreExperimentData)
 
   const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,

@@ -1,25 +1,20 @@
 import React from 'react'
-import { useAggregationConfig } from '../../hooks'
+import { useStore } from 'zustand'
+import { useStoreExperimentData } from '../../store'
 import {
   ScenePrimaryProps,
   SceneSecondaryProps,
-  SceneCategory,
   SearchOptionProps,
 } from '../../types'
 import { ResultCell } from './ResultCell'
 
 type Props = {
-  category: SceneCategory
   scene: ScenePrimaryProps | SceneSecondaryProps
   searchFilters?: SearchOptionProps['filters']
 }
 
-export const ResultCells: React.FC<Props> = ({
-  category,
-  scene,
-  searchFilters,
-}) => {
-  const aggregationConfig = useAggregationConfig(category)
+export const ResultCells: React.FC<Props> = ({ scene, searchFilters }) => {
+  const { aggregationConfig } = useStore(useStoreExperimentData)
 
   return (
     <>
@@ -28,7 +23,6 @@ export const ResultCells: React.FC<Props> = ({
 
         return (
           <ResultCell
-            category={category}
             key={key}
             keyName={key}
             scene={scene}

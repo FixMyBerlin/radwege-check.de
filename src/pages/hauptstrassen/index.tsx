@@ -1,8 +1,17 @@
 import { graphql } from 'gatsby'
 import React from 'react'
+import { useStore } from 'zustand'
 import { LayoutScenes } from '~/components/Layout'
 import { Scenes } from '~/components/Scenes'
-import { presetsScenesPrimary } from '~/components/Scenes/constants'
+import {
+  aggregationConfigPrimary,
+  itemJsConfigPrimary,
+  presetsScenesPrimary,
+} from '~/components/Scenes/constants'
+import {
+  useStoreExperimentData,
+  useStorePreset,
+} from '~/components/Scenes/store'
 
 const MyDataIndex = ({
   location,
@@ -10,15 +19,20 @@ const MyDataIndex = ({
     allScenesPrimaryCsv: { edges: sceneNodes },
   },
 }) => {
+  const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
+    useStore(useStoreExperimentData)
+
+  setItemJsConfig(itemJsConfigPrimary)
+  setAggregationConfig(aggregationConfigPrimary)
+  setExperimentTextKey('primary')
+
+  const { setPresets } = useStore(useStorePreset)
+  setPresets(presetsScenesPrimary)
+
   return (
     <LayoutScenes>
       {/* <MetaTags> are part of <Scenes> */}
-      <Scenes
-        category="primary"
-        rawScenes={sceneNodes}
-        presets={presetsScenesPrimary}
-        pagePath={location.pathname}
-      />
+      <Scenes rawScenes={sceneNodes} pagePath={location.pathname} />
     </LayoutScenes>
   )
 }

@@ -1,13 +1,13 @@
 import classNames from 'classnames'
 import React from 'react'
-import { useAggregationConfig } from '../../../hooks'
-import { ResultBucketProps, SceneCategory } from '../../../types'
+import { useStore } from 'zustand'
+import { useStoreExperimentData } from '~/components/Scenes/store'
+import { ResultBucketProps } from '../../../types'
 import { HandleSingleChoice } from '../ButtonSingleChoice/ButtonSingleChoice'
 import { buttonIconClassNames } from './utils'
 
 type Props = {
   aggregationKey: string
-  category: SceneCategory
   bucketKey: string
   buckets: ResultBucketProps[]
   handleClick: HandleSingleChoice
@@ -15,12 +15,11 @@ type Props = {
 
 export const ButtonIconNoChoice: React.FC<Props> = ({
   aggregationKey,
-  category,
   bucketKey,
   buckets,
   handleClick,
 }) => {
-  const aggregationConfig = useAggregationConfig(category)
+  const { aggregationConfig } = useStore(useStoreExperimentData)
   const { showAsIcons } = aggregationConfig[aggregationKey]
 
   // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
