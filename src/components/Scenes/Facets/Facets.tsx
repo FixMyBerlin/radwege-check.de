@@ -33,7 +33,6 @@ export const Facets: React.FC<FacetsProps> = ({
   handleSingleChoice,
   handleMultiChoice,
   presets,
-  currentPresetKey,
   handlePresetClick,
   className,
   showLogo,
@@ -71,7 +70,6 @@ export const Facets: React.FC<FacetsProps> = ({
 
         <PresetDropdown
           presets={presets}
-          currentPresetKey={currentPresetKey}
           handlePresetClick={handlePresetClick}
         />
 

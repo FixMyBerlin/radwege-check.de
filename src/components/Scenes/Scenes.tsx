@@ -269,7 +269,6 @@ export const Scenes: React.FC<Props> = ({
           handleSingleChoice={handleSingleChoice}
           handleMultiChoice={handleMultiChoice}
           presets={presets}
-          currentPresetKey={currentPresetKey}
           handlePresetClick={handlePresetClick}
           showLogo
           showSpinner={showSpinner}
@@ -289,7 +288,6 @@ export const Scenes: React.FC<Props> = ({
                 handleSingleChoice={handleSingleChoice}
                 handleMultiChoice={handleMultiChoice}
                 presets={presets}
-                currentPresetKey={currentPresetKey}
                 handlePresetClick={handlePresetClick}
                 showSpinner={showSpinner}
               />
