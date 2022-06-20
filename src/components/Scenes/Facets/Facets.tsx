@@ -36,7 +36,7 @@ export const Facets: React.FC<FacetsProps> = ({
   showLogo,
   showSpinner,
 }) => {
-  const aggregations = results?.data?.aggregations
+  const aggregations = results?.data?.aggregations || {}
   const { aggregationConfig } = useStore(useStoreExperimentData)
 
   const mainAggregations = Object.entries(aggregations || {}).filter(

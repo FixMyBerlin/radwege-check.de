@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useStore } from 'zustand'
 import { LayoutScenes } from '~/components/Layout'
 import { Scenes } from '~/components/Scenes'
@@ -21,13 +21,14 @@ const MyDataIndex = ({
 }) => {
   const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
     useStore(useStoreExperimentData)
-
-  setItemJsConfig(itemJsConfigPrimary)
-  setAggregationConfig(aggregationConfigPrimary)
-  setExperimentTextKey('primary')
-
   const { setPresets } = useStore(useStorePreset)
-  setPresets(presetsScenesPrimary)
+
+  useEffect(() => {
+    setItemJsConfig(itemJsConfigPrimary)
+    setAggregationConfig(aggregationConfigPrimary)
+    setExperimentTextKey('primary')
+    setPresets(presetsScenesPrimary)
+  }, [])
 
   return (
     <LayoutScenes>
