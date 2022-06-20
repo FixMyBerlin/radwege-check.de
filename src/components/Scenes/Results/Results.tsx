@@ -1,14 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
-import {
-  ResultItemsProps,
-  ResultProps,
-  SceneCategory,
-  SearchOptionProps,
-} from '../types'
+import { ResultItemsProps, ResultProps, SearchOptionProps } from '../types'
 import { HandleBookmarkProp, ResultColumn } from './ResultColumn'
 
 type Props = {
-  category: SceneCategory
   results: ResultProps
   bookmarkResults: ResultItemsProps
   searchFilters: SearchOptionProps['filters']
@@ -20,7 +14,6 @@ export type ShowTableProps = {
 }
 
 export const Results: React.FC<Props> = ({
-  category,
   results,
   bookmarkResults,
   searchFilters,
@@ -47,7 +40,6 @@ export const Results: React.FC<Props> = ({
         <div className="flex flex-row bg-brand-light-yellow">
           {bookmarkResults.map((scene, index) => (
             <ResultColumn
-              category={category}
               key={`bookmark-${scene.sceneId}`}
               scene={scene}
               index={index}
@@ -63,7 +55,6 @@ export const Results: React.FC<Props> = ({
 
       {resultItems.map((scene, index) => (
         <ResultColumn
-          category={category}
           key={scene.sceneId}
           scene={scene}
           index={index}

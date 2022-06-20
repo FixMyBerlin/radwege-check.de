@@ -1,13 +1,10 @@
 import { useEffect } from 'react'
 import { useStore } from 'zustand'
-import { PresetsScenes } from '../constants'
 import { useStorePreset } from '../store'
 
-export const useSetPresetKey = (
-  presets: PresetsScenes,
-  searchFilters: string
-) => {
-  const { currentPresetKey, setCurrentPresetKey } = useStore(useStorePreset)
+export const useSetPresetKey = (searchFilters: string) => {
+  const { presets, currentPresetKey, setCurrentPresetKey } =
+    useStore(useStorePreset)
 
   useEffect(() => {
     if (!searchFilters) {
@@ -28,5 +25,5 @@ export const useSetPresetKey = (
     }
   }, [presets, searchFilters])
 
-  return [currentPresetKey]
+  return { presets, currentPresetKey }
 }

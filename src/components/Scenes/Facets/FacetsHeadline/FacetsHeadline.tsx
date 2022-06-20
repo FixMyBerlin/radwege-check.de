@@ -1,22 +1,20 @@
 import classNames from 'classnames'
 import React from 'react'
+import { useStore } from 'zustand'
 import { TranslationMissing } from '~/components/TextHelper'
-import { useAggregationConfig } from '../../hooks'
-import { SceneCategory } from '../../types'
+import { useStoreExperimentData } from '../../store'
 
 type Props = {
-  category: SceneCategory
   aggregationKey: string
   /** Change styles for icon aggregations */
   forIcons?: boolean
 }
 
 export const FacetsHeadline: React.FC<Props> = ({
-  category,
   aggregationKey,
   forIcons,
 }) => {
-  const aggregationConfig = useAggregationConfig(category)
+  const { aggregationConfig } = useStore(useStoreExperimentData)
   const title = aggregationConfig[aggregationKey]?.title
   const text = title || <TranslationMissing value={aggregationKey} />
 

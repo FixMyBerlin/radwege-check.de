@@ -1,17 +1,19 @@
 /* eslint-disable no-console */
-import { useAggregationConfig } from '../../hooks'
-import { SceneCategory } from '../../types'
+import { useStore } from 'zustand'
+import { isProduction } from '~/components/utils'
+import { useStoreExperimentData } from '../../store'
 
 type Props = {
-  category: SceneCategory
   aggregationKey: string
 }
 
 // Check the consistency of config values.
 // For now, we have two configs, one that we "own" and one that holds values for ItemsJS.
 // We could try moving those checks in TS, but that needs restructuring and more knowledge of TS.
-export const checkDataConsistency = ({ category, aggregationKey }: Props) => {
-  const aggregationConfig = useAggregationConfig(category)
+export const checkDataConsistency = ({ aggregationKey }: Props) => {
+  if (isProduction) return
+
+  const { aggregationConfig } = useStore(useStoreExperimentData)
   const { showAsIcons } = aggregationConfig[aggregationKey]
   const { choiceMode } = aggregationConfig[aggregationKey]
 

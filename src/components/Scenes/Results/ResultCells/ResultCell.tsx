@@ -1,17 +1,13 @@
 import classNames from 'classnames'
 import React from 'react'
+import { useStore } from 'zustand'
 import { TranslationMissing } from '~/components/TextHelper'
 import { formatMeter } from '~/components/utils'
 import { Icons } from '../../Facets/FacetsButtons'
-import { useAggregationConfig } from '../../hooks'
-import {
-  ScenePrimaryProps,
-  SceneSecondaryProps,
-  SceneCategory,
-} from '../../types'
+import { useStoreExperimentData } from '../../store'
+import { ScenePrimaryProps, SceneSecondaryProps } from '../../types'
 
 type Props = {
-  category: SceneCategory
   keyName: string
   bucketActive: boolean
   scene: ScenePrimaryProps | SceneSecondaryProps
@@ -20,14 +16,13 @@ type Props = {
 }
 
 export const ResultCell: React.FC<Props> = ({
-  category,
   keyName,
   bucketActive,
   scene,
   groupEndIndicator,
   showIcon,
 }) => {
-  const aggregationConfig = useAggregationConfig(category)
+  const { aggregationConfig } = useStore(useStoreExperimentData)
 
   const titleTranslation = aggregationConfig[keyName]?.resultTitle ||
     aggregationConfig[keyName]?.title || <TranslationMissing value={keyName} />

@@ -1,10 +1,11 @@
 import classNames from 'classnames'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
+import { useStore } from 'zustand'
+import { useStoreExperimentData } from '~/components/Scenes/store'
 import { isDev } from '~/components/utils'
-import { useAggregationConfig } from '../../../hooks'
 import BikeIcon from '../../../Results/ResultNumbers/assets/bike-icon.svg'
-import { ResultBucketProps, SceneCategory } from '../../../types'
+import { ResultBucketProps } from '../../../types'
 import { useResults } from './useResults'
 
 export type HandleMultiChoiceProps = {
@@ -21,7 +22,6 @@ export type HandleMultiChoice = ({
 
 type Props = {
   aggregationKey: string
-  category: SceneCategory
   bucket: ResultBucketProps
   buckets: ResultBucketProps[]
   handleClick: HandleMultiChoice
@@ -30,7 +30,6 @@ type Props = {
 
 export const ButtonMultiChoice: React.FC<Props> = ({
   aggregationKey,
-  category,
   bucket,
   buckets,
   handleClick,
@@ -43,7 +42,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
     anySelected: buckets.some((b) => b.selected),
   })
 
-  const aggregationConfig = useAggregationConfig(category)
+  const { aggregationConfig } = useStore(useStoreExperimentData)
 
   const formKey = `${aggregationKey}-${bucket.key}`
 

@@ -5,22 +5,17 @@ import { StringParam, useQueryParam } from 'use-query-params'
 import { useStore } from 'zustand'
 import { MetaTags } from '../Layout'
 import {
-  itemJsConfigPrimary,
-  itemJsConfigSecondary,
-  PresetsScenes,
-} from './constants'
-import {
   Facets,
   HandleMultiChoiceProps,
   HandleSingleChoiceProps,
 } from './Facets'
 import { FacetsMobileDropdown } from './Facets/FacetsMobileDropdown'
-import { useAggregationConfig, useSetPresetKey } from './hooks'
+import { useSetPresetKey } from './hooks'
 import { Results } from './Results'
 import { sceneImageUrl } from './SceneImage'
-import { useStoreSpinner } from './store'
+import { useStoreExperimentData, useStoreSpinner } from './store'
 import { TitleBar } from './TitleBar'
-import { ResultProps, SceneCategory } from './types'
+import { ResultProps } from './types'
 import {
   cleanupCsvData,
   CommaArrayParam,
@@ -29,19 +24,12 @@ import {
 } from './utils'
 
 type Props = {
-  category: SceneCategory
   rawScenes: any
-  presets: PresetsScenes
   /** @desc https://<domain>/pathname without searchParams */
   pagePath: string
 }
 
-export const Scenes: React.FC<Props> = ({
-  category,
-  rawScenes,
-  presets,
-  pagePath,
-}) => {
+export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
   const scenes = useMemo(() => {
     // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
     const flattened = rawScenes.map((list) => list.node)
@@ -49,13 +37,9 @@ export const Scenes: React.FC<Props> = ({
     return cleanupCsvData(flattened)
   }, [rawScenes])
 
-  const itemJsConfig = useMemo(
-    () =>
-      category === 'primary' ? itemJsConfigPrimary : itemJsConfigSecondary,
-    [category]
+  const { itemJsConfig, aggregationConfig, experimentTextKey } = useStore(
+    useStoreExperimentData
   )
-  const aggregationConfig = useAggregationConfig(category)
-
   const { showSpinner, setShowSpinner } = useStore(useStoreSpinner)
 
   // Init itemjs with the set configuration and data (scenes).
@@ -99,7 +83,7 @@ export const Scenes: React.FC<Props> = ({
     setShowSpinner(false)
   }, [items, searchFilters])
 
-  const [currentPresetKey] = useSetPresetKey(presets, searchFilters)
+  const { presets, currentPresetKey } = useSetPresetKey(searchFilters)
 
   /*
     === DATA: Click handler ===
@@ -236,7 +220,7 @@ export const Scenes: React.FC<Props> = ({
 
   const seoPresetIsActive = Object.keys(presets).includes(currentPresetKey)
   const seoCategoryTranslation =
-    category === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
+    experimentTextKey === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
 
   return (
     <>
@@ -262,13 +246,11 @@ export const Scenes: React.FC<Props> = ({
 
       <div className="flex h-screen min-h-full w-full flex-row overflow-hidden">
         <Facets
-          category={category}
           className="z-20 hidden w-72 flex-none bg-gray-100 shadow-[0_0_10px_0_rgba(0,_0,_0,_0.2)] lg:block"
           results={results}
           handleResetFilter={searchFilters && handleResetFilter}
           handleSingleChoice={handleSingleChoice}
           handleMultiChoice={handleMultiChoice}
-          presets={presets}
           handlePresetClick={handlePresetClick}
           showLogo
           showSpinner={showSpinner}
@@ -282,12 +264,10 @@ export const Scenes: React.FC<Props> = ({
             setSearchOrder={setSearchOrder}
             mobileFacets={
               <FacetsMobileDropdown
-                category={category}
                 results={results}
                 handleResetFilter={searchFilters && handleResetFilter}
                 handleSingleChoice={handleSingleChoice}
                 handleMultiChoice={handleMultiChoice}
-                presets={presets}
                 handlePresetClick={handlePresetClick}
                 showSpinner={showSpinner}
               />
@@ -295,7 +275,6 @@ export const Scenes: React.FC<Props> = ({
           />
 
           <Results
-            category={category}
             results={results}
             bookmarkResults={bookmarkResults}
             searchFilters={decodeFilterWithAggregation(searchFilters)}

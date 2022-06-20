@@ -1,7 +1,8 @@
 import classNames from 'classnames'
 import React from 'react'
-import { useAggregationConfig } from '../../hooks'
-import { ResultBucketProps, ResultProps, SceneCategory } from '../../types'
+import { useStore } from 'zustand'
+import { useStoreExperimentData } from '../../store'
+import { ResultBucketProps, ResultProps } from '../../types'
 import { checkBucketValueConsistency, checkDataConsistency } from '../utils'
 import { ButtonIcon, ButtonIconNoChoice } from './ButtonIcon'
 import { ButtonMultiChoice, HandleMultiChoice } from './ButtonMultiChoice'
@@ -13,7 +14,6 @@ import {
 
 type Props = {
   aggregationKey: string
-  category: SceneCategory
   results: ResultProps
   buckets: ResultBucketProps[]
   handleSingleChoice?: HandleSingleChoice
@@ -22,15 +22,13 @@ type Props = {
 
 export const FacetsButtons: React.FC<Props> = ({
   aggregationKey,
-  category,
   results,
   buckets,
   handleSingleChoice,
   handleMultiChoice,
 }) => {
-  checkDataConsistency({ category, aggregationKey })
+  checkDataConsistency({ aggregationKey })
   const { keyFromItemjsMissingInTranslations } = checkBucketValueConsistency({
-    category,
     aggregationKey,
     buckets,
   })
@@ -38,7 +36,7 @@ export const FacetsButtons: React.FC<Props> = ({
   // We need a specific order for our Bucket values.
   // We use the order of key from our aggregationConfig for that.
   // However, for keys of type number that does not work, which is why we use a custom order via the `sortOrder` key.
-  const aggregationConfig = useAggregationConfig(category)
+  const { aggregationConfig } = useStore(useStoreExperimentData)
   const sortedBuckets =
     aggregationConfig[aggregationKey]?.sortOrder ||
     Object.keys(aggregationConfig[aggregationKey].buckets)
@@ -59,7 +57,6 @@ export const FacetsButtons: React.FC<Props> = ({
               return (
                 <ButtonIconNoChoice
                   key="noChoice"
-                  category={category}
                   bucketKey="noChoice"
                   buckets={buckets}
                   aggregationKey={aggregationKey}
@@ -72,7 +69,6 @@ export const FacetsButtons: React.FC<Props> = ({
               return (
                 <ButtonSingleChoiceNoChoice
                   key="noChoice"
-                  category={category}
                   bucketKey="noChoice"
                   buckets={buckets}
                   aggregationKey={aggregationKey}
@@ -93,7 +89,6 @@ export const FacetsButtons: React.FC<Props> = ({
             return (
               <ButtonIcon
                 key={bucketKey}
-                category={category}
                 bucket={bucket}
                 aggregationKey={aggregationKey}
                 handleClick={handleSingleChoice}
@@ -106,7 +101,6 @@ export const FacetsButtons: React.FC<Props> = ({
             return (
               <ButtonSingleChoice
                 key={bucketKey}
-                category={category}
                 buckets={buckets}
                 bucket={bucket}
                 index={index}
@@ -120,7 +114,6 @@ export const FacetsButtons: React.FC<Props> = ({
           return (
             <ButtonMultiChoice
               key={bucketKey}
-              category={category}
               buckets={buckets}
               bucket={bucket}
               aggregationKey={aggregationKey}
@@ -131,7 +124,7 @@ export const FacetsButtons: React.FC<Props> = ({
         })}
       </div>
 
-      {!!keyFromItemjsMissingInTranslations.length && (
+      {!!keyFromItemjsMissingInTranslations?.length && (
         <div className="text-xs text-neutral-500">
           Werte, die wir in den Daten bereinigen müssen:{' '}
           {keyFromItemjsMissingInTranslations.map((v) => (

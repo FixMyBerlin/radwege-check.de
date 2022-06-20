@@ -1,8 +1,17 @@
 import { graphql } from 'gatsby'
 import React from 'react'
+import { useStore } from 'zustand'
 import { LayoutScenes } from '~/components/Layout'
 import { Scenes } from '~/components/Scenes'
-import { presetsScenesSecondary } from '~/components/Scenes/constants'
+import {
+  aggregationConfigSecondary,
+  itemJsConfigSecondary,
+  presetsScenesSecondary,
+} from '~/components/Scenes/constants'
+import {
+  useStoreExperimentData,
+  useStorePreset,
+} from '~/components/Scenes/store'
 import { isProduction } from '~/components/utils'
 import CommingSoon from '../CommingSoon'
 
@@ -15,15 +24,20 @@ const MyDataIndex = ({
   // TEMP deactivated on production while we finish this up
   if (isProduction) return <CommingSoon />
 
+  const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
+    useStore(useStoreExperimentData)
+
+  setItemJsConfig(itemJsConfigSecondary)
+  setAggregationConfig(aggregationConfigSecondary)
+  setExperimentTextKey('secondary')
+
+  const { setPresets } = useStore(useStorePreset)
+  setPresets(presetsScenesSecondary)
+
   return (
     <LayoutScenes>
       {/* <MetaTags> are part of <Scenes> */}
-      <Scenes
-        category="secondary"
-        rawScenes={sceneNodes}
-        presets={presetsScenesSecondary}
-        pagePath={location.pathname}
-      />
+      <Scenes rawScenes={sceneNodes} pagePath={location.pathname} />
     </LayoutScenes>
   )
 }

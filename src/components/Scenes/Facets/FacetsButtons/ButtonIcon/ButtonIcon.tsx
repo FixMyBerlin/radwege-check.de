@@ -1,7 +1,8 @@
 import React from 'react'
+import { useStore } from 'zustand'
+import { useStoreExperimentData } from '~/components/Scenes/store'
 import { isDev } from '~/components/utils'
-import { useAggregationConfig } from '../../../hooks'
-import { ResultBucketProps, SceneCategory } from '../../../types'
+import { ResultBucketProps } from '../../../types'
 import { HandleSingleChoice } from '../ButtonSingleChoice'
 import { useResults } from '../ButtonSingleChoice/useResults'
 import { Icons } from './Icons'
@@ -9,7 +10,6 @@ import { buttonIconClassNames } from './utils'
 
 type Props = {
   aggregationKey: string
-  category: SceneCategory
   bucket: ResultBucketProps
   handleClick: HandleSingleChoice
   paginationTotal: number
@@ -17,12 +17,11 @@ type Props = {
 
 export const ButtonIcon: React.FC<Props> = ({
   aggregationKey,
-  category,
   bucket,
   handleClick,
   paginationTotal,
 }) => {
-  const aggregationConfig = useAggregationConfig(category)
+  const { aggregationConfig } = useStore(useStoreExperimentData)
 
   const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
