@@ -28,7 +28,7 @@ export const TitleBar: React.FC<Props> = ({
     resultItems.forEach((scene) => {
       sum += scene.voteScore
     })
-    // result.pagination.total wäre die Gesamtanzahl; aber hier würden wir nur die max-200 Ergebnisse für die Berechnung berücksichigen.
+    // result.pagination.total wäre die Gesamtanzahl; aber hier würden wir nur die max-100 Ergebnisse für die Berechnung berücksichigen.
     const average = Math.round(sum / resultItems.length)
     setResultScoreAverage(average)
   }, [resultItems])
@@ -59,7 +59,7 @@ export const TitleBar: React.FC<Props> = ({
         {Number(total).toLocaleString() || '-'} Ergebnisse
       </h1>
       <div className="flex items-center gap-2 lg:gap-5">
-        {/* TODO: Find a way to show the average for a given filter-set for > 200 results. */}
+        {/* TODO: Find a way to show the average for a given filter-set for > 100 results. */}
         {resultScoreAverage && total <= perPage ? (
           <div className="text-center text-sm leading-4 text-neutral-500 lg:ml-3">
             {' '}
