@@ -40,7 +40,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
   const { itemJsConfig, aggregationConfig, experimentTextKey } = useStore(
     useStoreExperimentData
   )
-  const { showSpinner, setShowSpinner } = useStore(useStoreSpinner)
+  const { setShowSpinner } = useStore(useStoreSpinner)
 
   // Init itemjs with the set configuration and data (scenes).
   const [items, setItems] = useState(undefined)
@@ -253,7 +253,6 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
           handleMultiChoice={handleMultiChoice}
           handlePresetClick={handlePresetClick}
           showLogo
-          showSpinner={showSpinner}
         />
 
         {/* The `w-1 + grow` combo is required to get the with + overflow scroll right. */}
@@ -269,7 +268,6 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
                 handleSingleChoice={handleSingleChoice}
                 handleMultiChoice={handleMultiChoice}
                 handlePresetClick={handlePresetClick}
-                showSpinner={showSpinner}
               />
             }
           />
