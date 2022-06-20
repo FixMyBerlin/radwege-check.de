@@ -23,7 +23,6 @@ export type FacetsProps = {
   handleMultiChoice: HandleMultiChoice
   className?: string
   showLogo: boolean
-  showSpinner: boolean
 } & PresetDropdownProps
 
 export const Facets: React.FC<FacetsProps> = ({
@@ -34,7 +33,6 @@ export const Facets: React.FC<FacetsProps> = ({
   handlePresetClick,
   className,
   showLogo,
-  showSpinner,
 }) => {
   const aggregations = results?.data?.aggregations || {}
   const { aggregationConfig } = useStore(useStoreExperimentData)
@@ -56,10 +54,7 @@ export const Facets: React.FC<FacetsProps> = ({
     >
       <Logo visible={showLogo} />
 
-      <Spinner
-        visible={showSpinner}
-        className="absolute top-20 right-4 xl:top-4"
-      />
+      <Spinner className="absolute top-20 right-4 xl:top-4" />
 
       <div
         className={classNames('z-0 mb-4 bg-gray-200 px-3 pt-5 pb-1 shadow-md')}
