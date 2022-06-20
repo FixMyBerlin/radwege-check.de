@@ -74,7 +74,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
 
     // https://github.com/itemsapi/itemsjs#itemsjssearchoptions
     const searchOption = {
-      per_page: 200,
+      per_page: 100,
       sort: { field: 'voteScore', order },
       filters: decodeFilterWithAggregation(searchFilters),
     }
