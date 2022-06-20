@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useStore } from 'zustand'
 import { Spinner } from '~/components/Spinner'
 import { useStoreExperimentData } from '../store'
@@ -37,12 +37,20 @@ export const Facets: React.FC<FacetsProps> = ({
   const aggregations = results?.data?.aggregations || {}
   const { aggregationConfig } = useStore(useStoreExperimentData)
 
-  const mainAggregations = Object.entries(aggregations || {}).filter(
-    ([key, _v]) => aggregationConfig[key].primaryGroup === true
+  const mainAggregations = useMemo(
+    () =>
+      Object.entries(aggregations).filter(
+        ([key, _v]) => aggregationConfig[key].primaryGroup === true
+      ),
+    [aggregations, aggregationConfig]
   )
 
-  const furtherAggregations = Object.entries(aggregations || {}).filter(
-    ([key, _v]) => !aggregationConfig[key].primaryGroup
+  const furtherAggregations = useMemo(
+    () =>
+      Object.entries(aggregations).filter(
+        ([key, _v]) => !aggregationConfig[key].primaryGroup
+      ),
+    [aggregations, aggregationConfig]
   )
 
   return (
