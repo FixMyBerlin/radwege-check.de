@@ -12,7 +12,6 @@ export const FacetsMobileDropdown: React.FC<Props> = ({
   handleSingleChoice,
   handleMultiChoice,
   presets,
-  currentPresetKey,
   handlePresetClick,
   showSpinner,
 }) => {
@@ -43,7 +42,6 @@ export const FacetsMobileDropdown: React.FC<Props> = ({
             handleSingleChoice={handleSingleChoice}
             handleMultiChoice={handleMultiChoice}
             presets={presets}
-            currentPresetKey={currentPresetKey}
             handlePresetClick={handlePresetClick}
             showLogo={false}
             showSpinner={showSpinner}
