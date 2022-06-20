@@ -64,6 +64,7 @@
   "devDependencies": {
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
+    "@parcel/namer-default": "2.5.0",
     "@tailwindcss/forms": "0.5.2",
     "@testing-library/dom": "^8.11.1",
     "@testing-library/jest-dom": "5.16.4",
