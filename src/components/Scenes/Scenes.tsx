@@ -2,6 +2,7 @@ import itemsjs from 'itemsjs'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { StringParam, useQueryParam } from 'use-query-params'
+import { useStore } from 'zustand'
 import { MetaTags } from '../Layout'
 import {
   itemJsConfigPrimary,
@@ -16,6 +17,7 @@ import {
 import { FacetsMobileDropdown } from './Facets/FacetsMobileDropdown'
 import { useAggregationConfig } from './hooks'
 import { Results } from './Results'
+import { useStoreSpinner } from './Results/store'
 import { sceneImageUrl } from './SceneImage'
 import { TitleBar } from './TitleBar'
 import { ResultProps, SceneCategory } from './types'
@@ -54,7 +56,7 @@ export const Scenes: React.FC<Props> = ({
   )
   const aggregationConfig = useAggregationConfig(category)
 
-  const [showSpinner, setShowSpinner] = useState(true)
+  const { showSpinner, setShowSpinner } = useStore(useStoreSpinner)
 
   // Init itemjs with the set configuration and data (scenes).
   const [items, setItems] = useState(undefined)

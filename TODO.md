@@ -1,3 +1,22 @@
+# Store
+
+- Use `zustand` instead of redux; it uses a hook pattern and is generally simpler and smaller
+  - Empfohlen in https://syntax.fm/show/272/react-state-round-up
+- Github https://github.com/pmndrs/zustand
+- Volles Beispiel https://dev.to/aaronksaunders/managing-react-state-with-zustand-2e8k
+- Wie man Stores splittet https://github.com/pmndrs/zustand/wiki/Splitting-the-store-into-separate-slices
+  - Und naming recommendations https://github.com/pmndrs/zustand/wiki/Flux-inspired-practice
+- Devtools einfügen https://github.com/pmndrs/zustand#redux-devtools
+
+```
+Top level states on <Scenes>
+  - aggregation (with category)
+  - ui states (handle …)
+  - presets
+  - showLogo
+  - showSpinner
+```
+
 # Print
 
 ```
