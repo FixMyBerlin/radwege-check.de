@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useStore } from 'zustand'
 import { Layout } from '~/components/Layout'
 import { ScenePage } from '~/components/ScenePage'
@@ -21,9 +21,11 @@ const MyData = ({ location, data: { scenesSecondaryCsv: rawScene } }) => {
   const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
     useStore(useStoreExperimentData)
 
-  setItemJsConfig(itemJsConfigSecondary)
-  setAggregationConfig(aggregationConfigSecondary)
-  setExperimentTextKey('secondary')
+  useEffect(() => {
+    setItemJsConfig(itemJsConfigSecondary)
+    setAggregationConfig(aggregationConfigSecondary)
+    setExperimentTextKey('secondary')
+  }, [])
 
   return (
     <Layout>
