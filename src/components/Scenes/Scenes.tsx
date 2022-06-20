@@ -15,10 +15,10 @@ import {
   HandleSingleChoiceProps,
 } from './Facets'
 import { FacetsMobileDropdown } from './Facets/FacetsMobileDropdown'
-import { useAggregationConfig } from './hooks'
+import { useAggregationConfig, useSetPresetKey } from './hooks'
 import { Results } from './Results'
-import { useStoreSpinner } from './Results/store'
 import { sceneImageUrl } from './SceneImage'
+import { useStoreSpinner } from './store'
 import { TitleBar } from './TitleBar'
 import { ResultProps, SceneCategory } from './types'
 import {
@@ -99,26 +99,7 @@ export const Scenes: React.FC<Props> = ({
     setShowSpinner(false)
   }, [items, searchFilters])
 
-  const [currentPresetKey, setCurrentPresetKey] = useState(null)
-
-  useEffect(() => {
-    if (!searchFilters) {
-      setCurrentPresetKey(null)
-      return
-    }
-
-    const presetKeyMatchingUrlFilters = Object.entries(presets)
-      .map(([key, values]) =>
-        values.searchFilterString === searchFilters ? key : undefined
-      )
-      .filter((v) => v !== undefined)
-
-    if (presetKeyMatchingUrlFilters.length) {
-      setCurrentPresetKey(presetKeyMatchingUrlFilters[0])
-    } else {
-      setCurrentPresetKey('custom')
-    }
-  }, [presets, searchFilters])
+  const [currentPresetKey] = useSetPresetKey(presets, searchFilters)
 
   /*
     === DATA: Click handler ===
