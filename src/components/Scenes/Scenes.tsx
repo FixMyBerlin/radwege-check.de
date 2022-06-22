@@ -180,7 +180,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
   const handleBookmark = useCallback(
     (sceneId: string) => {
       const bookmarks = bookmarkArray || []
-      const isBookmarked = bookmarkArray?.includes(sceneId)
+      const isBookmarked = bookmarks.includes(sceneId)
       if (isBookmarked) {
         // remove
         const bookmarksWithoutPassedSceneId = bookmarks
@@ -205,13 +205,12 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
     [bookmarkArray, setBookmarkArray]
   )
 
-  const bookmarkResults = useMemo(
-    () =>
-      (bookmarkArray || [])
-        .map((sceneId) => scenes.find((s) => s.sceneId === sceneId))
-        .filter(Boolean),
-    [bookmarkArray, scenes]
-  )
+  const bookmarkResults = useMemo(() => {
+    const bookmarks = bookmarkArray || []
+    return bookmarks
+      .map((sceneId) => scenes.find((s) => s.sceneId === sceneId))
+      .filter(Boolean)
+  }, [bookmarkArray, scenes])
 
   /*
     === RENDERING ===
