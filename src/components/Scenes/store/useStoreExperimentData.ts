@@ -15,10 +15,10 @@ export type StoreExperimentData = {
 }
 
 export const useStoreExperimentData = create<StoreExperimentData>((set) => ({
-  itemJsConfig: {},
+  itemJsConfig: null,
   setItemJsConfig: (itemJsConfig) => set({ itemJsConfig }),
 
-  aggregationConfig: {},
+  aggregationConfig: null,
   setAggregationConfig: (aggregationConfig) => set({ aggregationConfig }),
 
   experimentTextKey: null,
