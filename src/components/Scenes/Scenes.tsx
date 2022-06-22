@@ -43,7 +43,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
   const { setShowSpinner } = useStore(useStoreSpinner)
 
   // Init itemjs with the set configuration and data (scenes).
-  const [items, setItems] = useState(undefined)
+  const [items, setItems] = useState(null)
   useEffect(() => {
     if (!itemJsConfig) return
     setItems(itemsjs(scenes, itemJsConfig))

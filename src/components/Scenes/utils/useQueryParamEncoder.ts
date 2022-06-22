@@ -31,6 +31,8 @@ export const decodeFilter = (
   filterString: string,
   aggregationConfig: AggregationConfig
 ): SearchOptionProps['filters'] => {
+  if (!aggregationConfig) return {}
+
   // Guard: Make sure our input does at least have one key-value-pair
   if (filterString === undefined) return {}
   if (!filterString.includes(':')) return {}
