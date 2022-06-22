@@ -5,7 +5,7 @@ import { sceneImageUrl } from './sceneImageUrl'
 type Props = {
   sceneId: string
   className?: string
-  alt?: string
+  alt?: string | React.ReactNode // ReactNode is required for <FormattedMessage />
   lazy?: boolean
 }
 
@@ -20,10 +20,12 @@ export const SceneImage: React.VFC<Props> = ({
   type LazyLoadingImageProp = { loading: 'lazy' } | undefined
   const lazyLoad: LazyLoadingImageProp = lazy ? { loading: 'lazy' } : undefined
 
+  const altText = alt as string // <FormattedMessage /> should always return a string, nothing fanc
+
   return (
     <img
       src={sceneImageUrl(sceneId)}
-      alt={alt || 'Illustration der bewerteten Szene.'}
+      alt={altText || 'Illustration der bewerteten Szene.'}
       className={classNames(className)}
       {...lazyLoad}
     />
