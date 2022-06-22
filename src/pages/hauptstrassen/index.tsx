@@ -9,9 +9,11 @@ import {
   presetsScenesPrimary,
 } from '~/components/Scenes/constants'
 import {
+  useStoreBookmarks,
   useStoreExperimentData,
   useStorePreset,
 } from '~/components/Scenes/store'
+import { isProduction } from '~/components/utils'
 
 const MyDataIndex = ({
   location,
@@ -22,12 +24,15 @@ const MyDataIndex = ({
   const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
     useStore(useStoreExperimentData)
   const { setPresets } = useStore(useStorePreset)
+  const { setAllowBookmarks } = useStore(useStoreBookmarks)
 
   useEffect(() => {
     setItemJsConfig(itemJsConfigPrimary)
     setAggregationConfig(aggregationConfigPrimary)
     setExperimentTextKey('primary')
     setPresets(presetsScenesPrimary)
+    setPresets(presetsScenesPrimary)
+    setAllowBookmarks(!isProduction) // disabled on production
   }, [])
 
   return (

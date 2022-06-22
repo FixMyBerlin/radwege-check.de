@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useStore } from 'zustand'
+import { useStoreBookmarks } from '../store'
 import { ResultItemsProps, ResultProps, SearchOptionProps } from '../types'
 import { HandleBookmarkProp, ResultColumn } from './ResultColumn'
 
@@ -31,12 +33,14 @@ export const Results: React.FC<Props> = ({
     resultsRef.current.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }, [resultItems])
 
+  const { allowBookmarks } = useStore(useStoreBookmarks)
+
   return (
     <div
       ref={resultsRef}
       className="_snap-x-not-y z-0 flex h-full flex-grow flex-row overflow-scroll overscroll-contain"
     >
-      {bookmarkResults && (
+      {allowBookmarks && bookmarkResults && (
         <div className="flex flex-row bg-brand-light-yellow">
           {bookmarkResults.map((scene, index) => (
             <ResultColumn
