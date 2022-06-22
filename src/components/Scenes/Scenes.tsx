@@ -47,7 +47,6 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
   useEffect(() => {
     if (!itemJsConfig) return
     setItems(itemsjs(scenes, itemJsConfig))
-    console.log('this rerenders when I select/deselect a bookmark; why?')
   }, [scenes, itemJsConfig])
 
   // The filters that we use for setSearchOption.
