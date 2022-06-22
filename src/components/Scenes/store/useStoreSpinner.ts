@@ -7,7 +7,5 @@ export type StoreSpinner = {
 
 export const useStoreSpinner = create<StoreSpinner>((set) => ({
   showSpinner: false,
-  setShowSpinner: (newState: boolean) => {
-    set({ showSpinner: newState })
-  },
+  setShowSpinner: (showSpinner) => set({ showSpinner }),
 }))
