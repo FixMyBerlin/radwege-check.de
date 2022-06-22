@@ -13,8 +13,7 @@ export type StorePreset = {
 export const useStorePreset = create<StorePreset>((set) => ({
   presets: {},
   setPresets: (presets) => set({ presets }),
+
   currentPresetKey: null,
-  setCurrentPresetKey: (newKey: StorePresetKey) => {
-    set({ currentPresetKey: newKey })
-  },
+  setCurrentPresetKey: (currentPresetKey) => set({ currentPresetKey }),
 }))
