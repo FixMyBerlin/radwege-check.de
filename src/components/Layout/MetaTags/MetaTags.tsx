@@ -1,5 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { AuswertungTranslations } from '~/components/Auswertung/translations'
 import { domain } from '~/components/utils'
 
 // FYI, https://www.gatsbyjs.com/docs/add-seo-component/ suggest to use useStaticQuery but I don't see why, yet
@@ -10,6 +11,7 @@ const seoDefaultValues = {
 }
 
 type Props = {
+  lang?: AuswertungTranslations
   noindex?: boolean
   canonicalPath?: string
   title?: string
@@ -19,9 +21,11 @@ type Props = {
   imageUrl?: string | `https://${string}`
   imageSize?: { width: number; height: number }
   article?: boolean
+  children?: React.ReactNode
 }
 
 export const MetaTags: React.FC<Props> = ({
+  lang = 'de',
   noindex = false,
   canonicalPath,
   title,
@@ -31,6 +35,7 @@ export const MetaTags: React.FC<Props> = ({
   imageUrl,
   imageSize,
   article,
+  children,
 }) => {
   const { defaultTitle, defaultDescription } = seoDefaultValues
 
@@ -47,6 +52,7 @@ export const MetaTags: React.FC<Props> = ({
   //  Since we do not need this field, its OK to remove it.
   return (
     <Helmet>
+      <html lang={lang} />
       <title>{withDefaults.title}</title>
       <meta property="og:title" content={sharingTitle || withDefaults.title} />
       <meta name="twitter:title" content={sharingTitle || withDefaults.title} />
@@ -72,6 +78,8 @@ export const MetaTags: React.FC<Props> = ({
       ))}
 
       {article ? <meta property="og:type" content="article" /> : null}
+
+      {children}
     </Helmet>
   )
 }

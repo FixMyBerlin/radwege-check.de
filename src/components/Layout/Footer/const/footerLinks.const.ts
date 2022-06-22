@@ -15,9 +15,16 @@ export const footerLegalLinks: footerMenuItemProps[] = [
 export const footerLinks: footerMenuProp = {
   report: [
     {
-      name: 'Forschungsergebnisse Subjektive Sicherheit',
-      to: 'https://fixmyberlin.de/research/subjektive-sicherheit',
-      external: true,
+      name: '(Deutsch) Forschungsergebnisse Subjektive Sicherheit',
+      to: '/auswertung',
+    },
+    {
+      name: '(English) Report on subjective safety',
+      to: '/report',
+    },
+    {
+      name: '(Español) Resultados de la investigación Seguridad subjetiva',
+      to: '/evaluacion',
     },
   ],
   results: [
