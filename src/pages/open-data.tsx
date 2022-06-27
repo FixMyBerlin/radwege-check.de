@@ -2,11 +2,12 @@ import { PageProps } from 'gatsby'
 import React from 'react'
 import { LayoutArticle, MetaTags } from '~/components/Layout'
 import { Link } from '~/components/Link'
+import { isProduction } from '~/components/utils'
 import CommingSoon from './CommingSoon'
 
 const KontaktPage: React.FC<PageProps> = ({ location }) => {
   // TEMP Deactivate page for breta release
-  return <CommingSoon />
+  if (isProduction) return <CommingSoon />
 
   return (
     <LayoutArticle location={location}>
@@ -33,10 +34,7 @@ const KontaktPage: React.FC<PageProps> = ({ location }) => {
       <p>
         Wenn nicht anders angegeben stehen die auf dieser Website verwendeten
         Fotos, Grafiken und Texte unter{' '}
-        <Link
-          external
-          to="https://creativecommons.org/licenses/by-nc/4.0/deed.de"
-        >
+        <Link external to="https://creativecommons.org/licenses/by-nc/4.0">
           Creative Commons-Lizenz BY-NC 4.0
         </Link>
         .
