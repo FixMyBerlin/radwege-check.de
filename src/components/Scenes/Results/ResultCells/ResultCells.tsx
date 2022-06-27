@@ -18,7 +18,7 @@ export const ResultCells: React.FC<Props> = ({ scene, searchFilters }) => {
 
   return (
     <>
-      {Object.keys(aggregationConfig).map((key) => {
+      {Object.keys(aggregationConfig || {}).map((key) => {
         const bucketActive = searchFilters && !!searchFilters[key]
 
         return (
