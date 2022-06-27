@@ -11,7 +11,7 @@ import { ResultNumbers } from '../Scenes/Results/ResultNumbers'
 import { sceneImageUrl } from '../Scenes/SceneImage'
 import { useStoreExperimentData } from '../Scenes/store'
 import { ScenePrimaryProps, SceneSecondaryProps } from '../Scenes/types'
-import { titlePrimaryScene } from '../Scenes/utils'
+import { useTitleScene } from '../Scenes/utils/titleScenes/utils'
 import { formatNumber } from '../utils'
 
 type Props = {
@@ -21,15 +21,28 @@ type Props = {
 
 export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
   const { experimentTextKey } = useStore(useStoreExperimentData)
+
+  const titleScene = useTitleScene()
+
   const categoryTranslation =
     experimentTextKey === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
+  const categoryTranslationSentencePart =
+    experimentTextKey === 'primary'
+      ? 'auf einer Hauptstrasse'
+      : 'in einer Nebenstrasse'
 
   return (
     <>
       <MetaTags
         article
-        title={`Diese Fahrrad-Führungsform hat ${scene.voteScore} sichere Bewertungen (${categoryTranslation}, ID #${scene.sceneId})`}
-        description="Eine von 1.700 Radverkehrsführungsformen aus dem Radwege-Check. Jetzt ausprobieren!"
+        title={titleScene(scene)}
+        description={`Diese Führungsform ${categoryTranslationSentencePart} wurde mit ${formatNumber(
+          scene.voteScore,
+          {
+            unit: '%',
+            precision: 0,
+          }
+        )} als „(eher) sicher“ bewertet.`}
         imageUrl={sceneImageUrl(scene.sceneId)}
         imageSize={{ width: 1240, height: 930 }}
       />
@@ -45,8 +58,8 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
               <Logo className="h-full" alt="Radwege-Check" />
             </Link>
           </div>
-          <h1 className="silbentrennung col-span-3 w-full text-2xl lg:h-14">
-            {titlePrimaryScene(scene)}
+          <h1 className="silbentrennung col-span-3 w-full text-2xl lg:h-14 lg:pr-40">
+            {titleScene(scene)}
           </h1>
         </div>
 

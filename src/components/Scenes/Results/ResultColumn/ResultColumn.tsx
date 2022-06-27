@@ -9,6 +9,7 @@ import {
   SceneSecondaryProps,
   SearchOptionProps,
 } from '../../types'
+import { useTitleScene } from '../../utils/titleScenes/utils'
 import { ResultCells } from '../ResultCells'
 import { ResultNumbers } from '../ResultNumbers'
 import { ShowTableProps } from '../Results'
@@ -45,6 +46,8 @@ export const ResultColumn: React.FC<Props> = ({
 
   const safeZoneForIosSafariNavigationBar = 'mb-[40rem] lg:mb-0'
 
+  const titleScene = useTitleScene()
+
   return (
     <article
       className={classNames(
@@ -53,8 +56,7 @@ export const ResultColumn: React.FC<Props> = ({
       )}
     >
       <h2 className="sr-only">
-        {/* TODO add scene title */}
-        <Link to={scene.path}>Szene {scene.sceneId}</Link>
+        <Link to={scene.path}>{titleScene(scene)}</Link>
       </h2>
 
       {allowBookmarks && (

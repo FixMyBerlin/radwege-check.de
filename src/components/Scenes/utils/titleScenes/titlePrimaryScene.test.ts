@@ -1,12 +1,12 @@
 import { ScenePrimaryProps } from '../../types'
 import { titlePrimaryScene } from './titlePrimaryScene'
-import { baseScene } from './utils/baseScene.const'
+import { baseScenePrimary } from './utils'
 
 describe('titlePrimaryScene()', () => {
   describe('shared lanes (Bus, Mischverkehr)', () => {
     it('… with parking', () => {
       const scene: Partial<ScenePrimaryProps> = {
-        ...baseScene,
+        ...baseScenePrimary,
         bicycleLaneWidth: 'shared_bus_lane',
         parking: 'parking_lane',
       }
@@ -16,7 +16,7 @@ describe('titlePrimaryScene()', () => {
 
     it('… no parking', () => {
       const scene: Partial<ScenePrimaryProps> = {
-        ...baseScene,
+        ...baseScenePrimary,
         bicycleLaneWidth: 'shared_bus_lane',
         parking: 'no_parking',
       }
@@ -28,7 +28,7 @@ describe('titlePrimaryScene()', () => {
   describe('leftOfBicycleLane: green', () => {
     it('for `wide`', () => {
       const scene: Partial<ScenePrimaryProps> = {
-        ...baseScene,
+        ...baseScenePrimary,
         bicycleLaneWidth: 'wide',
         leftOfBicycleLane: 'green',
       }
@@ -38,7 +38,7 @@ describe('titlePrimaryScene()', () => {
 
     it('for `narrow`', () => {
       const scene: Partial<ScenePrimaryProps> = {
-        ...baseScene,
+        ...baseScenePrimary,
         bicycleLaneWidth: 'narrow',
         leftOfBicycleLane: 'green',
       }
@@ -50,7 +50,7 @@ describe('titlePrimaryScene()', () => {
   describe('leftOfBicycleLane: parking_lane', () => {
     it('for `wide`', () => {
       const scene: Partial<ScenePrimaryProps> = {
-        ...baseScene,
+        ...baseScenePrimary,
         bicycleLaneWidth: 'wide',
         leftOfBicycleLane: 'parking_lane',
       }
@@ -61,7 +61,7 @@ describe('titlePrimaryScene()', () => {
 
     it('for `narrow`', () => {
       const scene: Partial<ScenePrimaryProps> = {
-        ...baseScene,
+        ...baseScenePrimary,
         bicycleLaneWidth: 'narrow',
         leftOfBicycleLane: 'parking_lane',
       }
@@ -74,7 +74,7 @@ describe('titlePrimaryScene()', () => {
   describe('leftOfBicycleLane: curb', () => {
     it('bufferRightMarking: double_line (same for all other except `none`)', () => {
       const scene: Partial<ScenePrimaryProps> = {
-        ...baseScene,
+        ...baseScenePrimary,
         bicycleLaneWidth: 'wide',
         leftOfBicycleLane: 'curb',
         bufferRightMarking: 'double_line',
@@ -86,7 +86,7 @@ describe('titlePrimaryScene()', () => {
 
     it('bufferRightMarking: none', () => {
       const scene: Partial<ScenePrimaryProps> = {
-        ...baseScene,
+        ...baseScenePrimary,
         bicycleLaneWidth: 'narrow',
         leftOfBicycleLane: 'curb',
         bufferRightMarking: 'none',
@@ -100,7 +100,7 @@ describe('titlePrimaryScene()', () => {
   describe('leftOfBicycleLane: car_lanes', () => {
     it('bufferLeftPhysicalProtection: bollard_high (same for all other except `none`)', () => {
       const scene: Partial<ScenePrimaryProps> = {
-        ...baseScene,
+        ...baseScenePrimary,
         bicycleLaneWidth: 'wide',
         leftOfBicycleLane: 'car_lanes',
         bufferLeftPhysicalProtection: 'bollard_high',
@@ -112,7 +112,7 @@ describe('titlePrimaryScene()', () => {
 
     it('bufferLeftPhysicalProtection: none', () => {
       const scene: Partial<ScenePrimaryProps> = {
-        ...baseScene,
+        ...baseScenePrimary,
         bicycleLaneWidth: 'narrow',
         leftOfBicycleLane: 'car_lanes',
         bufferLeftPhysicalProtection: 'none',
@@ -126,7 +126,7 @@ describe('titlePrimaryScene()', () => {
   describe('bufferLeftPhysicalProtection: green — whichs shows bufferLeftMarking', () => {
     it('bufferLeftPhysicalProtection: solid_line (same for all other except `none`)', () => {
       const scene: Partial<ScenePrimaryProps> = {
-        ...baseScene,
+        ...baseScenePrimary,
         bicycleLaneWidth: 'narrow',
         leftOfBicycleLane: 'car_lanes',
         bufferLeftPhysicalProtection: 'green',
@@ -139,7 +139,7 @@ describe('titlePrimaryScene()', () => {
 
     it('bufferLeftPhysicalProtection: none', () => {
       const scene: Partial<ScenePrimaryProps> = {
-        ...baseScene,
+        ...baseScenePrimary,
         bicycleLaneWidth: 'narrow',
         leftOfBicycleLane: 'car_lanes',
         bufferLeftPhysicalProtection: 'green',

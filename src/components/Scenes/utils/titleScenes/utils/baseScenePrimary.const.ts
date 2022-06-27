@@ -1,4 +1,4 @@
-export const baseScene = {
+export const baseScenePrimary = {
   bicycleLaneWidth: 'INGORED', // ['wide', 'narrow', 'shared_bus_lane', 'none'],
   leftOfBicycleLane: 'IGNORED', // ['car_lanes', 'parking_lane', 'curb', 'green'],
   bufferLeftPhysicalProtection: 'IGNORED', // ['bollard_high', 'bollard_small', 'planter', 'none', 'green'],

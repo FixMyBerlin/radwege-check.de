@@ -10,7 +10,7 @@ import {
 } from './textPrimaryScene.const'
 import { sceneId } from './textShared.const'
 
-export const titlePrimaryScene = (scene: Partial<ScenePrimaryProps>) => {
+export const titleSecondaryScene = (scene: Partial<ScenePrimaryProps>) => {
   if (['shared_bus_lane', 'none'].includes(scene.bicycleLaneWidth))
     return checkAndClean([
       textBicycleLaneWidth[scene.bicycleLaneWidth],
