@@ -1,5 +1,4 @@
 import { ScenePrimaryProps } from '../../types'
-import { checkAndClean } from './utils'
 import {
   textBicycleLaneWidth,
   textBufferLeftMarking,
@@ -9,45 +8,98 @@ import {
   textParking,
 } from './textPrimaryScene.const'
 import { sceneId } from './textShared.const'
+import { checkAndClean } from './utils'
 
-export const titlePrimaryScene = (scene: Partial<ScenePrimaryProps>) => {
-  if (['shared_bus_lane', 'none'].includes(scene.bicycleLaneWidth))
+type OptionalOptionProps = { includeId?: boolean } | undefined
+
+export const titlePrimaryScene = (
+  scene: Partial<ScenePrimaryProps>,
+  { includeId }: OptionalOptionProps = {
+    includeId: false,
+  }
+) => {
+  const optionalSceneId = includeId && sceneId(scene)
+  const debug = false
+
+  if (['shared_bus_lane', 'none'].includes(scene.bicycleLaneWidth)) {
+    const textIncludeTram =
+      scene.vehicleLaneUsage === 'motor_vehicle_and_tram' && 'inkl. Tram,'
+
     return checkAndClean([
       textBicycleLaneWidth[scene.bicycleLaneWidth],
+      textIncludeTram,
       textParking[scene.parking],
-      sceneId(scene),
+      optionalSceneId,
+      debug && '#1',
     ])
+  }
 
-  if (['parking_lane', 'green'].includes(scene.leftOfBicycleLane))
+  if (['parking_lane'].includes(scene.leftOfBicycleLane)) {
     return checkAndClean([
       textBicycleLaneWidth[scene.bicycleLaneWidth],
       textLeftOfBicycleLane[scene.leftOfBicycleLane],
-      sceneId(scene),
+      optionalSceneId,
+      debug && '#2',
     ])
+  }
 
-  if (['curb'].includes(scene.leftOfBicycleLane))
+  if (
+    ['no_cars'].includes(scene.leftOfBicycleLane) &&
+    ['none'].includes(scene.pavementWidth)
+  ) {
+    return checkAndClean([
+      textBicycleLaneWidth[scene.bicycleLaneWidth],
+      'ohne KfZ- und Fußverkehr',
+      optionalSceneId,
+      debug && '#3a',
+    ])
+  }
+
+  if (
+    ['curb', 'no_cars'].includes(scene.leftOfBicycleLane) &&
+    ['none'].includes(scene.pavementWidth)
+  ) {
+    return checkAndClean([
+      textBicycleLaneWidth[scene.bicycleLaneWidth],
+      textLeftOfBicycleLane[scene.leftOfBicycleLane],
+      'ohne Fußverkehr',
+      optionalSceneId,
+      debug && '#3b',
+    ])
+  }
+
+  if (['curb', 'no_cars'].includes(scene.leftOfBicycleLane)) {
     return checkAndClean([
       textBicycleLaneWidth[scene.bicycleLaneWidth],
       textLeftOfBicycleLane[scene.leftOfBicycleLane],
       textBufferRightMarking[scene.bufferRightMarking],
-      sceneId(scene),
+      optionalSceneId,
+      debug && '#4',
     ])
+  }
 
   if (
     ['car_lanes'].includes(scene.leftOfBicycleLane) &&
-    ['green'].includes(scene.bufferLeftPhysicalProtection)
-  )
+    ['hedge'].includes(scene.bufferLeftPhysicalProtection)
+  ) {
+    const textIncludeParking =
+      scene.parking === 'parking_lane' && 'und KfZ-Parken rechts'
+
     return checkAndClean([
       textBicycleLaneWidth[scene.bicycleLaneWidth],
       textLeftOfBicycleLane[scene.leftOfBicycleLane],
       textBufferLeftMarking[scene.bufferLeftMarking],
-      sceneId(scene),
+      textIncludeParking,
+      optionalSceneId,
+      debug && '#5',
     ])
+  }
 
   return checkAndClean([
     textBicycleLaneWidth[scene.bicycleLaneWidth],
     textLeftOfBicycleLane[scene.leftOfBicycleLane],
     textBufferLeftPhysicalProtection[scene.bufferLeftPhysicalProtection],
-    sceneId(scene),
+    optionalSceneId,
+    debug && '#fallback',
   ])
 }

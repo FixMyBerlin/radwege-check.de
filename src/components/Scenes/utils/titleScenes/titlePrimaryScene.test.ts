@@ -3,6 +3,16 @@ import { titlePrimaryScene } from './titlePrimaryScene'
 import { baseScenePrimary } from './utils'
 
 describe('titlePrimaryScene()', () => {
+  it('appends the SceneID with `{ includeId: true }`', () => {
+    const scene: Partial<ScenePrimaryProps> = {
+      ...baseScenePrimary,
+      bicycleLaneWidth: 'shared_bus_lane',
+      parking: 'parking_lane',
+    }
+    const title = 'Radverkehrsführung auf Busspur mit KfZ-Parken [FM-C-2000]'
+    expect(titlePrimaryScene(scene, { includeId: true })).toStrictEqual(title)
+  })
+
   describe('shared lanes (Bus, Mischverkehr)', () => {
     it('… with parking', () => {
       const scene: Partial<ScenePrimaryProps> = {
@@ -10,7 +20,7 @@ describe('titlePrimaryScene()', () => {
         bicycleLaneWidth: 'shared_bus_lane',
         parking: 'parking_lane',
       }
-      const title = 'Radverkehrsführung auf Busspur mit KfZ-Parken [FM-C-2000]'
+      const title = 'Radverkehrsführung auf Busspur mit KfZ-Parken'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
 
@@ -20,19 +30,33 @@ describe('titlePrimaryScene()', () => {
         bicycleLaneWidth: 'shared_bus_lane',
         parking: 'no_parking',
       }
-      const title = 'Radverkehrsführung auf Busspur ohne KfZ-Parken [FM-C-2000]'
+      const title = 'Radverkehrsführung auf Busspur ohne KfZ-Parken'
+      expect(titlePrimaryScene(scene)).toStrictEqual(title)
+    })
+
+    it('… for the special case of Tram', () => {
+      const scene: Partial<ScenePrimaryProps> = {
+        ...baseScenePrimary,
+        bicycleLaneWidth: 'none',
+        vehicleLaneUsage: 'motor_vehicle_and_tram',
+        parking: 'no_parking',
+      }
+      const title =
+        'Radverkehrsführung im Mischverkehr inkl. Tram, ohne KfZ-Parken'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
   })
 
-  describe('leftOfBicycleLane: green', () => {
+  describe('leftOfBicycleLane: no_cars', () => {
     it('for `wide`', () => {
       const scene: Partial<ScenePrimaryProps> = {
         ...baseScenePrimary,
         bicycleLaneWidth: 'wide',
-        leftOfBicycleLane: 'green',
+        leftOfBicycleLane: 'no_cars',
+        bufferRightMarking: 'grass_verge',
       }
-      const title = 'Breite (3,5 m) Radverkehrsanlage in Grünanlage [FM-C-2000]'
+      const title =
+        'Breite Radverkehrsanlage (3,5 m) ohne KfZ-Verkehr und mit Trennung zum Fußverkehr durch Grünstreifen'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
 
@@ -40,9 +64,22 @@ describe('titlePrimaryScene()', () => {
       const scene: Partial<ScenePrimaryProps> = {
         ...baseScenePrimary,
         bicycleLaneWidth: 'narrow',
-        leftOfBicycleLane: 'green',
+        leftOfBicycleLane: 'no_cars',
+        bufferRightMarking: 'none',
       }
-      const title = 'Schmale (2 m) Radverkehrsanlage in Grünanlage [FM-C-2000]'
+      const title =
+        'Schmale Radverkehrsanlage (2 m) ohne KfZ-Verkehr und ohne Trennung zum Fußverkehr'
+      expect(titlePrimaryScene(scene)).toStrictEqual(title)
+    })
+
+    it('no cars, no pedestirans', () => {
+      const scene: Partial<ScenePrimaryProps> = {
+        ...baseScenePrimary,
+        bicycleLaneWidth: 'wide',
+        leftOfBicycleLane: 'no_cars',
+        pavementWidth: 'none',
+      }
+      const title = 'Breite Radverkehrsanlage (3,5 m) ohne KfZ- und Fußverkehr'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
   })
@@ -55,7 +92,7 @@ describe('titlePrimaryScene()', () => {
         leftOfBicycleLane: 'parking_lane',
       }
       const title =
-        'Breite (3,5 m) Radverkehrsanlage rechts von parkenden Autos [FM-C-2000]'
+        'Breite Radverkehrsanlage (3,5 m) rechts von parkenden Autos'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
 
@@ -65,8 +102,7 @@ describe('titlePrimaryScene()', () => {
         bicycleLaneWidth: 'narrow',
         leftOfBicycleLane: 'parking_lane',
       }
-      const title =
-        'Schmale (2 m) Radverkehrsanlage rechts von parkenden Autos [FM-C-2000]'
+      const title = 'Schmale Radverkehrsanlage (2 m) rechts von parkenden Autos'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
   })
@@ -80,7 +116,7 @@ describe('titlePrimaryScene()', () => {
         bufferRightMarking: 'double_line',
       }
       const title =
-        'Breite (3,5 m) Radverkehrsanlage im Seitenraum mit Trennung zum Fußverkehr durch Doppellinie [FM-C-2000]'
+        'Breite Radverkehrsanlage (3,5 m) im Seitenraum mit Trennung zum Fußverkehr durch Doppellinie'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
 
@@ -92,7 +128,7 @@ describe('titlePrimaryScene()', () => {
         bufferRightMarking: 'none',
       }
       const title =
-        'Schmale (2 m) Radverkehrsanlage im Seitenraum ohne Trennung zum Fußverkehr [FM-C-2000]'
+        'Schmale Radverkehrsanlage (2 m) im Seitenraum ohne Trennung zum Fußverkehr'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
   })
@@ -106,7 +142,7 @@ describe('titlePrimaryScene()', () => {
         bufferLeftPhysicalProtection: 'bollard_high',
       }
       const title =
-        'Breite (3,5 m) Radverkehrsanlage auf der Fahrbahn mit Schutz durch Poller (hoch) [FM-C-2000]'
+        'Breite Radverkehrsanlage (3,5 m) auf der Fahrbahn geschützt durch hohe Poller'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
 
@@ -118,22 +154,37 @@ describe('titlePrimaryScene()', () => {
         bufferLeftPhysicalProtection: 'none',
       }
       const title =
-        'Schmale (2 m) Radverkehrsanlage auf der Fahrbahn ohne Trennung links [FM-C-2000]'
+        'Schmale Radverkehrsanlage (2 m) auf der Fahrbahn ohne Trennung links'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
   })
 
-  describe('bufferLeftPhysicalProtection: green — whichs shows bufferLeftMarking', () => {
-    it('bufferLeftPhysicalProtection: solid_line (same for all other except `none`)', () => {
+  describe('bufferLeftPhysicalProtection: hedge — whichs shows bufferLeftMarking', () => {
+    it('bufferLeftPhysicalProtection: solid_line (same for all other except `none`) and parking', () => {
       const scene: Partial<ScenePrimaryProps> = {
         ...baseScenePrimary,
         bicycleLaneWidth: 'narrow',
         leftOfBicycleLane: 'car_lanes',
-        bufferLeftPhysicalProtection: 'green',
+        bufferLeftPhysicalProtection: 'hedge',
         bufferLeftMarking: 'solid_line',
+        parking: 'parking_lane',
       }
       const title =
-        'Schmale (2 m) Radverkehrsanlage auf der Fahrbahn mit durchgezogener Linie links [FM-C-2000]'
+        'Schmale Radverkehrsanlage (2 m) auf der Fahrbahn mit durchgezogenem Breitstrich links und KfZ-Parken rechts'
+      expect(titlePrimaryScene(scene)).toStrictEqual(title)
+    })
+
+    it('bufferLeftPhysicalProtection: solid_line (same for all other except `none`) without parking', () => {
+      const scene: Partial<ScenePrimaryProps> = {
+        ...baseScenePrimary,
+        bicycleLaneWidth: 'narrow',
+        leftOfBicycleLane: 'car_lanes',
+        bufferLeftPhysicalProtection: 'hedge',
+        bufferLeftMarking: 'solid_line',
+        parking: 'no_parking', // which means we do not add any extra string here
+      }
+      const title =
+        'Schmale Radverkehrsanlage (2 m) auf der Fahrbahn mit durchgezogenem Breitstrich links'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
 
@@ -142,11 +193,12 @@ describe('titlePrimaryScene()', () => {
         ...baseScenePrimary,
         bicycleLaneWidth: 'narrow',
         leftOfBicycleLane: 'car_lanes',
-        bufferLeftPhysicalProtection: 'green',
+        bufferLeftPhysicalProtection: 'hedge',
         bufferLeftMarking: 'none',
+        parking: 'no_parking',
       }
       const title =
-        'Schmale (2 m) Radverkehrsanlage auf der Fahrbahn ohne Trennung links [FM-C-2000]'
+        'Schmale Radverkehrsanlage (2 m) auf der Fahrbahn ohne Trennung links'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
   })

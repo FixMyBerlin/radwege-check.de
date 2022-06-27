@@ -18,7 +18,7 @@ export const titleSecondaryScene = (scene: Partial<ScenePrimaryProps>) => {
       sceneId(scene),
     ])
 
-  if (['parking_lane', 'green'].includes(scene.leftOfBicycleLane))
+  if (['parking_lane', 'no_cars'].includes(scene.leftOfBicycleLane))
     return checkAndClean([
       textBicycleLaneWidth[scene.bicycleLaneWidth],
       textLeftOfBicycleLane[scene.leftOfBicycleLane],
@@ -35,7 +35,7 @@ export const titleSecondaryScene = (scene: Partial<ScenePrimaryProps>) => {
 
   if (
     ['car_lanes'].includes(scene.leftOfBicycleLane) &&
-    ['green'].includes(scene.bufferLeftPhysicalProtection)
+    ['no_cars'].includes(scene.bufferLeftPhysicalProtection)
   )
     return checkAndClean([
       textBicycleLaneWidth[scene.bicycleLaneWidth],
