@@ -4,7 +4,7 @@ import { LayoutArticle, MetaTags } from '~/components/Layout'
 import { cleanupCsvData, titlePrimaryScene } from '~/components/Scenes/utils'
 import { SceneImage } from '~/components/Scenes'
 import { Link } from '~/components/Link'
-import { BarChart } from '~/components/Scenes/Results/ResultNumbers/BarChartAndHeadline/BarChart'
+import { FeelSafe } from '~/components/charts'
 
 const AllPagePrimary = ({
   data: {
@@ -49,22 +49,17 @@ const AllPagePrimary = ({
             to={scene.path}
             classNameOverwrite="flex flex-col hover:bg-brand-light-yellow hover:shadow-xl p-3 rounded hover:border-gray-100 border-transparent border transition"
           >
-            <SceneImage
-              sceneId={scene.sceneId}
-              className="mb-2 rounded object-cover object-bottom"
-            />
-
-            <div className="flex h-20 justify-between gap-2">
-              <h2 className="leading-tight">{titlePrimaryScene(scene)}</h2>
-              <div className="w-6 flex-none">
-                <BarChart
-                  vote0Unsafe={scene.vote0Unsafe}
-                  vote1RatherUnsafe={scene.vote1RatherUnsafe}
-                  vote2Save={scene.vote2Save}
-                  vote3VerySave={scene.vote3VerySave}
-                />
+            <div className="relative">
+              <SceneImage
+                sceneId={scene.sceneId}
+                className="mb-2 rounded object-cover object-bottom"
+              />
+              <div className="absolute top-1 right-1">
+                <FeelSafe value={scene.voteScore} standalone big />
               </div>
             </div>
+
+            <h2 className="h-20 leading-tight">{titlePrimaryScene(scene)}</h2>
           </Link>
         ))}
       </div>
