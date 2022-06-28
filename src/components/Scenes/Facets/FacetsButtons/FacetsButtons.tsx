@@ -48,7 +48,9 @@ export const FacetsButtons: React.FC<Props> = ({
       <div
         className={classNames(
           'w-full font-condensed',
-          choiceMode === 'multi' ? 'grid grid-cols-4' : 'group flex flex-row'
+          choiceMode === 'multi'
+            ? 'group grid grid-cols-4'
+            : 'group flex flex-row'
         )}
       >
         {sortedBuckets.map((bucketKey, index) => {
