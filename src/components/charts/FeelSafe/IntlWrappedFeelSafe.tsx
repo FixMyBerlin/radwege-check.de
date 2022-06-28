@@ -25,15 +25,15 @@ export type FeelSafeProps = {
 
 const modes = defineMessages({
   bike: {
-    id: 'research.components.feelsafe.perspectives.bike',
+    id: 'feelsafe.perspectives.bike',
     defaultMessage: 'Fahrrad',
   },
   car: {
-    id: 'research.components.feelsafe.perspectives.car',
+    id: 'feelsafe.perspectives.car',
     defaultMessage: 'Auto',
   },
   walk: {
-    id: 'research.components.feelsafe.perspectives.walking',
+    id: 'feelsafe.perspectives.walking',
     defaultMessage: 'Fuß',
   },
 })
@@ -58,7 +58,7 @@ export const IntlWrappedFeelSafe: React.FC<FeelSafeProps> = ({
 
   const label = intl.formatMessage(
     {
-      id: 'research.components.feelsafe.label',
+      id: 'feelsafe.label',
       defaultMessage:
         '{pct}% der Nutzer:innen in der {mode}-Perspektive fühlen sich sicher',
     },

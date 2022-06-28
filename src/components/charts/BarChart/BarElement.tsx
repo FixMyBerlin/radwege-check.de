@@ -5,19 +5,19 @@ const colorScale = ['#c01d1d', '#f08141', '#abc759', '#45b834']
 const colorWeight = ['#45b834']
 const labels = defineMessages({
   0: {
-    id: 'research.components.barchart.labels.unsafe',
+    id: 'barchart.labels.unsafe',
     defaultMessage: 'unsicher',
   },
   1: {
-    id: 'research.components.barchart.labels.ratherUnsafe',
+    id: 'barchart.labels.ratherUnsafe',
     defaultMessage: 'eher unsicher',
   },
   2: {
-    id: 'research.components.barchart.labels.ratherSafe',
+    id: 'barchart.labels.ratherSafe',
     defaultMessage: 'eher sicher',
   },
   3: {
-    id: 'research.components.barchart.labels.safe',
+    id: 'barchart.labels.safe',
     defaultMessage: 'sicher',
   },
 })
