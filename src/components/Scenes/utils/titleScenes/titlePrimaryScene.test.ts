@@ -152,9 +152,11 @@ describe('titlePrimaryScene()', () => {
         bicycleLaneWidth: 'narrow',
         leftOfBicycleLane: 'car_lanes',
         bufferLeftPhysicalProtection: 'none',
+        bufferLeftMarking: 'dashed_line',
+        parking: 'no_parking',
       }
       const title =
-        'Schmale Radverkehrsanlage (2 m) auf der Fahrbahn ohne Trennung links'
+        'Schmale Radverkehrsanlage (2 m) auf der Fahrbahn mit unterbrochem Breitstrich links'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
   })

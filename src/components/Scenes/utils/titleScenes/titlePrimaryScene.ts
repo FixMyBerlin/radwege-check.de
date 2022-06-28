@@ -45,6 +45,7 @@ export const titlePrimaryScene = (
   }
 
   if (
+    // "no_cars" are the hedges on the left
     ['no_cars'].includes(scene.leftOfBicycleLane) &&
     ['none'].includes(scene.pavementWidth)
   ) {
@@ -57,7 +58,7 @@ export const titlePrimaryScene = (
   }
 
   if (
-    ['curb', 'no_cars'].includes(scene.leftOfBicycleLane) &&
+    ['curb'].includes(scene.leftOfBicycleLane) &&
     ['none'].includes(scene.pavementWidth)
   ) {
     return checkAndClean([
@@ -81,7 +82,7 @@ export const titlePrimaryScene = (
 
   if (
     ['car_lanes'].includes(scene.leftOfBicycleLane) &&
-    ['hedge'].includes(scene.bufferLeftPhysicalProtection)
+    ['hedge', 'none'].includes(scene.bufferLeftPhysicalProtection)
   ) {
     const textIncludeParking =
       scene.parking === 'parking_lane' && 'und KfZ-Parken rechts'

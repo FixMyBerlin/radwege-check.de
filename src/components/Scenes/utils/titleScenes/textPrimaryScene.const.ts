@@ -17,6 +17,7 @@ export const textBufferLeftPhysicalProtection = {
   bollard_high: 'geschützt durch hohe Poller',
   bollard_small: 'geschützt durch niedrige Poller',
   planter: 'geschützt durch Blumenkästen links',
+  hedge: '',
 } as const
 
 export const textBufferLeftMarking = {
