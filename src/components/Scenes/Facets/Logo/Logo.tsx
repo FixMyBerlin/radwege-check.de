@@ -1,5 +1,5 @@
 import React from 'react'
-import LogoIcon from '~/components/assets/radwegecheck-logo-bildmarke.svg'
+import LogoImage from '~/components/assets/radwegecheck-logo.svg'
 import { Link } from '~/components/Link'
 
 type Props = {
@@ -12,7 +12,7 @@ export const Logo: React.FC<Props> = ({ visible }) => {
   return (
     <div className="relative flex h-14 items-center bg-brand-light-yellow py-1 px-3 shadow-md">
       <Link to="/" classNameOverwrite="h-8" title="Zur Startseite…">
-        <LogoIcon className="h-8 w-8" alt="Radwege-Check" />
+        <LogoImage className="h-8 w-auto" alt="Radwege-Check" />
       </Link>
     </div>
   )
