@@ -12,7 +12,8 @@ import { Table } from './Table'
 
 type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps
-  handleHover?: (sceneId: string) => void
+  /** @desc `null` to disable */
+  handleHover: (sceneId: string) => void | null
   wrapperClass?: string
   chartClass?: string
 } & ShowTableProps
@@ -59,8 +60,10 @@ export const ResultNumbers: React.FC<Props> = ({
           vote1RatherUnsafe={scene.votePedestrian1RatherUnsafe}
           vote2Save={scene.votePedestrian2Save}
           vote3VerySave={scene.votePedestrian3VerySave}
-          handleMouseOver={() => handleHover(scene.sceneIdPedestrian)}
-          handleMouseOut={() => handleHover(scene.sceneId)}
+          handleMouseOver={
+            handleHover && (() => handleHover(scene.sceneIdPedestrian))
+          }
+          handleMouseOut={handleHover && (() => handleHover(scene.sceneId))}
         />
         <BarChartAndHeadline
           icon={<CarIcon className="mr-1.5 h-auto w-5" />}
@@ -69,8 +72,8 @@ export const ResultNumbers: React.FC<Props> = ({
           vote1RatherUnsafe={scene.voteCar1RatherUnsafe}
           vote2Save={scene.voteCar2Save}
           vote3VerySave={scene.voteCar3VerySave}
-          handleMouseOver={() => handleHover(scene.sceneIdCar)}
-          handleMouseOut={() => handleHover(scene.sceneId)}
+          handleMouseOver={handleHover && (() => handleHover(scene.sceneIdCar))}
+          handleMouseOut={handleHover && (() => handleHover(scene.sceneId))}
         />
       </div>
     </section>

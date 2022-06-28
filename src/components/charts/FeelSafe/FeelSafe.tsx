@@ -3,7 +3,7 @@ import { IntlProvider } from 'react-intl'
 import { FeelSafeProps, IntlWrappedFeelSafe } from './IntlWrappedFeelSafe'
 
 type Props = FeelSafeProps & {
-  /* @desc Will instanciate a new IntlProvider wrapper with locale=['de] */
+  /** @desc Will instanciate a new IntlProvider wrapper with locale=['de] */
   standalone?: boolean
 }
 

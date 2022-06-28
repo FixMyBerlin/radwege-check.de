@@ -164,6 +164,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
               showTable
               setShowTable={null}
               wrapperClass="h-full"
+              handleHover={null}
             />
           </div>
         </div>
