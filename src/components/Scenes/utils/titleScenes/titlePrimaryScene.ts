@@ -1,3 +1,4 @@
+import { isDev } from '~/components/utils'
 import { ScenePrimaryProps } from '../../types'
 import {
   textBicycleLaneWidth,
@@ -19,7 +20,7 @@ export const titlePrimaryScene = (
   }
 ) => {
   const optionalSceneId = includeId && sceneId(scene)
-  const debug = false
+  const debug = !process.env.DISABlE_DEBUG_FOR_JEST && isDev
 
   if (['shared_bus_lane', 'none'].includes(scene.bicycleLaneWidth)) {
     const textIncludeTram =
