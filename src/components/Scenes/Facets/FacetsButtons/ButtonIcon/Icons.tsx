@@ -5,7 +5,7 @@ import BollardSmall from './assets/bollard_small-icon.svg'
 import DashedLine from './assets/dashed_line-icon.svg'
 import DoubleLine from './assets/double_line-icon.svg'
 import GrassVerge from './assets/grass_verge-icon.svg'
-import Green from './assets/green-icon.svg'
+import Hedge from './assets/hedge-icon.svg'
 import PavedVerge from './assets/paved_verge-icon.svg'
 import Planter from './assets/planter-icon.svg'
 import RestrictedArea from './assets/restricted_area-icon.svg'
@@ -93,9 +93,9 @@ export const Icons: React.FC<Props> = ({ forValue, className }) => {
         />
       )
 
-    case 'green':
+    case 'hedge':
       return (
-        <Green className={classNames(className, 'scale-75')} title={forValue} />
+        <Hedge className={classNames(className, 'scale-75')} title={forValue} />
       )
 
     default:
