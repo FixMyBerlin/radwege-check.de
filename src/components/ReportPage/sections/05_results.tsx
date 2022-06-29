@@ -3,14 +3,13 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import { BarChart, BarChartWrapper, FeelSafe } from '~/components/charts'
 import { Link } from '~/components/Link'
 import { Headline, Image, TwoImagesWrapper } from '../components'
-import { SectionProps } from './types'
 
-export const SectionResults: React.FC<SectionProps> = ({ toc, tocAnchor }) => {
+export const SectionResults: React.FC = () => {
   const intl = useIntl()
 
   return (
     <>
-      <Headline as="h2" toc={toc} tocAnchor={tocAnchor}>
+      <Headline id={intl.formatMessage({ id: 'toc.Results.hash' })} as="h2">
         <FormattedMessage id="05_results.heading" />
       </Headline>
 
@@ -1564,7 +1563,7 @@ export const SectionResults: React.FC<SectionProps> = ({ toc, tocAnchor }) => {
         <Image source="SE_C_44" chart={<FeelSafe value={21.74} />} />
       </TwoImagesWrapper>
 
-      <Headline as="h3" toc="dutch-solution">
+      <Headline as="h3" id="dutch-solution">
         <FormattedMessage id="05_results.p55" />
       </Headline>
 

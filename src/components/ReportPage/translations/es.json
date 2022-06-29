@@ -384,5 +384,12 @@
   "toc.introduction": "Sobre el proyecto",
   "toc.Results": "Valoración estadística",
   "toc.Summary": "Resumen",
-  "toc.Team": "Quiénes se encuentran atrás de la encuesta"
+  "toc.Team": "Quiénes se encuentran atrás de la encuesta",
+  "toc.About.hash": "umfragekonzept",
+  "toc.Dataset.hash": "datensatz-der-ergebnisse",
+  "toc.Header.hash": "einleitung",
+  "toc.introduction.hash": "ueber-das-projekt",
+  "toc.Results.hash": "statistische-auswertung",
+  "toc.Summary.hash": "zusammenfassung",
+  "toc.Team.hash": "wer-steht-hinter-der-umfrage"
 }

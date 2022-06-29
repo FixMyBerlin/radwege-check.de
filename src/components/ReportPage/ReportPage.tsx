@@ -7,6 +7,7 @@ import {
   SectionIntroduction,
   SectionResults,
   SectionSummary,
+  SectionTableOfContents,
   SectionTeam,
 } from './sections'
 import { ReportTranslations } from './translations'
@@ -17,15 +18,18 @@ type Props = {
 }
 
 export const ReportPage: React.FC<Props> = ({ lang, translationKeys }) => {
+  // const intl = useIntl()
+
   return (
     <IntlProvider locale={lang} messages={translationKeys} defaultLocale="de">
+      <SectionTableOfContents />
       <SectionHeader />
-      <SectionIntroduction toc="introduction" />
-      <SectionAbout toc="about" />
-      <SectionDataset toc="dataset" />
-      <SectionResults toc="results" />
-      <SectionSummary toc="summary" />
-      <SectionTeam toc="team" />
+      <SectionIntroduction />
+      <SectionAbout />
+      <SectionDataset />
+      <SectionResults />
+      <SectionSummary />
+      <SectionTeam />
     </IntlProvider>
   )
 }

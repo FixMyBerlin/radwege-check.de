@@ -1,13 +1,14 @@
 import React from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { Link } from '~/components/Link'
 import { Headline } from '../components'
-import { SectionProps } from './types'
 
-export const SectionSummary: React.FC<SectionProps> = ({ toc, tocAnchor }) => {
+export const SectionSummary: React.FC = () => {
+  const intl = useIntl()
+
   return (
     <>
-      <Headline as="h2" toc={toc} tocAnchor={tocAnchor}>
+      <Headline id={intl.formatMessage({ id: 'toc.Summary.hash' })} as="h2">
         <FormattedMessage id="06_summary.p01.heading" />
       </Headline>
       <p>

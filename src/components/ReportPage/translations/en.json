@@ -384,5 +384,12 @@
   "toc.introduction": "About the project",
   "toc.Results": "Statistical evaluation",
   "toc.Summary": "Summary",
-  "toc.Team": "The people behind the survey"
+  "toc.Team": "The people behind the survey",
+  "toc.About.hash": "umfragekonzept",
+  "toc.Dataset.hash": "datensatz-der-ergebnisse",
+  "toc.Header.hash": "einleitung",
+  "toc.introduction.hash": "ueber-das-projekt",
+  "toc.Results.hash": "statistische-auswertung",
+  "toc.Summary.hash": "zusammenfassung",
+  "toc.Team.hash": "wer-steht-hinter-der-umfrage"
 }

@@ -1,18 +1,19 @@
 import React from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { FeelSafe } from '~/components/charts'
 import { Link } from '~/components/Link'
 import { SceneImage } from '~/components/ScenesPage/SceneImage'
 import { ButtonWrapper, Headline, Image, TwoImagesWrapper } from '../components'
-import { SectionProps } from './types'
 
-export const SectionIntroduction: React.FC<SectionProps> = ({
-  toc,
-  tocAnchor,
-}) => {
+export const SectionIntroduction: React.FC = () => {
+  const intl = useIntl()
+
   return (
     <>
-      <Headline toc={toc} tocAnchor={tocAnchor} as="h2">
+      <Headline
+        id={intl.formatMessage({ id: 'toc.introduction.hash' })}
+        as="h2"
+      >
         <FormattedMessage id="02_intro.heading" />
       </Headline>
       <p>
