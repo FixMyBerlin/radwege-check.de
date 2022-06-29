@@ -28,7 +28,7 @@ export const SectionTableOfContents: React.FC = () => {
   return (
     <nav
       arial-title="Table of contents"
-      className="not-prose fixed left-8 top-32 w-40 rounded bg-white py-3 px-4 shadow-lg"
+      className="not-prose absolute top-28 hidden w-40 rounded bg-white py-3 px-4 lg:left-0 lg:block lg:rounded-l-none xl:fixed xl:shadow-lg 2xl:left-8"
     >
       <ul>
         {toc.map((tocItem) => (

@@ -7,7 +7,7 @@ export const SectionDataset: React.FC = () => {
   const intl = useIntl()
 
   return (
-    <>
+    <section>
       <Headline id={intl.formatMessage({ id: 'toc.Dataset.hash' })} as="h2">
         <FormattedMessage id="04_dataset.heading" />
       </Headline>
@@ -40,10 +40,10 @@ export const SectionDataset: React.FC = () => {
         >
           <FormattedMessage id="04_dataset.downloadLabel" />
         </Link>
-        <div className="mt-3 text-gray-500">
+        <div className="mt-3 text-center text-gray-500">
           <FormattedMessage id="04_dataset.downloadCaption" />
         </div>
       </ButtonWrapper>
-    </>
+    </section>
   )
 }

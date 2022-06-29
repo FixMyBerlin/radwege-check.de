@@ -8,7 +8,7 @@ export const SectionResults: React.FC = () => {
   const intl = useIntl()
 
   return (
-    <>
+    <section>
       <Headline id={intl.formatMessage({ id: 'toc.Results.hash' })} as="h2">
         <FormattedMessage id="05_results.heading" />
       </Headline>
@@ -516,7 +516,7 @@ export const SectionResults: React.FC = () => {
           subtitle={<FormattedMessage id="05_results.p21.image2" />}
         />
       </TwoImagesWrapper>
-
+      {/*
       <BarChartWrapper
         title={intl.formatMessage({
           id: '05_results.chart7.title',
@@ -828,7 +828,6 @@ export const SectionResults: React.FC = () => {
         <FormattedMessage id="05_results.p28" />
       </p>
 
-      {/* Fehlende Daten */}
       <BarChartWrapper
         title={intl.formatMessage({
           id: '05_results.chart12.title',
@@ -1630,7 +1629,7 @@ export const SectionResults: React.FC = () => {
           data={[4.538799, 18.081991, 43.045388, 34.333821]}
           feelsafe={77.37}
         />
-      </BarChartWrapper>
-    </>
+      </BarChartWrapper> */}
+    </section>
   )
 }

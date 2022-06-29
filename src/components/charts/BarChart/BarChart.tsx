@@ -35,22 +35,22 @@ export const BarChart = ({
   return (
     <div
       className={classNames(
-        'flex flex-col gap-2 md:flex-row md:items-center',
-        !isWeightGraph && '-mr-2'
+        'flex flex-col gap-2 sm:flex-row sm:items-center',
+        !isWeightGraph && 'sm:-mr-2'
       )}
     >
       <div
         className={classNames(
           titleClass,
           isWeightGraph
-            ? 'flex min-h-[60px] w-52 items-center lg:w-64'
-            : 'my-8 w-20 lg:w-40',
-          'silbentrennung mr-1 leading-5'
+            ? 'mt-3 flex sm:mt-auto sm:min-h-[60px] sm:w-52 sm:items-center lg:w-64'
+            : 'my-3 sm:my-8 sm:w-20 lg:w-40',
+          'silbentrennung leading-5 sm:mr-1'
         )}
       >
         <strong>{title}</strong>
       </div>
-      <div className="flex flex-1 grow items-center justify-center">
+      <div className="flex w-full flex-1 grow justify-center sm:w-auto sm:items-center">
         <div className="flex h-[40px] w-full text-sm md:text-base">
           {data.map((d, i) => (
             <BarElement
@@ -66,7 +66,7 @@ export const BarChart = ({
         </div>
       </div>
       {!isWeightGraph && (
-        <div className="relative">
+        <div className="relative place-self-center sm:place-self-auto">
           <FeelSafe value={feelsafe} icon={feelsafeIcon} />
         </div>
       )}

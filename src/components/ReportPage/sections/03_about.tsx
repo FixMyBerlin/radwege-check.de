@@ -8,7 +8,7 @@ export const SectionAbout: React.FC = () => {
   const intl = useIntl()
 
   return (
-    <>
+    <section>
       <Headline id={intl.formatMessage({ id: 'toc.About.hash' })} as="h2">
         <FormattedMessage id="03_concept.heading" />
       </Headline>
@@ -203,6 +203,6 @@ export const SectionAbout: React.FC = () => {
           }}
         />
       </p>
-    </>
+    </section>
   )
 }

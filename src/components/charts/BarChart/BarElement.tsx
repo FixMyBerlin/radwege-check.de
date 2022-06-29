@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React from 'react'
 import { defineMessages, useIntl } from 'react-intl'
 
@@ -68,9 +69,13 @@ export const BarElement = ({ title, value, index, isWeightGraph = false }) => {
     title
   )}-${index}-${pctValue}`
 
+  // `overflow-hidden` fixes Tooltip on mobile. It cannot be accessed on touch anyway, so no one will see the cut of text.
   return (
     <div
-      className="group relative flex cursor-help items-center justify-center"
+      className={classNames(
+        'group relative flex cursor-help items-center justify-center',
+        { 'overflow-hidden': !isWeightGraph }
+      )}
       key={`bar__${labels[index]}`}
       style={{
         width: `${value}%`,

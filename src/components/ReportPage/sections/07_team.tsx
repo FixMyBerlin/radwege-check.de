@@ -8,7 +8,7 @@ export const SectionTeam: React.FC = () => {
   const intl = useIntl()
 
   return (
-    <>
+    <section>
       <Headline id={intl.formatMessage({ id: 'toc.Team.hash' })} as="h2">
         <FormattedMessage id="07_team.p01.heading" />
       </Headline>
@@ -62,6 +62,6 @@ export const SectionTeam: React.FC = () => {
           />
         </Link>
       </LogoWrapper>
-    </>
+    </section>
   )
 }

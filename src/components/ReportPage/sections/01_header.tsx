@@ -5,8 +5,8 @@ import AuthorIcon from './assets/author-icon.svg'
 
 export const SectionHeader: React.FC = () => {
   return (
-    <>
-      <p className="font-light uppercase tracking-widest">
+    <section>
+      <p className="font-light uppercase leading-5 tracking-widest">
         <FormattedMessage id="article.kicker" />
       </p>
 
@@ -31,6 +31,6 @@ export const SectionHeader: React.FC = () => {
           <FormattedMessage id="article.introduction" />
         </strong>
       </p>
-    </>
+    </section>
   )
 }
