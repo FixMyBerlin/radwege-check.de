@@ -7,6 +7,7 @@ module.exports = {
       colors: {
         'brand-yellow': '#fabe28',
         'brand-light-yellow': '#fff8e8',
+        'brand-pink': '#cf0a7d',
       },
       boxShadow: {
         innerYellow: 'inset 1px 1px 3px 0px rgb(180 155 0)',

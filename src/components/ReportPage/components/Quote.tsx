@@ -17,7 +17,7 @@ export const Quote: React.FC<Props> = ({ sourceText, children }) => {
         <blockquote className="m-0 border-0 p-0">{children}</blockquote>
         {sourceText && (
           <div className="-mb-[3.75rem] mt-4 flex items-center justify-center">
-            <div className="inline-flex rounded bg-pink-600 py-3 px-6 text-center text-sm font-bold leading-normal text-white">
+            <div className="inline-flex rounded bg-brand-pink py-3 px-6 text-center text-sm font-bold leading-normal text-white">
               {sourceText}
             </div>
           </div>

@@ -1564,7 +1564,7 @@ export const SectionResults: React.FC<SectionProps> = ({ toc, tocAnchor }) => {
         <Image source="SE_C_44" chart={<FeelSafe value={21.74} />} />
       </TwoImagesWrapper>
 
-      <Headline as="h3">
+      <Headline as="h3" toc="dutch-solution">
         <FormattedMessage id="05_results.p55" />
       </Headline>
 

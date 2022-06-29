@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { AuswertungTranslations } from '~/components/Auswertung/translations'
+import { ReportTranslations } from '~/components/ReportPage/translations'
 import { domain } from '~/components/utils'
 
 // FYI, https://www.gatsbyjs.com/docs/add-seo-component/ suggest to use useStaticQuery but I don't see why, yet
@@ -11,7 +11,7 @@ const seoDefaultValues = {
 }
 
 type Props = {
-  lang?: AuswertungTranslations
+  lang?: ReportTranslations
   noindex?: boolean
   canonicalPath?: string
   title?: string

@@ -11,7 +11,9 @@ export const SectionSummary: React.FC<SectionProps> = ({ toc, tocAnchor }) => {
         <FormattedMessage id="06_summary.p01.heading" />
       </Headline>
       <p>
-        <FormattedMessage id="06_summary.p02" />
+        <p>
+          <FormattedMessage id="06_summary.p02" />
+        </p>
         <ul>
           <li>
             <FormattedMessage id="06_summary.p03" />

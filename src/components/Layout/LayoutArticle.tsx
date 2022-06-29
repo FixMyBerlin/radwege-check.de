@@ -24,7 +24,7 @@ export const LayoutArticle: React.FC<Props> = ({
       <ArticleLogo />
       <article
         className={classNames(
-          maxWidthClass ?? 'prose',
+          maxWidthClass ?? 'prose prose-li:marker:text-gray-800',
           'mx-auto -mt-20 mb-20 max-w-2xl bg-white p-5 pt-8 lg:rounded-md lg:p-10'
         )}
       >

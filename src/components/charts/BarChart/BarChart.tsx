@@ -42,7 +42,9 @@ export const BarChart = ({
       <div
         className={classNames(
           titleClass,
-          isWeightGraph ? 'flex min-h-[60px] w-52 items-center' : 'my-8 w-20',
+          isWeightGraph
+            ? 'flex min-h-[60px] w-52 items-center lg:w-64'
+            : 'my-8 w-20 lg:w-40',
           'silbentrennung mr-1 leading-5'
         )}
       >
