@@ -1,5 +1,6 @@
 import React from 'react'
 import { IntlProvider } from 'react-intl'
+import { LanguageSwitcher } from './components'
 import {
   SectionAbout,
   SectionDataset,
@@ -18,10 +19,9 @@ type Props = {
 }
 
 export const ReportPage: React.FC<Props> = ({ lang, translationKeys }) => {
-  // const intl = useIntl()
-
   return (
     <IntlProvider locale={lang} messages={translationKeys} defaultLocale="de">
+      <LanguageSwitcher />
       <SectionTableOfContents />
       <SectionHeader />
       <SectionIntroduction />
