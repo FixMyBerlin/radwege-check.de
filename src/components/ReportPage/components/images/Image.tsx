@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import React from 'react'
-import { SceneImage } from '~/components/Scenes'
+import { SceneImage } from '~/components/ScenesPage'
 import { Subtitle } from './Subtitle'
 
 type Props = {

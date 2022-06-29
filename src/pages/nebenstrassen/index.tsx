@@ -2,17 +2,17 @@ import { graphql } from 'gatsby'
 import React, { useEffect } from 'react'
 import { useStore } from 'zustand'
 import { LayoutScenes } from '~/components/Layout'
-import { Scenes } from '~/components/Scenes'
+import { Scenes } from '~/components/ScenesPage'
 import {
   aggregationConfigSecondary,
   itemJsConfigSecondary,
   presetsScenesSecondary,
-} from '~/components/Scenes/constants'
+} from '~/components/ScenesPage/constants'
 import {
   useStoreBookmarks,
   useStoreExperimentData,
   useStorePreset,
-} from '~/components/Scenes/store'
+} from '~/components/ScenesPage/store'
 import { isProduction } from '~/components/utils'
 import CommingSoon from '../CommingSoon'
 

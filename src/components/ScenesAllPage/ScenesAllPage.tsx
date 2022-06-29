@@ -3,10 +3,10 @@ import { useStore } from 'zustand'
 import { FeelSafe } from '../charts'
 import { MetaTags } from '../Layout'
 import { Link } from '../Link'
-import { SceneImage } from '../Scenes'
-import { useStoreExperimentData } from '../Scenes/store'
-import { cleanupCsvData } from '../Scenes/utils'
-import { useTitleScene } from '../Scenes/utils/titleScenes/utils'
+import { SceneImage } from '../ScenesPage'
+import { useStoreExperimentData } from '../ScenesPage/store'
+import { cleanupCsvData } from '../ScenesPage/utils'
+import { useTitleScene } from '../ScenesPage/utils/titleScenes/utils'
 
 type Props = {
   rawScenes: any

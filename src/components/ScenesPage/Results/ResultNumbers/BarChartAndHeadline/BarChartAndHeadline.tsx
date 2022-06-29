@@ -3,7 +3,7 @@ import React from 'react'
 import {
   ScenePrimaryProps,
   SceneSecondaryProps,
-} from '~/components/Scenes/types'
+} from '~/components/ScenesPage/types'
 import { formatNumber } from '~/components/utils'
 import { BarChart } from './BarChart'
 

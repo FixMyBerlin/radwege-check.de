@@ -2,7 +2,7 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { FeelSafe } from '~/components/charts'
 import { Link } from '~/components/Link'
-import { SceneImage } from '~/components/Scenes/SceneImage'
+import { SceneImage } from '~/components/ScenesPage/SceneImage'
 import { ButtonWrapper, Headline, Image, TwoImagesWrapper } from '../components'
 import { SectionProps } from './types'
 

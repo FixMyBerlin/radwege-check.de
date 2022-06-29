@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStore } from 'zustand'
-import { useStoreExperimentData } from '~/components/Scenes/store'
+import { useStoreExperimentData } from '~/components/ScenesPage/store'
 import { isDev } from '~/components/utils'
 import { ResultBucketProps } from '../../../types'
 import { HandleSingleChoice } from '../ButtonSingleChoice'

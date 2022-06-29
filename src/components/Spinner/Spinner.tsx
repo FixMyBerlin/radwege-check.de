@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React from 'react'
 import { useStore } from 'zustand'
-import { useStoreSpinner } from '../Scenes/store'
+import { useStoreSpinner } from '../ScenesPage/store'
 import SpinnerIcon from './assets/spinner-icon.svg'
 
 type Props = {

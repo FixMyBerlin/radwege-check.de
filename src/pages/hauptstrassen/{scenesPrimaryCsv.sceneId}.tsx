@@ -6,9 +6,9 @@ import { ScenePage } from '~/components/ScenePage'
 import {
   aggregationConfigPrimary,
   itemJsConfigPrimary,
-} from '~/components/Scenes/constants'
-import { useStoreExperimentData } from '~/components/Scenes/store'
-import { cleanupCsvData } from '~/components/Scenes/utils'
+} from '~/components/ScenesPage/constants'
+import { useStoreExperimentData } from '~/components/ScenesPage/store'
+import { cleanupCsvData } from '~/components/ScenesPage/utils'
 
 const MyData = ({ location, data: { scenesPrimaryCsv: rawScene } }) => {
   const scene = useMemo(() => cleanupCsvData([rawScene || {}])[0], [rawScene])

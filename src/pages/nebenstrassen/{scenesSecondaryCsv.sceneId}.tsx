@@ -6,9 +6,9 @@ import { ScenePage } from '~/components/ScenePage'
 import {
   aggregationConfigSecondary,
   itemJsConfigSecondary,
-} from '~/components/Scenes/constants'
-import { useStoreExperimentData } from '~/components/Scenes/store'
-import { cleanupCsvData } from '~/components/Scenes/utils'
+} from '~/components/ScenesPage/constants'
+import { useStoreExperimentData } from '~/components/ScenesPage/store'
+import { cleanupCsvData } from '~/components/ScenesPage/utils'
 import { isProduction } from '~/components/utils'
 import CommingSoon from '../CommingSoon'
 

@@ -4,8 +4,8 @@ import { Link } from '../Link'
 import {
   presetsScenesPrimary,
   presetsScenesSecondary,
-} from '../Scenes/constants'
-import { SceneCategory } from '../Scenes/types'
+} from '../ScenesPage/constants'
+import { SceneCategory } from '../ScenesPage/types'
 import { PresetSlider } from './PresetSlider'
 
 export type FilterUrlProp = `/${'hauptstrassen' | 'nebenstrassen'}/?filter=`

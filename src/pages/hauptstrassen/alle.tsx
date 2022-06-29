@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { LayoutArticle } from '~/components/Layout'
 import { ScenesAllPage } from '~/components/ScenesAllPage'
 import { useStore } from 'zustand'
-import { useStoreExperimentData } from '~/components/Scenes/store'
+import { useStoreExperimentData } from '~/components/ScenesPage/store'
 
 const AllPagePrimary = ({
   data: {

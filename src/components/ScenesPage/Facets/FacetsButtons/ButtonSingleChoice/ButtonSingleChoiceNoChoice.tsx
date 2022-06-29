@@ -1,10 +1,9 @@
-import classNames from 'classnames'
 import React from 'react'
 import { useStore } from 'zustand'
-import { useStoreExperimentData } from '~/components/Scenes/store'
+import { useStoreExperimentData } from '~/components/ScenesPage/store'
 import { ResultBucketProps } from '../../../types'
-import { HandleSingleChoice } from '../ButtonSingleChoice/ButtonSingleChoice'
-import { buttonIconClassNames } from './utils'
+import { HandleSingleChoice } from './ButtonSingleChoice'
+import { buttonClassNames } from './utils'
 
 type Props = {
   aggregationKey: string
@@ -13,47 +12,53 @@ type Props = {
   handleClick: HandleSingleChoice
 }
 
-export const ButtonIconNoChoice: React.FC<Props> = ({
+export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
   aggregationKey,
   bucketKey,
   buckets,
   handleClick,
 }) => {
   const { aggregationConfig } = useStore(useStoreExperimentData)
-  const { showAsIcons } = aggregationConfig[aggregationKey]
 
   // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
   const anyOfGroupSelected = buckets.some((b) => b.selected)
   const uiSelected = !anyOfGroupSelected
   const uiCanpress = anyOfGroupSelected
+  const firstElement = true
+  const lastElement = false
 
-  const { buttonClasses, iconClasses } = buttonIconClassNames({
+  const { labelClasses, inputClasses } = buttonClassNames({
+    firstElement,
+    lastElement,
     uiSelected,
     uiCanpress,
   })
 
+  const formKey = `${aggregationKey}-${bucketKey}`
+
   return (
-    <button
-      key={`${aggregationKey}__${bucketKey}`}
-      type="button"
-      className={buttonClasses}
-      onClick={() =>
-        handleClick({
-          aggregationKey,
-          selectedBucketKey: null,
-        })
-      }
-      disabled={!uiCanpress}
-      title=""
-    >
+    <label htmlFor={formKey} className={labelClasses} title="">
+      <input
+        id={formKey}
+        name={aggregationKey}
+        type="radio"
+        checked={uiSelected}
+        disabled={!uiCanpress}
+        onChange={() =>
+          handleClick({
+            aggregationKey,
+            selectedBucketKey: null,
+          })
+        }
+        className={inputClasses}
+      />
       <span
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html:
             aggregationConfig[aggregationKey].buckets[bucketKey] || 'TODO',
         }}
-        className={classNames(showAsIcons && iconClasses)}
       />
-    </button>
+    </label>
   )
 }
