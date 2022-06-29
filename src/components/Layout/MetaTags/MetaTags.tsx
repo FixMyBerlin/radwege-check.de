@@ -52,7 +52,7 @@ export const MetaTags: React.FC<Props> = ({
   //  Since we do not need this field, its OK to remove it.
   return (
     <Helmet>
-      <html lang={lang} />
+      <html lang={lang} className="scroll-smooth" />
       <title>{withDefaults.title}</title>
       <meta property="og:title" content={sharingTitle || withDefaults.title} />
       <meta name="twitter:title" content={sharingTitle || withDefaults.title} />
