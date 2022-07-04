@@ -6,7 +6,7 @@ import { Link } from '../Link'
 import { SceneImage } from '../ScenesPage'
 import { useStoreExperimentData } from '../ScenesPage/store'
 import { cleanupCsvData } from '../ScenesPage/utils'
-import { useTitleScene } from '../ScenesPage/utils/titleScenes/utils'
+import { titleScene } from '../ScenesPage/utils/titleScenes'
 
 type Props = {
   rawScenes: any
@@ -23,8 +23,6 @@ export const ScenesAllPage: React.FC<Props> = ({ rawScenes }) => {
 
   const totalResults = Number(scenes.length).toLocaleString()
   const totalVotes = scenes.reduce((acc, scene) => acc + scene.voteCount, 0)
-
-  const titleScene = useTitleScene()
 
   const { experimentTextKey } = useStore(useStoreExperimentData)
   const categoryTranslation =

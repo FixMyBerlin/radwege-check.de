@@ -7,9 +7,8 @@ import {
   textParkingCategory,
 } from './textSecondaryScene.const'
 import { sceneId } from './textShared.const'
+import { OptionalOptionProps } from './types'
 import { checkAndClean } from './utils'
-
-type OptionalOptionProps = { includeId?: boolean } | undefined
 
 export const titleSecondaryScene = (
   scene: Partial<SceneSecondaryProps>,

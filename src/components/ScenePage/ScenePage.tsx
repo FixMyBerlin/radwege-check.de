@@ -11,7 +11,7 @@ import { ResultNumbers } from '../ScenesPage/Results/ResultNumbers'
 import { sceneImageUrl } from '../ScenesPage/SceneImage'
 import { useStoreExperimentData } from '../ScenesPage/store'
 import { ScenePrimaryProps, SceneSecondaryProps } from '../ScenesPage/types'
-import { useTitleScene } from '../ScenesPage/utils/titleScenes/utils'
+import { titleScene } from '../ScenesPage/utils/titleScenes'
 import { formatNumber } from '../utils'
 
 type Props = {
@@ -21,8 +21,6 @@ type Props = {
 
 export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
   const { experimentTextKey } = useStore(useStoreExperimentData)
-
-  const titleScene = useTitleScene()
 
   const categoryTranslation =
     experimentTextKey === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
@@ -35,7 +33,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
     <>
       <MetaTags
         article
-        title={titleScene(scene)}
+        title={titleScene(scene, { includeId: true })}
         description={`Diese Führungsform ${categoryTranslationSentencePart} wurde mit ${formatNumber(
           scene.voteScore,
           {
@@ -87,7 +85,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
               {categoryTranslation}
             </p>
             <div className="rounded bg-blue-50 p-6 print:grid print:grid-cols-4 print:gap-x-3 print:bg-transparent print:p-0">
-              <ResultCells scene={scene} />
+              <ResultCells scene={scene} showHover={false} />
             </div>
           </div>
 

@@ -9,7 +9,7 @@ import {
   SceneSecondaryProps,
   SearchOptionProps,
 } from '../../types'
-import { useTitleScene } from '../../utils/titleScenes/utils'
+import { titleScene } from '../../utils/titleScenes'
 import { ResultCells } from '../ResultCells'
 import { ResultNumbers } from '../ResultNumbers'
 import { ShowTableProps } from '../Results'
@@ -45,8 +45,6 @@ export const ResultColumn: React.FC<Props> = ({
   const isBookmarked = bookmarks?.includes(scene.sceneId)
 
   const safeZoneForIosSafariNavigationBar = 'mb-[40rem] lg:mb-0'
-
-  const titleScene = useTitleScene()
 
   return (
     <article
