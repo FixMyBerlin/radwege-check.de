@@ -9,6 +9,8 @@
   "02_intro.p3": "When a cycle route is implemented along the road, cyclists feel safest with the street configuration shown in the left image above, compared to all other variations. Motorists prefer almost exactly the same configuration but without the green colouring. The wide, green-coloured cycle path, separated from the motor traffic by planters, received the most ‘safe’ ratings (83.93%) and ‘mostly safe’ ratings (15.18%). On average, however, cycle paths running along the pavement were felt to be safer than those running next to moving traffic. Routes along minor roads and side streets were perceived to be extremely unsafe if the street was not marked as ‘car-free’. Detailed analysis of the different types of cycle paths and their influencing factors, including from the perspective of motorists and pedestrians, will be presented in the statistical evaluation section of this report.",
   "02_intro.p4.link": "here",
   "02_intro.p4": "The Berlin Tagespiegel have written up their own analysis of the results - click {link} to read the article.",
+  "02_intro.p5": "You can now filter and compare all scenarios and their ratings in the “Radwege-Check”. There you can also look at the different perspectives of pedestrians, cyclists and cardrivers and print out individual variants.",
+  "02_intro.p5.link": "Open Radwege-Check",
   "03_concept.heading": "Survey concept",
   "03_concept.p1.quote": "To make subjective safety a measurable metric we had to develop a complex system of street scenarios and reach a high number of participants (The challenge)",
   "03_concept.p1.quoteSource": "The challenge",

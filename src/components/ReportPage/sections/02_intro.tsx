@@ -81,6 +81,15 @@ export const SectionIntroduction: React.FC = () => {
           }}
         />
       </p>
+
+      <p>
+        <FormattedMessage id="02_intro.p5" />
+      </p>
+      <ButtonWrapper>
+        <Link button to="https://radwege-check.de/">
+          <FormattedMessage id="02_intro.p5.link" />
+        </Link>
+      </ButtonWrapper>
     </section>
   )
 }
