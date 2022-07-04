@@ -8,12 +8,16 @@ export type AggregationConfig = {
     buckets: { [key: string]: string }
     /** @desc Optinally overwrite translations for Results. */
     resultBuckets?: { [key: string]: string }
+    /** @desc Optinally translations that we show as html-title-attribute. */
+    tooltipBuckets?: { [key: string]: string }
     /** @desc Optinally overwrite sort order of facetButtons. */
     sortOrder?: string[]
     /** @desc FilterSidebar: How the facetButtons behave on click and visually. */
     choiceMode: 'multi' | 'single'
     /** @desc FilterSidebar: Switch from text to icon view. Has to be `false` if `choiseMode` is 'single'. */
     showAsIcons: boolean
+    /** @desc Show options in a list, not in rows. */
+    showAsList?: boolean
     /** @desc FilterSidebar: Show a line below the facet to indicate the end of a logical group. */
     groupEndIndicator?: boolean
     /** @desc FilterSidebar: Highlight this group with a background */

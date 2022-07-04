@@ -43,6 +43,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
   })
 
   const { aggregationConfig } = useStore(useStoreExperimentData)
+  const { showAsList } = aggregationConfig[aggregationKey]
 
   const formKey = `${aggregationKey}-${bucket.key}`
 
@@ -50,8 +51,18 @@ export const ButtonMultiChoice: React.FC<Props> = ({
     <label
       htmlFor={formKey}
       className={classNames(
-        'flex w-full flex-col items-center justify-start gap-1 px-1 py-1 text-center leading-4',
-        'border border-transparent border-r-gray-300 transition-colors last:border-r-transparent group-hover:border-gray-300 group-hover:border-r-transparent group-hover:last:border-r-gray-300',
+        {
+          'flex w-full flex-row items-center justify-start gap-1 px-1 py-1':
+            showAsList,
+        },
+        {
+          'flex w-full flex-col items-center justify-start gap-1 px-1 py-1 text-center leading-4':
+            !showAsList,
+        },
+        {
+          'border border-transparent border-r-gray-300 transition-colors last:border-r-transparent group-hover:border-gray-300 group-hover:border-r-transparent group-hover:last:border-r-gray-300':
+            !showAsList,
+        },
         'silbentrennung',
         { 'cursor-pointer hover:bg-yellow-50': uiCanpress },
         { 'cursor-not-allowed': !uiCanpress }
@@ -89,6 +100,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
         }
         className={classNames(
           'h-4 w-4 rounded',
+          { 'mr-1': showAsList },
           {
             'cursor-pointer border-gray-300 text-brand-yellow focus:outline-none focus:ring-brand-light-yellow focus:ring-offset-0':
               uiCanpress,

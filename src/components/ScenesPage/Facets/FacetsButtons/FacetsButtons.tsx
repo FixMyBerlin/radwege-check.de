@@ -41,18 +41,22 @@ export const FacetsButtons: React.FC<Props> = ({
     aggregationConfig[aggregationKey]?.sortOrder ||
     Object.keys(aggregationConfig[aggregationKey].buckets)
 
-  const { showAsIcons, choiceMode } = aggregationConfig[aggregationKey]
+  const { showAsIcons, choiceMode, showAsList } =
+    aggregationConfig[aggregationKey]
+  const wrapperClass = classNames(
+    'w-full font-condensed',
+    {
+      'flex flex-col border border-transparent hover:border-gray-300 overflow-hidden p-1.5':
+        showAsList,
+    },
+    { 'rounded-md': showAsList && choiceMode === 'single' },
+    { 'group grid grid-cols-4': !showAsList && choiceMode === 'multi' },
+    { 'group flex flex-row': !showAsList && choiceMode === 'single' }
+  )
 
   return (
     <>
-      <div
-        className={classNames(
-          'w-full font-condensed',
-          choiceMode === 'multi'
-            ? 'group grid grid-cols-4'
-            : 'group flex flex-row'
-        )}
-      >
+      <div className={wrapperClass}>
         {sortedBuckets.map((bucketKey, index) => {
           if (bucketKey === 'noChoice') {
             if (showAsIcons) {

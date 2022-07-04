@@ -32,6 +32,7 @@ export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
     lastElement,
     uiSelected,
     uiCanpress,
+    showAsList: aggregationConfig[aggregationKey]?.showAsList,
   })
 
   const formKey = `${aggregationKey}-${bucketKey}`

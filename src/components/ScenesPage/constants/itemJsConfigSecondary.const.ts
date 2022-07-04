@@ -5,15 +5,15 @@
 
 export const itemJsConfigSecondary = {
   aggregations: {
-    bicycleStreetType: {
-      title: 'bicycleStreetType',
+    motorVehicleTrafficVolumen: {
+      title: 'motorVehicleTrafficVolumen',
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
       conjunction: false, // always false
     },
-    parkingCategory: {
-      title: 'parkingCategoryo',
+    bicycleStreetType: {
+      title: 'bicycleStreetType',
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used
@@ -33,8 +33,8 @@ export const itemJsConfigSecondary = {
       order: 'asc', // not used
       conjunction: false, // always false
     },
-    motorVehicleTrafficVolumen: {
-      title: 'motorVehicleTrafficVolumen',
+    parkingCategory: {
+      title: 'parkingCategoryo',
       size: 10,
       sort: 'term', // not used
       order: 'asc', // not used

@@ -52,6 +52,7 @@ export const ButtonSingleChoice: React.FC<Props> = ({
     lastElement,
     uiSelected,
     uiCanpress,
+    showAsList: aggregationConfig[aggregationKey]?.showAsList,
   })
 
   const formKey = `${aggregationKey}-${bucket.key}`
@@ -67,6 +68,7 @@ export const ButtonSingleChoice: React.FC<Props> = ({
           : uiCanpress
           ? `Ergebnisse ${resultFuture ?? 'todo'}`
           : 'Auswahl würde die Ergebnisse nicht verändern.',
+        aggregationConfig[aggregationKey]?.tooltipBuckets?.[bucket.key],
         isDev &&
           JSON.stringify({
             resultFuture,
