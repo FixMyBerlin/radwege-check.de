@@ -20,12 +20,12 @@ export type SceneSecondaryProps = {
   sceneIdCar: string
   sceneIdPedestrian: never
 
-  parkingCategory
-  carriagewayDirection
+  motorVehicleTrafficVolumen
   bicycleStreetType
+  carriagewayDirection
   carriagewayWidth
   carriagewayWidthNumber
-  motorVehicleTrafficVolumen
+  parkingCategory
 
   vote0Unsafe: number
   vote1RatherUnsafe: number

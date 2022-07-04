@@ -1,53 +1,50 @@
-import { ScenePrimaryProps } from '../../types'
-import { checkAndClean } from './utils'
+import { isDev } from '~/components/utils'
+import { SceneSecondaryProps } from '../../types'
 import {
-  textBicycleLaneWidth,
-  textBufferLeftMarking,
-  textBufferLeftPhysicalProtection,
-  textBufferRightMarking,
-  textLeftOfBicycleLane,
-  textParking,
-} from './textPrimaryScene.const'
+  textBicycleStreetType,
+  textCarriagewayDirection,
+  textNoCarsAndBicycleStreetType,
+  textParkingCategory,
+} from './textSecondaryScene.const'
 import { sceneId } from './textShared.const'
+import { checkAndClean } from './utils'
 
-export const titleSecondaryScene = (scene: Partial<ScenePrimaryProps>) => {
-  if (['shared_bus_lane', 'none'].includes(scene.bicycleLaneWidth))
-    return checkAndClean([
-      textBicycleLaneWidth[scene.bicycleLaneWidth],
-      textParking[scene.parking],
-      sceneId(scene),
-    ])
+type OptionalOptionProps = { includeId?: boolean } | undefined
 
-  if (['parking_lane', 'no_cars'].includes(scene.leftOfBicycleLane))
-    return checkAndClean([
-      textBicycleLaneWidth[scene.bicycleLaneWidth],
-      textLeftOfBicycleLane[scene.leftOfBicycleLane],
-      sceneId(scene),
-    ])
-
-  if (['curb'].includes(scene.leftOfBicycleLane))
-    return checkAndClean([
-      textBicycleLaneWidth[scene.bicycleLaneWidth],
-      textLeftOfBicycleLane[scene.leftOfBicycleLane],
-      textBufferRightMarking[scene.bufferRightMarking],
-      sceneId(scene),
-    ])
+export const titleSecondaryScene = (
+  scene: Partial<SceneSecondaryProps>,
+  { includeId }: OptionalOptionProps = {
+    includeId: false,
+  }
+) => {
+  const optionalSceneId = includeId && sceneId(scene)
+  const debug = !process.env.DISABlE_DEBUG_FOR_JEST && isDev
 
   if (
-    ['car_lanes'].includes(scene.leftOfBicycleLane) &&
-    ['no_cars'].includes(scene.bufferLeftPhysicalProtection)
-  )
+    ['no_cars'].includes(scene.motorVehicleTrafficVolumen) &&
+    ['no_parking'].includes(scene.parkingCategory)
+  ) {
     return checkAndClean([
-      textBicycleLaneWidth[scene.bicycleLaneWidth],
-      textLeftOfBicycleLane[scene.leftOfBicycleLane],
-      textBufferLeftMarking[scene.bufferLeftMarking],
-      sceneId(scene),
+      textNoCarsAndBicycleStreetType[scene.bicycleStreetType],
+      optionalSceneId,
+      debug && '#1',
     ])
+  }
+
+  if (['no_cars'].includes(scene.motorVehicleTrafficVolumen)) {
+    return checkAndClean([
+      textBicycleStreetType[scene.bicycleStreetType],
+      textParkingCategory[scene.parkingCategory],
+      optionalSceneId,
+      debug && '#2',
+    ])
+  }
 
   return checkAndClean([
-    textBicycleLaneWidth[scene.bicycleLaneWidth],
-    textLeftOfBicycleLane[scene.leftOfBicycleLane],
-    textBufferLeftPhysicalProtection[scene.bufferLeftPhysicalProtection],
-    sceneId(scene),
+    textBicycleStreetType[scene.bicycleStreetType],
+    'mit Mischverkehr',
+    textCarriagewayDirection[scene.carriagewayDirection],
+    optionalSceneId,
+    debug && '#fallback',
   ])
 }
