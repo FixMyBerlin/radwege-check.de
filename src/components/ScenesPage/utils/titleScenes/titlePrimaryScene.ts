@@ -51,7 +51,7 @@ export const titlePrimaryScene = (
   ) {
     return checkAndClean([
       textBicycleLaneWidth[scene.bicycleLaneWidth],
-      'ohne KfZ- und Fußverkehr',
+      'ohne Kfz- und Fußverkehr',
       optionalSceneId,
       debug && '#3a',
     ])
@@ -85,7 +85,7 @@ export const titlePrimaryScene = (
     ['hedge', 'none'].includes(scene.bufferLeftPhysicalProtection)
   ) {
     const textIncludeParking =
-      scene.parking === 'parking_lane' && 'und KfZ-Parken rechts'
+      scene.parking === 'parking_lane' && 'und Kfz-Parken rechts'
 
     return checkAndClean([
       textBicycleLaneWidth[scene.bicycleLaneWidth],

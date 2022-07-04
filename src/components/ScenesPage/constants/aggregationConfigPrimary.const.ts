@@ -11,7 +11,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
       car_lanes: 'Fahr&shy;bahn',
       parking_lane: 'Rechts v. Parken',
       curb: 'Seiten&shy;raum',
-      no_cars: 'Ohne KfZ-Ver&shy;kehr',
+      no_cars: 'Ohne Kfz-Ver&shy;kehr',
     },
     choiceMode: 'multi',
     showAsIcons: false,
@@ -36,8 +36,8 @@ export const aggregationConfigPrimary: AggregationConfig = {
     primaryGroup: true,
   },
   parking: {
-    title: 'KfZ-Parken vorhanden',
-    resultTitle: 'KfZ-Parken',
+    title: 'Kfz-Parken vorhanden',
+    resultTitle: 'Kfz-Parken',
     buckets: {
       noChoice: 'Egal',
       parking_lane: 'Ja',
@@ -145,7 +145,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
     groupEndIndicator: true,
   },
   vehicleTrafficVolume: {
-    title: 'KfZ-Verkehrsaufkommen',
+    title: 'Kfz-Verkehrsaufkommen',
     buckets: {
       noChoice: 'Egal',
       low_traffic_volumen: 'Niedrig',

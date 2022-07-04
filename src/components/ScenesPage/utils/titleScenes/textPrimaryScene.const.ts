@@ -9,7 +9,7 @@ export const textLeftOfBicycleLane = {
   car_lanes: 'auf der Fahrbahn',
   parking_lane: 'rechts von parkenden Autos',
   curb: 'im Seitenraum',
-  no_cars: 'ohne KfZ-Verkehr und',
+  no_cars: 'ohne Kfz-Verkehr und',
 } as const
 
 export const textBufferLeftPhysicalProtection = {
@@ -40,6 +40,6 @@ export const textBufferRightMarking = {
 } as const
 
 export const textParking = {
-  parking_lane: 'mit KfZ-Parken',
-  no_parking: 'ohne KfZ-Parken',
+  parking_lane: 'mit Kfz-Parken',
+  no_parking: 'ohne Kfz-Parken',
 } as const

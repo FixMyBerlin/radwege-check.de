@@ -9,7 +9,7 @@ describe('titlePrimaryScene()', () => {
       bicycleLaneWidth: 'shared_bus_lane',
       parking: 'parking_lane',
     }
-    const title = 'Radverkehrsführung auf Busspur mit KfZ-Parken [FM-C-2000]'
+    const title = 'Radverkehrsführung auf Busspur mit Kfz-Parken [FM-C-2000]'
     expect(titlePrimaryScene(scene, { includeId: true })).toStrictEqual(title)
   })
 
@@ -20,7 +20,7 @@ describe('titlePrimaryScene()', () => {
         bicycleLaneWidth: 'shared_bus_lane',
         parking: 'parking_lane',
       }
-      const title = 'Radverkehrsführung auf Busspur mit KfZ-Parken'
+      const title = 'Radverkehrsführung auf Busspur mit Kfz-Parken'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
 
@@ -30,7 +30,7 @@ describe('titlePrimaryScene()', () => {
         bicycleLaneWidth: 'shared_bus_lane',
         parking: 'no_parking',
       }
-      const title = 'Radverkehrsführung auf Busspur ohne KfZ-Parken'
+      const title = 'Radverkehrsführung auf Busspur ohne Kfz-Parken'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
 
@@ -42,7 +42,7 @@ describe('titlePrimaryScene()', () => {
         parking: 'no_parking',
       }
       const title =
-        'Radverkehrsführung im Mischverkehr inkl. Tram, ohne KfZ-Parken'
+        'Radverkehrsführung im Mischverkehr inkl. Tram, ohne Kfz-Parken'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
   })
@@ -56,7 +56,7 @@ describe('titlePrimaryScene()', () => {
         bufferRightMarking: 'grass_verge',
       }
       const title =
-        'Breite Radverkehrsanlage (3,5 m) ohne KfZ-Verkehr und mit Trennung zum Fußverkehr durch Grünstreifen'
+        'Breite Radverkehrsanlage (3,5 m) ohne Kfz-Verkehr und mit Trennung zum Fußverkehr durch Grünstreifen'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
 
@@ -68,7 +68,7 @@ describe('titlePrimaryScene()', () => {
         bufferRightMarking: 'none',
       }
       const title =
-        'Schmale Radverkehrsanlage (2 m) ohne KfZ-Verkehr und ohne Trennung zum Fußverkehr'
+        'Schmale Radverkehrsanlage (2 m) ohne Kfz-Verkehr und ohne Trennung zum Fußverkehr'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
 
@@ -79,7 +79,7 @@ describe('titlePrimaryScene()', () => {
         leftOfBicycleLane: 'no_cars',
         pavementWidth: 'none',
       }
-      const title = 'Breite Radverkehrsanlage (3,5 m) ohne KfZ- und Fußverkehr'
+      const title = 'Breite Radverkehrsanlage (3,5 m) ohne Kfz- und Fußverkehr'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
   })
@@ -172,7 +172,7 @@ describe('titlePrimaryScene()', () => {
         parking: 'parking_lane',
       }
       const title =
-        'Schmale Radverkehrsanlage (2 m) auf der Fahrbahn mit durchgezogenem Breitstrich links und KfZ-Parken rechts'
+        'Schmale Radverkehrsanlage (2 m) auf der Fahrbahn mit durchgezogenem Breitstrich links und Kfz-Parken rechts'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
 
