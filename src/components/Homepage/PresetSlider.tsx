@@ -2,10 +2,10 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 import useEmblaCarousel from 'embla-carousel-react'
 import React, { useCallback, useEffect, useState } from 'react'
+import { FeelSafe } from '../charts'
 import { buttonStyles, Link } from '../Link'
 import { SceneImage } from '../ScenesPage'
 import { PresetsScenes } from '../ScenesPage/constants'
-import { formatPercent } from '../utils'
 import { FilterUrlProp } from './Presets'
 
 export type Props = {
@@ -80,8 +80,11 @@ export const PresetSlider: React.FC<Props> = ({
                   classNameOverwrite="flex relative h-80 w-80 flex-col justify-between rounded-md bg-white shadow-lg group"
                 >
                   <>
-                    <h3 className="m-3 h-24 font-semi text-2xl leading-7 group-hover:underline">
+                    <h3 className="my-3 ml-3 flex h-24 font-semi text-2xl leading-7 group-hover:underline">
                       {preset.title}
+                      <div className="relative">
+                        <FeelSafe value={preset.averageScore} standalone />
+                      </div>
                     </h3>
 
                     {preset.sceneIdForImage && (
@@ -92,17 +95,6 @@ export const PresetSlider: React.FC<Props> = ({
                         />
                       </div>
                     )}
-                    <div
-                      className={classNames(
-                        'absolute right-3 bottom-16 inline-flex items-center rounded-md border border-transparent bg-white/80 px-4 py-2 font-sans font-normal text-gray-800 shadow-sm'
-                      )}
-                    >
-                      {' '}
-                      {formatPercent(preset.averageScore, {
-                        precision: 0,
-                      })}{' '}
-                      Ø Score
-                    </div>
                     <div
                       className={classNames(
                         buttonStyles,

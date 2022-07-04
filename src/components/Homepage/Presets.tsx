@@ -98,7 +98,11 @@ export const Presets: React.FC = () => {
           filterUrl={filterUrlBySceneCategory[sceneCategory]}
         />
         <p>
-          <Link button to={allButtonBySceneCategory[sceneCategory].url}>
+          <Link
+            button
+            to={allButtonBySceneCategory[sceneCategory].url}
+            classNameOverwrite="inline-flex items-center px-4 py-2 border border-transparent font-semibold rounded-md shadow-sm text-gray-800 bg-white border-gray-400 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-yellow"
+          >
             Alle{' '}
             {Number(
               allButtonBySceneCategory[sceneCategory].total
