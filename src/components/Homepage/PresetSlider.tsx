@@ -69,12 +69,6 @@ export const PresetSlider: React.FC<Props> = ({
     >
       <div ref={emblaRef} className="overflow-hidden">
         <ul className="flex flex-row gap-4">
-          {!slideEntries.length && (
-            <li className="ml-8 inline-flex h-80 w-full place-items-center">
-              Diese Inhalte sind noch in Arbeit…
-            </li>
-          )}
-
           {slideEntries.map(([presetName, preset]) => {
             const url = `${filterUrl}${preset.searchFilterString}`
 
