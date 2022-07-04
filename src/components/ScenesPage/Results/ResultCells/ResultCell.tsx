@@ -13,6 +13,7 @@ type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps
   groupEndIndicator: boolean
   showIcon: boolean
+  showHover?: boolean
 }
 
 export const ResultCell: React.FC<Props> = ({
@@ -21,6 +22,7 @@ export const ResultCell: React.FC<Props> = ({
   scene,
   groupEndIndicator,
   showIcon,
+  showHover = true,
 }) => {
   const { aggregationConfig } = useStore(useStoreExperimentData)
 
@@ -36,7 +38,8 @@ export const ResultCell: React.FC<Props> = ({
     <section
       title={`${keyName}: ${scene[keyName]}`}
       className={classNames(
-        'break-before-avoid border-b py-2 hover:bg-stone-50 lg:py-3.5',
+        'break-before-avoid border-b py-2 lg:py-3.5',
+        { 'hover:bg-stone-50': showHover },
         groupEndIndicator
           ? 'border-dashed border-stone-300'
           : 'border-dotted border-stone-200'

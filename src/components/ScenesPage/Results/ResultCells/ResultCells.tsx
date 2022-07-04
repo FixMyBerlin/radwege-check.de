@@ -11,9 +11,14 @@ import { ResultCell } from './ResultCell'
 type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps
   searchFilters?: SearchOptionProps['filters']
+  showHover?: boolean
 }
 
-export const ResultCells: React.FC<Props> = ({ scene, searchFilters }) => {
+export const ResultCells: React.FC<Props> = ({
+  scene,
+  searchFilters,
+  showHover,
+}) => {
   const { aggregationConfig } = useStore(useStoreExperimentData)
 
   return (
@@ -29,6 +34,7 @@ export const ResultCells: React.FC<Props> = ({ scene, searchFilters }) => {
             bucketActive={bucketActive}
             groupEndIndicator={aggregationConfig[key]?.groupEndIndicator}
             showIcon={aggregationConfig[key]?.showAsIcons}
+            showHover={showHover}
           />
         )
       })}
