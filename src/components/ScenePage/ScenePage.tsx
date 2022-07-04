@@ -47,18 +47,22 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
         imageSize={{ width: 1240, height: 930 }}
       />
 
-      <div className="items-center bg-white p-3 lg:flex lg:flex-col lg:px-0 lg:py-6">
-        <div className="mb-5 flex w-full max-w-7xl items-start gap-4 lg:grid lg:grid-cols-4 lg:gap-6">
+      <div className="items-center bg-white p-3 print:p-0 lg:flex lg:flex-col lg:px-0 lg:py-6">
+        <div className="mb-5 flex w-full max-w-7xl items-start gap-4 print:mt-3 lg:grid lg:grid-cols-4 lg:gap-6">
           <div className="mt-1 lg:mt-0 lg:ml-5">
             <Link
               to="/"
-              classNameOverwrite="block h-10 w-10 overflow-hidden lg:overflow-visible lg:w-auto"
+              classNameOverwrite="block h-10 w-10 overflow-hidden lg:overflow-visible lg:w-full print:hidden"
               title="Zur Startseite…"
             >
               <Logo className="h-full" alt="Radwege-Check" />
             </Link>
+            <Logo
+              className="hidden h-10 w-full print:block"
+              alt="Radwege-Check"
+            />
           </div>
-          <h1 className="silbentrennung col-span-3 w-full text-2xl lg:h-14 lg:pr-40">
+          <h1 className="silbentrennung w-full text-2xl print:text-xl lg:col-span-3 lg:h-14 lg:pr-40">
             {titleScene(scene)}
           </h1>
         </div>
@@ -76,13 +80,13 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
         </div>
 
         <div className="flex max-w-7xl flex-col gap-6 lg:grid lg:grid-cols-4">
-          <div className="order-3 lg:order-none">
-            <p className="px-6 pt-0 pb-3">
+          <div className="order-3 break-before-all lg:order-none">
+            <p className="px-6 pt-0 pb-3 print:hidden">
               <strong className="text-xxs font-semibold">Straßenklasse</strong>
               <br />
               {categoryTranslation}
             </p>
-            <div className="rounded bg-blue-50 p-6">
+            <div className="rounded bg-blue-50 p-6 print:grid print:grid-cols-4 print:gap-x-3 print:bg-transparent print:p-0">
               <ResultCells scene={scene} />
             </div>
           </div>
@@ -90,9 +94,9 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
           <div className="order-1 col-span-2 lg:order-none">
             <SceneImage
               sceneId={scene.sceneId}
-              className="mb-5 h-96 w-full rounded object-cover object-bottom"
+              className="mb-5 h-96 w-full rounded object-cover object-bottom print:mb-3"
             />
-            <div className="grid grid-cols-2 gap-5 text-xs lg:text-base">
+            <div className="grid grid-cols-2 gap-5 text-xs print:hidden lg:text-base">
               {'sceneIdPedestrian' in scene && scene.sceneIdPedestrian ? (
                 <figure>
                   <figcaption className="mb-0.5 font-normal">
@@ -124,7 +128,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
             </div>
           </div>
 
-          <div className="order-2 flex h-96 flex-col lg:order-none">
+          <div className="order-2 flex h-96 flex-col print:h-auto lg:order-none">
             <div className="flex items-center">
               Durchschnittliche Bewertungen dieser Szene zur subjektiven
               Sicherheit.{' '}
@@ -132,7 +136,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
                 buttonText={
                   <>
                     <InformationCircleIcon
-                      className="h-6 w-6"
+                      className="h-6 w-6 print:hidden"
                       aria-hidden="true"
                     />
                     <span className="sr-only">Mehr erfahren…</span>

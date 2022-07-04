@@ -25,7 +25,7 @@ export const LanguageSwitcher: React.FC = () => {
   return (
     <Menu
       as="nav"
-      className="top-5 right-5 inline-block text-left sm:absolute xl:fixed"
+      className="top-5 right-5 inline-block text-left print:hidden sm:absolute xl:fixed"
       aria-label="Change Language"
     >
       <div>

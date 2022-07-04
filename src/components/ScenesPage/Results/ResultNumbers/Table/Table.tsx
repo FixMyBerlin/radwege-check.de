@@ -65,7 +65,7 @@ export const Table: React.FC<Props> = ({ scene, visible, precision = 2 }) => {
               >
                 {barColor[key] && (
                   <span
-                    className="mr-1 inline-flex h-2 w-2 cursor-help content-center items-center rounded-full"
+                    className="mr-1 inline-flex h-2 w-2 cursor-help content-center items-center rounded-full print:hidden"
                     style={{
                       backgroundColor: barColor[key],
                       color: barColor[key],

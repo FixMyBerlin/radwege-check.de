@@ -27,21 +27,26 @@ export const ResultNumbers: React.FC<Props> = ({
   chartClass,
 }) => {
   return (
-    <section className={classNames(wrapperClass, 'flex flex-col')}>
-      <HeadlineButton
-        visible={setShowTable !== null}
-        showTable={showTable}
-        setShowTable={setShowTable}
-      />
-
-      <Table scene={scene} visible={showTable} precision={1} />
-
-      <ScoreExplanation visible={showTable} scene={scene} />
+    <section
+      className={classNames(
+        wrapperClass,
+        'flex flex-col print:flex-row print:justify-between print:gap-3'
+      )}
+    >
+      <div>
+        <HeadlineButton
+          visible={setShowTable !== null}
+          showTable={showTable}
+          setShowTable={setShowTable}
+        />
+        <Table scene={scene} visible={showTable} precision={1} />
+        <ScoreExplanation visible={showTable} scene={scene} />
+      </div>
 
       <div
         className={classNames(
           chartClass,
-          'relative flex h-full flex-row gap-1 text-xs'
+          'relative flex h-full flex-row gap-1 text-xs print:h-auto'
         )}
       >
         <BarChartAndHeadline
