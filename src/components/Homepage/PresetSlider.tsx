@@ -1,4 +1,4 @@
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 import useEmblaCarousel from 'embla-carousel-react'
 import React, { useCallback, useEffect, useState } from 'react'
@@ -64,11 +64,11 @@ export const PresetSlider: React.FC<Props> = ({
     <div
       className={classNames(
         className,
-        'mb-3 flex flex-col justify-center gap-3 overflow-hidden bg-stone-300 p-4'
+        'relative mb-3 flex flex-col justify-center bg-stone-200 px-10 py-6'
       )}
     >
-      <div ref={emblaRef} className="overflow-hidden">
-        <ul className="flex flex-row gap-4">
+      <div ref={emblaRef} className="relative overflow-hidden">
+        <ul className="flex flex-row gap-5">
           {slideEntries.map(([presetName, preset]) => {
             const url = `${filterUrl}${preset.searchFilterString}`
 
@@ -118,32 +118,32 @@ export const PresetSlider: React.FC<Props> = ({
           })}
         </ul>
       </div>
-      <div className="flex justify-center">
-        <button
-          type="button"
-          className={classNames(
-            prevBtnEnabled
-              ? 'text-stone-800 hover:text-yellow-600'
-              : 'text-stone-400'
-          )}
-          disabled={!prevBtnEnabled}
-          onClick={scrollPrev}
-        >
-          <ChevronLeftIcon className="h-8 w-8" />
-        </button>
-        <button
-          type="button"
-          className={classNames(
-            nextBtnEnabled
-              ? 'text-stone-800 hover:text-yellow-600'
-              : 'text-stone-400'
-          )}
-          disabled={!nextBtnEnabled}
-          onClick={scrollNext}
-        >
-          <ChevronRightIcon className="h-8 w-8" />
-        </button>
-      </div>
+      <button
+        type="button"
+        className={classNames(
+          'top-[calc(50%_-_10px] absolute -left-5 flex items-center justify-center rounded-full p-1',
+          prevBtnEnabled
+            ? 'bg-stone-600 text-stone-100 hover:bg-stone-500 hover:text-white'
+            : 'bg-stone-600 text-stone-500'
+        )}
+        disabled={!prevBtnEnabled}
+        onClick={scrollPrev}
+      >
+        <ChevronLeftIcon className="h-8 w-8" />
+      </button>
+      <button
+        type="button"
+        className={classNames(
+          'top-[calc(50%_-_10px] absolute -right-5 flex items-center justify-center rounded-full p-1',
+          nextBtnEnabled
+            ? 'bg-stone-600 text-stone-100 hover:bg-stone-500 hover:text-white'
+            : 'bg-stone-600 text-stone-500'
+        )}
+        disabled={!nextBtnEnabled}
+        onClick={scrollNext}
+      >
+        <ChevronRightIcon className="h-8 w-8" />
+      </button>
     </div>
   )
 }

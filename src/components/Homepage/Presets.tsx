@@ -45,7 +45,7 @@ export const Presets: React.FC = () => {
     <section className="bg-brand-light-yellow px-4 pb-12 lg:px-0">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col items-end lg:flex-row lg:justify-between">
-          <div className="flex-grow bg-stone-300">
+          <div className="flex-grow bg-stone-200">
             <h2
               className={classNames(
                 'w-full bg-brand-light-yellow py-3 text-2xl font-semibold',
@@ -61,7 +61,7 @@ export const Presets: React.FC = () => {
             <div
               className={classNames(
                 { 'rounded-t-md': tabActive('primary') },
-                'bg-stone-300'
+                'bg-stone-200'
               )}
             >
               <button
@@ -76,7 +76,7 @@ export const Presets: React.FC = () => {
             <div
               className={classNames(
                 { 'rounded-t-md': tabActive('secondary') },
-                'bg-stone-300'
+                'bg-stone-200'
               )}
             >
               <button
