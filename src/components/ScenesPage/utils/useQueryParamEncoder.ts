@@ -1,4 +1,5 @@
 import { parse, stringify } from 'query-string'
+import { isDev } from '~/components/utils'
 import { AggregationConfig } from '../constants'
 import { SearchOptionProps } from '../types'
 
@@ -100,13 +101,16 @@ export const decodeFilter = (
   })
 
   if (removedKeys.length || removedValues.length) {
-    // eslint-disable-next-line no-console
-    console.log({
-      INFO: 'decodeFilter() removed keys/values that where given by the URL but not recognized by the config:',
-      removedKeys,
-      removedValues,
-      resultSafe,
-    })
+    const debug = !process.env.DISABlE_DEBUG_FOR_JEST && isDev
+    if (debug) {
+      // eslint-disable-next-line no-console
+      console.log({
+        INFO: 'decodeFilter() removed keys/values that where given by the URL but not recognized by the config:',
+        removedKeys,
+        removedValues,
+        resultSafe,
+      })
+    }
   }
 
   return resultSafe
