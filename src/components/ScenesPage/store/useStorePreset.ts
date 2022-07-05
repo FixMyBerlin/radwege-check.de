@@ -6,6 +6,7 @@ type StorePresetKey = null | string | 'custom'
 export type StorePreset = {
   presets: PresetsScenes
   setPresets: (presets: PresetsScenes) => void
+
   currentPresetKey: StorePresetKey
   setCurrentPresetKey: (newKey: StorePresetKey) => void
 }

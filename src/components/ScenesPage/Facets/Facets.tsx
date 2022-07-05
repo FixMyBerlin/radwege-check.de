@@ -17,8 +17,7 @@ import { ResetFilterButton } from './ResetFilterButton'
 
 export type FacetsProps = {
   results: ResultProps
-  /** @desc Reset filters; undefined if no filter active. */
-  handleResetFilter: undefined | (() => void)
+  handleResetFilter: () => void
   handleSingleChoice: HandleSingleChoice
   handleMultiChoice: HandleMultiChoice
   className?: string

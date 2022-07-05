@@ -14,6 +14,7 @@ import { useSetPresetKey } from './hooks'
 import { Results } from './Results'
 import { sceneImageUrl } from './SceneImage'
 import { useStoreExperimentData, useStoreSpinner } from './store'
+import { useStoreResetFilterEnabled } from './store/useStoreResetFilterEnabled'
 import { TitleBar } from './TitleBar'
 import { ResultProps } from './types'
 import {
@@ -41,6 +42,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
     useStoreExperimentData
   )
   const { setShowSpinner } = useStore(useStoreSpinner)
+  const { setResetFilterEnabled } = useStore(useStoreResetFilterEnabled)
 
   // Init itemjs with the set configuration and data (scenes).
   const [items, setItems] = useState(null)
@@ -78,6 +80,9 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
       filters: decodeFilterWithAggregation(searchFilters),
     }
 
+    if (searchFilters) {
+      setResetFilterEnabled(true)
+    }
     setResults(items.search(searchOption))
     setShowSpinner(false)
   }, [items, searchFilters])
@@ -98,6 +103,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
 
   const handleResetFilter = () => {
     setShowSpinner(true)
+    setResetFilterEnabled(false)
     setSearchFilters(undefined)
     setSearchOrder(undefined)
   }
@@ -246,7 +252,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
         <Facets
           className="z-20 hidden w-72 flex-none bg-gray-100 shadow-[0_0_10px_0_rgba(0,_0,_0,_0.2)] lg:block"
           results={results}
-          handleResetFilter={searchFilters && handleResetFilter}
+          handleResetFilter={handleResetFilter}
           handleSingleChoice={handleSingleChoice}
           handleMultiChoice={handleMultiChoice}
           handlePresetClick={handlePresetClick}
@@ -262,7 +268,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
             mobileFacets={
               <FacetsMobileDropdown
                 results={results}
-                handleResetFilter={searchFilters && handleResetFilter}
+                handleResetFilter={handleResetFilter}
                 handleSingleChoice={handleSingleChoice}
                 handleMultiChoice={handleMultiChoice}
                 handlePresetClick={handlePresetClick}
