@@ -28,14 +28,14 @@ const MyDataIndex = ({
   const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
     useStore(useStoreExperimentData)
   const { setPresets } = useStore(useStorePreset)
-  const { setAllowBookmarks } = useStore(useStoreBookmarks)
+  const { setBookmarksFeatureEnabled } = useStore(useStoreBookmarks)
 
   useEffect(() => {
     setItemJsConfig(itemJsConfigSecondary)
     setAggregationConfig(aggregationConfigSecondary)
     setExperimentTextKey('secondary')
     setPresets(presetsScenesSecondary)
-    setAllowBookmarks(!isProduction) // disabled on production
+    setBookmarksFeatureEnabled(!isProduction) // disabled on production
   }, [])
 
   return (

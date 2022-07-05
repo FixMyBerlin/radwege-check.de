@@ -24,7 +24,7 @@ const MyDataIndex = ({
   const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
     useStore(useStoreExperimentData)
   const { setPresets } = useStore(useStorePreset)
-  const { setAllowBookmarks } = useStore(useStoreBookmarks)
+  const { setBookmarksFeatureEnabled } = useStore(useStoreBookmarks)
 
   useEffect(() => {
     setItemJsConfig(itemJsConfigPrimary)
@@ -32,7 +32,7 @@ const MyDataIndex = ({
     setExperimentTextKey('primary')
     setPresets(presetsScenesPrimary)
     setPresets(presetsScenesPrimary)
-    setAllowBookmarks(!isProduction) // disabled on production
+    setBookmarksFeatureEnabled(!isProduction) // disabled on production
   }, [])
 
   return (

@@ -41,7 +41,7 @@ export const ResultColumn: React.FC<Props> = ({
   const [sceneImage, setSceneImage] = useState(scene.sceneId)
   const handleImageChange = (sceneId: string) => setSceneImage(sceneId)
 
-  const { allowBookmarks } = useStore(useStoreBookmarks)
+  const { enableBookmarksFeature } = useStore(useStoreBookmarks)
   const isBookmarked = bookmarks?.includes(scene.sceneId)
 
   const safeZoneForIosSafariNavigationBar = 'mb-[40rem] lg:mb-0'
@@ -57,7 +57,7 @@ export const ResultColumn: React.FC<Props> = ({
         <Link to={scene.path}>{titleScene(scene)}</Link>
       </h2>
 
-      {allowBookmarks && (
+      {enableBookmarksFeature && (
         <section className="flex items-center justify-center">
           <button
             type="button"

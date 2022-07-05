@@ -1,11 +1,12 @@
 import create from 'zustand'
 
 export type StoreBookmarksData = {
-  allowBookmarks: boolean
-  setAllowBookmarks: (allowBookmarks: boolean) => void
+  enableBookmarksFeature: boolean
+  setBookmarksFeatureEnabled: (enableBookmarksFeature: boolean) => void
 }
 
 export const useStoreBookmarks = create<StoreBookmarksData>((set) => ({
-  allowBookmarks: true,
-  setAllowBookmarks: (allowBookmarks) => set({ allowBookmarks }),
+  enableBookmarksFeature: true,
+  setBookmarksFeatureEnabled: (enableBookmarksFeature) =>
+    set({ enableBookmarksFeature }),
 }))
