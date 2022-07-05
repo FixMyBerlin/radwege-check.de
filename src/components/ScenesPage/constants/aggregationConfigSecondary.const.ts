@@ -9,14 +9,14 @@ export const aggregationConfigSecondary: AggregationConfig = {
     title: 'Kfz-Verkehr',
     buckets: {
       noChoice: 'Egal',
-      low_traffic_volumen: 'Ja',
-      no_cars: 'Autofrei',
+      low_traffic_volumen: 'Normal',
+      no_cars: '„Autofrei“',
     },
     tooltipBuckets: {
       noChoice: 'keine Auswahl',
-      low_traffic_volumen:
+      low_traffic_volumen: 'Es sind Autos auf der Fahrbahn zu sehen.',
+      no_cars:
         'Es sind keine Autos auf der Fahrbahn zu sehen. Parkstände sind aber ggf. vorhanden. ',
-      no_cars: 'Es sind Autos auf der Fahrbahn zu sehen.',
     },
     choiceMode: 'single',
     showAsIcons: false,
