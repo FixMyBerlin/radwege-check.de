@@ -39,6 +39,6 @@ export const footerLinks: footerMenuProp = {
   ],
   formal: [
     ...footerLegalLinks,
-    { name: 'OpenData, OpenSource, Lizenzen', to: '/open-data/' },
+    { name: 'OpenData & OpenSource', to: '/open-data/' },
   ],
 }

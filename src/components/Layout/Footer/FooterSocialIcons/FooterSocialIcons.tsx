@@ -1,10 +1,13 @@
+import classNames from 'classnames'
 import React from 'react'
 import { Link } from '~/components/Link'
 import { footerSocialIcons } from './footerSocialIcons.const'
 
-export const FooterSocialIcons = () => {
+type Props = { className?: string }
+
+export const FooterSocialIcons: React.FC<Props> = ({ className }) => {
   return (
-    <div className="flex space-x-6 md:order-2">
+    <div className={classNames('flex space-x-6 md:order-2', className)}>
       {footerSocialIcons.map((item) => (
         <Link
           key={item.name}
