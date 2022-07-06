@@ -159,14 +159,11 @@ export const aggregationConfigPrimary: AggregationConfig = {
     showAsIcons: false,
   },
   vehicleLaneMaxspeed: {
-    title: 'Tempolimit',
+    title: 'Zulässige Höchstgeschwindigkeit',
     buckets: {
       noChoice: 'Egal',
       '30': '30 km/h',
-      '50': 'Keins',
-    },
-    resultBuckets: {
-      '50': 'Kein Limit (50 km/h)',
+      '50': '50 km/h',
     },
     sortOrder: ['noChoice', '30', '50'],
     choiceMode: 'single',
