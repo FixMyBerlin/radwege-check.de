@@ -7,7 +7,7 @@ export const presetsScenesSecondary: PresetsScenes = {
     resultTotal: 18,
     averageScore: 77,
     searchFilterString:
-      'bicycleStreetType:markings_bike_icon_dooring_zone,none,bicycle_road,living_street,green_surface%7CmotorVehicleTrafficVolumen:no_cars',
+      'bicycleStreetType:markings_bike_icon_dooring_zone,none,bicycle_road,living_street,green_surface|motorVehicleTrafficVolumen:no_cars',
   },
   bikeStreetWithCars: {
     title: 'Fahhradstraßen (inkl. Sondermarkierungen) mit Kfz-Verkehr',
@@ -15,7 +15,7 @@ export const presetsScenesSecondary: PresetsScenes = {
     resultTotal: 18,
     averageScore: 38,
     searchFilterString:
-      'bicycleStreetType:markings_bike_icon_dooring_zone,bicycle_road,green_surface%7CcarriagewayWidth:wide%7CmotorVehicleTrafficVolumen:low_traffic_volumen',
+      'bicycleStreetType:markings_bike_icon_dooring_zone,bicycle_road,green_surface|carriagewayWidth:wide|motorVehicleTrafficVolumen:low_traffic_volumen',
   },
   bikeStreetNoCars: {
     title: 'Fahhradstraßen (inkl. Sondermarkierungen) "autofrei"',
@@ -23,7 +23,7 @@ export const presetsScenesSecondary: PresetsScenes = {
     resultTotal: 9,
     averageScore: 82,
     searchFilterString:
-      'bicycleStreetType:markings_bike_icon_dooring_zone,bicycle_road,green_surface%7CcarriagewayWidth:wide%7CmotorVehicleTrafficVolumen:no_cars',
+      'bicycleStreetType:markings_bike_icon_dooring_zone,bicycle_road,green_surface|carriagewayWidth:wide|motorVehicleTrafficVolumen:no_cars',
   },
   noParkingButCars: {
     title: 'Nebenstraßen ohne Parken mit Kfz-Verkehr',
@@ -31,7 +31,7 @@ export const presetsScenesSecondary: PresetsScenes = {
     resultTotal: 20,
     averageScore: 38,
     searchFilterString:
-      'bicycleStreetType:markings_bike_icon_dooring_zone,bicycle_road,green_surface,none,living_street%7CmotorVehicleTrafficVolumen:low_traffic_volumen%7CparkingCategory:no_parking',
+      'bicycleStreetType:markings_bike_icon_dooring_zone,bicycle_road,green_surface,none,living_street|motorVehicleTrafficVolumen:low_traffic_volumen|parkingCategory:no_parking',
   },
   onWay: {
     title: 'Ein­bahn­straße Fahrrad frei (Kfz-Gegenverkehr)',
@@ -39,6 +39,6 @@ export const presetsScenesSecondary: PresetsScenes = {
     resultTotal: 24,
     averageScore: 27,
     searchFilterString:
-      'bicycleStreetType:markings_bike_icon_dooring_zone,bicycle_road,green_surface,none,living_street%7CcarriagewayDirection:one_way_for_cars_only',
+      'bicycleStreetType:markings_bike_icon_dooring_zone,bicycle_road,green_surface,none,living_street|carriagewayDirection:one_way_for_cars_only',
   },
 }
