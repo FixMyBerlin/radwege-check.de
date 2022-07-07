@@ -39,6 +39,7 @@ export const footerLinks: footerMenuProp = {
   ],
   formal: [
     ...footerLegalLinks,
+    { name: 'Presseinformationen', to: '/presse/' },
     { name: 'OpenData & OpenSource', to: '/open-data/' },
   ],
 }
