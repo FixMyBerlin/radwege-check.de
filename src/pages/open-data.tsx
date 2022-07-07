@@ -47,7 +47,7 @@ const OpenDataPage: React.FC<PageProps> = ({ location }) => {
       <h2>OpenSource: Diese Website</h2>
       <p>
         Der Qellcode dieser Website ist OpenSource unter AGPL-3.0 Lizenz.
-        Weitere Informationen und Dokumentation der Software finden Sie auf
+        Weitere Informationen und Dokumentation der Software finden Sie auf{' '}
         <Link external to="https://github.com/FixMyBerlin/fixmy.safetycheck">
           Github FixMyBerlin/fixmy.safetycheck
         </Link>
