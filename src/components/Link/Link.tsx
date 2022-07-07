@@ -9,6 +9,7 @@ type Props = {
   className?: string
   blank?: boolean
   external?: boolean
+  linkInverted?: boolean
   button?: boolean
   mailSubject?: string
   mailBody?: string
@@ -16,8 +17,18 @@ type Props = {
   children: React.ReactNode
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>
 
-const linkStyles =
-  'text-emerald-500 hover:text-emerald-600 hover:underline active:underline'
+const linkSharedStyles = 'underline underline-offset-2'
+
+const linkStyles = classNames(
+  linkSharedStyles,
+  'decoration-2 decoration-brand-yellow hover:text-yellow-800 hover:decoration-yellow-500'
+)
+
+const linkStylesInverted = classNames(
+  linkSharedStyles,
+  'decoration-1 text-stone-50 decoration-stone-400 hover:text-white hover:decoration-white'
+)
+
 export const buttonStyles =
   'inline-flex items-center px-4 py-2 border border-transparent font-semibold rounded-md shadow-sm text-gray-800 bg-brand-yellow hover:bg-yellow-400 group-hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-yellow'
 
@@ -27,16 +38,21 @@ export const Link: React.FC<Props> = ({
   className,
   blank = false,
   external = false,
+  linkInverted = false,
   button = false,
   mailSubject,
   mailBody,
   children,
   ...props
 }) => {
-  const classes = classNames(
-    className,
-    classNameOverwrite || (button ? buttonStyles : linkStyles)
-  )
+  // eslint-disable-next-line no-nested-ternary
+  const styles = button
+    ? buttonStyles
+    : linkInverted
+    ? linkStylesInverted
+    : linkStyles
+
+  const classes = classNames(className, classNameOverwrite || styles)
 
   let mailto: string
   if (to.includes('@')) {

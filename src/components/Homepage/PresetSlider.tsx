@@ -80,7 +80,7 @@ export const PresetSlider: React.FC<Props> = ({
                   to={url}
                   classNameOverwrite="flex relative h-82 w-80 flex-col justify-between rounded-md bg-white shadow-lg group"
                 >
-                  <h3 className="my-3 ml-3 flex h-20 flex-none font-semi text-2xl leading-7 group-hover:underline">
+                  <h3 className="my-3 ml-3 flex h-20 flex-none font-semi text-2xl leading-7 hover:text-yellow-800 group-hover:underline group-hover:decoration-brand-yellow">
                     {preset.title}
                   </h3>
 
@@ -118,7 +118,7 @@ export const PresetSlider: React.FC<Props> = ({
         className={classNames(
           'top-[calc(50%_-_10px] absolute -left-5 flex items-center justify-center rounded-full p-1',
           prevBtnEnabled
-            ? 'bg-stone-600 text-stone-100 hover:bg-stone-500 hover:text-white'
+            ? 'bg-stone-600 text-stone-100 hover:bg-brand-yellow hover:text-gray-800'
             : 'bg-stone-600 text-stone-500'
         )}
         disabled={!prevBtnEnabled}
@@ -131,7 +131,7 @@ export const PresetSlider: React.FC<Props> = ({
         className={classNames(
           'top-[calc(50%_-_10px] absolute -right-5 flex items-center justify-center rounded-full p-1',
           nextBtnEnabled
-            ? 'bg-stone-600 text-stone-100 hover:bg-stone-500 hover:text-white'
+            ? 'bg-stone-600 text-stone-100 hover:bg-brand-yellow hover:text-gray-800'
             : 'bg-stone-600 text-stone-500'
         )}
         disabled={!nextBtnEnabled}

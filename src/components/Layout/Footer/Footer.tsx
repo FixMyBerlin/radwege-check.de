@@ -26,6 +26,7 @@ export const Footer: React.FC = () => {
           <div>
             <Link
               external
+              blank
               to="https://www.fixmycity.de"
               classNameOverwrite="text-xs text-stone-300 ml-[58px] -mt-0.5 block hover:underline -mb-1.5"
             >
