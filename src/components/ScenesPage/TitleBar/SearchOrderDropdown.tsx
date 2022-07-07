@@ -30,13 +30,13 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 bg-white px-3 text-sm font-normal text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 lg:px-4">
+        <Menu.Button className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 pl-[0.6rem] text-sm font-normal text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
           <span className="hidden lg:inline">Sortierung</span>
           <span className="lg:hidden">
             {searchOrderValues[searchOrder || 'desc'].icon}
           </span>
           <ChevronDownIcon
-            className="-mr-1 ml-2 hidden h-5 w-5 lg:block"
+            className="mr-1 ml-0.5 hidden w-[18px] lg:block"
             aria-hidden="true"
           />
         </Menu.Button>
@@ -67,8 +67,10 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
                     disabled={selected}
                     className={classNames(
                       {
-                        'bg-brand-light-yellow text-gray-500': selected,
+                        'cursor-default bg-brand-light-yellow text-gray-500':
+                          selected,
                       },
+                      { 'hover:bg-stone-100': !selected },
                       'block w-full px-4 py-2 text-left text-sm'
                     )}
                   >

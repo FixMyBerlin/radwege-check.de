@@ -4,6 +4,7 @@ import { useStore } from 'zustand'
 
 import { useStoreExperimentData } from '../store'
 import { ResultProps } from '../types'
+import { ExperimentSwitcher } from './ExperimentSwitcher'
 import {
   FacetsButtons,
   HandleMultiChoice,
@@ -39,7 +40,7 @@ export const Facets: React.FC<FacetsProps> = ({
   const mainAggregations = useMemo(
     () =>
       Object.entries(aggregations).filter(
-        ([key, _v]) => aggregationConfig[key].primaryGroup === true
+        ([key, _v]) => aggregationConfig[key]?.primaryGroup === true
       ),
     [aggregations, aggregationConfig]
   )
@@ -47,7 +48,7 @@ export const Facets: React.FC<FacetsProps> = ({
   const furtherAggregations = useMemo(
     () =>
       Object.entries(aggregations).filter(
-        ([key, _v]) => !aggregationConfig[key].primaryGroup
+        ([key, _v]) => !aggregationConfig[key]?.primaryGroup
       ),
     [aggregations, aggregationConfig]
   )
@@ -59,7 +60,11 @@ export const Facets: React.FC<FacetsProps> = ({
         'relative overflow-y-scroll overscroll-contain'
       )}
     >
-      <Logo visible={showLogo} />
+      <div className="relative flex h-14 items-center justify-between bg-brand-light-yellow py-1 px-3 shadow-md">
+        <Logo visible={showLogo} />
+        <ExperimentSwitcher />
+      </div>
+
       <div
         className={classNames('z-0 mb-4 bg-gray-200 px-3 pt-5 pb-1 shadow-md')}
       >
