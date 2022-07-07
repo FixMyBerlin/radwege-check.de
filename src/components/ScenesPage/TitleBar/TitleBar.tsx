@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import LogoIcon from '~/components/assets/radwegecheck-logo-bildmarke.svg'
 import { Link } from '~/components/Link'
+import { SpinnerOrText } from '~/components/Spinner'
 import { formatPercent } from '~/components/utils'
 import { ResultProps } from '../types'
 import {
@@ -49,15 +50,16 @@ export const TitleBar: React.FC<Props> = ({
       {mobileFacets}
 
       <h1
-        className="text-center font-bold leading-none lg:text-left"
+        className="relative flex justify-center text-center font-bold leading-none lg:justify-start lg:text-left"
         title={
           total > perPage
             ? `Die ersten ${perPage} Ergebnisse werden angezeigt.`
             : ''
         }
       >
-        {Number(total).toLocaleString() || '-'} Ergebnisse
+        <SpinnerOrText text={`${Number(total).toLocaleString()} Ergebnisse`} />
       </h1>
+
       <div className="flex items-center gap-2 lg:gap-5">
         {/* TODO: Find a way to show the average for a given filter-set for > 100 results. */}
         {resultScoreAverage && total <= perPage ? (
@@ -68,6 +70,7 @@ export const TitleBar: React.FC<Props> = ({
             {formatPercent(resultScoreAverage, { precision: 0 }) || '-'}
           </div>
         ) : null}
+
         <SearchOrderDropdown
           searchOrder={searchOrder}
           setSearchOrder={setSearchOrder}

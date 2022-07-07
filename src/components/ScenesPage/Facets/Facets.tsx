@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React, { useMemo } from 'react'
 import { useStore } from 'zustand'
-import { Spinner } from '~/components/Spinner'
+
 import { useStoreExperimentData } from '../store'
 import { ResultProps } from '../types'
 import {
@@ -60,9 +60,6 @@ export const Facets: React.FC<FacetsProps> = ({
       )}
     >
       <Logo visible={showLogo} />
-
-      <Spinner className="absolute top-20 right-4 xl:top-4" />
-
       <div
         className={classNames('z-0 mb-4 bg-gray-200 px-3 pt-5 pb-1 shadow-md')}
       >
