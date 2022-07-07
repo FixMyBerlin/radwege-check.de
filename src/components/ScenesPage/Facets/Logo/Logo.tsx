@@ -10,8 +10,16 @@ export const Logo: React.FC<Props> = ({ visible }) => {
   if (!visible) return null
 
   return (
-    <Link to="/" classNameOverwrite="h-8" title="Zur Startseite…">
-      <LogoImage className="h-8 w-auto" alt="Radwege-Check" />
+    <Link
+      to="/"
+      classNameOverwrite="h-8"
+      className="focus:text-yellow-900 focus:outline-none"
+      title="Zur Startseite…"
+    >
+      <LogoImage
+        className="h-8 w-auto hover:text-yellow-900 "
+        alt="Radwege-Check"
+      />
     </Link>
   )
 }

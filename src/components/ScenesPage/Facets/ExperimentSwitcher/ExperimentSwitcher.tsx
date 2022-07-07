@@ -23,7 +23,7 @@ export const ExperimentSwitcher: React.FC = () => {
   return (
     <Menu as="div" className="relative z-20 inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 pl-[0.6rem] text-sm font-normal text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
+        <Menu.Button className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 pl-[0.6rem] text-sm font-normal text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:ring-offset-2 focus:ring-offset-gray-100">
           {experimentValues[experimentTextKey]?.name}
           <ChevronDownIcon
             className="ml-[1px] mr-1 hidden w-[18px] lg:block"
