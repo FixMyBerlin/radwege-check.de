@@ -2,7 +2,7 @@ import { PresetsScenes } from './types'
 
 export const presetsScenesPrimary: PresetsScenes = {
   wideBollard: {
-    title: 'Breite Radstreifen mit Pollern auf Fahrbahn',
+    title: 'Breitere Radstreifen mit Pollern auf Fahrbahn',
     sceneIdForImage: 'MS_C_573',
     resultTotal: 80,
     averageScore: 95,
@@ -18,7 +18,7 @@ export const presetsScenesPrimary: PresetsScenes = {
       'leftOfBicycleLane:car_lanes,curb|pavementHasShops:true|pavementWidth:narrow',
   },
   narrowParkingRight: {
-    title: 'Schmale Radstreifen mit Kfz-Parken rechts',
+    title: 'Schmalere Radstreifen mit Kfz-Parken rechts',
     sceneIdForImage: 'MS_C_871',
     resultTotal: 128,
     averageScore: 42,

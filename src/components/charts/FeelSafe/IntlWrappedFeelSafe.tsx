@@ -11,7 +11,7 @@ const scale = scaleLinear(
   ['#c01d1d', '#f08141', '#abc759', '#45b834']
 )
 
-const getColorByValue = (index) => {
+export const getColorByValue = (index) => {
   return index <= 10 ? '#c01d1d' : scale(index)
 }
 
