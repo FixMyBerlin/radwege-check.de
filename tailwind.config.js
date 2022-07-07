@@ -9,10 +9,6 @@ module.exports = {
         'brand-light-yellow': '#fff8e8',
         'brand-pink': '#cf0a7d',
       },
-      boxShadow: {
-        innerYellow: 'inset 1px 1px 3px 0px rgb(180 155 0)',
-        innerGray: 'inset 1px 1px 3px 0 rgb(209 213 219)', // gray-300
-      },
       fontSize: { xxs: '0.7rem' },
       typography: {
         DEFAULT: {
