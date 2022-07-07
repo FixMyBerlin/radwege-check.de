@@ -21,7 +21,7 @@ export const SectionDataset: React.FC = () => {
               </Link>
             ),
             linkSpec: (
-              <Link to="/uploads/kataster-ki/Spezifikation_Ausgabeformat_des_Strassenchecks.pdf">
+              <Link to="/open-data/Spezifikation_Ausgabeformat_des_Strassenchecks.pdf">
                 <FormattedMessage id="04_dataset.p1.linkSpec" />
               </Link>
             ),
