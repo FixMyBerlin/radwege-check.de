@@ -7,7 +7,7 @@ type Props = {
 
 export const buttonIconClassNames = ({ uiSelected, uiCanpress }: Props) => {
   const buttonClasses = classNames(
-    'h-8 grow px-1 border-r border-gray-300 last:border-r-0 justify-center inline-flex items-center text-xxs font-semibold uppercase font-medium leading-4',
+    'h-8 grow px-1 border-r border-gray-300 last:border-r-0 justify-center inline-flex items-center text-xxs font-semibold uppercase font-medium leading-4 min-w-[2rem]',
     {
       'hover:bg-yellow-50': uiCanpress,
     },
