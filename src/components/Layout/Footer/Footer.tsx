@@ -9,7 +9,7 @@ import { FooterLinkList } from './FooterLinks/FooterLinkList'
 export const Footer: React.FC = () => {
   return (
     <footer
-      className="z-0 bg-stone-600 p-6 print:hidden lg:pb-8"
+      className="-z-10 bg-stone-600 p-6 print:hidden lg:pb-8"
       aria-labelledby="footer-heading"
     >
       <h2 id="footer-heading" className="sr-only">
