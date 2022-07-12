@@ -72,7 +72,7 @@ export const Link: React.FC<Props> = ({
     rel: external ? 'noopener noreferrer' : undefined,
   }
 
-  if (external || blank || mailto) {
+  if (external || blank || mailto || to.startsWith('tel:')) {
     return (
       <a href={mailto || to} className={classes} {...newWindowProps} {...props}>
         {children}
