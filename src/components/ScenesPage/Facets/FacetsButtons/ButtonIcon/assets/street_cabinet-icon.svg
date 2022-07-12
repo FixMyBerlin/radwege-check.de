@@ -1,0 +1,8 @@
+<svg width="20" height="17" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd">
+        <g stroke-linecap="square">
+            <path d="m2.45 14.935-.5-2.768M4.95 14.935l.5-2.768"/>
+        </g>
+        <path d="M8.7 16V1h10v15M15.421 4v2.6"/>
+    </g>
+</svg>

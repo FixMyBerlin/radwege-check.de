@@ -10,6 +10,7 @@ import PavedVerge from './assets/paved_verge-icon.svg'
 import Planter from './assets/planter-icon.svg'
 import RestrictedArea from './assets/restricted_area-icon.svg'
 import SolidLine from './assets/solid_line-icon.svg'
+import StreetCabinet from './assets/street_cabinet-icon.svg'
 
 type Props = {
   forValue: string
@@ -64,6 +65,14 @@ export const Icons: React.FC<Props> = ({ forValue, className }) => {
     case 'grass_verge':
       return (
         <GrassVerge
+          className={classNames(className, 'scale-75')}
+          title={forValue}
+        />
+      )
+
+    case 'grass_verge_with_street_cabinet':
+      return (
+        <StreetCabinet
           className={classNames(className, 'scale-75')}
           title={forValue}
         />
