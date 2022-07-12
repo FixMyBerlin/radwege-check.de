@@ -94,6 +94,8 @@ export const Facets: React.FC<FacetsProps> = ({
       </div>
       <div className="px-3">
         {furtherAggregations.map(([aggregationKey, aggregation]) => {
+          if (!aggregationConfig[aggregationKey]) return null
+
           const { buckets } = aggregation
           const { showAsIcons, groupEndIndicator } =
             aggregationConfig[aggregationKey]
