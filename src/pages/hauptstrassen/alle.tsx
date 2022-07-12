@@ -14,7 +14,7 @@ const AllPagePrimary = ({
   useEffect(() => setExperimentTextKey('primary'), [])
 
   return (
-    <LayoutArticle maxWidthClass="max-w-full lg:mx-5">
+    <LayoutArticle maxWidthClass="max-w-full lg:mx-5" prose={false}>
       {/* <MetaTags> are part of <ScenesAllPage> */}
       <ScenesAllPage rawScenes={sceneNodes} />
     </LayoutArticle>
