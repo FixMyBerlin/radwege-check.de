@@ -1,11 +1,13 @@
+import { InformationCircleIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 import React from 'react'
 import { useStore } from 'zustand'
 import { TranslationMissing } from '~/components/TextHelper'
-import { formatMeter } from '~/components/utils'
+import { formatMeter, isDev } from '~/components/utils'
 import { Icons } from '../../Facets/FacetsButtons'
 import { useStoreExperimentData } from '../../store'
 import { ScenePrimaryProps, SceneSecondaryProps } from '../../types'
+import { laneWidthCalculationText } from './utils'
 
 type Props = {
   keyName: string
@@ -36,7 +38,7 @@ export const ResultCell: React.FC<Props> = ({
 
   return (
     <section
-      title={`${keyName}: ${scene[keyName]}`}
+      title={isDev && `${keyName}: ${scene[keyName]}`}
       className={classNames(
         'break-before-avoid border-b py-2 lg:py-3.5',
         { 'hover:bg-stone-50': showHover },
@@ -69,15 +71,39 @@ export const ResultCell: React.FC<Props> = ({
           dangerouslySetInnerHTML={{ __html: bucketTranslation }}
         />
 
-        {keyName.includes('Width') &&
-          !Number.isNaN(scene[`${keyName}Number`]) && (
-            <span className="ml-1 font-light text-neutral-500">
+        {/* If cell is a number cell (and > 0), show the number next to the text: */}
+        {scene[`${keyName}Number`] !== undefined &&
+          scene[`${keyName}Number`] !== 0 && (
+            <span className="ml-0.5 font-light text-neutral-500">
               {' '}
               {formatMeter(scene[`${keyName}Number`], {})}
             </span>
           )}
 
-        {showIcon && (
+        {/* If cell is 'bicycleLaneWidth', then show the usable with as well */}
+        {keyName === 'bicycleLaneWidth' &&
+        'bicycleLaneWidthWithoutBufferAndDooringZoneNumber' in scene &&
+        scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber > 0 ? (
+          <div
+            title={laneWidthCalculationText(scene)}
+            className="group flex cursor-help justify-between"
+          >
+            <span>
+              Nutzbare Breite:{' '}
+              <span className="ml-0.5 font-light text-neutral-500">
+                {formatMeter(
+                  scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber,
+                  {}
+                )}
+              </span>
+            </span>
+            <InformationCircleIcon className="h-5 w-5 text-gray-200 group-hover:text-gray-600" />
+          </div>
+        ) : (
+          <div>&nbsp;</div>
+        )}
+
+        {showIcon && scene[keyName] !== 'none' && (
           <span className="absolute right-1 top-0 text-xxs">
             <Icons forValue={scene[keyName]} className="scale-75" />
           </span>

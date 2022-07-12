@@ -21,10 +21,10 @@ export const cleanupCsvData = (input): ScenePrimaryProps[] => {
       // Change values `"1,0"` to number values `1.0`
       if (
         typeof cleaned[index][key] === 'string' &&
-        (key.includes('vote') ||
-          key.includes('Count') ||
-          key.includes('Means') ||
-          key.includes('WidthNumber'))
+        (key.startsWith('vote') ||
+          key.endsWith('Count') ||
+          key.endsWith('Means') ||
+          key.endsWith('Number'))
       ) {
         cleaned[index][key] = parseFloat(cleaned[index][key].replace(',', '.'))
       }

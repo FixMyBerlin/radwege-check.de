@@ -22,7 +22,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
     <Menu as="div" className="relative mb-5 inline-block w-full text-left">
       <Menu.Button
         className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 bg-white pl-4 text-sm font-normal text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:ring-offset-2 focus:ring-offset-gray-100"
-        title={isPreset && presetTitle}
+        title={isPreset ? presetTitle : undefined}
       >
         <div className="w-full truncate text-left">
           {isCustom && 'Eigene Filterauswahl'}

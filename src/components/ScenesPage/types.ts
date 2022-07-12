@@ -60,9 +60,11 @@ export type ScenePrimaryProps = {
   sceneIdPedestrian: string
 
   bicycleLaneSurface: string
-  bicycleLaneUsableWidthNumber: number | undefined
   bicycleLaneWidth: string
   bicycleLaneWidthNumber: number | undefined
+  bicycleLaneWidthWithoutBufferNumber: number | undefined
+  bicycleLaneWidthWithoutBufferAndDooringZoneNumber: number | undefined
+  bufferRightDooringZoneNumber: number | undefined
   bufferHasPhysicalProtection: boolean
   bufferLeftMarking: string
   bufferLeftPhysicalProtection: string

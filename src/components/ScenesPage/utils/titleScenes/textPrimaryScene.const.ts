@@ -37,6 +37,8 @@ export const textBufferRightMarking = {
   restricted_area: 'mit Trennung zum Fußverkehr durch Sperrzone',
   paved_verge: 'mit Trennung zum Fußverkehr durch Aufpflasterung',
   grass_verge: 'mit Trennung zum Fußverkehr durch Grünstreifen',
+  grass_verge_with_street_cabinet:
+    'mit Trennung zum Fußverkehr durch Grünstreifen',
 } as const
 
 export const textParking = {

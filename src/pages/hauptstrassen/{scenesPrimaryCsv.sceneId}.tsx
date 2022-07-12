@@ -39,8 +39,10 @@ export const query = graphql`
       sceneIdPedestrian
 
       bicycleLaneSurface
-      bicycleLaneUsableWidthNumber
       bicycleLaneWidth
+      bicycleLaneWidthWithoutBufferNumber
+      bicycleLaneWidthWithoutBufferAndDooringZoneNumber
+      bufferRightDooringZoneNumber
       bicycleLaneWidthNumber
       bufferHasPhysicalProtection
       bufferLeftMarking
