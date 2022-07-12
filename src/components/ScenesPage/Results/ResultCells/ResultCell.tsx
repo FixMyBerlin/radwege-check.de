@@ -84,7 +84,7 @@ export const ResultCell: React.FC<Props> = ({
         {keyName === 'bicycleLaneWidth' &&
         'bicycleLaneWidthWithoutBufferAndDooringZoneNumber' in scene &&
         scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber > 0 ? (
-          <div
+          <span
             title={laneWidthCalculationText(scene)}
             className="group flex cursor-help justify-between"
           >
@@ -98,9 +98,9 @@ export const ResultCell: React.FC<Props> = ({
               </span>
             </span>
             <InformationCircleIcon className="h-5 w-5 text-gray-200 group-hover:text-gray-600 print:hidden" />
-          </div>
+          </span>
         ) : (
-          <div>&nbsp;</div>
+          <span className="block">&nbsp;</span>
         )}
 
         {showIcon && scene[keyName] !== 'none' && (
