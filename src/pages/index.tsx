@@ -5,7 +5,7 @@ import { Layout, MetaTags } from '~/components/Layout'
 
 const IndexPage: React.FC<PageProps> = ({ location }) => {
   return (
-    <Layout location={location} showBetaModal>
+    <Layout location={location}>
       <MetaTags
         title="Radwege-Check – Vergleiche die subjektive Sicherheit von 1.700 Radinfrastrukturen."
         sharingTitle="Vergleiche 1.700 Radinfrastrukturen. Mach den Radwege-Check."
