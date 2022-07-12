@@ -40,10 +40,10 @@ export const ResultCell: React.FC<Props> = ({
     <section
       title={isDev && `${keyName}: ${scene[keyName]}`}
       className={classNames(
-        'break-before-avoid border-b py-2 lg:py-3.5',
+        'break-before-avoid border-b py-2 print:py-1 lg:py-3.5',
         { 'hover:bg-stone-50': showHover },
         groupEndIndicator
-          ? 'border-dashed border-stone-300'
+          ? 'border-dashed border-stone-300 print:border-dotted print:border-stone-200'
           : 'border-dotted border-stone-200'
       )}
     >
@@ -56,7 +56,7 @@ export const ResultCell: React.FC<Props> = ({
           <>
             {' '}
             <span
-              className="font-xl mr-1 inline-flex h-2 w-2 cursor-help content-center items-center rounded-full bg-yellow-200 text-yellow-200"
+              className="font-xl mr-1 inline-flex h-2 w-2 cursor-help content-center items-center rounded-full bg-yellow-200 text-yellow-200 print:hidden"
               title="Für diese Gruppe ist ein Filter aktiv."
             >
               ・
@@ -65,7 +65,7 @@ export const ResultCell: React.FC<Props> = ({
         )}
       </h3>
 
-      <p className="w-ful relative leading-tight text-neutral-800">
+      <p className="relative w-full leading-tight text-neutral-800">
         <span
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: bucketTranslation }}
@@ -97,7 +97,7 @@ export const ResultCell: React.FC<Props> = ({
                 )}
               </span>
             </span>
-            <InformationCircleIcon className="h-5 w-5 text-gray-200 group-hover:text-gray-600" />
+            <InformationCircleIcon className="h-5 w-5 text-gray-200 group-hover:text-gray-600 print:hidden" />
           </div>
         ) : (
           <div>&nbsp;</div>

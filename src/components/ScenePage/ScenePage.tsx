@@ -84,7 +84,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
               <br />
               {categoryTranslation}
             </p>
-            <div className="rounded bg-blue-50 p-6 print:grid print:grid-cols-4 print:gap-x-3 print:bg-transparent print:p-0">
+            <div className="rounded bg-blue-50 p-6 print:grid print:grid-cols-4 print:gap-x-2 print:bg-transparent print:p-0">
               <ResultCells scene={scene} showHover={false} />
             </div>
           </div>
