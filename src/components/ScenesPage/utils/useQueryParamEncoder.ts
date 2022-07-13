@@ -6,6 +6,17 @@ import { SearchOptionProps } from '../types'
 export const encodeFilter = (
   filterObject: SearchOptionProps['filters']
 ): string => {
+  // For Matomo and SEO, we want the same sort order ob keys and values
+  //   Solution via https://stackoverflow.com/a/31102605/729221
+  const orderedFilterObject = Object.keys(filterObject)
+    .sort((a, b) => a.localeCompare(b))
+    .reduce((obj, key) => {
+      // Learn more https://stackoverflow.com/questions/41625399/how-to-handle-eslint-no-param-reassign-rule-in-array-prototype-reduce-function#comment70452247_41625399
+      // eslint-disable-next-line no-param-reassign
+      obj[key] = filterObject[key].sort((a, b) => a.localeCompare(b))
+      return obj
+    }, {})
+
   // Testing:
   // $ node
   // > const queryString = require('query-string');
@@ -17,7 +28,7 @@ export const encodeFilter = (
   // // and want a nice looking URL (no escaping) as well.
   // > queryString.stringify({ foo: ['bar', 'baz'], bar: ['baz'], bar2: null }, { arrayFormat: 'comma', skipNull: true, skipEmptyString: true, strict: false }).replace(/=/g, ':').replace(/&/g, '|');
   // # => ('bar:baz|foo:bar,baz');
-  const string = stringify(filterObject, {
+  const string = stringify(orderedFilterObject, {
     arrayFormat: 'separator',
     arrayFormatSeparator: ',',
     skipNull: true,
@@ -25,6 +36,7 @@ export const encodeFilter = (
   })
     .replace(/=/g, ':')
     .replace(/&/g, '|')
+
   return string
 }
 
