@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import LogoIcon from '~/components/assets/radwegecheck-logo-bildmarke.svg'
-import { Link } from '~/components/Link'
+import { Link, TwitterButtonIconCurrentUrl } from '~/components/Link'
 import { SpinnerOrText } from '~/components/Spinner'
 import { formatPercent } from '~/components/utils'
 import { ResultProps } from '../types'
@@ -70,6 +70,8 @@ export const TitleBar: React.FC<Props> = ({
             {formatPercent(resultScoreAverage, { precision: 0 }) || '-'}
           </div>
         ) : null}
+
+        <TwitterButtonIconCurrentUrl className="hidden lg:flex" />
 
         <SearchOrderDropdown
           searchOrder={searchOrder}

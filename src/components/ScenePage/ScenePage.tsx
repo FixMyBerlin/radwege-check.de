@@ -73,6 +73,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
               precision: 0,
             })}`}
             hashtags="verkehrswende"
+            buttonText="Teilen"
           />
           <PrintButton />
         </div>

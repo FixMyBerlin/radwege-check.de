@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import React, { useMemo } from 'react'
 import { useStore } from 'zustand'
+import { TwitterButtonIconCurrentUrl } from '~/components/Link'
 
 import { useStoreExperimentData } from '../store'
 import { ResultProps } from '../types'
@@ -63,6 +64,7 @@ export const Facets: React.FC<FacetsProps> = ({
       <div className="relative flex h-14 items-center justify-between bg-brand-light-yellow py-1 px-3 shadow-md">
         <Logo visible={showLogo} />
         <ExperimentSwitcher />
+        <TwitterButtonIconCurrentUrl className="lg:hidden" />
       </div>
 
       <div
