@@ -32,57 +32,67 @@ const linkStylesInverted = classNames(
 export const buttonStyles =
   'inline-flex items-center px-4 py-2 border border-transparent font-semibold rounded-md shadow-sm text-gray-800 bg-brand-yellow hover:bg-yellow-400 group-hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-yellow'
 
-export const Link: React.FC<Props> = ({
-  to,
-  classNameOverwrite,
-  className,
-  blank = false,
-  external = false,
-  linkInverted = false,
-  button = false,
-  mailSubject,
-  mailBody,
-  children,
-  ...props
-}) => {
-  // eslint-disable-next-line no-nested-ternary
-  const styles = button
-    ? buttonStyles
-    : linkInverted
-    ? linkStylesInverted
-    : linkStyles
+export const Link: React.FC<Props> = React.forwardRef(
+  (
+    {
+      to,
+      classNameOverwrite,
+      className,
+      blank = false,
+      external = false,
+      linkInverted = false,
+      button = false,
+      mailSubject,
+      mailBody,
+      children,
+      ...props
+    },
+    _ref
+  ) => {
+    // eslint-disable-next-line no-nested-ternary
+    const styles = button
+      ? buttonStyles
+      : linkInverted
+      ? linkStylesInverted
+      : linkStyles
 
-  const classes = classNames(className, classNameOverwrite || styles)
+    const classes = classNames(className, classNameOverwrite || styles)
 
-  let mailto: string
-  if (to.includes('@')) {
-    const url = new URL(`mailto:${to}`)
-    if (mailSubject) url.searchParams.set('subject', mailSubject)
-    if (mailBody) url.searchParams.set('body', mailBody)
-    mailto = url.toString()
-  }
+    let mailto: string
+    if (to.includes('@')) {
+      const url = new URL(`mailto:${to}`)
+      if (mailSubject) url.searchParams.set('subject', mailSubject)
+      if (mailBody) url.searchParams.set('body', mailBody)
+      mailto = url.toString()
+    }
 
-  type NewWindowProps = {
-    target?: string
-    rel?: string
-  }
+    type NewWindowProps = {
+      target?: string
+      rel?: string
+    }
 
-  const newWindowProps: NewWindowProps = {
-    target: blank ? '_blank' : undefined,
-    rel: external ? 'noopener noreferrer' : undefined,
-  }
+    const newWindowProps: NewWindowProps = {
+      target: blank ? '_blank' : undefined,
+      rel: external ? 'noopener noreferrer' : undefined,
+    }
 
-  if (external || blank || mailto || to.startsWith('tel:')) {
+    if (external || blank || mailto || to.startsWith('tel:')) {
+      return (
+        <a
+          href={mailto || to}
+          className={classes}
+          {...newWindowProps}
+          {...props}
+        >
+          {children}
+        </a>
+      )
+    }
+
     return (
-      <a href={mailto || to} className={classes} {...newWindowProps} {...props}>
+      <GatsbyLink to={to} className={classes} {...props}>
         {children}
-      </a>
+      </GatsbyLink>
     )
   }
-
-  return (
-    <GatsbyLink to={to} className={classes} {...props}>
-      {children}
-    </GatsbyLink>
-  )
-}
+)
