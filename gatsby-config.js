@@ -60,22 +60,29 @@ module.exports = {
         lang: 'de-DE', // https://developer.mozilla.org/en-US/docs/Web/Manifest/lang
       },
     },
-    // {
-    //   // Docs https://www.gatsbyjs.com/plugins/gatsby-plugin-matomo/
-    //   resolve: 'gatsby-plugin-matomo',
-    //   options: {
-    //     siteId: '6',
-    //     matomoUrl: 'https://s.radwege-check.de',
-    //     siteUrl: 'https://s.radwege-check.de',
-    //     requireConsent: false,
-    //     requireCookieConsent: true,
-    //     disableCookies: true,
-    //     respectDnt: true,
-    //     // ↓ We filter all hits from non-production urls; so setting `dev:true` is fine.
-    //     //   Settings via https://s.fixmycity.de/index.php?module=SitesManager&action=index&idSite=6&period=day&date=yesterday&showaddsite=false
-    //     //   > Zeichne Besuche und Aktionen nur auf, wenn die Aktions-URL mit einer der oben genannten URLs beginnt.
-    //     dev: true,
-    //   },
-    // },
+    {
+      // Docs https://www.gatsbyjs.com/plugins/gatsby-plugin-matomo/
+      // Some plugis are auto-enabled:
+      //  - enableLinkTracking
+      //    Docs: https://developer.matomo.org/guides/spa-tracking#link-tracking
+      //    Code: https://github.com/kremalicious/gatsby-plugin-matomo/blob/main/src/gatsby-browser.js#L36
+      //  - trackAllContentImpressions
+      //    Docs: https://developer.matomo.org/guides/spa-tracking#content-tracking
+      //    Code: https://github.com/kremalicious/gatsby-plugin-matomo/blob/main/src/gatsby-browser.js#L37
+      resolve: 'gatsby-plugin-matomo',
+      options: {
+        siteId: '6',
+        matomoUrl: 'https://s.radwege-check.de',
+        siteUrl: 'https://s.radwege-check.de',
+        requireConsent: false,
+        requireCookieConsent: false,
+        disableCookies: true,
+        respectDnt: false,
+        // ↓ We filter all hits from non-production urls; so setting `dev:true` is fine.
+        //   Settings via https://s.fixmycity.de/index.php?module=SitesManager&action=index&idSite=6&period=day&date=yesterday&showaddsite=false
+        //   > Zeichne Besuche und Aktionen nur auf, wenn die Aktions-URL mit einer der oben genannten URLs beginnt.
+        dev: true,
+      },
+    },
   ],
 }
