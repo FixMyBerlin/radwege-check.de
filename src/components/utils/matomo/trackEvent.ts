@@ -13,7 +13,7 @@ export const trackEvent = ({ category, action, label = null }: Props) => {
 
   window._paq = window._paq || []
   window._paq.push(['trackEvent', category, action])
-  if (isDev) {
+  if (window.dev === true) {
     // eslint-disable-next-line no-console
     console.debug({
       MATOMO: 'trackEvent',
