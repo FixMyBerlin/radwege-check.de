@@ -12,36 +12,34 @@ export const SectionSummary: React.FC = () => {
         <FormattedMessage id="06_summary.p01.heading" />
       </Headline>
       <p>
-        <p>
-          <FormattedMessage id="06_summary.p02" />
-        </p>
-        <ul>
-          <li>
-            <FormattedMessage id="06_summary.p03" />
-          </li>
-          <li>
-            <FormattedMessage id="06_summary.p04" />
-          </li>
-          <li>
-            <FormattedMessage id="06_summary.p05" />
-          </li>
-          <li>
-            <FormattedMessage id="06_summary.p06" />
-          </li>
-          <li>
-            <FormattedMessage id="06_summary.p07" />
-          </li>
-          <li>
-            <FormattedMessage id="06_summary.p08" />
-          </li>
-          <li>
-            <FormattedMessage id="06_summary.p09" />
-          </li>
-          <li>
-            <FormattedMessage id="06_summary.p10" />
-          </li>
-        </ul>
+        <FormattedMessage id="06_summary.p02" />
       </p>
+      <ul>
+        <li>
+          <FormattedMessage id="06_summary.p03" />
+        </li>
+        <li>
+          <FormattedMessage id="06_summary.p04" />
+        </li>
+        <li>
+          <FormattedMessage id="06_summary.p05" />
+        </li>
+        <li>
+          <FormattedMessage id="06_summary.p06" />
+        </li>
+        <li>
+          <FormattedMessage id="06_summary.p07" />
+        </li>
+        <li>
+          <FormattedMessage id="06_summary.p08" />
+        </li>
+        <li>
+          <FormattedMessage id="06_summary.p09" />
+        </li>
+        <li>
+          <FormattedMessage id="06_summary.p10" />
+        </li>
+      </ul>
       <p>
         <FormattedMessage id="06_summary.p11" />
       </p>

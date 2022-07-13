@@ -38,18 +38,18 @@ export const SectionAbout: React.FC = () => {
       </p>
       <p>
         <FormattedMessage id="03_concept.p7" />
-        <ul>
-          <li>
-            <FormattedMessage id="03_concept.p7.list1" />
-          </li>
-          <li>
-            <FormattedMessage id="03_concept.p7.list2" />
-          </li>
-          <li>
-            <FormattedMessage id="03_concept.p7.list3" />
-          </li>
-        </ul>
       </p>
+      <ul>
+        <li>
+          <FormattedMessage id="03_concept.p7.list1" />
+        </li>
+        <li>
+          <FormattedMessage id="03_concept.p7.list2" />
+        </li>
+        <li>
+          <FormattedMessage id="03_concept.p7.list3" />
+        </li>
+      </ul>
       <Headline as="h3">
         <FormattedMessage id="03_concept.p8.heading" />
       </Headline>
@@ -76,24 +76,24 @@ export const SectionAbout: React.FC = () => {
       </p>
       <p>
         <FormattedMessage id="03_concept.p10" />
-        <ul>
-          <li>
-            <FormattedMessage id="03_concept.p10.list1" />
-          </li>
-          <li>
-            <FormattedMessage id="03_concept.p10.list2" />
-          </li>
-          <li>
-            <FormattedMessage id="03_concept.p10.list3" />
-          </li>
-          <li>
-            <FormattedMessage id="03_concept.p10.list4" />
-          </li>
-          <li>
-            <FormattedMessage id="03_concept.p10.list5" />
-          </li>
-        </ul>
       </p>
+      <ul>
+        <li>
+          <FormattedMessage id="03_concept.p10.list1" />
+        </li>
+        <li>
+          <FormattedMessage id="03_concept.p10.list2" />
+        </li>
+        <li>
+          <FormattedMessage id="03_concept.p10.list3" />
+        </li>
+        <li>
+          <FormattedMessage id="03_concept.p10.list4" />
+        </li>
+        <li>
+          <FormattedMessage id="03_concept.p10.list5" />
+        </li>
+      </ul>
       <p>
         <FormattedMessage id="03_concept.p11" />
       </p>

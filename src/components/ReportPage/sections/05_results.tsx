@@ -40,89 +40,93 @@ export const SectionResults: React.FC = () => {
       </Headline>
       <p>
         <FormattedMessage id="05_results.p4" />
-        <ul>
-          <li>Friedrichshain-Kreuzberg 14 %</li>
-          <li>Mitte 12 %</li>
-          <li>Pankow 12 %</li>
-          <li>Tempelhof-Schöneberg 10 %</li>
-          <li>Charlottenburg-Wilmersdorf 9 %</li>
-          <li>Steglitz-Zehlendorf 7 %</li>
-          <li>Neukölln 7%</li>
-          <li>Treptow-Köpenick 4 %</li>
-          <li>Lichtenberg 4 %</li>
-          <li>Reinickendorf 4 %</li>
-          <li>Spandau 3 %</li>
-          <li>Marzahn-Hellersdorf 1 %</li>
-          <li>
-            <FormattedMessage id="05_results.p4.listOther" /> 11 %
-          </li>
-        </ul>
       </p>
+      <ul>
+        <li>Friedrichshain-Kreuzberg 14 %</li>
+        <li>Mitte 12 %</li>
+        <li>Pankow 12 %</li>
+        <li>Tempelhof-Schöneberg 10 %</li>
+        <li>Charlottenburg-Wilmersdorf 9 %</li>
+        <li>Steglitz-Zehlendorf 7 %</li>
+        <li>Neukölln 7%</li>
+        <li>Treptow-Köpenick 4 %</li>
+        <li>Lichtenberg 4 %</li>
+        <li>Reinickendorf 4 %</li>
+        <li>Spandau 3 %</li>
+        <li>Marzahn-Hellersdorf 1 %</li>
+        <li>
+          <FormattedMessage id="05_results.p4.listOther" /> 11 %
+        </li>
+      </ul>
       <p>
         <FormattedMessage id="05_results.p5" />
-        <ul>
-          <li>
-            <FormattedMessage id="05_results.p5.list1" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p5.list2" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p5.list3" />
-          </li>
-        </ul>
+      </p>
+      <ul>
+        <li>
+          <FormattedMessage id="05_results.p5.list1" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p5.list2" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p5.list3" />
+        </li>
+      </ul>
+      <p>
         <FormattedMessage id="05_results.p6" />
       </p>
       <p>
         <FormattedMessage id="05_results.p7" />
-        <ul>
-          <li>
-            <FormattedMessage id="05_results.p7.list1" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p7.list2" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p7.list3" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p7.list4" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p7.list5" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p7.list6" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p7.list7" />
-          </li>
-        </ul>
-        <FormattedMessage id="05_results.p8" />
-        <ul>
-          <li>
-            <FormattedMessage id="05_results.p8.list1" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p8.list2" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p8.list3" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p8.list4" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p8.list5" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p8.list6" />
-          </li>
-          <li>
-            <FormattedMessage id="05_results.p8.list7" />
-          </li>
-        </ul>
       </p>
+      <ul>
+        <li>
+          <FormattedMessage id="05_results.p7.list1" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p7.list2" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p7.list3" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p7.list4" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p7.list5" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p7.list6" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p7.list7" />
+        </li>
+      </ul>
+      <p>
+        <FormattedMessage id="05_results.p8" />
+      </p>
+      <ul>
+        <li>
+          <FormattedMessage id="05_results.p8.list1" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p8.list2" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p8.list3" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p8.list4" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p8.list5" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p8.list6" />
+        </li>
+        <li>
+          <FormattedMessage id="05_results.p8.list7" />
+        </li>
+      </ul>
       <p>
         <FormattedMessage
           id="05_results.p9"
@@ -516,7 +520,7 @@ export const SectionResults: React.FC = () => {
           subtitle={<FormattedMessage id="05_results.p21.image2" />}
         />
       </TwoImagesWrapper>
-      {/*
+
       <BarChartWrapper
         title={intl.formatMessage({
           id: '05_results.chart7.title',
@@ -1629,7 +1633,7 @@ export const SectionResults: React.FC = () => {
           data={[4.538799, 18.081991, 43.045388, 34.333821]}
           feelsafe={77.37}
         />
-      </BarChartWrapper> */}
+      </BarChartWrapper>
     </section>
   )
 }
