@@ -26,7 +26,7 @@ export const ExperimentSwitcher: React.FC = () => {
         <Menu.Button className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 pl-[0.6rem] text-sm font-normal text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:ring-offset-2 focus:ring-offset-gray-100">
           {experimentValues[experimentTextKey]?.name}
           <ChevronDownIcon
-            className="ml-[1px] mr-1 hidden w-[18px] lg:block"
+            className="ml-[1px] mr-1 w-[18px]"
             aria-hidden="true"
           />
         </Menu.Button>
@@ -41,7 +41,7 @@ export const ExperimentSwitcher: React.FC = () => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute left-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none lg:right-0">
           <div className="py-1">
             {Object.entries(experimentValues).map(([key, { name, path }]) => {
               const active = experimentTextKey === key

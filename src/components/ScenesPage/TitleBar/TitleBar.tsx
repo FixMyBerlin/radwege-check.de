@@ -46,11 +46,9 @@ export const TitleBar: React.FC<Props> = ({
       >
         <LogoIcon className="h-8 w-8" alt="Radwege-Check" />
       </Link>
-
       {mobileFacets}
-
       <h1
-        className="relative flex justify-center text-center font-bold leading-none lg:justify-start lg:text-left"
+        className="relative flex justify-center text-center font-bold leading-none lg:mr-3 lg:justify-start lg:text-left"
         title={
           total > perPage
             ? `Die ersten ${perPage} Ergebnisse werden angezeigt.`
@@ -60,7 +58,7 @@ export const TitleBar: React.FC<Props> = ({
         <SpinnerOrText text={`${Number(total).toLocaleString()} Ergebnisse`} />
       </h1>
 
-      <div className="flex items-center gap-2 lg:gap-5">
+      <div className="flex items-center gap-2 lg:gap-3">
         {/* TODO: Find a way to show the average for a given filter-set for > 100 results. */}
         {resultScoreAverage && total <= perPage ? (
           <div className="text-center text-sm leading-4 text-neutral-500 lg:ml-3">
