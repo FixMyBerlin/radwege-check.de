@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import { StringParam, useQueryParam } from 'use-query-params'
 import { useStore } from 'zustand'
 import { MetaTags } from '../Layout'
+import { trackEvent } from '../utils'
 import {
   Facets,
   HandleMultiChoiceProps,
@@ -106,6 +107,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
     setResetFilterEnabled(false)
     setSearchFilters(undefined)
     setSearchOrder(undefined)
+    trackEvent({ category: 'Facets', action: 'Reset filter' })
   }
 
   // SingleChoice: Replace the key
@@ -115,6 +117,10 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
     selectedBucketKey,
   }: HandleSingleChoiceProps) => {
     setShowSpinner(true)
+    trackEvent({
+      category: 'Facets',
+      action: `${aggregationKey}: ${selectedBucketKey}`,
+    })
     setSearchFilters((prevStateString) => {
       const prevState = decodeFilterWithAggregation(prevStateString)
       const filter = selectedBucketKey ? [selectedBucketKey] : []
@@ -131,6 +137,10 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
     selectedBucket,
   }: HandleMultiChoiceProps) => {
     setShowSpinner(true)
+    trackEvent({
+      category: 'Facets',
+      action: `${aggregationKey}: ${selectedBucket.key}`,
+    })
     const bucketHasNothingSelected = !buckets.some((b) => b.selected)
     if (bucketHasNothingSelected) {
       // Activate uiFilter (remove Filter)
@@ -199,13 +209,14 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
           // remove value from list in url
           setBookmarkArray(bookmarksWithoutPassedSceneId, 'replaceIn')
         }
-        // setShowBookmarks(false)
+        trackEvent({ category: 'Bookmarks', action: 'Remove', label: sceneId })
       } else {
         // add
         setBookmarkArray(
           [...bookmarks, sceneId].sort((a, b) => a.localeCompare(b)),
           'replaceIn'
         )
+        trackEvent({ category: 'Bookmarks', action: 'Add', label: sceneId })
       }
     },
     [bookmarkArray, setBookmarkArray]

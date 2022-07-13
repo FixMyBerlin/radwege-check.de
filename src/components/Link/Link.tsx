@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { Link as GatsbyLink } from 'gatsby'
 import React from 'react'
+import { trackEvent } from '../utils'
 
 type Props = {
   /** @desc Internal Link, external Link, e-mail-address (will add the `mailto:` automatically) */
@@ -77,10 +78,19 @@ export const Link: React.FC<Props> = React.forwardRef(
     }
 
     if (external || blank || mailto || to.startsWith('tel:')) {
+      if (props.onClick) {
+        // eslint-disable-next-line no-console
+        console.warn({
+          ERROR:
+            'Our <Link external> component uses onClick to track Matomo links; if we need to use it regularly, we need to refactor this.',
+        })
+      }
+
       return (
         <a
           href={mailto || to}
           className={classes}
+          onClick={() => trackEvent({ category: 'Outbound', action: to })}
           {...newWindowProps}
           {...props}
         >
