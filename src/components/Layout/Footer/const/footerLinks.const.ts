@@ -34,8 +34,10 @@ export const footerLinks: footerMenuProp = {
     },
   ],
   results: [
-    { name: 'Hauptstraßen', to: '/hauptstrassen/' },
-    { name: 'Nebenstraßen', to: '/nebenstrassen/' },
+    { name: 'Hauptstraßen filtern', to: '/hauptstrassen/' },
+    { name: 'Hauptstraßen als Liste', to: '/hauptstrassen/alle/' },
+    { name: 'Nebenstraßen filtern', to: '/nebenstrassen/' },
+    { name: 'Nebenstraßen als Liste', to: '/nebenstrassen/alle/' },
   ],
   formal: [
     ...footerLegalLinks,

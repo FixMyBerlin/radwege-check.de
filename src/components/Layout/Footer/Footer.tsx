@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
         Footer
       </h2>
       <FooterSocialIcons className="justify-end pb-5 lg:hidden" />
-      <div className="flex flex-col items-stretch justify-between lg:h-32 lg:flex-row">
+      <div className="flex flex-col items-stretch justify-between lg:flex-row">
         <section className="flex flex-col justify-between pb-3 lg:w-auto lg:pb-0">
           <div>
             <Link to="/" classNameOverwrite="" title="Zur Startseite…">
@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
               </h3>
               <FooterLinkList linkList={footerLinks.report} />
             </div>
-            <div className="lg:w-[8rem]">
+            <div className="lg:w-[11rem]">
               <h3 className="mb-3 font-semibold text-stone-100">Ergebnisse:</h3>
               <FooterLinkList linkList={footerLinks.results} />
             </div>

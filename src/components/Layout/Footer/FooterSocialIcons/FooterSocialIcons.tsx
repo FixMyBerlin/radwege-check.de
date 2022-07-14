@@ -7,7 +7,12 @@ type Props = { className?: string }
 
 export const FooterSocialIcons: React.FC<Props> = ({ className }) => {
   return (
-    <div className={classNames('flex space-x-6 md:order-2', className)}>
+    <div
+      className={classNames(
+        'flex space-x-6 lg:flex-col lg:space-x-0 lg:space-y-4',
+        className
+      )}
+    >
       {footerSocialIcons.map((item) => (
         <Link
           key={item.name}
