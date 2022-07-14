@@ -38,6 +38,7 @@ export const ResultNumbers: React.FC<Props> = ({
           visible={setShowTable !== null}
           showTable={showTable}
           setShowTable={setShowTable}
+          scene={scene}
         />
         <Table scene={scene} visible={showTable} precision={1} />
         <ScoreExplanation visible={showTable} scene={scene} />

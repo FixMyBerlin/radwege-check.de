@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet'
 import { StringParam, useQueryParam } from 'use-query-params'
 import { useStore } from 'zustand'
 import { MetaTags } from '../Layout'
-import { trackEvent } from '../utils'
+import { fullUrl, trackContentInteraction, trackEvent } from '../utils'
 import {
   Facets,
   HandleMultiChoiceProps,
@@ -107,7 +107,10 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
     setResetFilterEnabled(false)
     setSearchFilters(undefined)
     setSearchOrder(undefined)
-    trackEvent({ category: 'Facets', action: 'Reset filter' })
+    trackEvent({
+      category: `[${experimentTextKey}] Facets`,
+      action: 'Reset filter',
+    })
   }
 
   // SingleChoice: Replace the key
@@ -118,7 +121,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
   }: HandleSingleChoiceProps) => {
     setShowSpinner(true)
     trackEvent({
-      category: 'Facets',
+      category: `[${experimentTextKey}] Facets`,
       action: `${aggregationKey}: ${selectedBucketKey}`,
     })
     setSearchFilters((prevStateString) => {
@@ -138,7 +141,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
   }: HandleMultiChoiceProps) => {
     setShowSpinner(true)
     trackEvent({
-      category: 'Facets',
+      category: `${experimentTextKey} Facets`,
       action: `${aggregationKey}: ${selectedBucket.key}`,
     })
     const bucketHasNothingSelected = !buckets.some((b) => b.selected)
@@ -195,6 +198,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
 
   const handleBookmark = useCallback(
     (sceneId: string) => {
+      const scene = scenes.find((s) => s.sceneId === sceneId)
       const bookmarks = bookmarkArray || []
       const isBookmarked = bookmarks.includes(sceneId)
       if (isBookmarked) {
@@ -209,14 +213,24 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
           // remove value from list in url
           setBookmarkArray(bookmarksWithoutPassedSceneId, 'replaceIn')
         }
-        trackEvent({ category: 'Bookmarks', action: 'Remove', label: sceneId })
+        trackContentInteraction({
+          action: 'remove bookmark',
+          id: scene.sceneId,
+          representation: 'result page',
+          url: fullUrl(scene.path),
+        })
       } else {
         // add
         setBookmarkArray(
           [...bookmarks, sceneId].sort((a, b) => a.localeCompare(b)),
           'replaceIn'
         )
-        trackEvent({ category: 'Bookmarks', action: 'Add', label: sceneId })
+        trackContentInteraction({
+          action: 'add bookmark',
+          id: scene.sceneId,
+          representation: 'result page',
+          url: fullUrl(scene.path),
+        })
       }
     },
     [bookmarkArray, setBookmarkArray]

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useStore } from 'zustand'
 import LogoIcon from '~/components/assets/radwegecheck-logo-bildmarke.svg'
 import { Link, TwitterButtonIconCurrentUrl } from '~/components/Link'
 import { SpinnerOrText } from '~/components/Spinner'
-import { formatPercent } from '~/components/utils'
+import { formatPercent, trackEvent } from '~/components/utils'
+import { useStoreExperimentData } from '../store'
 import { ResultProps } from '../types'
 import {
   SearchOrderDropdown,
@@ -20,6 +22,8 @@ export const TitleBar: React.FC<Props> = ({
   setSearchOrder,
   mobileFacets,
 }) => {
+  const { experimentTextKey } = useStore(useStoreExperimentData)
+
   const resultItems = results?.data?.items || []
   const pagination = results?.pagination
 
@@ -69,7 +73,16 @@ export const TitleBar: React.FC<Props> = ({
           </div>
         ) : null}
 
-        <TwitterButtonIconCurrentUrl className="hidden lg:flex" />
+        <TwitterButtonIconCurrentUrl
+          className="hidden lg:flex"
+          onClick={() =>
+            trackEvent({
+              category: `[${experimentTextKey}] Twitter button`,
+              action: 'Click',
+              label: 'Mobile view',
+            })
+          }
+        />
 
         <SearchOrderDropdown
           searchOrder={searchOrder}

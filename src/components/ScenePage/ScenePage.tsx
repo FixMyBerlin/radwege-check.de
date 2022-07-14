@@ -1,5 +1,5 @@
 import { InformationCircleIcon } from '@heroicons/react/outline'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useStore } from 'zustand'
 import Logo from '~/components/assets/radwegecheck-logo.svg'
 import { MetaTags } from '../Layout'
@@ -12,7 +12,12 @@ import { sceneImageUrl } from '../ScenesPage/SceneImage'
 import { useStoreExperimentData } from '../ScenesPage/store'
 import { ScenePrimaryProps, SceneSecondaryProps } from '../ScenesPage/types'
 import { titleScene } from '../ScenesPage/utils/titleScenes'
-import { formatNumber } from '../utils'
+import {
+  formatNumber,
+  fullUrl,
+  trackContentImpression,
+  trackContentInteraction,
+} from '../utils'
 
 type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps
@@ -28,6 +33,14 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
     experimentTextKey === 'primary'
       ? 'auf einer Hauptstrasse'
       : 'in einer Nebenstrasse'
+
+  useEffect(() => {
+    trackContentImpression({
+      id: scene.sceneId,
+      representation: 'details page',
+      url: fullUrl(scene.path),
+    })
+  }, [])
 
   return (
     <>
@@ -74,8 +87,25 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
             })}`}
             hashtags="verkehrswende"
             buttonText="Teilen"
+            onClick={() =>
+              trackContentInteraction({
+                action: 'tweet button',
+                id: scene.sceneId,
+                representation: 'details page',
+                url: fullUrl(scene.path),
+              })
+            }
           />
-          <PrintButton />
+          <PrintButton
+            onClick={() =>
+              trackContentInteraction({
+                action: 'print button',
+                id: scene.sceneId,
+                representation: 'details page',
+                url: fullUrl(scene.path),
+              })
+            }
+          />
         </div>
 
         <div className="flex max-w-7xl flex-col gap-6 lg:grid lg:grid-cols-4">

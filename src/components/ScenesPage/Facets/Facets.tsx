@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import React, { useMemo } from 'react'
 import { useStore } from 'zustand'
 import { TwitterButtonIconCurrentUrl } from '~/components/Link'
+import { trackEvent } from '~/components/utils'
 
 import { useStoreExperimentData } from '../store'
 import { ResultProps } from '../types'
@@ -36,7 +37,9 @@ export const Facets: React.FC<FacetsProps> = ({
   showLogo,
 }) => {
   const aggregations = results?.data?.aggregations || {}
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+  const { aggregationConfig, experimentTextKey } = useStore(
+    useStoreExperimentData
+  )
 
   const mainAggregations = useMemo(
     () =>
@@ -64,7 +67,16 @@ export const Facets: React.FC<FacetsProps> = ({
       <div className="relative flex h-14 items-center justify-between bg-brand-light-yellow py-1 px-3 shadow-md">
         <Logo visible={showLogo} />
         <ExperimentSwitcher />
-        <TwitterButtonIconCurrentUrl className="lg:hidden" />
+        <TwitterButtonIconCurrentUrl
+          className="lg:hidden"
+          onClick={() =>
+            trackEvent({
+              category: `[${experimentTextKey}] Twitter button`,
+              action: 'Click',
+              label: 'Desktop view',
+            })
+          }
+        />
       </div>
 
       <div

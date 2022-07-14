@@ -1,20 +1,33 @@
 import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
-import { trackEvent } from '~/components/utils'
+import {
+  ScenePrimaryProps,
+  SceneSecondaryProps,
+} from '~/components/ScenesPage/types'
+import {
+  fullUrl,
+  trackContentInteraction,
+  trackEvent,
+} from '~/components/utils'
 import { ShowTableProps } from '../../Results'
 
-type Props = { visible: boolean } & ShowTableProps
+type Props = {
+  visible: boolean
+  scene: ScenePrimaryProps | SceneSecondaryProps
+} & ShowTableProps
 
 export const HeadlineButton: React.FC<Props> = ({
   visible,
   showTable,
   setShowTable,
+  scene,
 }) => {
   const handleClick = () => {
-    trackEvent({
-      category: 'Result',
-      action: 'ShowMore Table',
-      label: showTable ? 'close' : 'open',
+    trackContentInteraction({
+      action: showTable ? 'close table' : 'open table',
+      id: scene.sceneId,
+      representation: 'result page',
+      url: fullUrl(scene.path),
     })
     setShowTable(!showTable)
   }

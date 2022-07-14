@@ -1,7 +1,8 @@
 import classNames from 'classnames'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useStore } from 'zustand'
 import { Link } from '~/components/Link'
+import { domain, fullUrl, trackContentImpression } from '~/components/utils'
 import { SceneImage } from '../../SceneImage'
 import { useStoreBookmarks } from '../../store'
 import {
@@ -14,6 +15,7 @@ import { ResultCells } from '../ResultCells'
 import { ResultNumbers } from '../ResultNumbers'
 import { ShowTableProps } from '../Results'
 import PinIcon from './assets/pin-icon.svg'
+import { useIntersection } from './utils/useIntersection'
 
 export type PrevBucketValues = { [key: string]: string | number }
 
@@ -46,8 +48,22 @@ export const ResultColumn: React.FC<Props> = ({
 
   const safeZoneForIosSafariNavigationBar = 'mb-[40rem] lg:mb-0'
 
+  const ref = React.useRef<HTMLElement>(null)
+
+  const isInViewport = useIntersection(ref, '-200px')
+  useEffect(() => {
+    if (!isInViewport) return
+
+    trackContentImpression({
+      id: scene.sceneId,
+      representation: 'result column',
+      url: fullUrl(scene.path),
+    })
+  }, [isInViewport])
+
   return (
     <article
+      ref={ref}
       className={classNames(
         safeZoneForIosSafariNavigationBar,
         '_snap-start box-content h-full w-56 flex-none px-1.5 pb-4 first:pl-4 lg:w-48 lg:px-2'
