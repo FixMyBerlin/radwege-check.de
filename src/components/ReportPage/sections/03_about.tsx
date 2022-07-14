@@ -184,7 +184,10 @@ export const SectionAbout: React.FC = () => {
           id="03_concept.p19"
           values={{
             link: (
-              <Link to="/uploads/kataster-ki/Umfragekonzept_KatasterKI_Feb2020.pdf">
+              <Link
+                to="/open-data/Umfragekonzept-KatasterKI-Feb2020.pdf"
+                className="matomo_download" // https://developer.matomo.org/guides/tracking-javascript-guide#recording-a-click-as-a-download
+              >
                 <FormattedMessage id="03_concept.p19.link" />
               </Link>
             ),
@@ -196,7 +199,10 @@ export const SectionAbout: React.FC = () => {
           id="03_concept.p20"
           values={{
             link: (
-              <Link to="/uploads/kataster-ki/Szenarienuebersicht_fuer_Abgabe_KatasterKi_Feb20.ods">
+              <Link
+                to="/uploads/kataster-ki/Szenarienuebersicht_fuer_Abgabe_KatasterKi_Feb20.ods"
+                className="matomo_download" // https://developer.matomo.org/guides/tracking-javascript-guide#recording-a-click-as-a-download
+              >
                 <FormattedMessage id="03_concept.p20.link" />
               </Link>
             ),

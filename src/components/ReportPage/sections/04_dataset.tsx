@@ -21,7 +21,10 @@ export const SectionDataset: React.FC = () => {
               </Link>
             ),
             linkSpec: (
-              <Link to="/open-data/Spezifikation_Ausgabeformat_des_Strassenchecks.pdf">
+              <Link
+                to="/open-data/Spezifikation_Ausgabeformat_des_Strassenchecks.pdf"
+                className="matomo_download" // https://developer.matomo.org/guides/tracking-javascript-guide#recording-a-click-as-a-download
+              >
                 <FormattedMessage id="04_dataset.p1.linkSpec" />
               </Link>
             ),
@@ -34,10 +37,10 @@ export const SectionDataset: React.FC = () => {
 
       <ButtonWrapper>
         <Link
-          to="https://fmb-aws-bucket.s3.eu-central-1.amazonaws.com/KatasterKI/SurveyResults_200414.json.zip"
-          className="matomo_download" // https://developer.matomo.org/guides/tracking-javascript-guide#recording-a-click-as-a-download
           external
           button
+          to="https://fmb-aws-bucket.s3.eu-central-1.amazonaws.com/KatasterKI/SurveyResults_200414.json.zip"
+          className="matomo_download" // https://developer.matomo.org/guides/tracking-javascript-guide#recording-a-click-as-a-download
         >
           <FormattedMessage id="04_dataset.downloadLabel" />
         </Link>

@@ -135,6 +135,7 @@ export const SectionResults: React.FC = () => {
               <Link
                 external
                 to="https://tu-dresden.de/bu/verkehr/ivs/srv/ressourcen/dateien/SrV2018_Staedtevergleich.pdf?lang=de"
+                className="matomo_download" // https://developer.matomo.org/guides/tracking-javascript-guide#recording-a-click-as-a-download
               >
                 <FormattedMessage id="05_results.p9.link" />
               </Link>
