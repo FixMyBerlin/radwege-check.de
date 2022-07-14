@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import React, { useEffect, useState } from 'react'
 import { useStore } from 'zustand'
 import { Link } from '~/components/Link'
-import { domain, fullUrl, trackContentImpression } from '~/components/utils'
+import { fullUrl, trackContentImpression } from '~/components/utils'
 import { SceneImage } from '../../SceneImage'
 import { useStoreBookmarks } from '../../store'
 import {
