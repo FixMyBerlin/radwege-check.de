@@ -2,9 +2,15 @@ import classNames from 'classnames'
 import React from 'react'
 import { TwitterButton } from './TwitterButton'
 
-type Props = { className: string }
+type Props = {
+  className: string
+  onClick?: () => void
+}
 
-export const TwitterButtonIconCurrentUrl: React.FC<Props> = ({ className }) => {
+export const TwitterButtonIconCurrentUrl: React.FC<Props> = ({
+  className,
+  onClick,
+}) => {
   return (
     <TwitterButton
       url={
@@ -17,6 +23,7 @@ export const TwitterButtonIconCurrentUrl: React.FC<Props> = ({ className }) => {
         className,
         'flex rounded-full items-center justify-center hover:bg-gray-50 w-8 h-8 border border-gray-300 '
       )}
+      onClick={onClick}
     />
   )
 }

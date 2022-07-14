@@ -12,6 +12,7 @@ type Props = {
   hashtags?: string
   buttonText?: string
   classNameOverwrite?: string
+  onClick?: () => void
 }
 
 // https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/guides/web-intent
@@ -22,6 +23,7 @@ export const TwitterButton: React.FC<Props> = ({
   hashtags,
   buttonText,
   classNameOverwrite,
+  onClick,
 }) => {
   if (!url) return null
   const fullUrl = url.startsWith('http') ? url : `${domain()}${url}`
@@ -42,6 +44,7 @@ export const TwitterButton: React.FC<Props> = ({
         classNameOverwrite || 'flex flex-row items-center gap-0.5 shadow-md'
       }
       classNameOverwrite={classNameOverwrite}
+      onClick={onClick}
     >
       <TwitterIcon className="mt-0.5 h-4 w-4" />
       {buttonText ? ` ${buttonText}` : <span className="sr-only"> teilen</span>}
