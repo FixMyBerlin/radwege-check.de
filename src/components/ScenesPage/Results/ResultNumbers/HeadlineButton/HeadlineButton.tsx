@@ -4,11 +4,7 @@ import {
   ScenePrimaryProps,
   SceneSecondaryProps,
 } from '~/components/ScenesPage/types'
-import {
-  fullUrl,
-  trackContentInteraction,
-  trackEvent,
-} from '~/components/utils'
+import { fullUrl, trackContentInteraction } from '~/components/utils'
 import { ShowTableProps } from '../../Results'
 
 type Props = {

@@ -47,11 +47,11 @@ export const trackContentInteraction = ({
   if (typeof window === 'undefined') return
 
   window._paq = window._paq || []
-  window._paq.push(['trackContentImpression', action, id, representation])
+  window._paq.push(['trackContentInteraction', action, id, representation])
   if (window.dev === true) {
     // eslint-disable-next-line no-console
     console.debug({
-      MATOMO: 'trackContentImpression',
+      MATOMO: 'trackContentInteraction',
       action,
       id,
       representation,
