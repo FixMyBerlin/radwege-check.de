@@ -1,7 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 
-import { isDev } from '../isEnvironmentChecks'
-
 type Props = {
   category: string
   action: string
@@ -20,7 +18,6 @@ export const trackEvent = ({ category, action, label = null }: Props) => {
       category,
       action,
       label,
-      _paq: window._paq,
     })
   }
 }

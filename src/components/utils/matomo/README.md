@@ -7,13 +7,3 @@
 ## Alternative
 
 We might want to switch to https://www.npmjs.com/package/@datapunt/matomo-tracker-react / https://github.com/jonkoops/matomo-tracker.
-
-## TODO (maybe)
-
-- Content tracking looks interesting:
-  We could track sceneIds and their interactions.
-  Docs https://developer.matomo.org/guides/tracking-javascript-guide#tracking-content-impressions-and-interactions-manually
-
-  NEXT: Figure out if the reports would help us; otherwise the existing page tracking migth be enough.
-
-- window.\_NAME in TS definieren, vgl. https://twitter.com/mattpocockuk/status/1547225585226760193?s=20&t=hFNL43sJeCk5oKHT3DYXnA
