@@ -35,6 +35,7 @@ export const SectionDataset: React.FC = () => {
       <ButtonWrapper>
         <Link
           to="https://fmb-aws-bucket.s3.eu-central-1.amazonaws.com/KatasterKI/SurveyResults_200414.json.zip"
+          className="matomo_download" // https://developer.matomo.org/guides/tracking-javascript-guide#recording-a-click-as-a-download
           external
           button
         >

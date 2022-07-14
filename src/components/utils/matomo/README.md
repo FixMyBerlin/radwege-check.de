@@ -16,7 +16,4 @@ We might want to switch to https://www.npmjs.com/package/@datapunt/matomo-tracke
 
   NEXT: Figure out if the reports would help us; otherwise the existing page tracking migth be enough.
 
-- Use "download tracking"
-  https://developer.matomo.org/guides/tracking-javascript-guide#recording-a-click-as-a-download
-
 - window.\_NAME in TS definieren, vgl. https://twitter.com/mattpocockuk/status/1547225585226760193?s=20&t=hFNL43sJeCk5oKHT3DYXnA
