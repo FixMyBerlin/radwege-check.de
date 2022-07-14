@@ -11,6 +11,10 @@ export const titleScene = (
   }
 ) => {
   const { experimentTextKey } = useStore(useStoreExperimentData)
+
+  // Guard against the initial load
+  if (experimentTextKey === null) return undefined
+
   return experimentTextKey === 'primary'
     ? titlePrimaryScene(scene as ScenePrimaryProps, { includeId })
     : titleSecondaryScene(scene as SceneSecondaryProps, { includeId })
