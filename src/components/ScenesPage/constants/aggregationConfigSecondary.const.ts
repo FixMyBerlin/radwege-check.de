@@ -55,10 +55,9 @@ export const aggregationConfigSecondary: AggregationConfig = {
     title: 'Freigabe Fahrtrichtungen',
     buckets: {
       noChoice: 'Egal',
-      both_directions: 'Beide Richtungen (Kfz & Rad)',
-      one_way: 'Ein&shy;bahn&shy;straße (Kfz & Rad)',
-      one_way_for_cars_only:
-        'Ein&shy;bahn&shy;straße Fahrrad frei <br />(Kfz-Gegenverkehr)',
+      both_directions: 'Beide Richtungen',
+      one_way: 'Ein&shy;bahn&shy;straße',
+      one_way_for_cars_only: 'Ein&shy;bahn&shy;straße Fahrrad frei',
     },
     resultBuckets: {
       both_directions: 'Beide Richtungen <br />(Kfz & Rad)',
@@ -70,12 +69,10 @@ export const aggregationConfigSecondary: AggregationConfig = {
       noChoice: 'keine Auswahl',
       both_directions: 'Kfz und Fahrradverkehr in beide Richtungen.',
       one_way: 'Einbahnstraße: Kfz und Fahrradverkehr fahren in eine Richtung',
-      one_way_for_cars_only:
-        'Einbahnstraße: Kfz und Fahrradverkehr fahren gegenläufige Richtungen',
+      one_way_for_cars_only: 'Einbahnstraße mit Kfz-Gegenverkehr',
     },
     choiceMode: 'single',
     showAsIcons: false,
-    showAsList: true,
   },
   carriagewayWidth: {
     title: 'Breite Fahrbahn',
