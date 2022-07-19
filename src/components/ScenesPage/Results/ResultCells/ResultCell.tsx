@@ -82,26 +82,26 @@ export const ResultCell: React.FC<Props> = ({
 
         {/* If cell is 'bicycleLaneWidth', then show the usable with as well */}
         {keyName === 'bicycleLaneWidth' &&
-        'bicycleLaneWidthWithoutBufferAndDooringZoneNumber' in scene &&
-        scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber > 0 ? (
-          <span
-            title={laneWidthCalculationText(scene)}
-            className="group flex cursor-help justify-between"
-          >
-            <span>
-              Nutzbare Breite:{' '}
-              <span className="ml-0.5 font-light text-neutral-500">
-                {formatMeter(
-                  scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber,
-                  {}
-                )}
+          'bicycleLaneWidthWithoutBufferAndDooringZoneNumber' in scene &&
+          (scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber > 0 ? (
+            <span
+              title={laneWidthCalculationText(scene)}
+              className="group flex cursor-help justify-between"
+            >
+              <span>
+                Nutzbare Breite:{' '}
+                <span className="ml-0.5 font-light text-neutral-500">
+                  {formatMeter(
+                    scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber,
+                    {}
+                  )}
+                </span>
               </span>
+              <InformationCircleIcon className="h-5 w-5 text-gray-200 group-hover:text-gray-600 print:hidden" />
             </span>
-            <InformationCircleIcon className="h-5 w-5 text-gray-200 group-hover:text-gray-600 print:hidden" />
-          </span>
-        ) : (
-          <span className="block">&nbsp;</span>
-        )}
+          ) : (
+            <span className="block">&nbsp;</span>
+          ))}
 
         {showIcon && scene[keyName] !== 'none' && (
           <span className="absolute right-1 top-0 text-xxs">
