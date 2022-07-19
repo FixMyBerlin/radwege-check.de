@@ -20,12 +20,8 @@ export const Layout: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <div className="relative flex h-full flex-col">
-        <main className={classNames(className, 'z-0 flex-grow')}>
-          {children}
-        </main>
-        <Footer />
-      </div>
+      <main className={classNames(className, 'z-0 flex-grow')}>{children}</main>
+      <Footer />
       {showEnglishLanguageTeaser && <EnglishLanguageTeaser />}
     </>
   )
