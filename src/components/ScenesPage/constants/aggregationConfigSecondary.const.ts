@@ -52,24 +52,25 @@ export const aggregationConfigSecondary: AggregationConfig = {
     showAsList: true,
   },
   carriagewayDirection: {
-    title: 'Freigabe Fahrtrichtungen',
+    title: 'Fahrtrichtungen',
     buckets: {
       noChoice: 'Egal',
       both_directions: 'Beide Richtungen',
-      one_way: 'Ein&shy;bahn&shy;straße',
-      one_way_for_cars_only: 'Ein&shy;bahn&shy;straße Fahrrad frei',
+      one_way: 'Fahrrad <br />entlang Einbahnstraße',
+      one_way_for_cars_only: 'Fahrrad <br />entgegen Einbahnstraße',
     },
     resultBuckets: {
-      both_directions: 'Beide Richtungen <br />(Kfz & Rad)',
-      one_way: 'Ein&shy;bahn&shy;straße <br />(Kfz & Rad)',
-      one_way_for_cars_only:
-        'Ein&shy;bahn&shy;straße Fahrrad frei (Kfz-Gegenverkehr)',
+      both_directions: 'Kfz & Rad in beide Richtungen',
+      one_way: 'Fahrrad entlang Einbahnstraße',
+      one_way_for_cars_only: 'Fahrrad entgegen Einbahnstraßes',
     },
     tooltipBuckets: {
       noChoice: 'keine Auswahl',
       both_directions: 'Kfz und Fahrradverkehr in beide Richtungen.',
-      one_way: 'Einbahnstraße: Kfz und Fahrradverkehr fahren in eine Richtung',
-      one_way_for_cars_only: 'Einbahnstraße mit Kfz-Gegenverkehr',
+      one_way:
+        'Einbahnstraße für Kfz mit Fahrrad frei; Fahrtrichtung Fahrrad entlang Einbahnstraße.',
+      one_way_for_cars_only:
+        'Einbahnstraße für Kfz mit Fahrrad frei; Fahrtrichtung Fahrrad entgegen Einbahnstraße.',
     },
     choiceMode: 'single',
     showAsIcons: false,
