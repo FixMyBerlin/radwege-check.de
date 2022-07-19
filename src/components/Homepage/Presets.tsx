@@ -23,7 +23,7 @@ export const Presets: React.FC = () => {
   }
   const allButtonBySceneCategory = {
     primary: { url: '/hauptstrassen/', total: 1700 },
-    secondary: { url: '/nebenstrassen/', total: 123 },
+    secondary: { url: '/nebenstrassen/', total: 78 },
   }
   const filterUrlBySceneCategory: FilterUrlBySceneCategory = {
     primary: '/hauptstrassen/?filter=',
