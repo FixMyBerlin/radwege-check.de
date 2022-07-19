@@ -21,8 +21,7 @@ const PressPage: React.FC<PageProps> = ({ location }) => {
         Alles Bildmaterial auf dieser Seite kann für journalistische
         Veröffentlichungen kostenfrei unter der Lizenz CC 4.0 verwendet werden.
         <br />
-        Attribution:{' '}
-        <code>Creative Commons Lizenz © FixMyCity GmbH, Lizenz CC BY 4.0</code>
+        Attribution: <code>© FixMyCity GmbH, Lizenz CC BY 4.0</code>
       </p>
 
       <p>
