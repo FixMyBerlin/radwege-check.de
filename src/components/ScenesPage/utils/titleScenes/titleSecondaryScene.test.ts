@@ -2,6 +2,14 @@ import { SceneSecondaryProps } from '../../types'
 import { titleSecondaryScene } from './titleSecondaryScene'
 import { baseSceneSecondary } from './utils'
 
+// See src/components/utils/matomo/types.d.ts
+declare global {
+  interface Window {
+    _paq: any[]
+    dev: boolean
+  }
+}
+
 describe('titleSecondaryScene()', () => {
   describe('no_cars, no_parking', () => {
     it('works', () => {

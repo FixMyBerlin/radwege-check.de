@@ -1,6 +1,14 @@
 import { aggregationConfigPrimary } from '../constants'
 import { decodeFilter } from './useQueryParamEncoder'
 
+// See src/components/utils/matomo/types.d.ts
+declare global {
+  interface Window {
+    _paq: any[]
+    dev: boolean
+  }
+}
+
 describe('decodeFilter()', () => {
   const aggregationConfig = aggregationConfigPrimary
 

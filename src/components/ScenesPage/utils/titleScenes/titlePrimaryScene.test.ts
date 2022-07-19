@@ -2,6 +2,7 @@ import { ScenePrimaryProps } from '../../types'
 import { titlePrimaryScene } from './titlePrimaryScene'
 import { baseScenePrimary } from './utils'
 
+// See src/components/utils/matomo/types.d.ts
 describe('titlePrimaryScene()', () => {
   it('appends the SceneID with `{ includeId: true }`', () => {
     const scene: Partial<ScenePrimaryProps> = {
