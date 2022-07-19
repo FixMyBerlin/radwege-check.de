@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable dot-notation */
 
 /*
   Matomo Docs: https://developer.matomo.org/guides/tracking-javascript-guide#tracking-content-impressions-and-actions-manually
@@ -20,9 +20,12 @@ export const trackContentImpression = ({
 }: ImpressionProps) => {
   if (typeof window === 'undefined') return
 
-  window._paq = window._paq || []
-  window._paq.push(['trackContentImpression', id, representation])
-  if (window.dev === true) {
+  // It is important to use bracket notation here!
+  // Otherwise Jest tests will fail since they do not recognize our global type extension.
+  window['_paq'] = window['_paq'] || []
+  window['_paq'].push(['trackContentImpression', id, representation])
+
+  if (window['dev'] === true) {
     // eslint-disable-next-line no-console
     console.debug({
       MATOMO: 'trackContentImpression',
@@ -46,9 +49,10 @@ export const trackContentInteraction = ({
 }: InteractionProps) => {
   if (typeof window === 'undefined') return
 
-  window._paq = window._paq || []
-  window._paq.push(['trackContentInteraction', action, id, representation])
-  if (window.dev === true) {
+  window['_paq'] = window['_paq'] || []
+  window['_paq'].push(['trackContentInteraction', action, id, representation])
+
+  if (window['dev'] === true) {
     // eslint-disable-next-line no-console
     console.debug({
       MATOMO: 'trackContentInteraction',
