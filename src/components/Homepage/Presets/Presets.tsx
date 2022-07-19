@@ -1,19 +1,12 @@
 import classNames from 'classnames'
 import React, { useState } from 'react'
-import { Link } from '../Link'
+import { Link } from '../../Link'
 import {
   presetsScenesPrimary,
   presetsScenesSecondary,
-} from '../ScenesPage/constants'
-import { SceneCategory } from '../ScenesPage/types'
+} from '../../ScenesPage/constants'
+import { SceneCategory } from '../../ScenesPage/types'
 import { PresetSlider } from './PresetSlider'
-
-export type FilterUrlProp = `/${'hauptstrassen' | 'nebenstrassen'}/?filter=`
-
-type FilterUrlBySceneCategory = {
-  primary: FilterUrlProp
-  secondary: FilterUrlProp
-}
 
 export const Presets: React.FC = () => {
   const [sceneCategory, setSceneCategory] = useState<SceneCategory>('primary')
@@ -24,10 +17,6 @@ export const Presets: React.FC = () => {
   const allButtonBySceneCategory = {
     primary: { url: '/hauptstrassen/', total: 1700 },
     secondary: { url: '/nebenstrassen/', total: 78 },
-  }
-  const filterUrlBySceneCategory: FilterUrlBySceneCategory = {
-    primary: '/hauptstrassen/?filter=',
-    secondary: '/nebenstrassen/?filter=',
   }
 
   const tabActive = (category: SceneCategory) => category === sceneCategory
@@ -95,7 +84,7 @@ export const Presets: React.FC = () => {
             'rounded-md rounded-tr-none': tabActive('secondary'),
           })}
           slides={scenesBySceneCategory[sceneCategory]}
-          filterUrl={filterUrlBySceneCategory[sceneCategory]}
+          sceneCategory={sceneCategory}
         />
         <p>
           <Link

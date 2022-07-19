@@ -2,22 +2,19 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 import useEmblaCarousel from 'embla-carousel-react'
 import React, { useCallback, useEffect, useState } from 'react'
-import { getColorByValue } from '../charts'
-import { buttonStyles, Link } from '../Link'
-import { SceneImage } from '../ScenesPage'
-import { PresetsScenes } from '../ScenesPage/constants'
-import { formatPercent } from '../utils'
-import { FilterUrlProp } from './Presets'
+import { SceneCategory } from '~/components/ScenesPage/types'
+import { PresetsScenes } from '../../ScenesPage/constants'
+import { PresetSliderSlide } from './PresetSliderSlide'
 
 export type Props = {
-  filterUrl: FilterUrlProp
+  sceneCategory: SceneCategory
   slides: PresetsScenes
   className?: string
 }
 
 // TODO: This need to be able to switch from scenesPrimary to scenesSeconary
 export const PresetSlider: React.FC<Props> = ({
-  filterUrl,
+  sceneCategory,
   slides,
   className,
 }) => {
@@ -71,43 +68,12 @@ export const PresetSlider: React.FC<Props> = ({
       <div ref={emblaRef} className="relative overflow-hidden">
         <ul className="flex flex-row gap-5">
           {slideEntries.map(([presetName, preset]) => {
-            const url = `${filterUrl}${preset.searchFilterString}`
-
             return (
               <li key={presetName} className="">
-                <Link
-                  button
-                  to={url}
-                  classNameOverwrite="flex relative h-82 w-80 flex-col justify-between rounded-md bg-white shadow-lg group"
-                >
-                  <h3 className="my-3 ml-3 flex h-20 flex-none font-semi text-2xl leading-7 hover:text-yellow-800 group-hover:underline group-hover:decoration-brand-yellow">
-                    {preset.title}
-                  </h3>
-
-                  <div className="relative flex-auto">
-                    {preset.sceneIdForImage && (
-                      <SceneImage
-                        sceneId={preset.sceneIdForImage}
-                        className="h-[14rem] w-full overflow-hidden rounded-b-md object-cover object-bottom"
-                      />
-                    )}
-                    <div
-                      className={classNames(
-                        buttonStyles,
-                        'absolute -top-4 right-3 flex flex-col text-center'
-                      )}
-                      style={{
-                        backgroundColor: getColorByValue(preset.averageScore),
-                      }}
-                    >
-                      {Number(preset.resultTotal).toLocaleString()} Ergebnisse
-                      <div>
-                        {formatPercent(preset.averageScore, { precision: 0 })}{' '}
-                        <span className="text-thin inline">Ø Score</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+                <PresetSliderSlide
+                  sceneCategory={sceneCategory}
+                  preset={preset}
+                />
               </li>
             )
           })}
