@@ -71,7 +71,7 @@ export const IntlWrappedFeelSafe: React.FC<FeelSafeProps> = ({
   return (
     <div
       className={classNames(
-        'flex items-center justify-center rounded-full',
+        'relative flex items-center justify-center rounded-full',
         big ? 'w-[120px]' : 'w-[80px]'
       )}
     >
