@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import React from 'react'
 import { Footer } from '.'
 import { EnglishLanguageTeaser } from './EnglishLanguageTeaser'
+import { TailwindResponsiveHelper } from './TailwindResponsiveHelper'
 
 type Props = {
   className?: string
@@ -23,6 +24,7 @@ export const Layout: React.FC<Props> = ({
       <main className={classNames(className, 'z-0 flex-grow')}>{children}</main>
       <Footer />
       {showEnglishLanguageTeaser && <EnglishLanguageTeaser />}
+      <TailwindResponsiveHelper />
     </>
   )
 }
