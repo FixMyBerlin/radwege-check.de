@@ -68,7 +68,7 @@ export const ScenesAllPage: React.FC<Props> = ({ rawScenes }) => {
           <Link
             key={scene.sceneId}
             to={scene.path}
-            classNameOverwrite="flex h-80 flex-col hover:bg-brand-light-yellow hover:shadow-xl p-3 rounded hover:border-gray-100 border-transparent border transition"
+            classNameOverwrite="flex flex-col rounded border border-transparent p-3 transition hover:border-gray-100 hover:bg-brand-light-yellow hover:shadow-xl"
           >
             <div className="relative">
               <SceneImage
