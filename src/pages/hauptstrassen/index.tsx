@@ -18,7 +18,7 @@ import { isProduction } from '~/components/utils'
 const MyDataIndex = ({
   location,
   data: {
-    allScenesPrimaryCsv: { edges: sceneNodes },
+    allScenesPrimaryCsv: { edges: rawScenes },
   },
 }) => {
   const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
@@ -38,7 +38,7 @@ const MyDataIndex = ({
   return (
     <LayoutScenes>
       {/* <MetaTags> are part of <Scenes> */}
-      <Scenes rawScenes={sceneNodes} pagePath={location.pathname} />
+      <Scenes rawScenes={rawScenes} pagePath={location.pathname} />
     </LayoutScenes>
   )
 }

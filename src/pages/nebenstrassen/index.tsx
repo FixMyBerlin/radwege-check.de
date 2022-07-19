@@ -19,7 +19,7 @@ import CommingSoon from '../CommingSoon'
 const MyDataIndex = ({
   location,
   data: {
-    allScenesSecondaryCsv: { edges: sceneNodes },
+    allScenesSecondaryCsv: { edges: rawScenes },
   },
 }) => {
   // TEMP deactivated on production while we finish this up
@@ -41,7 +41,7 @@ const MyDataIndex = ({
   return (
     <LayoutScenes>
       {/* <MetaTags> are part of <Scenes> */}
-      <Scenes rawScenes={sceneNodes} pagePath={location.pathname} />
+      <Scenes rawScenes={rawScenes} pagePath={location.pathname} />
     </LayoutScenes>
   )
 }

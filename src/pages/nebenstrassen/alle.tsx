@@ -9,7 +9,7 @@ import CommingSoon from '../CommingSoon'
 
 const AllPageSecondary = ({
   data: {
-    allScenesSecondaryCsv: { edges: sceneNodes },
+    allScenesSecondaryCsv: { edges: rawScenes },
   },
 }) => {
   // TEMP deactivated on production while we finish this up
@@ -21,7 +21,7 @@ const AllPageSecondary = ({
   return (
     <LayoutArticle maxWidthClass="max-w-full lg:mx-5" prose={false}>
       {/* <MetaTags> are part of <ScenesAllPage> */}
-      <ScenesAllPage rawScenes={sceneNodes} />
+      <ScenesAllPage rawScenes={rawScenes} />
     </LayoutArticle>
   )
 }
