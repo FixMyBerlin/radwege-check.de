@@ -1,11 +1,9 @@
-import classNames from 'classnames'
 import React from 'react'
-import { FeelSafe, getColorByValue } from '~/components/charts'
-import { buttonStyles, Link } from '~/components/Link'
+import { FeelSafe } from '~/components/charts'
+import { Link } from '~/components/Link'
 import { SceneImage } from '~/components/ScenesPage'
 import { PresetScene } from '~/components/ScenesPage/constants'
 import { SceneCategory } from '~/components/ScenesPage/types'
-import { formatPercent } from '~/components/utils'
 import { FilterUrlBySceneCategory } from './types'
 
 type Props = {
