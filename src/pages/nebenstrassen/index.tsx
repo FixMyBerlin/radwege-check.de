@@ -14,7 +14,6 @@ import {
   useStorePreset,
 } from '~/components/ScenesPage/store'
 import { isProduction } from '~/components/utils'
-import CommingSoon from '../CommingSoon'
 
 const MyDataIndex = ({
   location,
@@ -22,9 +21,6 @@ const MyDataIndex = ({
     allScenesSecondaryCsv: { edges: rawScenes },
   },
 }) => {
-  // TEMP deactivated on production while we finish this up
-  if (isProduction) return <CommingSoon />
-
   const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
     useStore(useStoreExperimentData)
   const { setPresets } = useStore(useStorePreset)

@@ -9,14 +9,9 @@ import {
 } from '~/components/ScenesPage/constants'
 import { useStoreExperimentData } from '~/components/ScenesPage/store'
 import { cleanupCsvData } from '~/components/ScenesPage/utils'
-import { isProduction } from '~/components/utils'
-import CommingSoon from '../CommingSoon'
 
 const MyData = ({ location, data: { scenesSecondaryCsv: rawScene } }) => {
   const scene = useMemo(() => cleanupCsvData([rawScene || {}])[0], [rawScene])
-
-  // TEMP deactivated on production while we finish this up
-  if (isProduction) return <CommingSoon />
 
   const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
     useStore(useStoreExperimentData)
