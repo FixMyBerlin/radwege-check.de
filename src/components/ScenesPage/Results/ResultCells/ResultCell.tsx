@@ -1,11 +1,10 @@
 import { InformationCircleIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 import React from 'react'
-import { useStore } from 'zustand'
 import { TranslationMissing } from '~/components/TextHelper'
 import { formatMeter, isDev } from '~/components/utils'
+import { AggregationConfig } from '../../constants'
 import { Icons } from '../../Facets/FacetsButtons'
-import { useStoreExperimentData } from '../../store'
 import { ScenePrimaryProps, SceneSecondaryProps } from '../../types'
 import { laneWidthCalculationText } from './utils'
 
@@ -16,6 +15,7 @@ type Props = {
   groupEndIndicator: boolean
   showIcon: boolean
   showHover?: boolean
+  aggregationConfig: AggregationConfig
 }
 
 export const ResultCell: React.FC<Props> = ({
@@ -25,9 +25,8 @@ export const ResultCell: React.FC<Props> = ({
   groupEndIndicator,
   showIcon,
   showHover = true,
+  aggregationConfig,
 }) => {
-  const { aggregationConfig } = useStore(useStoreExperimentData)
-
   const titleTranslation = aggregationConfig[keyName]?.resultTitle ||
     aggregationConfig[keyName]?.title || <TranslationMissing value={keyName} />
 

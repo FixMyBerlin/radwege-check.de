@@ -9,7 +9,6 @@ import {
   presetsScenesSecondary,
 } from '~/components/ScenesPage/constants'
 import {
-  useStoreBookmarks,
   useStoreExperimentData,
   useStorePreset,
 } from '~/components/ScenesPage/store'
@@ -24,14 +23,12 @@ const MyDataIndex = ({
   const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
     useStore(useStoreExperimentData)
   const { setPresets } = useStore(useStorePreset)
-  const { setBookmarksFeatureEnabled } = useStore(useStoreBookmarks)
 
   useEffect(() => {
     setItemJsConfig(itemJsConfigSecondary)
     setAggregationConfig(aggregationConfigSecondary)
     setExperimentTextKey('secondary')
     setPresets(presetsScenesSecondary)
-    setBookmarksFeatureEnabled(!isProduction) // disabled on production
   }, [])
 
   return (

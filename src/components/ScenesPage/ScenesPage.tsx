@@ -1,10 +1,11 @@
 import itemsjs from 'itemsjs'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { StringParam, useQueryParam } from 'use-query-params'
 import { useStore } from 'zustand'
 import { MetaTags } from '../Layout'
-import { fullUrl, trackContentInteraction, trackEvent } from '../utils'
+import { trackEvent } from '../utils'
+import { BookmarkCollector } from './BookmarkCollector'
 import {
   Facets,
   HandleMultiChoiceProps,
@@ -17,12 +18,7 @@ import { useStoreExperimentData, useStoreSpinner } from './store'
 import { useStoreResetFilterEnabled } from './store/useStoreResetFilterEnabled'
 import { TitleBar } from './TitleBar'
 import { ResultProps } from './types'
-import {
-  cleanupCsvData,
-  CommaArrayParam,
-  decodeFilter,
-  encodeFilter,
-} from './utils'
+import { cleanupCsvData, decodeFilter, encodeFilter } from './utils'
 
 type Props = {
   rawScenes: any
@@ -185,62 +181,47 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
     }
   }
 
-  /*
-    === BOOKMARKS ===
-  */
+  // todo tracking
 
-  const [bookmarkArray, setBookmarkArray] = useQueryParam(
-    'bookmarks',
-    CommaArrayParam
-  )
-  // const [showBookmarks, setShowBookmarks] = useState(false)
-
-  const handleBookmark = useCallback(
-    (sceneId: string) => {
-      const scene = scenes.find((s) => s.sceneId === sceneId)
-      const bookmarks = bookmarkArray || []
-      const isBookmarked = bookmarks.includes(sceneId)
-      if (isBookmarked) {
-        // remove
-        const bookmarksWithoutPassedSceneId = bookmarks
-          ?.filter((b) => b !== sceneId)
-          .sort((a, b) => a.localeCompare(b))
-        if (bookmarksWithoutPassedSceneId.length === 0) {
-          // remove key from url
-          setBookmarkArray(undefined, 'replaceIn')
-        } else {
-          // remove value from list in url
-          setBookmarkArray(bookmarksWithoutPassedSceneId, 'replaceIn')
-        }
-        trackContentInteraction({
-          action: 'remove bookmark',
-          id: scene.sceneId,
-          representation: 'result page',
-          url: fullUrl(scene.path),
-        })
-      } else {
-        // add
-        setBookmarkArray(
-          [...bookmarks, sceneId].sort((a, b) => a.localeCompare(b)),
-          'replaceIn'
-        )
-        trackContentInteraction({
-          action: 'add bookmark',
-          id: scene.sceneId,
-          representation: 'result page',
-          url: fullUrl(scene.path),
-        })
-      }
-    },
-    [bookmarkArray, setBookmarkArray]
-  )
-
-  const bookmarkResults = useMemo(() => {
-    const bookmarks = bookmarkArray || []
-    return bookmarks
-      .map((sceneId) => scenes.find((s) => s.sceneId === sceneId))
-      .filter(Boolean)
-  }, [bookmarkArray, scenes])
+  // const handleBookmark = useCallback(
+  //   (sceneId: string) => {
+  //     const scene = scenes.find((s) => s.sceneId === sceneId)
+  //     const bookmarks = bookmarkArray || []
+  //     const isBookmarked = bookmarks.includes(sceneId)
+  //     if (isBookmarked) {
+  //       // remove
+  //       const bookmarksWithoutPassedSceneId = bookmarks
+  //         ?.filter((b) => b !== sceneId)
+  //         .sort((a, b) => a.localeCompare(b))
+  //       if (bookmarksWithoutPassedSceneId.length === 0) {
+  //         // remove key from url
+  //         setBookmarkArray(undefined, 'replaceIn')
+  //       } else {
+  //         // remove value from list in url
+  //         setBookmarkArray(bookmarksWithoutPassedSceneId, 'replaceIn')
+  //       }
+  //       trackContentInteraction({
+  //         action: 'remove bookmark',
+  //         id: scene.sceneId,
+  //         representation: 'result page',
+  //         url: fullUrl(scene.path),
+  //       })
+  //     } else {
+  //       // add
+  //       setBookmarkArray(
+  //         [...bookmarks, sceneId].sort((a, b) => a.localeCompare(b)),
+  //         'replaceIn'
+  //       )
+  //       trackContentInteraction({
+  //         action: 'add bookmark',
+  //         id: scene.sceneId,
+  //         representation: 'result page',
+  //         url: fullUrl(scene.path),
+  //       })
+  //     }
+  //   },
+  //   [bookmarkArray, setBookmarkArray]
+  // )
 
   /*
     === RENDERING ===
@@ -299,13 +280,11 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
 
           <Results
             results={results}
-            bookmarkResults={bookmarkResults}
             searchFilters={decodeFilterWithAggregation(searchFilters)}
-            handleBookmark={handleBookmark}
-            bookmarks={bookmarkArray}
           />
         </div>
       </div>
+      <BookmarkCollector />
     </>
   )
 }

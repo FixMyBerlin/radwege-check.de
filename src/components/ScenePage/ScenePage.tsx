@@ -25,7 +25,9 @@ type Props = {
 }
 
 export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
-  const { experimentTextKey } = useStore(useStoreExperimentData)
+  const { experimentTextKey, aggregationConfig } = useStore(
+    useStoreExperimentData
+  )
 
   const categoryTranslation =
     experimentTextKey === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
@@ -116,7 +118,11 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
               {categoryTranslation}
             </p>
             <div className="rounded bg-blue-50 p-6 print:grid print:grid-cols-4 print:gap-x-2 print:bg-transparent print:p-0">
-              <ResultCells scene={scene} showHover={false} />
+              <ResultCells
+                scene={scene}
+                showHover={false}
+                aggregationConfig={aggregationConfig}
+              />
             </div>
           </div>
 
