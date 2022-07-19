@@ -65,11 +65,15 @@ export const ButtonMultiChoice: React.FC<Props> = ({
         },
         'silbentrennung',
         { 'cursor-pointer hover:bg-yellow-50': uiCanpress },
-        { 'cursor-not-allowed': !uiCanpress }
+        { 'cursor-not-allowed': !uiCanpress },
+        { 'text-slate-500': !uiCanpress && uiSelected }
       )}
       title={[
-        uiCanpress
-          ? `Ergebnisse ${resultFuture ?? 'todo'}`
+        // eslint-disable-next-line no-nested-ternary
+        resultFuture === 0
+          ? 'Auswahl würde 0 Ergebnisse zeigen.'
+          : uiCanpress
+          ? `Ergebnisse ${resultFuture ?? '-'}`
           : 'Auswahl würde die Ergebnisse nicht verändern.',
         isDev &&
           JSON.stringify({
@@ -105,13 +109,8 @@ export const ButtonMultiChoice: React.FC<Props> = ({
             'cursor-pointer border-gray-300 text-brand-yellow focus:outline-none focus:ring-brand-light-yellow focus:ring-offset-0':
               uiCanpress,
           },
-          {
-            'cursor-not-allowed': !uiCanpress,
-          },
-          {
-            'border-gray-300 text-brand-yellow hover:text-stone-500':
-              !uiCanpress && uiSelected,
-          },
+          { 'cursor-not-allowed': !uiCanpress },
+          { 'border-gray-300 text-brand-yellow/50': !uiCanpress && uiSelected },
           {
             'border-gray-300 bg-white/30 text-brand-yellow/30':
               !uiCanpress && !uiSelected,

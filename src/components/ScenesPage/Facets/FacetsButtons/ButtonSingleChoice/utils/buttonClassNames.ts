@@ -34,6 +34,7 @@ export const buttonClassNames = ({
     'silbentrennung',
     { 'cursor-pointer hover:bg-yellow-50': uiCanpress },
     { 'cursor-not-allowed': !uiCanpress },
+    { 'text-slate-500': !uiCanpress && uiSelected },
     { 'rounded-l-md': firstElement },
     { '-ml-px': !firstElement && !showAsList },
     { 'rounded-r-md': lastElement }
@@ -45,12 +46,8 @@ export const buttonClassNames = ({
       'cursor-pointer border-gray-300 text-brand-yellow focus:outline-none focus:ring-brand-light-yellow focus:ring-offset-0':
         uiCanpress,
     },
-    {
-      'cursor-not-allowed': !uiCanpress,
-    },
-    {
-      'border-gray-300 text-brand-yellow': !uiCanpress && uiSelected,
-    },
+    { 'cursor-not-allowed': !uiCanpress },
+    { 'border-gray-300 text-brand-yellow/50': !uiCanpress && uiSelected },
     {
       'border-gray-300 bg-white/30 text-brand-yellow/30':
         !uiCanpress && !uiSelected,

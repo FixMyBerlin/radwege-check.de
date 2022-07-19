@@ -1,4 +1,3 @@
-import classNames from 'classnames'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { useStore } from 'zustand'
@@ -60,13 +59,13 @@ export const ButtonSingleChoice: React.FC<Props> = ({
   return (
     <label
       htmlFor={formKey}
-      className={classNames(labelClasses)}
+      className={labelClasses}
       title={[
         // eslint-disable-next-line no-nested-ternary
         resultFuture === 0
           ? 'Auswahl würde 0 Ergebnisse zeigen.'
           : uiCanpress
-          ? `Ergebnisse ${resultFuture ?? 'todo'}`
+          ? `Ergebnisse ${resultFuture ?? '-'}`
           : 'Auswahl würde die Ergebnisse nicht verändern.',
         aggregationConfig[aggregationKey]?.tooltipBuckets?.[bucket.key],
         isDev &&
@@ -94,7 +93,7 @@ export const ButtonSingleChoice: React.FC<Props> = ({
             selectedBucketKey: bucket.key,
           })
         }
-        className={classNames(inputClasses)}
+        className={inputClasses}
       />
       <span
         // eslint-disable-next-line react/no-danger
