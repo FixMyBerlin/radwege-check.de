@@ -59,10 +59,9 @@
     "react-helmet": "6.1.0",
     "react-intl": "6.0.4",
     "react-popper": "2.3.0",
-    "simple-zustand-devtools": "1.0.1",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
     "use-query-params": "1.2.3",
-    "zustand": "4.0.0-rc.1"
+    "zustand": "4.0.0-rc.3"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.16.0",
