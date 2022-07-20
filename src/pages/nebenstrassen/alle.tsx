@@ -2,26 +2,21 @@ import { graphql } from 'gatsby'
 import React, { useEffect } from 'react'
 import { useStore } from 'zustand'
 import { LayoutArticle } from '~/components/Layout'
-import { useStoreExperimentData } from '~/components/ScenesPage/store'
 import { ScenesAllPage } from '~/components/ScenesAllPage'
-import { isProduction } from '~/components/utils'
-import CommingSoon from '../CommingSoon'
+import { useStoreExperimentData } from '~/components/ScenesPage/store'
 
 const AllPageSecondary = ({
   data: {
-    allScenesSecondaryCsv: { edges: sceneNodes },
+    allScenesSecondaryCsv: { edges: rawScenes },
   },
 }) => {
-  // TEMP deactivated on production while we finish this up
-  if (isProduction) return <CommingSoon />
-
   const { setExperimentTextKey } = useStore(useStoreExperimentData)
   useEffect(() => setExperimentTextKey('secondary'), [])
 
   return (
     <LayoutArticle maxWidthClass="max-w-full lg:mx-5" prose={false}>
       {/* <MetaTags> are part of <ScenesAllPage> */}
-      <ScenesAllPage rawScenes={sceneNodes} />
+      <ScenesAllPage rawScenes={rawScenes} />
     </LayoutArticle>
   )
 }

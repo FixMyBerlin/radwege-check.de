@@ -7,7 +7,7 @@ import { useStoreExperimentData } from '~/components/ScenesPage/store'
 
 const AllPagePrimary = ({
   data: {
-    allScenesPrimaryCsv: { edges: sceneNodes },
+    allScenesPrimaryCsv: { edges: rawScenes },
   },
 }) => {
   const { setExperimentTextKey } = useStore(useStoreExperimentData)
@@ -16,7 +16,7 @@ const AllPagePrimary = ({
   return (
     <LayoutArticle maxWidthClass="max-w-full lg:mx-5" prose={false}>
       {/* <MetaTags> are part of <ScenesAllPage> */}
-      <ScenesAllPage rawScenes={sceneNodes} />
+      <ScenesAllPage rawScenes={rawScenes} />
     </LayoutArticle>
   )
 }

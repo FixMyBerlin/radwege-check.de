@@ -13,7 +13,6 @@ import {
 import { FacetsMobileDropdown } from './Facets/FacetsMobileDropdown'
 import { useSetPresetKey } from './hooks'
 import { Results } from './Results'
-import { sceneImageUrl } from './SceneImage'
 import { useStoreExperimentData, useStoreSpinner } from './store'
 import { useStoreResetFilterEnabled } from './store/useStoreResetFilterEnabled'
 import { TitleBar } from './TitleBar'
@@ -267,10 +266,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
             ? `Radwege-Check: ${presets[currentPresetKey].title} (${seoCategoryTranslation})`
             : `Radwege-Check ${seoCategoryTranslation} – Alle Varianten filtern`
         }
-        imageUrl={
-          !seoPresetIsActive &&
-          sceneImageUrl(results?.data?.items?.[0]?.sceneId)
-        }
+        imagePath={!seoPresetIsActive && '/social-sharing/results.jpg'}
       />
 
       <div className="flex h-screen min-h-full w-full flex-row overflow-hidden">

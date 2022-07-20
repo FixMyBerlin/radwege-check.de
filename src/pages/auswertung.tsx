@@ -14,8 +14,9 @@ const AuswertungPage: React.FC<PageProps> = ({ location }) => {
     <LayoutArticle location={location} showEnglishLanguageTeaser={false}>
       <MetaTags
         article
-        title="Auswertung"
-        description="TODO"
+        title="Studie zur subjektiven Sicherheit im Radverkehr"
+        description="Ergebnisse und Datensatz einer Umfrage mit über 21.000 Teilnehmenden"
+        imagePath="/social-sharing/auswertung.jpg"
         lang={currentLanguage}
       >
         <link rel="alternate" hrefLang="de" href={`${domain}/auswertung`} />

@@ -14,17 +14,13 @@ import {
   useStorePreset,
 } from '~/components/ScenesPage/store'
 import { isProduction } from '~/components/utils'
-import CommingSoon from '../CommingSoon'
 
 const MyDataIndex = ({
   location,
   data: {
-    allScenesSecondaryCsv: { edges: sceneNodes },
+    allScenesSecondaryCsv: { edges: rawScenes },
   },
 }) => {
-  // TEMP deactivated on production while we finish this up
-  if (isProduction) return <CommingSoon />
-
   const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
     useStore(useStoreExperimentData)
   const { setPresets } = useStore(useStorePreset)
@@ -41,7 +37,7 @@ const MyDataIndex = ({
   return (
     <LayoutScenes>
       {/* <MetaTags> are part of <Scenes> */}
-      <Scenes rawScenes={sceneNodes} pagePath={location.pathname} />
+      <Scenes rawScenes={rawScenes} pagePath={location.pathname} />
     </LayoutScenes>
   )
 }

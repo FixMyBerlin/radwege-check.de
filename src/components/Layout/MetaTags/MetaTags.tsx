@@ -7,7 +7,7 @@ import { domain } from '~/components/utils'
 const seoDefaultValues = {
   defaultTitle: 'Radwege-Check',
   defaultDescription:
-    'In diesem Online-Tool kannst du 1.700 Varianten von Fahrrad-Führungsformen nach ihrer Bewertung zur subjektiven Sicherheit vergleichen. Basierend auf über 400.000 Bewertungen.',
+    'In diesem Online-Tool kannst du 1.779 Varianten von Fahrrad-Führungsformen nach ihrer Bewertung zur subjektiven Sicherheit vergleichen. Basierend auf über 400.000 Bewertungen.',
 }
 
 type Props = {
@@ -45,7 +45,7 @@ export const MetaTags: React.FC<Props> = ({
     image:
       imageUrl ||
       (imagePath && `${domain() || ''}${imagePath}`) ||
-      `${domain() || ''}/social-sharing/default.png`,
+      `${domain() || ''}/social-sharing/default.jpg`,
   }
 
   // FYI, we do not inlcude the url meta tags since there was an issue with specs and `useLocation`.
