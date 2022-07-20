@@ -2,7 +2,7 @@ import { graphql } from 'gatsby'
 import React, { useEffect } from 'react'
 import { useStore } from 'zustand'
 import { LayoutScenes } from '~/components/Layout'
-import { Scenes } from '~/components/ScenesPage'
+import { ScenesPage } from '~/components/ScenesPage'
 import {
   aggregationConfigPrimary,
   itemJsConfigPrimary,
@@ -34,7 +34,7 @@ const MyDataIndex = ({
   return (
     <LayoutScenes>
       {/* <MetaTags> are part of <Scenes> */}
-      <Scenes rawScenes={rawScenes} pagePath={location.pathname} />
+      <ScenesPage rawScenes={rawScenes} location={location} />
     </LayoutScenes>
   )
 }

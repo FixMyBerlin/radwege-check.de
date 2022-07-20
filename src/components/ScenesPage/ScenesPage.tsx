@@ -14,7 +14,11 @@ import {
 import { FacetsMobileDropdown } from './Facets/FacetsMobileDropdown'
 import { useSetPresetKey } from './hooks'
 import { Results } from './Results'
-import { useStoreExperimentData, useStoreSpinner } from './store'
+import {
+  useStoreBookmarks,
+  useStoreExperimentData,
+  useStoreSpinner,
+} from './store'
 import { useStoreResetFilterEnabled } from './store/useStoreResetFilterEnabled'
 import { TitleBar } from './TitleBar'
 import { ResultProps } from './types'
@@ -22,11 +26,10 @@ import { cleanupCsvData, decodeFilter, encodeFilter } from './utils'
 
 type Props = {
   rawScenes: any
-  /** @desc https://<domain>/pathname without searchParams */
-  pagePath: string
+  location: any // todo
 }
 
-export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
+export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
   const scenes = useMemo(() => {
     // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
     const flattened = rawScenes.map((list) => list.node)
@@ -181,6 +184,17 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
     }
   }
 
+  // Bookmarks: The group-headline link in /vergleichen/index set a reach router state.
+  // We use this state to re-create the 'zustand' state in case no state exists, yet.
+  // UseCase: User opened the vergleichen-Page from an external URL.
+  const { bookmarks, setBookmarks } = useStore(useStoreBookmarks)
+  useEffect(() => {
+    const bookmarksFromLocationStore = location?.state?.boomarksArray
+    if (bookmarks && bookmarksFromLocationStore) {
+      setBookmarks(bookmarksFromLocationStore)
+    }
+  }, [location])
+
   // todo tracking
 
   // const handleBookmark = useCallback(
@@ -241,7 +255,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
       />
       <MetaTags
         noindex={!seoPresetIsActive}
-        canonicalPath={seoPresetIsActive ? pagePath : null}
+        canonicalPath={seoPresetIsActive ? location.pagePath : null}
         title={
           seoPresetIsActive
             ? `Radwege-Check: ${presets[currentPresetKey].title} (${seoCategoryTranslation})`

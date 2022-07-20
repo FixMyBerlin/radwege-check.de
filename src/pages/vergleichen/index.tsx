@@ -17,6 +17,27 @@ import {
 import { ResultColumn } from '~/components/ScenesPage/Results/ResultColumn'
 import { cleanupCsvData, CommaArrayParam } from '~/components/ScenesPage/utils'
 
+/*
+State handling:
+- We store the sceneIds on the <ScenesPage>s in 'zustand'.
+- We link to this page from the <ScenesPage>s by url param `sceneIds`.
+- The state of this page is handled exclusively by `useQueryParam`.
+  Which means we can use this page as an entry page by shared, external URLs.
+
+Hand state back to ScenesPage:
+- This is for the entry page usecase, when 'zustand' / the <ScenesPages> do not have any state.
+  Which means when I navigate back to the <ScenesPages>s I loose the selection that I just saw.
+- We work around this with Reach router <Link> state, which in turn is picked up by <ScenesPage>
+  to populate the 'zustand' store if none is present.
+
+Backbutton:
+- We added a back-button on this page to the previous page.
+- However, this button should only show if the previous Page was a ScenesPage.
+  (AKA not an entry page.)
+  Which is solved by Reach router <Link> state `showBack` in <BookmarkCollector>
+  (This seems to be the only way to handle this special case, unfortunatelly.)
+*/
+
 const MyDataIndex = ({
   location,
   data: {
@@ -85,7 +106,9 @@ const MyDataIndex = ({
         {bookmarkScenesPrimary.length ? (
           <div className="rounded border">
             <h2 className="mb-3 bg-brand-light-yellow px-5 py-3 font-semibold uppercase">
-              <Link to="/hauptstrassen">Hauptstraßen</Link>
+              <Link to="/hauptstrassen" state={{ boomarksArray }}>
+                Hauptstraßen
+              </Link>
             </h2>
             <div className="flex pr-3 pl-1">
               {bookmarkScenesPrimary.map((scene, index) => (
@@ -106,7 +129,9 @@ const MyDataIndex = ({
         {bookmarkScenesSecondary.length ? (
           <div className="rounded border">
             <h2 className="mb-3 bg-brand-light-yellow px-5 py-3 font-semibold uppercase">
-              <Link to="/nebenstrassen">Nebenstraßen</Link>
+              <Link to="/nebenstrassen" state={{ boomarksArray }}>
+                Nebenstraßen
+              </Link>
             </h2>
             <div className="flex pr-3 pl-1">
               {bookmarkScenesSecondary.map((scene, index) => (
