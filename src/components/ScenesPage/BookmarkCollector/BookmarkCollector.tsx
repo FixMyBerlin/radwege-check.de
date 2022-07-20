@@ -33,6 +33,7 @@ export const BookmarkCollector: React.FC = () => {
         <Link
           button
           to={`/vergleichen?sceneIds=${bookmarks.join(',')}`}
+          state={{ showBack: true }}
           className="h-10 !bg-white"
         >
           Vergleichen

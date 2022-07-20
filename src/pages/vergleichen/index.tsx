@@ -45,6 +45,8 @@ const MyDataIndex = ({
     boomarksArray?.includes(s.sceneId)
   )
 
+  const showBackButton = location?.state?.showBack === true
+
   return (
     <LayoutArticle
       maxWidthClass="max-w-full lg:mx-5 flex items-center flex-col"
@@ -63,17 +65,19 @@ const MyDataIndex = ({
         noindex
       />
       <h1 className="mb-10 text-center text-4xl font-semibold print:hidden">
-        <button
-          type="button"
-          onClick={() => navigate(-1)}
-          className={classNames(
-            buttonStyles,
-            'mr-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full !p-0 align-text-bottom'
-          )}
-          title="Zurück zur Suchergebnisseite"
-        >
-          <ArrowLeftIcon className="h-5 w-5" />
-        </button>{' '}
+        {showBackButton && (
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className={classNames(
+              buttonStyles,
+              'mr-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full !p-0 align-text-bottom'
+            )}
+            title="Zurück zur Suchergebnisseite"
+          >
+            <ArrowLeftIcon className="h-5 w-5" />
+          </button>
+        )}{' '}
         Ausgewählte Radverkehrsanlagen vergleichen
       </h1>
 
