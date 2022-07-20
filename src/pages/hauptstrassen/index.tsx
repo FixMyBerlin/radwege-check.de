@@ -1,8 +1,19 @@
 import { graphql } from 'gatsby'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useStore } from 'zustand'
 import { LayoutScenes } from '~/components/Layout'
-import { Scenes } from '~/components/Scenes'
-import { presetsScenesPrimary } from '~/components/Scenes/constants'
+import { Scenes } from '~/components/ScenesPage'
+import {
+  aggregationConfigPrimary,
+  itemJsConfigPrimary,
+  presetsScenesPrimary,
+} from '~/components/ScenesPage/constants'
+import {
+  useStoreBookmarks,
+  useStoreExperimentData,
+  useStorePreset,
+} from '~/components/ScenesPage/store'
+import { isProduction } from '~/components/utils'
 
 const MyDataIndex = ({
   location,
@@ -10,15 +21,24 @@ const MyDataIndex = ({
     allScenesPrimaryCsv: { edges: sceneNodes },
   },
 }) => {
+  const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
+    useStore(useStoreExperimentData)
+  const { setPresets } = useStore(useStorePreset)
+  const { setBookmarksFeatureEnabled } = useStore(useStoreBookmarks)
+
+  useEffect(() => {
+    setItemJsConfig(itemJsConfigPrimary)
+    setAggregationConfig(aggregationConfigPrimary)
+    setExperimentTextKey('primary')
+    setPresets(presetsScenesPrimary)
+    setPresets(presetsScenesPrimary)
+    setBookmarksFeatureEnabled(!isProduction) // disabled on production
+  }, [])
+
   return (
     <LayoutScenes>
       {/* <MetaTags> are part of <Scenes> */}
-      <Scenes
-        category="primary"
-        rawScenes={sceneNodes}
-        presets={presetsScenesPrimary}
-        pagePath={location.pathname}
-      />
+      <Scenes rawScenes={sceneNodes} pagePath={location.pathname} />
     </LayoutScenes>
   )
 }
@@ -35,7 +55,10 @@ export const query = graphql`
           sceneIdPedestrian
 
           bicycleLaneSurface
-          bicycleLaneUsableWidthNumber
+          bicycleLaneWidth
+          bicycleLaneWidthWithoutBufferNumber
+          bicycleLaneWidthWithoutBufferAndDooringZoneNumber
+          bufferRightDooringZoneNumber
           bicycleLaneWidth
           bicycleLaneWidthNumber
           bufferHasPhysicalProtection

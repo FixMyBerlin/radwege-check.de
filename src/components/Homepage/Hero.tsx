@@ -14,7 +14,7 @@ export const Hero: React.FC = () => {
       </h2>
 
       <p className="max-w-prose">
-        Der Radwege-Check lässt dich 1.784 Straßenszenen vergleichen, basierend
+        Der Radwege-Check lässt dich 1.779 Straßenszenen vergleichen, basierend
         auf 400.000 Bewertungen zu ihrer subjektiven Sicherheit{' '}
         <Link
           to="https://fixmyberlin.de/research/subjektive-sicherheit"

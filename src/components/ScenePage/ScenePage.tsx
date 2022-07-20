@@ -1,53 +1,80 @@
 import { InformationCircleIcon } from '@heroicons/react/outline'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useStore } from 'zustand'
 import Logo from '~/components/assets/radwegecheck-logo.svg'
 import { MetaTags } from '../Layout'
 import { Link, PrintButton, TwitterButton } from '../Link'
 import { Popover } from '../Popover'
-import { SceneImage } from '../Scenes'
-import { ResultCells } from '../Scenes/Results/ResultCells'
-import { ResultNumbers } from '../Scenes/Results/ResultNumbers'
-import { sceneImageUrl } from '../Scenes/SceneImage'
+import { SceneImage } from '../ScenesPage'
+import { ResultCells } from '../ScenesPage/Results/ResultCells'
+import { ResultNumbers } from '../ScenesPage/Results/ResultNumbers'
+import { sceneImageUrl } from '../ScenesPage/SceneImage'
+import { useStoreExperimentData } from '../ScenesPage/store'
+import { ScenePrimaryProps, SceneSecondaryProps } from '../ScenesPage/types'
+import { titleScene } from '../ScenesPage/utils/titleScenes'
 import {
-  SceneCategory,
-  ScenePrimaryProps,
-  SceneSecondaryProps,
-} from '../Scenes/types'
-import { formatNumber } from '../utils'
+  formatNumber,
+  fullUrl,
+  trackContentImpression,
+  trackContentInteraction,
+} from '../utils'
 
 type Props = {
-  category: SceneCategory
   scene: ScenePrimaryProps | SceneSecondaryProps
   pagePath: string
 }
 
-export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
+export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
+  const { experimentTextKey } = useStore(useStoreExperimentData)
+
   const categoryTranslation =
-    category === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
+    experimentTextKey === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
+  const categoryTranslationSentencePart =
+    experimentTextKey === 'primary'
+      ? 'auf einer Hauptstrasse'
+      : 'in einer Nebenstrasse'
+
+  useEffect(() => {
+    trackContentImpression({
+      id: scene.sceneId,
+      representation: 'details page',
+      url: fullUrl(scene.path),
+    })
+  }, [])
 
   return (
     <>
       <MetaTags
         article
-        title={`Diese Fahrrad-Führungsform hat ${scene.voteScore} sichere Bewertungen (${categoryTranslation}, ID #${scene.sceneId})`}
-        description="Eine von 1.700 Radverkehrsführungsformen aus dem Radwege-Check. Jetzt ausprobieren!"
+        title={titleScene(scene, { includeId: true })}
+        description={`Diese Führungsform ${categoryTranslationSentencePart} wurde mit ${formatNumber(
+          scene.voteScore,
+          {
+            unit: '%',
+            precision: 0,
+          }
+        )} als „(eher) sicher“ bewertet.`}
         imageUrl={sceneImageUrl(scene.sceneId)}
         imageSize={{ width: 1240, height: 930 }}
       />
 
-      <div className="items-center bg-white p-3 lg:flex lg:flex-col lg:px-0 lg:py-6">
-        <div className="mb-5 flex w-full max-w-7xl items-start gap-4 lg:grid lg:grid-cols-4 lg:gap-6">
+      <div className="items-center bg-white p-3 print:p-0 lg:flex lg:flex-col lg:px-0 lg:py-6">
+        <div className="mb-5 flex w-full max-w-7xl items-start gap-4 print:mt-3 lg:grid lg:grid-cols-4 lg:gap-6">
           <div className="mt-1 lg:mt-0 lg:ml-5">
             <Link
               to="/"
-              classNameOverwrite="block h-10 w-10 overflow-hidden lg:overflow-visible lg:w-auto"
+              classNameOverwrite="block h-10 w-10 overflow-hidden lg:overflow-visible lg:w-full print:hidden"
               title="Zur Startseite…"
             >
               <Logo className="h-full" alt="Radwege-Check" />
             </Link>
+            <Logo
+              className="hidden h-10 w-full print:block"
+              alt="Radwege-Check"
+            />
           </div>
-          <h1 className="col-span-3 w-full text-2xl">
-            Szene {categoryTranslation}, ID <code>#{scene.sceneId}</code>
+          <h1 className="silbentrennung w-full text-2xl print:text-xl lg:col-span-3 lg:h-14 lg:pr-40">
+            {titleScene(scene)}
           </h1>
         </div>
 
@@ -59,28 +86,46 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
               precision: 0,
             })}`}
             hashtags="verkehrswende"
+            buttonText="Teilen"
+            onClick={() =>
+              trackContentInteraction({
+                action: 'tweet button',
+                id: scene.sceneId,
+                representation: 'details page',
+                url: fullUrl(scene.path),
+              })
+            }
           />
-          <PrintButton />
+          <PrintButton
+            onClick={() =>
+              trackContentInteraction({
+                action: 'print button',
+                id: scene.sceneId,
+                representation: 'details page',
+                url: fullUrl(scene.path),
+              })
+            }
+          />
         </div>
 
         <div className="flex max-w-7xl flex-col gap-6 lg:grid lg:grid-cols-4">
-          <div className="order-3 lg:order-none">
-            <p className="px-6 pt-0 pb-3">
+          <div className="order-3 break-before-all lg:order-none">
+            <p className="px-6 pt-0 pb-3 print:hidden">
               <strong className="text-xxs font-semibold">Straßenklasse</strong>
               <br />
               {categoryTranslation}
             </p>
-            <div className="rounded bg-blue-50 p-6">
-              <ResultCells category={category} scene={scene} />
+            <div className="rounded bg-blue-50 p-6 print:grid print:grid-cols-4 print:gap-x-2 print:bg-transparent print:p-0">
+              <ResultCells scene={scene} showHover={false} />
             </div>
           </div>
 
           <div className="order-1 col-span-2 lg:order-none">
             <SceneImage
               sceneId={scene.sceneId}
-              className="mb-5 h-96 w-full rounded object-cover object-bottom"
+              className="mb-5 h-96 w-full rounded object-cover object-bottom print:mb-3"
             />
-            <div className="grid grid-cols-2 gap-5 text-xs lg:text-base">
+            <div className="grid grid-cols-2 gap-5 text-xs print:hidden lg:text-base">
               {'sceneIdPedestrian' in scene && scene.sceneIdPedestrian ? (
                 <figure>
                   <figcaption className="mb-0.5 font-normal">
@@ -112,7 +157,7 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
             </div>
           </div>
 
-          <div className="order-2 flex h-96 flex-col lg:order-none">
+          <div className="order-2 flex h-96 flex-col print:h-auto lg:order-none">
             <div className="flex items-center">
               Durchschnittliche Bewertungen dieser Szene zur subjektiven
               Sicherheit.{' '}
@@ -120,7 +165,7 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
                 buttonText={
                   <>
                     <InformationCircleIcon
-                      className="h-6 w-6"
+                      className="h-6 w-6 print:hidden"
                       aria-hidden="true"
                     />
                     <span className="sr-only">Mehr erfahren…</span>
@@ -152,6 +197,7 @@ export const ScenePage: React.FC<Props> = ({ category, scene, pagePath }) => {
               showTable
               setShowTable={null}
               wrapperClass="h-full"
+              handleHover={null}
             />
           </div>
         </div>

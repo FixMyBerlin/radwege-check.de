@@ -1,13 +1,20 @@
 import classNames from 'classnames'
 import React from 'react'
+import { trackEvent } from '../utils'
 import { buttonStyles } from './Link'
 
-export const PrintButton: React.FC = () => {
+type Props = { onClick?: () => void }
+
+export const PrintButton: React.FC<Props> = ({ onClick }) => {
   return (
     <button
       type="button"
       className={classNames(buttonStyles, 'hidden shadow-md lg:inline-flex')}
-      onClick={() => window.print()}
+      onClick={() => {
+        window.print()
+        trackEvent({ category: 'Print', action: 'Button click' })
+        if (onClick) onClick()
+      }}
     >
       Drucken
     </button>

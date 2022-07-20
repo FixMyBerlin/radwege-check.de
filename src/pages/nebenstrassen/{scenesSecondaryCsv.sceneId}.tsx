@@ -1,8 +1,14 @@
 import { graphql } from 'gatsby'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
+import { useStore } from 'zustand'
 import { Layout } from '~/components/Layout'
 import { ScenePage } from '~/components/ScenePage'
-import { cleanupCsvData } from '~/components/Scenes/utils'
+import {
+  aggregationConfigSecondary,
+  itemJsConfigSecondary,
+} from '~/components/ScenesPage/constants'
+import { useStoreExperimentData } from '~/components/ScenesPage/store'
+import { cleanupCsvData } from '~/components/ScenesPage/utils'
 import { isProduction } from '~/components/utils'
 import CommingSoon from '../CommingSoon'
 
@@ -12,13 +18,18 @@ const MyData = ({ location, data: { scenesSecondaryCsv: rawScene } }) => {
   // TEMP deactivated on production while we finish this up
   if (isProduction) return <CommingSoon />
 
+  const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
+    useStore(useStoreExperimentData)
+
+  useEffect(() => {
+    setItemJsConfig(itemJsConfigSecondary)
+    setAggregationConfig(aggregationConfigSecondary)
+    setExperimentTextKey('secondary')
+  }, [])
+
   return (
     <Layout>
-      <ScenePage
-        category="secondary"
-        scene={scene}
-        pagePath={location.pathname}
-      />
+      <ScenePage scene={scene} pagePath={location.pathname} />
     </Layout>
   )
 }

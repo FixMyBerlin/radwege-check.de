@@ -5,7 +5,10 @@ sceneIdCar
 sceneIdPedestrian
 
 bicycleLaneSurface
-bicycleLaneUsableWidthNumber
+bicycleLaneWidth
+bicycleLaneWidthWithoutBufferNumber
+bicycleLaneWidthWithoutBufferAndDooringZoneNumber
+bufferRightDooringZoneNumber
 bicycleLaneWidth
 bicycleLaneWidthNumber
 bufferHasPhysicalProtection

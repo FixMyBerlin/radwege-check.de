@@ -1,19 +1,30 @@
 import { graphql } from 'gatsby'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
+import { useStore } from 'zustand'
 import { Layout } from '~/components/Layout'
 import { ScenePage } from '~/components/ScenePage'
-import { cleanupCsvData } from '~/components/Scenes/utils'
+import {
+  aggregationConfigPrimary,
+  itemJsConfigPrimary,
+} from '~/components/ScenesPage/constants'
+import { useStoreExperimentData } from '~/components/ScenesPage/store'
+import { cleanupCsvData } from '~/components/ScenesPage/utils'
 
 const MyData = ({ location, data: { scenesPrimaryCsv: rawScene } }) => {
   const scene = useMemo(() => cleanupCsvData([rawScene || {}])[0], [rawScene])
 
+  const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
+    useStore(useStoreExperimentData)
+
+  useEffect(() => {
+    setItemJsConfig(itemJsConfigPrimary)
+    setAggregationConfig(aggregationConfigPrimary)
+    setExperimentTextKey('primary')
+  }, [])
+
   return (
     <Layout>
-      <ScenePage
-        category="primary"
-        scene={scene}
-        pagePath={location.pathname}
-      />
+      <ScenePage scene={scene} pagePath={location.pathname} />
     </Layout>
   )
 }
@@ -28,8 +39,10 @@ export const query = graphql`
       sceneIdPedestrian
 
       bicycleLaneSurface
-      bicycleLaneUsableWidthNumber
       bicycleLaneWidth
+      bicycleLaneWidthWithoutBufferNumber
+      bicycleLaneWidthWithoutBufferAndDooringZoneNumber
+      bufferRightDooringZoneNumber
       bicycleLaneWidthNumber
       bufferHasPhysicalProtection
       bufferLeftMarking

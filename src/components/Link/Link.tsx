@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { Link as GatsbyLink } from 'gatsby'
 import React from 'react'
+import { isDev, trackEvent } from '../utils'
 
 type Props = {
   /** @desc Internal Link, external Link, e-mail-address (will add the `mailto:` automatically) */
@@ -9,6 +10,7 @@ type Props = {
   className?: string
   blank?: boolean
   external?: boolean
+  linkInverted?: boolean
   button?: boolean
   mailSubject?: string
   mailBody?: string
@@ -16,57 +18,91 @@ type Props = {
   children: React.ReactNode
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>
 
-const linkStyles =
-  'text-emerald-500 hover:text-emerald-600 hover:underline active:underline'
+const linkSharedStyles = 'underline underline-offset-2'
+
+const linkStyles = classNames(
+  linkSharedStyles,
+  'decoration-2 decoration-brand-yellow hover:text-yellow-800 hover:decoration-yellow-500'
+)
+
+const linkStylesInverted = classNames(
+  linkSharedStyles,
+  'decoration-1 text-stone-50 decoration-stone-400 hover:text-white hover:decoration-white'
+)
+
 export const buttonStyles =
   'inline-flex items-center px-4 py-2 border border-transparent font-semibold rounded-md shadow-sm text-gray-800 bg-brand-yellow hover:bg-yellow-400 group-hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-yellow'
 
-export const Link: React.FC<Props> = ({
-  to,
-  classNameOverwrite,
-  className,
-  blank = false,
-  external = false,
-  button = false,
-  mailSubject,
-  mailBody,
-  children,
-  ...props
-}) => {
-  const classes = classNames(
-    className,
-    classNameOverwrite || (button ? buttonStyles : linkStyles)
-  )
+export const Link: React.FC<Props> = React.forwardRef(
+  (
+    {
+      to,
+      classNameOverwrite,
+      className,
+      blank = false,
+      external = false,
+      linkInverted = false,
+      button = false,
+      mailSubject,
+      mailBody,
+      children,
+      ...props
+    },
+    _ref
+  ) => {
+    // eslint-disable-next-line no-nested-ternary
+    const styles = button
+      ? buttonStyles
+      : linkInverted
+      ? linkStylesInverted
+      : linkStyles
 
-  let mailto: string
-  if (to.includes('@')) {
-    const url = new URL(`mailto:${to}`)
-    if (mailSubject) url.searchParams.set('subject', mailSubject)
-    if (mailBody) url.searchParams.set('body', mailBody)
-    mailto = url.toString()
-  }
+    const classes = classNames(className, classNameOverwrite || styles)
 
-  type NewWindowProps = {
-    target?: string
-    rel?: string
-  }
+    let mailto: string
+    if (to.includes('@')) {
+      const url = new URL(`mailto:${to}`)
+      if (mailSubject) url.searchParams.set('subject', mailSubject)
+      if (mailBody) url.searchParams.set('body', mailBody)
+      mailto = url.toString()
+    }
 
-  const newWindowProps: NewWindowProps = {
-    target: blank ? '_blank' : undefined,
-    rel: external ? 'noopener noreferrer' : undefined,
-  }
+    type NewWindowProps = {
+      target?: string
+      rel?: string
+    }
 
-  if (external || blank || mailto) {
+    const newWindowProps: NewWindowProps = {
+      target: blank ? '_blank' : undefined,
+      rel: external ? 'noopener noreferrer' : undefined,
+    }
+
+    if (external || blank || mailto || to.startsWith('tel:')) {
+      if (isDev && props.onClick) {
+        // eslint-disable-next-line no-console
+        console.info({
+          NOTE: 'We received an onClick callback via Props which did overwrite default Outbound Link tracker for <Link external>. Please check if that is intended. The props.onClick should handle the event Tracking.',
+          to,
+        })
+      }
+
+      return (
+        <a
+          href={mailto || to}
+          className={classes}
+          onClick={() => trackEvent({ category: 'Outbound', action: to })}
+          {...newWindowProps}
+          {...props}
+        >
+          {children}
+        </a>
+      )
+    }
+
     return (
-      <a href={mailto || to} className={classes} {...newWindowProps} {...props}>
+      <GatsbyLink to={to} className={classes} {...props}>
         {children}
-      </a>
+      </GatsbyLink>
     )
   }
-
-  return (
-    <GatsbyLink to={to} className={classes} {...props}>
-      {children}
-    </GatsbyLink>
-  )
-}
+)

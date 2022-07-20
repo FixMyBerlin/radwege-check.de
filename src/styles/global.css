@@ -7,11 +7,13 @@
   body,
   #___gatsby,
   #gatsby-focus-wrapper {
-    @apply h-full;
+    /* @apply h-full; */
+    print-color-adjust: exact; /* So background colors get printed https://stackoverflow.com/a/15141886/729221 */
   }
 
   body {
     @apply text-slate-800;
+    @apply relative;
   }
 }
 

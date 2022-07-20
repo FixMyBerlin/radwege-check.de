@@ -1,8 +1,18 @@
 import { graphql } from 'gatsby'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useStore } from 'zustand'
 import { LayoutScenes } from '~/components/Layout'
-import { Scenes } from '~/components/Scenes'
-import { presetsScenesSecondary } from '~/components/Scenes/constants'
+import { Scenes } from '~/components/ScenesPage'
+import {
+  aggregationConfigSecondary,
+  itemJsConfigSecondary,
+  presetsScenesSecondary,
+} from '~/components/ScenesPage/constants'
+import {
+  useStoreBookmarks,
+  useStoreExperimentData,
+  useStorePreset,
+} from '~/components/ScenesPage/store'
 import { isProduction } from '~/components/utils'
 import CommingSoon from '../CommingSoon'
 
@@ -15,15 +25,23 @@ const MyDataIndex = ({
   // TEMP deactivated on production while we finish this up
   if (isProduction) return <CommingSoon />
 
+  const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
+    useStore(useStoreExperimentData)
+  const { setPresets } = useStore(useStorePreset)
+  const { setBookmarksFeatureEnabled } = useStore(useStoreBookmarks)
+
+  useEffect(() => {
+    setItemJsConfig(itemJsConfigSecondary)
+    setAggregationConfig(aggregationConfigSecondary)
+    setExperimentTextKey('secondary')
+    setPresets(presetsScenesSecondary)
+    setBookmarksFeatureEnabled(!isProduction) // disabled on production
+  }, [])
+
   return (
     <LayoutScenes>
       {/* <MetaTags> are part of <Scenes> */}
-      <Scenes
-        category="secondary"
-        rawScenes={sceneNodes}
-        presets={presetsScenesSecondary}
-        pagePath={location.pathname}
-      />
+      <Scenes rawScenes={sceneNodes} pagePath={location.pathname} />
     </LayoutScenes>
   )
 }

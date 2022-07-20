@@ -10,6 +10,9 @@ type Props = {
   via?: string
   /** @desc Allow easy discovery of Tweets by topic by including a comma-separated list of hashtag values without the preceding # character.	 */
   hashtags?: string
+  buttonText?: string
+  classNameOverwrite?: string
+  onClick?: () => void
 }
 
 // https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/guides/web-intent
@@ -18,7 +21,11 @@ export const TwitterButton: React.FC<Props> = ({
   text,
   via = 'fixmyberlin',
   hashtags,
+  buttonText,
+  classNameOverwrite,
+  onClick,
 }) => {
+  if (!url) return null
   const fullUrl = url.startsWith('http') ? url : `${domain()}${url}`
 
   const shareUrl = new URL('https://twitter.com/intent/tweet')
@@ -33,9 +40,14 @@ export const TwitterButton: React.FC<Props> = ({
       blank
       external
       button
-      className="flex flex-row items-center gap-0.5 shadow-md"
+      className={
+        classNameOverwrite || 'flex flex-row items-center gap-0.5 shadow-md'
+      }
+      classNameOverwrite={classNameOverwrite}
+      onClick={onClick}
     >
-      <TwitterIcon className="mt-0.5 h-4 w-4" /> Teilen
+      <TwitterIcon className="mt-0.5 h-4 w-4" />
+      {buttonText ? ` ${buttonText}` : <span className="sr-only"> teilen</span>}
     </Link>
   )
 }

@@ -35,7 +35,7 @@ export const EnglishLanguageTeaser: React.FC<Props> = ({ positionBottom }) => {
       lang="en"
       title="Open page current in Google Translate"
       className={classNames(
-        'absolute right-5 flex flex-row items-center gap-0.5 shadow-md',
+        'absolute right-5 flex flex-row items-center gap-0.5 shadow-md print:hidden',
         positionBottom ? 'bottom-5' : 'top-5'
       )}
     >

@@ -3,6 +3,7 @@ import React from 'react'
 import { Footer } from '.'
 import { BetaModal } from './BetaModal'
 import { EnglishLanguageTeaser } from './EnglishLanguageTeaser'
+import { TailwindResponsiveHelper } from './TailwindResponsiveHelper'
 
 type Props = {
   className?: string
@@ -23,14 +24,11 @@ export const Layout: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <div className="relative flex h-full flex-col">
-        {showBetaModal && <BetaModal />}
-        <main className={classNames(className, 'z-0 flex-grow')}>
-          {children}
-        </main>
-        <Footer />
-      </div>
+      {showBetaModal && <BetaModal />}
+      <main className={classNames(className, 'z-0 flex-grow')}>{children}</main>
+      <Footer />
       {showEnglishLanguageTeaser && <EnglishLanguageTeaser />}
+      <TailwindResponsiveHelper />
     </>
   )
 }

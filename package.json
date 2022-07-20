@@ -7,6 +7,7 @@
   "keywords": [],
   "scripts": {
     "start": "gatsby develop --open",
+    "profile": "npm run start --profile",
     "mobile": "gatsby develop -H 0.0.0.0",
     "cs": "npm run clean && npm run start",
     "build": "gatsby build",
@@ -18,8 +19,8 @@
     "type-check": "tsc",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "DISABlE_DEBUG_FOR_JEST=true jest",
+    "test:watch": "DISABlE_DEBUG_FOR_JEST=true jest --watch"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
@@ -31,13 +32,14 @@
     "@fontsource/barlow": "4.5.7",
     "@fontsource/barlow-condensed": "4.5.7",
     "@fontsource/barlow-semi-condensed": "4.5.8",
-    "@headlessui/react": "1.6.4",
-    "@heroicons/react": "^1.0.6",
+    "@headlessui/react": "1.6.6",
+    "@heroicons/react": "1.0.6",
     "@popperjs/core": "2.11.5",
     "@tailwindcss/forms": "0.5.2",
     "@tailwindcss/line-clamp": "0.4.0",
     "@tailwindcss/typography": "0.5.2",
     "classnames": "^2.3.1",
+    "d3-scale": "4.0.2",
     "embla-carousel-react": "6.2.0",
     "fs-extra": "10.1.0",
     "gatsby": "4.16.0",
@@ -55,13 +57,16 @@
     "react": "~17.0.2",
     "react-dom": "~17.0.2",
     "react-helmet": "6.1.0",
+    "react-intl": "6.0.4",
     "react-popper": "2.3.0",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
-    "use-query-params": "1.2.3"
+    "use-query-params": "1.2.3",
+    "zustand": "4.0.0-rc.3"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
+    "@parcel/namer-default": "2.5.0",
     "@tailwindcss/forms": "0.5.2",
     "@testing-library/dom": "^8.11.1",
     "@testing-library/jest-dom": "5.16.4",
@@ -80,6 +85,7 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-formatjs": "4.0.1",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jest": "26.5.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
