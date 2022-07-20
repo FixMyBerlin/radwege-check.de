@@ -14,8 +14,8 @@ const AuswertungPage: React.FC<PageProps> = ({ location }) => {
     <LayoutArticle location={location} showEnglishLanguageTeaser={false}>
       <MetaTags
         article
-        title="Evaluación"
-        description="TODO"
+        title="Estudio sobre la seguridad subjetiva en la movilidad ciclista"
+        description="Resultados y datos de la encuesta realizada a más de 21.000 participantes"
         lang={currentLanguage}
       >
         <link rel="alternate" hrefLang="de" href={`${domain}/auswertung`} />

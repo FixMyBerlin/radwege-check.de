@@ -37,8 +37,8 @@ const OpenDataPage: React.FC<PageProps> = ({ location }) => {
     <LayoutArticle location={location}>
       <MetaTags
         noindex
-        title="OpenData, OpenSource"
-        description="Die Rohdaten dieses Projektes sind OpenData. Der Quellcode ist OpenSource."
+        title="Radwege-Check | OpenData, OpenSource"
+        description="Die Daten dieses Projektes sind OpenData. Der Quellcode ist OpenSource."
       />
       <h1>OpenData, OpenSource und Lizenzen</h1>
       <p>

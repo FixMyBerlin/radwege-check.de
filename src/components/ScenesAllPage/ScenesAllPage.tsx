@@ -22,7 +22,6 @@ export const ScenesAllPage: React.FC<Props> = ({ rawScenes }) => {
   }, [rawScenes])
 
   const totalResults = Number(scenes.length).toLocaleString()
-  const totalVotes = scenes.reduce((acc, scene) => acc + scene.voteCount, 0)
 
   const { experimentTextKey } = useStore(useStoreExperimentData)
   const categoryTranslation =
@@ -44,9 +43,8 @@ export const ScenesAllPage: React.FC<Props> = ({ rawScenes }) => {
         title={`Alle ${Number(
           totalResults
         ).toLocaleString()} Szenen auf ${categoryTranslation}.`}
-        description={`Auf Basis von insgesamt ${Number(
-          totalVotes
-        ).toLocaleString()} Bewertungen.`}
+        description="Auf Basis eine Umfrage mit über 21.000 Teilnehmenden."
+        imagePath="/social-sharing/results.jpg"
       />
 
       <h1 className="mb-5 text-center text-4xl font-semibold">

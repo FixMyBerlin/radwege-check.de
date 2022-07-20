@@ -8,8 +8,8 @@ const PressPage: React.FC<PageProps> = ({ location }) => {
     <LayoutArticle location={location}>
       <MetaTags
         noindex
-        title="Presse und Medien Download"
-        description="Der radwege-check erlaubt es die Umfragedaten von 1.700 Varianten an Radweg-Führungsformen zu vergleichen."
+        title="Radwege-Check | Presseinformationen"
+        description="Der Radwege-Check erlaubt es die Umfragedaten von 1.779 Varianten an Radweg-Führungsformen zu vergleichen."
       />
       <h1>Presseinformationen</h1>
       <p>
