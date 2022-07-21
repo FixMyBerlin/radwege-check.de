@@ -1,4 +1,4 @@
-import { XIcon } from '@heroicons/react/solid'
+import { XIcon, ArrowRightIcon } from '@heroicons/react/solid'
 import React from 'react'
 import { useStore } from 'zustand'
 import { Link } from '~/components/Link'
@@ -11,7 +11,7 @@ export const BookmarkCollector: React.FC = () => {
   if (!bookmarks.length) return null
 
   return (
-    <div className="absolute inset-x-0 bottom-5 z-50 flex items-center justify-center">
+    <div className="absolute inset-x-1 bottom-5 z-50 flex items-center justify-center">
       <section className="flex max-w-lg items-center justify-center gap-1 rounded-xl bg-brand-yellow/70 px-3 py-3 shadow-md backdrop-blur">
         {bookmarks.map((bookmark) => (
           <div className="group relative inline-flex" key={bookmark}>
@@ -36,7 +36,8 @@ export const BookmarkCollector: React.FC = () => {
           state={{ showBack: true }}
           className="h-10 !bg-white"
         >
-          Vergleichen
+          <span className="hidden sm:inline">Vergleichen</span>
+          <ArrowRightIcon className="h-4 w-4 sm:hidden" />
         </Link>
       </section>
     </div>

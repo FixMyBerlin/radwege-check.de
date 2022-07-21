@@ -100,7 +100,7 @@ const MyDataIndex = ({
         imagePath="/social-sharing/results.jpg"
       />
 
-      <h1 className="mb-10 text-center text-4xl font-semibold print:hidden">
+      <h1 className="mx-3 mb-10 text-center text-3xl font-semibold print:hidden sm:text-4xl">
         {showBackButton && (
           <button
             type="button"
