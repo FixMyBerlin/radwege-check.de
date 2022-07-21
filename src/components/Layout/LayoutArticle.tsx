@@ -8,6 +8,7 @@ type Props = {
   showEnglishLanguageTeaser?: boolean
   maxWidthClass?: string
   prose?: boolean
+  printHideHeader?: boolean
 }
 
 export const LayoutArticle: React.FC<Props> = ({
@@ -15,6 +16,7 @@ export const LayoutArticle: React.FC<Props> = ({
   showEnglishLanguageTeaser,
   maxWidthClass,
   prose = true,
+  printHideHeader = false,
   children,
 }) => {
   return (
@@ -23,13 +25,14 @@ export const LayoutArticle: React.FC<Props> = ({
       showEnglishLanguageTeaser={showEnglishLanguageTeaser}
       className="bg-white"
     >
-      <ArticleLogo />
+      <ArticleLogo printHideHeader={printHideHeader} />
       <article
         className={classNames(
           maxWidthClass ?? 'max-w-prose',
           prose &&
             'prose prose-headings:scroll-my-5 prose-li:marker:text-gray-800',
-          'mx-auto -mt-20 mb-20 max-w-2xl bg-white p-3 pt-8 sm:p-5 lg:rounded-md lg:p-10'
+          'mx-auto max-w-2xl bg-white p-3 pt-8 sm:p-5 lg:rounded-md lg:p-10',
+          { '-mt-20 mb-20': !printHideHeader }
         )}
       >
         {children}

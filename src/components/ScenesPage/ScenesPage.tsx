@@ -1,10 +1,11 @@
 import itemsjs from 'itemsjs'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { StringParam, useQueryParam } from 'use-query-params'
 import { useStore } from 'zustand'
 import { MetaTags } from '../Layout'
-import { fullUrl, trackContentInteraction, trackEvent } from '../utils'
+import { trackEvent } from '../utils'
+import { BookmarkCollector } from './BookmarkCollector'
 import {
   Facets,
   HandleMultiChoiceProps,
@@ -13,24 +14,22 @@ import {
 import { FacetsMobileDropdown } from './Facets/FacetsMobileDropdown'
 import { useSetPresetKey } from './hooks'
 import { Results } from './Results'
-import { useStoreExperimentData, useStoreSpinner } from './store'
+import {
+  useStoreBookmarks,
+  useStoreExperimentData,
+  useStoreSpinner,
+} from './store'
 import { useStoreResetFilterEnabled } from './store/useStoreResetFilterEnabled'
 import { TitleBar } from './TitleBar'
 import { ResultProps } from './types'
-import {
-  cleanupCsvData,
-  CommaArrayParam,
-  decodeFilter,
-  encodeFilter,
-} from './utils'
+import { cleanupCsvData, decodeFilter, encodeFilter } from './utils'
 
 type Props = {
   rawScenes: any
-  /** @desc https://<domain>/pathname without searchParams */
-  pagePath: string
+  location: any // todo
 }
 
-export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
+export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
   const scenes = useMemo(() => {
     // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
     const flattened = rawScenes.map((list) => list.node)
@@ -185,62 +184,16 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
     }
   }
 
-  /*
-    === BOOKMARKS ===
-  */
-
-  const [bookmarkArray, setBookmarkArray] = useQueryParam(
-    'bookmarks',
-    CommaArrayParam
-  )
-  // const [showBookmarks, setShowBookmarks] = useState(false)
-
-  const handleBookmark = useCallback(
-    (sceneId: string) => {
-      const scene = scenes.find((s) => s.sceneId === sceneId)
-      const bookmarks = bookmarkArray || []
-      const isBookmarked = bookmarks.includes(sceneId)
-      if (isBookmarked) {
-        // remove
-        const bookmarksWithoutPassedSceneId = bookmarks
-          ?.filter((b) => b !== sceneId)
-          .sort((a, b) => a.localeCompare(b))
-        if (bookmarksWithoutPassedSceneId.length === 0) {
-          // remove key from url
-          setBookmarkArray(undefined, 'replaceIn')
-        } else {
-          // remove value from list in url
-          setBookmarkArray(bookmarksWithoutPassedSceneId, 'replaceIn')
-        }
-        trackContentInteraction({
-          action: 'remove bookmark',
-          id: scene.sceneId,
-          representation: 'result page',
-          url: fullUrl(scene.path),
-        })
-      } else {
-        // add
-        setBookmarkArray(
-          [...bookmarks, sceneId].sort((a, b) => a.localeCompare(b)),
-          'replaceIn'
-        )
-        trackContentInteraction({
-          action: 'add bookmark',
-          id: scene.sceneId,
-          representation: 'result page',
-          url: fullUrl(scene.path),
-        })
-      }
-    },
-    [bookmarkArray, setBookmarkArray]
-  )
-
-  const bookmarkResults = useMemo(() => {
-    const bookmarks = bookmarkArray || []
-    return bookmarks
-      .map((sceneId) => scenes.find((s) => s.sceneId === sceneId))
-      .filter(Boolean)
-  }, [bookmarkArray, scenes])
+  // Bookmarks: The group-headline link in /vergleichen/index set a reach router state.
+  // We use this state to re-create the 'zustand' state in case no state exists, yet.
+  // UseCase: User opened the vergleichen-Page from an external URL.
+  const { bookmarks, setBookmarks } = useStore(useStoreBookmarks)
+  useEffect(() => {
+    const bookmarksFromLocationStore = location?.state?.boomarksArray
+    if (bookmarks && bookmarksFromLocationStore) {
+      setBookmarks(bookmarksFromLocationStore)
+    }
+  }, [location])
 
   /*
     === RENDERING ===
@@ -260,7 +213,7 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
       />
       <MetaTags
         noindex={!seoPresetIsActive}
-        canonicalPath={seoPresetIsActive ? pagePath : null}
+        canonicalPath={seoPresetIsActive ? location.pagePath : null}
         title={
           seoPresetIsActive
             ? `Radwege-Check: ${presets[currentPresetKey].title} (${seoCategoryTranslation})`
@@ -299,13 +252,11 @@ export const Scenes: React.FC<Props> = ({ rawScenes, pagePath }) => {
 
           <Results
             results={results}
-            bookmarkResults={bookmarkResults}
             searchFilters={decodeFilterWithAggregation(searchFilters)}
-            handleBookmark={handleBookmark}
-            bookmarks={bookmarkArray}
           />
         </div>
       </div>
+      <BookmarkCollector />
     </>
   )
 }

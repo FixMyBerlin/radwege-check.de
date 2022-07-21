@@ -25,7 +25,9 @@ type Props = {
 }
 
 export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
-  const { experimentTextKey } = useStore(useStoreExperimentData)
+  const { experimentTextKey, aggregationConfig } = useStore(
+    useStoreExperimentData
+  )
 
   const categoryTranslation =
     experimentTextKey === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
@@ -58,7 +60,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
         imageSize={{ width: 1240, height: 930 }}
       />
 
-      <div className="items-center bg-white p-3 print:p-0 lg:flex lg:flex-col lg:px-0 lg:py-6">
+      <div className="mb-40 items-center bg-white p-3 print:mb-0 print:p-0 lg:flex lg:flex-col lg:px-0 lg:py-6">
         <div className="mb-5 flex w-full max-w-7xl items-start gap-4 print:mt-3 lg:grid lg:grid-cols-4 lg:gap-6">
           <div className="mt-1 lg:mt-0 lg:ml-5">
             <Link
@@ -116,7 +118,11 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
               {categoryTranslation}
             </p>
             <div className="rounded bg-blue-50 p-6 print:grid print:grid-cols-4 print:gap-x-2 print:bg-transparent print:p-0">
-              <ResultCells scene={scene} showHover={false} />
+              <ResultCells
+                scene={scene}
+                showHover={false}
+                aggregationConfig={aggregationConfig}
+              />
             </div>
           </div>
 

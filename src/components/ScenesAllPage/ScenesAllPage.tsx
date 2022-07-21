@@ -43,7 +43,7 @@ export const ScenesAllPage: React.FC<Props> = ({ rawScenes }) => {
         title={`Alle ${Number(
           totalResults
         ).toLocaleString()} Szenen auf ${categoryTranslation}.`}
-        description="Auf Basis eine Umfrage mit über 21.000 Teilnehmenden."
+        description="Auf Basis eine Umfrage mit über 22.000 Teilnehmenden."
         imagePath="/social-sharing/results.jpg"
       />
 

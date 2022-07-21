@@ -15,7 +15,7 @@ const AuswertungPage: React.FC<PageProps> = ({ location }) => {
       <MetaTags
         article
         title="Studie zur subjektiven Sicherheit im Radverkehr"
-        description="Ergebnisse und Datensatz einer Umfrage mit über 21.000 Teilnehmenden"
+        description="Ergebnisse und Datensatz einer Umfrage mit über 22.000 Teilnehmenden"
         imagePath="/social-sharing/auswertung.jpg"
         lang={currentLanguage}
       >
