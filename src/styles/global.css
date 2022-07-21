@@ -14,6 +14,14 @@
   body {
     @apply text-slate-800;
     @apply relative;
+    /* @apply flex flex-row; */
+  }
+}
+
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/@page/size */
+@media print {
+  @page {
+    size: A4 portrait;
   }
 }
 

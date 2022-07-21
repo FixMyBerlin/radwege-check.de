@@ -2,18 +2,16 @@ import { graphql } from 'gatsby'
 import React, { useEffect } from 'react'
 import { useStore } from 'zustand'
 import { LayoutScenes } from '~/components/Layout'
-import { Scenes } from '~/components/ScenesPage'
+import { ScenesPage } from '~/components/ScenesPage'
 import {
   aggregationConfigPrimary,
   itemJsConfigPrimary,
   presetsScenesPrimary,
 } from '~/components/ScenesPage/constants'
 import {
-  useStoreBookmarks,
   useStoreExperimentData,
   useStorePreset,
 } from '~/components/ScenesPage/store'
-import { isProduction } from '~/components/utils'
 
 const MyDataIndex = ({
   location,
@@ -24,7 +22,6 @@ const MyDataIndex = ({
   const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
     useStore(useStoreExperimentData)
   const { setPresets } = useStore(useStorePreset)
-  const { setBookmarksFeatureEnabled } = useStore(useStoreBookmarks)
 
   useEffect(() => {
     setItemJsConfig(itemJsConfigPrimary)
@@ -32,13 +29,12 @@ const MyDataIndex = ({
     setExperimentTextKey('primary')
     setPresets(presetsScenesPrimary)
     setPresets(presetsScenesPrimary)
-    setBookmarksFeatureEnabled(!isProduction) // disabled on production
   }, [])
 
   return (
     <LayoutScenes>
       {/* <MetaTags> are part of <Scenes> */}
-      <Scenes rawScenes={rawScenes} pagePath={location.pathname} />
+      <ScenesPage rawScenes={rawScenes} location={location} />
     </LayoutScenes>
   )
 }

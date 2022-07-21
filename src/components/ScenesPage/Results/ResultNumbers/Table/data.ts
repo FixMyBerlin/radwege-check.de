@@ -33,6 +33,11 @@ export const data = (scene, precision): Data => {
       pedestrian: formatPercent(scene.votePedestrian3VerySave, { precision }),
       car: formatPercent(scene.voteCar3VerySave, { precision }),
     },
+  }
+}
+
+export const dataSecondary = (scene, precision): Data => {
+  return {
     voteMeans: {
       divideTop: true,
       bike: formatNumber(scene.voteMeans, { precision }),

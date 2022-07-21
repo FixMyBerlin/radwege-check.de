@@ -177,7 +177,7 @@ export const aggregationConfigPrimary: AggregationConfig = {
       noChoice: 'Egal',
       motor_vehicle_and_tram: 'Mit Tram',
       motor_vehicle_only: '1 Fahr&shy;streifen',
-      motor_vehicle_only_one_way: '1 Fahr&shy;streifen',
+      motor_vehicle_only_one_way: '2 Fahr&shy;streifen',
     },
     choiceMode: 'single',
     showAsIcons: false,

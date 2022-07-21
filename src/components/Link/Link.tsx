@@ -6,6 +6,7 @@ import { isDev, trackEvent } from '../utils'
 type Props = {
   /** @desc Internal Link, external Link, e-mail-address (will add the `mailto:` automatically) */
   to: string
+  state?: any // good enough IMO
   classNameOverwrite?: string
   className?: string
   blank?: boolean
@@ -37,6 +38,7 @@ export const Link: React.FC<Props> = React.forwardRef(
   (
     {
       to,
+      state,
       classNameOverwrite,
       className,
       blank = false,
@@ -100,7 +102,7 @@ export const Link: React.FC<Props> = React.forwardRef(
     }
 
     return (
-      <GatsbyLink to={to} className={classes} {...props}>
+      <GatsbyLink to={to} state={state} className={classes} {...props}>
         {children}
       </GatsbyLink>
     )

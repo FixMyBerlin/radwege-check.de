@@ -1,11 +1,10 @@
 import { InformationCircleIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 import React from 'react'
-import { useStore } from 'zustand'
 import { TranslationMissing } from '~/components/TextHelper'
 import { formatMeter, isDev } from '~/components/utils'
+import { AggregationConfig } from '../../constants'
 import { Icons } from '../../Facets/FacetsButtons'
-import { useStoreExperimentData } from '../../store'
 import { ScenePrimaryProps, SceneSecondaryProps } from '../../types'
 import { laneWidthCalculationText } from './utils'
 
@@ -16,6 +15,7 @@ type Props = {
   groupEndIndicator: boolean
   showIcon: boolean
   showHover?: boolean
+  aggregationConfig: AggregationConfig
 }
 
 export const ResultCell: React.FC<Props> = ({
@@ -25,16 +25,21 @@ export const ResultCell: React.FC<Props> = ({
   groupEndIndicator,
   showIcon,
   showHover = true,
+  aggregationConfig,
 }) => {
-  const { aggregationConfig } = useStore(useStoreExperimentData)
-
   const titleTranslation = aggregationConfig[keyName]?.resultTitle ||
     aggregationConfig[keyName]?.title || <TranslationMissing value={keyName} />
 
   const bucketTranslation =
     aggregationConfig[keyName]?.resultBuckets?.[scene[keyName]] ||
     aggregationConfig[keyName]?.buckets[scene[keyName]] ||
-    'TODO'
+    '-'
+
+  // If cell is a number cell (and > 0), show the number next to the text
+  const showAdditionalNumber =
+    scene[`${keyName}Number`] !== undefined &&
+    scene[`${keyName}Number`] !== 0 &&
+    !Number.isNaN(scene[`${keyName}Number`])
 
   return (
     <section
@@ -71,14 +76,12 @@ export const ResultCell: React.FC<Props> = ({
           dangerouslySetInnerHTML={{ __html: bucketTranslation }}
         />
 
-        {/* If cell is a number cell (and > 0), show the number next to the text: */}
-        {scene[`${keyName}Number`] !== undefined &&
-          scene[`${keyName}Number`] !== 0 && (
-            <span className="ml-0.5 font-light text-neutral-500">
-              {' '}
-              {formatMeter(scene[`${keyName}Number`], {})}
-            </span>
-          )}
+        {showAdditionalNumber && (
+          <span className="ml-0.5 font-light text-neutral-500">
+            {' '}
+            {formatMeter(scene[`${keyName}Number`], {})}
+          </span>
+        )}
 
         {/* If cell is 'bicycleLaneWidth', then show the usable with as well */}
         {keyName === 'bicycleLaneWidth' &&

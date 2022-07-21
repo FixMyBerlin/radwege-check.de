@@ -1,7 +1,7 @@
 import create from 'zustand'
 import { AggregationConfig } from '../constants'
 
-type ExperimentTextKey = null | 'primary' | 'secondary'
+export type ExperimentTextKey = null | 'primary' | 'secondary'
 
 export type StoreExperimentData = {
   itemJsConfig: null | any

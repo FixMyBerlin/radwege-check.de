@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useStore } from 'zustand'
 import { Link } from '~/components/Link'
 import { fullUrl, trackContentImpression } from '~/components/utils'
+import { AggregationConfig } from '../../constants'
 import { SceneImage } from '../../SceneImage'
 import { useStoreBookmarks } from '../../store'
 import {
@@ -19,17 +20,13 @@ import { useIntersection } from './utils/useIntersection'
 
 export type PrevBucketValues = { [key: string]: string | number }
 
-export type HandleBookmarkProp = {
-  handleBookmark: (sceneId: string) => void
-  bookmarks: string[] | undefined
-}
-
 type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps
   index?: number
   searchFilters?: SearchOptionProps['filters']
-} & ShowTableProps &
-  HandleBookmarkProp
+  aggregationConfig?: AggregationConfig
+  allowBookmark: boolean
+} & ShowTableProps
 
 export const ResultColumn: React.FC<Props> = ({
   scene,
@@ -37,14 +34,13 @@ export const ResultColumn: React.FC<Props> = ({
   searchFilters = {},
   showTable,
   setShowTable,
-  handleBookmark,
-  bookmarks,
+  aggregationConfig,
+  allowBookmark,
 }) => {
   const [sceneImage, setSceneImage] = useState(scene.sceneId)
   const handleImageChange = (sceneId: string) => setSceneImage(sceneId)
 
-  const { enableBookmarksFeature } = useStore(useStoreBookmarks)
-  const isBookmarked = bookmarks?.includes(scene.sceneId)
+  const { toggleBookmark, isInBookmarks } = useStore(useStoreBookmarks)
 
   const safeZoneForIosSafariNavigationBar = 'mb-[40rem] lg:mb-0'
 
@@ -73,17 +69,17 @@ export const ResultColumn: React.FC<Props> = ({
         <Link to={scene.path}>{titleScene(scene)}</Link>
       </h2>
 
-      {enableBookmarksFeature && (
+      {allowBookmark && (
         <section className="flex items-center justify-center">
           <button
             type="button"
-            onClick={() => handleBookmark(scene.sceneId)}
+            onClick={() => toggleBookmark(scene.sceneId)}
             className="group flex w-full items-center justify-center p-2"
           >
             <div
               className={classNames(
                 'flex h-8 w-8 items-center justify-center rounded-full border-2 border-brand-yellow p-[0.4rem] group-hover:bg-yellow-400',
-                isBookmarked ? 'bg-brand-yellow' : 'bg-white'
+                isInBookmarks(scene.sceneId) ? 'bg-brand-yellow' : 'bg-white'
               )}
             >
               <PinIcon className="h-4 w-4" />
@@ -114,9 +110,13 @@ export const ResultColumn: React.FC<Props> = ({
         chartClass="border-b border-dotted"
       />
 
-      <ResultCells scene={scene} searchFilters={searchFilters} />
+      <ResultCells
+        scene={scene}
+        searchFilters={searchFilters}
+        aggregationConfig={aggregationConfig}
+      />
 
-      <section className="py-3">
+      <section className="py-3 print:hidden">
         <Link button blank to={scene.path}>
           Details
         </Link>

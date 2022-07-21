@@ -1,6 +1,5 @@
 import React from 'react'
-import { useStore } from 'zustand'
-import { useStoreExperimentData } from '../../store'
+import { AggregationConfig } from '../../constants'
 import {
   ScenePrimaryProps,
   SceneSecondaryProps,
@@ -12,15 +11,15 @@ type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps
   searchFilters?: SearchOptionProps['filters']
   showHover?: boolean
+  aggregationConfig: AggregationConfig
 }
 
 export const ResultCells: React.FC<Props> = ({
   scene,
   searchFilters,
   showHover,
+  aggregationConfig,
 }) => {
-  const { aggregationConfig } = useStore(useStoreExperimentData)
-
   return (
     <>
       {Object.keys(aggregationConfig || {}).map((key) => {
@@ -35,6 +34,7 @@ export const ResultCells: React.FC<Props> = ({
             groupEndIndicator={aggregationConfig[key]?.groupEndIndicator}
             showIcon={aggregationConfig[key]?.showAsIcons}
             showHover={showHover}
+            aggregationConfig={aggregationConfig}
           />
         )
       })}
