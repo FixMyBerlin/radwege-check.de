@@ -15,7 +15,7 @@ const AuswertungPage: React.FC<PageProps> = ({ location }) => {
       <MetaTags
         article
         title="Study on subjective safety when travelling by bicycle"
-        description="Results and data from a survey of 21,000 participants."
+        description="Results and data from a survey of 22,000 participants."
         lang={currentLanguage}
       >
         <link rel="alternate" hrefLang="de" href={`${domain}/auswertung`} />
