@@ -195,46 +195,6 @@ export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
     }
   }, [location])
 
-  // const handleBookmark = useCallback(
-  //   (sceneId: string) => {
-  //     const scene = scenes.find((s) => s.sceneId === sceneId)
-  //     const bookmarks = bookmarkArray || []
-  //     const isBookmarked = bookmarks.includes(sceneId)
-  //     if (isBookmarked) {
-  //       // remove
-  //       const bookmarksWithoutPassedSceneId = bookmarks
-  //         ?.filter((b) => b !== sceneId)
-  //         .sort((a, b) => a.localeCompare(b))
-  //       if (bookmarksWithoutPassedSceneId.length === 0) {
-  //         // remove key from url
-  //         setBookmarkArray(undefined, 'replaceIn')
-  //       } else {
-  //         // remove value from list in url
-  //         setBookmarkArray(bookmarksWithoutPassedSceneId, 'replaceIn')
-  //       }
-  //       trackContentInteraction({
-  //         action: 'remove bookmark',
-  //         id: scene.sceneId,
-  //         representation: 'result page',
-  //         url: fullUrl(scene.path),
-  //       })
-  //     } else {
-  //       // add
-  //       setBookmarkArray(
-  //         [...bookmarks, sceneId].sort((a, b) => a.localeCompare(b)),
-  //         'replaceIn'
-  //       )
-  //       trackContentInteraction({
-  //         action: 'add bookmark',
-  //         id: scene.sceneId,
-  //         representation: 'result page',
-  //         url: fullUrl(scene.path),
-  //       })
-  //     }
-  //   },
-  //   [bookmarkArray, setBookmarkArray]
-  // )
-
   /*
     === RENDERING ===
   */
