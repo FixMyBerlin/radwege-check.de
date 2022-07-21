@@ -33,7 +33,13 @@ export const ResultCell: React.FC<Props> = ({
   const bucketTranslation =
     aggregationConfig[keyName]?.resultBuckets?.[scene[keyName]] ||
     aggregationConfig[keyName]?.buckets[scene[keyName]] ||
-    'TODO'
+    '-'
+
+  // If cell is a number cell (and > 0), show the number next to the text
+  const showAdditionalNumber =
+    scene[`${keyName}Number`] !== undefined &&
+    scene[`${keyName}Number`] !== 0 &&
+    !Number.isNaN(scene[`${keyName}Number`])
 
   return (
     <section
@@ -70,14 +76,12 @@ export const ResultCell: React.FC<Props> = ({
           dangerouslySetInnerHTML={{ __html: bucketTranslation }}
         />
 
-        {/* If cell is a number cell (and > 0), show the number next to the text: */}
-        {scene[`${keyName}Number`] !== undefined &&
-          scene[`${keyName}Number`] !== 0 && (
-            <span className="ml-0.5 font-light text-neutral-500">
-              {' '}
-              {formatMeter(scene[`${keyName}Number`], {})}
-            </span>
-          )}
+        {showAdditionalNumber && (
+          <span className="ml-0.5 font-light text-neutral-500">
+            {' '}
+            {formatMeter(scene[`${keyName}Number`], {})}
+          </span>
+        )}
 
         {/* If cell is 'bicycleLaneWidth', then show the usable with as well */}
         {keyName === 'bicycleLaneWidth' &&

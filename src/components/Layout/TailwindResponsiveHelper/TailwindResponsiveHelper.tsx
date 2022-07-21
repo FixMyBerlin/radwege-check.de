@@ -6,7 +6,7 @@ export const TailwindResponsiveHelper: React.FC = () => {
 
   return (
     <a
-      className="border-xl fixed bottom-1 left-1 z-50 flex h-5 flex-row items-center space-x-1 rounded bg-pink-900 px-1 text-xs text-white shadow hover:underline"
+      className="border-xl fixed bottom-1 left-1 z-50 flex h-5 flex-row items-center space-x-1 rounded bg-pink-900 px-1 text-xs text-white shadow hover:underline print:hidden"
       href="https://tailwindcss.com/docs/responsive-design"
     >
       <span className="text-white" title="<640px">

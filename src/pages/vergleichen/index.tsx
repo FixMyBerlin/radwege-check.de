@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 import { graphql, navigate } from 'gatsby'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useQueryParam } from 'use-query-params'
 import { LayoutArticle, MetaTags } from '~/components/Layout'
 import {
@@ -16,6 +16,8 @@ import {
 } from '~/components/ScenesPage/constants'
 import { ResultColumn } from '~/components/ScenesPage/Results/ResultColumn'
 import { cleanupCsvData, CommaArrayParam } from '~/components/ScenesPage/utils'
+import { fullUrl, trackContentImpression } from '~/components/utils'
+import { VergleichenPagePrintResult } from '~/components/VergleichenPagePrintResult'
 
 /*
 State handling:
@@ -95,8 +97,9 @@ const MyDataIndex = ({
         ]
           .filter(Boolean)
           .join(' und ')}
-        noindex
+        imagePath="/social-sharing/results.jpg"
       />
+
       <h1 className="mb-10 text-center text-4xl font-semibold print:hidden">
         {showBackButton && (
           <button
@@ -114,15 +117,15 @@ const MyDataIndex = ({
         Ausgewählte Radverkehrsanlagen vergleichen
       </h1>
 
-      <div className="flex gap-4 overflow-scroll overscroll-contain">
+      <div className="relative flex max-w-[inherit] gap-4 overflow-auto print:block print:max-w-full print:overflow-visible">
         {bookmarkScenesPrimary.length ? (
-          <div className="rounded border">
-            <h2 className="mb-3 bg-brand-light-yellow px-5 py-3 font-semibold uppercase">
+          <div className="rounded border print:inline print:border-0">
+            <h2 className="mb-3 bg-brand-light-yellow px-5 py-3 font-semibold uppercase print:hidden">
               <Link to="/hauptstrassen" state={{ boomarksArray }}>
                 Hauptstraßen
               </Link>
             </h2>
-            <div className="flex pr-3 pl-1">
+            <div className="flex pr-3 pl-1 print:hidden print:grid-cols-3">
               {bookmarkScenesPrimary.map((scene, index) => (
                 <ResultColumn
                   key={scene.sceneId}
@@ -136,17 +139,27 @@ const MyDataIndex = ({
                 />
               ))}
             </div>
+            <div className="hidden print:block">
+              {bookmarkScenesPrimary.map((scene) => (
+                <VergleichenPagePrintResult
+                  key={scene.sceneId}
+                  scene={scene}
+                  aggregationConfig={aggregationConfigPrimary}
+                  experimentTextKey="primary"
+                />
+              ))}
+            </div>
           </div>
         ) : null}
         {bookmarkScenesSecondary.length ? (
-          <div className="rounded border">
-            <h2 className="mb-3 bg-brand-light-yellow px-5 py-3 font-semibold uppercase">
+          <div className="rounded border print:inline print:border-0">
+            <h2 className="mb-3 bg-brand-light-yellow px-5 py-3 font-semibold uppercase print:hidden">
               <Link to="/nebenstrassen" state={{ boomarksArray }}>
                 Nebenstraßen
               </Link>
             </h2>
-            <div className="flex pr-3 pl-1">
-              {bookmarkScenesSecondary.map((scene, index) => (
+            <div className="flex pr-3 pl-1 print:hidden print:grid-cols-3">
+              {bookmarkScenesPrimary.map((scene, index) => (
                 <ResultColumn
                   key={scene.sceneId}
                   scene={scene}
@@ -156,6 +169,16 @@ const MyDataIndex = ({
                   setShowTable={null}
                   aggregationConfig={aggregationConfigSecondary}
                   allowBookmark={false}
+                />
+              ))}
+            </div>
+            <div className="hidden print:block">
+              {bookmarkScenesSecondary.map((scene) => (
+                <VergleichenPagePrintResult
+                  key={scene.sceneId}
+                  scene={scene}
+                  aggregationConfig={aggregationConfigSecondary}
+                  experimentTextKey="secondary"
                 />
               ))}
             </div>

@@ -5,21 +5,36 @@ import { barColor, barTitle } from '../utils'
 import BikeIcon from '../assets/bike-icon.svg'
 import CarIcon from '../assets/car-icon.svg'
 import PedestrianIcon from '../assets/pedestrian-icon.svg'
-import { data } from './data'
+import { data, dataSecondary } from './data'
 
 type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps
   visible: boolean
   precision?: 0 | 1 | 2
+  showPedestrianColumn?: boolean
+  showCarColumn?: boolean
+  hideSecondaryNumber?: boolean
 }
 
-export const Table: React.FC<Props> = ({ scene, visible, precision = 2 }) => {
-  const table = data(scene, precision)
+export const Table: React.FC<Props> = ({
+  scene,
+  visible,
+  precision = 2,
+  showPedestrianColumn: _showPedestrianColumn,
+  showCarColumn: _showCarColumn,
+  hideSecondaryNumber = false,
+}) => {
+  const table = {
+    ...data(scene, precision),
+    ...(!hideSecondaryNumber && dataSecondary(scene, precision)),
+  }
 
   if (!visible) return null
 
-  const showPedestrianColumn = !!table.vote0Unsafe.pedestrian
-  const showCarColumn = !!table.vote0Unsafe.car
+  const showPedestrianColumn =
+    _showPedestrianColumn === true ? !!table.vote0Unsafe.pedestrian : false
+  const showCarColumn =
+    _showCarColumn === true ? !!table.vote0Unsafe.car : false
 
   return (
     <table className="my-2 w-full border-b border-dotted border-stone-200 text-xs">
