@@ -1,4 +1,5 @@
 import create from 'zustand'
+import { trackContentInteraction } from '~/components/utils'
 
 type SceneIds = string
 
@@ -19,15 +20,35 @@ export const useStoreBookmarks = create<StoreBookmarksData>((set, get) => ({
   bookmarks: [],
   setBookmarks: (externalBookmarks) => {
     set({ bookmarks: externalBookmarks.sort((a, b) => a.localeCompare(b)) })
+    externalBookmarks.forEach((sceneId) =>
+      trackContentInteraction({
+        action: 'refill bookmarks',
+        id: sceneId,
+        representation: 'result page',
+        url: `#${sceneId}`,
+      })
+    )
   },
-  addBookmark: (bookmark) => {
+  addBookmark: (sceneId) => {
     const { bookmarks } = get()
-    const newBookmarks = [...bookmarks, bookmark]
+    const newBookmarks = [...bookmarks, sceneId]
     set({ bookmarks: newBookmarks.sort((a, b) => a.localeCompare(b)) })
+    trackContentInteraction({
+      action: 'add bookmark',
+      id: sceneId,
+      representation: 'result page',
+      url: `#${sceneId}`,
+    })
   },
   removeBookmark: (sceneId) => {
     const { bookmarks } = get()
     set({ bookmarks: bookmarks.filter((b) => b !== sceneId) })
+    trackContentInteraction({
+      action: 'remove bookmark',
+      id: sceneId,
+      representation: 'result page',
+      url: `#${sceneId}`,
+    })
   },
   isInBookmarks: (sceneId) => {
     const { bookmarks } = get()

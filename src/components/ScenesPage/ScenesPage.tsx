@@ -195,8 +195,6 @@ export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
     }
   }, [location])
 
-  // todo tracking
-
   // const handleBookmark = useCallback(
   //   (sceneId: string) => {
   //     const scene = scenes.find((s) => s.sceneId === sceneId)

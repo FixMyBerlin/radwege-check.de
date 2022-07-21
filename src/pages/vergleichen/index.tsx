@@ -68,6 +68,17 @@ const MyDataIndex = ({
 
   const showBackButton = location?.state?.showBack === true
 
+  useEffect(() => {
+    const bothScenes = [...bookmarkScenesPrimary, ...bookmarkScenesSecondary]
+    bothScenes.forEach((scene) =>
+      trackContentImpression({
+        id: scene.sceneId,
+        representation: 'result column',
+        url: fullUrl(scene.path),
+      })
+    )
+  }, [bookmarkScenesPrimary, bookmarkScenesSecondary])
+
   return (
     <LayoutArticle
       maxWidthClass="max-w-full lg:mx-5 flex items-center flex-col"
