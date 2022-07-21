@@ -83,11 +83,14 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
         <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 print:hidden">
           <TwitterButton
             url={pagePath}
-            text={`Subjektive Sicherheit ${formatNumber(scene.voteScore, {
-              unit: '%',
-              precision: 0,
-            })}`}
-            hashtags="verkehrswende"
+            text={`${titleScene(scene)} – Subjektive Sicherheit ${formatNumber(
+              scene.voteScore,
+              {
+                unit: '%',
+                precision: 0,
+              }
+            )}`}
+            hashtags="RadwegeCheck"
             buttonText="Teilen"
             onClick={() =>
               trackContentInteraction({

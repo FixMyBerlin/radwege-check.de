@@ -189,10 +189,8 @@ const MyDataIndex = ({
       <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 print:hidden">
         <TwitterButton
           url={`${location.pathname}?sceneIds=${boomarksArray?.join(',')}`}
-          text={`${
-            bookmarkScenesPrimary.length + bookmarkScenesSecondary.length
-          } Radverkehrsanlagen und ihre subjektive Sicherheit im Vergleich`}
-          hashtags="verkehrswende"
+          text={`${boomarksArray.length} Radverkehrsanlagen und ihre subjektive Sicherheit im Vergleich`}
+          hashtags="RadwegeCheck"
           buttonText="Teilen"
         />
         <PrintButton />

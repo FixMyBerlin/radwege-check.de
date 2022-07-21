@@ -18,7 +18,7 @@ export const TwitterButtonIconCurrentUrl: React.FC<Props> = ({
         window.location.pathname + window.location.search
       }
       text=""
-      hashtags="verkehrswende"
+      hashtags="RadwegeCheck"
       classNameOverwrite={classNames(
         className,
         'flex rounded-full items-center justify-center hover:bg-gray-50 w-8 h-8 border border-gray-300 '
