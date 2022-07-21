@@ -72,6 +72,7 @@ const MyDataIndex = ({
     <LayoutArticle
       maxWidthClass="max-w-full lg:mx-5 flex items-center flex-col"
       prose={false}
+      printHideHeader
     >
       <MetaTags
         title="Ausgewählte Radverkehrsanlagen vergleichen"
