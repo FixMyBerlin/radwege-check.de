@@ -159,7 +159,7 @@ const MyDataIndex = ({
               </Link>
             </h2>
             <div className="flex pr-3 pl-1 print:hidden print:grid-cols-3">
-              {bookmarkScenesPrimary.map((scene, index) => (
+              {bookmarkScenesSecondary.map((scene, index) => (
                 <ResultColumn
                   key={scene.sceneId}
                   scene={scene}
