@@ -54,7 +54,7 @@ export const HelpButton: React.FC = () => {
                         <Link
                           external
                           blank
-                          to="https://www.twitter.com/fixmyberlin"
+                          to="https://twitter.com/FixMyBerlin/status/1551478695231094784"
                           className={open ? 'block' : 'hidden'}
                         >
                           <StaticImage
@@ -70,7 +70,7 @@ export const HelpButton: React.FC = () => {
                     <Link
                       external
                       blank
-                      to="https://www.twitter.com/fixmyberlin"
+                      to="https://twitter.com/FixMyBerlin/status/1551478695231094784"
                       button
                     >
                       Video anschauen …
