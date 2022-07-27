@@ -68,7 +68,9 @@ export const MetaTags: React.FC<Props> = ({
       ) : null}
       ) : null}
 
-      {noindex === true ? <meta name="robots" content="noindex" /> : null}
+      {noindex === true ? (
+        <meta name="robots" content="noindex" data-info="noindex prop" />
+      ) : null}
       {noIndexOnAllButProduction === true ? (
         <meta
           name="robots"
