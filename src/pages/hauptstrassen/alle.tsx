@@ -6,6 +6,7 @@ import { useStore } from 'zustand'
 import { useStoreExperimentData } from '~/components/ScenesPage/store'
 
 const AllPagePrimary = ({
+  location,
   data: {
     allScenesPrimaryCsv: { edges: rawScenes },
   },
@@ -14,7 +15,11 @@ const AllPagePrimary = ({
   useEffect(() => setExperimentTextKey('primary'), [])
 
   return (
-    <LayoutArticle maxWidthClass="max-w-full lg:mx-5" prose={false}>
+    <LayoutArticle
+      location={location}
+      maxWidthClass="max-w-full lg:mx-5"
+      prose={false}
+    >
       {/* <MetaTags> are part of <ScenesAllPage> */}
       <ScenesAllPage rawScenes={rawScenes} />
     </LayoutArticle>

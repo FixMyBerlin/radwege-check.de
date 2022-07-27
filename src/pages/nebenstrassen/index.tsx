@@ -31,7 +31,7 @@ const MyDataIndex = ({
   }, [])
 
   return (
-    <LayoutScenes>
+    <LayoutScenes location={location}>
       {/* <MetaTags> are part of <Scenes> */}
       <ScenesPage rawScenes={rawScenes} location={location} />
     </LayoutScenes>

@@ -1,10 +1,11 @@
 import classNames from 'classnames'
+import { PageProps } from 'gatsby'
 import React from 'react'
 import { Layout } from '~/components/Layout/Layout'
 import { ArticleLogo } from './ArticleLogo'
 
 type Props = {
-  location?: any // TODO: define type
+  location: PageProps['location']
   showEnglishLanguageTeaser?: boolean
   maxWidthClass?: string
   prose?: boolean

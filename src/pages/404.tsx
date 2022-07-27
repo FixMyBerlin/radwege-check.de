@@ -1,10 +1,11 @@
+import { PageProps } from 'gatsby'
 import React from 'react'
 import { LayoutArticle, MetaTags } from '~/components/Layout'
 import { Link } from '~/components/Link'
 
-const NotFound: React.FC = () => {
+const NotFound: React.FC<PageProps> = ({ location }) => {
   return (
-    <LayoutArticle>
+    <LayoutArticle location={location}>
       <MetaTags noindex title="404 | Seite nicht gefunden." />
 
       <div className="sm:flex">

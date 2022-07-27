@@ -1,3 +1,4 @@
+import { PageProps } from 'gatsby'
 import React from 'react'
 import { LayoutArticle, MetaTags } from '~/components/Layout'
 import { Link } from '~/components/Link'
@@ -19,7 +20,7 @@ Links
 - Original Dokument https://docs.google.com/document/d/10GbKbIwqhdDMhJLLRVWzdJX8q2_nQijO/edit
 */
 
-const DatenschutzPage = () => {
+const DatenschutzPage: React.FC<PageProps> = ({ location }) => {
   const tocItems: TocHashLink = [
     ['#responsible', 'Verantwortlichkeit'],
     ['#thirdparty', 'Drittdienste'],
@@ -32,7 +33,7 @@ const DatenschutzPage = () => {
   ]
 
   return (
-    <LayoutArticle>
+    <LayoutArticle location={location}>
       <MetaTags noindex title="Radwege-Check | Datenschutz" />
       <h1>Datenschutzerklärung</h1>
       <TableOfContents items={tocItems} />

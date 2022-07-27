@@ -3,10 +3,19 @@ import React from 'react'
 import { isDev } from '~/components/utils'
 import { Link } from '../../Link'
 import GoogleTranslateLogo from './assets/google-translate-logo.svg'
+import { googleTranslateUrl } from './utils'
 
-type Props = { positionBottom?: boolean }
+type Props = {
+  visible: boolean
+  positionBottom?: boolean
+}
 
-export const EnglishLanguageTeaser: React.FC<Props> = ({ positionBottom }) => {
+export const EnglishLanguageButton: React.FC<Props> = ({
+  visible,
+  positionBottom,
+}) => {
+  if (!visible) return null
+
   // Guard SSR
   const isBrowser = typeof window !== 'undefined'
   if (!isBrowser) return null
@@ -16,20 +25,11 @@ export const EnglishLanguageTeaser: React.FC<Props> = ({ positionBottom }) => {
   const speaksDe = navigator.languages.some((l) => l.includes('de'))
   if (speaksDe && !isDev) return null
 
-  // Build translations URL and keep existing params
-  const translateUrl = new URL(
-    `https://radwege--check-de.translate.goog${window.location.pathname}`
-  )
-  const currentParams = new URLSearchParams(window.location.search)
-  currentParams.forEach((v, k) => translateUrl.searchParams.set(k, v))
-  translateUrl.searchParams.set('_x_tr_sl', 'de') // Source
-  translateUrl.searchParams.set('_x_tr_tl', 'en') // Target
-  translateUrl.searchParams.set('_x_tr_hl', 'en') // UI
-  translateUrl.searchParams.set('_x_tr_pto', 'wapp')
+  const translateUrl = googleTranslateUrl(window.location)
 
   return (
     <Link
-      to={translateUrl.toString()}
+      to={translateUrl}
       external
       button
       lang="en"

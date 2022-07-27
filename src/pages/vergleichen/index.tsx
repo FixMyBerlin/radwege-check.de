@@ -83,6 +83,7 @@ const MyDataIndex = ({
 
   return (
     <LayoutArticle
+      location={location}
       maxWidthClass="max-w-full lg:mx-5 flex items-center flex-col"
       prose={false}
       printHideHeader
