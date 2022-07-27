@@ -48,6 +48,8 @@ export const MetaTags: React.FC<Props> = ({
       `${domain() || ''}/social-sharing/default.jpg`,
   }
 
+  const noIndexOnAllButProduction = process.env.CONTEXT === 'production'
+
   // FYI, we do not inlcude the url meta tags since there was an issue with specs and `useLocation`.
   //  Since we do not need this field, its OK to remove it.
   return (
@@ -62,6 +64,13 @@ export const MetaTags: React.FC<Props> = ({
       ) : null}
 
       {noindex === true ? <meta name="robots" content="noindex" /> : null}
+      {noIndexOnAllButProduction === true ? (
+        <meta
+          name="robots"
+          content="noindex, nofollow"
+          data-info="non-production"
+        />
+      ) : null}
 
       <meta name="description" content={withDefaults.description} />
       <meta property="og:description" content={withDefaults.description} />
