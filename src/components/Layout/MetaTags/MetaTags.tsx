@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { ReportTranslations } from '~/components/ReportPage/translations'
-import { domain } from '~/components/utils'
+import { canonicalOrigin, domain } from '~/components/utils'
 
 // FYI, https://www.gatsbyjs.com/docs/add-seo-component/ suggest to use useStaticQuery but I don't see why, yet
 const seoDefaultValues = {
@@ -60,7 +60,12 @@ export const MetaTags: React.FC<Props> = ({
       <meta name="twitter:title" content={sharingTitle || withDefaults.title} />
 
       {canonicalPath ? (
-        <link rel="canonical" href={`${domain}${canonicalPath}`} />
+        <link
+          rel="canonical"
+          href={`${canonicalOrigin}${canonicalPath}`}
+          data-info="canonical prop"
+        />
+      ) : null}
       ) : null}
 
       {noindex === true ? <meta name="robots" content="noindex" /> : null}
