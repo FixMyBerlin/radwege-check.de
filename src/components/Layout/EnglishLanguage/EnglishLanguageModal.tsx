@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal } from '~/components/Modal'
+import { isEnglishDomain } from '~/components/utils'
 import { Link } from '../../Link'
 import GoogleTranslateLogo from './assets/google-translate-logo.svg'
 import { googleTranslateUrl } from './utils'
@@ -10,19 +11,10 @@ type Props = {
 }
 
 export const EnglishLanguageModal: React.FC<Props> = ({ visible, domain }) => {
-  console.log({
-    visible,
-    domain,
-    a: domain?.toLocaleLowerCase()?.includes('bikelane-safetycheck'),
-  })
   if (!visible) return null
   if (!domain) return null
 
-  const isEnglishDomain = domain
-    .toLocaleLowerCase()
-    .includes('bikelane-safetycheck')
-
-  if (!isEnglishDomain) return null
+  if (!isEnglishDomain(domain)) return null
 
   // Guard SSR
   const isBrowser = typeof window !== 'undefined'
