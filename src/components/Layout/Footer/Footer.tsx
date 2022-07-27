@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
         </section>
         <section>
           <div className="mt-8 flex flex-col gap-10 lg:mt-1 lg:flex-row lg:gap-12">
-            <div className="lg:w-[26rem]">
+            <div className="lg:w-[11rem] xl:w-[26rem]">
               <h3 className="mb-3 font-semibold text-stone-100">
                 Über die Daten:
               </h3>
