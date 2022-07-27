@@ -53,7 +53,10 @@ export const PresetSlider: React.FC<Props> = ({
   }, [emblaApi, onSelect])
 
   useEffect(() => {
-    if (emblaApi) emblaApi.reInit()
+    if (!emblaApi) return
+    emblaApi.reInit({ startIndex: 0 })
+    setPrevBtnEnabled(emblaApi.canScrollPrev())
+    setNextBtnEnabled(emblaApi.canScrollNext())
   }, [emblaApi, slides])
 
   const slideEntries = Object.entries(slides)
