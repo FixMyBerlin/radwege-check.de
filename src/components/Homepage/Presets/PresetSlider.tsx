@@ -41,9 +41,25 @@ export const PresetSlider: React.FC<Props> = ({
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return
+
     setPrevBtnEnabled(emblaApi.canScrollPrev())
-    // TODO: Make user we stopp scrolling earlier, once the lat element is in view. See 16a9ccb.
-    setNextBtnEnabled(emblaApi.canScrollNext())
+
+    // For desktop, we need to stop earier so we don't show empty space
+    const isDesktop = typeof window !== 'undefined' && window.innerWidth > 640
+
+    if (isDesktop) {
+      const slideInViewMax = Math.max(...emblaApi.slidesInView())
+      // +1 to compesate for array-index-0. +1 for odd number of slides because we need to.
+      const slideInViewOffset = Object.keys(slides).length % 2 ? 2 : 1
+      const maxSlides = Object.keys(slides).length
+      const slidesLeft = slideInViewMax + slideInViewOffset < maxSlides
+      console.log({ slideInViewMax, slideInViewOffset, maxSlides, slidesLeft })
+
+      setNextBtnEnabled(slidesLeft)
+    } else {
+      // Mobile and SSR-Fallback
+      setNextBtnEnabled(emblaApi.canScrollNext())
+    }
   }, [emblaApi])
 
   useEffect(() => {
