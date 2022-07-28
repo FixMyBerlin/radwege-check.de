@@ -85,25 +85,25 @@ export const MetaTags: React.FC<Props> = ({
         <link
           rel="canonical"
           href={`${canonicalOrigin}${canonicalPath}`}
-          data-info="canonical prop"
+          data-info-trigger="props"
         />
       ) : null} */}
       {canonicalForNonPrimaryDomain ? (
         <link
           rel="canonical"
           href={`${canonicalOrigin}${window.location.pathname}${window.location.search}`}
-          data-info="canonical for english domain"
+          data-info-trigger="non primary domain"
         />
       ) : null}
 
       {noindex === true ? (
-        <meta name="robots" content="noindex" data-info="noindex prop" />
+        <meta name="robots" content="noindex" data-info-trigger="props" />
       ) : null}
       {noIndexOnAllButProduction === true ? (
         <meta
           name="robots"
           content="noindex, nofollow"
-          data-info="non-production"
+          data-info-trigger="non production"
         />
       ) : null}
 
