@@ -57,7 +57,8 @@ export const MetaTags: React.FC<Props> = ({
   const canonicalForNonPrimaryDomain =
     typeof window !== 'undefined' && isNonPrimaryDomain(window.location.host)
 
-  const noIndexOnAllButProduction = process.env.CONTEXT === 'production'
+  const noindexOnAllButProduction = process.env.CONTEXT !== 'production'
+
   // Give some debugging info
   const envInfo =
     process.env.CONTEXT === 'production'
@@ -99,7 +100,7 @@ export const MetaTags: React.FC<Props> = ({
       {noindex === true ? (
         <meta name="robots" content="noindex" data-info-trigger="props" />
       ) : null}
-      {noIndexOnAllButProduction === true ? (
+      {noindexOnAllButProduction === true ? (
         <meta
           name="robots"
           content="noindex, nofollow"
