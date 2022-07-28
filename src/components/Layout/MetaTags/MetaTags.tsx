@@ -57,21 +57,20 @@ export const MetaTags: React.FC<Props> = ({
   const canonicalForNonPrimaryDomain =
     typeof window !== 'undefined' && isNonPrimaryDomain(window.location.host)
 
-  const noindexOnAllButProduction = process.env.CONTEXT !== 'production'
+  const noindexOnAllButProduction = !isProduction
 
   // Give some debugging info
-  const envInfo =
-    process.env.CONTEXT === 'production'
-      ? {}
-      : {
-          'data-netlify-context': process.env.CONTEXT,
-          'data-node-env': process.env.NODE_ENV,
-          'data-netlify-url': process.env.URL,
-          'data-netlify-prime-url': process.env.DEPLOY_PRIME_URL,
-          'data-isDev': isDev,
-          'data-isProduction': isProduction,
-          'data-window': typeof window !== 'undefined',
-        }
+  const envInfo = isProduction
+    ? {}
+    : {
+        'data-netlify-context': process.env.CONTEXT,
+        'data-node-env': process.env.NODE_ENV,
+        'data-netlify-url': process.env.URL,
+        'data-netlify-prime-url': process.env.DEPLOY_PRIME_URL,
+        'data-isDev': isDev,
+        'data-isProduction': isProduction,
+        'data-window': typeof window !== 'undefined',
+      }
 
   // FYI, we do not inlcude the url meta tags since there was an issue with specs and `useLocation`.
   //  Since we do not need this field, its OK to remove it.
