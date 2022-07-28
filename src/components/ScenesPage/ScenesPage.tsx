@@ -189,7 +189,7 @@ export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
   // UseCase: User opened the vergleichen-Page from an external URL.
   const { bookmarks, setBookmarks } = useStore(useStoreBookmarks)
   useEffect(() => {
-    const bookmarksFromLocationStore = location?.state?.boomarksArray
+    const bookmarksFromLocationStore = location?.state?.bookmarksArray
     if (bookmarks && bookmarksFromLocationStore) {
       setBookmarks(bookmarksFromLocationStore)
     }

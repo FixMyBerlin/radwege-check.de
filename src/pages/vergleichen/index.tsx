@@ -58,14 +58,14 @@ const MyDataIndex = ({
   }, [rawScenesSecondary])
 
   // Read and parse URL param `?sceneIds=<comma-separated-list>`
-  const [boomarksArray] = useQueryParam('sceneIds', CommaArrayParam)
+  const [bookmarksArray] = useQueryParam('sceneIds', CommaArrayParam)
 
   // Filter scenes by URL param
   const bookmarkScenesPrimary = scenesPrimary.filter((s) =>
-    boomarksArray?.includes(s.sceneId)
+    bookmarksArray?.includes(s.sceneId)
   )
   const bookmarkScenesSecondary = scenesSecondary.filter((s) =>
-    boomarksArray?.includes(s.sceneId)
+    bookmarksArray?.includes(s.sceneId)
   )
 
   const showBackButton = location?.state?.showBack === true
@@ -122,7 +122,7 @@ const MyDataIndex = ({
         {bookmarkScenesPrimary.length ? (
           <div className="rounded border print:inline print:border-0">
             <h2 className="mb-3 bg-brand-light-yellow px-5 py-3 font-semibold uppercase print:hidden">
-              <Link to="/hauptstrassen" state={{ boomarksArray }}>
+              <Link to="/hauptstrassen" state={{ bookmarksArray }}>
                 Hauptstraßen
               </Link>
             </h2>
@@ -155,7 +155,7 @@ const MyDataIndex = ({
         {bookmarkScenesSecondary.length ? (
           <div className="rounded border print:inline print:border-0">
             <h2 className="mb-3 bg-brand-light-yellow px-5 py-3 font-semibold uppercase print:hidden">
-              <Link to="/nebenstrassen" state={{ boomarksArray }}>
+              <Link to="/nebenstrassen" state={{ bookmarksArray }}>
                 Nebenstraßen
               </Link>
             </h2>
@@ -189,10 +189,10 @@ const MyDataIndex = ({
 
       <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 print:hidden">
         <TwitterButton
-          url={`${location.pathname}?sceneIds=${boomarksArray?.join(',')}`}
+          url={`${location.pathname}?sceneIds=${bookmarksArray?.join(',')}`}
           text={
-            boomarksArray?.length &&
-            `${boomarksArray?.length} Radverkehrsanlagen und ihre subjektive Sicherheit im Vergleich`
+            bookmarksArray?.length &&
+            `${bookmarksArray?.length} Radverkehrsanlagen und ihre subjektive Sicherheit im Vergleich`
           }
           hashtags="RadwegeCheck"
           buttonText="Teilen"
