@@ -15,6 +15,22 @@ If you find any bugs, feel free to open an issue.
 - Use `npm run profile` to allow using the react dev tools profiling ([more](https://reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html))
 - Use `npx eslint --print-config .eslintrc` to check the `.eslintrc` for errors
 
+### Test the translation modal
+
+This page can be accessed via radwege-check.de and bikelane-safetycheck.net. When using bikelane-safetycheck.net, we show a modal that hints at using Google Translate to translate the page. (We have a secondary feature, that shows a translation button whenever the page is used with a none-DE browser locale.)
+
+Whenever the domain includes `bikelane-safetycheck`, the componente `components/Layout/EnglishLanguage/EnglishLanguageModal` is visible.
+
+To test this, you can setup a custom `.test` domain locally:
+
+- `sudo code /etc/hosts`
+- add
+  ```
+  127.0.0.1 radwege-check.test
+  127.0.0.1 bikelane-safetycheck.test
+  ```
+- `open http://bikelane-safetycheck.test:8000/` for testing
+
 ## License
 
 This project is licensed under the AGPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for more information.

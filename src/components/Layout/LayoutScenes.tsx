@@ -1,19 +1,31 @@
+import { PageProps } from 'gatsby'
 import React from 'react'
-import { EnglishLanguageTeaser } from './EnglishLanguageTeaser'
+import { EnglishLanguageButton, EnglishLanguageModal } from './EnglishLanguage'
+import { TailwindResponsiveHelper } from './TailwindResponsiveHelper'
 
 type Props = {
-  children: React.ReactNode
+  location: PageProps['location']
   showEnglishLanguageTeaser?: boolean
+  children: React.ReactNode
 }
 
 export const LayoutScenes: React.FC<Props> = ({
+  location,
   showEnglishLanguageTeaser = true,
   children,
 }) => {
   return (
     <>
       <main className="h-screen w-screen">{children}</main>
-      {showEnglishLanguageTeaser && <EnglishLanguageTeaser positionBottom />}
+      <EnglishLanguageButton
+        visible={showEnglishLanguageTeaser}
+        positionBottom
+      />
+      <EnglishLanguageModal
+        visible={showEnglishLanguageTeaser}
+        domain={location?.host}
+      />
+      <TailwindResponsiveHelper />
     </>
   )
 }

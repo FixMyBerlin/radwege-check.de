@@ -1,3 +1,4 @@
+import { PageProps } from 'gatsby'
 import itemsjs from 'itemsjs'
 import React, { useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet'
@@ -26,7 +27,11 @@ import { cleanupCsvData, decodeFilter, encodeFilter } from './utils'
 
 type Props = {
   rawScenes: any
-  location: any // todo
+  location: PageProps<
+    unknown,
+    unknown,
+    { bookmarksArray: string[] }
+  >['location']
 }
 
 export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
@@ -189,7 +194,7 @@ export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
   // UseCase: User opened the vergleichen-Page from an external URL.
   const { bookmarks, setBookmarks } = useStore(useStoreBookmarks)
   useEffect(() => {
-    const bookmarksFromLocationStore = location?.state?.boomarksArray
+    const bookmarksFromLocationStore = location?.state?.bookmarksArray
     if (bookmarks && bookmarksFromLocationStore) {
       setBookmarks(bookmarksFromLocationStore)
     }
@@ -213,7 +218,6 @@ export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
       />
       <MetaTags
         noindex={!seoPresetIsActive}
-        canonicalPath={seoPresetIsActive ? location.pagePath : null}
         title={
           seoPresetIsActive
             ? `Radwege-Check: ${presets[currentPresetKey].title} (${seoCategoryTranslation})`

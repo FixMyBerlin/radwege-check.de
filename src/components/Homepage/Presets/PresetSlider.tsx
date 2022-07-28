@@ -12,7 +12,6 @@ export type Props = {
   className?: string
 }
 
-// TODO: This need to be able to switch from scenesPrimary to scenesSeconary
 export const PresetSlider: React.FC<Props> = ({
   sceneCategory,
   slides,
@@ -53,7 +52,10 @@ export const PresetSlider: React.FC<Props> = ({
   }, [emblaApi, onSelect])
 
   useEffect(() => {
-    if (emblaApi) emblaApi.reInit()
+    if (!emblaApi) return
+    emblaApi.reInit({ startIndex: 0 })
+    setPrevBtnEnabled(emblaApi.canScrollPrev())
+    setNextBtnEnabled(emblaApi.canScrollNext())
   }, [emblaApi, slides])
 
   const slideEntries = Object.entries(slides)
@@ -62,14 +64,14 @@ export const PresetSlider: React.FC<Props> = ({
     <div
       className={classNames(
         className,
-        'relative mb-3 flex flex-col justify-center bg-stone-200 px-10 py-6'
+        'relative -mx-4 mb-3 flex flex-col justify-center bg-stone-200 px-2 py-6 sm:mx-0 sm:px-3 sm:px-10'
       )}
     >
       <div ref={emblaRef} className="relative overflow-hidden">
         <ul className="flex flex-row gap-5">
           {slideEntries.map(([presetName, preset]) => {
             return (
-              <li key={presetName} className="">
+              <li key={presetName}>
                 <PresetSliderSlide
                   sceneCategory={sceneCategory}
                   preset={preset}
@@ -82,7 +84,7 @@ export const PresetSlider: React.FC<Props> = ({
       <button
         type="button"
         className={classNames(
-          'top-[calc(50%_-_10px] absolute -left-5 flex items-center justify-center rounded-full p-1',
+          'top-[calc(50%_-_10px] absolute -left-5 hidden items-center justify-center rounded-full p-1 sm:flex',
           prevBtnEnabled
             ? 'bg-stone-600 text-stone-100 hover:bg-brand-yellow hover:text-gray-800'
             : 'bg-stone-600 text-stone-500'
@@ -95,7 +97,7 @@ export const PresetSlider: React.FC<Props> = ({
       <button
         type="button"
         className={classNames(
-          'top-[calc(50%_-_10px] absolute -right-5 flex items-center justify-center rounded-full p-1',
+          'top-[calc(50%_-_10px] absolute -right-5 hidden items-center justify-center rounded-full p-1 sm:flex',
           nextBtnEnabled
             ? 'bg-stone-600 text-stone-100 hover:bg-brand-yellow hover:text-gray-800'
             : 'bg-stone-600 text-stone-500'

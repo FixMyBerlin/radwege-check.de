@@ -23,7 +23,7 @@ const MyData = ({ location, data: { scenesPrimaryCsv: rawScene } }) => {
   }, [])
 
   return (
-    <Layout>
+    <Layout location={location}>
       <ScenePage scene={scene} pagePath={location.pathname} />
     </Layout>
   )

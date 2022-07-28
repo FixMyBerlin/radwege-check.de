@@ -31,9 +31,9 @@ export const Presets: React.FC = () => {
   }
 
   return (
-    <section className="bg-brand-light-yellow px-4 pb-12 lg:px-0">
+    <section className="bg-brand-light-yellow px-4 pb-12">
       <div className="mx-auto max-w-6xl">
-        <div className="flex flex-col items-end lg:flex-row lg:justify-between">
+        <div className="flex flex-col items-end md:flex-row md:justify-between">
           <div className="flex-grow bg-stone-200">
             <h2
               className={classNames(
@@ -46,7 +46,7 @@ export const Presets: React.FC = () => {
               Welche Radwege willst du vergleichen?
             </h2>
           </div>
-          <nav className="flex">
+          <nav className="flex w-full justify-center sm:w-auto sm:justify-end">
             <div
               className={classNames(
                 { 'rounded-t-md': tabActive('primary') },
@@ -80,8 +80,8 @@ export const Presets: React.FC = () => {
           </nav>
         </div>
         <PresetSlider
-          className={classNames('rounded-md', {
-            'rounded-md rounded-tr-none': tabActive('secondary'),
+          className={classNames('sm:rounded-md', {
+            'sm:rounded-md sm:rounded-tr-none': tabActive('secondary'),
           })}
           slides={scenesBySceneCategory[sceneCategory]}
           sceneCategory={sceneCategory}

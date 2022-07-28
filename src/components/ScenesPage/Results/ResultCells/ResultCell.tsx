@@ -43,7 +43,7 @@ export const ResultCell: React.FC<Props> = ({
 
   return (
     <section
-      title={isDev && `${keyName}: ${scene[keyName]}`}
+      title={isDev ? `${keyName}: ${scene[keyName]}` : ''}
       className={classNames(
         'break-before-avoid border-b py-2 print:py-1 lg:py-3.5',
         { 'hover:bg-stone-50': showHover },

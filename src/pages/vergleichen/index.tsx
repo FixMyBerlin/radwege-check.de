@@ -1,6 +1,6 @@
 import { ArrowLeftIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
-import { graphql, navigate } from 'gatsby'
+import { graphql, navigate, PageProps } from 'gatsby'
 import React, { useEffect, useMemo } from 'react'
 import { useQueryParam } from 'use-query-params'
 import { LayoutArticle, MetaTags } from '~/components/Layout'
@@ -40,7 +40,13 @@ Backbutton:
   (This seems to be the only way to handle this special case, unfortunatelly.)
 */
 
-const MyDataIndex = ({
+type DataProps = {
+  allScenesPrimaryCsv: { edges: any }
+  allScenesSecondaryCsv: { edges: any }
+}
+type Props = PageProps<DataProps, undefined, { showBack: boolean }>
+
+const MyDataIndex: React.FC<Props> = ({
   location,
   data: {
     allScenesPrimaryCsv: { edges: rawScenesPrimary },
@@ -58,14 +64,14 @@ const MyDataIndex = ({
   }, [rawScenesSecondary])
 
   // Read and parse URL param `?sceneIds=<comma-separated-list>`
-  const [boomarksArray] = useQueryParam('sceneIds', CommaArrayParam)
+  const [bookmarksArray] = useQueryParam('sceneIds', CommaArrayParam)
 
   // Filter scenes by URL param
   const bookmarkScenesPrimary = scenesPrimary.filter((s) =>
-    boomarksArray?.includes(s.sceneId)
+    bookmarksArray?.includes(s.sceneId)
   )
   const bookmarkScenesSecondary = scenesSecondary.filter((s) =>
-    boomarksArray?.includes(s.sceneId)
+    bookmarksArray?.includes(s.sceneId)
   )
 
   const showBackButton = location?.state?.showBack === true
@@ -83,6 +89,7 @@ const MyDataIndex = ({
 
   return (
     <LayoutArticle
+      location={location}
       maxWidthClass="max-w-full lg:mx-5 flex items-center flex-col"
       prose={false}
       printHideHeader
@@ -121,7 +128,7 @@ const MyDataIndex = ({
         {bookmarkScenesPrimary.length ? (
           <div className="rounded border print:inline print:border-0">
             <h2 className="mb-3 bg-brand-light-yellow px-5 py-3 font-semibold uppercase print:hidden">
-              <Link to="/hauptstrassen" state={{ boomarksArray }}>
+              <Link to="/hauptstrassen" state={{ bookmarksArray }}>
                 Hauptstraßen
               </Link>
             </h2>
@@ -154,7 +161,7 @@ const MyDataIndex = ({
         {bookmarkScenesSecondary.length ? (
           <div className="rounded border print:inline print:border-0">
             <h2 className="mb-3 bg-brand-light-yellow px-5 py-3 font-semibold uppercase print:hidden">
-              <Link to="/nebenstrassen" state={{ boomarksArray }}>
+              <Link to="/nebenstrassen" state={{ bookmarksArray }}>
                 Nebenstraßen
               </Link>
             </h2>
@@ -188,10 +195,10 @@ const MyDataIndex = ({
 
       <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 print:hidden">
         <TwitterButton
-          url={`${location.pathname}?sceneIds=${boomarksArray?.join(',')}`}
+          url={`${location.pathname}?sceneIds=${bookmarksArray?.join(',')}`}
           text={
-            boomarksArray?.length &&
-            `${boomarksArray?.length} Radverkehrsanlagen und ihre subjektive Sicherheit im Vergleich`
+            bookmarksArray?.length &&
+            `${bookmarksArray?.length} Radverkehrsanlagen und ihre subjektive Sicherheit im Vergleich`
           }
           hashtags="RadwegeCheck"
           buttonText="Teilen"
