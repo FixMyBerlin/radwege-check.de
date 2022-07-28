@@ -213,7 +213,6 @@ export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
       />
       <MetaTags
         noindex={!seoPresetIsActive}
-        canonicalPath={seoPresetIsActive ? location.pagePath : null}
         title={
           seoPresetIsActive
             ? `Radwege-Check: ${presets[currentPresetKey].title} (${seoCategoryTranslation})`

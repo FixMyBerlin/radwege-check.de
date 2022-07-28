@@ -13,7 +13,7 @@ const seoDefaultValues = {
 type Props = {
   lang?: ReportTranslations
   noindex?: boolean
-  canonicalPath?: string
+  canonicalPath?: never // UNUSED ATM string
   title?: string
   sharingTitle?: string
   description?: string
@@ -27,7 +27,7 @@ type Props = {
 export const MetaTags: React.FC<Props> = ({
   lang = 'de',
   noindex = false,
-  canonicalPath,
+  canonicalPath: _canonicalPath, // UNUSED ATM
   title,
   sharingTitle,
   description,
@@ -62,7 +62,7 @@ export const MetaTags: React.FC<Props> = ({
       <meta property="og:title" content={sharingTitle || withDefaults.title} />
       <meta name="twitter:title" content={sharingTitle || withDefaults.title} />
 
-      {canonicalPath ? (
+      {/* UNUSED ATM {canonicalPath ? (
         <link
           rel="canonical"
           href={`${canonicalOrigin}${canonicalPath}`}
