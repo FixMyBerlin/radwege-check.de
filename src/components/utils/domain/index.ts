@@ -1,4 +1,5 @@
 export * from './canonicalOrigin.const'
 export * from './domain'
+export * from './domains.const'
 export * from './isEnglishDomain'
 export * from './isNonPrimaryDomain'

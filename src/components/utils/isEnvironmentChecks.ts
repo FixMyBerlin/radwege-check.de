@@ -1,3 +1,5 @@
+import { englishDomainHost, primaryDomainHost } from './domain'
+
 export const isDev =
   typeof window !== 'undefined' && window.location.host.includes('localhost')
 
@@ -8,4 +10,5 @@ export const isProduction =
   !isDev &&
   (process.env.CONTEXT === 'production' ||
     (typeof window !== 'undefined' &&
-      window.location.host === 'radwege-check.de'))
+      (window.location.host === primaryDomainHost ||
+        window.location.host === englishDomainHost)))

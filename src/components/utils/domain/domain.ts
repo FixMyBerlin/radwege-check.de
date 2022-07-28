@@ -1,4 +1,5 @@
 import { canonicalOrigin } from './canonicalOrigin.const'
+import { primaryDomain } from './domains.const'
 import { isEnglishDomain } from './isEnglishDomain'
 
 export const domain = () => {
@@ -12,7 +13,7 @@ export const domain = () => {
     process.env.CONTEXT === 'production'
       ? process.env.URL
       : process.env.DEPLOY_PRIME_URL
-  const ssrFallback = 'https://radwege-check.de'
+  const ssrFallback = primaryDomain
 
   // We do this, to get the SSR domain. However, rehydration will use this utility as well,
   // so for that case, we need to take the current hostname.
