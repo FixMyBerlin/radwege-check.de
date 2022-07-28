@@ -1,3 +1,4 @@
+import { PageProps } from 'gatsby'
 import itemsjs from 'itemsjs'
 import React, { useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet'
@@ -26,7 +27,11 @@ import { cleanupCsvData, decodeFilter, encodeFilter } from './utils'
 
 type Props = {
   rawScenes: any
-  location: any // todo
+  location: PageProps<
+    unknown,
+    unknown,
+    { bookmarksArray: string[] }
+  >['location']
 }
 
 export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {

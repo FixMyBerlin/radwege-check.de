@@ -1,6 +1,6 @@
 import { ArrowLeftIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
-import { graphql, navigate } from 'gatsby'
+import { graphql, navigate, PageProps } from 'gatsby'
 import React, { useEffect, useMemo } from 'react'
 import { useQueryParam } from 'use-query-params'
 import { LayoutArticle, MetaTags } from '~/components/Layout'
@@ -40,7 +40,13 @@ Backbutton:
   (This seems to be the only way to handle this special case, unfortunatelly.)
 */
 
-const MyDataIndex = ({
+type DataProps = {
+  allScenesPrimaryCsv: { edges: any }
+  allScenesSecondaryCsv: { edges: any }
+}
+type Props = PageProps<DataProps, undefined, { showBack: boolean }>
+
+const MyDataIndex: React.FC<Props> = ({
   location,
   data: {
     allScenesPrimaryCsv: { edges: rawScenesPrimary },
