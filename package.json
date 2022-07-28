@@ -1,7 +1,7 @@
 {
   "name": "radwege-check.de",
   "description": "The website for https://radwege-check.de",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "FixMyCity <hello@fixmycity.de>",
   "license": "AGPL-3.0",
   "keywords": [],
