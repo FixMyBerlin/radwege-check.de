@@ -1,7 +1,11 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { ReportTranslations } from '~/components/ReportPage/translations'
-import { canonicalOrigin, domain, isEnglishDomain } from '~/components/utils'
+import {
+  canonicalOrigin,
+  domain,
+  isNonPrimaryDomain,
+} from '~/components/utils'
 
 // FYI, https://www.gatsbyjs.com/docs/add-seo-component/ suggest to use useStaticQuery but I don't see why, yet
 const seoDefaultValues = {
@@ -48,8 +52,8 @@ export const MetaTags: React.FC<Props> = ({
       `${domain() || ''}/social-sharing/default.jpg`,
   }
 
-  const canonicalForEnglishDomain =
-    typeof window !== 'undefined' && isEnglishDomain(window.location.host)
+  const canonicalForNonPrimaryDomain =
+    typeof window !== 'undefined' && isNonPrimaryDomain(window.location.host)
 
   const noIndexOnAllButProduction = process.env.CONTEXT === 'production'
 
@@ -68,8 +72,8 @@ export const MetaTags: React.FC<Props> = ({
           href={`${canonicalOrigin}${canonicalPath}`}
           data-info="canonical prop"
         />
-      ) : null}
-      {canonicalForEnglishDomain ? (
+      ) : null} */}
+      {canonicalForNonPrimaryDomain ? (
         <link
           rel="canonical"
           href={`${canonicalOrigin}${window.location.pathname}${window.location.search}`}
