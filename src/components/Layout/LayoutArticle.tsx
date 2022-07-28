@@ -10,6 +10,7 @@ type Props = {
   maxWidthClass?: string
   prose?: boolean
   printHideHeader?: boolean
+  children: React.ReactNode
 }
 
 export const LayoutArticle: React.FC<Props> = ({

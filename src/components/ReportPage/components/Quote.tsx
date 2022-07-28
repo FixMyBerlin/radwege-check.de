@@ -3,6 +3,7 @@ import React from 'react'
 
 type Props = {
   sourceText?: string | React.ReactNode
+  children: React.ReactNode
 }
 
 export const Quote: React.FC<Props> = ({ sourceText, children }) => {
