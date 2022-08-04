@@ -72,9 +72,9 @@ export const Facets: React.FC<FacetsProps> = ({
           className="lg:hidden"
           onClick={() =>
             trackEvent({
-              category: `[${experimentTextKey}] Twitter button`,
-              action: 'Click',
-              label: 'Desktop view',
+              category: 'Twitter button click',
+              action: `Results page ${experimentTextKey}`,
+              label: 'Mobile view',
             })
           }
         />
