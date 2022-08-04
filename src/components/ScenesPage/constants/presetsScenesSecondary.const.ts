@@ -10,7 +10,7 @@ export const presetsScenesSecondary: PresetsScenes = {
       'bicycleStreetType:markings_bike_icon_dooring_zone,none,bicycle_road,living_street,green_surface|motorVehicleTrafficVolumen:no_cars',
   },
   bikeStreetWithCars: {
-    title: 'Fahhradstraßen (inkl. Sondermarkierungen) mit Kfz-Verkehr',
+    title: 'Fahrradstraßen (inkl. Sondermarkierungen) mit Kfz-Verkehr',
     sceneIdForImage: 'SE_C_17',
     resultTotal: 18,
     averageScore: 38,
@@ -18,7 +18,7 @@ export const presetsScenesSecondary: PresetsScenes = {
       'bicycleStreetType:markings_bike_icon_dooring_zone,bicycle_road,green_surface|carriagewayWidth:wide|motorVehicleTrafficVolumen:low_traffic_volumen',
   },
   bikeStreetNoCars: {
-    title: 'Fahhradstraßen (inkl. Sondermarkierungen) "autofrei"',
+    title: 'Fahrradstraßen (inkl. Sondermarkierungen) "autofrei"',
     sceneIdForImage: 'SE_C_10',
     resultTotal: 9,
     averageScore: 82,
