@@ -144,7 +144,7 @@ export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
   }: HandleMultiChoiceProps) => {
     setShowSpinner(true)
     trackEvent({
-      category: `${experimentTextKey} Facets`,
+      category: `[${experimentTextKey}] Facets`,
       action: `${aggregationKey}: ${selectedBucket.key}`,
     })
     const bucketHasNothingSelected = !buckets.some((b) => b.selected)
