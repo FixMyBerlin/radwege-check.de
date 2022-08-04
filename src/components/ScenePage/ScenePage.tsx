@@ -100,15 +100,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
               })
             }
           />
-          <PrintButton
-            onClick={() =>
-              trackEvent({
-                category: 'Print button click',
-                action: 'Details Page',
-                label: scene.sceneId,
-              })
-            }
-          />
+          <PrintButton />
         </div>
 
         <div className="flex max-w-7xl flex-col gap-6 lg:grid lg:grid-cols-4">
