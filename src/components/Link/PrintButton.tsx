@@ -12,7 +12,7 @@ export const PrintButton: React.FC<Props> = ({ onClick }) => {
       className={classNames(buttonStyles, 'hidden shadow-md lg:inline-flex')}
       onClick={() => {
         window.print()
-        trackEvent({ category: 'Print', action: 'Button click' })
+        trackEvent({ category: 'Print button click', action: 'Details Page' })
         if (onClick) onClick()
       }}
     >

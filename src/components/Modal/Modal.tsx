@@ -17,7 +17,7 @@ export const Modal: React.FC<Props> = ({
   titleIcon,
   closeButton,
   className,
-  showLegalLine = false,
+  showLegalLine = true,
   children,
 }) => {
   const [open, setOpen] = useState(true)

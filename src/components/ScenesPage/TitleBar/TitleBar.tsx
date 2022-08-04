@@ -77,9 +77,9 @@ export const TitleBar: React.FC<Props> = ({
           className="hidden lg:flex"
           onClick={() =>
             trackEvent({
-              category: `[${experimentTextKey}] Twitter button`,
-              action: 'Click',
-              label: 'Mobile view',
+              category: 'Twitter button click',
+              action: `Results page ${experimentTextKey}`,
+              label: 'Desktop view',
             })
           }
         />

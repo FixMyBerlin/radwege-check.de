@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal } from '~/components/Modal'
-import { isEnglishDomain } from '~/components/utils'
+import { isEnglishDomain, primaryDomain } from '~/components/utils'
 import { Link } from '../../Link'
 import GoogleTranslateLogo from './assets/google-translate-logo.svg'
 import { googleTranslateUrl } from './utils'
@@ -41,7 +41,7 @@ export const EnglishLanguageModal: React.FC<Props> = ({ visible, domain }) => {
           Translate page
         </Link>{' '}
         <Link
-          to={`https://www.radwege-check.de${window.location.pathname}${window.location.search}`}
+          to={`${primaryDomain}${window.location.pathname}${window.location.search}`}
         >
           Don&apos;t show again
         </Link>

@@ -16,7 +16,7 @@ import {
 } from '~/components/ScenesPage/constants'
 import { ResultColumn } from '~/components/ScenesPage/Results/ResultColumn'
 import { cleanupCsvData, CommaArrayParam } from '~/components/ScenesPage/utils'
-import { fullUrl, trackContentImpression } from '~/components/utils'
+import { fullUrl, trackContentImpression, trackEvent } from '~/components/utils'
 import { VergleichenPagePrintResult } from '~/components/VergleichenPagePrintResult'
 
 /*
@@ -202,6 +202,13 @@ const MyDataIndex: React.FC<Props> = ({
           }
           hashtags="RadwegeCheck"
           buttonText="Teilen"
+          onClick={() =>
+            trackEvent({
+              category: `Twitter button click`,
+              action: 'Vergleichen Page',
+              label: bookmarksArray?.join(','),
+            })
+          }
         />
         <PrintButton />
       </div>

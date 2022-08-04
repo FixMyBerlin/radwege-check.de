@@ -16,7 +16,7 @@ import {
   formatNumber,
   fullUrl,
   trackContentImpression,
-  trackContentInteraction,
+  trackEvent,
 } from '../utils'
 
 type Props = {
@@ -93,24 +93,14 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
             hashtags="RadwegeCheck"
             buttonText="Teilen"
             onClick={() =>
-              trackContentInteraction({
-                action: 'tweet button',
-                id: scene.sceneId,
-                representation: 'details page',
-                url: fullUrl(scene.path),
+              trackEvent({
+                category: 'Twitter button click',
+                action: 'Details Page',
+                label: scene.sceneId,
               })
             }
           />
-          <PrintButton
-            onClick={() =>
-              trackContentInteraction({
-                action: 'print button',
-                id: scene.sceneId,
-                representation: 'details page',
-                url: fullUrl(scene.path),
-              })
-            }
-          />
+          <PrintButton />
         </div>
 
         <div className="flex max-w-7xl flex-col gap-6 lg:grid lg:grid-cols-4">
