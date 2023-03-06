@@ -22,7 +22,7 @@ export const SectionDataset: React.FC = () => {
             ),
             linkSpec: (
               <Link
-                to="/open-data/Spezifikation_Ausgabeformat_des_Strassenchecks.pdf"
+                to="/open-data/Spezifikation-Ausgabeformat-des-Strassenchecks.pdf"
                 className="matomo_download" // https://developer.matomo.org/guides/tracking-javascript-guide#recording-a-click-as-a-download
               >
                 <FormattedMessage id="04_dataset.p1.linkSpec" />
