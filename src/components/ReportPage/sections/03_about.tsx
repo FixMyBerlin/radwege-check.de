@@ -200,7 +200,7 @@ export const SectionAbout: React.FC = () => {
           values={{
             link: (
               <Link
-                to="/uploads/kataster-ki/Szenarienuebersicht_fuer_Abgabe_KatasterKi_Feb20.ods"
+                to="/open-data/Szenarienuebersicht-fuer-Abgabe-KatasterKi-Feb2020.ods"
                 className="matomo_download" // https://developer.matomo.org/guides/tracking-javascript-guide#recording-a-click-as-a-download
               >
                 <FormattedMessage id="03_concept.p20.link" />
