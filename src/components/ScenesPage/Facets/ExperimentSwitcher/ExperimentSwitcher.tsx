@@ -1,6 +1,6 @@
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React, { Fragment } from 'react'
 import { useStore } from 'zustand'
 import { Link } from '~/components/Link'
@@ -50,7 +50,7 @@ export const ExperimentSwitcher: React.FC = () => {
                 <Menu.Item key={key}>
                   <Link
                     to={path}
-                    classNameOverwrite={classNames(
+                    classNameOverwrite={clsx(
                       {
                         'bg-brand-light-yellow text-gray-500 cursor-default':
                           active,

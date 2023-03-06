@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { scaleLinear } from 'd3-scale'
 import React from 'react'
 import { defineMessages, useIntl } from 'react-intl'
@@ -70,7 +70,7 @@ export const IntlWrappedFeelSafe: React.FC<FeelSafeProps> = ({
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         'relative flex items-center justify-center rounded-full',
         big ? 'w-[120px]' : 'w-[80px]'
       )}
@@ -115,7 +115,7 @@ export const IntlWrappedFeelSafe: React.FC<FeelSafeProps> = ({
           }}
         />
         <div
-          className={classNames('font-bold')}
+          className={clsx('font-bold')}
           style={{
             fontSize: `${big ? 30 : 20}px`,
           }}

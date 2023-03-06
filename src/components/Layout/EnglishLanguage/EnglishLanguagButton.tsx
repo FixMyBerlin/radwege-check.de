@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { isDev } from '~/components/utils'
 import { Link } from '../../Link'
@@ -34,7 +34,7 @@ export const EnglishLanguageButton: React.FC<Props> = ({
       button
       lang="en"
       title="Open page current in Google Translate"
-      className={classNames(
+      className={clsx(
         'absolute right-5 flex flex-row items-center gap-0.5 shadow-md print:hidden',
         positionBottom ? 'bottom-5' : 'top-5'
       )}

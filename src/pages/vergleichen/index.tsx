@@ -1,5 +1,5 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/solid'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { graphql, navigate, PageProps } from 'gatsby'
 import React, { useEffect, useMemo } from 'react'
 import { useQueryParam } from 'use-query-params'
@@ -112,7 +112,7 @@ const MyDataIndex: React.FC<Props> = ({
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className={classNames(
+            className={clsx(
               buttonStyles,
               'mr-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full !p-0 align-text-bottom'
             )}

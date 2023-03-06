@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { useStore } from 'zustand'
 import { useStoreSpinner } from '../ScenesPage/store'
@@ -17,7 +17,7 @@ export const Spinner: React.FC<Props> = ({ className }) => {
   return (
     <SpinnerIcon
       aria-hidden
-      className={classNames(
+      className={clsx(
         className,
         'animate-[spin_0.7s_linear_infinite]',
         'h-5 w-5 text-stone-800'

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { Link as GatsbyLink } from 'gatsby'
 import React from 'react'
 import { isDev, trackEvent } from '../utils'
@@ -21,12 +21,12 @@ type Props = {
 
 const linkSharedStyles = 'underline underline-offset-2'
 
-const linkStyles = classNames(
+const linkStyles = clsx(
   linkSharedStyles,
   'decoration-2 decoration-brand-yellow hover:text-yellow-800 hover:decoration-yellow-500'
 )
 
-const linkStylesInverted = classNames(
+const linkStylesInverted = clsx(
   linkSharedStyles,
   'decoration-1 text-stone-50 decoration-stone-400 hover:text-white hover:decoration-white'
 )
@@ -59,7 +59,7 @@ export const Link: React.FC<Props> = React.forwardRef(
       ? linkStylesInverted
       : linkStyles
 
-    const classes = classNames(className, classNameOverwrite || styles)
+    const classes = clsx(className, classNameOverwrite || styles)
 
     let mailto: string
     if (to.includes('@')) {

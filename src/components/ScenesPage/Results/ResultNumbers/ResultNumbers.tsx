@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { ScenePrimaryProps, SceneSecondaryProps } from '../../types'
 import { ShowTableProps } from '../Results'
@@ -28,7 +28,7 @@ export const ResultNumbers: React.FC<Props> = ({
 }) => {
   return (
     <section
-      className={classNames(
+      className={clsx(
         wrapperClass,
         'flex flex-col print:flex-row print:justify-between print:gap-3'
       )}
@@ -45,7 +45,7 @@ export const ResultNumbers: React.FC<Props> = ({
       </div>
 
       <div
-        className={classNames(
+        className={clsx(
           chartClass,
           'relative flex h-full flex-row gap-1 text-xs print:h-auto'
         )}

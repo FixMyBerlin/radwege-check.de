@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 
 type Props = {
@@ -10,7 +10,7 @@ export const Quote: React.FC<Props> = ({ sourceText, children }) => {
   return (
     <section className="relative mx-auto mt-6 mb-20 flex max-w-lg flex-col">
       <div
-        className={classNames(
+        className={clsx(
           'rounded bg-white px-8 py-6 text-xl font-semibold leading-normal shadow-2xl sm:text-2xl',
           sourceText && 'pb-10'
         )}

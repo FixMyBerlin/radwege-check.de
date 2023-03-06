@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { useStore } from 'zustand'
 import { TranslationMissing } from '~/components/TextHelper'
@@ -21,10 +21,7 @@ export const FacetsHeadline: React.FC<Props> = ({
   return (
     <h2
       title={aggregationKey}
-      className={classNames(
-        'mb-1',
-        forIcons ? 'text-xs' : 'font-semi font-semibold'
-      )}
+      className={clsx('mb-1', forIcons ? 'text-xs' : 'font-semi font-semibold')}
     >
       {text}
     </h2>

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 type Props = {
   uiSelected: boolean
@@ -6,7 +6,7 @@ type Props = {
 }
 
 export const buttonIconClassNames = ({ uiSelected, uiCanpress }: Props) => {
-  const buttonClasses = classNames(
+  const buttonClasses = clsx(
     'h-8 grow border-r border-gray-300 last:border-r-0 justify-center inline-flex items-center text-xxs font-semibold uppercase font-medium leading-4 min-w-[2rem]',
     {
       'hover:bg-yellow-50': uiCanpress,
@@ -18,7 +18,7 @@ export const buttonIconClassNames = ({ uiSelected, uiCanpress }: Props) => {
       'border-b-2 border-b-brand-yellow': uiSelected,
     }
   )
-  const iconClasses = classNames(
+  const iconClasses = clsx(
     {
       'cursor-pointer border-gray-300 text-gray-600': uiCanpress,
     },

@@ -2,7 +2,7 @@ import React from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import { Link } from '~/components/Link'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { useIntl } from 'react-intl'
 import { translations } from '../translations'
 
@@ -51,7 +51,7 @@ export const LanguageSwitcher: React.FC = () => {
                 {({ active }) => (
                   <Link
                     to={`${pathForLocale[translation]}${currentHash}`}
-                    classNameOverwrite={classNames(
+                    classNameOverwrite={clsx(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block px-4 py-2 text-sm'
                     )}

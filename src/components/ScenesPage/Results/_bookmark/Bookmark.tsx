@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 
 type Props = { active: boolean }
@@ -17,7 +17,7 @@ export const Bookmark: React.FC<Props> = ({ active }) => {
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={classNames({ 'fill-yellow-100': active })}
+        className={clsx({ 'fill-yellow-100': active })}
         d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
       />
     </svg>
