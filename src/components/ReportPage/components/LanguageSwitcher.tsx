@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/solid'
+import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import { Link } from '~/components/Link'
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'

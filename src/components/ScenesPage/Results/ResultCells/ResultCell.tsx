@@ -1,4 +1,4 @@
-import { InformationCircleIcon } from '@heroicons/react/solid'
+import { InformationCircleIcon } from '@heroicons/react/24/solid'
 import classNames from 'classnames'
 import React from 'react'
 import { TranslationMissing } from '~/components/TextHelper'

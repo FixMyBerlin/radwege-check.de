@@ -1,4 +1,4 @@
-import { XIcon, ArrowRightIcon } from '@heroicons/react/solid'
+import { XMarkIcon, ArrowRightIcon } from '@heroicons/react/24/solid'
 import React from 'react'
 import { useStore } from 'zustand'
 import { Link } from '~/components/Link'
@@ -21,7 +21,7 @@ export const BookmarkCollector: React.FC = () => {
               className="absolute top-1 right-1 hidden items-center justify-center p-2 group-hover:flex"
             >
               <div className="h-8 w-8 items-center justify-center rounded-full border-2 border-brand-yellow bg-brand-yellow p-[0.4rem]  hover:bg-yellow-400">
-                <XIcon className="h-4 w-4" />
+                <XMarkIcon className="h-4 w-4" />
               </div>
             </button>
             <SceneImage

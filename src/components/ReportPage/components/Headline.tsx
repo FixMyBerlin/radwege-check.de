@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { LinkIcon } from '@heroicons/react/solid'
+import { LinkIcon } from '@heroicons/react/24/solid'
 import React from 'react'
 
 type Props = {

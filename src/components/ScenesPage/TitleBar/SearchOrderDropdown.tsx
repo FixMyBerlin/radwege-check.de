@@ -1,9 +1,9 @@
 import { Menu, Transition } from '@headlessui/react'
 import {
   ChevronDownIcon,
-  SortAscendingIcon,
-  SortDescendingIcon,
-} from '@heroicons/react/outline'
+  BarsArrowUpIcon,
+  BarsArrowDownIcon,
+} from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import React, { Fragment } from 'react'
 
@@ -19,11 +19,11 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
   const searchOrderValues = {
     desc: {
       name: 'Beste Ergebnisse zuerst',
-      icon: <SortDescendingIcon className="h-4 w-4" />,
+      icon: <BarsArrowUpIcon className="h-4 w-4" />,
     },
     asc: {
       name: 'Schlechteste Ergebnisse zuerst',
-      icon: <SortAscendingIcon className="h-4 w-4" />,
+      icon: <BarsArrowDownIcon className="h-4 w-4" />,
     },
   }
 

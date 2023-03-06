@@ -1,4 +1,4 @@
-import { ArrowLeftIcon } from '@heroicons/react/solid'
+import { ArrowLeftIcon } from '@heroicons/react/24/solid'
 import classNames from 'classnames'
 import { graphql, navigate, PageProps } from 'gatsby'
 import React, { useEffect, useMemo } from 'react'
