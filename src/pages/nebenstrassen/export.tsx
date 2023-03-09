@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 import { LayoutArticle } from '~/components/Layout'
-import { useStore } from 'zustand'
-import { useStoreExperimentData } from '~/components/ScenesPage/store'
 import { ScenesExportPage } from '~/components/ScenesExportPage'
 
 const ExportPageSecondary = ({
@@ -11,9 +9,6 @@ const ExportPageSecondary = ({
     allScenesSecondaryCsv: { edges: rawScenes },
   },
 }) => {
-  const { setExperimentTextKey } = useStore(useStoreExperimentData)
-  useEffect(() => setExperimentTextKey('secondary'), [])
-
   return (
     <LayoutArticle
       location={location}
@@ -21,7 +16,7 @@ const ExportPageSecondary = ({
       prose={false}
     >
       {/* <MetaTags> are part of <ScenesExportPage> */}
-      <ScenesExportPage rawScenes={rawScenes} />
+      <ScenesExportPage experimentTextKey="secondary" rawScenes={rawScenes} />
     </LayoutArticle>
   )
 }

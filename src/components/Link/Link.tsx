@@ -21,7 +21,7 @@ type Props = {
 
 const linkSharedStyles = 'underline underline-offset-2'
 
-const linkStyles = clsx(
+export const linkStyles = clsx(
   linkSharedStyles,
   'decoration-2 decoration-brand-yellow hover:text-yellow-800 hover:decoration-yellow-500'
 )

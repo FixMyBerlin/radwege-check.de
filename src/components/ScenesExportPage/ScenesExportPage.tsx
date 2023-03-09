@@ -1,18 +1,20 @@
-import React, { useMemo } from 'react'
-import { useStore } from 'zustand'
+import React, { useMemo, useState } from 'react'
 import { MetaTags } from '../Layout'
-import { Link } from '../Link'
+import { Link, linkStyles } from '../Link'
 import { SceneImage } from '../ScenesPage'
 import { useAggregationConfig } from '../ScenesPage/hooks'
-import { useStoreExperimentData } from '../ScenesPage/store'
 import { cleanupCsvData } from '../ScenesPage/utils'
 import { titleScene } from '../ScenesPage/utils/titleScenes'
 
 type Props = {
   rawScenes: any
+  experimentTextKey: 'primary' | 'secondary'
 }
 
-export const ScenesExportPage: React.FC<Props> = ({ rawScenes }) => {
+export const ScenesExportPage: React.FC<Props> = ({
+  rawScenes,
+  experimentTextKey,
+}) => {
   const scenes = useMemo(() => {
     // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
     const flattened = rawScenes.map((list) => list.node)
@@ -23,11 +25,8 @@ export const ScenesExportPage: React.FC<Props> = ({ rawScenes }) => {
 
   const totalResults = Number(scenes.length).toLocaleString()
 
-  const { experimentTextKey } = useStore(useStoreExperimentData)
   const categoryTranslation =
     experimentTextKey === 'primary' ? 'Hauptstrassen' : 'Nebenstrassen'
-  const resultsPath =
-    experimentTextKey === 'primary' ? '/hauptstrassen' : '/nebenstrassen'
   const otherCategoryTranslation =
     experimentTextKey === 'primary' ? 'Nebenstrassen' : 'Hauptstrassen'
   const otherResultsPath =
@@ -37,6 +36,8 @@ export const ScenesExportPage: React.FC<Props> = ({ rawScenes }) => {
 
   const fields = Object.keys(scenes[0])
   const aggregationConfig = useAggregationConfig(experimentTextKey)
+
+  const [translateResults, setTranslateResults] = useState(false)
 
   return (
     <>
@@ -57,10 +58,16 @@ export const ScenesExportPage: React.FC<Props> = ({ rawScenes }) => {
         Aus dem Blickwinkel einer Fahrradfahrer:in. Die Sortierung zeigt die am
         schlechtesten bewerteten Szenen zuerst.
       </p>
-      <p className="text-center">
-        <Link to={resultsPath} button className="mr-2">
-          Ergebnisse filtern
-        </Link>{' '}
+      <p className="space-x-3 text-center">
+        <button
+          type="button"
+          onClick={() => setTranslateResults((prev) => !prev)}
+          className={linkStyles}
+        >
+          {translateResults
+            ? 'Englishe Bezeichnungen anzeigen'
+            : 'Deutsche Bezeichnungen anzeigen'}
+        </button>
         <Link to={otherResultsPath}>Zu den {otherCategoryTranslation}</Link>
       </p>
 
@@ -88,16 +95,16 @@ export const ScenesExportPage: React.FC<Props> = ({ rawScenes }) => {
                         aggregationConfig[field]?.resultTitle ||
                         aggregationConfig[field]?.title
 
+                      const displayValue = translateResults
+                        ? titleTranslation
+                        : field
+
                       return (
                         <th
                           scope="col"
                           className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                         >
-                          <code>{field}</code>
-                          <br />
-                          <span className="text-xs text-gray-300">
-                            {titleTranslation}
-                          </span>
+                          {displayValue}
                         </th>
                       )
                     })}
@@ -126,17 +133,13 @@ export const ScenesExportPage: React.FC<Props> = ({ rawScenes }) => {
                             scene[field]
                           ] || aggregationConfig[field]?.buckets[scene[field]]
 
+                        const displayValue = translateResults
+                          ? bucketTranslation
+                          : value
+
                         return (
                           <td className="px-3 py-4 text-sm text-gray-500">
-                            {isNumber ? (
-                              value.toLocaleString()
-                            ) : (
-                              <code>{value}</code>
-                            )}
-                            <br />
-                            <span className="text-xs text-gray-300">
-                              {bucketTranslation}
-                            </span>
+                            {isNumber ? value.toLocaleString() : displayValue}
                           </td>
                         )
                       })}
