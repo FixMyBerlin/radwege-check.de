@@ -1,18 +1,20 @@
 import React, { useMemo } from 'react'
-import { useStore } from 'zustand'
 import { MetaTags } from '../Layout'
 import { Link } from '../Link'
 import { SceneImage } from '../ScenesPage'
 import { useAggregationConfig } from '../ScenesPage/hooks'
-import { useStoreExperimentData } from '../ScenesPage/store'
 import { cleanupCsvData } from '../ScenesPage/utils'
 import { titleScene } from '../ScenesPage/utils/titleScenes'
 
 type Props = {
   rawScenes: any
+  experimentTextKey: 'primary' | 'secondary'
 }
 
-export const ScenesExportPage: React.FC<Props> = ({ rawScenes }) => {
+export const ScenesExportPage: React.FC<Props> = ({
+  rawScenes,
+  experimentTextKey,
+}) => {
   const scenes = useMemo(() => {
     // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
     const flattened = rawScenes.map((list) => list.node)
@@ -23,7 +25,6 @@ export const ScenesExportPage: React.FC<Props> = ({ rawScenes }) => {
 
   const totalResults = Number(scenes.length).toLocaleString()
 
-  const { experimentTextKey } = useStore(useStoreExperimentData)
   const categoryTranslation =
     experimentTextKey === 'primary' ? 'Hauptstrassen' : 'Nebenstrassen'
   const resultsPath =
