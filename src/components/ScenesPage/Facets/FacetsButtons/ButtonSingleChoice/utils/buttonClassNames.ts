@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 type Props = {
   firstElement: boolean
@@ -17,7 +17,7 @@ export const buttonClassNames = ({
   uiCanpress,
   showAsList,
 }: Props) => {
-  const labelClasses = classNames(
+  const labelClasses = clsx(
     'leading-4',
     {
       'flex w-full flex-row items-center justify-start gap-1 px-1 py-1':
@@ -39,7 +39,7 @@ export const buttonClassNames = ({
     { '-ml-px': !firstElement && !showAsList },
     { 'rounded-r-md': lastElement }
   )
-  const inputClasses = classNames(
+  const inputClasses = clsx(
     'h-4 w-4',
     { 'mr-1': showAsList },
     {

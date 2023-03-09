@@ -1,6 +1,6 @@
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/outline'
-import classNames from 'classnames'
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import clsx from 'clsx'
 import React, { Fragment } from 'react'
 import { useStore } from 'zustand'
 import { useStorePreset } from '../../store'
@@ -55,7 +55,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
                     type="button"
                     onClick={() => handlePresetClick(key)}
                     disabled={selected}
-                    className={classNames(
+                    className={clsx(
                       {
                         'cursor-default bg-brand-light-yellow text-gray-500':
                           selected,
@@ -74,7 +74,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
                 <button
                   type="button"
                   disabled
-                  className={classNames(
+                  className={clsx(
                     {
                       'cursor-default bg-brand-light-yellow text-gray-500':
                         true,

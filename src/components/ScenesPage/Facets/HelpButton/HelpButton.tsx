@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { VideoCameraIcon } from '@heroicons/react/outline'
+import { VideoCameraIcon } from '@heroicons/react/24/outline'
 import { StaticImage } from 'gatsby-plugin-image'
 import React, { Fragment, useState } from 'react'
 import { buttonStyles, Link } from '~/components/Link'

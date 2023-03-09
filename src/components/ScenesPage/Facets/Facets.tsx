@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React, { useMemo } from 'react'
 import { useStore } from 'zustand'
 import { TwitterButtonIconCurrentUrl } from '~/components/Link'
@@ -60,7 +60,7 @@ export const Facets: React.FC<FacetsProps> = ({
 
   return (
     <nav
-      className={classNames(
+      className={clsx(
         className,
         'relative overflow-y-scroll overscroll-contain'
       )}
@@ -80,9 +80,7 @@ export const Facets: React.FC<FacetsProps> = ({
         />
       </div>
 
-      <div
-        className={classNames('z-0 mb-4 bg-gray-200 px-3 pt-5 pb-1 shadow-md')}
-      >
+      <div className={clsx('z-0 mb-4 bg-gray-200 px-3 pt-5 pb-1 shadow-md')}>
         <h1 className="sr-only">Ergebnisse filtern</h1>
 
         <PresetDropdown handlePresetClick={handlePresetClick} />
@@ -96,7 +94,7 @@ export const Facets: React.FC<FacetsProps> = ({
           const { buckets } = aggregation
 
           return (
-            <section key={aggregationKey} className={classNames('mb-5')}>
+            <section key={aggregationKey} className={clsx('mb-5')}>
               <FacetsHeadline aggregationKey={aggregationKey} />
 
               <FacetsButtons
@@ -121,7 +119,7 @@ export const Facets: React.FC<FacetsProps> = ({
           return (
             <section
               key={aggregationKey}
-              className={classNames(
+              className={clsx(
                 { 'mb-5': !groupEndIndicator },
                 { '-mt-3': showAsIcons },
                 {

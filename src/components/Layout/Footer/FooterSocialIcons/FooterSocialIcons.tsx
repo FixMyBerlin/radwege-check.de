@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { Link } from '~/components/Link'
 import { footerSocialIcons } from './footerSocialIcons.const'
@@ -8,7 +8,7 @@ type Props = { className?: string }
 export const FooterSocialIcons: React.FC<Props> = ({ className }) => {
   return (
     <div
-      className={classNames(
+      className={clsx(
         'flex space-x-6 lg:flex-col lg:space-x-0 lg:space-y-4',
         className
       )}

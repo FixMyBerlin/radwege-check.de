@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { ScenePrimaryProps, SceneSecondaryProps } from '../../../types'
 import { barColor, barTitle } from '../utils'
@@ -67,16 +67,15 @@ export const Table: React.FC<Props> = ({
           return (
             <tr
               key={key}
-              className={classNames(
+              className={clsx(
                 values.divideTop ? 'border-dashed' : 'border-dotted',
                 'border-t border-stone-200 hover:bg-stone-50'
               )}
             >
               <th
-                className={classNames(
-                  'text-left font-semi font-semibold leading-3',
-                  { 'pt-2': values.divideTop }
-                )}
+                className={clsx('text-left font-semi font-semibold leading-3', {
+                  'pt-2': values.divideTop,
+                })}
               >
                 {barColor[key] && (
                   <span
@@ -97,7 +96,7 @@ export const Table: React.FC<Props> = ({
                 />
               </th>
               <td
-                className={classNames(
+                className={clsx(
                   'w-1/5 pr-2 text-right',
                   {
                     'pt-2': values.divideTop,
@@ -109,7 +108,7 @@ export const Table: React.FC<Props> = ({
               </td>
               {showPedestrianColumn ? (
                 <td
-                  className={classNames(
+                  className={clsx(
                     'w-1/5 pr-2 text-right',
                     {
                       'pt-2': values.divideTop,
@@ -122,7 +121,7 @@ export const Table: React.FC<Props> = ({
               ) : null}
               {showCarColumn ? (
                 <td
-                  className={classNames(
+                  className={clsx(
                     'w-1/5 pr-2 text-right',
                     {
                       'pt-2': values.divideTop,

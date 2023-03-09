@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { buttonStyles, Link } from '../Link'
 
 type Props = {
@@ -26,7 +26,7 @@ export const Modal: React.FC<Props> = ({
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
-        className={classNames(className, 'relaftive z-50')}
+        className={clsx(className, 'relaftive z-50')}
         onClose={setOpen}
       >
         <Transition.Child
@@ -73,7 +73,7 @@ export const Modal: React.FC<Props> = ({
                   <div className="mt-5 sm:mt-6">
                     <button
                       type="button"
-                      className={classNames(
+                      className={clsx(
                         'inline-flex w-full justify-center',
                         buttonStyles
                       )}

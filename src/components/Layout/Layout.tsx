@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { PageProps } from 'gatsby'
 import React from 'react'
 import { Footer } from '.'
@@ -21,7 +21,7 @@ export const Layout: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <main className={classNames(className, 'z-0 flex-grow')}>{children}</main>
+      <main className={clsx(className, 'z-0 flex-grow')}>{children}</main>
       <Footer />
       <EnglishLanguageButton visible={showEnglishLanguageTeaser} />
       <EnglishLanguageModal

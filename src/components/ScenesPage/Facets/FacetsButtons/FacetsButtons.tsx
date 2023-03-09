@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { useStore } from 'zustand'
 import { useStoreExperimentData } from '../../store'
@@ -43,7 +43,7 @@ export const FacetsButtons: React.FC<Props> = ({
 
   const { showAsIcons, choiceMode, showAsList } =
     aggregationConfig[aggregationKey]
-  const wrapperClass = classNames(
+  const wrapperClass = clsx(
     'w-full font-condensed',
     {
       'flex flex-col border border-transparent hover:border-gray-300 overflow-hidden p-1.5':

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { defineMessages, useIntl } from 'react-intl'
 
@@ -72,7 +72,7 @@ export const BarElement = ({ title, value, index, isWeightGraph = false }) => {
   // `overflow-hidden` fixes Tooltip on mobile. It cannot be accessed on touch anyway, so no one will see the cut of text.
   return (
     <div
-      className={classNames(
+      className={clsx(
         'group relative flex cursor-help items-center justify-center',
         { 'overflow-hidden': !isWeightGraph }
       )}

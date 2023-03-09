@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import {
   ScenePrimaryProps,
@@ -50,7 +50,7 @@ export const BarChartAndHeadline: React.FC<Props> = ({
     <div
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
-      className={classNames(
+      className={clsx(
         'flex h-full flex-col items-center justify-center',
         mainBarChart ? 'flex-1' : 'w-14',
         { 'cursor-pointer': !!handleMouseOver }
@@ -59,7 +59,7 @@ export const BarChartAndHeadline: React.FC<Props> = ({
       <div className="flex h-8 flex-none items-center justify-center">
         {icon}
         <strong
-          className={classNames(
+          className={clsx(
             'whitespace-nowrap font-semi tracking-tight',
             mainBarChart ? 'text-2xl font-semibold' : 'text-lg font-medium'
           )}

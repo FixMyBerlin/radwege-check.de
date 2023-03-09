@@ -1,5 +1,5 @@
-import { InformationCircleIcon } from '@heroicons/react/solid'
-import classNames from 'classnames'
+import { InformationCircleIcon } from '@heroicons/react/24/solid'
+import clsx from 'clsx'
 import React from 'react'
 import { TranslationMissing } from '~/components/TextHelper'
 import { formatMeter, isDev } from '~/components/utils'
@@ -44,7 +44,7 @@ export const ResultCell: React.FC<Props> = ({
   return (
     <section
       title={isDev ? `${keyName}: ${scene[keyName]}` : ''}
-      className={classNames(
+      className={clsx(
         'break-before-avoid border-b py-2 print:py-1 lg:py-3.5',
         { 'hover:bg-stone-50': showHover },
         groupEndIndicator

@@ -1,4 +1,4 @@
-import { InformationCircleIcon } from '@heroicons/react/outline'
+import { InformationCircleIcon } from '@heroicons/react/24/outline'
 import React, { useEffect } from 'react'
 import { useStore } from 'zustand'
 import Logo from '~/components/assets/radwegecheck-logo.svg'

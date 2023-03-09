@@ -1,10 +1,10 @@
 import { Menu, Transition } from '@headlessui/react'
 import {
   ChevronDownIcon,
-  SortAscendingIcon,
-  SortDescendingIcon,
-} from '@heroicons/react/outline'
-import classNames from 'classnames'
+  BarsArrowUpIcon,
+  BarsArrowDownIcon,
+} from '@heroicons/react/24/outline'
+import clsx from 'clsx'
 import React, { Fragment } from 'react'
 
 export type SearchOrderDropdownProps = {
@@ -19,11 +19,11 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
   const searchOrderValues = {
     desc: {
       name: 'Beste Ergebnisse zuerst',
-      icon: <SortDescendingIcon className="h-4 w-4" />,
+      icon: <BarsArrowUpIcon className="h-4 w-4" />,
     },
     asc: {
       name: 'Schlechteste Ergebnisse zuerst',
-      icon: <SortAscendingIcon className="h-4 w-4" />,
+      icon: <BarsArrowDownIcon className="h-4 w-4" />,
     },
   }
 
@@ -65,7 +65,7 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
                     type="button"
                     onClick={() => setSearchOrder(key)}
                     disabled={selected}
-                    className={classNames(
+                    className={clsx(
                       {
                         'cursor-default bg-brand-light-yellow text-gray-500':
                           selected,
