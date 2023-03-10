@@ -1,21 +1,27 @@
 import { useStore } from 'zustand'
 import { titlePrimaryScene, titleSecondaryScene } from '.'
-import { useStoreExperimentData } from '../../store'
+import { ExperimentTextKey, useStoreExperimentData } from '../../store'
 import { ScenePrimaryProps, SceneSecondaryProps } from '../../types'
 import { OptionalOptionProps } from './types'
 
 export const titleScene = (
   scene: ScenePrimaryProps | SceneSecondaryProps,
-  { includeId }: OptionalOptionProps = {
+  {
+    includeId,
+    experimentTextKey: _experimentTextKey,
+  }: OptionalOptionProps & {
+    experimentTextKey?: NonNullable<ExperimentTextKey>
+  } = {
     includeId: false,
   }
 ) => {
   const { experimentTextKey } = useStore(useStoreExperimentData)
+  const key = _experimentTextKey || experimentTextKey
 
   // Guard against the initial load
-  if (experimentTextKey === null) return undefined
+  if (key === null) return undefined
 
-  return experimentTextKey === 'primary'
+  return key === 'primary'
     ? titlePrimaryScene(scene as ScenePrimaryProps, { includeId })
     : titleSecondaryScene(scene as SceneSecondaryProps, { includeId })
 }
