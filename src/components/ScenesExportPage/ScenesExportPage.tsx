@@ -3,6 +3,7 @@ import { MetaTags } from '../Layout'
 import { Link, linkStyles } from '../Link'
 import { SceneImage } from '../ScenesPage'
 import { useAggregationConfig } from '../ScenesPage/hooks'
+import { useStoreExperimentData } from '../ScenesPage/store'
 import { cleanupCsvData } from '../ScenesPage/utils'
 import { titleScene } from '../ScenesPage/utils/titleScenes'
 
@@ -15,6 +16,10 @@ export const ScenesExportPage: React.FC<Props> = ({
   rawScenes,
   experimentTextKey,
 }) => {
+  const { experimentTextKey: storeExperimentTextKey, setExperimentTextKey } =
+    useStoreExperimentData()
+  if (!storeExperimentTextKey) setExperimentTextKey(experimentTextKey)
+
   const scenes = useMemo(() => {
     // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
     const flattened = rawScenes.map((list) => list.node)
@@ -44,9 +49,7 @@ export const ScenesExportPage: React.FC<Props> = ({
       <MetaTags
         article
         noindex
-        title={`Export-Ansicht aller ${Number(
-          totalResults
-        ).toLocaleString()} Szenen auf ${categoryTranslation}.`}
+        title={`Export-Ansicht aller ${totalResults} Szenen auf ${categoryTranslation}.`}
         description="Auf Basis eine Umfrage mit über 22.000 Teilnehmenden."
         imagePath="/social-sharing/results.jpg"
       />
@@ -114,7 +117,9 @@ export const ScenesExportPage: React.FC<Props> = ({
                   {scenes.map((scene) => (
                     <tr key={scene.sceneId}>
                       <th className="min-w-[20rem] py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                        <Link to={scene.path}>{titleScene(scene)}</Link>
+                        <Link to={scene.path}>
+                          {titleScene(scene, { experimentTextKey })}
+                        </Link>
                       </th>
 
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
