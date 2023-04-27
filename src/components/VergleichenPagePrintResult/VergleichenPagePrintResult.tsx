@@ -27,7 +27,7 @@ export const VergleichenPagePrintResult: React.FC<Props> = ({
   return (
     <section className="mb-16 break-inside-avoid-page">
       <div className="relative flex h-32 gap-5">
-        <div className="absolute top-1 left-1 rounded bg-white/50 px-1 text-xxs backdrop-blur">
+        <div className="absolute left-1 top-1 rounded bg-white/50 px-1 text-xxs backdrop-blur">
           ID #{scene.sceneId}
         </div>
         <SceneImage

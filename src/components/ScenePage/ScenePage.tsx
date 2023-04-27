@@ -62,7 +62,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
 
       <div className="mb-40 items-center bg-white p-3 print:mb-0 print:p-0 lg:flex lg:flex-col lg:px-0 lg:py-6">
         <div className="mb-5 flex w-full max-w-7xl items-start gap-4 print:mt-3 lg:grid lg:grid-cols-4 lg:gap-6">
-          <div className="mt-1 lg:mt-0 lg:ml-5">
+          <div className="mt-1 lg:ml-5 lg:mt-0">
             <Link
               to="/"
               classNameOverwrite="block h-10 w-10 overflow-hidden lg:overflow-visible lg:w-full print:hidden"
@@ -105,7 +105,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
 
         <div className="flex max-w-7xl flex-col gap-6 lg:grid lg:grid-cols-4">
           <div className="order-3 break-before-all lg:order-none">
-            <p className="px-6 pt-0 pb-3 print:hidden">
+            <p className="px-6 pb-3 pt-0 print:hidden">
               <strong className="text-xxs font-semibold">Straßenklasse</strong>
               <br />
               {categoryTranslation}

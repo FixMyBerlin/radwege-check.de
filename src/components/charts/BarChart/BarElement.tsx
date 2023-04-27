@@ -53,7 +53,7 @@ const Tooltip = ({ id, children }) => {
     <div
       id={id}
       role="tooltip"
-      className="absolute left-0 -bottom-8 whitespace-nowrap font-condensed text-lg text-gray-500 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+      className="absolute -bottom-8 left-0 whitespace-nowrap font-condensed text-lg text-gray-500 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
     >
       {children}
     </div>

@@ -39,7 +39,7 @@ export const EnglishLanguageButton: React.FC<Props> = ({
         positionBottom ? 'bottom-5' : 'top-5'
       )}
     >
-      <GoogleTranslateLogo className="mt-0.5 mr-1 h-4 w-4 object-contain" />{' '}
+      <GoogleTranslateLogo className="mr-1 mt-0.5 h-4 w-4 object-contain" />{' '}
       Translate page
     </Link>
   )

@@ -30,13 +30,13 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 pr-[0.6rem] pl-[0.6rem] text-sm font-normal text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:ring-offset-2 focus:ring-offset-gray-100 lg:pr-0">
+        <Menu.Button className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 pl-[0.6rem] pr-[0.6rem] text-sm font-normal text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:ring-offset-2 focus:ring-offset-gray-100 lg:pr-0">
           <span className="hidden lg:inline">Sortierung</span>
           <span className="lg:hidden">
             {searchOrderValues[searchOrder || 'desc'].icon}
           </span>
           <ChevronDownIcon
-            className="mr-1 ml-0.5 hidden w-[18px] lg:block"
+            className="ml-0.5 mr-1 hidden w-[18px] lg:block"
             aria-hidden="true"
           />
         </Menu.Button>

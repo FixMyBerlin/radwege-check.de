@@ -44,18 +44,18 @@ export const Table: React.FC<Props> = ({
       <thead>
         <tr>
           <th> </th>
-          <th className="border-b border-stone-200 pr-2 pb-0.5 text-center align-bottom">
+          <th className="border-b border-stone-200 pb-0.5 pr-2 text-center align-bottom">
             <span className="sr-only">Perspektive Fahrrad</span>
             <BikeIcon className="inline h-4 w-auto" />
           </th>
           {showPedestrianColumn && (
-            <th className="border-b border-stone-200 pr-2 pb-0.5 text-center align-bottom">
+            <th className="border-b border-stone-200 pb-0.5 pr-2 text-center align-bottom">
               <span className="sr-only">Perspektive Fußgänger</span>
               <PedestrianIcon className="inline h-4 w-auto" />
             </th>
           )}
           {showCarColumn && (
-            <th className="border-b border-stone-200 pr-2 pb-0.5 text-center align-bottom">
+            <th className="border-b border-stone-200 pb-0.5 pr-2 text-center align-bottom">
               <span className="sr-only">Perspektive Auto</span>
               <CarIcon className="inline h-auto w-6" />
             </th>
