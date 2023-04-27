@@ -65,7 +65,7 @@ export const Facets: React.FC<FacetsProps> = ({
         'relative overflow-y-scroll overscroll-contain'
       )}
     >
-      <div className="relative flex h-14 items-center justify-between bg-brand-light-yellow py-1 px-3 shadow-md">
+      <div className="relative flex h-14 items-center justify-between bg-brand-light-yellow px-3 py-1 shadow-md">
         <Logo visible={showLogo} />
         <ExperimentSwitcher />
         <TwitterButtonIconCurrentUrl
@@ -80,7 +80,7 @@ export const Facets: React.FC<FacetsProps> = ({
         />
       </div>
 
-      <div className={clsx('z-0 mb-4 bg-gray-200 px-3 pt-5 pb-1 shadow-md')}>
+      <div className={clsx('z-0 mb-4 bg-gray-200 px-3 pb-1 pt-5 shadow-md')}>
         <h1 className="sr-only">Ergebnisse filtern</h1>
 
         <PresetDropdown handlePresetClick={handlePresetClick} />

@@ -132,7 +132,7 @@ const MyDataIndex: React.FC<Props> = ({
                 Hauptstraßen
               </Link>
             </h2>
-            <div className="flex pr-3 pl-1 print:hidden print:grid-cols-3">
+            <div className="flex pl-1 pr-3 print:hidden print:grid-cols-3">
               {bookmarkScenesPrimary.map((scene, index) => (
                 <ResultColumn
                   key={scene.sceneId}
@@ -165,7 +165,7 @@ const MyDataIndex: React.FC<Props> = ({
                 Nebenstraßen
               </Link>
             </h2>
-            <div className="flex pr-3 pl-1 print:hidden print:grid-cols-3">
+            <div className="flex pl-1 pr-3 print:hidden print:grid-cols-3">
               {bookmarkScenesSecondary.map((scene, index) => (
                 <ResultColumn
                   key={scene.sceneId}

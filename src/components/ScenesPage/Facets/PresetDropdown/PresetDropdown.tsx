@@ -30,7 +30,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
           {!isPreset && !isCustom && 'Filter Voreinstellung auswählen'}
         </div>
         <ChevronDownIcon
-          className="mr-1 ml-2 w-[18px] flex-none"
+          className="ml-2 mr-1 w-[18px] flex-none"
           aria-hidden="true"
         />
       </Menu.Button>

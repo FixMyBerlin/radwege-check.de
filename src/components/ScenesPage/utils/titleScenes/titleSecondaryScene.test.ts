@@ -1,11 +1,11 @@
 import { SceneSecondaryProps } from '../../types'
-import { titleSecondaryScene } from './titleSecondaryScene'
+import { TitleSecondaryScene, titleSecondaryScene } from './titleSecondaryScene'
 import { baseSceneSecondary } from './utils'
 
 describe('titleSecondaryScene()', () => {
   describe('no_cars, no_parking', () => {
     it('works', () => {
-      const scene: Partial<SceneSecondaryProps> = {
+      const scene: TitleSecondaryScene = {
         ...baseSceneSecondary,
         bicycleStreetType: 'none',
         motorVehicleTrafficVolumen: 'no_cars',

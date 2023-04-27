@@ -40,7 +40,7 @@ export const SectionIntroduction: React.FC = () => {
             sceneId="MS_C_573"
             alt="Fahrradperspektive auf breiten Radweg mit grüner Oberfläche und Trennung zur Fahrbahn durch Blumenkübel"
             lazy
-            className="mt-0 mb-1"
+            className="mb-1 mt-0"
           />
         </Image>
         <Image
@@ -51,7 +51,7 @@ export const SectionIntroduction: React.FC = () => {
             sceneId="MS_A_570"
             alt="Autoperspektive auf vorigen Radweg"
             lazy
-            className="mt-0 mb-1"
+            className="mb-1 mt-0"
           />
         </Image>
       </TwoImagesWrapper>

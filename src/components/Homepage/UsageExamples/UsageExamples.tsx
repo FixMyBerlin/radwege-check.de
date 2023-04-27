@@ -9,7 +9,7 @@ import PointOfViewIcon from './assets/point-of-view-icon.svg'
 export const UsageExamples: React.FC = () => {
   return (
     <section className="mx-auto mb-10 lg:max-w-4xl">
-      <h2 className="mt-10 mb-10 text-center text-3xl font-semibold lg:mt-20">
+      <h2 className="mb-10 mt-10 text-center text-3xl font-semibold lg:mt-20">
         Wie kann ich den Radwege-Check einsetzen?
       </h2>
 

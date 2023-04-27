@@ -37,7 +37,7 @@ export const EnglishLanguageModal: React.FC<Props> = ({ visible, domain }) => {
           title="Open page current in Google Translate"
           className="flex flex-row items-center gap-0.5"
         >
-          <GoogleTranslateLogo className="mt-0.5 mr-1 h-4 w-4 object-contain" />{' '}
+          <GoogleTranslateLogo className="mr-1 mt-0.5 h-4 w-4 object-contain" />{' '}
           Translate page
         </Link>{' '}
         <Link
