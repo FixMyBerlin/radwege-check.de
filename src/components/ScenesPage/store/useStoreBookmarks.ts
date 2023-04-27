@@ -1,4 +1,4 @@
-import create from 'zustand'
+import { create } from 'zustand'
 import { trackContentInteraction } from '~/components/utils'
 
 type SceneIds = string
