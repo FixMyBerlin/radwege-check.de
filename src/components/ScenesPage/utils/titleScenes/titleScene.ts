@@ -21,7 +21,7 @@ export const titleScene = (
   // Guard against the initial load
   if (key === null) return undefined
 
-  return key === 'primary'
-    ? titlePrimaryScene(scene as ScenePrimaryProps, { includeId })
-    : titleSecondaryScene(scene as SceneSecondaryProps, { includeId })
+  return 'bicycleLaneSurface' in scene
+    ? titlePrimaryScene(scene, { includeId })
+    : titleSecondaryScene(scene, { includeId })
 }
