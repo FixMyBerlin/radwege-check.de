@@ -18,7 +18,7 @@ export const titlePrimaryScene = (
     includeId: false,
   }
 ) => {
-  const optionalSceneId = includeId && sceneId(scene)
+  const optionalSceneId = includeId ? sceneId(scene) : ''
   const debug = !process.env.DISABlE_DEBUG_FOR_JEST && isDev
 
   if (['shared_bus_lane', 'none'].includes(scene.bicycleLaneWidth)) {

@@ -23,7 +23,7 @@ export const titleSecondaryScene = (
     includeId: false,
   }
 ) => {
-  const optionalSceneId = includeId && sceneId(scene)
+  const optionalSceneId = includeId ? sceneId(scene) : ''
   const debug = !process.env.DISABlE_DEBUG_FOR_JEST && isDev
 
   if (
