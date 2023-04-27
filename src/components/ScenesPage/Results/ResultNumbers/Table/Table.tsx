@@ -32,9 +32,9 @@ export const Table: React.FC<Props> = ({
   if (!visible) return null
 
   const showPedestrianColumn =
-    _showPedestrianColumn === true ? !!table.vote0Unsafe.pedestrian : false
+    _showPedestrianColumn !== false ? !!table.vote0Unsafe.pedestrian : false
   const showCarColumn =
-    _showCarColumn === true ? !!table.vote0Unsafe.car : false
+    _showCarColumn !== false ? !!table.vote0Unsafe.car : false
 
   return (
     <table className="my-2 w-full border-b border-dotted border-stone-200 text-xs">
