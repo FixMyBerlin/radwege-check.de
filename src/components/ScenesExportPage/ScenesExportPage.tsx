@@ -39,7 +39,7 @@ export const ScenesExportPage: React.FC<Props> = ({
       ? '/nebenstrassen/export'
       : '/hauptstrassen/export'
 
-  const fields = Object.keys(scenes[0])
+  const fields = Object.keys(scenes[0]).sort((a, b) => a.localeCompare(b))
   const aggregationConfig = useAggregationConfig(experimentTextKey)
 
   const [translateResults, setTranslateResults] = useState(false)
