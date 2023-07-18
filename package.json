@@ -22,7 +22,8 @@
     "test": "DISABlE_DEBUG_FOR_JEST=true jest",
     "test:watch": "DISABlE_DEBUG_FOR_JEST=true jest --watch",
     "updatePackages:minor": "npx taze minor --write",
-    "updatePackages:major": "npx taze major --exclude query-string,use-query-params --write && echo \"Update major packages except for query-string and use-query-params, which need to stay\""
+    "updatePackages:major": "npx taze major --exclude query-string,use-query-params --write && echo \"Update major packages except for query-string and use-query-params, which need to stay\"",
+    "release": "gh pr create --base main --head develop --title \"Release $(date '+%Y-%m-%d')\" --body \"\""
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
