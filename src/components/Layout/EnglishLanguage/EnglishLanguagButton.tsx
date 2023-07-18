@@ -36,7 +36,7 @@ export const EnglishLanguageButton: React.FC<Props> = ({
       title="Open page current in Google Translate"
       className={clsx(
         'absolute right-5 flex flex-row items-center gap-0.5 shadow-md print:hidden',
-        positionBottom ? 'bottom-5' : 'top-5'
+        positionBottom ? 'bottom-5' : 'top-5',
       )}
     >
       <GoogleTranslateLogo className="mr-1 mt-0.5 h-4 w-4 object-contain" />{' '}

@@ -71,7 +71,7 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
                           selected,
                       },
                       { 'hover:bg-stone-100': !selected },
-                      'block w-full px-4 py-2 text-left text-sm'
+                      'block w-full px-4 py-2 text-left text-sm',
                     )}
                   >
                     {values.name}

@@ -13,7 +13,7 @@ describe('titleSecondaryScene()', () => {
       }
       const title = 'Radverkehrsführung in autofreier Nebenstraße [FM-C-3000]'
       expect(titleSecondaryScene(scene, { includeId: true })).toStrictEqual(
-        title
+        title,
       )
     })
   })
@@ -29,7 +29,7 @@ describe('titleSecondaryScene()', () => {
       const title =
         'Radverkehrsführung in Nebenstraße mit Parken rechts [FM-C-3000]'
       expect(titleSecondaryScene(scene, { includeId: true })).toStrictEqual(
-        title
+        title,
       )
     })
   })
@@ -46,7 +46,7 @@ describe('titleSecondaryScene()', () => {
       const title =
         'Radverkehrsführung in Nebenstraße mit Mischverkehr in beiden Richtungen [FM-C-3000]'
       expect(titleSecondaryScene(scene, { includeId: true })).toStrictEqual(
-        title
+        title,
       )
     })
 
@@ -61,7 +61,7 @@ describe('titleSecondaryScene()', () => {
       const title =
         'Radverkehrsführung in Nebenstraße mit Mischverkehr auf Einbahnstraße in Fahrtrichtung [FM-C-3000]'
       expect(titleSecondaryScene(scene, { includeId: true })).toStrictEqual(
-        title
+        title,
       )
     })
   })
@@ -78,7 +78,7 @@ describe('titleSecondaryScene()', () => {
       const title =
         'Radverkehrsführung auf Fahrradstraße mit Mischverkehr in beiden Richtungen [FM-C-3000]'
       expect(titleSecondaryScene(scene, { includeId: true })).toStrictEqual(
-        title
+        title,
       )
     })
   })
@@ -95,7 +95,7 @@ describe('titleSecondaryScene()', () => {
       const title =
         'Radverkehrsführung auf Fahrradstraße (Sondermarkierung) mit Mischverkehr auf gegenläufiger Einbahnstraße [FM-C-3000]'
       expect(titleSecondaryScene(scene, { includeId: true })).toStrictEqual(
-        title
+        title,
       )
     })
 
@@ -110,7 +110,7 @@ describe('titleSecondaryScene()', () => {
       const title =
         'Radverkehrsführung auf Fahrradstraße (Sondermarkierung) mit Mischverkehr auf Einbahnstraße in Fahrtrichtung [FM-C-3000]'
       expect(titleSecondaryScene(scene, { includeId: true })).toStrictEqual(
-        title
+        title,
       )
     })
   })
@@ -127,7 +127,7 @@ describe('titleSecondaryScene()', () => {
       const title =
         'Radverkehrsführung auf Fahrradstraße mit grüner Oberfläche mit Mischverkehr in beiden Richtungen [FM-C-3000]'
       expect(titleSecondaryScene(scene, { includeId: true })).toStrictEqual(
-        title
+        title,
       )
     })
   })

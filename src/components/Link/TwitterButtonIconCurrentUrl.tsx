@@ -21,7 +21,7 @@ export const TwitterButtonIconCurrentUrl: React.FC<Props> = ({
       hashtags="RadwegeCheck"
       classNameOverwrite={clsx(
         className,
-        'flex rounded-full items-center justify-center hover:bg-gray-50 w-8 h-8 border border-gray-300 '
+        'flex rounded-full items-center justify-center hover:bg-gray-50 w-8 h-8 border border-gray-300 ',
       )}
       onClick={onClick}
     />

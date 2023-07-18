@@ -39,30 +39,30 @@ export const Facets: React.FC<FacetsProps> = ({
 }) => {
   const aggregations = results?.data?.aggregations || {}
   const { aggregationConfig, experimentTextKey } = useStore(
-    useStoreExperimentData
+    useStoreExperimentData,
   )
 
   const mainAggregations = useMemo(
     () =>
       Object.entries(aggregations).filter(
-        ([key, _v]) => aggregationConfig[key]?.primaryGroup === true
+        ([key, _v]) => aggregationConfig[key]?.primaryGroup === true,
       ),
-    [aggregations, aggregationConfig]
+    [aggregations, aggregationConfig],
   )
 
   const furtherAggregations = useMemo(
     () =>
       Object.entries(aggregations).filter(
-        ([key, _v]) => !aggregationConfig[key]?.primaryGroup
+        ([key, _v]) => !aggregationConfig[key]?.primaryGroup,
       ),
-    [aggregations, aggregationConfig]
+    [aggregations, aggregationConfig],
   )
 
   return (
     <nav
       className={clsx(
         className,
-        'relative overflow-y-scroll overscroll-contain'
+        'relative overflow-y-scroll overscroll-contain',
       )}
     >
       <div className="relative flex h-14 items-center justify-between bg-brand-light-yellow px-3 py-1 shadow-md">
@@ -125,7 +125,7 @@ export const Facets: React.FC<FacetsProps> = ({
                 {
                   'mb-4 border-b border-dashed border-gray-300 pb-5':
                     groupEndIndicator,
-                }
+                },
               )}
             >
               <FacetsHeadline

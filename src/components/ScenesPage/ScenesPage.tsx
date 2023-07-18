@@ -43,7 +43,7 @@ export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
   }, [rawScenes])
 
   const { itemJsConfig, aggregationConfig, experimentTextKey } = useStore(
-    useStoreExperimentData
+    useStoreExperimentData,
   )
   const { setShowSpinner } = useStore(useStoreSpinner)
   const { setResetFilterEnabled } = useStore(useStoreResetFilterEnabled)
@@ -156,7 +156,7 @@ export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
         const prevState = decodeFilterWithAggregation(prevStateString)
         const allBucketKeys = buckets.map((bucket) => bucket.key)
         const allWithouted = allBucketKeys.filter(
-          (k) => k !== selectedBucket.key
+          (k) => k !== selectedBucket.key,
         )
         const filter = allWithouted
 

@@ -26,7 +26,7 @@ export const useStoreBookmarks = create<StoreBookmarksData>((set, get) => ({
         id: sceneId,
         representation: 'result page',
         url: `#${sceneId}`,
-      })
+      }),
     )
   },
   addBookmark: (sceneId) => {

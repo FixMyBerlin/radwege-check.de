@@ -23,7 +23,7 @@ export const SpinnerOrText: React.FC<Props> = ({ text }) => {
           'absolute transition-opacity duration-300',
           opacitySpinner,
           'animate-[spin_0.7s_linear_infinite]',
-          'h-5 w-5 text-stone-800'
+          'h-5 w-5 text-stone-800',
         )}
       />
       <span className={clsx('transition-opacity duration-300', opacityText)}>

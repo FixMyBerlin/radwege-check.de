@@ -37,7 +37,7 @@ export const buttonClassNames = ({
     { 'text-slate-500': !uiCanpress && uiSelected },
     { 'rounded-l-md': firstElement },
     { '-ml-px': !firstElement && !showAsList },
-    { 'rounded-r-md': lastElement }
+    { 'rounded-r-md': lastElement },
   )
   const inputClasses = clsx(
     'h-4 w-4',
@@ -51,7 +51,7 @@ export const buttonClassNames = ({
     {
       'border-gray-300 bg-white/30 text-brand-yellow/30':
         !uiCanpress && !uiSelected,
-    }
+    },
   )
   return { labelClasses, inputClasses }
 }

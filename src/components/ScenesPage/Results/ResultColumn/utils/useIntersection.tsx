@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react'
 // @param rootMargin - Margin to add to the rootMargin of the IntersectionObserver. Eg '-200px' at least 200px of the element has to be visible.
 export const useIntersection = (
   element: React.MutableRefObject<undefined | HTMLElement>,
-  rootMargin: `${number}px`
+  rootMargin: `${number}px`,
 ) => {
   const [isVisible, setState] = useState(false)
 
@@ -15,7 +15,7 @@ export const useIntersection = (
       ([entry]) => {
         setState(entry.isIntersecting)
       },
-      { rootMargin }
+      { rootMargin },
     )
 
     if (element.current) {

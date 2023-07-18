@@ -23,12 +23,12 @@ const linkSharedStyles = 'underline underline-offset-2'
 
 export const linkStyles = clsx(
   linkSharedStyles,
-  'decoration-2 decoration-brand-yellow hover:text-yellow-800 hover:decoration-yellow-500'
+  'decoration-2 decoration-brand-yellow hover:text-yellow-800 hover:decoration-yellow-500',
 )
 
 const linkStylesInverted = clsx(
   linkSharedStyles,
-  'decoration-1 text-stone-50 decoration-stone-400 hover:text-white hover:decoration-white'
+  'decoration-1 text-stone-50 decoration-stone-400 hover:text-white hover:decoration-white',
 )
 
 export const buttonStyles =
@@ -50,7 +50,7 @@ export const Link: React.FC<Props> = React.forwardRef(
       children,
       ...props
     },
-    _ref
+    _ref,
   ) => {
     // eslint-disable-next-line no-nested-ternary
     const styles = button
@@ -106,5 +106,5 @@ export const Link: React.FC<Props> = React.forwardRef(
         {children}
       </GatsbyLink>
     )
-  }
+  },
 )

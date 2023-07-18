@@ -8,6 +8,6 @@ export const CommaArrayParam = {
     encodeDelimitedArray(array, ','),
 
   decode: (
-    arrayStr: string | string[] | null | undefined
+    arrayStr: string | string[] | null | undefined,
   ): string[] | undefined => decodeDelimitedArray(arrayStr, ','),
 }

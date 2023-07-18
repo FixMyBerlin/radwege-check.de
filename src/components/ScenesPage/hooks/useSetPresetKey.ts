@@ -14,7 +14,7 @@ export const useSetPresetKey = (searchFilters: string) => {
 
     const presetKeyMatchingUrlFilters = Object.entries(presets)
       .map(([key, values]) =>
-        values.searchFilterString === searchFilters ? key : undefined
+        values.searchFilterString === searchFilters ? key : undefined,
       )
       .filter((v) => v !== undefined)
 

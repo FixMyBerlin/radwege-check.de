@@ -26,7 +26,7 @@ type Props = {
 
 export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
   const { experimentTextKey, aggregationConfig } = useStore(
-    useStoreExperimentData
+    useStoreExperimentData,
   )
 
   const categoryTranslation =
@@ -54,7 +54,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
           {
             unit: '%',
             precision: 0,
-          }
+          },
         )} als „(eher) sicher“ bewertet.`}
         imageUrl={sceneImageUrl(scene.sceneId)}
         imageSize={{ width: 1240, height: 930 }}
@@ -88,7 +88,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
               {
                 unit: '%',
                 precision: 0,
-              }
+              },
             )}`}
             hashtags="RadwegeCheck"
             buttonText="Teilen"

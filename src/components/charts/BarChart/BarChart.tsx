@@ -36,7 +36,7 @@ export const BarChart = ({
     <div
       className={clsx(
         'flex flex-col gap-2 sm:flex-row sm:items-center',
-        !isWeightGraph && 'sm:-mr-2'
+        !isWeightGraph && 'sm:-mr-2',
       )}
     >
       <div
@@ -45,7 +45,7 @@ export const BarChart = ({
           isWeightGraph
             ? 'mt-3 flex sm:mt-auto sm:min-h-[60px] sm:w-52 sm:items-center lg:w-64'
             : 'my-3 sm:my-8 sm:w-20 lg:w-40',
-          'silbentrennung leading-5 sm:mr-1'
+          'silbentrennung leading-5 sm:mr-1',
         )}
       >
         <strong>{title}</strong>

@@ -16,7 +16,7 @@ export const buttonIconClassNames = ({ uiSelected, uiCanpress }: Props) => {
     },
     {
       'border-b-2 border-b-brand-yellow': uiSelected,
-    }
+    },
   )
   const iconClasses = clsx(
     {
@@ -27,7 +27,7 @@ export const buttonIconClassNames = ({ uiSelected, uiCanpress }: Props) => {
     },
     {
       'text-gray-200': !uiCanpress && !uiSelected,
-    }
+    },
   )
   return { buttonClasses, iconClasses }
 }
