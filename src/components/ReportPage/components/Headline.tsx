@@ -29,7 +29,7 @@ export const Headline: React.FC<Props> = ({ as, children, className, id }) => {
         as === 'h1' && h1WrapperClasses,
         as === 'h2' && h2WrapperClasses,
         as === 'h3' && h3WrapperClasses,
-        'w-full sm:w-auto'
+        'w-full sm:w-auto',
       )}
       id={id}
     >
@@ -39,7 +39,7 @@ export const Headline: React.FC<Props> = ({ as, children, className, id }) => {
           className,
           as === 'h1' && h1Classes,
           as === 'h2' && h2Classes,
-          as === 'h3' && h3Classes
+          as === 'h3' && h3Classes,
         )}
       >
         {children}

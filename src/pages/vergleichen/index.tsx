@@ -67,11 +67,11 @@ const MyDataIndex: React.FC<Props> = ({
   const [bookmarksArray] = useQueryParam('sceneIds', CommaArrayParam)
 
   // Filter scenes by URL param
-  const bookmarkScenesPrimary = scenesPrimary.filter((s) =>
-    bookmarksArray?.includes(s.sceneId)
+  const bookmarkScenesPrimary = scenesPrimary.filter(
+    (s) => bookmarksArray?.includes(s.sceneId),
   )
-  const bookmarkScenesSecondary = scenesSecondary.filter((s) =>
-    bookmarksArray?.includes(s.sceneId)
+  const bookmarkScenesSecondary = scenesSecondary.filter(
+    (s) => bookmarksArray?.includes(s.sceneId),
   )
 
   const showBackButton = location?.state?.showBack === true
@@ -83,7 +83,7 @@ const MyDataIndex: React.FC<Props> = ({
         id: scene.sceneId,
         representation: 'result column',
         url: fullUrl(scene.path),
-      })
+      }),
     )
   }, [bookmarkScenesPrimary, bookmarkScenesSecondary])
 
@@ -114,7 +114,7 @@ const MyDataIndex: React.FC<Props> = ({
             onClick={() => navigate(-1)}
             className={clsx(
               buttonStyles,
-              'mr-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full !p-0 align-text-bottom'
+              'mr-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full !p-0 align-text-bottom',
             )}
             title="Zurück zur Suchergebnisseite"
           >

@@ -8,7 +8,7 @@ import WalkIcon from './assets/feelsafe-walk-icon.svg'
 
 const scale = scaleLinear(
   [10, 50, 75, 100],
-  ['#c01d1d', '#f08141', '#abc759', '#45b834']
+  ['#c01d1d', '#f08141', '#abc759', '#45b834'],
 )
 
 export const getColorByValue = (index) => {
@@ -65,14 +65,14 @@ export const IntlWrappedFeelSafe: React.FC<FeelSafeProps> = ({
     {
       pct: value.toLocaleString(intl.locale),
       mode: intl.formatMessage(modes[icon]),
-    }
+    },
   )
 
   return (
     <div
       className={clsx(
         'relative flex items-center justify-center rounded-full',
-        big ? 'w-[120px]' : 'w-[80px]'
+        big ? 'w-[120px]' : 'w-[80px]',
       )}
     >
       <svg className="h-full w-full" viewBox="0 0 42 42">

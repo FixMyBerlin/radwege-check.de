@@ -10,7 +10,7 @@ export const ArticleLogo: React.FC<Props> = ({ printHideHeader }) => {
     <section
       className={clsx(
         'flex h-48 w-full flex-col items-center bg-gradient-to-b from-brand-light-yellow via-brand-light-yellow to-white text-gray-700 print:from-white print:via-white',
-        { 'print:hidden': printHideHeader }
+        { 'print:hidden': printHideHeader },
       )}
     >
       <Link to="/" classNameOverwrite="" title="Zur Startseite…">

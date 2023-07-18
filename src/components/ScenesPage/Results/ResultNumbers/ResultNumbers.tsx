@@ -30,7 +30,7 @@ export const ResultNumbers: React.FC<Props> = ({
     <section
       className={clsx(
         wrapperClass,
-        'flex flex-col print:flex-row print:justify-between print:gap-3'
+        'flex flex-col print:flex-row print:justify-between print:gap-3',
       )}
     >
       <div>
@@ -47,7 +47,7 @@ export const ResultNumbers: React.FC<Props> = ({
       <div
         className={clsx(
           chartClass,
-          'relative flex h-full flex-row gap-1 text-xs print:h-auto'
+          'relative flex h-full flex-row gap-1 text-xs print:h-auto',
         )}
       >
         <BarChartAndHeadline

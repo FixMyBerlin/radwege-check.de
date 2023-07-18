@@ -20,7 +20,7 @@ export const Spinner: React.FC<Props> = ({ className }) => {
       className={clsx(
         className,
         'animate-[spin_0.7s_linear_infinite]',
-        'h-5 w-5 text-stone-800'
+        'h-5 w-5 text-stone-800',
       )}
     />
   )

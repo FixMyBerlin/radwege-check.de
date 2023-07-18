@@ -61,7 +61,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
                           selected,
                       },
                       { 'hover:bg-stone-100': !selected },
-                      'block w-full px-4 py-2 text-left text-sm'
+                      'block w-full px-4 py-2 text-left text-sm',
                     )}
                   >
                     {preset.title}
@@ -80,7 +80,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
                         true,
                     },
                     { 'hover:bg-stone-100': !true },
-                    'block w-full px-4 py-2 text-left text-sm'
+                    'block w-full px-4 py-2 text-left text-sm',
                   )}
                 >
                   Eigene Auswahl

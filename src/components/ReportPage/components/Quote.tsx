@@ -12,7 +12,7 @@ export const Quote: React.FC<Props> = ({ sourceText, children }) => {
       <div
         className={clsx(
           'rounded bg-white px-8 py-6 text-xl font-semibold leading-normal shadow-2xl sm:text-2xl',
-          sourceText && 'pb-10'
+          sourceText && 'pb-10',
         )}
       >
         <blockquote className="m-0 border-0 p-0">{children}</blockquote>

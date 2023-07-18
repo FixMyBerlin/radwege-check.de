@@ -56,7 +56,7 @@ export const ExperimentSwitcher: React.FC = () => {
                           active,
                       },
                       { 'hover:bg-stone-100': !active },
-                      'block w-full px-4 py-2 text-left text-sm'
+                      'block w-full px-4 py-2 text-left text-sm',
                     )}
                   >
                     {name}

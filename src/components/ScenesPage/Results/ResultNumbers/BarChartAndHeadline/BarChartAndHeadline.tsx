@@ -53,7 +53,7 @@ export const BarChartAndHeadline: React.FC<Props> = ({
       className={clsx(
         'flex h-full flex-col items-center justify-center',
         mainBarChart ? 'flex-1' : 'w-14',
-        { 'cursor-pointer': !!handleMouseOver }
+        { 'cursor-pointer': !!handleMouseOver },
       )}
     >
       <div className="flex h-8 flex-none items-center justify-center">
@@ -61,7 +61,7 @@ export const BarChartAndHeadline: React.FC<Props> = ({
         <strong
           className={clsx(
             'whitespace-nowrap font-semi tracking-tight',
-            mainBarChart ? 'text-2xl font-semibold' : 'text-lg font-medium'
+            mainBarChart ? 'text-2xl font-semibold' : 'text-lg font-medium',
           )}
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{

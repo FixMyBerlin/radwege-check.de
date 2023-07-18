@@ -69,7 +69,7 @@ export const Table: React.FC<Props> = ({
               key={key}
               className={clsx(
                 values.divideTop ? 'border-dashed' : 'border-dotted',
-                'border-t border-stone-200 hover:bg-stone-50'
+                'border-t border-stone-200 hover:bg-stone-50',
               )}
             >
               <th
@@ -101,7 +101,7 @@ export const Table: React.FC<Props> = ({
                   {
                     'pt-2': values.divideTop,
                   },
-                  { 'font-semibold': key === 'score' }
+                  { 'font-semibold': key === 'score' },
                 )}
               >
                 {values.bike}
@@ -113,7 +113,7 @@ export const Table: React.FC<Props> = ({
                     {
                       'pt-2': values.divideTop,
                     },
-                    { 'font-semibold': key === 'score' }
+                    { 'font-semibold': key === 'score' },
                   )}
                 >
                   {values.pedestrian}
@@ -126,7 +126,7 @@ export const Table: React.FC<Props> = ({
                     {
                       'pt-2': values.divideTop,
                     },
-                    { 'font-semibold': key === 'score' }
+                    { 'font-semibold': key === 'score' },
                   )}
                 >
                   {values.car}

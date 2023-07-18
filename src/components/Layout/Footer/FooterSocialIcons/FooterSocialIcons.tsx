@@ -10,7 +10,7 @@ export const FooterSocialIcons: React.FC<Props> = ({ className }) => {
     <div
       className={clsx(
         'flex space-x-6 lg:flex-col lg:space-x-0 lg:space-y-4',
-        className
+        className,
       )}
     >
       {footerSocialIcons.map((item) => (

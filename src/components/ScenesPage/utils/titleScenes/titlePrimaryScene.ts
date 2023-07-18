@@ -16,7 +16,7 @@ export const titlePrimaryScene = (
   scene: Partial<ScenePrimaryProps>,
   { includeId }: OptionalOptionProps = {
     includeId: false,
-  }
+  },
 ) => {
   const optionalSceneId = includeId ? sceneId(scene) : ''
   const debug = !process.env.DISABlE_DEBUG_FOR_JEST && isDev

@@ -26,7 +26,7 @@ export const Presets: React.FC = () => {
       ? 'h-full w-full p-3 font-semibold'
       : clsx(
           'h-full w-full bg-brand-light-yellow p-3 hover:underline font-semibold',
-          tabActive('primary') ? 'rounded-bl-md' : 'rounded-br-md'
+          tabActive('primary') ? 'rounded-bl-md' : 'rounded-br-md',
         )
   }
 
@@ -40,7 +40,7 @@ export const Presets: React.FC = () => {
                 'w-full bg-brand-light-yellow py-3 text-2xl font-semibold',
                 {
                   'rounded-br-md': tabActive('primary'),
-                }
+                },
               )}
             >
               Welche Radwege willst du vergleichen?
@@ -50,7 +50,7 @@ export const Presets: React.FC = () => {
             <div
               className={clsx(
                 { 'rounded-t-md': tabActive('primary') },
-                'bg-stone-200'
+                'bg-stone-200',
               )}
             >
               <button
@@ -65,7 +65,7 @@ export const Presets: React.FC = () => {
             <div
               className={clsx(
                 { 'rounded-t-md': tabActive('secondary') },
-                'bg-stone-200'
+                'bg-stone-200',
               )}
             >
               <button
@@ -94,7 +94,7 @@ export const Presets: React.FC = () => {
           >
             Alle{' '}
             {Number(
-              allButtonBySceneCategory[sceneCategory].total
+              allButtonBySceneCategory[sceneCategory].total,
             ).toLocaleString()}{' '}
             Ergebnisse
           </Link>

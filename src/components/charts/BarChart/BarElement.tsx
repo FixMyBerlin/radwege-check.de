@@ -66,7 +66,7 @@ export const BarElement = ({ title, value, index, isWeightGraph = false }) => {
     maximumFractionDigits: 2,
   })
   const tooltipId = `barchart-tooltip-${encodeURIComponent(
-    title
+    title,
   )}-${index}-${pctValue}`
 
   // `overflow-hidden` fixes Tooltip on mobile. It cannot be accessed on touch anyway, so no one will see the cut of text.
@@ -74,7 +74,7 @@ export const BarElement = ({ title, value, index, isWeightGraph = false }) => {
     <div
       className={clsx(
         'group relative flex cursor-help items-center justify-center',
-        { 'overflow-hidden': !isWeightGraph }
+        { 'overflow-hidden': !isWeightGraph },
       )}
       key={`bar__${labels[index]}`}
       style={{

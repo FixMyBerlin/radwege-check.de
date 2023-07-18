@@ -34,7 +34,7 @@ export const cleanupCsvData = (input): ScenePrimaryProps[] => {
       // if (typeof cleaned[index][key] === 'string' && key.includes('Has')) {
       //   cleaned[index][key] = key === 'true';
       // }
-    })
+    }),
   )
 
   // console.log({

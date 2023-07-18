@@ -51,7 +51,7 @@ export const FacetsButtons: React.FC<Props> = ({
     },
     { 'rounded-md': showAsList && choiceMode === 'single' },
     { 'group grid grid-cols-4': !showAsList && choiceMode === 'multi' },
-    { 'group flex flex-row': !showAsList && choiceMode === 'single' }
+    { 'group flex flex-row': !showAsList && choiceMode === 'single' },
   )
 
   return (

@@ -75,7 +75,7 @@ export const Modal: React.FC<Props> = ({
                       type="button"
                       className={clsx(
                         'inline-flex w-full justify-center',
-                        buttonStyles
+                        buttonStyles,
                       )}
                       onClick={() => setOpen(false)}
                     >

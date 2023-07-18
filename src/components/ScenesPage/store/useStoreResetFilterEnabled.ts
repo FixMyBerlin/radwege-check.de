@@ -9,5 +9,5 @@ export const useStoreResetFilterEnabled = create<StoreResetFilterEnabled>(
   (set) => ({
     resetFilterEnabled: false,
     setResetFilterEnabled: (resetFilterEnabled) => set({ resetFilterEnabled }),
-  })
+  }),
 )

@@ -13,7 +13,7 @@ export const titleScene = (
     experimentTextKey?: NonNullable<ExperimentTextKey>
   } = {
     includeId: false,
-  }
+  },
 ) => {
   const { experimentTextKey } = useStore(useStoreExperimentData)
   const key = _experimentTextKey || experimentTextKey
