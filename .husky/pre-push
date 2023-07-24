@@ -5,5 +5,4 @@
 # Use `git push --no-verify` to force-skip them.
 npm run type-check
 npm run lint
-npm run format-check
 npm run test
