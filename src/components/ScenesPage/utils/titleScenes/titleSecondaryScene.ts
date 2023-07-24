@@ -10,13 +10,20 @@ import { sceneId } from './textShared.const'
 import { OptionalOptionProps } from './types'
 import { checkAndClean } from './utils'
 
+export type TitleSecondaryScene = Partial<SceneSecondaryProps> &
+  SceneSecondaryProps['sceneId'] &
+  SceneSecondaryProps['bicycleStreetType'] &
+  SceneSecondaryProps['motorVehicleTrafficVolumen'] &
+  SceneSecondaryProps['carriagewayDirection'] &
+  SceneSecondaryProps['parkingCategory']
+
 export const titleSecondaryScene = (
-  scene: Partial<SceneSecondaryProps>,
+  scene: TitleSecondaryScene,
   { includeId }: OptionalOptionProps = {
     includeId: false,
-  }
+  },
 ) => {
-  const optionalSceneId = includeId && sceneId(scene)
+  const optionalSceneId = includeId ? sceneId(scene) : ''
   const debug = !process.env.DISABlE_DEBUG_FOR_JEST && isDev
 
   if (

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { TwitterButton } from './TwitterButton'
 
@@ -19,9 +19,9 @@ export const TwitterButtonIconCurrentUrl: React.FC<Props> = ({
       }
       text=""
       hashtags="RadwegeCheck"
-      classNameOverwrite={classNames(
+      classNameOverwrite={clsx(
         className,
-        'flex rounded-full items-center justify-center hover:bg-gray-50 w-8 h-8 border border-gray-300 '
+        'flex rounded-full items-center justify-center hover:bg-gray-50 w-8 h-8 border border-gray-300 ',
       )}
       onClick={onClick}
     />

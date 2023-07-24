@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React, { useState } from 'react'
 import { Link } from '../../Link'
 import {
@@ -24,9 +24,9 @@ export const Presets: React.FC = () => {
   const pickTabClasses = (category: SceneCategory) => {
     return tabActive(category)
       ? 'h-full w-full p-3 font-semibold'
-      : classNames(
+      : clsx(
           'h-full w-full bg-brand-light-yellow p-3 hover:underline font-semibold',
-          tabActive('primary') ? 'rounded-bl-md' : 'rounded-br-md'
+          tabActive('primary') ? 'rounded-bl-md' : 'rounded-br-md',
         )
   }
 
@@ -36,11 +36,11 @@ export const Presets: React.FC = () => {
         <div className="flex flex-col items-end md:flex-row md:justify-between">
           <div className="flex-grow bg-stone-200">
             <h2
-              className={classNames(
+              className={clsx(
                 'w-full bg-brand-light-yellow py-3 text-2xl font-semibold',
                 {
                   'rounded-br-md': tabActive('primary'),
-                }
+                },
               )}
             >
               Welche Radwege willst du vergleichen?
@@ -48,9 +48,9 @@ export const Presets: React.FC = () => {
           </div>
           <nav className="flex w-full justify-center sm:w-auto sm:justify-end">
             <div
-              className={classNames(
+              className={clsx(
                 { 'rounded-t-md': tabActive('primary') },
-                'bg-stone-200'
+                'bg-stone-200',
               )}
             >
               <button
@@ -63,9 +63,9 @@ export const Presets: React.FC = () => {
               </button>
             </div>
             <div
-              className={classNames(
+              className={clsx(
                 { 'rounded-t-md': tabActive('secondary') },
-                'bg-stone-200'
+                'bg-stone-200',
               )}
             >
               <button
@@ -80,7 +80,7 @@ export const Presets: React.FC = () => {
           </nav>
         </div>
         <PresetSlider
-          className={classNames('sm:rounded-md', {
+          className={clsx('sm:rounded-md', {
             'sm:rounded-md sm:rounded-tr-none': tabActive('secondary'),
           })}
           slides={scenesBySceneCategory[sceneCategory]}
@@ -94,7 +94,7 @@ export const Presets: React.FC = () => {
           >
             Alle{' '}
             {Number(
-              allButtonBySceneCategory[sceneCategory].total
+              allButtonBySceneCategory[sceneCategory].total,
             ).toLocaleString()}{' '}
             Ergebnisse
           </Link>

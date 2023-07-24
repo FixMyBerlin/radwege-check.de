@@ -1,12 +1,6 @@
 /** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = {
   cacheDirectory: '<rootDir>/.cache/unit',
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.spec.json',
-    },
-    __PATH_PREFIX__: ``,
-  },
   moduleDirectories: ['node_modules', 'src'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {

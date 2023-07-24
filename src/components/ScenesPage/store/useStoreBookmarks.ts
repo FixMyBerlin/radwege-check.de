@@ -1,4 +1,4 @@
-import create from 'zustand'
+import { create } from 'zustand'
 import { trackContentInteraction } from '~/components/utils'
 
 type SceneIds = string
@@ -26,7 +26,7 @@ export const useStoreBookmarks = create<StoreBookmarksData>((set, get) => ({
         id: sceneId,
         representation: 'result page',
         url: `#${sceneId}`,
-      })
+      }),
     )
   },
   addBookmark: (sceneId) => {

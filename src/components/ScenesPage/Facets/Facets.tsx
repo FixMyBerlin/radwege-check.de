@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React, { useMemo } from 'react'
 import { useStore } from 'zustand'
 import { TwitterButtonIconCurrentUrl } from '~/components/Link'
@@ -39,33 +39,33 @@ export const Facets: React.FC<FacetsProps> = ({
 }) => {
   const aggregations = results?.data?.aggregations || {}
   const { aggregationConfig, experimentTextKey } = useStore(
-    useStoreExperimentData
+    useStoreExperimentData,
   )
 
   const mainAggregations = useMemo(
     () =>
       Object.entries(aggregations).filter(
-        ([key, _v]) => aggregationConfig[key]?.primaryGroup === true
+        ([key, _v]) => aggregationConfig[key]?.primaryGroup === true,
       ),
-    [aggregations, aggregationConfig]
+    [aggregations, aggregationConfig],
   )
 
   const furtherAggregations = useMemo(
     () =>
       Object.entries(aggregations).filter(
-        ([key, _v]) => !aggregationConfig[key]?.primaryGroup
+        ([key, _v]) => !aggregationConfig[key]?.primaryGroup,
       ),
-    [aggregations, aggregationConfig]
+    [aggregations, aggregationConfig],
   )
 
   return (
     <nav
-      className={classNames(
+      className={clsx(
         className,
-        'relative overflow-y-scroll overscroll-contain'
+        'relative overflow-y-scroll overscroll-contain',
       )}
     >
-      <div className="relative flex h-14 items-center justify-between bg-brand-light-yellow py-1 px-3 shadow-md">
+      <div className="relative flex h-14 items-center justify-between bg-brand-light-yellow px-3 py-1 shadow-md">
         <Logo visible={showLogo} />
         <ExperimentSwitcher />
         <TwitterButtonIconCurrentUrl
@@ -80,9 +80,7 @@ export const Facets: React.FC<FacetsProps> = ({
         />
       </div>
 
-      <div
-        className={classNames('z-0 mb-4 bg-gray-200 px-3 pt-5 pb-1 shadow-md')}
-      >
+      <div className={clsx('z-0 mb-4 bg-gray-200 px-3 pb-1 pt-5 shadow-md')}>
         <h1 className="sr-only">Ergebnisse filtern</h1>
 
         <PresetDropdown handlePresetClick={handlePresetClick} />
@@ -96,7 +94,7 @@ export const Facets: React.FC<FacetsProps> = ({
           const { buckets } = aggregation
 
           return (
-            <section key={aggregationKey} className={classNames('mb-5')}>
+            <section key={aggregationKey} className={clsx('mb-5')}>
               <FacetsHeadline aggregationKey={aggregationKey} />
 
               <FacetsButtons
@@ -121,13 +119,13 @@ export const Facets: React.FC<FacetsProps> = ({
           return (
             <section
               key={aggregationKey}
-              className={classNames(
+              className={clsx(
                 { 'mb-5': !groupEndIndicator },
                 { '-mt-3': showAsIcons },
                 {
                   'mb-4 border-b border-dashed border-gray-300 pb-5':
                     groupEndIndicator,
-                }
+                },
               )}
             >
               <FacetsHeadline

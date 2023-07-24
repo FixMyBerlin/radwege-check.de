@@ -21,7 +21,7 @@ export const checkBucketValueConsistency = ({
   const { aggregationConfig } = useStore(useStoreExperimentData)
   const bucketKeysFromItemJs = buckets.map((b) => b.key)
   const keyFromItemjsMissingInTranslations = bucketKeysFromItemJs.filter(
-    (key) => aggregationConfig[aggregationKey].buckets[key] === undefined
+    (key) => aggregationConfig[aggregationKey].buckets[key] === undefined,
   )
 
   if (keyFromItemjsMissingInTranslations.length) {
@@ -34,7 +34,7 @@ export const checkBucketValueConsistency = ({
   }
 
   const keyFromTranslationMissingInItemjs = Object.keys(
-    aggregationConfig[aggregationKey].buckets
+    aggregationConfig[aggregationKey].buckets,
   )
     .filter((key) => !bucketKeysFromItemJs.includes(key))
     .filter((key) => key !== 'noChoice')

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { useStore } from 'zustand'
 import { useStoreExperimentData } from '~/components/ScenesPage/store'
@@ -52,7 +52,7 @@ export const ButtonIconNoChoice: React.FC<Props> = ({
           __html:
             aggregationConfig[aggregationKey].buckets[bucketKey] || 'TODO',
         }}
-        className={classNames(showAsIcons && iconClasses)}
+        className={clsx(showAsIcons && iconClasses)}
       />
     </button>
   )

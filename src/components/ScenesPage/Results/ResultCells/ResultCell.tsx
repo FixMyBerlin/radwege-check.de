@@ -1,5 +1,5 @@
-import { InformationCircleIcon } from '@heroicons/react/solid'
-import classNames from 'classnames'
+import { InformationCircleIcon } from '@heroicons/react/24/solid'
+import clsx from 'clsx'
 import React from 'react'
 import { TranslationMissing } from '~/components/TextHelper'
 import { formatMeter, isDev } from '~/components/utils'
@@ -44,12 +44,12 @@ export const ResultCell: React.FC<Props> = ({
   return (
     <section
       title={isDev ? `${keyName}: ${scene[keyName]}` : ''}
-      className={classNames(
+      className={clsx(
         'break-before-avoid border-b py-2 print:py-1 lg:py-3.5',
         { 'hover:bg-stone-50': showHover },
         groupEndIndicator
           ? 'border-dashed border-stone-300 print:border-dotted print:border-stone-200'
-          : 'border-dotted border-stone-200'
+          : 'border-dotted border-stone-200',
       )}
     >
       <h3
@@ -96,7 +96,7 @@ export const ResultCell: React.FC<Props> = ({
                 <span className="ml-0.5 font-light text-neutral-500">
                   {formatMeter(
                     scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber,
-                    {}
+                    {},
                   )}
                 </span>
               </span>

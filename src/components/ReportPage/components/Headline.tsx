@@ -1,5 +1,5 @@
-import classNames from 'classnames'
-import { LinkIcon } from '@heroicons/react/solid'
+import clsx from 'clsx'
+import { LinkIcon } from '@heroicons/react/24/solid'
 import React from 'react'
 
 type Props = {
@@ -23,23 +23,23 @@ export const Headline: React.FC<Props> = ({ as, children, className, id }) => {
   const Tag = as || 'h1'
   return (
     <div
-      className={classNames(
+      className={clsx(
         { group: id },
         className,
         as === 'h1' && h1WrapperClasses,
         as === 'h2' && h2WrapperClasses,
         as === 'h3' && h3WrapperClasses,
-        'w-full sm:w-auto'
+        'w-full sm:w-auto',
       )}
       id={id}
     >
       <Tag
-        className={classNames(
+        className={clsx(
           'mr-3 inline sm:inline-flex',
           className,
           as === 'h1' && h1Classes,
           as === 'h2' && h2Classes,
-          as === 'h3' && h3Classes
+          as === 'h3' && h3Classes,
         )}
       >
         {children}

@@ -16,7 +16,7 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "plugins": ["react", "react-hooks", "jsx-a11y", "prettier", "jest"],
+  "plugins": ["react", "jsx-a11y", "prettier", "jest"],
   "extends": [
     "plugin:react/recommended",
     "airbnb",

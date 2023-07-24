@@ -1,6 +1,6 @@
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/outline'
-import classNames from 'classnames'
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import clsx from 'clsx'
 import React, { Fragment } from 'react'
 import { useStore } from 'zustand'
 import { useStorePreset } from '../../store'
@@ -30,7 +30,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
           {!isPreset && !isCustom && 'Filter Voreinstellung auswählen'}
         </div>
         <ChevronDownIcon
-          className="mr-1 ml-2 w-[18px] flex-none"
+          className="ml-2 mr-1 w-[18px] flex-none"
           aria-hidden="true"
         />
       </Menu.Button>
@@ -55,13 +55,13 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
                     type="button"
                     onClick={() => handlePresetClick(key)}
                     disabled={selected}
-                    className={classNames(
+                    className={clsx(
                       {
                         'cursor-default bg-brand-light-yellow text-gray-500':
                           selected,
                       },
                       { 'hover:bg-stone-100': !selected },
-                      'block w-full px-4 py-2 text-left text-sm'
+                      'block w-full px-4 py-2 text-left text-sm',
                     )}
                   >
                     {preset.title}
@@ -74,13 +74,13 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
                 <button
                   type="button"
                   disabled
-                  className={classNames(
+                  className={clsx(
                     {
                       'cursor-default bg-brand-light-yellow text-gray-500':
                         true,
                     },
                     { 'hover:bg-stone-100': !true },
-                    'block w-full px-4 py-2 text-left text-sm'
+                    'block w-full px-4 py-2 text-left text-sm',
                   )}
                 >
                   Eigene Auswahl

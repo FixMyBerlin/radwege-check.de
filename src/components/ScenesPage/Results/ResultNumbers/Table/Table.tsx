@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { ScenePrimaryProps, SceneSecondaryProps } from '../../../types'
 import { barColor, barTitle } from '../utils'
@@ -32,9 +32,9 @@ export const Table: React.FC<Props> = ({
   if (!visible) return null
 
   const showPedestrianColumn =
-    _showPedestrianColumn === true ? !!table.vote0Unsafe.pedestrian : false
+    _showPedestrianColumn !== false ? !!table.vote0Unsafe.pedestrian : false
   const showCarColumn =
-    _showCarColumn === true ? !!table.vote0Unsafe.car : false
+    _showCarColumn !== false ? !!table.vote0Unsafe.car : false
 
   return (
     <table className="my-2 w-full border-b border-dotted border-stone-200 text-xs">
@@ -44,18 +44,18 @@ export const Table: React.FC<Props> = ({
       <thead>
         <tr>
           <th> </th>
-          <th className="border-b border-stone-200 pr-2 pb-0.5 text-center align-bottom">
+          <th className="border-b border-stone-200 pb-0.5 pr-2 text-center align-bottom">
             <span className="sr-only">Perspektive Fahrrad</span>
             <BikeIcon className="inline h-4 w-auto" />
           </th>
           {showPedestrianColumn && (
-            <th className="border-b border-stone-200 pr-2 pb-0.5 text-center align-bottom">
+            <th className="border-b border-stone-200 pb-0.5 pr-2 text-center align-bottom">
               <span className="sr-only">Perspektive Fußgänger</span>
               <PedestrianIcon className="inline h-4 w-auto" />
             </th>
           )}
           {showCarColumn && (
-            <th className="border-b border-stone-200 pr-2 pb-0.5 text-center align-bottom">
+            <th className="border-b border-stone-200 pb-0.5 pr-2 text-center align-bottom">
               <span className="sr-only">Perspektive Auto</span>
               <CarIcon className="inline h-auto w-6" />
             </th>
@@ -67,16 +67,15 @@ export const Table: React.FC<Props> = ({
           return (
             <tr
               key={key}
-              className={classNames(
+              className={clsx(
                 values.divideTop ? 'border-dashed' : 'border-dotted',
-                'border-t border-stone-200 hover:bg-stone-50'
+                'border-t border-stone-200 hover:bg-stone-50',
               )}
             >
               <th
-                className={classNames(
-                  'text-left font-semi font-semibold leading-3',
-                  { 'pt-2': values.divideTop }
-                )}
+                className={clsx('text-left font-semi font-semibold leading-3', {
+                  'pt-2': values.divideTop,
+                })}
               >
                 {barColor[key] && (
                   <span
@@ -97,24 +96,24 @@ export const Table: React.FC<Props> = ({
                 />
               </th>
               <td
-                className={classNames(
+                className={clsx(
                   'w-1/5 pr-2 text-right',
                   {
                     'pt-2': values.divideTop,
                   },
-                  { 'font-semibold': key === 'score' }
+                  { 'font-semibold': key === 'score' },
                 )}
               >
                 {values.bike}
               </td>
               {showPedestrianColumn ? (
                 <td
-                  className={classNames(
+                  className={clsx(
                     'w-1/5 pr-2 text-right',
                     {
                       'pt-2': values.divideTop,
                     },
-                    { 'font-semibold': key === 'score' }
+                    { 'font-semibold': key === 'score' },
                   )}
                 >
                   {values.pedestrian}
@@ -122,12 +121,12 @@ export const Table: React.FC<Props> = ({
               ) : null}
               {showCarColumn ? (
                 <td
-                  className={classNames(
+                  className={clsx(
                     'w-1/5 pr-2 text-right',
                     {
                       'pt-2': values.divideTop,
                     },
-                    { 'font-semibold': key === 'score' }
+                    { 'font-semibold': key === 'score' },
                   )}
                 >
                   {values.car}

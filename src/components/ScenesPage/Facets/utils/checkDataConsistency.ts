@@ -20,7 +20,7 @@ export const checkDataConsistency = ({ aggregationKey }: Props) => {
   if (
     choiceMode === 'single' &&
     Object.keys(aggregationConfig[aggregationKey].buckets).filter(
-      (k) => k === 'noChoice'
+      (k) => k === 'noChoice',
     ).length === 0
   ) {
     console.log({

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 type Props = {
   firstElement: boolean
@@ -17,7 +17,7 @@ export const buttonClassNames = ({
   uiCanpress,
   showAsList,
 }: Props) => {
-  const labelClasses = classNames(
+  const labelClasses = clsx(
     'leading-4',
     {
       'flex w-full flex-row items-center justify-start gap-1 px-1 py-1':
@@ -37,9 +37,9 @@ export const buttonClassNames = ({
     { 'text-slate-500': !uiCanpress && uiSelected },
     { 'rounded-l-md': firstElement },
     { '-ml-px': !firstElement && !showAsList },
-    { 'rounded-r-md': lastElement }
+    { 'rounded-r-md': lastElement },
   )
-  const inputClasses = classNames(
+  const inputClasses = clsx(
     'h-4 w-4',
     { 'mr-1': showAsList },
     {
@@ -51,7 +51,7 @@ export const buttonClassNames = ({
     {
       'border-gray-300 bg-white/30 text-brand-yellow/30':
         !uiCanpress && !uiSelected,
-    }
+    },
   )
   return { labelClasses, inputClasses }
 }

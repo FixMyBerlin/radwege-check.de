@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { SceneImage } from '~/components/ScenesPage'
 import { Subtitle } from './Subtitle'
@@ -18,14 +18,14 @@ export const Image: React.FC<Props> = ({
   children,
 }) => {
   const image = source && (
-    <SceneImage sceneId={source} alt="" lazy className="mt-0 mb-1" />
+    <SceneImage sceneId={source} alt="" lazy className="mb-1 mt-0" />
   )
 
   return (
-    <figure className={classNames({ relative: chart }, 'my-2')}>
+    <figure className={clsx({ relative: chart }, 'my-2')}>
       {image}
       {children}
-      {chart && <div className="absolute top-3 right-3">{chart}</div>}
+      {chart && <div className="absolute right-3 top-3">{chart}</div>}
       {subtitle && <Subtitle>{subtitle}</Subtitle>}
     </figure>
   )

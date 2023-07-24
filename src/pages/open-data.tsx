@@ -46,6 +46,39 @@ const OpenDataPage: React.FC<PageProps> = ({ location }) => {
         offenen Lizenzen veröffentlicht.
       </p>
 
+      <h2>OpenData: Die aggregierten Daten dieser Website</h2>
+      <p>
+        Die aggregierten Daten dieser Website können unter folgenden Links
+        kopiert werden:
+      </p>
+      <ul>
+        <li>
+          <Link to="/hauptstrassen/export/" blank>
+            Tabelle der Hauptstraßen-Daten
+          </Link>
+        </li>
+        <li>
+          <Link to="/nebenstrassen/export/" blank>
+            Tabelle der Nebenstraßen-Daten
+          </Link>
+        </li>
+      </ul>
+      <p>
+        Auf der Seite kann zwischen den englischen und deutschen Begriffen für
+        Spalten und Werte gewechselt werden. Die ganze Seite kann per{' '}
+        <kbd className="rounded border border-gray-200 bg-gray-100 p-1 text-xs font-semibold text-gray-800">
+          STRG+A
+        </kbd>{' '}
+        und{' '}
+        <kbd className="rounded border border-gray-200 bg-gray-100 p-1 text-xs font-semibold text-gray-800">
+          STRG+C
+        </kbd>{' '}
+        kopiert und beispielweise in ein Google Spreadsheet eingefügt werden. Im
+        Anschluss muss das Spreadsheet etwas bereinigt werden.
+        {odblLicencePart}
+        {attributionPart}
+      </p>
+
       <h2>OpenData: Die Rohdaten der Umfrage</h2>
       <p>
         Die{' '}
@@ -54,14 +87,6 @@ const OpenDataPage: React.FC<PageProps> = ({ location }) => {
         </Link>{' '}
         stehen zum Download bereit.
         {odblLicencePart}
-        {attributionPart}
-      </p>
-
-      <h2>OpenData: Die aggregierten Daten dieser Website</h2>
-      <p>
-        Wenn Sie die auf dieser Seite aggregierten Daten für Forschungsprojekte
-        verwenden wollen, schreiben Sie uns unter{' '}
-        <Link to="info@fixmycity.de">info@fixmycity.de</Link>.{odblLicencePart}
         {attributionPart}
       </p>
 

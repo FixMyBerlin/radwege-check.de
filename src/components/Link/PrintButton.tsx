@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { trackEvent } from '../utils'
 import { buttonStyles } from './Link'
@@ -9,7 +9,7 @@ export const PrintButton: React.FC<Props> = ({ onClick }) => {
   return (
     <button
       type="button"
-      className={classNames(buttonStyles, 'hidden shadow-md lg:inline-flex')}
+      className={clsx(buttonStyles, 'hidden shadow-md lg:inline-flex')}
       onClick={() => {
         window.print()
         trackEvent({ category: 'Print button click', action: 'Details Page' })

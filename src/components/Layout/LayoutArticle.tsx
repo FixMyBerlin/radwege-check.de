@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { PageProps } from 'gatsby'
 import React from 'react'
 import { Layout } from '~/components/Layout/Layout'
@@ -29,12 +29,12 @@ export const LayoutArticle: React.FC<Props> = ({
     >
       <ArticleLogo printHideHeader={printHideHeader} />
       <article
-        className={classNames(
+        className={clsx(
           maxWidthClass ?? 'max-w-prose',
           prose &&
             'prose prose-headings:scroll-my-5 prose-li:marker:text-gray-800',
           'mx-auto max-w-2xl bg-white p-3 pt-8 sm:p-5 lg:rounded-md lg:p-10',
-          { '-mt-20 mb-20': !printHideHeader }
+          { '-mt-20 mb-20': !printHideHeader },
         )}
       >
         {children}

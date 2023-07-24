@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import BollardHigh from './assets/bollard_high-icon.svg'
 import BollardSmall from './assets/bollard_small-icon.svg'
@@ -24,92 +24,69 @@ export const Icons: React.FC<Props> = ({ forValue, className }) => {
 
     case 'dashed_line':
       return (
-        <DashedLine
-          className={classNames(className, 'scale-75')}
-          title={forValue}
-        />
+        <DashedLine className={clsx(className, 'scale-75')} title={forValue} />
       )
 
     case 'solid_line':
       return (
-        <SolidLine
-          className={classNames(className, 'scale-75')}
-          title={forValue}
-        />
+        <SolidLine className={clsx(className, 'scale-75')} title={forValue} />
       )
 
     case 'double_line':
       return (
-        <DoubleLine
-          className={classNames(className, 'scale-75')}
-          title={forValue}
-        />
+        <DoubleLine className={clsx(className, 'scale-75')} title={forValue} />
       )
 
     case 'restricted_area':
       return (
         <RestrictedArea
-          className={classNames(className, 'scale-75')}
+          className={clsx(className, 'scale-75')}
           title={forValue}
         />
       )
 
     case 'paved_verge':
       return (
-        <PavedVerge
-          className={classNames(className, 'scale-75')}
-          title={forValue}
-        />
+        <PavedVerge className={clsx(className, 'scale-75')} title={forValue} />
       )
 
     case 'grass_verge':
       return (
-        <GrassVerge
-          className={classNames(className, 'scale-75')}
-          title={forValue}
-        />
+        <GrassVerge className={clsx(className, 'scale-75')} title={forValue} />
       )
 
     case 'grass_verge_with_street_cabinet':
       return (
         <StreetCabinet
-          className={classNames(className, 'scale-75')}
+          className={clsx(className, 'scale-75')}
           title={forValue}
         />
       )
 
     case 'bollard_high':
       return (
-        <BollardHigh
-          className={classNames(className, 'scale-75')}
-          title={forValue}
-        />
+        <BollardHigh className={clsx(className, 'scale-75')} title={forValue} />
       )
 
     case 'bollard_small':
       return (
         <BollardSmall
-          className={classNames(className, 'scale-75')}
+          className={clsx(className, 'scale-75')}
           title={forValue}
         />
       )
 
     case 'planter':
       return (
-        <Planter
-          className={classNames(className, 'scale-75')}
-          title={forValue}
-        />
+        <Planter className={clsx(className, 'scale-75')} title={forValue} />
       )
 
     case 'hedge':
-      return (
-        <Hedge className={classNames(className, 'scale-75')} title={forValue} />
-      )
+      return <Hedge className={clsx(className, 'scale-75')} title={forValue} />
 
     default:
       return (
-        <span className={classNames(className)} title={forValue}>
+        <span className={clsx(className)} title={forValue}>
           {forValue?.[0]}
         </span>
       ) // TODO <None /title={forValue}>;

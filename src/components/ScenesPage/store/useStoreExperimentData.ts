@@ -1,4 +1,4 @@
-import create from 'zustand'
+import { create } from 'zustand'
 import { AggregationConfig } from '../constants'
 
 export type ExperimentTextKey = null | 'primary' | 'secondary'

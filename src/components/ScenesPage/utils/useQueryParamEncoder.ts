@@ -4,7 +4,7 @@ import { AggregationConfig } from '../constants'
 import { SearchOptionProps } from '../types'
 
 export const encodeFilter = (
-  filterObject: SearchOptionProps['filters']
+  filterObject: SearchOptionProps['filters'],
 ): string => {
   // For Matomo and SEO, we want the same sort order ob keys and values
   //   Solution via https://stackoverflow.com/a/31102605/729221
@@ -42,7 +42,7 @@ export const encodeFilter = (
 
 export const decodeFilter = (
   filterString: string,
-  aggregationConfig: AggregationConfig
+  aggregationConfig: AggregationConfig,
 ): SearchOptionProps['filters'] => {
   if (!aggregationConfig) return {}
 
@@ -65,7 +65,7 @@ export const decodeFilter = (
     Object.keys(resultRaw).map((key) => [
       key,
       typeof resultRaw[key] === 'string' ? [resultRaw[key]] : resultRaw[key],
-    ])
+    ]),
   ) as SearchOptionProps['filters']
 
   // Guard: Before we go, we need to make sure only allowed values make it into ItemsJS.
@@ -99,7 +99,7 @@ export const decodeFilter = (
         return []
       }
       return [key, cleanValues]
-    })
+    }),
   )
   // This is still not enough…
   // We now have { undefined: undefined } object entries, which we now remove…

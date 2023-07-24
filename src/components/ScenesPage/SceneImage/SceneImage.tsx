@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { sceneImageUrl } from './sceneImageUrl'
 
@@ -24,7 +24,7 @@ export const SceneImage: React.VFC<Props> = ({
     <img
       src={sceneImageUrl(sceneId)}
       alt={alt || 'Illustration der bewerteten Szene.'}
-      className={classNames(className)}
+      className={clsx(className)}
       {...lazyLoad}
     />
   )

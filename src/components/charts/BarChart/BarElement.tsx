@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { defineMessages, useIntl } from 'react-intl'
 
@@ -53,7 +53,7 @@ const Tooltip = ({ id, children }) => {
     <div
       id={id}
       role="tooltip"
-      className="absolute left-0 -bottom-8 whitespace-nowrap font-condensed text-lg text-gray-500 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+      className="absolute -bottom-8 left-0 whitespace-nowrap font-condensed text-lg text-gray-500 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
     >
       {children}
     </div>
@@ -66,15 +66,15 @@ export const BarElement = ({ title, value, index, isWeightGraph = false }) => {
     maximumFractionDigits: 2,
   })
   const tooltipId = `barchart-tooltip-${encodeURIComponent(
-    title
+    title,
   )}-${index}-${pctValue}`
 
   // `overflow-hidden` fixes Tooltip on mobile. It cannot be accessed on touch anyway, so no one will see the cut of text.
   return (
     <div
-      className={classNames(
+      className={clsx(
         'group relative flex cursor-help items-center justify-center',
-        { 'overflow-hidden': !isWeightGraph }
+        { 'overflow-hidden': !isWeightGraph },
       )}
       key={`bar__${labels[index]}`}
       style={{

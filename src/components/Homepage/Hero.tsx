@@ -5,7 +5,7 @@ import { Link } from '../Link'
 export const Hero: React.FC = () => {
   return (
     <section className="flex w-full flex-col items-center bg-brand-light-yellow px-4 pb-12 text-gray-700 lg:px-0">
-      <LogoIconColor className="mt-8 mb-4 h-20" alt="Radwege-Check" />
+      <LogoIconColor className="mb-4 mt-8 h-20" alt="Radwege-Check" />
 
       <h1 className="mb-4 text-5xl font-bold">Mach den Radwege-Check</h1>
 

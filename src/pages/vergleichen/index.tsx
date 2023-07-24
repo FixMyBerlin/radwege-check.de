@@ -1,5 +1,5 @@
-import { ArrowLeftIcon } from '@heroicons/react/solid'
-import classNames from 'classnames'
+import { ArrowLeftIcon } from '@heroicons/react/24/solid'
+import clsx from 'clsx'
 import { graphql, navigate, PageProps } from 'gatsby'
 import React, { useEffect, useMemo } from 'react'
 import { useQueryParam } from 'use-query-params'
@@ -67,11 +67,11 @@ const MyDataIndex: React.FC<Props> = ({
   const [bookmarksArray] = useQueryParam('sceneIds', CommaArrayParam)
 
   // Filter scenes by URL param
-  const bookmarkScenesPrimary = scenesPrimary.filter((s) =>
-    bookmarksArray?.includes(s.sceneId)
+  const bookmarkScenesPrimary = scenesPrimary.filter(
+    (s) => bookmarksArray?.includes(s.sceneId),
   )
-  const bookmarkScenesSecondary = scenesSecondary.filter((s) =>
-    bookmarksArray?.includes(s.sceneId)
+  const bookmarkScenesSecondary = scenesSecondary.filter(
+    (s) => bookmarksArray?.includes(s.sceneId),
   )
 
   const showBackButton = location?.state?.showBack === true
@@ -83,7 +83,7 @@ const MyDataIndex: React.FC<Props> = ({
         id: scene.sceneId,
         representation: 'result column',
         url: fullUrl(scene.path),
-      })
+      }),
     )
   }, [bookmarkScenesPrimary, bookmarkScenesSecondary])
 
@@ -112,9 +112,9 @@ const MyDataIndex: React.FC<Props> = ({
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className={classNames(
+            className={clsx(
               buttonStyles,
-              'mr-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full !p-0 align-text-bottom'
+              'mr-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full !p-0 align-text-bottom',
             )}
             title="Zurück zur Suchergebnisseite"
           >
@@ -132,7 +132,7 @@ const MyDataIndex: React.FC<Props> = ({
                 Hauptstraßen
               </Link>
             </h2>
-            <div className="flex pr-3 pl-1 print:hidden print:grid-cols-3">
+            <div className="flex pl-1 pr-3 print:hidden print:grid-cols-3">
               {bookmarkScenesPrimary.map((scene, index) => (
                 <ResultColumn
                   key={scene.sceneId}
@@ -165,7 +165,7 @@ const MyDataIndex: React.FC<Props> = ({
                 Nebenstraßen
               </Link>
             </h2>
-            <div className="flex pr-3 pl-1 print:hidden print:grid-cols-3">
+            <div className="flex pl-1 pr-3 print:hidden print:grid-cols-3">
               {bookmarkScenesSecondary.map((scene, index) => (
                 <ResultColumn
                   key={scene.sceneId}

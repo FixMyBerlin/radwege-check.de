@@ -41,7 +41,7 @@ export const ScenesAllPage: React.FC<Props> = ({ rawScenes }) => {
         article
         noindex
         title={`Alle ${Number(
-          totalResults
+          totalResults,
         ).toLocaleString()} Szenen auf ${categoryTranslation}.`}
         description="Auf Basis eine Umfrage mit über 22.000 Teilnehmenden."
         imagePath="/social-sharing/results.jpg"
@@ -73,7 +73,7 @@ export const ScenesAllPage: React.FC<Props> = ({ rawScenes }) => {
                 sceneId={scene.sceneId}
                 className="mb-2 rounded object-cover object-bottom"
               />
-              <div className="absolute top-1 right-1">
+              <div className="absolute right-1 top-1">
                 <FeelSafe value={scene.voteScore} standalone big />
               </div>
             </div>

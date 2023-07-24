@@ -1,5 +1,5 @@
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
-import classNames from 'classnames'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
+import clsx from 'clsx'
 import useEmblaCarousel from 'embla-carousel-react'
 import React, { useCallback, useEffect, useState } from 'react'
 import { SceneCategory } from '~/components/ScenesPage/types'
@@ -31,11 +31,11 @@ export const PresetSlider: React.FC<Props> = ({
 
   const scrollPrev = useCallback(
     () => emblaApi && emblaApi.scrollPrev(),
-    [emblaApi]
+    [emblaApi],
   )
   const scrollNext = useCallback(
     () => emblaApi && emblaApi.scrollNext(),
-    [emblaApi]
+    [emblaApi],
   )
 
   const onSelect = useCallback(() => {
@@ -62,9 +62,9 @@ export const PresetSlider: React.FC<Props> = ({
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         className,
-        'relative -mx-4 mb-3 flex flex-col justify-center bg-stone-200 px-2 py-6 sm:mx-0 sm:px-3 sm:px-10'
+        'relative -mx-4 mb-3 flex flex-col justify-center bg-stone-200 px-2 py-6 sm:mx-0 sm:px-10 sm:px-3',
       )}
     >
       <div ref={emblaRef} className="relative overflow-hidden">
@@ -83,11 +83,11 @@ export const PresetSlider: React.FC<Props> = ({
       </div>
       <button
         type="button"
-        className={classNames(
+        className={clsx(
           'top-[calc(50%_-_10px] absolute -left-5 hidden items-center justify-center rounded-full p-1 sm:flex',
           prevBtnEnabled
             ? 'bg-stone-600 text-stone-100 hover:bg-brand-yellow hover:text-gray-800'
-            : 'bg-stone-600 text-stone-500'
+            : 'bg-stone-600 text-stone-500',
         )}
         disabled={!prevBtnEnabled}
         onClick={scrollPrev}
@@ -96,11 +96,11 @@ export const PresetSlider: React.FC<Props> = ({
       </button>
       <button
         type="button"
-        className={classNames(
+        className={clsx(
           'top-[calc(50%_-_10px] absolute -right-5 hidden items-center justify-center rounded-full p-1 sm:flex',
           nextBtnEnabled
             ? 'bg-stone-600 text-stone-100 hover:bg-brand-yellow hover:text-gray-800'
-            : 'bg-stone-600 text-stone-500'
+            : 'bg-stone-600 text-stone-500',
         )}
         disabled={!nextBtnEnabled}
         onClick={scrollNext}

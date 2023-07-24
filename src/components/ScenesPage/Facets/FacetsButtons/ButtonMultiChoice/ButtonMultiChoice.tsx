@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { useStore } from 'zustand'
@@ -50,7 +50,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
   return (
     <label
       htmlFor={formKey}
-      className={classNames(
+      className={clsx(
         {
           'flex w-full flex-row items-center justify-start gap-1 px-1 py-1':
             showAsList,
@@ -66,7 +66,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
         'silbentrennung',
         { 'cursor-pointer hover:bg-yellow-50': uiCanpress },
         { 'cursor-not-allowed': !uiCanpress },
-        { 'text-slate-500': !uiCanpress && uiSelected }
+        { 'text-slate-500': !uiCanpress && uiSelected },
       )}
       title={[
         // eslint-disable-next-line no-nested-ternary
@@ -102,7 +102,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
             selectedBucket: bucket,
           })
         }
-        className={classNames(
+        className={clsx(
           'h-4 w-4 rounded',
           { 'mr-1': showAsList },
           {
@@ -114,7 +114,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
           {
             'border-gray-300 bg-white/30 text-brand-yellow/30':
               !uiCanpress && !uiSelected,
-          }
+          },
         )}
       />
       <span
@@ -126,8 +126,8 @@ export const ButtonMultiChoice: React.FC<Props> = ({
               renderToString(
                 <>
                   <BikeIcon className="inline h-3 w-auto align-baseline" />{' '}
-                </>
-              )
+                </>,
+              ),
             ) || 'TODO',
         }}
       />

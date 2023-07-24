@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import { useStore } from 'zustand'
 import { Link } from '~/components/Link'
@@ -60,9 +60,9 @@ export const ResultColumn: React.FC<Props> = ({
   return (
     <article
       ref={ref}
-      className={classNames(
+      className={clsx(
         safeZoneForIosSafariNavigationBar,
-        '_snap-start box-content h-full w-56 flex-none px-1.5 pb-4 first:pl-4 lg:w-48 lg:px-2'
+        '_snap-start box-content h-full w-56 flex-none px-1.5 pb-4 first:pl-4 lg:w-48 lg:px-2',
       )}
     >
       <h2 className="sr-only">
@@ -77,9 +77,9 @@ export const ResultColumn: React.FC<Props> = ({
             className="group flex w-full items-center justify-center p-2"
           >
             <div
-              className={classNames(
+              className={clsx(
                 'flex h-8 w-8 items-center justify-center rounded-full border-2 border-brand-yellow p-[0.4rem] group-hover:bg-yellow-400',
-                isInBookmarks(scene.sceneId) ? 'bg-brand-yellow' : 'bg-white'
+                isInBookmarks(scene.sceneId) ? 'bg-brand-yellow' : 'bg-white',
               )}
             >
               <PinIcon className="h-4 w-4" />
@@ -103,9 +103,9 @@ export const ResultColumn: React.FC<Props> = ({
         handleHover={handleImageChange}
         showTable={showTable}
         setShowTable={setShowTable}
-        wrapperClass={classNames(
+        wrapperClass={clsx(
           'border-b border-dotted py-2 lg:py-3.5',
-          showTable ? 'h-96' : 'h-40'
+          showTable ? 'h-96' : 'h-40',
         )}
         chartClass="border-b border-dotted"
       />

@@ -104,8 +104,8 @@ export const ButtonSingleChoice: React.FC<Props> = ({
               renderToString(
                 <>
                   <BikeIcon className="inline h-3 w-auto align-baseline" />{' '}
-                </>
-              )
+                </>,
+              ),
             ) || 'TODO',
         }}
       />
