@@ -72,8 +72,8 @@ module.exports = {
       resolve: 'gatsby-plugin-matomo',
       options: {
         siteId: '6',
-        matomoUrl: 'https://s.radwege-check.de',
-        siteUrl: 'https://s.radwege-check.de',
+        matomoUrl: 'https://s.fixmycity.de',
+        siteUrl: 'https://radwege-check.de',
         requireConsent: false,
         requireCookieConsent: false,
         disableCookies: true,
