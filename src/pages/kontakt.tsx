@@ -31,9 +31,9 @@ const KontaktPage: React.FC<PageProps> = ({ location }) => {
       <p>
         <strong>FixMyCity GmbH</strong>
         <br />
-        Karlsgartenstraße 12
+        Oberlandstraße 26-35
         <br />
-        12049 Berlin
+        12099 Berlin
         <br />
         <Link to="hello@fixmycity.de">hello@fixmycity.de</Link>
         <br />
