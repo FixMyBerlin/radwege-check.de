@@ -16,11 +16,7 @@ const KontaktPage: React.FC<PageProps> = ({ location }) => {
         </Link>
       </p>
       <p>
-        Du findest uns auch auf{' '}
-        <Link external blank to="https://twitter.com/fixmyberlin">
-          Twitter
-        </Link>{' '}
-        und{' '}
+        Sie finden uns auch auf{' '}
         <Link external blank to="https://www.linkedin.com/company/fixmycity">
           LinkedIn
         </Link>
