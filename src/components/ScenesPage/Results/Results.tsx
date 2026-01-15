@@ -16,7 +16,7 @@ export type ShowTableProps = {
 
 export const Results: React.FC<Props> = ({ results, searchFilters }) => {
   const resultItems = results?.data?.items || []
-  const resultsRef = useRef<HTMLDivElement>()
+  const resultsRef = useRef<HTMLDivElement>(null)
 
   const [showTable, setShowTable] = useState(false)
 

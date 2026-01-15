@@ -55,7 +55,7 @@ export const SectionTeam: React.FC = () => {
           external
           blank
           to="https://www.berlin.de/rbmskzl/"
-          className="h-auto w-60"
+          className="h-auto w-60 [&_img]:object-contain!"
         >
           <StaticImage
             src="./images/logo/senatskanzlei-berlin.png"

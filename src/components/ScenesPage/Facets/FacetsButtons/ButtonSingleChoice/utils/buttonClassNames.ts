@@ -28,7 +28,7 @@ export const buttonClassNames = ({
         !showAsList,
     },
     {
-      'border border-transparent border-r-gray-300 last:border-r-transparent group-hover:border-gray-300 transition-colors':
+      'border border-transparent border-r-gray-300 last:border-r-transparent group-hover:border-gray-300 group-hover:last:border-r-gray-300 transition-colors':
         !showAsList,
     },
     'silbentrennung',

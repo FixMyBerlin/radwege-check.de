@@ -10,7 +10,7 @@ type Props = {
  *
  * Code inspired by https://github.com/FixMyBerlin/fixmy.frontend/blob/master/src/components2/NewsletterWidget/NewsletterWidget.tsx
  */
-export const NewsletterWidget: React.VFC<Props> = ({ className }) => {
+export const NewsletterWidget: React.FC<Props> = ({ className }) => {
   const src = 'https://app.mailjet.com/widget/iframe/2YIa/EGM?v=4'
 
   return (

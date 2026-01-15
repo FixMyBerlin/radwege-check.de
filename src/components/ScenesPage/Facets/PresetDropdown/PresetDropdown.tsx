@@ -60,7 +60,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
                         'cursor-default bg-brand-light-yellow text-gray-500':
                           selected,
                       },
-                      { 'hover:bg-stone-100': !selected },
+                      { 'cursor-pointer hover:bg-stone-100': !selected },
                       'block w-full px-4 py-2 text-left text-sm',
                     )}
                   >
@@ -76,8 +76,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
                   disabled
                   className={clsx(
                     {
-                      'cursor-default bg-brand-light-yellow text-gray-500':
-                        true,
+                      'cursor-default bg-brand-light-yellow text-gray-500': true,
                     },
                     { 'hover:bg-stone-100': !true },
                     'block w-full px-4 py-2 text-left text-sm',

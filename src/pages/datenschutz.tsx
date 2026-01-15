@@ -9,7 +9,7 @@ const MatomoIframe: React.FC = () => {
     <iframe
       title="Matomo Opt Out Tracking"
       className="h-52 w-full border bg-[#f0fdf4] p-2"
-      src="https://s.radwege-check.de/index.php?module=CoreAdminHome&action=optOut&language=de&backgroundColor=f0fdf4&fontColor=374151&fontSize=16px&fontFamily=Arial"
+      src="https://s.fixmycity.de/index.php?module=CoreAdminHome&action=optOut&language=de&backgroundColor=f0fdf4&fontColor=374151&fontSize=16px&fontFamily=Arial"
     />
   )
 }

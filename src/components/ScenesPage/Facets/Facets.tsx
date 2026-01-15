@@ -1,8 +1,6 @@
 import clsx from 'clsx'
 import React, { useMemo } from 'react'
 import { useStore } from 'zustand'
-import { TwitterButtonIconCurrentUrl } from '~/components/Link'
-import { trackEvent } from '~/components/utils'
 
 import { useStoreExperimentData } from '../store'
 import { ResultProps } from '../types'
@@ -38,9 +36,7 @@ export const Facets: React.FC<FacetsProps> = ({
   showLogo,
 }) => {
   const aggregations = results?.data?.aggregations || {}
-  const { aggregationConfig, experimentTextKey } = useStore(
-    useStoreExperimentData,
-  )
+  const { aggregationConfig } = useStore(useStoreExperimentData)
 
   const mainAggregations = useMemo(
     () =>
@@ -68,7 +64,7 @@ export const Facets: React.FC<FacetsProps> = ({
       <div className="relative flex h-14 items-center justify-between bg-brand-light-yellow px-3 py-1 shadow-md">
         <Logo visible={showLogo} />
         <ExperimentSwitcher />
-        <TwitterButtonIconCurrentUrl
+        {/* <TwitterButtonIconCurrentUrl
           className="lg:hidden"
           onClick={() =>
             trackEvent({
@@ -77,7 +73,7 @@ export const Facets: React.FC<FacetsProps> = ({
               label: 'Mobile view',
             })
           }
-        />
+        /> */}
       </div>
 
       <div className={clsx('z-0 mb-4 bg-gray-200 px-3 pb-1 pt-5 shadow-md')}>

@@ -36,6 +36,8 @@ export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
   })
 
   const formKey = `${aggregationKey}-${bucketKey}`
+  const bucketLabel =
+    aggregationConfig[aggregationKey].buckets[bucketKey] || 'TODO'
 
   return (
     <label htmlFor={formKey} className={labelClasses} title="">
@@ -51,14 +53,14 @@ export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
             selectedBucketKey: null,
           })
         }
+        aria-label={bucketLabel.replace(/<[^>]*>/g, '')}
         className={inputClasses}
       />
       <span
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
-          __html:
-            aggregationConfig[aggregationKey].buckets[bucketKey] || 'TODO',
+          __html: bucketLabel,
         }}
+        aria-hidden="true"
       />
     </label>
   )

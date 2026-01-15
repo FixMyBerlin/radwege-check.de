@@ -43,7 +43,9 @@ export const Table: React.FC<Props> = ({
       </caption>
       <thead>
         <tr>
-          <th> </th>
+          <th>
+            <span className="sr-only">Kategorie</span>
+          </th>
           <th className="border-b border-stone-200 pb-0.5 pr-2 text-center align-bottom">
             <span className="sr-only">Perspektive Fahrrad</span>
             <BikeIcon className="inline h-4 w-auto" />
@@ -90,10 +92,7 @@ export const Table: React.FC<Props> = ({
                     ・
                   </span>
                 )}
-                <span
-                  // eslint-disable-next-line react/no-danger
-                  dangerouslySetInnerHTML={{ __html: barTitle[key] }}
-                />
+                <span dangerouslySetInnerHTML={{ __html: barTitle[key] }} />
               </th>
               <td
                 className={clsx(

@@ -74,7 +74,7 @@ export const ResultColumn: React.FC<Props> = ({
           <button
             type="button"
             onClick={() => toggleBookmark(scene.sceneId)}
-            className="group flex w-full items-center justify-center p-2"
+            className="group flex w-full cursor-pointer items-center justify-center p-2"
           >
             <div
               className={clsx(

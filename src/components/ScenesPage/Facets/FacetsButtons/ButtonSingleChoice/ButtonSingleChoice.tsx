@@ -55,18 +55,19 @@ export const ButtonSingleChoice: React.FC<Props> = ({
   })
 
   const formKey = `${aggregationKey}-${bucket.key}`
+  const bucketLabel =
+    aggregationConfig[aggregationKey].buckets[bucket.key] || 'TODO'
 
   return (
     <label
       htmlFor={formKey}
       className={labelClasses}
       title={[
-        // eslint-disable-next-line no-nested-ternary
         resultFuture === 0
           ? 'Auswahl würde 0 Ergebnisse zeigen.'
           : uiCanpress
-          ? `Ergebnisse ${resultFuture ?? '-'}`
-          : 'Auswahl würde die Ergebnisse nicht verändern.',
+            ? `Ergebnisse ${resultFuture ?? '-'}`
+            : 'Auswahl würde die Ergebnisse nicht verändern.',
         aggregationConfig[aggregationKey]?.tooltipBuckets?.[bucket.key],
         isDev &&
           JSON.stringify({
@@ -93,21 +94,21 @@ export const ButtonSingleChoice: React.FC<Props> = ({
             selectedBucketKey: bucket.key,
           })
         }
+        aria-label={bucketLabel.replace(/<[^>]*>/g, '').replace('Fahrrad ', '')}
         className={inputClasses}
       />
       <span
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
-          __html:
-            aggregationConfig[aggregationKey].buckets[bucket.key].replace(
-              'Fahrrad ',
-              renderToString(
-                <>
-                  <BikeIcon className="inline h-3 w-auto align-baseline" />{' '}
-                </>,
-              ),
-            ) || 'TODO',
+          __html: bucketLabel.replace(
+            'Fahrrad ',
+            renderToString(
+              <>
+                <BikeIcon className="inline h-3 w-auto align-baseline" />{' '}
+              </>,
+            ),
+          ),
         }}
+        aria-hidden="true"
       />
     </label>
   )

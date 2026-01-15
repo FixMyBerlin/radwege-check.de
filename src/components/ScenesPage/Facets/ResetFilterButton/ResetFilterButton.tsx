@@ -17,7 +17,7 @@ export const ResetFilterButton: React.FC<Props> = ({ onClick }) => {
         onClick={resetFilterEnabled ? onClick : undefined}
         className={clsx(
           resetFilterEnabled
-            ? 'hover:text-yellow-800 hover:decoration-yellow-500 focus:text-yellow-800 focus:outline-none'
+            ? 'cursor-pointer hover:text-yellow-800 hover:decoration-yellow-500 focus:text-yellow-800 focus:outline-none'
             : 'cursor-not-allowed text-gray-500 decoration-gray-300',
           'underline decoration-brand-yellow decoration-2',
         )}

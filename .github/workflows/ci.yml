@@ -23,6 +23,8 @@ jobs:
 
       - name: Install dependencies (with cache)
         uses: bahmutov/npm-install@HEAD
+        with:
+          install-command: npm install --legacy-peer-deps
 
       - name: Check types
         run: npm run type-check

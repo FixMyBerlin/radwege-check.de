@@ -4,19 +4,14 @@ import { graphql, navigate, PageProps } from 'gatsby'
 import React, { useEffect, useMemo } from 'react'
 import { useQueryParam } from 'use-query-params'
 import { LayoutArticle, MetaTags } from '~/components/Layout'
-import {
-  buttonStyles,
-  Link,
-  PrintButton,
-  TwitterButton,
-} from '~/components/Link'
+import { buttonStyles, Link, PrintButton } from '~/components/Link'
 import {
   aggregationConfigPrimary,
   aggregationConfigSecondary,
 } from '~/components/ScenesPage/constants'
 import { ResultColumn } from '~/components/ScenesPage/Results/ResultColumn'
 import { cleanupCsvData, CommaArrayParam } from '~/components/ScenesPage/utils'
-import { fullUrl, trackContentImpression, trackEvent } from '~/components/utils'
+import { fullUrl, trackContentImpression } from '~/components/utils'
 import { VergleichenPagePrintResult } from '~/components/VergleichenPagePrintResult'
 
 /*
@@ -67,11 +62,11 @@ const MyDataIndex: React.FC<Props> = ({
   const [bookmarksArray] = useQueryParam('sceneIds', CommaArrayParam)
 
   // Filter scenes by URL param
-  const bookmarkScenesPrimary = scenesPrimary.filter(
-    (s) => bookmarksArray?.includes(s.sceneId),
+  const bookmarkScenesPrimary = scenesPrimary.filter((s) =>
+    bookmarksArray?.includes(s.sceneId),
   )
-  const bookmarkScenesSecondary = scenesSecondary.filter(
-    (s) => bookmarksArray?.includes(s.sceneId),
+  const bookmarkScenesSecondary = scenesSecondary.filter((s) =>
+    bookmarksArray?.includes(s.sceneId),
   )
 
   const showBackButton = location?.state?.showBack === true
@@ -194,7 +189,7 @@ const MyDataIndex: React.FC<Props> = ({
       </div>
 
       <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 print:hidden">
-        <TwitterButton
+        {/* <TwitterButton
           url={`${location.pathname}?sceneIds=${bookmarksArray?.join(',')}`}
           text={
             bookmarksArray?.length &&
@@ -209,7 +204,7 @@ const MyDataIndex: React.FC<Props> = ({
               label: bookmarksArray?.join(','),
             })
           }
-        />
+        /> */}
         <PrintButton />
       </div>
     </LayoutArticle>

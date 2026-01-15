@@ -34,7 +34,7 @@ export const HeadlineButton: React.FC<Props> = ({
     <button
       type="button"
       onClick={handleClick}
-      className="group mb-0.5 flex w-full items-center justify-between"
+      className="group mb-0.5 flex w-full cursor-pointer items-center justify-between"
     >
       <h3 className="text-xxs font-semibold">
         Bewertung Subjektive Sicherheit

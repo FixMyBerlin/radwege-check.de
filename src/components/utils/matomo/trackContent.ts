@@ -1,5 +1,3 @@
-/* eslint-disable dot-notation */
-
 /*
   Matomo Docs: https://developer.matomo.org/guides/tracking-javascript-guide#tracking-content-impressions-and-actions-manually
 */
@@ -26,7 +24,6 @@ export const trackContentImpression = ({
   window['_paq'].push(['trackContentImpression', id, representation])
 
   if (window['dev'] === true) {
-    // eslint-disable-next-line no-console
     console.debug({
       MATOMO: 'trackContentImpression',
       id,
@@ -53,7 +50,6 @@ export const trackContentInteraction = ({
   window['_paq'].push(['trackContentInteraction', action, id, representation])
 
   if (window['dev'] === true) {
-    // eslint-disable-next-line no-console
     console.debug({
       MATOMO: 'trackContentInteraction',
       action,

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useStore } from 'zustand'
 import { isProduction } from '~/components/utils'
 import { useStoreExperimentData } from '../../store'

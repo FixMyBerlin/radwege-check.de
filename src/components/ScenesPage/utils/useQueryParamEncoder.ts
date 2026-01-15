@@ -12,7 +12,7 @@ export const encodeFilter = (
     .sort((a, b) => a.localeCompare(b))
     .reduce((obj, key) => {
       // Learn more https://stackoverflow.com/questions/41625399/how-to-handle-eslint-no-param-reassign-rule-in-array-prototype-reduce-function#comment70452247_41625399
-      // eslint-disable-next-line no-param-reassign
+
       obj[key] = filterObject[key].sort((a, b) => a.localeCompare(b))
       return obj
     }, {})
@@ -115,7 +115,6 @@ export const decodeFilter = (
   if (removedKeys.length || removedValues.length) {
     const debug = !process.env.DISABlE_DEBUG_FOR_JEST && isDev
     if (debug) {
-      // eslint-disable-next-line no-console
       console.log({
         INFO: 'decodeFilter() removed keys/values that where given by the URL but not recognized by the config:',
         removedKeys,

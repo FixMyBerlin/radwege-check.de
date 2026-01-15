@@ -25,7 +25,6 @@ export const checkBucketValueConsistency = ({
   )
 
   if (keyFromItemjsMissingInTranslations.length) {
-    // eslint-disable-next-line no-console
     console.log({
       ERROR: `Missing bucket keys (${keyFromItemjsMissingInTranslations.length}) in aggregationConfig (but present in Itemjs).`,
       aggregationKey,
@@ -40,7 +39,6 @@ export const checkBucketValueConsistency = ({
     .filter((key) => key !== 'noChoice')
 
   if (keyFromTranslationMissingInItemjs.length) {
-    // eslint-disable-next-line no-console
     console.log({
       ERROR: `Missing bucket keys (${keyFromTranslationMissingInItemjs.length}) in ItemJs (but present in aggregationConfig).`,
       aggregationKey,

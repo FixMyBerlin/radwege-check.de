@@ -10,7 +10,7 @@ type Props = {
 }
 
 // Files are stored at https://s3.console.aws.amazon.com/s3/buckets/fmb-aws-bucket?region=eu-central-1&prefix=KatasterKI/scenes/&showversions=false
-export const SceneImage: React.VFC<Props> = ({
+export const SceneImage: React.FC<Props> = ({
   sceneId,
   className,
   alt,

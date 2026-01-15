@@ -71,10 +71,7 @@ export const ResultCell: React.FC<Props> = ({
       </h3>
 
       <p className="relative w-full leading-tight text-neutral-800">
-        <span
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: bucketTranslation }}
-        />
+        <span dangerouslySetInnerHTML={{ __html: bucketTranslation }} />
 
         {showAdditionalNumber && (
           <span className="ml-0.5 font-light text-neutral-500">

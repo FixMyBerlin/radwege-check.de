@@ -45,17 +45,8 @@ export const BarChartAndHeadline: React.FC<Props> = ({
 }) => {
   if (!voteScore) return null
 
-  return (
-    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-    <div
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
-      className={clsx(
-        'flex h-full flex-col items-center justify-center',
-        mainBarChart ? 'flex-1' : 'w-14',
-        { 'cursor-pointer': !!handleMouseOver },
-      )}
-    >
+  const content = (
+    <>
       <div className="flex h-8 flex-none items-center justify-center">
         {icon}
         <strong
@@ -63,7 +54,6 @@ export const BarChartAndHeadline: React.FC<Props> = ({
             'whitespace-nowrap font-semi tracking-tight',
             mainBarChart ? 'text-2xl font-semibold' : 'text-lg font-medium',
           )}
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: formatNumber(voteScore, {
               precision: 0,
@@ -78,6 +68,30 @@ export const BarChartAndHeadline: React.FC<Props> = ({
         vote2Save={vote2Save}
         vote3VerySave={vote3VerySave}
       />
-    </div>
+    </>
   )
+
+  const className = clsx(
+    'flex h-full flex-col items-center justify-center',
+    mainBarChart ? 'flex-1' : 'w-14',
+    { 'cursor-pointer': !!handleMouseOver },
+  )
+
+  if (handleMouseOver || handleMouseOut) {
+    return (
+      <div
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+        onFocus={handleMouseOver}
+        onBlur={handleMouseOut}
+        role="button"
+        tabIndex={0}
+        className={className}
+      >
+        {content}
+      </div>
+    )
+  }
+
+  return <div className={className}>{content}</div>
 }

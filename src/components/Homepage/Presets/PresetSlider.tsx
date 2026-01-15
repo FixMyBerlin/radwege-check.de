@@ -20,7 +20,7 @@ export const PresetSlider: React.FC<Props> = ({
   // https://www.embla-carousel.com/api/options/
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
-    draggable: true,
+    watchDrag: true,
     align: 'start',
     skipSnaps: true,
     inViewThreshold: 0.95,
@@ -64,7 +64,7 @@ export const PresetSlider: React.FC<Props> = ({
     <div
       className={clsx(
         className,
-        'relative -mx-4 mb-3 flex flex-col justify-center bg-stone-200 px-2 py-6 sm:mx-0 sm:px-10 sm:px-3',
+        'relative -mx-4 mb-3 flex flex-col justify-center bg-stone-200 px-2 py-6 sm:mx-0 sm:px-3',
       )}
     >
       <div ref={emblaRef} className="relative overflow-hidden">

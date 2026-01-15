@@ -12,7 +12,7 @@ export const HelpButton: React.FC = () => {
       <button
         onClick={() => setOpen(!open)}
         type="button"
-        className="inline-flex items-center underline decoration-brand-yellow decoration-2 hover:text-yellow-800 hover:decoration-yellow-500 focus:text-yellow-800 focus:outline-none"
+        className="inline-flex cursor-pointer items-center underline decoration-brand-yellow decoration-2 hover:text-yellow-800 hover:decoration-yellow-500 focus:text-yellow-800 focus:outline-none"
       >
         <VideoCameraIcon className="mr-0.5 h-4 w-4" /> Hilfe
       </button>
