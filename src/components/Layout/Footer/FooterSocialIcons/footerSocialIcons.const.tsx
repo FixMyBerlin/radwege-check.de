@@ -1,7 +1,6 @@
 import React from 'react'
 
 export const footerSocialIcons = [
-
   {
     name: 'LinkedIn',
     href: 'https://www.linkedin.com/company/fixmycity',

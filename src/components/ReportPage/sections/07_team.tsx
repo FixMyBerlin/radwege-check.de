@@ -35,9 +35,12 @@ export const SectionTeam: React.FC = () => {
         <br />
         <FormattedMessage id="07_team.p04.address" />
         <br />
-        FixMyCity GmbH<br />
-        Oberlandstraße 26-35<br />
-        12099 Berlin<br />
+        FixMyCity GmbH
+        <br />
+        Oberlandstraße 26-35
+        <br />
+        12099 Berlin
+        <br />
         <br />
         <FormattedMessage id="07_team.p04.funding" />
       </p>
