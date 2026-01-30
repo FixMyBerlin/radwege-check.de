@@ -1,5 +1,15 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
+exports.onCreateBabelConfig = ({ actions }) => {
+  // Add React Compiler plugin - must run first in the Babel pipeline
+  actions.setBabelPlugin({
+    name: 'babel-plugin-react-compiler',
+    options: {},
+  }, {
+    prepend: true, // Ensure React Compiler runs first
+  })
+}
+
 exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
   const config = getConfig()
 
