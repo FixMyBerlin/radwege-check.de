@@ -6,11 +6,10 @@ module.exports = {
     description: 'TODO siteMeta.description',
   },
 
-  // Disable parallel query running to avoid DataCloneError with yoga-layout-prebuilt
-  // See: https://github.com/gatsbyjs/gatsby/issues/23214
-  flags: {
-    PARALLEL_QUERY_RUNNING: false,
-  },
+  // Prevent trailing slashes to avoid query result mismatches
+  // File-based routes create pages without trailing slashes, so we need consistency
+  trailingSlash: 'never',
+
 
   // Since `gatsby-plugin-typescript` is automatically included in Gatsby you
   // don't need to define it here (just if you need to change the options)
