@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useStore } from 'zustand'
 import Logo from '~/components/assets/radwegecheck-logo.svg'
 import { MetaTags } from '../Layout'
-import { Link, PrintButton, TwitterButton } from '../Link'
+import { Link, PrintButton } from '../Link'
 import { Popover } from '../Popover'
 import { SceneImage } from '../ScenesPage'
 import { ResultCells } from '../ScenesPage/Results/ResultCells'
@@ -12,19 +12,14 @@ import { sceneImageUrl } from '../ScenesPage/SceneImage'
 import { useStoreExperimentData } from '../ScenesPage/store'
 import { ScenePrimaryProps, SceneSecondaryProps } from '../ScenesPage/types'
 import { titleScene } from '../ScenesPage/utils/titleScenes'
-import {
-  formatNumber,
-  fullUrl,
-  trackContentImpression,
-  trackEvent,
-} from '../utils'
+import { formatNumber, fullUrl, trackContentImpression } from '../utils'
 
 type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps
   pagePath: string
 }
 
-export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
+export const ScenePage: React.FC<Props> = ({ scene, pagePath: _pagePath }) => {
   const { experimentTextKey, aggregationConfig } = useStore(
     useStoreExperimentData,
   )
@@ -81,7 +76,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
         </div>
 
         <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 print:hidden">
-          <TwitterButton
+          {/* <TwitterButton
             url={pagePath}
             text={`${titleScene(scene)} – Subjektive Sicherheit ${formatNumber(
               scene.voteScore,
@@ -99,7 +94,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath }) => {
                 label: scene.sceneId,
               })
             }
-          />
+          /> */}
           <PrintButton />
         </div>
 

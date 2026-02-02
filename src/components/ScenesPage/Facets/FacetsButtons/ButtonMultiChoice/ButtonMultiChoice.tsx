@@ -46,6 +46,8 @@ export const ButtonMultiChoice: React.FC<Props> = ({
   const { showAsList } = aggregationConfig[aggregationKey]
 
   const formKey = `${aggregationKey}-${bucket.key}`
+  const bucketLabel =
+    aggregationConfig[aggregationKey].buckets[bucket.key] || 'TODO'
 
   return (
     <label
@@ -69,12 +71,11 @@ export const ButtonMultiChoice: React.FC<Props> = ({
         { 'text-slate-500': !uiCanpress && uiSelected },
       )}
       title={[
-        // eslint-disable-next-line no-nested-ternary
         resultFuture === 0
           ? 'Auswahl würde 0 Ergebnisse zeigen.'
           : uiCanpress
-          ? `Ergebnisse ${resultFuture ?? '-'}`
-          : 'Auswahl würde die Ergebnisse nicht verändern.',
+            ? `Ergebnisse ${resultFuture ?? '-'}`
+            : 'Auswahl würde die Ergebnisse nicht verändern.',
         isDev &&
           JSON.stringify({
             resultFuture,
@@ -102,6 +103,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
             selectedBucket: bucket,
           })
         }
+        aria-label={bucketLabel.replace(/<[^>]*>/g, '').replace('Fahrrad ', '')}
         className={clsx(
           'h-4 w-4 rounded',
           { 'mr-1': showAsList },
@@ -118,18 +120,17 @@ export const ButtonMultiChoice: React.FC<Props> = ({
         )}
       />
       <span
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
-          __html:
-            aggregationConfig[aggregationKey].buckets[bucket.key].replace(
-              'Fahrrad ',
-              renderToString(
-                <>
-                  <BikeIcon className="inline h-3 w-auto align-baseline" />{' '}
-                </>,
-              ),
-            ) || 'TODO',
+          __html: bucketLabel.replace(
+            'Fahrrad ',
+            renderToString(
+              <>
+                <BikeIcon className="inline h-3 w-auto align-baseline" />{' '}
+              </>,
+            ),
+          ),
         }}
+        aria-hidden="true"
       />
     </label>
   )

@@ -1,5 +1,3 @@
-/* eslint-disable dot-notation */
-
 type Props = {
   category: string
   action: string
@@ -15,7 +13,6 @@ export const trackEvent = ({ category, action, label = null }: Props) => {
   window['_paq'].push(['trackEvent', category, action])
 
   if (window['dev'] === true) {
-    // eslint-disable-next-line no-console
     console.debug({
       MATOMO: 'trackEvent',
       category,

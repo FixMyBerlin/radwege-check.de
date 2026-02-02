@@ -32,6 +32,9 @@ export const ButtonIconNoChoice: React.FC<Props> = ({
     uiCanpress,
   })
 
+  const bucketLabel =
+    aggregationConfig[aggregationKey].buckets[bucketKey] || 'TODO'
+
   return (
     <button
       key={`${aggregationKey}__${bucketKey}`}
@@ -44,15 +47,15 @@ export const ButtonIconNoChoice: React.FC<Props> = ({
         })
       }
       disabled={!uiCanpress}
+      aria-label={bucketLabel.replace(/<[^>]*>/g, '')}
       title=""
     >
       <span
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
-          __html:
-            aggregationConfig[aggregationKey].buckets[bucketKey] || 'TODO',
+          __html: bucketLabel,
         }}
         className={clsx(showAsIcons && iconClasses)}
+        aria-hidden="true"
       />
     </button>
   )

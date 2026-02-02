@@ -1,5 +1,5 @@
 import { Popover as HeadlessUiPopover, Transition } from '@headlessui/react'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { usePopper } from 'react-popper'
 
 type Props = {
@@ -9,13 +9,23 @@ type Props = {
 
 export const Popover: React.FC<Props> = ({ buttonText, children }) => {
   const [referenceElement, setReferenceElement] =
-    useState<HTMLButtonElement | null>()
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>()
+    useState<HTMLButtonElement | null>(null)
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+    null,
+  )
   const { styles, attributes } = usePopper(referenceElement, popperElement)
+
+  const setReferenceRef = useCallback((node: HTMLButtonElement | null) => {
+    setReferenceElement(node)
+  }, [])
+
+  const setPopperRef = useCallback((node: HTMLDivElement | null) => {
+    setPopperElement(node)
+  }, [])
 
   return (
     <HeadlessUiPopover className="z-10">
-      <HeadlessUiPopover.Button ref={setReferenceElement}>
+      <HeadlessUiPopover.Button ref={setReferenceRef}>
         {buttonText}
       </HeadlessUiPopover.Button>
 
@@ -29,7 +39,7 @@ export const Popover: React.FC<Props> = ({ buttonText, children }) => {
       >
         <HeadlessUiPopover.Panel
           className="mt-2 w-96 rounded-md bg-neutral-700 p-4 text-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-          ref={setPopperElement}
+          ref={setPopperRef}
           style={styles.popper}
           {...attributes.popper}
         >

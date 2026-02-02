@@ -9,7 +9,7 @@ export const buttonIconClassNames = ({ uiSelected, uiCanpress }: Props) => {
   const buttonClasses = clsx(
     'h-8 grow border-r border-gray-300 last:border-r-0 justify-center inline-flex items-center text-xxs font-semibold uppercase font-medium leading-4 min-w-[2rem]',
     {
-      'hover:bg-yellow-50': uiCanpress,
+      'cursor-pointer hover:bg-yellow-50': uiCanpress,
     },
     {
       'cursor-not-allowed': !uiCanpress,

@@ -1,6 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+@theme {
+  /* Tailwind v4: Preserve v3 default ring behavior */
+  /* See https://tailwindcss.com/docs/upgrade-guide#default-ring-width-and-color */
+  --default-ring-width: 3px;
+  --default-ring-color: var(--color-blue-500);
+}
 
 @layer base {
   html,
@@ -15,6 +21,23 @@
     @apply text-slate-800;
     @apply relative;
     /* @apply flex flex-row; */
+  }
+
+  /* Tailwind v4: Preserve v3 default border color behavior */
+  /* See https://tailwindcss.com/docs/upgrade-guide#default-border-color */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  /* Tailwind v4: Preserve v3 placeholder color behavior */
+  /* See https://tailwindcss.com/docs/upgrade-guide#new-default-placeholder-color */
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-gray-400);
   }
 }
 

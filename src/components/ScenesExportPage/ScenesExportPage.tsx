@@ -104,6 +104,7 @@ export const ScenesExportPage: React.FC<Props> = ({
 
                       return (
                         <th
+                          key={field}
                           scope="col"
                           className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                         >
@@ -143,7 +144,10 @@ export const ScenesExportPage: React.FC<Props> = ({
                           : value
 
                         return (
-                          <td className="px-3 py-4 text-sm text-gray-500">
+                          <td
+                            key={field}
+                            className="px-3 py-4 text-sm text-gray-500"
+                          >
                             {isNumber ? value.toLocaleString() : displayValue}
                           </td>
                         )

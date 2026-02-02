@@ -11,7 +11,11 @@ import { useStoreExperimentData } from '~/components/ScenesPage/store'
 import { cleanupCsvData } from '~/components/ScenesPage/utils'
 
 const MyData = ({ location, data: { scenesSecondaryCsv: rawScene } }) => {
-  const scene = useMemo(() => cleanupCsvData([rawScene || {}])[0], [rawScene])
+  // All hooks must be called before any conditional returns (Rules of Hooks)
+  const scene = useMemo(
+    () => (rawScene ? cleanupCsvData([rawScene])[0] : null),
+    [rawScene],
+  )
 
   const { setItemJsConfig, setAggregationConfig, setExperimentTextKey } =
     useStore(useStoreExperimentData)
@@ -21,6 +25,20 @@ const MyData = ({ location, data: { scenesSecondaryCsv: rawScene } }) => {
     setAggregationConfig(aggregationConfigSecondary)
     setExperimentTextKey('secondary')
   }, [])
+
+  // Handle missing scene data - show 404 content if scene doesn't exist
+  if (!rawScene || !scene) {
+    return (
+      <Layout location={location}>
+        <div className="flex min-h-screen items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold">404</h1>
+            <p className="mt-2 text-gray-600">Scene not found</p>
+          </div>
+        </div>
+      </Layout>
+    )
+  }
 
   return (
     <Layout location={location}>

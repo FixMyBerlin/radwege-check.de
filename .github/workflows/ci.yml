@@ -19,10 +19,12 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 22
 
       - name: Install dependencies (with cache)
         uses: bahmutov/npm-install@HEAD
+        with:
+          install-command: npm install --legacy-peer-deps
 
       - name: Check types
         run: npm run type-check

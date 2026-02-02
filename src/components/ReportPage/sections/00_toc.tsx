@@ -14,7 +14,7 @@ export const SectionTableOfContents: React.FC = () => {
 
   const tocHashLinks: TocHashLink = toc.map((tocItem) => [
     hash(`toc.${tocItem}.hash`),
-    <FormattedMessage id={`toc.${tocItem}`} />,
+    <FormattedMessage key={tocItem} id={`toc.${tocItem}`} />,
   ])
 
   return <TableOfContents items={tocHashLinks} />

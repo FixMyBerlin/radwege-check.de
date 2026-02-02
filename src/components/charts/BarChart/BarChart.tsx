@@ -59,7 +59,7 @@ export const BarChart = ({
               index={i}
               isWeightGraph={isWeightGraph}
               // this index is stable
-              // eslint-disable-next-line react/no-array-index-key
+
               key={i}
             />
           ))}

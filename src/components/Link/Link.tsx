@@ -52,12 +52,11 @@ export const Link: React.FC<Props> = React.forwardRef(
     },
     _ref,
   ) => {
-    // eslint-disable-next-line no-nested-ternary
     const styles = button
       ? buttonStyles
       : linkInverted
-      ? linkStylesInverted
-      : linkStyles
+        ? linkStylesInverted
+        : linkStyles
 
     const classes = clsx(className, classNameOverwrite || styles)
 
@@ -81,7 +80,6 @@ export const Link: React.FC<Props> = React.forwardRef(
 
     if (external || blank || mailto || to.startsWith('tel:')) {
       if (isDev && props.onClick) {
-        // eslint-disable-next-line no-console
         console.info({
           NOTE: 'We received an onClick callback via Props which did overwrite default Outbound Link tracker for <Link external>. Please check if that is intended. The props.onClick should handle the event Tracking.',
           to,
@@ -108,3 +106,5 @@ export const Link: React.FC<Props> = React.forwardRef(
     )
   },
 )
+
+Link.displayName = 'Link'
