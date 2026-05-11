@@ -13,14 +13,14 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const LayoutArticle: React.FC<Props> = ({
+export const LayoutArticle = ({
   location,
   showEnglishLanguageTeaser,
   maxWidthClass,
   prose = true,
   printHideHeader = false,
   children,
-}) => {
+}: Props) => {
   return (
     <Layout
       location={location}

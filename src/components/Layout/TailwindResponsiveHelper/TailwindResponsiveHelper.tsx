@@ -1,7 +1,7 @@
 import React from "react";
 import { isDev } from "~/components/utils";
 
-export const TailwindResponsiveHelper: React.FC = () => {
+export function TailwindResponsiveHelper() {
   if (!isDev) return null;
 
   return (
@@ -29,4 +29,4 @@ export const TailwindResponsiveHelper: React.FC = () => {
       </span>
     </a>
   );
-};
+}

@@ -12,7 +12,7 @@ type Props = {
   domain: string;
 };
 
-export const EnglishLanguageModal: React.FC<Props> = ({ visible, domain }) => {
+export const EnglishLanguageModal = ({ visible, domain }: Props) => {
   if (!visible) return null;
   if (!domain) return null;
 

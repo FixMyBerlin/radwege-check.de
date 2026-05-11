@@ -18,7 +18,7 @@ type Props = {
   translationKeys: Record<string, string>;
 };
 
-export const ReportPage: React.FC<Props> = ({ lang, translationKeys }) => {
+export const ReportPage = ({ lang, translationKeys }: Props) => {
   return (
     <IntlProvider locale={lang} messages={translationKeys} defaultLocale="de">
       <LanguageSwitcher />

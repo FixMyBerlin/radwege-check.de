@@ -18,7 +18,7 @@ type Props = {
 };
 
 // https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/guides/web-intent
-export const TwitterButton: React.FC<Props> = ({
+export const TwitterButton = ({
   url,
   text,
   via = "fixmyberlin",
@@ -26,7 +26,7 @@ export const TwitterButton: React.FC<Props> = ({
   buttonText,
   classNameOverwrite,
   onClick,
-}) => {
+}: Props) => {
   if (!url) return null;
   const fullUrl = url.startsWith("http") ? url : `${domain()}${url}`;
 

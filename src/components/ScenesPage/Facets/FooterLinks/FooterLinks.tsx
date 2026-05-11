@@ -2,7 +2,7 @@ import React from "react";
 import { footerLegalLinks } from "~/components/Layout/Footer/const/footerLinks.const";
 import { Link } from "~/components/Link";
 
-export const FooterLinks: React.FC = () => {
+export function FooterLinks() {
   return (
     <section className="mx-3 mt-10 flex gap-3 border-t border-gray-300 py-3">
       {footerLegalLinks.map((line) => (
@@ -12,4 +12,4 @@ export const FooterLinks: React.FC = () => {
       ))}
     </section>
   );
-};
+}

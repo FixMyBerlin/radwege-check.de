@@ -5,7 +5,7 @@ import { buttonStyles } from "./Link";
 
 type Props = { onClick?: () => void };
 
-export const PrintButton: React.FC<Props> = ({ onClick }) => {
+export const PrintButton = ({ onClick }: Props) => {
   return (
     <button
       type="button"

@@ -11,7 +11,7 @@ type Props = {
 };
 
 /* @desc Note: Wrapper needs to be 'relative'. */
-export const SpinnerOrText: React.FC<Props> = ({ text }) => {
+export const SpinnerOrText = ({ text }: Props) => {
   const { showSpinner } = useStore(useStoreSpinner);
 
   const opacitySpinner = showSpinner ? "opacity-100" : "opacity-0";

@@ -26,7 +26,7 @@ type Props = {
   allowBookmark: boolean;
 } & ShowTableProps;
 
-export const ResultColumn: React.FC<Props> = ({
+export const ResultColumn = ({
   scene,
   index = 0,
   searchFilters = {},
@@ -34,7 +34,7 @@ export const ResultColumn: React.FC<Props> = ({
   setShowTable,
   aggregationConfig,
   allowBookmark,
-}) => {
+}: Props) => {
   const [sceneImage, setSceneImage] = useState(scene.sceneId);
   const handleImageChange = (sceneId: string) => setSceneImage(sceneId);
 

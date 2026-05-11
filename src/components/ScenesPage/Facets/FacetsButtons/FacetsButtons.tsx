@@ -20,13 +20,13 @@ type Props = {
   handleMultiChoice?: HandleMultiChoice;
 };
 
-export const FacetsButtons: React.FC<Props> = ({
+export const FacetsButtons = ({
   aggregationKey,
   results,
   buckets,
   handleSingleChoice,
   handleMultiChoice,
-}) => {
+}: Props) => {
   checkDataConsistency({ aggregationKey });
   const { keyFromItemjsMissingInTranslations } = checkBucketValueConsistency({
     aggregationKey,

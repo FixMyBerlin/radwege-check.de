@@ -7,7 +7,7 @@ type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps;
 };
 
-export const ScoreExplanation: React.FC<Props> = ({ visible, scene }) => {
+export const ScoreExplanation = ({ visible, scene }: Props) => {
   if (!visible) return null;
 
   return (

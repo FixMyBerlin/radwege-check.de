@@ -4,7 +4,7 @@ import { Link } from "~/components/Link";
 import { TableOfContents, type TocHashLink } from "~/components/TableOfContents";
 import type { SiteLocation } from "~/lib/site-location";
 
-const MatomoIframe: React.FC = () => {
+const MatomoIframe = () => {
   return (
     <iframe
       title="Matomo Opt Out Tracking"
@@ -20,7 +20,7 @@ Links
 - Original Dokument https://docs.google.com/document/d/10GbKbIwqhdDMhJLLRVWzdJX8q2_nQijO/edit
 */
 
-export const DatenschutzRoute: React.FC<{ location: SiteLocation }> = ({ location }) => {
+export const DatenschutzRoute = ({ location }: { location: SiteLocation }) => {
   const tocItems: TocHashLink = [
     ["#responsible", "Verantwortlichkeit"],
     ["#thirdparty", "Drittdienste"],

@@ -12,12 +12,12 @@ type Props = {
   handleClick: HandleSingleChoice;
 };
 
-export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
+export const ButtonSingleChoiceNoChoice = ({
   aggregationKey,
   bucketKey,
   buckets,
   handleClick,
-}) => {
+}: Props) => {
   const { aggregationConfig } = useStore(useStoreExperimentData);
 
   // For our uiSelected, aggregations with no selected buckets are shows als "all selected".

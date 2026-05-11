@@ -5,7 +5,7 @@ import { Headline, LogoWrapper } from "../components";
 import bmdvLogo from "./images/logo/BMDV_Fz_2021_Office_Farbe_de.png?url";
 import senatLogo from "./images/logo/senatskanzlei-berlin.png?url";
 
-export const SectionTeam: React.FC = () => {
+export function SectionTeam() {
   const intl = useIntl();
 
   return (
@@ -60,4 +60,4 @@ export const SectionTeam: React.FC = () => {
       </LogoWrapper>
     </section>
   );
-};
+}

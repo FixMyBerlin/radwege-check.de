@@ -14,7 +14,7 @@ export type ShowTableProps = {
   setShowTable: null | ((showTable: boolean) => void); // null if not used
 };
 
-export const Results: React.FC<Props> = ({ results, searchFilters }) => {
+export const Results = ({ results, searchFilters }: Props) => {
   const resultItems = results?.data?.items || [];
   const resultsRef = useRef<HTMLDivElement>(null);
 

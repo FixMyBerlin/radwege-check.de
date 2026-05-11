@@ -23,7 +23,7 @@ export type FacetsProps = {
   resetFilterEnabled: boolean;
 } & PresetDropdownProps;
 
-export const Facets: React.FC<FacetsProps> = ({
+export const Facets = ({
   results,
   handleResetFilter,
   handleSingleChoice,
@@ -32,7 +32,7 @@ export const Facets: React.FC<FacetsProps> = ({
   className,
   showLogo,
   resetFilterEnabled,
-}) => {
+}: FacetsProps) => {
   const aggregations = results?.data?.aggregations || {};
   const { aggregationConfig } = useStore(useStoreExperimentData);
 

@@ -7,7 +7,7 @@ type Props = {
   enabled: boolean;
 };
 
-export const ResetFilterButton: React.FC<Props> = ({ onClick, enabled }) => {
+export const ResetFilterButton = ({ onClick, enabled }: Props) => {
   return (
     <p>
       <button

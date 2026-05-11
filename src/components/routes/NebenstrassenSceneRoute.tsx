@@ -14,7 +14,7 @@ type Props = {
   scene: SceneSecondaryProps | null;
 };
 
-export const NebenstrassenSceneRoute: React.FC<Props> = ({ location, scene }) => {
+export const NebenstrassenSceneRoute = ({ location, scene }: Props) => {
   useLayoutEffect(() => {
     useStoreExperimentData.getState().setItemJsConfig(itemJsConfigSecondary);
     useStoreExperimentData.getState().setAggregationConfig(aggregationConfigSecondary);

@@ -13,12 +13,7 @@ type Props = {
   mobileFacets?: React.ReactNode;
 } & SearchOrderDropdownProps;
 
-export const TitleBar: React.FC<Props> = ({
-  results,
-  searchOrder,
-  setSearchOrder,
-  mobileFacets,
-}) => {
+export const TitleBar = ({ results, searchOrder, setSearchOrder, mobileFacets }: Props) => {
   const resultItems = results?.data?.items || [];
   const pagination = results?.pagination;
 

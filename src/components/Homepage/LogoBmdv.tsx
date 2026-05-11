@@ -1,7 +1,7 @@
 import React from "react";
 import bmdvUrl from "./assets/bmdv-gefoerdert.png?url";
 
-export const LogoBmdv: React.FC = () => {
+export function LogoBmdv() {
   return (
     <img
       src={bmdvUrl}
@@ -10,4 +10,4 @@ export const LogoBmdv: React.FC = () => {
       alt="Gefördert durch: Bundesministerium für Digitales und Verkehr aufgrund eines Beschlusses des Deutschen Bundestages"
     />
   );
-};
+}

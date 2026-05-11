@@ -3,7 +3,7 @@ import { Hero, Logos, Presets, UsageExamples } from "~/components/Homepage";
 import { Layout, MetaTags } from "~/components/Layout";
 import type { SiteLocation } from "~/lib/site-location";
 
-export const IndexRoute: React.FC<{ location: SiteLocation }> = ({ location }) => {
+export const IndexRoute = ({ location }: { location: SiteLocation }) => {
   return (
     <Layout location={location}>
       <MetaTags

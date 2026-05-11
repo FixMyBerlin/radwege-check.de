@@ -21,7 +21,7 @@ type Props = {
     >
 );
 
-export const BarChartAndHeadline: React.FC<Props> = ({
+export const BarChartAndHeadline = ({
   mainBarChart,
   icon,
   voteScore,
@@ -31,7 +31,7 @@ export const BarChartAndHeadline: React.FC<Props> = ({
   vote3VerySave,
   handleMouseOver,
   handleMouseOut,
-}) => {
+}: Props) => {
   if (!voteScore) return null;
 
   const content = (

@@ -22,14 +22,14 @@ type Props = {
   chartClass?: string;
 } & ShowTableProps;
 
-export const ResultNumbers: React.FC<Props> = ({
+export const ResultNumbers = ({
   scene,
   handleHover,
   showTable,
   setShowTable,
   wrapperClass,
   chartClass,
-}) => {
+}: Props) => {
   return (
     <section
       className={clsx(

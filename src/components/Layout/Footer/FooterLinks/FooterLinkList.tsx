@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-export const FooterLinkList: React.FC<Props> = ({ linkList, className }) => {
+export const FooterLinkList = ({ linkList, className }: Props) => {
   return (
     <ul className={clsx("space-y-3", className)}>
       {linkList.map((item) => (

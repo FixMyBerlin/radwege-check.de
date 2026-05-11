@@ -18,7 +18,7 @@ type Props = {
   aggregationConfig: AggregationConfig;
 };
 
-export const ResultCell: React.FC<Props> = ({
+export const ResultCell = ({
   keyName,
   bucketActive,
   scene,
@@ -26,7 +26,7 @@ export const ResultCell: React.FC<Props> = ({
   showIcon,
   showHover = true,
   aggregationConfig,
-}) => {
+}: Props) => {
   const titleTranslation = aggregationConfig[keyName]?.resultTitle ||
     aggregationConfig[keyName]?.title || <TranslationMissing value={keyName} />;
 

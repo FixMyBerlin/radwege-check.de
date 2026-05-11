@@ -4,7 +4,7 @@ import React, { Fragment, useState } from "react";
 import { buttonStyles, Link } from "~/components/Link";
 import videoPreviewUrl from "./assets/video-preview.png?url";
 
-export const HelpButton: React.FC = () => {
+export function HelpButton() {
   const [open, setOpen] = useState(false);
 
   return (
@@ -83,4 +83,4 @@ export const HelpButton: React.FC = () => {
       </Transition.Root>
     </>
   );
-};
+}

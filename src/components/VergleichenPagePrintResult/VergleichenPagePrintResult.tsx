@@ -20,11 +20,11 @@ type Props = {
   experimentTextKey: ExperimentTextKey;
 };
 
-export const VergleichenPagePrintResult: React.FC<Props> = ({
+export const VergleichenPagePrintResult = ({
   scene,
   aggregationConfig,
   experimentTextKey,
-}) => {
+}: Props) => {
   const experimentTitle = experimentTextKey === "primary" ? "Hauptstraße" : "Nebenstraße";
 
   return (

@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const Popover: React.FC<Props> = ({ buttonText, children }) => {
+export const Popover = ({ buttonText, children }: Props) => {
   return (
     <HeadlessUiPopover className="relative z-10">
       <HeadlessUiPopover.Button>{buttonText}</HeadlessUiPopover.Button>

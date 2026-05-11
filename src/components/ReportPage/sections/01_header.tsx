@@ -3,7 +3,7 @@ import { FormattedDate, FormattedMessage } from "react-intl";
 import { Headline } from "../components";
 import AuthorIcon from "./assets/author-icon.svg";
 
-export const SectionHeader: React.FC = () => {
+export function SectionHeader() {
   return (
     <section>
       <p className="font-light uppercase leading-5 tracking-widest">
@@ -33,4 +33,4 @@ export const SectionHeader: React.FC = () => {
       </p>
     </section>
   );
-};
+}

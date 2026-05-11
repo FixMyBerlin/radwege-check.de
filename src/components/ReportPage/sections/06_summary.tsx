@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "~/components/Link";
 import { Headline } from "../components";
 
-export const SectionSummary: React.FC = () => {
+export function SectionSummary() {
   const intl = useIntl();
 
   return (
@@ -69,4 +69,4 @@ export const SectionSummary: React.FC = () => {
       </p>
     </section>
   );
-};
+}

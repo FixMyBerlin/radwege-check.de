@@ -22,7 +22,7 @@ type Props = {
   location: SiteLocation;
 };
 
-export const ScenesPage: React.FC<Props> = ({ rawScenes, location: _location }) => {
+export const ScenesPage = ({ rawScenes, location: _location }: Props) => {
   const scenes = useMemo(() => {
     const flattened = rawScenes.map((row: any) =>
       row && typeof row === "object" && "node" in row ? row.node : row,

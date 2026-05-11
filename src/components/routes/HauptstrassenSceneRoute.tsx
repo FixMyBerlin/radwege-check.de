@@ -11,7 +11,7 @@ type Props = {
   scene: ScenePrimaryProps | null;
 };
 
-export const HauptstrassenSceneRoute: React.FC<Props> = ({ location, scene }) => {
+export const HauptstrassenSceneRoute = ({ location, scene }: Props) => {
   useLayoutEffect(() => {
     useStoreExperimentData.getState().setItemJsConfig(itemJsConfigPrimary);
     useStoreExperimentData.getState().setAggregationConfig(aggregationConfigPrimary);

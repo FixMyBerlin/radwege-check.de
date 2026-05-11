@@ -21,7 +21,7 @@ type Props = {
   pagePath: string;
 };
 
-export const ScenePage: React.FC<Props> = ({ scene, pagePath: _pagePath }) => {
+export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
   const { experimentTextKey, aggregationConfig } = useStore(useStoreExperimentData);
 
   const categoryTranslation = experimentTextKey === "primary" ? "Hauptstrasse" : "Nebenstrasse";

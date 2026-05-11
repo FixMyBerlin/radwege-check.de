@@ -9,7 +9,7 @@ export type PresetDropdownProps = {
   handlePresetClick: (presetKey: string) => void;
 };
 
-export const PresetDropdown: React.FC<PresetDropdownProps> = ({ handlePresetClick }) => {
+export const PresetDropdown = ({ handlePresetClick }: PresetDropdownProps) => {
   const { presets, currentPresetKey } = useStore(useStorePreset);
 
   const isCustom = currentPresetKey === "custom";

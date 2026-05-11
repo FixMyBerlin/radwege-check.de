@@ -20,14 +20,14 @@ type Props = {
   hideSecondaryNumber?: boolean;
 };
 
-export const Table: React.FC<Props> = ({
+export const Table = ({
   scene,
   visible,
   precision = 2,
   showPedestrianColumn: _showPedestrianColumn,
   showCarColumn: _showCarColumn,
   hideSecondaryNumber = false,
-}) => {
+}: Props) => {
   const table = {
     ...data(scene, precision),
     ...(!hideSecondaryNumber && dataSecondary(scene, precision)),

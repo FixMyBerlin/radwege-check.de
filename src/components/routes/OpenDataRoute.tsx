@@ -3,7 +3,7 @@ import { LayoutArticle, MetaTags } from "~/components/Layout";
 import { Link } from "~/components/Link";
 import type { SiteLocation } from "~/lib/site-location";
 
-export const OpenDataRoute: React.FC<{ location: SiteLocation }> = ({ location }) => {
+export const OpenDataRoute = ({ location }: { location: SiteLocation }) => {
   const odblLicencePart = (
     <>
       <br />

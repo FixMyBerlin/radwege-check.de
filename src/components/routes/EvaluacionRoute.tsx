@@ -5,7 +5,7 @@ import { LayoutArticle, MetaTags } from "~/components/Layout";
 import { domain } from "~/components/utils";
 import type { SiteLocation } from "~/lib/site-location";
 
-export const EvaluacionRoute: React.FC<{ location: SiteLocation }> = ({ location }) => {
+export const EvaluacionRoute = ({ location }: { location: SiteLocation }) => {
   const currentLanguage = "es";
 
   return (

@@ -30,13 +30,13 @@ type Props = {
   paginationTotal: number;
 };
 
-export const ButtonMultiChoice: React.FC<Props> = ({
+export const ButtonMultiChoice = ({
   aggregationKey,
   bucket,
   buckets,
   handleClick,
   paginationTotal,
-}) => {
+}: Props) => {
   const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
     bucketCount: bucket?.doc_count,

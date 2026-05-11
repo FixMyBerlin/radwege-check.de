@@ -5,7 +5,7 @@ import { Link } from "~/components/Link";
 import { SceneImage } from "~/components/ScenesPage/SceneImage";
 import { ButtonWrapper, Headline, Image, TwoImagesWrapper } from "../components";
 
-export const SectionIntroduction: React.FC = () => {
+export function SectionIntroduction() {
   const intl = useIntl();
 
   return (
@@ -89,4 +89,4 @@ export const SectionIntroduction: React.FC = () => {
       </ButtonWrapper>
     </section>
   );
-};
+}

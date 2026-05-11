@@ -12,7 +12,7 @@ type Props = {
   experimentTextKey: "primary" | "secondary";
 };
 
-export const ScenesExportPage: React.FC<Props> = ({ rawScenes, experimentTextKey }) => {
+export const ScenesExportPage = ({ rawScenes, experimentTextKey }: Props) => {
   useLayoutEffect(() => {
     useStoreExperimentData.getState().setExperimentTextKey(experimentTextKey);
   }, [experimentTextKey]);

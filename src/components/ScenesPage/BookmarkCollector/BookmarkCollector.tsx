@@ -5,7 +5,7 @@ import { Link } from "~/components/Link";
 import { SceneImage } from "../SceneImage";
 import { useStoreBookmarks } from "../store";
 
-export const BookmarkCollector: React.FC = () => {
+export function BookmarkCollector() {
   const { bookmarks, removeBookmark } = useStore(useStoreBookmarks);
 
   if (!bookmarks.length) return null;
@@ -42,4 +42,4 @@ export const BookmarkCollector: React.FC = () => {
       </section>
     </div>
   );
-};
+}

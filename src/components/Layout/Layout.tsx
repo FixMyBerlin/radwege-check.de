@@ -13,12 +13,12 @@ type Props = {
 };
 
 // TODO: Maybe we need to prevent the layout from unmounting, see https://www.gatsbyjs.com/docs/how-to/routing/layout-components/#how-to-prevent-layout-components-from-unmounting
-export const Layout: React.FC<Props> = ({
+export const Layout = ({
   className,
   location,
   showEnglishLanguageTeaser = true,
   children,
-}) => {
+}: Props) => {
   return (
     <>
       <main className={clsx(className, "z-0 flex-grow")}>{children}</main>

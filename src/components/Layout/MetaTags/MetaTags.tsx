@@ -30,7 +30,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-export const MetaTags: React.FC<Props> = ({
+export const MetaTags = ({
   lang = "de",
   noindex = false,
   canonicalPath: _canonicalPath, // UNUSED ATM
@@ -42,7 +42,7 @@ export const MetaTags: React.FC<Props> = ({
   imageSize,
   article,
   children,
-}) => {
+}: Props) => {
   const { defaultTitle, defaultDescription } = seoDefaultValues;
 
   const withDefaults = {

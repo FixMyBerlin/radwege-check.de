@@ -11,7 +11,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-export const Image: React.FC<Props> = ({ source, subtitle, chart, children }) => {
+export const Image = ({ source, subtitle, chart, children }: Props) => {
   const image = source && <SceneImage sceneId={source} alt="" lazy className="mb-1 mt-0" />;
 
   return (

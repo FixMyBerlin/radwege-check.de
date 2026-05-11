@@ -22,7 +22,7 @@ type Props = {
   rawScenesSecondary: { node: Record<string, unknown> }[];
 };
 
-const VergleichenInner: React.FC<Props> = ({ location, rawScenesPrimary, rawScenesSecondary }) => {
+const VergleichenInner = ({ location, rawScenesPrimary, rawScenesSecondary }: Props) => {
   const scenesPrimary = useMemo(() => {
     const flattened = rawScenesPrimary.map((list) => list.node);
     return cleanupCsvData(flattened).map((s) => ({
@@ -171,7 +171,7 @@ const VergleichenInner: React.FC<Props> = ({ location, rawScenesPrimary, rawScen
   );
 };
 
-export const VergleichenRoute: React.FC<Props> = (props) => (
+export const VergleichenRoute = (props: Props) => (
   <NuqsClientRoot>
     <VergleichenInner {...props} />
   </NuqsClientRoot>

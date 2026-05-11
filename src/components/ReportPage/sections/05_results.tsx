@@ -4,7 +4,7 @@ import { BarChart, BarChartWrapper, FeelSafe } from "~/components/charts";
 import { Link } from "~/components/Link";
 import { Headline, Image, TwoImagesWrapper } from "../components";
 
-export const SectionResults: React.FC = () => {
+export function SectionResults() {
   const intl = useIntl();
 
   return (
@@ -1622,4 +1622,4 @@ export const SectionResults: React.FC = () => {
       </BarChartWrapper>
     </section>
   );
-};
+}

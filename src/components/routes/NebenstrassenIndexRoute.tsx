@@ -15,7 +15,7 @@ type Props = {
   rawScenes: { node: Record<string, unknown> }[];
 };
 
-export const NebenstrassenIndexRoute: React.FC<Props> = ({ location, rawScenes }) => {
+export const NebenstrassenIndexRoute = ({ location, rawScenes }: Props) => {
   useLayoutEffect(() => {
     useStoreExperimentData.getState().setItemJsConfig(itemJsConfigSecondary);
     useStoreExperimentData.getState().setAggregationConfig(aggregationConfigSecondary);

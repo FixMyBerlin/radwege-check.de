@@ -22,7 +22,7 @@ type Props = {
   className?: string;
 };
 
-export const Icons: React.FC<Props> = ({ forValue, className }) => {
+export const Icons = ({ forValue, className }: Props) => {
   switch (forValue) {
     case "none":
       return <span className={className}>Keine</span>; // TODO <None />;

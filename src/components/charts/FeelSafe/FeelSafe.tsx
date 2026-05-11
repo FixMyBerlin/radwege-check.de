@@ -9,7 +9,7 @@ type Props = FeelSafeProps & {
   standalone?: boolean;
 };
 
-export const FeelSafe: React.FC<Props> = ({ standalone = false, value, big, icon = "bike" }) => {
+export const FeelSafe = ({ standalone = false, value, big, icon = "bike" }: Props) => {
   if (standalone) {
     return (
       <IntlProvider locale="de" messages={de}>

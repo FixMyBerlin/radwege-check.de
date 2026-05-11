@@ -13,12 +13,7 @@ type Props = {
   handleClick: HandleSingleChoice;
 };
 
-export const ButtonIconNoChoice: React.FC<Props> = ({
-  aggregationKey,
-  bucketKey,
-  buckets,
-  handleClick,
-}) => {
+export const ButtonIconNoChoice = ({ aggregationKey, bucketKey, buckets, handleClick }: Props) => {
   const { aggregationConfig } = useStore(useStoreExperimentData);
   const { showAsIcons } = aggregationConfig[aggregationKey];
 

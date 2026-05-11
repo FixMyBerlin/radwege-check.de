@@ -7,7 +7,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const UsageExample: React.FC<Props> = ({ image, title, icon, children }) => {
+export const UsageExample = ({ image, title, icon, children }: Props) => {
   return (
     <section className="flex w-full flex-col overflow-hidden border border-neutral-300 lg:flex-row lg:rounded-lg lg:border-neutral-100 lg:shadow-xl">
       <div className="flex-none sm:w-60 sm:self-center lg:w-1/2 lg:self-auto lg:pr-3">{image}</div>

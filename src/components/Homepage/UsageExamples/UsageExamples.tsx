@@ -14,7 +14,7 @@ const PresentationSvg = PresentationIcon as React.ComponentType<Record<string, u
 const PointOfViewSvg = PointOfViewIcon as React.ComponentType<Record<string, unknown>>;
 const DateSvg = DateIcon as React.ComponentType<Record<string, unknown>>;
 
-export const UsageExamples: React.FC = () => {
+export function UsageExamples() {
   return (
     <section className="mx-auto mb-10 lg:max-w-4xl">
       <h2 className="mb-10 mt-10 text-center text-3xl font-semibold lg:mt-20">
@@ -66,4 +66,4 @@ export const UsageExamples: React.FC = () => {
       </div>
     </section>
   );
-};
+}

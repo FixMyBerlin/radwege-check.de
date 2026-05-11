@@ -7,7 +7,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const Popover: React.FC<Props> = ({ buttonText, children }) => {
+export const Popover = ({ buttonText, children }: Props) => {
   const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null);
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
   const { styles, attributes } = usePopper(referenceElement, popperElement);

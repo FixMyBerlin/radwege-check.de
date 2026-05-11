@@ -9,7 +9,7 @@ type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps;
 } & ShowTableProps;
 
-export const HeadlineButton: React.FC<Props> = ({ visible, showTable, setShowTable, scene }) => {
+export const HeadlineButton = ({ visible, showTable, setShowTable, scene }: Props) => {
   const handleClick = () => {
     trackContentInteraction({
       action: showTable ? "close table" : "open table",

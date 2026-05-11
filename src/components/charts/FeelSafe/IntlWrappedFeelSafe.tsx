@@ -35,7 +35,7 @@ const modes = defineMessages({
   },
 });
 
-export const IntlWrappedFeelSafe: React.FC<FeelSafeProps> = ({ value, big, icon }) => {
+export const IntlWrappedFeelSafe = ({ value, big, icon }: FeelSafeProps) => {
   const color = getColorByValue(value);
   const IconComponent =
     {

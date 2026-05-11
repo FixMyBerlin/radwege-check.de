@@ -4,7 +4,7 @@ import { Link } from "../Link";
 
 const LogoHeroSvg = LogoIconColor as React.ComponentType<Record<string, unknown>>;
 
-export const Hero: React.FC = () => {
+export function Hero() {
   return (
     <section className="flex w-full flex-col items-center bg-brand-light-yellow px-4 pb-12 text-gray-700 lg:px-0">
       <LogoHeroSvg className="mb-4 mt-8 h-20" alt="Radwege-Check" />
@@ -25,4 +25,4 @@ export const Hero: React.FC = () => {
       </p>
     </section>
   );
-};
+}

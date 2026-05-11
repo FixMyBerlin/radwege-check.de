@@ -12,7 +12,7 @@ export type Props = {
   className?: string;
 };
 
-export const PresetSlider: React.FC<Props> = ({ sceneCategory, slides, className }) => {
+export const PresetSlider = ({ sceneCategory, slides, className }: Props) => {
   // https://www.embla-carousel.com/api/options/
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,

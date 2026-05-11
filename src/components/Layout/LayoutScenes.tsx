@@ -9,11 +9,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const LayoutScenes: React.FC<Props> = ({
-  location,
-  showEnglishLanguageTeaser = true,
-  children,
-}) => {
+export const LayoutScenes = ({ location, showEnglishLanguageTeaser = true, children }: Props) => {
   return (
     <>
       <main className="h-screen w-screen">{children}</main>

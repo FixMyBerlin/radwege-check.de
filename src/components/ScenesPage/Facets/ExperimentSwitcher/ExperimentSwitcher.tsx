@@ -6,7 +6,7 @@ import { useStore } from "zustand";
 import { Link } from "~/components/Link";
 import { useStoreExperimentData } from "../../store";
 
-export const ExperimentSwitcher: React.FC = () => {
+export function ExperimentSwitcher() {
   const { experimentTextKey } = useStore(useStoreExperimentData);
 
   const experimentValues = {
@@ -65,4 +65,4 @@ export const ExperimentSwitcher: React.FC = () => {
       </Transition>
     </Menu>
   );
-};
+}

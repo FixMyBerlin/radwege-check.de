@@ -13,7 +13,7 @@ type Props = {
   sceneKind: SceneKind;
 };
 
-export const ScenesAllPage: React.FC<Props> = ({ rawScenes, sceneKind }) => {
+export const ScenesAllPage = ({ rawScenes, sceneKind }: Props) => {
   const scenes = useMemo(() => {
     const flattened = rawScenes.map((list: any) =>
       list && typeof list === "object" && "node" in list ? list.node : list,

@@ -10,7 +10,7 @@ type Props = {
   forIcons?: boolean;
 };
 
-export const FacetsHeadline: React.FC<Props> = ({ aggregationKey, forIcons }) => {
+export const FacetsHeadline = ({ aggregationKey, forIcons }: Props) => {
   const { aggregationConfig } = useStore(useStoreExperimentData);
   const title = aggregationConfig[aggregationKey]?.title;
   const text = title || <TranslationMissing value={aggregationKey} />;

@@ -7,7 +7,7 @@ const LogoColorSvg = LogoColor as React.ComponentType<Record<string, unknown>>;
 
 type Props = { printHideHeader?: boolean };
 
-export const ArticleLogo: React.FC<Props> = ({ printHideHeader }) => {
+export const ArticleLogo = ({ printHideHeader }: Props) => {
   return (
     <section
       className={clsx(

@@ -5,7 +5,7 @@ import { presetsScenesPrimary, presetsScenesSecondary } from "../../ScenesPage/c
 import { SceneCategory } from "../../ScenesPage/types";
 import { PresetSlider } from "./PresetSlider";
 
-export const Presets: React.FC = () => {
+export function Presets() {
   const [sceneCategory, setSceneCategory] = useState<SceneCategory>("primary");
   const scenesBySceneCategory = {
     primary: presetsScenesPrimary,
@@ -82,4 +82,4 @@ export const Presets: React.FC = () => {
       </div>
     </section>
   );
-};
+}

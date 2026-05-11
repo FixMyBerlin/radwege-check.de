@@ -29,14 +29,14 @@ type Props = {
   paginationTotal: number;
 };
 
-export const ButtonSingleChoice: React.FC<Props> = ({
+export const ButtonSingleChoice = ({
   aggregationKey,
   bucket,
   buckets,
   handleClick,
   index,
   paginationTotal,
-}) => {
+}: Props) => {
   const { aggregationConfig } = useStore(useStoreExperimentData);
 
   const { resultFuture, uiSelected, uiCanpress } = useResults({

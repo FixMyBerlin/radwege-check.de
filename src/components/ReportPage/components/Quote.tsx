@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const Quote: React.FC<Props> = ({ sourceText, children }) => {
+export const Quote = ({ sourceText, children }: Props) => {
   return (
     <section className="relative mx-auto mb-20 mt-6 flex max-w-lg flex-col">
       <div

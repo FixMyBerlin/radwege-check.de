@@ -9,7 +9,7 @@ type Props = {
   id?: string;
 };
 
-export const Headline: React.FC<Props> = ({ as, children, className, id }) => {
+export const Headline = ({ as, children, className, id }: Props) => {
   const h1Classes = "sm:leading-10 text-2xl sm:text-4xl";
   const h1WrapperClasses = "leading-10";
 

@@ -12,7 +12,7 @@ type Props = {
   positionBottom?: boolean;
 };
 
-export const EnglishLanguageButton: React.FC<Props> = ({ visible, positionBottom }) => {
+export const EnglishLanguageButton = ({ visible, positionBottom }: Props) => {
   if (!visible) return null;
 
   // Guard SSR

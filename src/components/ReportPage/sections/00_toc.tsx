@@ -2,7 +2,7 @@ import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { TableOfContents, type TocHash, type TocHashLink } from "~/components/TableOfContents";
 
-export const SectionTableOfContents: React.FC = () => {
+export function SectionTableOfContents() {
   const intl = useIntl();
   const toc = ["introduction", "About", "Dataset", "Results", "Summary", "Team"];
   const hash = (hashId: string): TocHash => `#${intl.formatMessage({ id: hashId })}`;
@@ -13,4 +13,4 @@ export const SectionTableOfContents: React.FC = () => {
   ]);
 
   return <TableOfContents items={tocHashLinks} />;
-};
+}

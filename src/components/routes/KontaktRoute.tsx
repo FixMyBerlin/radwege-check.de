@@ -4,7 +4,7 @@ import { LayoutArticle, MetaTags } from "~/components/Layout";
 import { Link } from "~/components/Link";
 import type { SiteLocation } from "~/lib/site-location";
 
-export const KontaktRoute: React.FC<{ location: SiteLocation }> = ({ location }) => {
+export const KontaktRoute = ({ location }: { location: SiteLocation }) => {
   return (
     <LayoutArticle location={location}>
       <MetaTags noindex title="Radwege-Check | Kontakt &amp; Impressum" />

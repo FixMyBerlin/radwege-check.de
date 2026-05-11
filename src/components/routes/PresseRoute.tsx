@@ -3,7 +3,7 @@ import { LayoutArticle, MetaTags } from "~/components/Layout";
 import { Link } from "~/components/Link";
 import type { SiteLocation } from "~/lib/site-location";
 
-export const PresseRoute: React.FC<{ location: SiteLocation }> = ({ location }) => {
+export const PresseRoute = ({ location }: { location: SiteLocation }) => {
   return (
     <LayoutArticle location={location}>
       <MetaTags

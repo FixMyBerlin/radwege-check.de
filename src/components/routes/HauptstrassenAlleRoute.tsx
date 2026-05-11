@@ -9,7 +9,7 @@ type Props = {
   rawScenes: { node: Record<string, unknown> }[];
 };
 
-export const HauptstrassenAlleRoute: React.FC<Props> = ({ location, rawScenes }) => {
+export const HauptstrassenAlleRoute = ({ location, rawScenes }: Props) => {
   useLayoutEffect(() => {
     useStoreExperimentData.getState().setExperimentTextKey("primary");
   }, []);

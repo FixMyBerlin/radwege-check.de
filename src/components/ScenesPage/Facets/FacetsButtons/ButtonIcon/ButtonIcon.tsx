@@ -15,12 +15,7 @@ type Props = {
   paginationTotal: number;
 };
 
-export const ButtonIcon: React.FC<Props> = ({
-  aggregationKey,
-  bucket,
-  handleClick,
-  paginationTotal,
-}) => {
+export const ButtonIcon = ({ aggregationKey, bucket, handleClick, paginationTotal }: Props) => {
   const { aggregationConfig } = useStore(useStoreExperimentData);
 
   const { resultFuture, uiSelected, uiCanpress } = useResults({

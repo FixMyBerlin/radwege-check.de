@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { useIntl } from "react-intl";
 import { translations } from "../translations";
 
-export const LanguageSwitcher: React.FC = () => {
+export function LanguageSwitcher() {
   const intl = useIntl();
 
   const labelForLocale = (locale: string) =>
@@ -66,4 +66,4 @@ export const LanguageSwitcher: React.FC = () => {
       </Transition>
     </Menu>
   );
-};
+}

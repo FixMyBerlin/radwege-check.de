@@ -11,7 +11,7 @@ type Props = {
   preset: PresetScene;
 };
 
-export const PresetSliderSlide: React.FC<Props> = ({ sceneCategory, preset }) => {
+export const PresetSliderSlide = ({ sceneCategory, preset }: Props) => {
   const filterUrlBySceneCategory: FilterUrlBySceneCategory = {
     primary: "/hauptstrassen/?filter=",
     secondary: "/nebenstrassen/?filter=",

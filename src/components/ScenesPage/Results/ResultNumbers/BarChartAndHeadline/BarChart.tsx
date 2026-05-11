@@ -10,12 +10,7 @@ type Props = Pick<
   "vote0Unsafe" | "vote1RatherUnsafe" | "vote2Save" | "vote3VerySave"
 >;
 
-export const BarChart: React.FC<Props> = ({
-  vote0Unsafe,
-  vote1RatherUnsafe,
-  vote2Save,
-  vote3VerySave,
-}) => {
+export const BarChart = ({ vote0Unsafe, vote1RatherUnsafe, vote2Save, vote3VerySave }: Props) => {
   const voteValues = {
     vote0Unsafe,
     vote1RatherUnsafe,

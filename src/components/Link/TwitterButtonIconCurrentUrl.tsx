@@ -7,7 +7,7 @@ type Props = {
   onClick?: () => void;
 };
 
-export const TwitterButtonIconCurrentUrl: React.FC<Props> = ({ className, onClick }) => {
+export const TwitterButtonIconCurrentUrl = ({ className, onClick }: Props) => {
   return (
     <TwitterButton
       url={typeof window !== "undefined" && window.location.pathname + window.location.search}

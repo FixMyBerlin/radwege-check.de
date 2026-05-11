@@ -12,14 +12,14 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const Modal: React.FC<Props> = ({
+export const Modal = ({
   title,
   titleIcon,
   closeButton,
   className,
   showLegalLine = true,
   children,
-}) => {
+}: Props) => {
   const [open, setOpen] = useState(true);
 
   return (

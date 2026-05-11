@@ -8,10 +8,7 @@ export type SearchOrderDropdownProps = {
   setSearchOrder: (order: string | null) => void;
 };
 
-export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
-  searchOrder,
-  setSearchOrder,
-}) => {
+export const SearchOrderDropdown = ({ searchOrder, setSearchOrder }: SearchOrderDropdownProps) => {
   const searchOrderValues = {
     desc: {
       name: "Beste Ergebnisse zuerst",

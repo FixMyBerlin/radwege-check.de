@@ -8,7 +8,7 @@ type Props = {
   visible: boolean;
 };
 
-export const Logo: React.FC<Props> = ({ visible }) => {
+export const Logo = ({ visible }: Props) => {
   if (!visible) return null;
 
   return (

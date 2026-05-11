@@ -10,12 +10,7 @@ type Props = {
   aggregationConfig: AggregationConfig;
 };
 
-export const ResultCells: React.FC<Props> = ({
-  scene,
-  searchFilters,
-  showHover,
-  aggregationConfig,
-}) => {
+export const ResultCells = ({ scene, searchFilters, showHover, aggregationConfig }: Props) => {
   return (
     <>
       {Object.keys(aggregationConfig || {}).map((key) => {

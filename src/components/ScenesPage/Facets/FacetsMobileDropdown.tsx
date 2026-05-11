@@ -5,14 +5,14 @@ import { Facets, FacetsProps } from "./Facets";
 
 type Props = Omit<FacetsProps, "showLogo">;
 
-export const FacetsMobileDropdown: React.FC<Props> = ({
+export const FacetsMobileDropdown = ({
   results,
   handleResetFilter,
   handleSingleChoice,
   handleMultiChoice,
   handlePresetClick,
   resetFilterEnabled,
-}) => {
+}: Props) => {
   return (
     <Menu as="div" className="relative inline-block text-left lg:hidden">
       <Menu.Button className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 bg-white px-3 text-sm font-normal text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:ring-offset-2 focus:ring-offset-gray-100 lg:px-4">

@@ -10,7 +10,7 @@ type Props = {
   className?: string;
 };
 
-export const Spinner: React.FC<Props> = ({ className }) => {
+export const Spinner = ({ className }: Props) => {
   const { showSpinner } = useStore(useStoreSpinner);
 
   if (!showSpinner) return null;

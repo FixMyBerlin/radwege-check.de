@@ -6,7 +6,7 @@ import diagramDe from "./images/diagram_labelled_de.jpg?url";
 import diagramEn from "./images/diagram_labelled_en.jpg?url";
 import diagramEs from "./images/diagram_labelled_es.jpg?url";
 
-export const SectionAbout: React.FC = () => {
+export function SectionAbout() {
   const intl = useIntl();
 
   return (
@@ -213,4 +213,4 @@ export const SectionAbout: React.FC = () => {
       </p>
     </section>
   );
-};
+}

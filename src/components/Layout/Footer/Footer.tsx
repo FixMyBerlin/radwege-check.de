@@ -9,7 +9,7 @@ import { FooterLinkList } from "./FooterLinks/FooterLinkList";
 const LogoSvg = Logo as React.ComponentType<Record<string, unknown>>;
 const LogoFmcSvg = LogoFmc as React.ComponentType<Record<string, unknown>>;
 
-export const Footer: React.FC = () => {
+export function Footer() {
   return (
     <footer
       className="-z-10 bg-stone-600 p-6 print:hidden lg:pb-8"
@@ -58,4 +58,4 @@ export const Footer: React.FC = () => {
       </div>
     </footer>
   );
-};
+}
