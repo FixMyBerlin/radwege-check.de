@@ -2,13 +2,12 @@ import clsx from "clsx";
 import React from "react";
 import { renderToString } from "react-dom/server";
 import { useStore } from "zustand";
+import bikeIconMarkup from "../../../Results/ResultNumbers/assets/bike-icon.svg?raw";
+import { SvgInline } from "~/components/Svg/SvgInline";
 import { useStoreExperimentData } from "~/components/ScenesPage/store";
 import { isDev } from "~/components/utils";
-import BikeIcon from "../../../Results/ResultNumbers/assets/bike-icon.svg";
 import type { ResultBucketProps } from "../../../types";
 import { useResults } from "./useResults";
-
-const BikeSvg = BikeIcon as React.ComponentType<Record<string, unknown>>;
 
 export type HandleMultiChoiceProps = {
   aggregationKey: string;
@@ -124,7 +123,11 @@ export const ButtonMultiChoice = ({
             "Fahrrad ",
             renderToString(
               <>
-                <BikeSvg className="inline h-3 w-auto align-baseline" />{" "}
+                <SvgInline
+                  src={bikeIconMarkup}
+                  className="inline h-3 w-auto align-baseline"
+                  aria-hidden
+                />{" "}
               </>,
             ),
           ),

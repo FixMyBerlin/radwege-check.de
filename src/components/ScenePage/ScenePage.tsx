@@ -1,7 +1,8 @@
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import React, { useEffect } from "react";
 import { useStore } from "zustand";
-import Logo from "~/components/assets/radwegecheck-logo.svg";
+import logoMarkup from "~/components/assets/radwegecheck-logo.svg?raw";
+import { SvgInline } from "~/components/Svg/SvgInline";
 import { MetaTags } from "../Layout";
 import { Link, PrintButton } from "../Link";
 import { Popover } from "../Popover";
@@ -13,8 +14,6 @@ import { useStoreExperimentData } from "../ScenesPage/store";
 import type { ScenePrimaryProps, SceneSecondaryProps } from "../ScenesPage/types";
 import { titleScene } from "../ScenesPage/utils/titleScenes";
 import { formatNumber, fullUrl, trackContentImpression } from "../utils";
-
-const LogoSvg = Logo as React.ComponentType<Record<string, unknown>>;
 
 type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps;
@@ -60,9 +59,13 @@ export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
               classNameOverwrite="block h-10 w-10 overflow-hidden lg:overflow-visible lg:w-full print:hidden"
               title="Zur Startseite…"
             >
-              <LogoSvg className="h-full" alt="Radwege-Check" />
+              <SvgInline src={logoMarkup} className="h-full" alt="Radwege-Check" />
             </Link>
-            <LogoSvg className="hidden h-10 w-full print:block" alt="Radwege-Check" />
+            <SvgInline
+              src={logoMarkup}
+              className="hidden h-10 w-full print:block"
+              alt="Radwege-Check"
+            />
           </div>
           <h1 className="silbentrennung w-full text-2xl print:text-xl lg:col-span-3 lg:h-14 lg:pr-40">
             {titleScene(scene)}

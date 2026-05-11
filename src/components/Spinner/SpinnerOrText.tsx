@@ -1,10 +1,9 @@
 import clsx from "clsx";
 import React from "react";
-import SpinnerIcon from "~/components/Spinner/assets/spinner-icon.svg";
+import { SvgInline } from "~/components/Svg/SvgInline";
+import spinnerIconMarkup from "~/components/Spinner/assets/spinner-icon.svg?raw";
 import { useStore } from "zustand";
 import { useStoreSpinner } from "../ScenesPage/store";
-
-const SpinnerSvg = SpinnerIcon as React.ComponentType<Record<string, unknown>>;
 
 type Props = {
   text: string;
@@ -19,7 +18,8 @@ export const SpinnerOrText = ({ text }: Props) => {
 
   return (
     <>
-      <SpinnerSvg
+      <SvgInline
+        src={spinnerIconMarkup}
         aria-hidden
         className={clsx(
           "absolute transition-opacity duration-300",

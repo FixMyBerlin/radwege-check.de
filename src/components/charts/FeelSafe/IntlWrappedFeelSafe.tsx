@@ -2,9 +2,10 @@ import clsx from "clsx";
 import { scaleLinear } from "d3-scale";
 import React from "react";
 import { defineMessages, useIntl } from "react-intl";
-import BikeIcon from "./assets/feelsafe-bike-icon.svg";
-import CarIcon from "./assets/feelsafe-car-icon.svg";
-import WalkIcon from "./assets/feelsafe-walk-icon.svg";
+import { SvgInline } from "~/components/Svg/SvgInline";
+import bikeIconMarkup from "./assets/feelsafe-bike-icon.svg?raw";
+import carIconMarkup from "./assets/feelsafe-car-icon.svg?raw";
+import walkIconMarkup from "./assets/feelsafe-walk-icon.svg?raw";
 
 const scale = scaleLinear([10, 50, 75, 100], ["#c01d1d", "#f08141", "#abc759", "#45b834"]);
 
@@ -37,12 +38,12 @@ const modes = defineMessages({
 
 export const IntlWrappedFeelSafe = ({ value, big, icon }: FeelSafeProps) => {
   const color = getColorByValue(value);
-  const IconComponent =
+  const iconMarkup =
     {
-      bike: BikeIcon,
-      car: CarIcon,
-      walk: WalkIcon,
-    }[icon || "bike"] ?? BikeIcon;
+      bike: bikeIconMarkup,
+      car: carIconMarkup,
+      walk: walkIconMarkup,
+    }[icon || "bike"] ?? bikeIconMarkup;
 
   const intl = useIntl();
 
@@ -100,10 +101,12 @@ export const IntlWrappedFeelSafe = ({ value, big, icon }: FeelSafeProps) => {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center leading-none">
-        <IconComponent
+        <SvgInline
+          src={iconMarkup}
           role="presentation"
+          aria-hidden
           style={{
-            width: `${big ? 24 : 18} px`,
+            width: `${big ? 24 : 18}px`,
             height: `${big ? 14 : 10}px`,
           }}
         />

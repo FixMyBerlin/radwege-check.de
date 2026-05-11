@@ -12,6 +12,9 @@ function testAssetStubs() {
     name: "test-asset-stubs",
     enforce: "pre" as const,
     load(id) {
+      if (id.includes(".svg?raw")) {
+        return 'export default "<svg xmlns=\\"http://www.w3.org/2000/svg\\"></svg>"';
+      }
       if (!assetStubRe.test(id)) return;
       if (/\.(css|styl|less|sass|scss)$/.test(id)) {
         return "export default {}";

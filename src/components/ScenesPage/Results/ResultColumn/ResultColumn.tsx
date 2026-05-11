@@ -11,10 +11,9 @@ import { titleScene } from "../../utils/titleScenes";
 import { ResultCells } from "../ResultCells";
 import { ResultNumbers } from "../ResultNumbers";
 import { ShowTableProps } from "../Results";
-import PinIcon from "./assets/pin-icon.svg";
+import PinIconMarkup from "./assets/pin-icon.svg?raw";
+import { SvgInline } from "~/components/Svg/SvgInline";
 import { useIntersection } from "./utils/useIntersection";
-
-const PinSvg = PinIcon as React.ComponentType<Record<string, unknown>>;
 
 export type PrevBucketValues = { [key: string]: string | number };
 
@@ -80,7 +79,7 @@ export const ResultColumn = ({
                 isInBookmarks(scene.sceneId) ? "bg-brand-yellow" : "bg-white",
               )}
             >
-              <PinSvg className="h-4 w-4" />
+              <SvgInline src={PinIconMarkup} className="h-4 w-4" aria-hidden />
             </div>
           </button>
         </section>

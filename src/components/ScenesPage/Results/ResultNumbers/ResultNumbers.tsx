@@ -1,18 +1,15 @@
 import clsx from "clsx";
 import React from "react";
+import bikeIconMarkup from "./assets/bike-icon.svg?raw";
+import carIconMarkup from "./assets/car-icon.svg?raw";
+import pedestrianIconMarkup from "./assets/pedestrian-icon.svg?raw";
+import { SvgInline } from "~/components/Svg/SvgInline";
 import { ScenePrimaryProps, SceneSecondaryProps } from "../../types";
 import { ShowTableProps } from "../Results";
-import BikeIcon from "./assets/bike-icon.svg";
-import CarIcon from "./assets/car-icon.svg";
-import PedestrianIcon from "./assets/pedestrian-icon.svg";
 import { BarChartAndHeadline } from "./BarChartAndHeadline";
 import { HeadlineButton } from "./HeadlineButton";
 import { ScoreExplanation } from "./ScoreExplanation";
 import { Table } from "./Table";
-
-const BikeSvg = BikeIcon as React.ComponentType<Record<string, unknown>>;
-const PedSvg = PedestrianIcon as React.ComponentType<Record<string, unknown>>;
-const CarSvg = CarIcon as React.ComponentType<Record<string, unknown>>;
 
 type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps;
@@ -50,7 +47,7 @@ export const ResultNumbers = ({
 
       <div className={clsx(chartClass, "relative flex h-full flex-row gap-1 text-xs print:h-auto")}>
         <BarChartAndHeadline
-          icon={<BikeSvg className="mr-1.5 h-8 w-8" />}
+          icon={<SvgInline src={bikeIconMarkup} className="mr-1.5 h-8 w-8" aria-hidden />}
           mainBarChart
           voteScore={scene.voteScore}
           vote0Unsafe={scene.vote0Unsafe}
@@ -59,7 +56,7 @@ export const ResultNumbers = ({
           vote3VerySave={scene.vote3VerySave}
         />
         <BarChartAndHeadline
-          icon={<PedSvg className="mr-1.5 h-4 w-auto" />}
+          icon={<SvgInline src={pedestrianIconMarkup} className="mr-1.5 h-4 w-auto" aria-hidden />}
           voteScore={scene.votePedestrianScore}
           vote0Unsafe={scene.votePedestrian0Unsafe}
           vote1RatherUnsafe={scene.votePedestrian1RatherUnsafe}
@@ -69,7 +66,7 @@ export const ResultNumbers = ({
           handleMouseOut={handleHover && (() => handleHover(scene.sceneId))}
         />
         <BarChartAndHeadline
-          icon={<CarSvg className="mr-1.5 h-auto w-5" />}
+          icon={<SvgInline src={carIconMarkup} className="mr-1.5 h-auto w-5" aria-hidden />}
           voteScore={scene.voteCarScore}
           vote0Unsafe={scene.voteCar0Unsafe}
           vote1RatherUnsafe={scene.voteCar1RatherUnsafe}

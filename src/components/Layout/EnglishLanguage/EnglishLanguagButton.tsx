@@ -1,11 +1,10 @@
 import clsx from "clsx";
 import React from "react";
 import { isDev } from "~/components/utils";
+import { SvgInline } from "~/components/Svg/SvgInline";
 import { Link } from "../../Link";
-import GoogleTranslateLogo from "./assets/google-translate-logo.svg";
+import googleTranslateLogoMarkup from "./assets/google-translate-logo.svg?raw";
 import { googleTranslateUrl } from "./utils";
-
-const GoogleTranslateSvg = GoogleTranslateLogo as React.ComponentType<Record<string, unknown>>;
 
 type Props = {
   visible: boolean;
@@ -38,7 +37,12 @@ export const EnglishLanguageButton = ({ visible, positionBottom }: Props) => {
         positionBottom ? "bottom-5" : "top-5",
       )}
     >
-      <GoogleTranslateSvg className="mr-1 mt-0.5 h-4 w-4 object-contain" /> Translate page
+      <SvgInline
+        src={googleTranslateLogoMarkup}
+        className="mr-1 mt-0.5 h-4 w-4 object-contain"
+        aria-hidden
+      />{" "}
+      Translate page
     </Link>
   );
 };

@@ -1,18 +1,14 @@
 import React from "react";
+import { SvgInline } from "~/components/Svg/SvgInline";
 import { UsageExample } from "./UsageExample";
-import TableIcon from "./assets/table-icon.svg";
-import DateIcon from "./assets/date-icon.svg";
-import PresentationIcon from "./assets/presentation-icon.svg";
-import PointOfViewIcon from "./assets/point-of-view-icon.svg";
+import dateIconMarkup from "./assets/date-icon.svg?raw";
+import pointOfViewIconMarkup from "./assets/point-of-view-icon.svg?raw";
+import presentationIconMarkup from "./assets/presentation-icon.svg?raw";
+import tableIconMarkup from "./assets/table-icon.svg?raw";
 import tableUrl from "./assets/table.webp?url";
 import presentationUrl from "./assets/presentation.webp?url";
 import pointOfViewUrl from "./assets/point-of-view.webp?url";
 import dateUrl from "./assets/date.webp?url";
-
-const TableSvg = TableIcon as React.ComponentType<Record<string, unknown>>;
-const PresentationSvg = PresentationIcon as React.ComponentType<Record<string, unknown>>;
-const PointOfViewSvg = PointOfViewIcon as React.ComponentType<Record<string, unknown>>;
-const DateSvg = DateIcon as React.ComponentType<Record<string, unknown>>;
 
 export function UsageExamples() {
   return (
@@ -25,7 +21,7 @@ export function UsageExamples() {
         <UsageExample
           image={<img src={tableUrl} alt="" />}
           title="Varianten mit Verkehrsplaner:innen besprechen"
-          icon={<TableSvg className="h-24 w-auto" />}
+          icon={<SvgInline src={tableIconMarkup} className="h-24 w-auto" aria-hidden />}
         >
           Suchen Sie über die <strong>Filterung</strong>, die für Ihre Planungsaufgabe passenden
           Szenarien heraus. <strong>Teilen Sie die Links</strong> zu den Einzelansichten per Email,
@@ -36,7 +32,7 @@ export function UsageExamples() {
         <UsageExample
           image={<img src={presentationUrl} alt="" />}
           title="Planungsvarianten in Bürgerbeteiligung diskutieren"
-          icon={<PresentationSvg className="h-24 w-auto" />}
+          icon={<SvgInline src={presentationIconMarkup} className="h-24 w-auto" aria-hidden />}
         >
           Für die Bürgerbeteiligung können Sie <strong>Abwägungen zwischen Varianten</strong> in der
           Planung gut darstellen. So können z.B. Fragen zu Entscheidungen zwischen Erhalt
@@ -46,7 +42,7 @@ export function UsageExamples() {
         <UsageExample
           image={<img src={pointOfViewUrl} alt="" />}
           title="Empfinden aus Rad-,  Fuß- und Autoperspektive vergleichen"
-          icon={<PointOfViewSvg className="h-24 w-auto" />}
+          icon={<SvgInline src={pointOfViewIconMarkup} className="h-24 w-auto" aria-hidden />}
         >
           Bei Planungen von Radwegen im Seitenraum ist es wichtig die{" "}
           <strong>Fußperspektive einzubeziehen</strong> und sicherzustellen, das auch diese sich
@@ -57,7 +53,7 @@ export function UsageExamples() {
         <UsageExample
           image={<img src={dateUrl} alt="" />}
           title="Ausbaustandards für Radnetze festlegen."
-          icon={<DateSvg className="mb-2 h-16 w-auto" />}
+          icon={<SvgInline src={dateIconMarkup} className="mb-2 h-16 w-auto" aria-hidden />}
         >
           Bei der Planung und Umsetzung Ihres Radnetzes können Sie je nach Ausbaustandard für die
           Netzkategorie unterschiedliche Ansprüche an die <strong>subjektive Sicherheit</strong> der

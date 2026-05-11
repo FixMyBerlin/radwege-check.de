@@ -1,11 +1,10 @@
 import React from "react";
 import { Modal } from "~/components/Modal";
+import { SvgInline } from "~/components/Svg/SvgInline";
 import { isEnglishDomain, primaryDomain } from "~/components/utils";
 import { Link } from "../../Link";
-import GoogleTranslateLogo from "./assets/google-translate-logo.svg";
+import googleTranslateLogoMarkup from "./assets/google-translate-logo.svg?raw";
 import { googleTranslateUrl } from "./utils";
-
-const GoogleTranslateSvg = GoogleTranslateLogo as React.ComponentType<Record<string, unknown>>;
 
 type Props = {
   visible: boolean;
@@ -38,7 +37,12 @@ export const EnglishLanguageModal = ({ visible, domain }: Props) => {
           title="Open page current in Google Translate"
           className="flex flex-row items-center gap-0.5"
         >
-          <GoogleTranslateSvg className="mr-1 mt-0.5 h-4 w-4 object-contain" /> Translate page
+          <SvgInline
+            src={googleTranslateLogoMarkup}
+            className="mr-1 mt-0.5 h-4 w-4 object-contain"
+            aria-hidden
+          />{" "}
+          Translate page
         </Link>{" "}
         <Link to={`${primaryDomain}${window.location.pathname}${window.location.search}`}>
           Don&apos;t show again

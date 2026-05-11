@@ -1,9 +1,8 @@
 import React from "react";
+import twitterIconMarkup from "./assets/twitter-icon.svg?raw";
+import { SvgInline } from "~/components/Svg/SvgInline";
 import { Link } from "./Link";
-import TwitterIcon from "./assets/twitter-icon.svg"; // https://fontawesome.com/icons/twitter?s=brands
 import { domain } from "../utils";
-
-const TwitterSvg = TwitterIcon as React.ComponentType<Record<string, unknown>>;
 
 type Props = {
   url: string;
@@ -46,7 +45,7 @@ export const TwitterButton = ({
       classNameOverwrite={classNameOverwrite}
       onClick={onClick}
     >
-      <TwitterSvg className="mt-0.5 h-4 w-4" />
+      <SvgInline src={twitterIconMarkup} className="mt-0.5 h-4 w-4" aria-hidden />
       {buttonText ? ` ${buttonText}` : <span className="sr-only"> teilen</span>}
     </Link>
   );

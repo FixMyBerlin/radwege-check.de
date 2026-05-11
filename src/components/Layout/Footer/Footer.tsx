@@ -1,13 +1,11 @@
 import React from "react";
-import Logo from "~/components/assets/radwegecheck-logo.svg";
+import logoFmcMarkup from "~/components/Layout/Footer/assets/fixmycity-logo.svg?raw";
+import logoMarkup from "~/components/assets/radwegecheck-logo.svg?raw";
 import { Link } from "~/components/Link";
+import { SvgInline } from "~/components/Svg/SvgInline";
 import { FooterSocialIcons } from ".";
-import LogoFmc from "./assets/fixmycity-logo.svg";
 import { footerLinks } from "./const";
 import { FooterLinkList } from "./FooterLinks/FooterLinkList";
-
-const LogoSvg = Logo as React.ComponentType<Record<string, unknown>>;
-const LogoFmcSvg = LogoFmc as React.ComponentType<Record<string, unknown>>;
 
 export function Footer() {
   return (
@@ -23,7 +21,7 @@ export function Footer() {
         <section className="flex flex-col justify-between pb-3 lg:w-auto lg:pb-0">
           <div>
             <Link to="/" classNameOverwrite="" title="Zur Startseite…">
-              <LogoSvg className="h-12 fill-white" alt="Radwege-Check" />
+              <SvgInline src={logoMarkup} className="h-12 text-white" alt="Radwege-Check" />
             </Link>
           </div>
           <div>
@@ -34,7 +32,11 @@ export function Footer() {
               classNameOverwrite="text-xs text-stone-300 ml-[58px] -mt-0.5 block hover:underline -mb-1.5"
             >
               Konzept &amp; Entwicklung FixMyCity{" "}
-              <LogoFmcSvg className="ml-0.5 inline-block h-7 w-7" />
+              <SvgInline
+                src={logoFmcMarkup}
+                className="ml-0.5 inline-block h-7 w-7 text-white"
+                aria-hidden
+              />
             </Link>
           </div>
         </section>

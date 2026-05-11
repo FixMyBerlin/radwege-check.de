@@ -1,15 +1,12 @@
 import clsx from "clsx";
 import React from "react";
+import bikeIconMarkup from "../assets/bike-icon.svg?raw";
+import carIconMarkup from "../assets/car-icon.svg?raw";
+import pedestrianIconMarkup from "../assets/pedestrian-icon.svg?raw";
+import { SvgInline } from "~/components/Svg/SvgInline";
 import { ScenePrimaryProps, SceneSecondaryProps } from "../../../types";
 import { barColor, barTitle } from "../utils";
-import BikeIcon from "../assets/bike-icon.svg";
-import CarIcon from "../assets/car-icon.svg";
-import PedestrianIcon from "../assets/pedestrian-icon.svg";
 import { data, dataSecondary } from "./data";
-
-const BikeSvg = BikeIcon as React.ComponentType<Record<string, unknown>>;
-const PedSvg = PedestrianIcon as React.ComponentType<Record<string, unknown>>;
-const CarSvg = CarIcon as React.ComponentType<Record<string, unknown>>;
 
 type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps;
@@ -49,18 +46,18 @@ export const Table = ({
           </th>
           <th className="border-b border-stone-200 pb-0.5 pr-2 text-center align-bottom">
             <span className="sr-only">Perspektive Fahrrad</span>
-            <BikeSvg className="inline h-4 w-auto" />
+            <SvgInline src={bikeIconMarkup} className="inline h-4 w-auto" aria-hidden />
           </th>
           {showPedestrianColumn && (
             <th className="border-b border-stone-200 pb-0.5 pr-2 text-center align-bottom">
               <span className="sr-only">Perspektive Fußgänger</span>
-              <PedSvg className="inline h-4 w-auto" />
+              <SvgInline src={pedestrianIconMarkup} className="inline h-4 w-auto" aria-hidden />
             </th>
           )}
           {showCarColumn && (
             <th className="border-b border-stone-200 pb-0.5 pr-2 text-center align-bottom">
               <span className="sr-only">Perspektive Auto</span>
-              <CarSvg className="inline h-auto w-6" />
+              <SvgInline src={carIconMarkup} className="inline h-auto w-6" aria-hidden />
             </th>
           )}
         </tr>

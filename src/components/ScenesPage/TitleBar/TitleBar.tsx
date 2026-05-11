@@ -1,12 +1,11 @@
 import React, { useMemo } from "react";
-import LogoIcon from "~/components/assets/radwegecheck-logo-bildmarke.svg";
+import logoBildmarkeMarkup from "~/components/assets/radwegecheck-logo-bildmarke.svg?raw";
 import { Link } from "~/components/Link";
 import { SpinnerOrText } from "~/components/Spinner";
+import { SvgInline } from "~/components/Svg/SvgInline";
 import { formatPercent } from "~/components/utils";
 import { ResultProps } from "../types";
 import { SearchOrderDropdown, SearchOrderDropdownProps } from "./SearchOrderDropdown";
-
-const Logo = LogoIcon as React.ComponentType<Record<string, unknown>>;
 
 type Props = {
   results: ResultProps;
@@ -29,7 +28,7 @@ export const TitleBar = ({ results, searchOrder, setSearchOrder, mobileFacets }:
   return (
     <section className="z-10 flex h-14 flex-none flex-row items-center justify-between gap-2 bg-brand-light-yellow px-3 py-1 text-lg shadow-[0_0px_10px_0_rgba(0,_0,_0,_0.2)] lg:px-4 lg:text-xl">
       <Link to="/" classNameOverwrite="-ml-0.5 h-8 lg:hidden" title="Zur Startseite…">
-        <Logo className="h-8 w-8" alt="Radwege-Check" />
+        <SvgInline src={logoBildmarkeMarkup} className="h-8 w-8" alt="Radwege-Check" />
       </Link>
       {mobileFacets}
       <h1

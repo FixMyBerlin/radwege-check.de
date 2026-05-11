@@ -1,8 +1,7 @@
 import React from "react";
-import LogoImage from "~/components/assets/radwegecheck-logo.svg";
+import logoMarkup from "~/components/assets/radwegecheck-logo.svg?raw";
+import { SvgInline } from "~/components/Svg/SvgInline";
 import { Link } from "~/components/Link";
-
-const LogoImg = LogoImage as React.ComponentType<Record<string, unknown>>;
 
 type Props = {
   visible: boolean;
@@ -18,7 +17,11 @@ export const Logo = ({ visible }: Props) => {
       className="focus:text-yellow-900 focus:outline-none"
       title="Zur Startseite…"
     >
-      <LogoImg className="h-8 w-auto hover:text-yellow-900 " alt="Radwege-Check" />
+      <SvgInline
+        src={logoMarkup}
+        className="h-8 w-auto hover:text-yellow-900 "
+        alt="Radwege-Check"
+      />
     </Link>
   );
 };

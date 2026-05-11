@@ -1,9 +1,8 @@
 import clsx from "clsx";
 import React from "react";
-import LogoColor from "~/components/assets/radwegecheck-logo-mehrfarbig.svg";
+import logoColorMarkup from "~/components/assets/radwegecheck-logo-mehrfarbig.svg?raw";
+import { SvgInline } from "~/components/Svg/SvgInline";
 import { Link } from "~/components/Link";
-
-const LogoColorSvg = LogoColor as React.ComponentType<Record<string, unknown>>;
 
 type Props = { printHideHeader?: boolean };
 
@@ -16,7 +15,7 @@ export const ArticleLogo = ({ printHideHeader }: Props) => {
       )}
     >
       <Link to="/" classNameOverwrite="" title="Zur Startseite…">
-        <LogoColorSvg className="mt-6 h-16" alt="Radwege-Check" />
+        <SvgInline src={logoColorMarkup} className="mt-6 h-16" alt="Radwege-Check" />
       </Link>
     </section>
   );
