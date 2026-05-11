@@ -21,13 +21,7 @@ module.exports = [
       '**/*.log',
     ],
   },
-  ...compat.extends(
-    'plugin:react/recommended',
-    'prettier',
-    'plugin:jest/recommended',
-    'plugin:jest/style',
-    'plugin:prettier/recommended',
-  ),
+  ...compat.extends('plugin:react/recommended', 'prettier', 'plugin:prettier/recommended'),
   {
     languageOptions: {
       ecmaVersion: 2019,
@@ -56,8 +50,6 @@ module.exports = [
       },
     },
     rules: {
-      'jest/prefer-strict-equal': 'error',
-      'jest/prefer-to-have-length': 'warn',
       'prettier/prettier': 'error',
       'import/prefer-default-export': 'off',
       'react/prop-types': 'off',

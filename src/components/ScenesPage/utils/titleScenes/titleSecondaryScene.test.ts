@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { SceneSecondaryProps } from "../../types";
 import { TitleSecondaryScene, titleSecondaryScene } from "./titleSecondaryScene";
 import { baseSceneSecondary } from "./utils";
