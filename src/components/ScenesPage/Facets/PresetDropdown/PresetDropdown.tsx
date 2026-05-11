@@ -2,15 +2,15 @@ import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import React, { Fragment } from "react";
-import { useStore } from "zustand";
-import { presetStore } from "../../store";
+import { usePresetCurrentKey, usePresetPresets } from "../../store";
 
 export type PresetDropdownProps = {
   handlePresetClick: (presetKey: string) => void;
 };
 
 export const PresetDropdown = ({ handlePresetClick }: PresetDropdownProps) => {
-  const { presets, currentPresetKey } = useStore(presetStore);
+  const presets = usePresetPresets();
+  const currentPresetKey = usePresetCurrentKey();
 
   const isCustom = currentPresetKey === "custom";
   const presetTitle = presets[currentPresetKey]?.title;

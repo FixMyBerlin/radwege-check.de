@@ -2,7 +2,6 @@ import itemsjs from "itemsjs";
 import React, { useLayoutEffect } from "react";
 import { Helmet } from "react-helmet";
 import { parseAsString, useQueryState } from "nuqs";
-import { useStore } from "zustand";
 import type { SiteLocation } from "~/lib/site-location";
 import { consumeBookmarksHandoff } from "~/lib/navigation-handoff";
 import { MetaTags } from "../Layout";
@@ -12,7 +11,13 @@ import { Facets, HandleMultiChoiceProps, HandleSingleChoiceProps } from "./Facet
 import { FacetsMobileDropdown } from "./Facets/FacetsMobileDropdown";
 import { useSetPresetKey } from "./hooks";
 import { Results } from "./Results";
-import { bookmarksStore, experimentDataStore, spinnerStore } from "./store";
+import {
+  useBookmarkActions,
+  useExperimentAggregationConfig,
+  useExperimentItemJsConfig,
+  useExperimentTextKeyState,
+  useSpinnerActions,
+} from "./store";
 import { TitleBar } from "./TitleBar";
 import { ResultProps } from "./types";
 import { cleanupCsvData, decodeFilter, encodeFilter } from "./utils";
@@ -28,8 +33,10 @@ export const ScenesPage = ({ rawScenes, location: _location }: Props) => {
   );
   const scenes = cleanupCsvData(flattened);
 
-  const { itemJsConfig, aggregationConfig, experimentTextKey } = useStore(experimentDataStore);
-  const { setShowSpinner } = useStore(spinnerStore);
+  const itemJsConfig = useExperimentItemJsConfig();
+  const aggregationConfig = useExperimentAggregationConfig();
+  const experimentTextKey = useExperimentTextKeyState();
+  const { setShowSpinner } = useSpinnerActions();
 
   const items = itemJsConfig ? itemsjs(scenes, itemJsConfig) : null;
 
@@ -53,7 +60,7 @@ export const ScenesPage = ({ rawScenes, location: _location }: Props) => {
 
   const { presets, currentPresetKey } = useSetPresetKey(searchFilters);
 
-  const { setBookmarks } = useStore(bookmarksStore);
+  const { setBookmarks } = useBookmarkActions();
   useLayoutEffect(() => {
     const handoff = consumeBookmarksHandoff();
     if (handoff?.length) setBookmarks(handoff);

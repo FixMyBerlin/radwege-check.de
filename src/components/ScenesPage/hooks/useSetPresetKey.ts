@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { useStore } from "zustand";
-import { presetStore } from "../store";
+import { usePresetActions, usePresetCurrentKey, usePresetPresets } from "../store";
 
 export const useSetPresetKey = (searchFilters: string | null | undefined) => {
-  const { presets, currentPresetKey, setCurrentPresetKey } = useStore(presetStore);
+  const presets = usePresetPresets();
+  const currentPresetKey = usePresetCurrentKey();
+  const { setCurrentPresetKey } = usePresetActions();
 
   useEffect(() => {
     if (!searchFilters) {
@@ -20,7 +21,7 @@ export const useSetPresetKey = (searchFilters: string | null | undefined) => {
     } else {
       setCurrentPresetKey("custom");
     }
-  }, [presets, searchFilters]);
+  }, [presets, searchFilters, setCurrentPresetKey]);
 
   return { presets, currentPresetKey };
 };

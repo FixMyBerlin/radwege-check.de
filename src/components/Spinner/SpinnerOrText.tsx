@@ -2,8 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import { SvgInline } from "~/components/Svg/SvgInline";
 import spinnerIconMarkup from "~/components/Spinner/assets/spinner-icon.svg?raw";
-import { useStore } from "zustand";
-import { spinnerStore } from "../ScenesPage/store";
+import { useShowSpinner } from "../ScenesPage/store";
 
 type Props = {
   text: string;
@@ -11,7 +10,7 @@ type Props = {
 
 /* @desc Note: Wrapper needs to be 'relative'. */
 export const SpinnerOrText = ({ text }: Props) => {
-  const { showSpinner } = useStore(spinnerStore);
+  const showSpinner = useShowSpinner();
 
   const opacitySpinner = showSpinner ? "opacity-100" : "opacity-0";
   const opacityText = showSpinner ? "opacity-0" : "opacity-100";

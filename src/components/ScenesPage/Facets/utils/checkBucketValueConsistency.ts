@@ -1,6 +1,5 @@
-import { useStore } from "zustand";
 import { isProduction } from "~/components/utils";
-import { experimentDataStore } from "../../store";
+import { getExperimentDataState } from "../../store";
 import { ResultBucketProps } from "../../types";
 
 type Props = {
@@ -15,7 +14,7 @@ type ReturnProps = {
 export const checkBucketValueConsistency = ({ aggregationKey, buckets }: Props): ReturnProps => {
   if (isProduction) return {};
 
-  const { aggregationConfig } = useStore(experimentDataStore);
+  const { aggregationConfig } = getExperimentDataState();
   const bucketKeysFromItemJs = buckets.map((b) => b.key);
   const keyFromItemjsMissingInTranslations = bucketKeysFromItemJs.filter(
     (key) => aggregationConfig[aggregationKey].buckets[key] === undefined,

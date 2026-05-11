@@ -7,7 +7,7 @@ import {
   itemJsConfigPrimary,
   presetsScenesPrimary,
 } from "~/components/ScenesPage/constants";
-import { experimentDataStore, presetStore } from "~/components/ScenesPage/store";
+import { getExperimentDataActions, getPresetActions } from "~/components/ScenesPage/store";
 import type { SiteLocation } from "~/lib/site-location";
 
 type Props = {
@@ -17,10 +17,10 @@ type Props = {
 
 export const HauptstrassenIndexRoute = ({ location, rawScenes }: Props) => {
   useLayoutEffect(() => {
-    experimentDataStore.getState().setItemJsConfig(itemJsConfigPrimary);
-    experimentDataStore.getState().setAggregationConfig(aggregationConfigPrimary);
-    experimentDataStore.getState().setExperimentTextKey("primary");
-    presetStore.getState().setPresets(presetsScenesPrimary);
+    getExperimentDataActions().setItemJsConfig(itemJsConfigPrimary);
+    getExperimentDataActions().setAggregationConfig(aggregationConfigPrimary);
+    getExperimentDataActions().setExperimentTextKey("primary");
+    getPresetActions().setPresets(presetsScenesPrimary);
   }, []);
 
   return (

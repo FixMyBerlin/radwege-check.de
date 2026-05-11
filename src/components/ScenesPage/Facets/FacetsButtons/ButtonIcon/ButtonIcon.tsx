@@ -1,6 +1,5 @@
 import React from "react";
-import { useStore } from "zustand";
-import { experimentDataStore } from "~/components/ScenesPage/store";
+import { useExperimentAggregationConfig } from "~/components/ScenesPage/store";
 import { isDev } from "~/components/utils";
 import { ResultBucketProps } from "../../../types";
 import { HandleSingleChoice } from "../ButtonSingleChoice";
@@ -16,7 +15,7 @@ type Props = {
 };
 
 export const ButtonIcon = ({ aggregationKey, bucket, handleClick, paginationTotal }: Props) => {
-  const { aggregationConfig } = useStore(experimentDataStore);
+  const aggregationConfig = useExperimentAggregationConfig();
 
   const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,

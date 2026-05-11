@@ -6,7 +6,7 @@ import {
   itemJsConfigSecondary,
 } from "~/components/ScenesPage/constants";
 import type { SceneSecondaryProps } from "~/components/ScenesPage/types";
-import { experimentDataStore } from "~/components/ScenesPage/store";
+import { getExperimentDataActions } from "~/components/ScenesPage/store";
 import type { SiteLocation } from "~/lib/site-location";
 
 type Props = {
@@ -16,9 +16,9 @@ type Props = {
 
 export const NebenstrassenSceneRoute = ({ location, scene }: Props) => {
   useLayoutEffect(() => {
-    experimentDataStore.getState().setItemJsConfig(itemJsConfigSecondary);
-    experimentDataStore.getState().setAggregationConfig(aggregationConfigSecondary);
-    experimentDataStore.getState().setExperimentTextKey("secondary");
+    getExperimentDataActions().setItemJsConfig(itemJsConfigSecondary);
+    getExperimentDataActions().setAggregationConfig(aggregationConfigSecondary);
+    getExperimentDataActions().setExperimentTextKey("secondary");
   }, []);
 
   if (!scene) {

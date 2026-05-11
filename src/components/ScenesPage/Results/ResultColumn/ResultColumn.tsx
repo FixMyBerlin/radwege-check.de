@@ -1,11 +1,10 @@
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
-import { useStore } from "zustand";
 import { Link } from "~/components/Link";
 import { fullUrl, trackContentImpression } from "~/components/utils";
 import type { AggregationConfig } from "../../constants";
 import { SceneImage } from "../../SceneImage";
-import { bookmarksStore } from "../../store";
+import { useBookmarkActions } from "../../store";
 import { ScenePrimaryProps, SceneSecondaryProps, SearchOptionProps } from "../../types";
 import { titleScene } from "../../utils/titleScenes";
 import { ResultCells } from "../ResultCells";
@@ -37,7 +36,7 @@ export const ResultColumn = ({
   const [sceneImage, setSceneImage] = useState(scene.sceneId);
   const handleImageChange = (sceneId: string) => setSceneImage(sceneId);
 
-  const { toggleBookmark, isInBookmarks } = useStore(bookmarksStore);
+  const { toggleBookmark, isInBookmarks } = useBookmarkActions();
 
   const safeZoneForIosSafariNavigationBar = "mb-[40rem] lg:mb-0";
 

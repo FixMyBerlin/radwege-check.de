@@ -1,11 +1,25 @@
 import { create } from "zustand";
+import { useStore } from "zustand";
 
-export type StoreSpinner = {
+type SpinnerState = {
   showSpinner: boolean;
+};
+
+type SpinnerActions = {
   setShowSpinner: (newState: boolean) => void;
 };
 
-export const spinnerStore = create<StoreSpinner>((set) => ({
+export type StoreSpinner = SpinnerState & { actions: SpinnerActions };
+
+const spinnerStore = create<StoreSpinner>((set) => ({
   showSpinner: true,
-  setShowSpinner: (showSpinner) => set({ showSpinner }),
+  actions: {
+    setShowSpinner: (showSpinner) => set({ showSpinner }),
+  },
 }));
+
+export const useShowSpinner = () => useStore(spinnerStore, (s) => s.showSpinner);
+
+export const useSpinnerActions = () => useStore(spinnerStore, (s) => s.actions);
+
+export const getSpinnerActions = () => spinnerStore.getState().actions;

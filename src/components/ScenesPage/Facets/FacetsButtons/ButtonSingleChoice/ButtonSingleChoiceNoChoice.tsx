@@ -1,6 +1,5 @@
 import React from "react";
-import { useStore } from "zustand";
-import { experimentDataStore } from "~/components/ScenesPage/store";
+import { useExperimentAggregationConfig } from "~/components/ScenesPage/store";
 import { ResultBucketProps } from "../../../types";
 import { HandleSingleChoice } from "./ButtonSingleChoice";
 import { buttonClassNames } from "./utils";
@@ -18,7 +17,7 @@ export const ButtonSingleChoiceNoChoice = ({
   buckets,
   handleClick,
 }: Props) => {
-  const { aggregationConfig } = useStore(experimentDataStore);
+  const aggregationConfig = useExperimentAggregationConfig();
 
   // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
   const anyOfGroupSelected = buckets.some((b) => b.selected);

@@ -2,12 +2,11 @@ import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import React, { Fragment } from "react";
-import { useStore } from "zustand";
 import { Link } from "~/components/Link";
-import { experimentDataStore } from "../../store";
+import { useExperimentTextKeyState } from "../../store";
 
 export function ExperimentSwitcher() {
-  const { experimentTextKey } = useStore(experimentDataStore);
+  const experimentTextKey = useExperimentTextKeyState();
 
   const experimentValues = {
     primary: {

@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { LayoutArticle } from "~/components/Layout";
 import { ScenesExportPage } from "~/components/ScenesExportPage";
-import { experimentDataStore } from "~/components/ScenesPage/store";
+import { getExperimentDataActions } from "~/components/ScenesPage/store";
 import type { SiteLocation } from "~/lib/site-location";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 
 export const HauptstrassenExportRoute = ({ location, rawScenes }: Props) => {
   useLayoutEffect(() => {
-    experimentDataStore.getState().setExperimentTextKey("primary");
+    getExperimentDataActions().setExperimentTextKey("primary");
   }, []);
 
   return (

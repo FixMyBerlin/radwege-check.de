@@ -1,8 +1,7 @@
 import clsx from "clsx";
 import React from "react";
-import { useStore } from "zustand";
 import { SvgInline } from "~/components/Svg/SvgInline";
-import { spinnerStore } from "../ScenesPage/store";
+import { useShowSpinner } from "../ScenesPage/store";
 import spinnerIconMarkup from "./assets/spinner-icon.svg?raw";
 
 type Props = {
@@ -10,7 +9,7 @@ type Props = {
 };
 
 export const Spinner = ({ className }: Props) => {
-  const { showSpinner } = useStore(spinnerStore);
+  const showSpinner = useShowSpinner();
 
   if (!showSpinner) return null;
 

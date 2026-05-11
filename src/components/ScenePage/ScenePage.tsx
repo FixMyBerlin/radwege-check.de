@@ -1,6 +1,5 @@
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import React, { useEffect } from "react";
-import { useStore } from "zustand";
 import logoMarkup from "~/components/assets/radwegecheck-logo.svg?raw";
 import { SvgInline } from "~/components/Svg/SvgInline";
 import { MetaTags } from "../Layout";
@@ -10,7 +9,7 @@ import { SceneImage } from "../ScenesPage";
 import { ResultCells } from "../ScenesPage/Results/ResultCells";
 import { ResultNumbers } from "../ScenesPage/Results/ResultNumbers";
 import { sceneImageUrl } from "../ScenesPage/SceneImage";
-import { experimentDataStore } from "../ScenesPage/store";
+import { useExperimentAggregationConfig, useExperimentTextKeyState } from "../ScenesPage/store";
 import type { ScenePrimaryProps, SceneSecondaryProps } from "../ScenesPage/types";
 import { titleScene } from "../ScenesPage/utils/titleScenes";
 import { formatNumber, fullUrl, trackContentImpression } from "../utils";
@@ -21,7 +20,8 @@ type Props = {
 };
 
 export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
-  const { experimentTextKey, aggregationConfig } = useStore(experimentDataStore);
+  const experimentTextKey = useExperimentTextKeyState();
+  const aggregationConfig = useExperimentAggregationConfig();
 
   const categoryTranslation = experimentTextKey === "primary" ? "Hauptstrasse" : "Nebenstrasse";
   const categoryTranslationSentencePart =
