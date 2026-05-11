@@ -14,8 +14,8 @@
     "check": "bun run type-check && bun run lint && bun run format:check && bun run test",
     "type-check": "tsgo --noEmit -p tsconfig.json",
     "lint": "oxlint src",
-    "format": "oxfmt src package.json tsconfig.json astro.config.mjs oxfmt.config.mjs vitest.config.ts oxlint.config.ts eslint.config.js scripts/strip-react-fc.mjs __helpers__",
-    "format:check": "oxfmt --check src package.json tsconfig.json astro.config.mjs oxfmt.config.mjs vitest.config.ts oxlint.config.ts eslint.config.js scripts/strip-react-fc.mjs __helpers__",
+    "format": "oxfmt src package.json tsconfig.json astro.config.mjs oxfmt.config.mjs vitest.config.ts oxlint.config.ts eslint.config.js scripts/strip-react-fc.mjs __helpers__ public/manifest.webmanifest",
+    "format:check": "oxfmt --check src package.json tsconfig.json astro.config.mjs oxfmt.config.mjs vitest.config.ts oxlint.config.ts eslint.config.js scripts/strip-react-fc.mjs __helpers__ public/manifest.webmanifest",
     "test": "DISABlE_DEBUG_FOR_JEST=true vitest run",
     "test:watch": "DISABlE_DEBUG_FOR_JEST=true vitest",
     "prepare": "husky install",
@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "@astrojs/react": "^4.4.2",
+    "@astrojs/sitemap": "3.7.2",
     "@tailwindcss/postcss": "4.1.18",
     "@tailwindcss/vite": "^4.1.18",
     "@testing-library/dom": "^10.4.1",

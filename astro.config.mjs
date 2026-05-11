@@ -2,6 +2,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
@@ -16,6 +17,13 @@ export default defineConfig({
     react({
       babel: {
         plugins: [["babel-plugin-react-compiler", {}]],
+      },
+    }),
+    sitemap({
+      namespaces: {
+        news: false,
+        video: false,
+        xhtml: false,
       },
     }),
   ],

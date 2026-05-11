@@ -28,6 +28,11 @@ const matomoDev = !import.meta.env.PROD
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#fabe28" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/app-icon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
     {description ? <meta name="description" content={description} /> : null}
     <script is:inline define:vars={{ matomoDev }}>
