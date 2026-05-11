@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useMemo, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { parseAsArrayOf, parseAsString, useQueryState } from "nuqs";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
@@ -23,20 +23,16 @@ type Props = {
 };
 
 const VergleichenInner = ({ location, rawScenesPrimary, rawScenesSecondary }: Props) => {
-  const scenesPrimary = useMemo(() => {
-    const flattened = rawScenesPrimary.map((list) => list.node);
-    return cleanupCsvData(flattened).map((s) => ({
-      ...s,
-      path: `/hauptstrassen/${s.sceneId}`,
-    }));
-  }, [rawScenesPrimary]);
-  const scenesSecondary = useMemo(() => {
-    const flattened = rawScenesSecondary.map((list) => list.node);
-    return cleanupCsvData(flattened).map((s) => ({
-      ...s,
-      path: `/nebenstrassen/${s.sceneId}`,
-    }));
-  }, [rawScenesSecondary]);
+  const flattenedPrimary = rawScenesPrimary.map((list) => list.node);
+  const scenesPrimary = cleanupCsvData(flattenedPrimary).map((s) => ({
+    ...s,
+    path: `/hauptstrassen/${s.sceneId}`,
+  }));
+  const flattenedSecondary = rawScenesSecondary.map((list) => list.node);
+  const scenesSecondary = cleanupCsvData(flattenedSecondary).map((s) => ({
+    ...s,
+    path: `/nebenstrassen/${s.sceneId}`,
+  }));
 
   const [bookmarksArray] = useQueryState("sceneIds", parseAsArrayOf(parseAsString));
 

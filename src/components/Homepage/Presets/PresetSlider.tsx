@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import useEmblaCarousel from "embla-carousel-react";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SceneCategory } from "~/components/ScenesPage/types";
 import { PresetsScenes } from "../../ScenesPage/constants";
 import { PresetSliderSlide } from "./PresetSliderSlide";
@@ -25,21 +25,19 @@ export const PresetSlider = ({ sceneCategory, slides, className }: Props) => {
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
 
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setPrevBtnEnabled(emblaApi.canScrollPrev());
-    // TODO: Make user we stopp scrolling earlier, once the lat element is in view. See 16a9ccb.
-    setNextBtnEnabled(emblaApi.canScrollNext());
-  }, [emblaApi]);
-
   useEffect(() => {
     if (!emblaApi) return;
+    const onSelect = () => {
+      setPrevBtnEnabled(emblaApi.canScrollPrev());
+      // TODO: Make user we stopp scrolling earlier, once the lat element is in view. See 16a9ccb.
+      setNextBtnEnabled(emblaApi.canScrollNext());
+    };
     emblaApi.on("select", onSelect);
     onSelect();
-  }, [emblaApi, onSelect]);
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi]);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -77,7 +75,7 @@ export const PresetSlider = ({ sceneCategory, slides, className }: Props) => {
             : "bg-stone-600 text-stone-500",
         )}
         disabled={!prevBtnEnabled}
-        onClick={scrollPrev}
+        onClick={() => emblaApi?.scrollPrev()}
       >
         <ChevronLeftIcon className="h-8 w-8" />
       </button>
@@ -90,7 +88,7 @@ export const PresetSlider = ({ sceneCategory, slides, className }: Props) => {
             : "bg-stone-600 text-stone-500",
         )}
         disabled={!nextBtnEnabled}
-        onClick={scrollNext}
+        onClick={() => emblaApi?.scrollNext()}
       >
         <ChevronRightIcon className="h-8 w-8" />
       </button>

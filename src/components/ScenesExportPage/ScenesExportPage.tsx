@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useMemo, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { MetaTags } from "../Layout";
 import { Link, linkStyles } from "../Link";
 import { SceneImage } from "../ScenesPage";
@@ -13,23 +13,23 @@ type Props = {
 };
 
 export const ScenesExportPage = ({ rawScenes, experimentTextKey }: Props) => {
+  const [translateResults, setTranslateResults] = useState(false);
+
   useLayoutEffect(() => {
     useStoreExperimentData.getState().setExperimentTextKey(experimentTextKey);
   }, [experimentTextKey]);
 
-  const scenes = useMemo(() => {
-    const flattened = rawScenes.map((list: any) =>
-      list && typeof list === "object" && "node" in list ? list.node : list,
-    );
-    const clean = cleanupCsvData(flattened);
-    const base = experimentTextKey === "primary" ? "/hauptstrassen" : "/nebenstrassen";
-    return clean
-      .sort((a, b) => a.voteScore - b.voteScore)
-      .map((s) => ({
-        ...s,
-        path: `${base}/${s.sceneId}`,
-      }));
-  }, [rawScenes, experimentTextKey]);
+  const flattened = rawScenes.map((list: any) =>
+    list && typeof list === "object" && "node" in list ? list.node : list,
+  );
+  const clean = cleanupCsvData(flattened);
+  const base = experimentTextKey === "primary" ? "/hauptstrassen" : "/nebenstrassen";
+  const scenes = clean
+    .sort((a, b) => a.voteScore - b.voteScore)
+    .map((s) => ({
+      ...s,
+      path: `${base}/${s.sceneId}`,
+    }));
 
   const totalResults = Number(scenes.length).toLocaleString();
 
@@ -41,8 +41,6 @@ export const ScenesExportPage = ({ rawScenes, experimentTextKey }: Props) => {
 
   const fields = Object.keys(scenes[0]).sort((a, b) => a.localeCompare(b));
   const aggregationConfig = useAggregationConfig(experimentTextKey);
-
-  const [translateResults, setTranslateResults] = useState(false);
 
   return (
     <>

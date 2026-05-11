@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { useMemo } from "react";
+import React from "react";
 import { useStore } from "zustand";
 
 import { useStoreExperimentData } from "../store";
@@ -36,17 +36,12 @@ export const Facets = ({
   const aggregations = results?.data?.aggregations || {};
   const { aggregationConfig } = useStore(useStoreExperimentData);
 
-  const mainAggregations = useMemo(
-    () =>
-      Object.entries(aggregations).filter(
-        ([key, _v]) => aggregationConfig[key]?.primaryGroup === true,
-      ),
-    [aggregations, aggregationConfig],
+  const mainAggregations = Object.entries(aggregations).filter(
+    ([key, _v]) => aggregationConfig[key]?.primaryGroup === true,
   );
 
-  const furtherAggregations = useMemo(
-    () => Object.entries(aggregations).filter(([key, _v]) => !aggregationConfig[key]?.primaryGroup),
-    [aggregations, aggregationConfig],
+  const furtherAggregations = Object.entries(aggregations).filter(
+    ([key, _v]) => !aggregationConfig[key]?.primaryGroup,
   );
 
   return (

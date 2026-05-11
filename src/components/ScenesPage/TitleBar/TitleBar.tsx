@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import logoBildmarkeMarkup from "~/components/assets/radwegecheck-logo-bildmarke.svg?raw";
 import { Link } from "~/components/Link";
 import { SpinnerOrText } from "~/components/Spinner";
@@ -16,11 +16,11 @@ export const TitleBar = ({ results, searchOrder, setSearchOrder, mobileFacets }:
   const resultItems = results?.data?.items || [];
   const pagination = results?.pagination;
 
-  const resultScoreAverage = useMemo(() => {
-    if (!resultItems.length) return 0;
+  let resultScoreAverage = 0;
+  if (resultItems.length) {
     const sum = resultItems.reduce((acc, scene) => acc + scene.voteScore, 0);
-    return Math.round(sum / resultItems.length);
-  }, [resultItems]);
+    resultScoreAverage = Math.round(sum / resultItems.length);
+  }
 
   const total = pagination?.total || 0;
   const perPage = pagination?.per_page || 0;

@@ -1,5 +1,5 @@
 import itemsjs from "itemsjs";
-import React, { useLayoutEffect, useMemo } from "react";
+import React, { useLayoutEffect } from "react";
 import { Helmet } from "react-helmet";
 import { parseAsString, useQueryState } from "nuqs";
 import { useStore } from "zustand";
@@ -23,20 +23,15 @@ type Props = {
 };
 
 export const ScenesPage = ({ rawScenes, location: _location }: Props) => {
-  const scenes = useMemo(() => {
-    const flattened = rawScenes.map((row: any) =>
-      row && typeof row === "object" && "node" in row ? row.node : row,
-    );
-    return cleanupCsvData(flattened);
-  }, [rawScenes]);
+  const flattened = rawScenes.map((row: any) =>
+    row && typeof row === "object" && "node" in row ? row.node : row,
+  );
+  const scenes = cleanupCsvData(flattened);
 
   const { itemJsConfig, aggregationConfig, experimentTextKey } = useStore(useStoreExperimentData);
   const { setShowSpinner } = useStore(useStoreSpinner);
 
-  const items = useMemo(() => {
-    if (!itemJsConfig) return null;
-    return itemsjs(scenes, itemJsConfig);
-  }, [scenes, itemJsConfig]);
+  const items = itemJsConfig ? itemsjs(scenes, itemJsConfig) : null;
 
   const [searchFilters, setSearchFilters] = useQueryState("filter", parseAsString);
   const [searchOrder, setSearchOrder] = useQueryState("order", parseAsString);
@@ -44,16 +39,13 @@ export const ScenesPage = ({ rawScenes, location: _location }: Props) => {
   const decodeFilterWithAggregation = (filterString: string | null | undefined) =>
     decodeFilter(filterString ?? "", aggregationConfig);
 
-  const results: ResultProps = useMemo(() => {
-    if (!items) return null;
-    const order = searchOrder || "desc";
-    const searchOption = {
-      per_page: 100,
-      sort: { field: "voteScore", order },
-      filters: decodeFilterWithAggregation(searchFilters),
-    };
-    return items.search(searchOption);
-  }, [items, searchFilters, searchOrder, aggregationConfig]);
+  const results: ResultProps = items
+    ? items.search({
+        per_page: 100,
+        sort: { field: "voteScore", order: searchOrder || "desc" },
+        filters: decodeFilterWithAggregation(searchFilters),
+      })
+    : null;
 
   useLayoutEffect(() => {
     if (results) setShowSpinner(false);

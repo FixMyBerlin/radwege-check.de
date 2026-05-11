@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { FeelSafe } from "../charts";
 import { MetaTags } from "../Layout";
 import { Link } from "../Link";
@@ -14,19 +14,17 @@ type Props = {
 };
 
 export const ScenesAllPage = ({ rawScenes, sceneKind }: Props) => {
-  const scenes = useMemo(() => {
-    const flattened = rawScenes.map((list: any) =>
-      list && typeof list === "object" && "node" in list ? list.node : list,
-    );
-    const clean = cleanupCsvData(flattened);
-    const base = sceneKind === "primary" ? "/hauptstrassen" : "/nebenstrassen";
-    return clean
-      .sort((a, b) => a.voteScore - b.voteScore)
-      .map((s) => ({
-        ...s,
-        path: `${base}/${s.sceneId}`,
-      }));
-  }, [rawScenes, sceneKind]);
+  const flattened = rawScenes.map((list: any) =>
+    list && typeof list === "object" && "node" in list ? list.node : list,
+  );
+  const clean = cleanupCsvData(flattened);
+  const base = sceneKind === "primary" ? "/hauptstrassen" : "/nebenstrassen";
+  const scenes = clean
+    .sort((a, b) => a.voteScore - b.voteScore)
+    .map((s) => ({
+      ...s,
+      path: `${base}/${s.sceneId}`,
+    }));
 
   const totalResults = Number(scenes.length).toLocaleString();
 
