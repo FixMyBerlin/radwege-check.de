@@ -16,6 +16,7 @@
     "__helpers__",
     "__mocks__",
     "astro.config.mjs",
+    "oxlint.config.ts",
     "src/content.config.ts"
   ],
   "exclude": ["node_modules", "dist"]
