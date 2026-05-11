@@ -12,7 +12,7 @@ import { Facets, HandleMultiChoiceProps, HandleSingleChoiceProps } from "./Facet
 import { FacetsMobileDropdown } from "./Facets/FacetsMobileDropdown";
 import { useSetPresetKey } from "./hooks";
 import { Results } from "./Results";
-import { useStoreBookmarks, useStoreExperimentData, useStoreSpinner } from "./store";
+import { bookmarksStore, experimentDataStore, spinnerStore } from "./store";
 import { TitleBar } from "./TitleBar";
 import { ResultProps } from "./types";
 import { cleanupCsvData, decodeFilter, encodeFilter } from "./utils";
@@ -28,8 +28,8 @@ export const ScenesPage = ({ rawScenes, location: _location }: Props) => {
   );
   const scenes = cleanupCsvData(flattened);
 
-  const { itemJsConfig, aggregationConfig, experimentTextKey } = useStore(useStoreExperimentData);
-  const { setShowSpinner } = useStore(useStoreSpinner);
+  const { itemJsConfig, aggregationConfig, experimentTextKey } = useStore(experimentDataStore);
+  const { setShowSpinner } = useStore(spinnerStore);
 
   const items = itemJsConfig ? itemsjs(scenes, itemJsConfig) : null;
 
@@ -53,7 +53,7 @@ export const ScenesPage = ({ rawScenes, location: _location }: Props) => {
 
   const { presets, currentPresetKey } = useSetPresetKey(searchFilters);
 
-  const { setBookmarks } = useStore(useStoreBookmarks);
+  const { setBookmarks } = useStore(bookmarksStore);
   useLayoutEffect(() => {
     const handoff = consumeBookmarksHandoff();
     if (handoff?.length) setBookmarks(handoff);

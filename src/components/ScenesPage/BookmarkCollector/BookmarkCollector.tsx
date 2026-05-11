@@ -3,10 +3,10 @@ import React from "react";
 import { useStore } from "zustand";
 import { Link } from "~/components/Link";
 import { SceneImage } from "../SceneImage";
-import { useStoreBookmarks } from "../store";
+import { bookmarksStore } from "../store";
 
 export function BookmarkCollector() {
-  const { bookmarks, removeBookmark } = useStore(useStoreBookmarks);
+  const { bookmarks, removeBookmark } = useStore(bookmarksStore);
 
   if (!bookmarks.length) return null;
 

@@ -4,7 +4,7 @@ import { renderToString } from "react-dom/server";
 import { useStore } from "zustand";
 import bikeIconMarkup from "../../../Results/ResultNumbers/assets/bike-icon.svg?raw";
 import { SvgInline } from "~/components/Svg/SvgInline";
-import { useStoreExperimentData } from "~/components/ScenesPage/store";
+import { experimentDataStore } from "~/components/ScenesPage/store";
 import { isDev } from "~/components/utils";
 import type { ResultBucketProps } from "../../../types";
 import { useResults } from "./useResults";
@@ -43,7 +43,7 @@ export const ButtonMultiChoice = ({
     anySelected: buckets.some((b) => b.selected),
   });
 
-  const { aggregationConfig } = useStore(useStoreExperimentData);
+  const { aggregationConfig } = useStore(experimentDataStore);
   const { showAsList } = aggregationConfig[aggregationKey];
 
   const formKey = `${aggregationKey}-${bucket.key}`;

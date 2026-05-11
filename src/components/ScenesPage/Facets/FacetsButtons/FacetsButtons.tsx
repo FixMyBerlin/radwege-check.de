@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import { useStore } from "zustand";
-import { useStoreExperimentData } from "../../store";
+import { experimentDataStore } from "../../store";
 import { ResultBucketProps, ResultProps } from "../../types";
 import { checkBucketValueConsistency, checkDataConsistency } from "../utils";
 import { ButtonIcon, ButtonIconNoChoice } from "./ButtonIcon";
@@ -36,7 +36,7 @@ export const FacetsButtons = ({
   // We need a specific order for our Bucket values.
   // We use the order of key from our aggregationConfig for that.
   // However, for keys of type number that does not work, which is why we use a custom order via the `sortOrder` key.
-  const { aggregationConfig } = useStore(useStoreExperimentData);
+  const { aggregationConfig } = useStore(experimentDataStore);
   const sortedBuckets =
     aggregationConfig[aggregationKey]?.sortOrder ||
     Object.keys(aggregationConfig[aggregationKey].buckets);

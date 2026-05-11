@@ -1,6 +1,6 @@
 import { useStore } from "zustand";
 import { isProduction } from "~/components/utils";
-import { useStoreExperimentData } from "../../store";
+import { experimentDataStore } from "../../store";
 
 type Props = {
   aggregationKey: string;
@@ -12,7 +12,7 @@ type Props = {
 export const checkDataConsistency = ({ aggregationKey }: Props) => {
   if (isProduction) return;
 
-  const { aggregationConfig } = useStore(useStoreExperimentData);
+  const { aggregationConfig } = useStore(experimentDataStore);
   const { showAsIcons } = aggregationConfig[aggregationKey];
   const { choiceMode } = aggregationConfig[aggregationKey];
 

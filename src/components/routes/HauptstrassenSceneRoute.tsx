@@ -3,7 +3,7 @@ import { Layout } from "~/components/Layout";
 import { ScenePage } from "~/components/ScenePage";
 import { aggregationConfigPrimary, itemJsConfigPrimary } from "~/components/ScenesPage/constants";
 import type { ScenePrimaryProps } from "~/components/ScenesPage/types";
-import { useStoreExperimentData } from "~/components/ScenesPage/store";
+import { experimentDataStore } from "~/components/ScenesPage/store";
 import type { SiteLocation } from "~/lib/site-location";
 
 type Props = {
@@ -13,9 +13,9 @@ type Props = {
 
 export const HauptstrassenSceneRoute = ({ location, scene }: Props) => {
   useLayoutEffect(() => {
-    useStoreExperimentData.getState().setItemJsConfig(itemJsConfigPrimary);
-    useStoreExperimentData.getState().setAggregationConfig(aggregationConfigPrimary);
-    useStoreExperimentData.getState().setExperimentTextKey("primary");
+    experimentDataStore.getState().setItemJsConfig(itemJsConfigPrimary);
+    experimentDataStore.getState().setAggregationConfig(aggregationConfigPrimary);
+    experimentDataStore.getState().setExperimentTextKey("primary");
   }, []);
 
   if (!scene) {

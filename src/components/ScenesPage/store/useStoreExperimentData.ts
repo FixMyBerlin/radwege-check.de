@@ -14,7 +14,7 @@ export type StoreExperimentData = {
   setExperimentTextKey: (input: ExperimentTextKey) => void;
 };
 
-export const useStoreExperimentData = create<StoreExperimentData>((set) => ({
+export const experimentDataStore = create<StoreExperimentData>((set) => ({
   itemJsConfig: null,
   setItemJsConfig: (itemJsConfig) => set({ itemJsConfig }),
 

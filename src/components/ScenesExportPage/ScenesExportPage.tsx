@@ -3,7 +3,7 @@ import { MetaTags } from "../Layout";
 import { Link, linkStyles } from "../Link";
 import { SceneImage } from "../ScenesPage";
 import { useAggregationConfig } from "../ScenesPage/hooks";
-import { useStoreExperimentData } from "../ScenesPage/store";
+import { experimentDataStore } from "../ScenesPage/store";
 import { cleanupCsvData } from "../ScenesPage/utils";
 import { titleScene } from "../ScenesPage/utils/titleScenes";
 
@@ -16,7 +16,7 @@ export const ScenesExportPage = ({ rawScenes, experimentTextKey }: Props) => {
   const [translateResults, setTranslateResults] = useState(false);
 
   useLayoutEffect(() => {
-    useStoreExperimentData.getState().setExperimentTextKey(experimentTextKey);
+    experimentDataStore.getState().setExperimentTextKey(experimentTextKey);
   }, [experimentTextKey]);
 
   const flattened = rawScenes.map((list: any) =>

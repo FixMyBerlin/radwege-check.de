@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useStore } from "zustand";
-import { useStorePreset } from "../store";
+import { presetStore } from "../store";
 
 export const useSetPresetKey = (searchFilters: string | null | undefined) => {
-  const { presets, currentPresetKey, setCurrentPresetKey } = useStore(useStorePreset);
+  const { presets, currentPresetKey, setCurrentPresetKey } = useStore(presetStore);
 
   useEffect(() => {
     if (!searchFilters) {

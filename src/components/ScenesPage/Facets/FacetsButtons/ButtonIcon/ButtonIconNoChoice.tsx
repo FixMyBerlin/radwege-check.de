@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import { useStore } from "zustand";
-import { useStoreExperimentData } from "~/components/ScenesPage/store";
+import { experimentDataStore } from "~/components/ScenesPage/store";
 import { ResultBucketProps } from "../../../types";
 import { HandleSingleChoice } from "../ButtonSingleChoice/ButtonSingleChoice";
 import { buttonIconClassNames } from "./utils";
@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const ButtonIconNoChoice = ({ aggregationKey, bucketKey, buckets, handleClick }: Props) => {
-  const { aggregationConfig } = useStore(useStoreExperimentData);
+  const { aggregationConfig } = useStore(experimentDataStore);
   const { showAsIcons } = aggregationConfig[aggregationKey];
 
   // For our uiSelected, aggregations with no selected buckets are shows als "all selected".

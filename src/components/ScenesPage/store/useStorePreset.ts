@@ -11,7 +11,7 @@ export type StorePreset = {
   setCurrentPresetKey: (newKey: StorePresetKey) => void;
 };
 
-export const useStorePreset = create<StorePreset>((set) => ({
+export const presetStore = create<StorePreset>((set) => ({
   presets: {},
   setPresets: (presets) => set({ presets }),
 

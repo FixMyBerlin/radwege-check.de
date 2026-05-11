@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import { useStore } from "zustand";
 
-import { useStoreExperimentData } from "../store";
+import { experimentDataStore } from "../store";
 import { ResultProps } from "../types";
 import { ExperimentSwitcher } from "./ExperimentSwitcher";
 import { FacetsButtons, HandleMultiChoice, HandleSingleChoice } from "./FacetsButtons";
@@ -34,7 +34,7 @@ export const Facets = ({
   resetFilterEnabled,
 }: FacetsProps) => {
   const aggregations = results?.data?.aggregations || {};
-  const { aggregationConfig } = useStore(useStoreExperimentData);
+  const { aggregationConfig } = useStore(experimentDataStore);
 
   const mainAggregations = Object.entries(aggregations).filter(
     ([key, _v]) => aggregationConfig[key]?.primaryGroup === true,

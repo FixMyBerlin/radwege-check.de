@@ -5,7 +5,7 @@ import { Link } from "~/components/Link";
 import { fullUrl, trackContentImpression } from "~/components/utils";
 import type { AggregationConfig } from "../../constants";
 import { SceneImage } from "../../SceneImage";
-import { useStoreBookmarks } from "../../store";
+import { bookmarksStore } from "../../store";
 import { ScenePrimaryProps, SceneSecondaryProps, SearchOptionProps } from "../../types";
 import { titleScene } from "../../utils/titleScenes";
 import { ResultCells } from "../ResultCells";
@@ -37,7 +37,7 @@ export const ResultColumn = ({
   const [sceneImage, setSceneImage] = useState(scene.sceneId);
   const handleImageChange = (sceneId: string) => setSceneImage(sceneId);
 
-  const { toggleBookmark, isInBookmarks } = useStore(useStoreBookmarks);
+  const { toggleBookmark, isInBookmarks } = useStore(bookmarksStore);
 
   const safeZoneForIosSafariNavigationBar = "mb-[40rem] lg:mb-0";
 

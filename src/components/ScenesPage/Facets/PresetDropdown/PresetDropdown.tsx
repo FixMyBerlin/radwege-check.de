@@ -3,14 +3,14 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import React, { Fragment } from "react";
 import { useStore } from "zustand";
-import { useStorePreset } from "../../store";
+import { presetStore } from "../../store";
 
 export type PresetDropdownProps = {
   handlePresetClick: (presetKey: string) => void;
 };
 
 export const PresetDropdown = ({ handlePresetClick }: PresetDropdownProps) => {
-  const { presets, currentPresetKey } = useStore(useStorePreset);
+  const { presets, currentPresetKey } = useStore(presetStore);
 
   const isCustom = currentPresetKey === "custom";
   const presetTitle = presets[currentPresetKey]?.title;

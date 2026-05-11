@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import { useStore } from "zustand";
 import { TranslationMissing } from "~/components/TextHelper";
-import { useStoreExperimentData } from "../../store";
+import { experimentDataStore } from "../../store";
 
 type Props = {
   aggregationKey: string;
@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const FacetsHeadline = ({ aggregationKey, forIcons }: Props) => {
-  const { aggregationConfig } = useStore(useStoreExperimentData);
+  const { aggregationConfig } = useStore(experimentDataStore);
   const title = aggregationConfig[aggregationKey]?.title;
   const text = title || <TranslationMissing value={aggregationKey} />;
 

@@ -3,7 +3,7 @@ import { renderToString } from "react-dom/server";
 import { useStore } from "zustand";
 import bikeIconMarkup from "../../../Results/ResultNumbers/assets/bike-icon.svg?raw";
 import { SvgInline } from "~/components/Svg/SvgInline";
-import { useStoreExperimentData } from "~/components/ScenesPage/store";
+import { experimentDataStore } from "~/components/ScenesPage/store";
 import { isDev } from "~/components/utils";
 import type { ResultBucketProps } from "../../../types";
 import { useResults } from "./useResults";
@@ -36,7 +36,7 @@ export const ButtonSingleChoice = ({
   index,
   paginationTotal,
 }: Props) => {
-  const { aggregationConfig } = useStore(useStoreExperimentData);
+  const { aggregationConfig } = useStore(experimentDataStore);
 
   const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,

@@ -16,7 +16,7 @@ export type StoreBookmarksData = {
   toggleBookmark: (sceneId: string) => void;
 };
 
-export const useStoreBookmarks = create<StoreBookmarksData>((set, get) => ({
+export const bookmarksStore = create<StoreBookmarksData>((set, get) => ({
   bookmarks: [],
   setBookmarks: (externalBookmarks) => {
     set({ bookmarks: externalBookmarks.sort((a, b) => a.localeCompare(b)) });

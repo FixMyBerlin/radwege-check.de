@@ -10,7 +10,7 @@ import { SceneImage } from "../ScenesPage";
 import { ResultCells } from "../ScenesPage/Results/ResultCells";
 import { ResultNumbers } from "../ScenesPage/Results/ResultNumbers";
 import { sceneImageUrl } from "../ScenesPage/SceneImage";
-import { useStoreExperimentData } from "../ScenesPage/store";
+import { experimentDataStore } from "../ScenesPage/store";
 import type { ScenePrimaryProps, SceneSecondaryProps } from "../ScenesPage/types";
 import { titleScene } from "../ScenesPage/utils/titleScenes";
 import { formatNumber, fullUrl, trackContentImpression } from "../utils";
@@ -21,7 +21,7 @@ type Props = {
 };
 
 export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
-  const { experimentTextKey, aggregationConfig } = useStore(useStoreExperimentData);
+  const { experimentTextKey, aggregationConfig } = useStore(experimentDataStore);
 
   const categoryTranslation = experimentTextKey === "primary" ? "Hauptstrasse" : "Nebenstrasse";
   const categoryTranslationSentencePart =

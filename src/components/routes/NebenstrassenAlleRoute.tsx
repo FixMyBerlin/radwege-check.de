@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { LayoutArticle } from "~/components/Layout";
 import { ScenesAllPage } from "~/components/ScenesAllPage";
-import { useStoreExperimentData } from "~/components/ScenesPage/store";
+import { experimentDataStore } from "~/components/ScenesPage/store";
 import type { SiteLocation } from "~/lib/site-location";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 
 export const NebenstrassenAlleRoute = ({ location, rawScenes }: Props) => {
   useLayoutEffect(() => {
-    useStoreExperimentData.getState().setExperimentTextKey("secondary");
+    experimentDataStore.getState().setExperimentTextKey("secondary");
   }, []);
 
   return (

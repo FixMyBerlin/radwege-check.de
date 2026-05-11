@@ -4,10 +4,10 @@ import clsx from "clsx";
 import React, { Fragment } from "react";
 import { useStore } from "zustand";
 import { Link } from "~/components/Link";
-import { useStoreExperimentData } from "../../store";
+import { experimentDataStore } from "../../store";
 
 export function ExperimentSwitcher() {
-  const { experimentTextKey } = useStore(useStoreExperimentData);
+  const { experimentTextKey } = useStore(experimentDataStore);
 
   const experimentValues = {
     primary: {

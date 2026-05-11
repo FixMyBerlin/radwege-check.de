@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useStore } from "zustand";
-import { useStoreExperimentData } from "../store";
+import { experimentDataStore } from "../store";
 import { ResultProps, SearchOptionProps } from "../types";
 import { ResultColumn } from "./ResultColumn";
 
@@ -26,7 +26,7 @@ export const Results = ({ results, searchFilters }: Props) => {
     resultsRef.current.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [resultItems]);
 
-  const { aggregationConfig } = useStore(useStoreExperimentData);
+  const { aggregationConfig } = useStore(experimentDataStore);
 
   return (
     <div

@@ -5,7 +5,7 @@ export type StoreSpinner = {
   setShowSpinner: (newState: boolean) => void;
 };
 
-export const useStoreSpinner = create<StoreSpinner>((set) => ({
+export const spinnerStore = create<StoreSpinner>((set) => ({
   showSpinner: true,
   setShowSpinner: (showSpinner) => set({ showSpinner }),
 }));
