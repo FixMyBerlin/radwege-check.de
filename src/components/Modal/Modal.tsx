@@ -1,16 +1,16 @@
-import React, { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import clsx from 'clsx'
-import { buttonStyles, Link } from '../Link'
+import React, { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import clsx from "clsx";
+import { buttonStyles, Link } from "../Link";
 
 type Props = {
-  title: string
-  titleIcon?: React.ReactNode
-  closeButton?: string
-  className?: string
-  showLegalLine?: boolean
-  children: React.ReactNode
-}
+  title: string;
+  titleIcon?: React.ReactNode;
+  closeButton?: string;
+  className?: string;
+  showLegalLine?: boolean;
+  children: React.ReactNode;
+};
 
 export const Modal: React.FC<Props> = ({
   title,
@@ -20,15 +20,11 @@ export const Modal: React.FC<Props> = ({
   showLegalLine = true,
   children,
 }) => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(true);
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className={clsx(className, 'relaftive z-50')}
-        onClose={setOpen}
-      >
+      <Dialog as="div" className={clsx(className, "relaftive z-50")} onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -73,10 +69,7 @@ export const Modal: React.FC<Props> = ({
                   <div className="mt-5 sm:mt-6">
                     <button
                       type="button"
-                      className={clsx(
-                        'inline-flex w-full justify-center',
-                        buttonStyles,
-                      )}
+                      className={clsx("inline-flex w-full justify-center", buttonStyles)}
                       onClick={() => setOpen(false)}
                     >
                       {closeButton}
@@ -99,5 +92,5 @@ export const Modal: React.FC<Props> = ({
         </div>
       </Dialog>
     </Transition.Root>
-  )
-}
+  );
+};

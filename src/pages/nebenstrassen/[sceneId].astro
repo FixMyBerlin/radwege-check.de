@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { getCollection, getEntry } from 'astro:content'
+import { NebenstrassenSceneRoute } from '../../components/routes/NebenstrassenSceneRoute'
+import { siteLocationFromUrl } from '../../lib/site-location'
+import { cleanupCsvData } from '../../components/ScenesPage/utils/cleanupCsvData'
+import type { SceneSecondaryProps } from '../../components/ScenesPage/types'
+
+export async function getStaticPaths() {
+  const scenes = await getCollection('scenesSecondary')
+  return scenes.map((e) => ({
+    params: { sceneId: String(e.data.sceneId) },
+  }))
+}
+
+const sceneId = Astro.params.sceneId
+if (!sceneId) return Astro.redirect('/404')
+
+const entry = await getEntry('scenesSecondary', sceneId)
+if (!entry) return Astro.redirect('/404')
+
+const cleaned = cleanupCsvData([entry.data as Record<string, unknown>])[0]
+const scene = {
+  ...cleaned,
+  path: `/nebenstrassen/${cleaned.sceneId}`,
+} as SceneSecondaryProps
+const location = siteLocationFromUrl(Astro.url)
+---
+
+<BaseLayout>
+  <NebenstrassenSceneRoute client:only="react" location={location} scene={scene} />
+</BaseLayout>

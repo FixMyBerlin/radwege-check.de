@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { DatenschutzRoute } from '../components/routes/DatenschutzRoute'
+import { siteLocationFromUrl } from '../lib/site-location'
+
+const location = siteLocationFromUrl(Astro.url)
+---
+
+<BaseLayout>
+  <DatenschutzRoute client:only="react" location={location} />
+</BaseLayout>

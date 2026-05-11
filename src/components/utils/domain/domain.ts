@@ -1,6 +1,6 @@
-import { canonicalOrigin } from './canonicalOrigin.const'
-import { primaryDomain } from './domains.const'
-import { isEnglishDomain } from './isEnglishDomain'
+import { canonicalOrigin } from "./canonicalOrigin.const";
+import { primaryDomain } from "./domains.const";
+import { isEnglishDomain } from "./isEnglishDomain";
 
 export const domain = () => {
   // Docs:
@@ -10,23 +10,21 @@ export const domain = () => {
   // URL vs. DEPLOY_PRIME_URL https://docs.netlify.com/configure-builds/environment-variables/#deploy-urls-and-metadata
   // NETLIFY https://docs.netlify.com/configure-builds/environment-variables/#build-metadata
   const ssrDomain =
-    process.env.CONTEXT === 'production'
-      ? process.env.URL
-      : process.env.DEPLOY_PRIME_URL
-  const ssrFallback = primaryDomain
+    process.env.CONTEXT === "production" ? process.env.URL : process.env.DEPLOY_PRIME_URL;
+  const ssrFallback = primaryDomain;
 
   // We do this, to get the SSR domain. However, rehydration will use this utility as well,
   // so for that case, we need to take the current hostname.
-  if (typeof window === 'undefined') {
-    return ssrDomain || ssrFallback
+  if (typeof window === "undefined") {
+    return ssrDomain || ssrFallback;
   }
 
-  const browserDomain = window.location.origin
+  const browserDomain = window.location.origin;
 
   // Prevent duplicate content due to the english domain.
   const canonicalBrowserDomain = isEnglishDomain(window.location.host)
     ? canonicalOrigin
-    : browserDomain
+    : browserDomain;
 
-  return canonicalBrowserDomain || ssrDomain || ssrFallback
-}
+  return canonicalBrowserDomain || ssrDomain || ssrFallback;
+};

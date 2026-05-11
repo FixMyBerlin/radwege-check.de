@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 /* eslint-disable global-require */
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx,svg}'],
+  content: ['./src/**/*.{js,jsx,ts,tsx,svg,astro}'],
   theme: {
     extend: {
       colors: {

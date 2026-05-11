@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { getCollection } from 'astro:content'
+import { VergleichenRoute } from '../../components/routes/VergleichenRoute'
+import { siteLocationFromUrl } from '../../lib/site-location'
+
+const primary = await getCollection('scenesPrimary')
+const secondary = await getCollection('scenesSecondary')
+const rawScenesPrimary = primary.map((e) => ({
+  node: e.data as Record<string, unknown>,
+}))
+const rawScenesSecondary = secondary.map((e) => ({
+  node: e.data as Record<string, unknown>,
+}))
+const location = siteLocationFromUrl(Astro.url)
+---
+
+<BaseLayout>
+  <VergleichenRoute
+    client:only="react"
+    location={location}
+    rawScenesPrimary={rawScenesPrimary}
+    rawScenesSecondary={rawScenesSecondary}
+  />
+</BaseLayout>

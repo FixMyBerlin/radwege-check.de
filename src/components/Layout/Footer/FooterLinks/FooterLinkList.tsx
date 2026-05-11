@@ -1,16 +1,16 @@
-import clsx from 'clsx'
-import React from 'react'
-import { Link } from '~/components/Link'
-import { footerMenuItemProps } from '../const/footerLinks.const'
+import clsx from "clsx";
+import React from "react";
+import { Link } from "~/components/Link";
+import type { footerMenuItemProps } from "../const/footerLinks.const";
 
 type Props = {
-  linkList: footerMenuItemProps[]
-  className?: string
-}
+  linkList: footerMenuItemProps[];
+  className?: string;
+};
 
 export const FooterLinkList: React.FC<Props> = ({ linkList, className }) => {
   return (
-    <ul className={clsx('space-y-3', className)}>
+    <ul className={clsx("space-y-3", className)}>
       {linkList.map((item) => (
         <li key={item.name}>
           <Link
@@ -25,5 +25,5 @@ export const FooterLinkList: React.FC<Props> = ({ linkList, className }) => {
         </li>
       ))}
     </ul>
-  )
-}
+  );
+};

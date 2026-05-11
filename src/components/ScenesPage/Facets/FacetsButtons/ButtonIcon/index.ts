@@ -1,3 +1,3 @@
-export * from './ButtonIcon'
-export * from './ButtonIconNoChoice'
-export * from './Icons'
+export * from "./ButtonIcon";
+export * from "./ButtonIconNoChoice";
+export * from "./Icons";

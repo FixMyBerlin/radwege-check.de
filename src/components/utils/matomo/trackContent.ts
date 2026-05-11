@@ -4,58 +4,49 @@
 
 type ImpressionProps = {
   /** @desc "Content Name" */
-  id: string
+  id: string;
   /** @desc "Content Piece" */
-  representation: string
+  representation: string;
   /** @desc "Content Target" */
-  url: string
-}
+  url: string;
+};
 
-export const trackContentImpression = ({
-  id,
-  representation,
-  url,
-}: ImpressionProps) => {
-  if (typeof window === 'undefined') return
+export const trackContentImpression = ({ id, representation, url }: ImpressionProps) => {
+  if (typeof window === "undefined") return;
 
   // It is important to use bracket notation here!
   // Otherwise Jest tests will fail since they do not recognize our global type extension.
-  window['_paq'] = window['_paq'] || []
-  window['_paq'].push(['trackContentImpression', id, representation])
+  window["_paq"] = window["_paq"] || [];
+  window["_paq"].push(["trackContentImpression", id, representation]);
 
-  if (window['dev'] === true) {
+  if (window["dev"] === true) {
     console.debug({
-      MATOMO: 'trackContentImpression',
+      MATOMO: "trackContentImpression",
       id,
       representation,
       url,
-    })
+    });
   }
-}
+};
 
 type InteractionProps = {
   /** @desc "contentInteraction" eg 'tabActivated' */
-  action: string
-} & ImpressionProps
+  action: string;
+} & ImpressionProps;
 
-export const trackContentInteraction = ({
-  action,
-  id,
-  representation,
-  url,
-}: InteractionProps) => {
-  if (typeof window === 'undefined') return
+export const trackContentInteraction = ({ action, id, representation, url }: InteractionProps) => {
+  if (typeof window === "undefined") return;
 
-  window['_paq'] = window['_paq'] || []
-  window['_paq'].push(['trackContentInteraction', action, id, representation])
+  window["_paq"] = window["_paq"] || [];
+  window["_paq"].push(["trackContentInteraction", action, id, representation]);
 
-  if (window['dev'] === true) {
+  if (window["dev"] === true) {
     console.debug({
-      MATOMO: 'trackContentInteraction',
+      MATOMO: "trackContentInteraction",
       action,
       id,
       representation,
       url,
-    })
+    });
   }
-}
+};

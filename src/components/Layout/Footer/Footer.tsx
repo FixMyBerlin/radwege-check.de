@@ -1,10 +1,13 @@
-import React from 'react'
-import Logo from '~/components/assets/radwegecheck-logo.svg'
-import { Link } from '~/components/Link'
-import { FooterSocialIcons } from '.'
-import LogoFmc from './assets/fixmycity-logo.svg'
-import { footerLinks } from './const'
-import { FooterLinkList } from './FooterLinks/FooterLinkList'
+import React from "react";
+import Logo from "~/components/assets/radwegecheck-logo.svg";
+import { Link } from "~/components/Link";
+import { FooterSocialIcons } from ".";
+import LogoFmc from "./assets/fixmycity-logo.svg";
+import { footerLinks } from "./const";
+import { FooterLinkList } from "./FooterLinks/FooterLinkList";
+
+const LogoSvg = Logo as React.ComponentType<Record<string, unknown>>;
+const LogoFmcSvg = LogoFmc as React.ComponentType<Record<string, unknown>>;
 
 export const Footer: React.FC = () => {
   return (
@@ -20,7 +23,7 @@ export const Footer: React.FC = () => {
         <section className="flex flex-col justify-between pb-3 lg:w-auto lg:pb-0">
           <div>
             <Link to="/" classNameOverwrite="" title="Zur Startseite…">
-              <Logo className="h-12 fill-white" alt="Radwege-Check" />
+              <LogoSvg className="h-12 fill-white" alt="Radwege-Check" />
             </Link>
           </div>
           <div>
@@ -30,17 +33,15 @@ export const Footer: React.FC = () => {
               to="https://www.fixmycity.de"
               classNameOverwrite="text-xs text-stone-300 ml-[58px] -mt-0.5 block hover:underline -mb-1.5"
             >
-              Konzept &amp; Entwicklung FixMyCity{' '}
-              <LogoFmc className="ml-0.5 inline-block h-7 w-7" />
+              Konzept &amp; Entwicklung FixMyCity{" "}
+              <LogoFmcSvg className="ml-0.5 inline-block h-7 w-7" />
             </Link>
           </div>
         </section>
         <section>
           <div className="mt-8 flex flex-col gap-10 lg:mt-1 lg:flex-row lg:gap-12">
             <div className="lg:w-[11rem] xl:w-[26rem]">
-              <h3 className="mb-3 font-semibold text-stone-100">
-                Über die Daten:
-              </h3>
+              <h3 className="mb-3 font-semibold text-stone-100">Über die Daten:</h3>
               <FooterLinkList linkList={footerLinks.report} />
             </div>
             <div className="lg:w-[11rem]">
@@ -56,5 +57,5 @@ export const Footer: React.FC = () => {
         </section>
       </div>
     </footer>
-  )
-}
+  );
+};

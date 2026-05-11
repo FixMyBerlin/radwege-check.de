@@ -1,32 +1,33 @@
-import React from 'react'
-import { Modal } from '~/components/Modal'
-import { isEnglishDomain, primaryDomain } from '~/components/utils'
-import { Link } from '../../Link'
-import GoogleTranslateLogo from './assets/google-translate-logo.svg'
-import { googleTranslateUrl } from './utils'
+import React from "react";
+import { Modal } from "~/components/Modal";
+import { isEnglishDomain, primaryDomain } from "~/components/utils";
+import { Link } from "../../Link";
+import GoogleTranslateLogo from "./assets/google-translate-logo.svg";
+import { googleTranslateUrl } from "./utils";
+
+const GoogleTranslateSvg = GoogleTranslateLogo as React.ComponentType<Record<string, unknown>>;
 
 type Props = {
-  visible: boolean
-  domain: string
-}
+  visible: boolean;
+  domain: string;
+};
 
 export const EnglishLanguageModal: React.FC<Props> = ({ visible, domain }) => {
-  if (!visible) return null
-  if (!domain) return null
+  if (!visible) return null;
+  if (!domain) return null;
 
-  if (!isEnglishDomain(domain)) return null
+  if (!isEnglishDomain(domain)) return null;
 
   // Guard SSR
-  const isBrowser = typeof window !== 'undefined'
-  if (!isBrowser) return null
+  const isBrowser = typeof window !== "undefined";
+  if (!isBrowser) return null;
 
-  const translateUrl = googleTranslateUrl(window.location)
+  const translateUrl = googleTranslateUrl(window.location);
 
   return (
     <Modal title="Translate page" className="print:hidden">
       <p className="mb-4">
-        This page is avaliable in German only but can be translated with Google
-        Translate.
+        This page is avaliable in German only but can be translated with Google Translate.
       </p>
       <div className="space-x-3">
         <Link
@@ -37,15 +38,12 @@ export const EnglishLanguageModal: React.FC<Props> = ({ visible, domain }) => {
           title="Open page current in Google Translate"
           className="flex flex-row items-center gap-0.5"
         >
-          <GoogleTranslateLogo className="mr-1 mt-0.5 h-4 w-4 object-contain" />{' '}
-          Translate page
-        </Link>{' '}
-        <Link
-          to={`${primaryDomain}${window.location.pathname}${window.location.search}`}
-        >
+          <GoogleTranslateSvg className="mr-1 mt-0.5 h-4 w-4 object-contain" /> Translate page
+        </Link>{" "}
+        <Link to={`${primaryDomain}${window.location.pathname}${window.location.search}`}>
           Don&apos;t show again
         </Link>
       </div>
     </Modal>
-  )
-}
+  );
+};

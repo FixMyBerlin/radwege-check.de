@@ -1,7 +1,7 @@
-import React from 'react'
-import { FormattedDate, FormattedMessage } from 'react-intl'
-import { Headline } from '../components'
-import AuthorIcon from './assets/author-icon.svg'
+import React from "react";
+import { FormattedDate, FormattedMessage } from "react-intl";
+import { Headline } from "../components";
+import AuthorIcon from "./assets/author-icon.svg";
 
 export const SectionHeader: React.FC = () => {
   return (
@@ -16,12 +16,12 @@ export const SectionHeader: React.FC = () => {
 
       <p>
         <div className="mr-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-yellow">
-          <AuthorIcon />{' '}
+          <AuthorIcon />{" "}
         </div>
-        <FormattedDate value={new Date('2020-06-06')} />{' '}
-        <FormattedMessage id="article.attribution" /> |{' '}
+        <FormattedDate value={new Date("2020-06-06")} />{" "}
+        <FormattedMessage id="article.attribution" /> |{" "}
         <strong>
-          {' '}
+          {" "}
           <FormattedMessage id="article.authors" />
         </strong>
       </p>
@@ -32,5 +32,5 @@ export const SectionHeader: React.FC = () => {
         </strong>
       </p>
     </section>
-  )
-}
+  );
+};

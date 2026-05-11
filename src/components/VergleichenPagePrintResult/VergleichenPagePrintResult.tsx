@@ -1,28 +1,31 @@
-import React from 'react'
-import { SceneImage } from '../ScenesPage'
-import { AggregationConfig } from '../ScenesPage/constants'
-import { ResultCells } from '../ScenesPage/Results/ResultCells'
-import BikeIcon from '../ScenesPage/Results/ResultNumbers/assets/bike-icon.svg'
-import CarIcon from '../ScenesPage/Results/ResultNumbers/assets/car-icon.svg'
-import PedestrianIcon from '../ScenesPage/Results/ResultNumbers/assets/pedestrian-icon.svg'
-import { BarChartAndHeadline } from '../ScenesPage/Results/ResultNumbers/BarChartAndHeadline'
-import { Table } from '../ScenesPage/Results/ResultNumbers/Table'
-import { ExperimentTextKey } from '../ScenesPage/store'
-import { ScenePrimaryProps, SceneSecondaryProps } from '../ScenesPage/types'
+import React from "react";
+import { SceneImage } from "../ScenesPage";
+import { AggregationConfig } from "../ScenesPage/constants";
+import { ResultCells } from "../ScenesPage/Results/ResultCells";
+import BikeIcon from "../ScenesPage/Results/ResultNumbers/assets/bike-icon.svg";
+import CarIcon from "../ScenesPage/Results/ResultNumbers/assets/car-icon.svg";
+import PedestrianIcon from "../ScenesPage/Results/ResultNumbers/assets/pedestrian-icon.svg";
+import { BarChartAndHeadline } from "../ScenesPage/Results/ResultNumbers/BarChartAndHeadline";
+import { Table } from "../ScenesPage/Results/ResultNumbers/Table";
+import { ExperimentTextKey } from "../ScenesPage/store";
+import { ScenePrimaryProps, SceneSecondaryProps } from "../ScenesPage/types";
+
+const BikeSvg = BikeIcon as React.ComponentType<Record<string, unknown>>;
+const PedSvg = PedestrianIcon as React.ComponentType<Record<string, unknown>>;
+const CarSvg = CarIcon as React.ComponentType<Record<string, unknown>>;
 
 type Props = {
-  scene: ScenePrimaryProps | SceneSecondaryProps
-  aggregationConfig: AggregationConfig
-  experimentTextKey: ExperimentTextKey
-}
+  scene: ScenePrimaryProps | SceneSecondaryProps;
+  aggregationConfig: AggregationConfig;
+  experimentTextKey: ExperimentTextKey;
+};
 
 export const VergleichenPagePrintResult: React.FC<Props> = ({
   scene,
   aggregationConfig,
   experimentTextKey,
 }) => {
-  const experimentTitle =
-    experimentTextKey === 'primary' ? 'Hauptstraße' : 'Nebenstraße'
+  const experimentTitle = experimentTextKey === "primary" ? "Hauptstraße" : "Nebenstraße";
 
   return (
     <section className="mb-16 break-inside-avoid-page">
@@ -46,7 +49,7 @@ export const VergleichenPagePrintResult: React.FC<Props> = ({
             />
             <div className="flex flex-row gap-2">
               <BarChartAndHeadline
-                icon={<BikeIcon className="mr-1.5 h-8 w-8" />}
+                icon={<BikeSvg className="mr-1.5 h-8 w-8" />}
                 mainBarChart
                 voteScore={scene.voteScore}
                 vote0Unsafe={scene.vote0Unsafe}
@@ -55,7 +58,7 @@ export const VergleichenPagePrintResult: React.FC<Props> = ({
                 vote3VerySave={scene.vote3VerySave}
               />
               <BarChartAndHeadline
-                icon={<PedestrianIcon className="mr-1.5 h-4 w-auto" />}
+                icon={<PedSvg className="mr-1.5 h-4 w-auto" />}
                 voteScore={scene.votePedestrianScore}
                 vote0Unsafe={scene.votePedestrian0Unsafe}
                 vote1RatherUnsafe={scene.votePedestrian1RatherUnsafe}
@@ -63,7 +66,7 @@ export const VergleichenPagePrintResult: React.FC<Props> = ({
                 vote3VerySave={scene.votePedestrian3VerySave}
               />
               <BarChartAndHeadline
-                icon={<CarIcon className="mr-1.5 h-auto w-5" />}
+                icon={<CarSvg className="mr-1.5 h-auto w-5" />}
                 voteScore={scene.voteCarScore}
                 vote0Unsafe={scene.voteCar0Unsafe}
                 vote1RatherUnsafe={scene.voteCar1RatherUnsafe}
@@ -83,5 +86,5 @@ export const VergleichenPagePrintResult: React.FC<Props> = ({
         <ResultCells scene={scene} aggregationConfig={aggregationConfig} />
       </div>
     </section>
-  )
-}
+  );
+};

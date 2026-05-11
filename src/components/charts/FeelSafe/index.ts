@@ -1,2 +1,2 @@
-export * from './FeelSafe'
-export * from './IntlWrappedFeelSafe'
+export * from "./FeelSafe";
+export * from "./IntlWrappedFeelSafe";

@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { PresseRoute } from '../components/routes/PresseRoute'
+import { siteLocationFromUrl } from '../lib/site-location'
+
+const location = siteLocationFromUrl(Astro.url)
+---
+
+<BaseLayout>
+  <PresseRoute client:only="react" location={location} />
+</BaseLayout>

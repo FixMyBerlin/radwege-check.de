@@ -1,1 +1,1 @@
-export * from './barTitleColor'
+export * from "./barTitleColor";

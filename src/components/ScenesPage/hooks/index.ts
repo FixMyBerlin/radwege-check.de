@@ -1,2 +1,2 @@
-export * from './useAggregationConfig'
-export * from './useSetPresetKey'
+export * from "./useAggregationConfig";
+export * from "./useSetPresetKey";

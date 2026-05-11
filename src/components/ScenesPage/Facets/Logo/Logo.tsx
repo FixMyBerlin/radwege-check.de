@@ -1,13 +1,15 @@
-import React from 'react'
-import LogoImage from '~/components/assets/radwegecheck-logo.svg'
-import { Link } from '~/components/Link'
+import React from "react";
+import LogoImage from "~/components/assets/radwegecheck-logo.svg";
+import { Link } from "~/components/Link";
+
+const LogoImg = LogoImage as React.ComponentType<Record<string, unknown>>;
 
 type Props = {
-  visible: boolean
-}
+  visible: boolean;
+};
 
 export const Logo: React.FC<Props> = ({ visible }) => {
-  if (!visible) return null
+  if (!visible) return null;
 
   return (
     <Link
@@ -16,10 +18,7 @@ export const Logo: React.FC<Props> = ({ visible }) => {
       className="focus:text-yellow-900 focus:outline-none"
       title="Zur Startseite…"
     >
-      <LogoImage
-        className="h-8 w-auto hover:text-yellow-900 "
-        alt="Radwege-Check"
-      />
+      <LogoImg className="h-8 w-auto hover:text-yellow-900 " alt="Radwege-Check" />
     </Link>
-  )
-}
+  );
+};

@@ -1,8 +1,8 @@
-import React from 'react'
-import { isDev } from '~/components/utils'
+import React from "react";
+import { isDev } from "~/components/utils";
 
 export const TailwindResponsiveHelper: React.FC = () => {
-  if (!isDev) return null
+  if (!isDev) return null;
 
   return (
     <a
@@ -28,5 +28,5 @@ export const TailwindResponsiveHelper: React.FC = () => {
         2xl
       </span>
     </a>
-  )
-}
+  );
+};

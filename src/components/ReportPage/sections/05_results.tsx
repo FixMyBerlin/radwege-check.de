@@ -1,15 +1,15 @@
-import React from 'react'
-import { FormattedMessage, useIntl } from 'react-intl'
-import { BarChart, BarChartWrapper, FeelSafe } from '~/components/charts'
-import { Link } from '~/components/Link'
-import { Headline, Image, TwoImagesWrapper } from '../components'
+import React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
+import { BarChart, BarChartWrapper, FeelSafe } from "~/components/charts";
+import { Link } from "~/components/Link";
+import { Headline, Image, TwoImagesWrapper } from "../components";
 
 export const SectionResults: React.FC = () => {
-  const intl = useIntl()
+  const intl = useIntl();
 
   return (
     <section>
-      <Headline id={intl.formatMessage({ id: 'toc.Results.hash' })} as="h2">
+      <Headline id={intl.formatMessage({ id: "toc.Results.hash" })} as="h2">
         <FormattedMessage id="05_results.heading" />
       </Headline>
 
@@ -24,10 +24,7 @@ export const SectionResults: React.FC = () => {
           id="05_results.p3"
           values={{
             link: (
-              <Link
-                external
-                to="https://github.com/FixMyBerlin/fixmy.survey-results"
-              >
+              <Link external to="https://github.com/FixMyBerlin/fixmy.survey-results">
                 Jupyter Notebooks
               </Link>
             ),
@@ -152,29 +149,29 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart1.title',
+          id: "05_results.chart1.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart1.label',
+          id: "05_results.chart1.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart1.1',
+            id: "05_results.chart1.1",
           })}
           data={[8.18525, 21.410971, 34.95565, 35.448129]}
           feelsafe={70.4}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart1.2',
+            id: "05_results.chart1.2",
           })}
           data={[7.824049, 20.332307, 34.931507, 36.912137]}
           feelsafe={71.84}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart1.3',
+            id: "05_results.chart1.3",
           })}
           data={[9.831594, 21.240512, 33.906546, 35.021347]}
           feelsafe={68.93}
@@ -182,64 +179,64 @@ export const SectionResults: React.FC = () => {
       </BarChartWrapper>
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart2.title',
+          id: "05_results.chart2.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart2.label',
+          id: "05_results.chart2.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart2.1',
+            id: "05_results.chart2.1",
           })}
           data={[8.922697, 19.490132, 29.481908, 42.105263]}
           feelsafe={71}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart2.2',
+            id: "05_results.chart2.2",
           })}
           data={[9.36742, 20.752886, 31.124479, 38.755215]}
           feelsafe={70}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart2.3',
+            id: "05_results.chart2.3",
           })}
           data={[9.452893, 20.825782, 32.878943, 36.842382]}
           feelsafe={70}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart2.4',
+            id: "05_results.chart2.4",
           })}
           data={[9.149358, 21.724335, 34.507092, 34.619215]}
           feelsafe={69}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart2.5',
+            id: "05_results.chart2.5",
           })}
           data={[8.353393, 21.826761, 35.510278, 34.309567]}
           feelsafe={70}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart2.6',
+            id: "05_results.chart2.6",
           })}
           data={[6.902527, 20.468174, 36.023561, 36.605738]}
           feelsafe={73}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart2.7',
+            id: "05_results.chart2.7",
           })}
           data={[6.061991, 19.217255, 35.969147, 38.751607]}
           feelsafe={75}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart2.8',
+            id: "05_results.chart2.8",
           })}
           data={[6.204244, 19.344832, 32.696364, 41.75456]}
           feelsafe={75}
@@ -247,50 +244,50 @@ export const SectionResults: React.FC = () => {
       </BarChartWrapper>
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart3.title',
+          id: "05_results.chart3.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart3.label',
+          id: "05_results.chart3.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart3.1',
+            id: "05_results.chart3.1",
           })}
           data={[8.219178, 21.413216, 34.713547, 35.654059]}
           feelsafe={71}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart3.2',
+            id: "05_results.chart3.2",
           })}
           data={[7.542612, 21.50418, 35.653024, 35.300185]}
           feelsafe={71}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart3.3',
+            id: "05_results.chart3.3",
           })}
           data={[7.195407, 21.030776, 35.828827, 35.94499]}
           feelsafe={72}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart3.4',
+            id: "05_results.chart3.4",
           })}
           data={[7.983095, 19.878098, 34.502092, 37.636715]}
           feelsafe={72}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart3.5',
+            id: "05_results.chart3.5",
           })}
           data={[8.619391, 20.588077, 34.345744, 36.446788]}
           feelsafe={70}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart3.6',
+            id: "05_results.chart3.6",
           })}
           data={[9.122029, 20.652014, 34.344607, 35.88135]}
           feelsafe={70}
@@ -329,29 +326,29 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart4.title',
+          id: "05_results.chart4.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart4.label',
+          id: "05_results.chart4.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart4.1',
+            id: "05_results.chart4.1",
           })}
           data={[3, 18, 49, 30]}
           feelsafe={75.52}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart4.2',
+            id: "05_results.chart4.2",
           })}
           data={[52, 33, 12, 3]}
           feelsafe={14}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart4.3',
+            id: "05_results.chart4.3",
           })}
           data={[51, 35, 12, 2]}
           feelsafe={15}
@@ -380,29 +377,29 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart5.title',
+          id: "05_results.chart5.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart5.label',
+          id: "05_results.chart5.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart5.1',
+            id: "05_results.chart5.1",
           })}
           data={[8, 29, 43, 19]}
           feelsafe={59.62}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart5.2',
+            id: "05_results.chart5.2",
           })}
           data={[2, 11, 40, 47]}
           feelsafe={85.47}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart5.3',
+            id: "05_results.chart5.3",
           })}
           data={[4, 18, 46, 32]}
           feelsafe={76.9}
@@ -434,45 +431,45 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart6.title',
+          id: "05_results.chart6.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart6.label',
+          id: "05_results.chart6.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart6.1',
+            id: "05_results.chart6.1",
           })}
           data={[21.51]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart6.2',
+            id: "05_results.chart6.2",
           })}
           data={[22.17]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart6.3',
+            id: "05_results.chart6.3",
           })}
           data={[10.57]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart6.4',
+            id: "05_results.chart6.4",
           })}
           data={[8.12]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart6.5',
+            id: "05_results.chart6.5",
           })}
           data={[3.11]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart6.6',
+            id: "05_results.chart6.6",
           })}
           data={[2.6]}
         />
@@ -524,36 +521,36 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart7.title',
+          id: "05_results.chart7.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart7.label',
+          id: "05_results.chart7.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart7.1',
+            id: "05_results.chart7.1",
           })}
           data={[5.98653, 23.522075, 47.318533, 23.172861]}
           feelsafe={70.49}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart7.2',
+            id: "05_results.chart7.2",
           })}
           data={[3.001464, 12.591508, 44.558321, 39.848707]}
           feelsafe={84.41}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart7.3',
+            id: "05_results.chart7.3",
           })}
           data={[19.22069, 39.432608, 31.377464, 9.969238]}
           feelsafe={41.35}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart7.4',
+            id: "05_results.chart7.4",
           })}
           data={[4.514474, 20.134713, 48.199824, 27.15099]}
           feelsafe={75.35}
@@ -597,64 +594,64 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart8.title',
+          id: "05_results.chart8.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart8.label',
+          id: "05_results.chart8.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart8.1',
+            id: "05_results.chart8.1",
           })}
           data={[2, 10, 37, 51]}
           feelsafe={87.55}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart8.2',
+            id: "05_results.chart8.2",
           })}
           data={[2, 5, 31, 62]}
           feelsafe={93.5}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart8.3',
+            id: "05_results.chart8.3",
           })}
           data={[4, 19, 41, 36]}
           feelsafe={76.2}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart8.4',
+            id: "05_results.chart8.4",
           })}
           data={[2, 14, 43, 41]}
           feelsafe={83.07}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart8.5',
+            id: "05_results.chart8.5",
           })}
           data={[5, 23, 49, 22]}
           feelsafe={70.17}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart8.6',
+            id: "05_results.chart8.6",
           })}
           data={[3, 16, 47, 34]}
           feelsafe={80.42}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart8.7',
+            id: "05_results.chart8.7",
           })}
           data={[23, 42, 28, 7]}
           feelsafe={34.19}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart8.8',
+            id: "05_results.chart8.8",
           })}
           data={[13, 36, 37, 13]}
           feelsafe={49.82}
@@ -667,29 +664,29 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart9.title',
+          id: "05_results.chart9.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart9.label',
+          id: "05_results.chart9.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart9.1',
+            id: "05_results.chart9.1",
           })}
           data={[8.542686, 22.612828, 38.589373, 30.255113]}
           feelsafe={68.84}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart9.2',
+            id: "05_results.chart9.2",
           })}
           data={[4.890647, 17.087043, 39.353226, 38.669085]}
           feelsafe={78.02}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart9.3',
+            id: "05_results.chart9.3",
           })}
           data={[8.903186, 23.970115, 39.140811, 27.985888]}
           feelsafe={67.13}
@@ -720,43 +717,43 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart10.title',
+          id: "05_results.chart10.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart10.label',
+          id: "05_results.chart10.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart10.1',
+            id: "05_results.chart10.1",
           })}
           data={[4.376283, 19.109343, 45.995893, 30.51848]}
           feelsafe={75.64}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart10.2',
+            id: "05_results.chart10.2",
           })}
           data={[3.933106, 16.64602, 46.097863, 33.32301]}
           feelsafe={78.91}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart10.3',
+            id: "05_results.chart10.3",
           })}
           data={[1.895462, 7.352096, 25.272832, 65.479609]}
           feelsafe={90.75}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart10.4',
+            id: "05_results.chart10.4",
           })}
           data={[1.396078, 7.32549, 33.662745, 57.615686]}
           feelsafe={91.28}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart10.5',
+            id: "05_results.chart10.5",
           })}
           data={[1.466594, 7.224335, 25.31233, 65.996741]}
           feelsafe={91.31}
@@ -788,29 +785,29 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart11.title',
+          id: "05_results.chart11.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart11.label',
+          id: "05_results.chart11.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart11.1',
+            id: "05_results.chart11.1",
           })}
           data={[3.812933, 19.951131, 48.818048, 27.417888]}
           feelsafe={74.54}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart11.2',
+            id: "05_results.chart11.2",
           })}
           data={[1.431025, 3.978248, 21.665713, 72.925014]}
           feelsafe={91.69}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart11.3',
+            id: "05_results.chart11.3",
           })}
           data={[1.060071, 7.022968, 34.584806, 57.332155]}
           feelsafe={94.22}
@@ -835,16 +832,16 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart12.title',
+          id: "05_results.chart12.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart12.label',
+          id: "05_results.chart12.label",
         })}
       >
         <BarChart
           titleClass="w-40"
           title={intl.formatMessage({
-            id: '05_results.chart12.1',
+            id: "05_results.chart12.1",
           })}
           data={[52, 33, 12, 3]}
           feelsafe={14.24}
@@ -852,7 +849,7 @@ export const SectionResults: React.FC = () => {
         <BarChart
           titleClass="w-40"
           title={intl.formatMessage({
-            id: '05_results.chart12.2',
+            id: "05_results.chart12.2",
           })}
           data={[3, 18, 49, 30]}
           feelsafe={75.52}
@@ -860,7 +857,7 @@ export const SectionResults: React.FC = () => {
         <BarChart
           titleClass="w-40"
           title={intl.formatMessage({
-            id: '05_results.chart12.3',
+            id: "05_results.chart12.3",
           })}
           data={[31.877551, 42.095238, 16.938776, 9.088435]}
           feelsafe={25.41}
@@ -869,7 +866,7 @@ export const SectionResults: React.FC = () => {
         <BarChart
           titleClass="w-40"
           title={intl.formatMessage({
-            id: '05_results.chart12.4',
+            id: "05_results.chart12.4",
           })}
           data={[1.773559, 12.917629, 47.055517, 38.253294]}
           feelsafe={82.99}
@@ -882,15 +879,9 @@ export const SectionResults: React.FC = () => {
       </p>
 
       <TwoImagesWrapper>
-        <Image
-          source="MS_A_1285"
-          chart={<FeelSafe value={94.68} icon="car" />}
-        />
+        <Image source="MS_A_1285" chart={<FeelSafe value={94.68} icon="car" />} />
 
-        <Image
-          source="MS_A_586"
-          chart={<FeelSafe value={28.21} icon="car" />}
-        />
+        <Image source="MS_A_586" chart={<FeelSafe value={28.21} icon="car" />} />
       </TwoImagesWrapper>
 
       <Headline as="h3">
@@ -903,16 +894,16 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart12b.title',
+          id: "05_results.chart12b.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart12b.label',
+          id: "05_results.chart12b.label",
         })}
       >
         <BarChart
           titleClass="w-40"
           title={intl.formatMessage({
-            id: '05_results.chart12b.1',
+            id: "05_results.chart12b.1",
           })}
           data={[4.05788, 17.882982, 46.429695, 31.629443]}
           feelsafe={76.9}
@@ -920,7 +911,7 @@ export const SectionResults: React.FC = () => {
         <BarChart
           titleClass="w-40"
           title={intl.formatMessage({
-            id: '05_results.chart12b.2',
+            id: "05_results.chart12b.2",
           })}
           data={[1.366559, 6.879689, 30.90836, 60.845391]}
           feelsafe={91.2}
@@ -928,7 +919,7 @@ export const SectionResults: React.FC = () => {
         <BarChart
           titleClass="w-40"
           title={intl.formatMessage({
-            id: '05_results.chart12b.3',
+            id: "05_results.chart12b.3",
           })}
           data={[2.398382, 13.937584, 44.731266, 38.932768]}
           feelsafe={82.76}
@@ -937,7 +928,7 @@ export const SectionResults: React.FC = () => {
         <BarChart
           titleClass="w-40"
           title={intl.formatMessage({
-            id: '05_results.chart12b.4',
+            id: "05_results.chart12b.4",
           })}
           data={[2.326551, 10.173449, 34.247832, 53.252168]}
           feelsafe={86.76}
@@ -946,7 +937,7 @@ export const SectionResults: React.FC = () => {
         <BarChart
           titleClass="w-40"
           title={intl.formatMessage({
-            id: '05_results.chart12b.5',
+            id: "05_results.chart12b.5",
           })}
           data={[3.789474, 11.508772, 30.105263, 54.596491]}
           feelsafe={84.7}
@@ -955,7 +946,7 @@ export const SectionResults: React.FC = () => {
         <BarChart
           titleClass="w-40"
           title={intl.formatMessage({
-            id: '05_results.chart12b.6',
+            id: "05_results.chart12b.6",
           })}
           data={[2.107482, 10.410959, 35.911486, 51.570074]}
           feelsafe={87.48}
@@ -964,7 +955,7 @@ export const SectionResults: React.FC = () => {
         <BarChart
           titleClass="w-40 xxx"
           title={intl.formatMessage({
-            id: '05_results.chart12b.7',
+            id: "05_results.chart12b.7",
           })}
           data={[2.715547, 9.164969, 29.192125, 58.927359]}
           feelsafe={88.12}
@@ -1002,54 +993,54 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart13.title',
+          id: "05_results.chart13.title",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart13.1',
+            id: "05_results.chart13.1",
           })}
           data={[5.98653, 23.522075, 47.318533, 23.172861]}
           feelsafe={70.49}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart13.2',
+            id: "05_results.chart13.2",
           })}
           data={[3.001464, 12.591508, 44.558321, 39.848707]}
           feelsafe={84.41}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart13.3',
+            id: "05_results.chart13.3",
           })}
           data={[19.22069, 39.432608, 31.377464, 9.969238]}
           feelsafe={41.35}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart13.4',
+            id: "05_results.chart13.4",
           })}
           data={[4.514474, 20.134713, 48.199824, 27.15099]}
           feelsafe={75.35}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart13.5',
+            id: "05_results.chart13.5",
           })}
           data={[0.677428, 3.889918, 29.751257, 65.681397]}
           feelsafe={94.61}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart13.6',
+            id: "05_results.chart13.6",
           })}
           data={[3.729178, 23.567974, 43.98173, 28.721118]}
           feelsafe={69.1}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart13.7',
+            id: "05_results.chart13.7",
           })}
           data={[1.055662, 5.143954, 26.81382, 66.986564]}
           feelsafe={92.4}
@@ -1102,45 +1093,45 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart14.title',
+          id: "05_results.chart14.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart14.label',
+          id: "05_results.chart14.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart14.1',
+            id: "05_results.chart14.1",
           })}
           data={[24.09]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart14.2',
+            id: "05_results.chart14.2",
           })}
           data={[1.33]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart14.3',
+            id: "05_results.chart14.3",
           })}
           data={[4.1]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart14.4',
+            id: "05_results.chart14.4",
           })}
           data={[11.41]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart14.5',
+            id: "05_results.chart14.5",
           })}
           data={[6.23]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart14.6',
+            id: "05_results.chart14.6",
           })}
           data={[1.1]}
         />
@@ -1162,22 +1153,22 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart15.title',
+          id: "05_results.chart15.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart15.label',
+          id: "05_results.chart15.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart15.1',
+            id: "05_results.chart15.1",
           })}
           data={[0.677428, 3.889918, 29.751257, 65.681397]}
           feelsafe={94.61}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart15.2',
+            id: "05_results.chart15.2",
           })}
           data={[3.729178, 23.567974, 43.98173, 28.721118]}
           feelsafe={69.1}
@@ -1212,36 +1203,36 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart16.title',
+          id: "05_results.chart16.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart16.label',
+          id: "05_results.chart16.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart16.1',
+            id: "05_results.chart16.1",
           })}
           data={[2.043688, 11.751203, 39.159571, 47.045539]}
           feelsafe={84.24}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart16.2',
+            id: "05_results.chart16.2",
           })}
           data={[2.039444, 11.687584, 37.483191, 48.78978]}
           feelsafe={84.16}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart16.3',
+            id: "05_results.chart16.3",
           })}
           data={[3.390943, 18.938234, 40.016772, 37.654051]}
           feelsafe={74.96}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart16.4',
+            id: "05_results.chart16.4",
           })}
           data={[1.710024, 9.920563, 35.795282, 52.574131]}
           feelsafe={86.4}
@@ -1274,27 +1265,27 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart17.title',
+          id: "05_results.chart17.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart17.label',
+          id: "05_results.chart17.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart17.1',
+            id: "05_results.chart17.1",
           })}
           data={[5.76]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart17.2',
+            id: "05_results.chart17.2",
           })}
           data={[32.13]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart17.3',
+            id: "05_results.chart17.3",
           })}
           data={[25.39]}
         />
@@ -1310,15 +1301,15 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart18.title',
+          id: "05_results.chart18.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart18.label',
+          id: "05_results.chart18.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart18.1',
+            id: "05_results.chart18.1",
           })}
           data={[6.599897, 36.123951, 38.004337, 19.271814]}
           feelsafe={53.24}
@@ -1326,7 +1317,7 @@ export const SectionResults: React.FC = () => {
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart18.2',
+            id: "05_results.chart18.2",
           })}
           data={[1.740895, 12.454977, 42.070208, 43.73392]}
           feelsafe={83.36}
@@ -1334,14 +1325,14 @@ export const SectionResults: React.FC = () => {
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart18.3',
+            id: "05_results.chart18.3",
           })}
           data={[3.390943, 18.938234, 40.016772, 37.654051]}
           feelsafe={74.95}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart18.4',
+            id: "05_results.chart18.4",
           })}
           data={[1.710024, 9.920563, 35.795282, 52.574131]}
           feelsafe={86.4}
@@ -1372,15 +1363,15 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart19.title',
+          id: "05_results.chart19.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart19.label',
+          id: "05_results.chart19.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart19.1',
+            id: "05_results.chart19.1",
           })}
           data={[2.90756, 16.603599, 39.771411, 40.71743]}
           feelsafe={78.18}
@@ -1388,7 +1379,7 @@ export const SectionResults: React.FC = () => {
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart19.2',
+            id: "05_results.chart19.2",
           })}
           data={[1.970729, 10.93387, 35.689949, 51.405451]}
           feelsafe={85.49}
@@ -1396,7 +1387,7 @@ export const SectionResults: React.FC = () => {
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart19.3',
+            id: "05_results.chart19.3",
           })}
           data={[8.617505, 35.028605, 35.731339, 20.622551]}
           feelsafe={56.35}
@@ -1409,15 +1400,9 @@ export const SectionResults: React.FC = () => {
       </p>
 
       <TwoImagesWrapper>
-        <Image
-          source="CP_P_149"
-          chart={<FeelSafe value={90.52} icon="walk" />}
-        />
+        <Image source="CP_P_149" chart={<FeelSafe value={90.52} icon="walk" />} />
 
-        <Image
-          source="CP_P_778"
-          chart={<FeelSafe value={93.47} icon="walk" />}
-        />
+        <Image source="CP_P_778" chart={<FeelSafe value={93.47} icon="walk" />} />
       </TwoImagesWrapper>
 
       <Headline as="h3">
@@ -1437,51 +1422,51 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart20.title',
+          id: "05_results.chart20.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart20.label',
+          id: "05_results.chart20.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart20.1',
+            id: "05_results.chart20.1",
           })}
           data={[30.5]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart20.2',
+            id: "05_results.chart20.2",
           })}
           data={[19.4]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart20.3',
+            id: "05_results.chart20.3",
           })}
           data={[18.07]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart20.4',
+            id: "05_results.chart20.4",
           })}
           data={[26.14]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart20.5',
+            id: "05_results.chart20.5",
           })}
           data={[60.52]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart20.6',
+            id: "05_results.chart20.6",
           })}
           data={[1.13]}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart20.7',
+            id: "05_results.chart20.7",
           })}
           data={[76.66]}
         />
@@ -1521,36 +1506,36 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart21.title',
+          id: "05_results.chart21.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart21.label',
+          id: "05_results.chart21.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart21.1',
+            id: "05_results.chart21.1",
           })}
           data={[35.902256, 36.172462, 20.911654, 7.013628]}
           feelsafe={27.93}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart21.2',
+            id: "05_results.chart21.2",
           })}
           data={[17.051071, 34.478701, 33.478466, 14.991763]}
           feelsafe={48.47}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart21.3',
+            id: "05_results.chart21.3",
           })}
           data={[30.787364, 36.338991, 22.477605, 10.39604]}
           feelsafe={32.87}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart21.4',
+            id: "05_results.chart21.4",
           })}
           data={[17.137386, 34.837243, 34.633796, 13.391575]}
           feelsafe={48.03}
@@ -1593,48 +1578,48 @@ export const SectionResults: React.FC = () => {
 
       <BarChartWrapper
         title={intl.formatMessage({
-          id: '05_results.chart22.title',
+          id: "05_results.chart22.title",
         })}
         source={intl.formatMessage({
-          id: '05_results.chart22.label',
+          id: "05_results.chart22.label",
         })}
       >
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart22.1',
+            id: "05_results.chart22.1",
           })}
           data={[15.428571, 33.142857, 33.0, 18.428571]}
           feelsafe={51.42}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart22.2',
+            id: "05_results.chart22.2",
           })}
           data={[2.039405, 6.394746, 22.571725, 68.994124]}
           feelsafe={91.56}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart22.3',
+            id: "05_results.chart22.3",
           })}
           data={[2.811245, 14.993307, 40.763052, 41.432396]}
           feelsafe={82.19}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart22.4',
+            id: "05_results.chart22.4",
           })}
           data={[9.591983, 20.042949, 33.786686, 36.578382]}
           feelsafe={70.35}
         />
         <BarChart
           title={intl.formatMessage({
-            id: '05_results.chart22.5',
+            id: "05_results.chart22.5",
           })}
           data={[4.538799, 18.081991, 43.045388, 34.333821]}
           feelsafe={77.37}
         />
       </BarChartWrapper>
     </section>
-  )
-}
+  );
+};

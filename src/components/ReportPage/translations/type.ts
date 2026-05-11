@@ -1,1 +1,1 @@
-export type ReportTranslations = 'de' | 'en' | 'es'
+export type ReportTranslations = "de" | "en" | "es";

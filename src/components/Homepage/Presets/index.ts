@@ -1,1 +1,1 @@
-export * from './Presets'
+export * from "./Presets";

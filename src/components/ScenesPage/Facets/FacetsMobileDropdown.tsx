@@ -1,9 +1,9 @@
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import React, { Fragment } from 'react'
-import { Facets, FacetsProps } from './Facets'
+import { Menu, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import React, { Fragment } from "react";
+import { Facets, FacetsProps } from "./Facets";
 
-type Props = Omit<FacetsProps, 'showLogo'>
+type Props = Omit<FacetsProps, "showLogo">;
 
 export const FacetsMobileDropdown: React.FC<Props> = ({
   results,
@@ -11,15 +11,13 @@ export const FacetsMobileDropdown: React.FC<Props> = ({
   handleSingleChoice,
   handleMultiChoice,
   handlePresetClick,
+  resetFilterEnabled,
 }) => {
   return (
     <Menu as="div" className="relative inline-block text-left lg:hidden">
       <Menu.Button className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 bg-white px-3 text-sm font-normal text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:ring-offset-2 focus:ring-offset-gray-100 lg:px-4">
         Filter
-        <ChevronDownIcon
-          className="-mr-1 ml-1 h-5 w-5 lg:ml-2"
-          aria-hidden="true"
-        />
+        <ChevronDownIcon className="-mr-1 ml-1 h-5 w-5 lg:ml-2" aria-hidden="true" />
       </Menu.Button>
 
       <Transition
@@ -39,9 +37,10 @@ export const FacetsMobileDropdown: React.FC<Props> = ({
             handleMultiChoice={handleMultiChoice}
             handlePresetClick={handlePresetClick}
             showLogo={false}
+            resetFilterEnabled={resetFilterEnabled}
           />
         </Menu.Items>
       </Transition>
     </Menu>
-  )
-}
+  );
+};

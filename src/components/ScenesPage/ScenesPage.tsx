@@ -1,219 +1,151 @@
-import { PageProps } from 'gatsby'
-import itemsjs from 'itemsjs'
-import React, { useEffect, useMemo, useState } from 'react'
-import { Helmet } from 'react-helmet'
-import { StringParam, useQueryParam } from 'use-query-params'
-import { useStore } from 'zustand'
-import { MetaTags } from '../Layout'
-import { trackEvent } from '../utils'
-import { BookmarkCollector } from './BookmarkCollector'
-import {
-  Facets,
-  HandleMultiChoiceProps,
-  HandleSingleChoiceProps,
-} from './Facets'
-import { FacetsMobileDropdown } from './Facets/FacetsMobileDropdown'
-import { useSetPresetKey } from './hooks'
-import { Results } from './Results'
-import {
-  useStoreBookmarks,
-  useStoreExperimentData,
-  useStoreSpinner,
-} from './store'
-import { useStoreResetFilterEnabled } from './store/useStoreResetFilterEnabled'
-import { TitleBar } from './TitleBar'
-import { ResultProps } from './types'
-import { cleanupCsvData, decodeFilter, encodeFilter } from './utils'
+import itemsjs from "itemsjs";
+import React, { useLayoutEffect, useMemo } from "react";
+import { Helmet } from "react-helmet";
+import { parseAsString, useQueryState } from "nuqs";
+import { useStore } from "zustand";
+import type { SiteLocation } from "~/lib/site-location";
+import { consumeBookmarksHandoff } from "~/lib/navigation-handoff";
+import { MetaTags } from "../Layout";
+import { trackEvent } from "../utils";
+import { BookmarkCollector } from "./BookmarkCollector";
+import { Facets, HandleMultiChoiceProps, HandleSingleChoiceProps } from "./Facets";
+import { FacetsMobileDropdown } from "./Facets/FacetsMobileDropdown";
+import { useSetPresetKey } from "./hooks";
+import { Results } from "./Results";
+import { useStoreBookmarks, useStoreExperimentData, useStoreSpinner } from "./store";
+import { TitleBar } from "./TitleBar";
+import { ResultProps } from "./types";
+import { cleanupCsvData, decodeFilter, encodeFilter } from "./utils";
 
 type Props = {
-  rawScenes: any
-  location: PageProps<
-    unknown,
-    unknown,
-    { bookmarksArray: string[] }
-  >['location']
-}
+  rawScenes: { node: Record<string, unknown> }[] | Record<string, unknown>[];
+  location: SiteLocation;
+};
 
-export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
+export const ScenesPage: React.FC<Props> = ({ rawScenes, location: _location }) => {
   const scenes = useMemo(() => {
-    // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
-    const flattened = rawScenes.map((list) => list.node)
-    // Clean the data
-    return cleanupCsvData(flattened)
-  }, [rawScenes])
+    const flattened = rawScenes.map((row: any) =>
+      row && typeof row === "object" && "node" in row ? row.node : row,
+    );
+    return cleanupCsvData(flattened);
+  }, [rawScenes]);
 
-  const { itemJsConfig, aggregationConfig, experimentTextKey } = useStore(
-    useStoreExperimentData,
-  )
-  const { setShowSpinner } = useStore(useStoreSpinner)
-  const { setResetFilterEnabled } = useStore(useStoreResetFilterEnabled)
+  const { itemJsConfig, aggregationConfig, experimentTextKey } = useStore(useStoreExperimentData);
+  const { setShowSpinner } = useStore(useStoreSpinner);
 
-  // Init itemjs with the set configuration and data (scenes).
-  const [items, setItems] = useState(null)
-  useEffect(() => {
-    if (!itemJsConfig) return
-    setItems(itemsjs(scenes, itemJsConfig))
-  }, [scenes, itemJsConfig])
+  const items = useMemo(() => {
+    if (!itemJsConfig) return null;
+    return itemsjs(scenes, itemJsConfig);
+  }, [scenes, itemJsConfig]);
 
-  // The filters that we use for setSearchOption.
-  // They are update them by handleSingelChoice(), handleMultiChoice().
-  // The state is stored and handled by useQueryParam() inside the page URL.
-  // We use custom encode/decode to have a nice looking URL.
-  //   We tried a custom paramConfig (instead of StringParam) but that caused loops.
-  // ~~We do not use this inside the UI, which is based on the results object only.~~
-  //   TBD: We do now, but we should maybe remove it again… – TODO
-  const [searchFilters, setSearchFilters] = useQueryParam('filter', StringParam)
+  const [searchFilters, setSearchFilters] = useQueryState("filter", parseAsString);
+  const [searchOrder, setSearchOrder] = useQueryState("order", parseAsString);
 
-  const [searchOrder, setSearchOrder] = useQueryParam('order', StringParam)
+  const decodeFilterWithAggregation = (filterString: string | null | undefined) =>
+    decodeFilter(filterString ?? "", aggregationConfig);
 
-  const decodeFilterWithAggregation = (filterString: string) =>
-    decodeFilter(filterString, aggregationConfig)
-
-  // ItemsJS Filter the data
-  const [results, setResults] = useState<ResultProps>(null)
-  useEffect(() => {
-    if (!items) return
-
-    // We don't add a default order to the useQueryParam so the url param is gone by default.
-    const order = searchOrder || 'desc'
-
-    // https://github.com/itemsapi/itemsjs#itemsjssearchoptions
+  const results: ResultProps = useMemo(() => {
+    if (!items) return null;
+    const order = searchOrder || "desc";
     const searchOption = {
       per_page: 100,
-      sort: { field: 'voteScore', order },
+      sort: { field: "voteScore", order },
       filters: decodeFilterWithAggregation(searchFilters),
-    }
+    };
+    return items.search(searchOption);
+  }, [items, searchFilters, searchOrder, aggregationConfig]);
 
-    if (searchFilters) {
-      setResetFilterEnabled(true)
-    }
-    setResults(items.search(searchOption))
-    setShowSpinner(false)
-  }, [items, searchFilters])
+  useLayoutEffect(() => {
+    if (results) setShowSpinner(false);
+  }, [results, setShowSpinner]);
 
-  const { presets, currentPresetKey } = useSetPresetKey(searchFilters)
+  const { presets, currentPresetKey } = useSetPresetKey(searchFilters);
 
-  /*
-    === DATA: Click handler ===
-  */
+  const { setBookmarks } = useStore(useStoreBookmarks);
+  useLayoutEffect(() => {
+    const handoff = consumeBookmarksHandoff();
+    if (handoff?.length) setBookmarks(handoff);
+  }, [setBookmarks]);
 
-  // When selecting a preset, we update the search.
-  // The currentPresetKey is updated in an useEffect.
-  // This way, we also handle the case when the page is loaded with searchFilters that match a preset.searchFilterString.
   const handlePresetClick = (presetKey: string) => {
-    setShowSpinner(true)
-    setSearchFilters(presets[presetKey].searchFilterString)
-  }
+    setShowSpinner(true);
+    void setSearchFilters(presets[presetKey].searchFilterString);
+  };
 
   const handleResetFilter = () => {
-    setShowSpinner(true)
-    setResetFilterEnabled(false)
-    setSearchFilters(undefined)
-    setSearchOrder(undefined)
+    setShowSpinner(true);
+    void setSearchFilters(null);
+    void setSearchOrder(null);
     trackEvent({
       category: `[${experimentTextKey}] Facets`,
-      action: 'Reset filter',
-    })
-  }
+      action: "Reset filter",
+    });
+  };
 
-  // SingleChoice: Replace the key
-  // This will trigger a useEffect to re-search.
-  const handleSingleChoice = ({
-    aggregationKey,
-    selectedBucketKey,
-  }: HandleSingleChoiceProps) => {
-    setShowSpinner(true)
+  const handleSingleChoice = ({ aggregationKey, selectedBucketKey }: HandleSingleChoiceProps) => {
+    setShowSpinner(true);
     trackEvent({
       category: `[${experimentTextKey}] Facets`,
       action: `${aggregationKey}: ${selectedBucketKey}`,
-    })
-    setSearchFilters((prevStateString) => {
-      const prevState = decodeFilterWithAggregation(prevStateString)
-      const filter = selectedBucketKey ? [selectedBucketKey] : []
+    });
+    void setSearchFilters((prevStateString) => {
+      const prevState = decodeFilterWithAggregation(prevStateString);
+      const filter = selectedBucketKey ? [selectedBucketKey] : [];
+      return encodeFilter({ ...prevState, [aggregationKey]: filter });
+    });
+  };
 
-      return encodeFilter({ ...prevState, [aggregationKey]: filter })
-    })
-  }
-
-  // Add remove filter to the searchFilters state.
-  // This will trigger a useEffect to re-search.
   const handleMultiChoice = ({
     aggregationKey,
     buckets,
     selectedBucket,
   }: HandleMultiChoiceProps) => {
-    setShowSpinner(true)
+    setShowSpinner(true);
     trackEvent({
       category: `[${experimentTextKey}] Facets`,
       action: `${aggregationKey}: ${selectedBucket.key}`,
-    })
-    const bucketHasNothingSelected = !buckets.some((b) => b.selected)
+    });
+    const bucketHasNothingSelected = !buckets.some((b) => b.selected);
     if (bucketHasNothingSelected) {
-      // Activate uiFilter (remove Filter)
-      // Selecting the first bucket in an aggregation will not return bucket.selected for some reason.
-      // To work around this, we handle the first  manually.
-      setSearchFilters((prevStateString) => {
-        const prevState = decodeFilterWithAggregation(prevStateString)
-        const allBucketKeys = buckets.map((bucket) => bucket.key)
-        const allWithouted = allBucketKeys.filter(
-          (k) => k !== selectedBucket.key,
-        )
-        const filter = allWithouted
-
-        return encodeFilter({ ...prevState, [aggregationKey]: filter })
-      })
+      void setSearchFilters((prevStateString) => {
+        const prevState = decodeFilterWithAggregation(prevStateString);
+        const allBucketKeys = buckets.map((bucket) => bucket.key);
+        const allWithouted = allBucketKeys.filter((k) => k !== selectedBucket.key);
+        const filter = allWithouted;
+        return encodeFilter({ ...prevState, [aggregationKey]: filter });
+      });
     } else if (selectedBucket.selected) {
-      // Activate uiFilter (remove Filter)
-      setSearchFilters((prevStateString) => {
-        const prevState = decodeFilterWithAggregation(prevStateString)
+      void setSearchFilters((prevStateString) => {
+        const prevState = decodeFilterWithAggregation(prevStateString);
         const prevFilter =
           aggregationKey in prevState
             ? [...prevState[aggregationKey], selectedBucket.key]
-            : [selectedBucket.key]
-        const filter = prevFilter.filter((k) => k !== selectedBucket.key)
-
-        return encodeFilter({ ...prevState, [aggregationKey]: filter })
-      })
+            : [selectedBucket.key];
+        const filter = prevFilter.filter((k) => k !== selectedBucket.key);
+        return encodeFilter({ ...prevState, [aggregationKey]: filter });
+      });
     } else {
-      // Deactivate uiFilter (add Filter)
-      setSearchFilters((prevStateString) => {
-        const prevState = decodeFilterWithAggregation(prevStateString)
+      void setSearchFilters((prevStateString) => {
+        const prevState = decodeFilterWithAggregation(prevStateString);
         const prevFilter =
           aggregationKey in prevState
             ? [...prevState[aggregationKey], selectedBucket.key]
-            : [selectedBucket.key]
-        const filter = prevFilter
-
-        return encodeFilter({ ...prevState, [aggregationKey]: filter })
-      })
+            : [selectedBucket.key];
+        const filter = prevFilter;
+        return encodeFilter({ ...prevState, [aggregationKey]: filter });
+      });
     }
-  }
+  };
 
-  // Bookmarks: The group-headline link in /vergleichen/index set a reach router state.
-  // We use this state to re-create the 'zustand' state in case no state exists, yet.
-  // UseCase: User opened the vergleichen-Page from an external URL.
-  const { bookmarks, setBookmarks } = useStore(useStoreBookmarks)
-  useEffect(() => {
-    const bookmarksFromLocationStore = location?.state?.bookmarksArray
-    if (bookmarks && bookmarksFromLocationStore) {
-      setBookmarks(bookmarksFromLocationStore)
-    }
-  }, [location])
-
-  /*
-    === RENDERING ===
-  */
-
-  const seoPresetIsActive = Object.keys(presets).includes(currentPresetKey)
-  const seoCategoryTranslation =
-    experimentTextKey === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
+  const resetFilterEnabled = Boolean(searchFilters);
+  const seoPresetIsActive = Object.keys(presets).includes(currentPresetKey);
+  const seoCategoryTranslation = experimentTextKey === "primary" ? "Hauptstrasse" : "Nebenstrasse";
 
   return (
     <>
-      {/* This is needed for iOS */}
       <Helmet
         bodyAttributes={{
-          class: 'fixed overflow-hidden w-full min-h-full flex',
+          class: "fixed overflow-hidden w-full min-h-full flex",
         }}
       />
       <MetaTags
@@ -223,7 +155,7 @@ export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
             ? `Radwege-Check: ${presets[currentPresetKey].title} (${seoCategoryTranslation})`
             : `Radwege-Check ${seoCategoryTranslation} – Alle Varianten filtern`
         }
-        imagePath={!seoPresetIsActive && '/social-sharing/results.jpg'}
+        imagePath={!seoPresetIsActive && "/social-sharing/results.jpg"}
       />
 
       <div className="flex h-screen min-h-full w-full flex-row overflow-hidden">
@@ -235,9 +167,9 @@ export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
           handleMultiChoice={handleMultiChoice}
           handlePresetClick={handlePresetClick}
           showLogo
+          resetFilterEnabled={resetFilterEnabled}
         />
 
-        {/* The `w-1 + grow` combo is required to get the with + overflow scroll right. */}
         <div className="flex w-1 grow flex-col">
           <TitleBar
             results={results}
@@ -250,17 +182,15 @@ export const ScenesPage: React.FC<Props> = ({ rawScenes, location }) => {
                 handleSingleChoice={handleSingleChoice}
                 handleMultiChoice={handleMultiChoice}
                 handlePresetClick={handlePresetClick}
+                resetFilterEnabled={resetFilterEnabled}
               />
             }
           />
 
-          <Results
-            results={results}
-            searchFilters={decodeFilterWithAggregation(searchFilters)}
-          />
+          <Results results={results} searchFilters={decodeFilterWithAggregation(searchFilters)} />
         </div>
       </div>
       <BookmarkCollector />
     </>
-  )
-}
+  );
+};

@@ -1,31 +1,33 @@
-import React from 'react'
-import { renderToString } from 'react-dom/server'
-import { useStore } from 'zustand'
-import { useStoreExperimentData } from '~/components/ScenesPage/store'
-import { isDev } from '~/components/utils'
-import BikeIcon from '../../../Results/ResultNumbers/assets/bike-icon.svg'
-import { ResultBucketProps } from '../../../types'
-import { useResults } from './useResults'
-import { buttonClassNames } from './utils'
+import React from "react";
+import { renderToString } from "react-dom/server";
+import { useStore } from "zustand";
+import { useStoreExperimentData } from "~/components/ScenesPage/store";
+import { isDev } from "~/components/utils";
+import BikeIcon from "../../../Results/ResultNumbers/assets/bike-icon.svg";
+import type { ResultBucketProps } from "../../../types";
+import { useResults } from "./useResults";
+import { buttonClassNames } from "./utils";
+
+const BikeSvg = BikeIcon as React.ComponentType<Record<string, unknown>>;
 
 export type HandleSingleChoiceProps = {
-  aggregationKey: string
-  selectedBucketKey: string | null
-}
+  aggregationKey: string;
+  selectedBucketKey: string | null;
+};
 
 export type HandleSingleChoice = ({
   aggregationKey,
   selectedBucketKey,
-}: HandleSingleChoiceProps) => void
+}: HandleSingleChoiceProps) => void;
 
 type Props = {
-  aggregationKey: string
-  bucket: ResultBucketProps
-  buckets: ResultBucketProps[]
-  handleClick: HandleSingleChoice
-  index: number
-  paginationTotal: number
-}
+  aggregationKey: string;
+  bucket: ResultBucketProps;
+  buckets: ResultBucketProps[];
+  handleClick: HandleSingleChoice;
+  index: number;
+  paginationTotal: number;
+};
 
 export const ButtonSingleChoice: React.FC<Props> = ({
   aggregationKey,
@@ -35,16 +37,16 @@ export const ButtonSingleChoice: React.FC<Props> = ({
   index,
   paginationTotal,
 }) => {
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+  const { aggregationConfig } = useStore(useStoreExperimentData);
 
   const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
     bucketCount: bucket.doc_count,
     bucketSelected: bucket.selected,
-  })
+  });
 
-  const firstElement = index === 0
-  const lastElement = index === buckets.length
+  const firstElement = index === 0;
+  const lastElement = index === buckets.length;
 
   const { labelClasses, inputClasses } = buttonClassNames({
     firstElement,
@@ -52,11 +54,10 @@ export const ButtonSingleChoice: React.FC<Props> = ({
     uiSelected,
     uiCanpress,
     showAsList: aggregationConfig[aggregationKey]?.showAsList,
-  })
+  });
 
-  const formKey = `${aggregationKey}-${bucket.key}`
-  const bucketLabel =
-    aggregationConfig[aggregationKey].buckets[bucket.key] || 'TODO'
+  const formKey = `${aggregationKey}-${bucket.key}`;
+  const bucketLabel = aggregationConfig[aggregationKey].buckets[bucket.key] || "TODO";
 
   return (
     <label
@@ -64,10 +65,10 @@ export const ButtonSingleChoice: React.FC<Props> = ({
       className={labelClasses}
       title={[
         resultFuture === 0
-          ? 'Auswahl würde 0 Ergebnisse zeigen.'
+          ? "Auswahl würde 0 Ergebnisse zeigen."
           : uiCanpress
-            ? `Ergebnisse ${resultFuture ?? '-'}`
-            : 'Auswahl würde die Ergebnisse nicht verändern.',
+            ? `Ergebnisse ${resultFuture ?? "-"}`
+            : "Auswahl würde die Ergebnisse nicht verändern.",
         aggregationConfig[aggregationKey]?.tooltipBuckets?.[bucket.key],
         isDev &&
           JSON.stringify({
@@ -80,7 +81,7 @@ export const ButtonSingleChoice: React.FC<Props> = ({
           }),
       ]
         .filter(Boolean)
-        .join('\n')}
+        .join("\n")}
     >
       <input
         id={formKey}
@@ -94,16 +95,16 @@ export const ButtonSingleChoice: React.FC<Props> = ({
             selectedBucketKey: bucket.key,
           })
         }
-        aria-label={bucketLabel.replace(/<[^>]*>/g, '').replace('Fahrrad ', '')}
+        aria-label={bucketLabel.replace(/<[^>]*>/g, "").replace("Fahrrad ", "")}
         className={inputClasses}
       />
       <span
         dangerouslySetInnerHTML={{
           __html: bucketLabel.replace(
-            'Fahrrad ',
+            "Fahrrad ",
             renderToString(
               <>
-                <BikeIcon className="inline h-3 w-auto align-baseline" />{' '}
+                <BikeSvg className="inline h-3 w-auto align-baseline" />{" "}
               </>,
             ),
           ),
@@ -111,5 +112,5 @@ export const ButtonSingleChoice: React.FC<Props> = ({
         aria-hidden="true"
       />
     </label>
-  )
-}
+  );
+};

@@ -1,11 +1,11 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { VideoCameraIcon } from '@heroicons/react/24/outline'
-import { StaticImage } from 'gatsby-plugin-image'
-import React, { Fragment, useState } from 'react'
-import { buttonStyles, Link } from '~/components/Link'
+import { Dialog, Transition } from "@headlessui/react";
+import { VideoCameraIcon } from "@heroicons/react/24/outline";
+import React, { Fragment, useState } from "react";
+import { buttonStyles, Link } from "~/components/Link";
+import videoPreviewUrl from "./assets/video-preview.png?url";
 
 export const HelpButton: React.FC = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -55,13 +55,9 @@ export const HelpButton: React.FC = () => {
                           external
                           blank
                           to="https://twitter.com/FixMyBerlin/status/1551478695231094784"
-                          className={open ? 'block' : 'hidden'}
+                          className={open ? "block" : "hidden"}
                         >
-                          <StaticImage
-                            src="./assets/video-preview.png"
-                            className="w-full"
-                            alt=""
-                          />
+                          <img src={videoPreviewUrl} className="w-full" alt="" />
                         </Link>
                       </div>
                     </div>
@@ -75,11 +71,7 @@ export const HelpButton: React.FC = () => {
                     >
                       Video anschauen …
                     </Link>
-                    <button
-                      type="button"
-                      className={buttonStyles}
-                      onClick={() => setOpen(false)}
-                    >
+                    <button type="button" className={buttonStyles} onClick={() => setOpen(false)}>
                       Schließen
                     </button>
                   </div>
@@ -90,5 +82,5 @@ export const HelpButton: React.FC = () => {
         </Dialog>
       </Transition.Root>
     </>
-  )
-}
+  );
+};

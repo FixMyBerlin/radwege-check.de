@@ -1,15 +1,16 @@
-import { StaticImage } from 'gatsby-plugin-image'
-import React from 'react'
-import { FormattedMessage, useIntl } from 'react-intl'
-import { Link } from '~/components/Link'
-import { Headline, LogoWrapper } from '../components'
+import React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
+import { Link } from "~/components/Link";
+import { Headline, LogoWrapper } from "../components";
+import bmdvLogo from "./images/logo/BMDV_Fz_2021_Office_Farbe_de.png?url";
+import senatLogo from "./images/logo/senatskanzlei-berlin.png?url";
 
 export const SectionTeam: React.FC = () => {
-  const intl = useIntl()
+  const intl = useIntl();
 
   return (
     <section>
-      <Headline id={intl.formatMessage({ id: 'toc.Team.hash' })} as="h2">
+      <Headline id={intl.formatMessage({ id: "toc.Team.hash" })} as="h2">
         <FormattedMessage id="07_team.p01.heading" />
       </Headline>
       <p>
@@ -46,10 +47,7 @@ export const SectionTeam: React.FC = () => {
       </p>
       <LogoWrapper>
         <Link external blank to="https://www.bmvi.de/" className="h-auto w-60">
-          <StaticImage
-            src="./images/logo/BMDV_Fz_2021_Office_Farbe_de.png"
-            alt="Förderlogo Bundesministerium für Digitales und Verkehr (BMDV)"
-          />
+          <img src={bmdvLogo} alt="Förderlogo Bundesministerium für Digitales und Verkehr (BMDV)" />
         </Link>
         <Link
           external
@@ -57,12 +55,9 @@ export const SectionTeam: React.FC = () => {
           to="https://www.berlin.de/rbmskzl/"
           className="h-auto w-60 [&_img]:object-contain!"
         >
-          <StaticImage
-            src="./images/logo/senatskanzlei-berlin.png"
-            alt="Logo der Senatskanzlei Berlin"
-          />
+          <img src={senatLogo} alt="Logo der Senatskanzlei Berlin" />
         </Link>
       </LogoWrapper>
     </section>
-  )
-}
+  );
+};

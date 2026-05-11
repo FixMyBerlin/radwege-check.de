@@ -1,1 +1,1 @@
-export * from './laneWidthCalculation'
+export * from "./laneWidthCalculation";

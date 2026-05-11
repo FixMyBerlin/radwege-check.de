@@ -1,6 +1,6 @@
-export type FilterUrlProp = `/${'hauptstrassen' | 'nebenstrassen'}/?filter=`
+export type FilterUrlProp = `/${"hauptstrassen" | "nebenstrassen"}/?filter=`;
 
 export type FilterUrlBySceneCategory = {
-  primary: FilterUrlProp
-  secondary: FilterUrlProp
-}
+  primary: FilterUrlProp;
+  secondary: FilterUrlProp;
+};

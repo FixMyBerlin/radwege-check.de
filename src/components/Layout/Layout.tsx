@@ -1,16 +1,16 @@
-import clsx from 'clsx'
-import { PageProps } from 'gatsby'
-import React from 'react'
-import { Footer } from '.'
-import { EnglishLanguageModal, EnglishLanguageButton } from './EnglishLanguage'
-import { TailwindResponsiveHelper } from './TailwindResponsiveHelper'
+import clsx from "clsx";
+import type { SiteLocation } from "~/lib/site-location";
+import React from "react";
+import { Footer } from ".";
+import { EnglishLanguageModal, EnglishLanguageButton } from "./EnglishLanguage";
+import { TailwindResponsiveHelper } from "./TailwindResponsiveHelper";
 
 type Props = {
-  className?: string
-  location: PageProps['location']
-  showEnglishLanguageTeaser?: boolean
-  children: React.ReactNode
-}
+  className?: string;
+  location: SiteLocation;
+  showEnglishLanguageTeaser?: boolean;
+  children: React.ReactNode;
+};
 
 // TODO: Maybe we need to prevent the layout from unmounting, see https://www.gatsbyjs.com/docs/how-to/routing/layout-components/#how-to-prevent-layout-components-from-unmounting
 export const Layout: React.FC<Props> = ({
@@ -21,14 +21,11 @@ export const Layout: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <main className={clsx(className, 'z-0 flex-grow')}>{children}</main>
+      <main className={clsx(className, "z-0 flex-grow")}>{children}</main>
       <Footer />
       <EnglishLanguageButton visible={showEnglishLanguageTeaser} />
-      <EnglishLanguageModal
-        visible={showEnglishLanguageTeaser}
-        domain={location?.host}
-      />
+      <EnglishLanguageModal visible={showEnglishLanguageTeaser} domain={location?.host} />
       <TailwindResponsiveHelper />
     </>
-  )
-}
+  );
+};

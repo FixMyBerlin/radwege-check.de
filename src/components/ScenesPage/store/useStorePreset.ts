@@ -1,15 +1,15 @@
-import { create } from 'zustand'
-import { PresetsScenes } from '../constants'
+import { create } from "zustand";
+import type { PresetsScenes } from "../constants";
 
-type StorePresetKey = null | string | 'custom'
+type StorePresetKey = null | string | "custom";
 
 export type StorePreset = {
-  presets: PresetsScenes
-  setPresets: (presets: PresetsScenes) => void
+  presets: PresetsScenes;
+  setPresets: (presets: PresetsScenes) => void;
 
-  currentPresetKey: StorePresetKey
-  setCurrentPresetKey: (newKey: StorePresetKey) => void
-}
+  currentPresetKey: StorePresetKey;
+  setCurrentPresetKey: (newKey: StorePresetKey) => void;
+};
 
 export const useStorePreset = create<StorePreset>((set) => ({
   presets: {},
@@ -17,4 +17,4 @@ export const useStorePreset = create<StorePreset>((set) => ({
 
   currentPresetKey: null,
   setCurrentPresetKey: (currentPresetKey) => set({ currentPresetKey }),
-}))
+}));

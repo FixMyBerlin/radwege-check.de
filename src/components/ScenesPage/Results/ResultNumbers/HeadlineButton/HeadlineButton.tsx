@@ -1,34 +1,26 @@
-import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/24/outline'
-import React from 'react'
-import {
-  ScenePrimaryProps,
-  SceneSecondaryProps,
-} from '~/components/ScenesPage/types'
-import { fullUrl, trackContentInteraction } from '~/components/utils'
-import { ShowTableProps } from '../../Results'
+import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
+import React from "react";
+import { ScenePrimaryProps, SceneSecondaryProps } from "~/components/ScenesPage/types";
+import { fullUrl, trackContentInteraction } from "~/components/utils";
+import { ShowTableProps } from "../../Results";
 
 type Props = {
-  visible: boolean
-  scene: ScenePrimaryProps | SceneSecondaryProps
-} & ShowTableProps
+  visible: boolean;
+  scene: ScenePrimaryProps | SceneSecondaryProps;
+} & ShowTableProps;
 
-export const HeadlineButton: React.FC<Props> = ({
-  visible,
-  showTable,
-  setShowTable,
-  scene,
-}) => {
+export const HeadlineButton: React.FC<Props> = ({ visible, showTable, setShowTable, scene }) => {
   const handleClick = () => {
     trackContentInteraction({
-      action: showTable ? 'close table' : 'open table',
+      action: showTable ? "close table" : "open table",
       id: scene.sceneId,
-      representation: 'result page',
+      representation: "result page",
       url: fullUrl(scene.path),
-    })
-    setShowTable(!showTable)
-  }
+    });
+    setShowTable(!showTable);
+  };
 
-  if (!visible) return null
+  if (!visible) return null;
 
   return (
     <button
@@ -36,9 +28,7 @@ export const HeadlineButton: React.FC<Props> = ({
       onClick={handleClick}
       className="group mb-0.5 flex w-full cursor-pointer items-center justify-between"
     >
-      <h3 className="text-xxs font-semibold">
-        Bewertung Subjektive Sicherheit
-      </h3>
+      <h3 className="text-xxs font-semibold">Bewertung Subjektive Sicherheit</h3>
       {showTable ? (
         <span>
           <span className="sr-only">weniger Details</span>
@@ -51,5 +41,5 @@ export const HeadlineButton: React.FC<Props> = ({
         </span>
       )}
     </button>
-  )
-}
+  );
+};

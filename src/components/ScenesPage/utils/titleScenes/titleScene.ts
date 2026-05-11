@@ -1,8 +1,8 @@
-import { useStore } from 'zustand'
-import { titlePrimaryScene, titleSecondaryScene } from '.'
-import { ExperimentTextKey, useStoreExperimentData } from '../../store'
-import { ScenePrimaryProps, SceneSecondaryProps } from '../../types'
-import { OptionalOptionProps } from './types'
+import { useStore } from "zustand";
+import { titlePrimaryScene, titleSecondaryScene } from ".";
+import { ExperimentTextKey, useStoreExperimentData } from "../../store";
+import { ScenePrimaryProps, SceneSecondaryProps } from "../../types";
+import { OptionalOptionProps } from "./types";
 
 export const titleScene = (
   scene: ScenePrimaryProps | SceneSecondaryProps,
@@ -10,18 +10,18 @@ export const titleScene = (
     includeId,
     experimentTextKey: _experimentTextKey,
   }: OptionalOptionProps & {
-    experimentTextKey?: NonNullable<ExperimentTextKey>
+    experimentTextKey?: NonNullable<ExperimentTextKey>;
   } = {
     includeId: false,
   },
 ) => {
-  const { experimentTextKey } = useStore(useStoreExperimentData)
-  const key = _experimentTextKey || experimentTextKey
+  const { experimentTextKey } = useStore(useStoreExperimentData);
+  const key = _experimentTextKey || experimentTextKey;
 
   // Guard against the initial load
-  if (key === null) return undefined
+  if (key === null) return undefined;
 
-  return 'bicycleLaneSurface' in scene
+  return "bicycleLaneSurface" in scene
     ? titlePrimaryScene(scene, { includeId })
-    : titleSecondaryScene(scene, { includeId })
-}
+    : titleSecondaryScene(scene, { includeId });
+};

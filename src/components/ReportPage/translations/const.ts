@@ -1,1 +1,1 @@
-export const translations = ['de', 'en', 'es']
+export const translations = ["de", "en", "es"];

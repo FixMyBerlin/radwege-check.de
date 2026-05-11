@@ -1,30 +1,27 @@
-import clsx from 'clsx'
-import React, { useMemo } from 'react'
-import { useStore } from 'zustand'
+import clsx from "clsx";
+import React, { useMemo } from "react";
+import { useStore } from "zustand";
 
-import { useStoreExperimentData } from '../store'
-import { ResultProps } from '../types'
-import { ExperimentSwitcher } from './ExperimentSwitcher'
-import {
-  FacetsButtons,
-  HandleMultiChoice,
-  HandleSingleChoice,
-} from './FacetsButtons'
-import { FacetsHeadline } from './FacetsHeadline'
-import { FooterLinks } from './FooterLinks'
-import { HelpButton } from './HelpButton'
-import { Logo } from './Logo'
-import { PresetDropdown, PresetDropdownProps } from './PresetDropdown'
-import { ResetFilterButton } from './ResetFilterButton'
+import { useStoreExperimentData } from "../store";
+import { ResultProps } from "../types";
+import { ExperimentSwitcher } from "./ExperimentSwitcher";
+import { FacetsButtons, HandleMultiChoice, HandleSingleChoice } from "./FacetsButtons";
+import { FacetsHeadline } from "./FacetsHeadline";
+import { FooterLinks } from "./FooterLinks";
+import { HelpButton } from "./HelpButton";
+import { Logo } from "./Logo";
+import { PresetDropdown, PresetDropdownProps } from "./PresetDropdown";
+import { ResetFilterButton } from "./ResetFilterButton";
 
 export type FacetsProps = {
-  results: ResultProps
-  handleResetFilter: () => void
-  handleSingleChoice: HandleSingleChoice
-  handleMultiChoice: HandleMultiChoice
-  className?: string
-  showLogo: boolean
-} & PresetDropdownProps
+  results: ResultProps;
+  handleResetFilter: () => void;
+  handleSingleChoice: HandleSingleChoice;
+  handleMultiChoice: HandleMultiChoice;
+  className?: string;
+  showLogo: boolean;
+  resetFilterEnabled: boolean;
+} & PresetDropdownProps;
 
 export const Facets: React.FC<FacetsProps> = ({
   results,
@@ -34,9 +31,10 @@ export const Facets: React.FC<FacetsProps> = ({
   handlePresetClick,
   className,
   showLogo,
+  resetFilterEnabled,
 }) => {
-  const aggregations = results?.data?.aggregations || {}
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+  const aggregations = results?.data?.aggregations || {};
+  const { aggregationConfig } = useStore(useStoreExperimentData);
 
   const mainAggregations = useMemo(
     () =>
@@ -44,23 +42,15 @@ export const Facets: React.FC<FacetsProps> = ({
         ([key, _v]) => aggregationConfig[key]?.primaryGroup === true,
       ),
     [aggregations, aggregationConfig],
-  )
+  );
 
   const furtherAggregations = useMemo(
-    () =>
-      Object.entries(aggregations).filter(
-        ([key, _v]) => !aggregationConfig[key]?.primaryGroup,
-      ),
+    () => Object.entries(aggregations).filter(([key, _v]) => !aggregationConfig[key]?.primaryGroup),
     [aggregations, aggregationConfig],
-  )
+  );
 
   return (
-    <nav
-      className={clsx(
-        className,
-        'relative overflow-y-scroll overscroll-contain',
-      )}
-    >
+    <nav className={clsx(className, "relative overflow-y-scroll overscroll-contain")}>
       <div className="relative flex h-14 items-center justify-between bg-brand-light-yellow px-3 py-1 shadow-md">
         <Logo visible={showLogo} />
         <ExperimentSwitcher />
@@ -76,21 +66,21 @@ export const Facets: React.FC<FacetsProps> = ({
         /> */}
       </div>
 
-      <div className={clsx('z-0 mb-4 bg-gray-200 px-3 pb-1 pt-5 shadow-md')}>
+      <div className={clsx("z-0 mb-4 bg-gray-200 px-3 pb-1 pt-5 shadow-md")}>
         <h1 className="sr-only">Ergebnisse filtern</h1>
 
         <PresetDropdown handlePresetClick={handlePresetClick} />
 
         <div className="mb-6 flex justify-between">
-          <ResetFilterButton onClick={handleResetFilter} />
+          <ResetFilterButton enabled={resetFilterEnabled} onClick={handleResetFilter} />
           <HelpButton />
         </div>
 
         {mainAggregations.map(([aggregationKey, aggregation]) => {
-          const { buckets } = aggregation
+          const { buckets } = aggregation;
 
           return (
-            <section key={aggregationKey} className={clsx('mb-5')}>
+            <section key={aggregationKey} className={clsx("mb-5")}>
               <FacetsHeadline aggregationKey={aggregationKey} />
 
               <FacetsButtons
@@ -101,33 +91,28 @@ export const Facets: React.FC<FacetsProps> = ({
                 handleMultiChoice={handleMultiChoice}
               />
             </section>
-          )
+          );
         })}
       </div>
       <div className="px-3">
         {furtherAggregations.map(([aggregationKey, aggregation]) => {
-          if (!aggregationConfig[aggregationKey]) return null
+          if (!aggregationConfig[aggregationKey]) return null;
 
-          const { buckets } = aggregation
-          const { showAsIcons, groupEndIndicator } =
-            aggregationConfig[aggregationKey]
+          const { buckets } = aggregation;
+          const { showAsIcons, groupEndIndicator } = aggregationConfig[aggregationKey];
 
           return (
             <section
               key={aggregationKey}
               className={clsx(
-                { 'mb-5': !groupEndIndicator },
-                { '-mt-3': showAsIcons },
+                { "mb-5": !groupEndIndicator },
+                { "-mt-3": showAsIcons },
                 {
-                  'mb-4 border-b border-dashed border-gray-300 pb-5':
-                    groupEndIndicator,
+                  "mb-4 border-b border-dashed border-gray-300 pb-5": groupEndIndicator,
                 },
               )}
             >
-              <FacetsHeadline
-                aggregationKey={aggregationKey}
-                forIcons={showAsIcons}
-              />
+              <FacetsHeadline aggregationKey={aggregationKey} forIcons={showAsIcons} />
 
               <FacetsButtons
                 aggregationKey={aggregationKey}
@@ -137,10 +122,10 @@ export const Facets: React.FC<FacetsProps> = ({
                 handleMultiChoice={handleMultiChoice}
               />
             </section>
-          )
+          );
         })}
       </div>
       <FooterLinks />
     </nav>
-  )
-}
+  );
+};

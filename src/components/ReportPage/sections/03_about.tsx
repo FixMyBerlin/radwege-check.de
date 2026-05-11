@@ -1,15 +1,17 @@
-import { StaticImage } from 'gatsby-plugin-image'
-import React from 'react'
-import { FormattedMessage, useIntl } from 'react-intl'
-import { Link } from '~/components/Link'
-import { Headline, Quote } from '../components'
+import React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
+import { Link } from "~/components/Link";
+import { Headline, Quote } from "../components";
+import diagramDe from "./images/diagram_labelled_de.jpg?url";
+import diagramEn from "./images/diagram_labelled_en.jpg?url";
+import diagramEs from "./images/diagram_labelled_es.jpg?url";
 
 export const SectionAbout: React.FC = () => {
-  const intl = useIntl()
+  const intl = useIntl();
 
   return (
     <section>
-      <Headline id={intl.formatMessage({ id: 'toc.About.hash' })} as="h2">
+      <Headline id={intl.formatMessage({ id: "toc.About.hash" })} as="h2">
         <FormattedMessage id="03_concept.heading" />
       </Headline>
       <p>
@@ -123,27 +125,27 @@ export const SectionAbout: React.FC = () => {
       <p>
         <FormattedMessage id="03_concept.p15" />
       </p>
-      {intl.locale === 'de' && (
-        <StaticImage
-          src="./images/diagram_labelled_de.jpg"
+      {intl.locale === "de" && (
+        <img
+          src={diagramDe}
           alt={intl.formatMessage({
-            id: '03_concept.p15.imageLabel',
+            id: "03_concept.p15.imageLabel",
           })}
         />
       )}
-      {intl.locale === 'en' && (
-        <StaticImage
-          src="./images/diagram_labelled_en.jpg"
+      {intl.locale === "en" && (
+        <img
+          src={diagramEn}
           alt={intl.formatMessage({
-            id: '03_concept.p15.imageLabel',
+            id: "03_concept.p15.imageLabel",
           })}
         />
       )}
-      {intl.locale === 'es' && (
-        <StaticImage
-          src="./images/diagram_labelled_es.jpg"
+      {intl.locale === "es" && (
+        <img
+          src={diagramEs}
           alt={intl.formatMessage({
-            id: '03_concept.p15.imageLabel',
+            id: "03_concept.p15.imageLabel",
           })}
         />
       )}
@@ -210,5 +212,5 @@ export const SectionAbout: React.FC = () => {
         />
       </p>
     </section>
-  )
-}
+  );
+};

@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { getCollection } from 'astro:content'
+import { HauptstrassenAlleRoute } from '../../components/routes/HauptstrassenAlleRoute'
+import { siteLocationFromUrl } from '../../lib/site-location'
+
+const primary = await getCollection('scenesPrimary')
+const rawScenes = primary.map((e) => ({
+  node: e.data as Record<string, unknown>,
+}))
+const location = siteLocationFromUrl(Astro.url)
+---
+
+<BaseLayout>
+  <HauptstrassenAlleRoute client:only="react" location={location} rawScenes={rawScenes} />
+</BaseLayout>

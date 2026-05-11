@@ -1,16 +1,16 @@
-import React from 'react'
-import { useStore } from 'zustand'
-import { useStoreExperimentData } from '~/components/ScenesPage/store'
-import { ResultBucketProps } from '../../../types'
-import { HandleSingleChoice } from './ButtonSingleChoice'
-import { buttonClassNames } from './utils'
+import React from "react";
+import { useStore } from "zustand";
+import { useStoreExperimentData } from "~/components/ScenesPage/store";
+import { ResultBucketProps } from "../../../types";
+import { HandleSingleChoice } from "./ButtonSingleChoice";
+import { buttonClassNames } from "./utils";
 
 type Props = {
-  aggregationKey: string
-  bucketKey: string
-  buckets: ResultBucketProps[]
-  handleClick: HandleSingleChoice
-}
+  aggregationKey: string;
+  bucketKey: string;
+  buckets: ResultBucketProps[];
+  handleClick: HandleSingleChoice;
+};
 
 export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
   aggregationKey,
@@ -18,14 +18,14 @@ export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
   buckets,
   handleClick,
 }) => {
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+  const { aggregationConfig } = useStore(useStoreExperimentData);
 
   // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
-  const anyOfGroupSelected = buckets.some((b) => b.selected)
-  const uiSelected = !anyOfGroupSelected
-  const uiCanpress = anyOfGroupSelected
-  const firstElement = true
-  const lastElement = false
+  const anyOfGroupSelected = buckets.some((b) => b.selected);
+  const uiSelected = !anyOfGroupSelected;
+  const uiCanpress = anyOfGroupSelected;
+  const firstElement = true;
+  const lastElement = false;
 
   const { labelClasses, inputClasses } = buttonClassNames({
     firstElement,
@@ -33,11 +33,10 @@ export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
     uiSelected,
     uiCanpress,
     showAsList: aggregationConfig[aggregationKey]?.showAsList,
-  })
+  });
 
-  const formKey = `${aggregationKey}-${bucketKey}`
-  const bucketLabel =
-    aggregationConfig[aggregationKey].buckets[bucketKey] || 'TODO'
+  const formKey = `${aggregationKey}-${bucketKey}`;
+  const bucketLabel = aggregationConfig[aggregationKey].buckets[bucketKey] || "TODO";
 
   return (
     <label htmlFor={formKey} className={labelClasses} title="">
@@ -53,7 +52,7 @@ export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
             selectedBucketKey: null,
           })
         }
-        aria-label={bucketLabel.replace(/<[^>]*>/g, '')}
+        aria-label={bucketLabel.replace(/<[^>]*>/g, "")}
         className={inputClasses}
       />
       <span
@@ -63,5 +62,5 @@ export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
         aria-hidden="true"
       />
     </label>
-  )
-}
+  );
+};

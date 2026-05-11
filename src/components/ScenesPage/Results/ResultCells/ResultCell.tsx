@@ -1,22 +1,22 @@
-import { InformationCircleIcon } from '@heroicons/react/24/solid'
-import clsx from 'clsx'
-import React from 'react'
-import { TranslationMissing } from '~/components/TextHelper'
-import { formatMeter, isDev } from '~/components/utils'
-import { AggregationConfig } from '../../constants'
-import { Icons } from '../../Facets/FacetsButtons'
-import { ScenePrimaryProps, SceneSecondaryProps } from '../../types'
-import { laneWidthCalculationText } from './utils'
+import { InformationCircleIcon } from "@heroicons/react/24/solid";
+import clsx from "clsx";
+import React from "react";
+import { TranslationMissing } from "~/components/TextHelper";
+import { formatMeter, isDev } from "~/components/utils";
+import { AggregationConfig } from "../../constants";
+import { Icons } from "../../Facets/FacetsButtons";
+import { ScenePrimaryProps, SceneSecondaryProps } from "../../types";
+import { laneWidthCalculationText } from "./utils";
 
 type Props = {
-  keyName: string
-  bucketActive: boolean
-  scene: ScenePrimaryProps | SceneSecondaryProps
-  groupEndIndicator: boolean
-  showIcon: boolean
-  showHover?: boolean
-  aggregationConfig: AggregationConfig
-}
+  keyName: string;
+  bucketActive: boolean;
+  scene: ScenePrimaryProps | SceneSecondaryProps;
+  groupEndIndicator: boolean;
+  showIcon: boolean;
+  showHover?: boolean;
+  aggregationConfig: AggregationConfig;
+};
 
 export const ResultCell: React.FC<Props> = ({
   keyName,
@@ -28,38 +28,38 @@ export const ResultCell: React.FC<Props> = ({
   aggregationConfig,
 }) => {
   const titleTranslation = aggregationConfig[keyName]?.resultTitle ||
-    aggregationConfig[keyName]?.title || <TranslationMissing value={keyName} />
+    aggregationConfig[keyName]?.title || <TranslationMissing value={keyName} />;
 
   const bucketTranslation =
     aggregationConfig[keyName]?.resultBuckets?.[scene[keyName]] ||
     aggregationConfig[keyName]?.buckets[scene[keyName]] ||
-    '-'
+    "-";
 
   // If cell is a number cell (and > 0), show the number next to the text
   const showAdditionalNumber =
     scene[`${keyName}Number`] !== undefined &&
     scene[`${keyName}Number`] !== 0 &&
-    !Number.isNaN(scene[`${keyName}Number`])
+    !Number.isNaN(scene[`${keyName}Number`]);
 
   return (
     <section
-      title={isDev ? `${keyName}: ${scene[keyName]}` : ''}
+      title={isDev ? `${keyName}: ${scene[keyName]}` : ""}
       className={clsx(
-        'break-before-avoid border-b py-2 print:py-1 lg:py-3.5',
-        { 'hover:bg-stone-50': showHover },
+        "break-before-avoid border-b py-2 print:py-1 lg:py-3.5",
+        { "hover:bg-stone-50": showHover },
         groupEndIndicator
-          ? 'border-dashed border-stone-300 print:border-dotted print:border-stone-200'
-          : 'border-dotted border-stone-200',
+          ? "border-dashed border-stone-300 print:border-dotted print:border-stone-200"
+          : "border-dotted border-stone-200",
       )}
     >
       <h3
-        title={bucketActive ? 'Filter-Gruppe aktiv' : ''}
+        title={bucketActive ? "Filter-Gruppe aktiv" : ""}
         className="mb-0.5 flex items-center justify-between text-xxs font-semibold"
       >
         {titleTranslation}
         {bucketActive && (
           <>
-            {' '}
+            {" "}
             <span
               className="font-xl mr-1 inline-flex h-2 w-2 cursor-help content-center items-center rounded-full bg-yellow-200 text-yellow-200 print:hidden"
               title="Für diese Gruppe ist ein Filter aktiv."
@@ -75,26 +75,23 @@ export const ResultCell: React.FC<Props> = ({
 
         {showAdditionalNumber && (
           <span className="ml-0.5 font-light text-neutral-500">
-            {' '}
+            {" "}
             {formatMeter(scene[`${keyName}Number`], {})}
           </span>
         )}
 
         {/* If cell is 'bicycleLaneWidth', then show the usable with as well */}
-        {keyName === 'bicycleLaneWidth' &&
-          'bicycleLaneWidthWithoutBufferAndDooringZoneNumber' in scene &&
+        {keyName === "bicycleLaneWidth" &&
+          "bicycleLaneWidthWithoutBufferAndDooringZoneNumber" in scene &&
           (scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber > 0 ? (
             <span
               title={laneWidthCalculationText(scene)}
               className="group flex cursor-help justify-between"
             >
               <span>
-                Nutzbare Breite:{' '}
+                Nutzbare Breite:{" "}
                 <span className="ml-0.5 font-light text-neutral-500">
-                  {formatMeter(
-                    scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber,
-                    {},
-                  )}
+                  {formatMeter(scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber, {})}
                 </span>
               </span>
               <InformationCircleIcon className="h-5 w-5 text-gray-200 group-hover:text-gray-600 print:hidden" />
@@ -103,12 +100,12 @@ export const ResultCell: React.FC<Props> = ({
             <span className="block">&nbsp;</span>
           ))}
 
-        {showIcon && scene[keyName] !== 'none' && (
+        {showIcon && scene[keyName] !== "none" && (
           <span className="absolute right-1 top-0 text-xxs">
             <Icons forValue={scene[keyName]} className="scale-75" />
           </span>
         )}
       </p>
     </section>
-  )
-}
+  );
+};

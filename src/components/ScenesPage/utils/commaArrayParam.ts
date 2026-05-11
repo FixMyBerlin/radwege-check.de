@@ -1,13 +1,14 @@
-import { decodeDelimitedArray, encodeDelimitedArray } from 'use-query-params'
-
-// Taken from https://github.com/pbeshai/use-query-params/tree/master/packages/serialize-query-params#api
-//  Subheadline "Example with Custom Param"
-// Uses a comma to delimit entries.e.g. ['a', 'b'] => qp ?=a,b * /
+// Comma-separated list in one query value (legacy `sceneIds=a,b,c` URLs).
 export const CommaArrayParam = {
   encode: (array: string[] | null | undefined): string | undefined =>
-    encodeDelimitedArray(array, ','),
+    array?.length ? array.join(",") : undefined,
 
-  decode: (
-    arrayStr: string | string[] | null | undefined,
-  ): string[] | undefined => decodeDelimitedArray(arrayStr, ','),
-}
+  decode: (arrayStr: string | string[] | null | undefined): string[] | undefined => {
+    if (arrayStr == null || arrayStr === "") return undefined;
+    if (Array.isArray(arrayStr)) return arrayStr;
+    return String(arrayStr)
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+  },
+};

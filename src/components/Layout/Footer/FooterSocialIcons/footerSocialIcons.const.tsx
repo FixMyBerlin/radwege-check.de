@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export const footerSocialIcons = [
   {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/fixmycity',
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/fixmycity",
     // https://fontawesome.com/v5/icons/linkedin-in?s=brands
     icon: (props) => (
       <svg fill="currentColor" viewBox="0 0 448 512" {...props}>
@@ -12,8 +12,8 @@ export const footerSocialIcons = [
     ),
   },
   {
-    name: 'GitHub',
-    href: 'https://github.com/FixMyBerlin/fixmy.safetycheck',
+    name: "GitHub",
+    href: "https://github.com/FixMyBerlin/fixmy.safetycheck",
     icon: (props) => (
       <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
         <path
@@ -24,4 +24,4 @@ export const footerSocialIcons = [
       </svg>
     ),
   },
-]
+];

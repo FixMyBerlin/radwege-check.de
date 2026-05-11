@@ -1,37 +1,37 @@
-import React from 'react'
-import { Helmet } from 'react-helmet'
-import { ReportTranslations } from '~/components/ReportPage/translations'
+import React from "react";
+import { Helmet } from "react-helmet";
+import type { ReportTranslations } from "~/components/ReportPage/translations";
 import {
   canonicalOrigin,
   domain,
   isDev,
   isNonPrimaryDomain,
   isProduction,
-} from '~/components/utils'
+} from "~/components/utils";
 
 // FYI, https://www.gatsbyjs.com/docs/add-seo-component/ suggest to use useStaticQuery but I don't see why, yet
 const seoDefaultValues = {
-  defaultTitle: 'Radwege-Check',
+  defaultTitle: "Radwege-Check",
   defaultDescription:
-    'In diesem Online-Tool kannst du 1.779 Varianten von Fahrrad-Führungsformen nach ihrer Bewertung zur subjektiven Sicherheit vergleichen. Basierend auf über 400.000 Bewertungen.',
-}
+    "In diesem Online-Tool kannst du 1.779 Varianten von Fahrrad-Führungsformen nach ihrer Bewertung zur subjektiven Sicherheit vergleichen. Basierend auf über 400.000 Bewertungen.",
+};
 
 type Props = {
-  lang?: ReportTranslations
-  noindex?: boolean
-  canonicalPath?: never // UNUSED ATM string
-  title?: string
-  sharingTitle?: string
-  description?: string
-  imagePath?: string
-  imageUrl?: string | `https://${string}`
-  imageSize?: { width: number; height: number }
-  article?: boolean
-  children?: React.ReactNode
-}
+  lang?: ReportTranslations;
+  noindex?: boolean;
+  canonicalPath?: never; // UNUSED ATM string
+  title?: string;
+  sharingTitle?: string;
+  description?: string;
+  imagePath?: string;
+  imageUrl?: string | `https://${string}`;
+  imageSize?: { width: number; height: number };
+  article?: boolean;
+  children?: React.ReactNode;
+};
 
 export const MetaTags: React.FC<Props> = ({
-  lang = 'de',
+  lang = "de",
   noindex = false,
   canonicalPath: _canonicalPath, // UNUSED ATM
   title,
@@ -43,34 +43,34 @@ export const MetaTags: React.FC<Props> = ({
   article,
   children,
 }) => {
-  const { defaultTitle, defaultDescription } = seoDefaultValues
+  const { defaultTitle, defaultDescription } = seoDefaultValues;
 
   const withDefaults = {
     title: title || defaultTitle,
     description: description || defaultDescription,
     image:
       imageUrl ||
-      (imagePath && `${domain() || ''}${imagePath}`) ||
-      `${domain() || ''}/social-sharing/default.jpg`,
-  }
+      (imagePath && `${domain() || ""}${imagePath}`) ||
+      `${domain() || ""}/social-sharing/default.jpg`,
+  };
 
   const canonicalForNonPrimaryDomain =
-    typeof window !== 'undefined' && isNonPrimaryDomain(window.location.host)
+    typeof window !== "undefined" && isNonPrimaryDomain(window.location.host);
 
-  const noindexOnAllButProduction = !isProduction
+  const noindexOnAllButProduction = !isProduction;
 
   // Give some debugging info
   const envInfo = isProduction
     ? {}
     : {
-        'data-netlify-context': process.env.CONTEXT,
-        'data-node-env': process.env.NODE_ENV,
-        'data-netlify-url': process.env.URL,
-        'data-netlify-prime-url': process.env.DEPLOY_PRIME_URL,
-        'data-isDev': isDev,
-        'data-isProduction': isProduction,
-        'data-window': typeof window !== 'undefined',
-      }
+        "data-netlify-context": process.env.CONTEXT,
+        "data-node-env": process.env.NODE_ENV,
+        "data-netlify-url": process.env.URL,
+        "data-netlify-prime-url": process.env.DEPLOY_PRIME_URL,
+        "data-isDev": isDev,
+        "data-isProduction": isProduction,
+        "data-window": typeof window !== "undefined",
+      };
 
   // FYI, we do not inlcude the url meta tags since there was an issue with specs and `useLocation`.
   //  Since we do not need this field, its OK to remove it.
@@ -96,15 +96,9 @@ export const MetaTags: React.FC<Props> = ({
         />
       ) : null}
 
-      {noindex === true ? (
-        <meta name="robots" content="noindex" data-info-trigger="props" />
-      ) : null}
+      {noindex === true ? <meta name="robots" content="noindex" data-info-trigger="props" /> : null}
       {noindexOnAllButProduction === true ? (
-        <meta
-          name="robots"
-          content="noindex, nofollow"
-          data-info-trigger="non production"
-        />
+        <meta name="robots" content="noindex, nofollow" data-info-trigger="non production" />
       ) : null}
 
       <meta name="description" content={withDefaults.description} />
@@ -125,5 +119,5 @@ export const MetaTags: React.FC<Props> = ({
 
       {children}
     </Helmet>
-  )
-}
+  );
+};

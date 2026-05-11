@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { IndexRoute } from '../components/routes/IndexRoute'
+import { siteLocationFromUrl } from '../lib/site-location'
+
+const location = siteLocationFromUrl(Astro.url)
+---
+
+<BaseLayout>
+  <IndexRoute client:only="react" location={location} />
+</BaseLayout>

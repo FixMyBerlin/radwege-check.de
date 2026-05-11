@@ -1,33 +1,28 @@
-import { Popover as HeadlessUiPopover, Transition } from '@headlessui/react'
-import React, { useCallback, useState } from 'react'
-import { usePopper } from 'react-popper'
+import { Popover as HeadlessUiPopover, Transition } from "@headlessui/react";
+import React, { useCallback, useState } from "react";
+import { usePopper } from "react-popper";
 
 type Props = {
-  buttonText: React.ReactNode | string
-  children: React.ReactNode
-}
+  buttonText: React.ReactNode | string;
+  children: React.ReactNode;
+};
 
 export const Popover: React.FC<Props> = ({ buttonText, children }) => {
-  const [referenceElement, setReferenceElement] =
-    useState<HTMLButtonElement | null>(null)
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
-    null,
-  )
-  const { styles, attributes } = usePopper(referenceElement, popperElement)
+  const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null);
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
+  const { styles, attributes } = usePopper(referenceElement, popperElement);
 
   const setReferenceRef = useCallback((node: HTMLButtonElement | null) => {
-    setReferenceElement(node)
-  }, [])
+    setReferenceElement(node);
+  }, []);
 
   const setPopperRef = useCallback((node: HTMLDivElement | null) => {
-    setPopperElement(node)
-  }, [])
+    setPopperElement(node);
+  }, []);
 
   return (
     <HeadlessUiPopover className="z-10">
-      <HeadlessUiPopover.Button ref={setReferenceRef}>
-        {buttonText}
-      </HeadlessUiPopover.Button>
+      <HeadlessUiPopover.Button ref={setReferenceRef}>{buttonText}</HeadlessUiPopover.Button>
 
       <Transition
         enter="transition duration-100 ease-out"
@@ -47,5 +42,5 @@ export const Popover: React.FC<Props> = ({ buttonText, children }) => {
         </HeadlessUiPopover.Panel>
       </Transition>
     </HeadlessUiPopover>
-  )
-}
+  );
+};

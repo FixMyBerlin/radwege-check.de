@@ -1,48 +1,48 @@
-import React, { useMemo, useState } from 'react'
-import { MetaTags } from '../Layout'
-import { Link, linkStyles } from '../Link'
-import { SceneImage } from '../ScenesPage'
-import { useAggregationConfig } from '../ScenesPage/hooks'
-import { useStoreExperimentData } from '../ScenesPage/store'
-import { cleanupCsvData } from '../ScenesPage/utils'
-import { titleScene } from '../ScenesPage/utils/titleScenes'
+import React, { useLayoutEffect, useMemo, useState } from "react";
+import { MetaTags } from "../Layout";
+import { Link, linkStyles } from "../Link";
+import { SceneImage } from "../ScenesPage";
+import { useAggregationConfig } from "../ScenesPage/hooks";
+import { useStoreExperimentData } from "../ScenesPage/store";
+import { cleanupCsvData } from "../ScenesPage/utils";
+import { titleScene } from "../ScenesPage/utils/titleScenes";
 
 type Props = {
-  rawScenes: any
-  experimentTextKey: 'primary' | 'secondary'
-}
+  rawScenes: any;
+  experimentTextKey: "primary" | "secondary";
+};
 
-export const ScenesExportPage: React.FC<Props> = ({
-  rawScenes,
-  experimentTextKey,
-}) => {
-  const { experimentTextKey: storeExperimentTextKey, setExperimentTextKey } =
-    useStoreExperimentData()
-  if (!storeExperimentTextKey) setExperimentTextKey(experimentTextKey)
+export const ScenesExportPage: React.FC<Props> = ({ rawScenes, experimentTextKey }) => {
+  useLayoutEffect(() => {
+    useStoreExperimentData.getState().setExperimentTextKey(experimentTextKey);
+  }, [experimentTextKey]);
 
   const scenes = useMemo(() => {
-    // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
-    const flattened = rawScenes.map((list) => list.node)
-    // Clean the data
-    const clean = cleanupCsvData(flattened)
-    return clean.sort((a, b) => a.voteScore - b.voteScore)
-  }, [rawScenes])
+    const flattened = rawScenes.map((list: any) =>
+      list && typeof list === "object" && "node" in list ? list.node : list,
+    );
+    const clean = cleanupCsvData(flattened);
+    const base = experimentTextKey === "primary" ? "/hauptstrassen" : "/nebenstrassen";
+    return clean
+      .sort((a, b) => a.voteScore - b.voteScore)
+      .map((s) => ({
+        ...s,
+        path: `${base}/${s.sceneId}`,
+      }));
+  }, [rawScenes, experimentTextKey]);
 
-  const totalResults = Number(scenes.length).toLocaleString()
+  const totalResults = Number(scenes.length).toLocaleString();
 
-  const categoryTranslation =
-    experimentTextKey === 'primary' ? 'Hauptstrassen' : 'Nebenstrassen'
+  const categoryTranslation = experimentTextKey === "primary" ? "Hauptstrassen" : "Nebenstrassen";
   const otherCategoryTranslation =
-    experimentTextKey === 'primary' ? 'Nebenstrassen' : 'Hauptstrassen'
+    experimentTextKey === "primary" ? "Nebenstrassen" : "Hauptstrassen";
   const otherResultsPath =
-    experimentTextKey === 'primary'
-      ? '/nebenstrassen/export'
-      : '/hauptstrassen/export'
+    experimentTextKey === "primary" ? "/nebenstrassen/export" : "/hauptstrassen/export";
 
-  const fields = Object.keys(scenes[0]).sort((a, b) => a.localeCompare(b))
-  const aggregationConfig = useAggregationConfig(experimentTextKey)
+  const fields = Object.keys(scenes[0]).sort((a, b) => a.localeCompare(b));
+  const aggregationConfig = useAggregationConfig(experimentTextKey);
 
-  const [translateResults, setTranslateResults] = useState(false)
+  const [translateResults, setTranslateResults] = useState(false);
 
   return (
     <>
@@ -58,8 +58,8 @@ export const ScenesExportPage: React.FC<Props> = ({
         Alle {totalResults} Szenen für {categoryTranslation}
       </h1>
       <p className="mb-6 text-center text-gray-500">
-        Aus dem Blickwinkel einer Fahrradfahrer:in. Die Sortierung zeigt die am
-        schlechtesten bewerteten Szenen zuerst.
+        Aus dem Blickwinkel einer Fahrradfahrer:in. Die Sortierung zeigt die am schlechtesten
+        bewerteten Szenen zuerst.
       </p>
       <p className="space-x-3 text-center">
         <button
@@ -67,9 +67,7 @@ export const ScenesExportPage: React.FC<Props> = ({
           onClick={() => setTranslateResults((prev) => !prev)}
           className={linkStyles}
         >
-          {translateResults
-            ? 'Englishe Bezeichnungen anzeigen'
-            : 'Deutsche Bezeichnungen anzeigen'}
+          {translateResults ? "Englishe Bezeichnungen anzeigen" : "Deutsche Bezeichnungen anzeigen"}
         </button>
         <Link to={otherResultsPath}>Zu den {otherCategoryTranslation}</Link>
       </p>
@@ -95,12 +93,9 @@ export const ScenesExportPage: React.FC<Props> = ({
                     </th>
                     {fields.map((field) => {
                       const titleTranslation =
-                        aggregationConfig[field]?.resultTitle ||
-                        aggregationConfig[field]?.title
+                        aggregationConfig[field]?.resultTitle || aggregationConfig[field]?.title;
 
-                      const displayValue = translateResults
-                        ? titleTranslation
-                        : field
+                      const displayValue = translateResults ? titleTranslation : field;
 
                       return (
                         <th
@@ -110,7 +105,7 @@ export const ScenesExportPage: React.FC<Props> = ({
                         >
                           {displayValue}
                         </th>
-                      )
+                      );
                     })}
                   </tr>
                 </thead>
@@ -118,9 +113,7 @@ export const ScenesExportPage: React.FC<Props> = ({
                   {scenes.map((scene) => (
                     <tr key={scene.sceneId}>
                       <th className="min-w-[20rem] py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                        <Link to={scene.path}>
-                          {titleScene(scene, { experimentTextKey })}
-                        </Link>
+                        <Link to={scene.path}>{titleScene(scene, { experimentTextKey })}</Link>
                       </th>
 
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -131,26 +124,20 @@ export const ScenesExportPage: React.FC<Props> = ({
                       </td>
 
                       {fields.map((field) => {
-                        const value = scene[field]
-                        const isNumber = typeof value === 'number'
+                        const value = scene[field];
+                        const isNumber = typeof value === "number";
 
                         const bucketTranslation =
-                          aggregationConfig[field]?.resultBuckets?.[
-                            scene[field]
-                          ] || aggregationConfig[field]?.buckets[scene[field]]
+                          aggregationConfig[field]?.resultBuckets?.[scene[field]] ||
+                          aggregationConfig[field]?.buckets[scene[field]];
 
-                        const displayValue = translateResults
-                          ? bucketTranslation
-                          : value
+                        const displayValue = translateResults ? bucketTranslation : value;
 
                         return (
-                          <td
-                            key={field}
-                            className="px-3 py-4 text-sm text-gray-500"
-                          >
+                          <td key={field} className="px-3 py-4 text-sm text-gray-500">
                             {isNumber ? value.toLocaleString() : displayValue}
                           </td>
-                        )
+                        );
                       })}
                     </tr>
                   ))}
@@ -161,5 +148,5 @@ export const ScenesExportPage: React.FC<Props> = ({
         </div>
       </div>
     </>
-  )
-}
+  );
+};

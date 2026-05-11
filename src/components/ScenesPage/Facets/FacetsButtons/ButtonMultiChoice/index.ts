@@ -1,1 +1,1 @@
-export * from './ButtonMultiChoice'
+export * from "./ButtonMultiChoice";

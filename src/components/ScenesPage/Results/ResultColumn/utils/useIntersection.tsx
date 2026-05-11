@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 
 // Tracks if Content is in viewport.
 // Code thanks to https://www.webtips.dev/webtips/react-hooks/element-in-viewport
@@ -8,26 +8,26 @@ export const useIntersection = (
   element: React.MutableRefObject<undefined | HTMLElement>,
   rootMargin: `${number}px`,
 ) => {
-  const [isVisible, setState] = useState(false)
+  const [isVisible, setState] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setState(entry.isIntersecting)
+        setState(entry.isIntersecting);
       },
       { rootMargin },
-    )
+    );
 
     if (element.current) {
-      observer.observe(element.current)
+      observer.observe(element.current);
     }
 
     return () => {
       if (element.current) {
-        observer.unobserve(element.current)
+        observer.unobserve(element.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
-  return isVisible
-}
+  return isVisible;
+};

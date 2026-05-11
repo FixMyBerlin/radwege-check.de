@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { ReportEnRoute } from '../components/routes/ReportEnRoute'
+import { siteLocationFromUrl } from '../lib/site-location'
+
+const location = siteLocationFromUrl(Astro.url)
+---
+
+<BaseLayout>
+  <ReportEnRoute client:only="react" location={location} />
+</BaseLayout>

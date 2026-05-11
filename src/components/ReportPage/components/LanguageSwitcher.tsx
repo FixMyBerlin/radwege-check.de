@@ -1,26 +1,26 @@
-import React from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/24/solid'
-import { Link } from '~/components/Link'
-import clsx from 'clsx'
-import { useIntl } from 'react-intl'
-import { translations } from '../translations'
+import React from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { Link } from "~/components/Link";
+import clsx from "clsx";
+import { useIntl } from "react-intl";
+import { translations } from "../translations";
 
 export const LanguageSwitcher: React.FC = () => {
-  const intl = useIntl()
+  const intl = useIntl();
 
   const labelForLocale = (locale: string) =>
     intl.formatMessage({
       id: `localeSwitcher.label${locale.toUpperCase()}`,
-    })
+    });
 
   const pathForLocale = {
-    de: '/auswertung',
-    en: '/report',
-    es: '/evaluacion',
-  }
+    de: "/auswertung",
+    en: "/report",
+    es: "/evaluacion",
+  };
 
-  const currentHash = typeof window !== 'undefined' && window.location.hash
+  const currentHash = typeof window !== "undefined" && window.location.hash;
 
   return (
     <Menu
@@ -52,8 +52,8 @@ export const LanguageSwitcher: React.FC = () => {
                   <Link
                     to={`${pathForLocale[translation]}${currentHash}`}
                     classNameOverwrite={clsx(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block px-4 py-2 text-sm',
+                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      "block px-4 py-2 text-sm",
                     )}
                   >
                     {labelForLocale(translation)}
@@ -65,5 +65,5 @@ export const LanguageSwitcher: React.FC = () => {
         </Menu.Items>
       </Transition>
     </Menu>
-  )
-}
+  );
+};

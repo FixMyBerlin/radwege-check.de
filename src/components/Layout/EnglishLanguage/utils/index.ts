@@ -1,1 +1,1 @@
-export * from './google-translate-url'
+export * from "./google-translate-url";

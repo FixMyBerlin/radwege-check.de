@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { EvaluacionRoute } from '../components/routes/EvaluacionRoute'
+import { siteLocationFromUrl } from '../lib/site-location'
+
+const location = siteLocationFromUrl(Astro.url)
+---
+
+<BaseLayout>
+  <EvaluacionRoute client:only="react" location={location} />
+</BaseLayout>

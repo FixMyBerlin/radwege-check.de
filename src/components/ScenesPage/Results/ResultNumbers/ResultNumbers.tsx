@@ -1,22 +1,26 @@
-import clsx from 'clsx'
-import React from 'react'
-import { ScenePrimaryProps, SceneSecondaryProps } from '../../types'
-import { ShowTableProps } from '../Results'
-import BikeIcon from './assets/bike-icon.svg'
-import CarIcon from './assets/car-icon.svg'
-import PedestrianIcon from './assets/pedestrian-icon.svg'
-import { BarChartAndHeadline } from './BarChartAndHeadline'
-import { HeadlineButton } from './HeadlineButton'
-import { ScoreExplanation } from './ScoreExplanation'
-import { Table } from './Table'
+import clsx from "clsx";
+import React from "react";
+import { ScenePrimaryProps, SceneSecondaryProps } from "../../types";
+import { ShowTableProps } from "../Results";
+import BikeIcon from "./assets/bike-icon.svg";
+import CarIcon from "./assets/car-icon.svg";
+import PedestrianIcon from "./assets/pedestrian-icon.svg";
+import { BarChartAndHeadline } from "./BarChartAndHeadline";
+import { HeadlineButton } from "./HeadlineButton";
+import { ScoreExplanation } from "./ScoreExplanation";
+import { Table } from "./Table";
+
+const BikeSvg = BikeIcon as React.ComponentType<Record<string, unknown>>;
+const PedSvg = PedestrianIcon as React.ComponentType<Record<string, unknown>>;
+const CarSvg = CarIcon as React.ComponentType<Record<string, unknown>>;
 
 type Props = {
-  scene: ScenePrimaryProps | SceneSecondaryProps
+  scene: ScenePrimaryProps | SceneSecondaryProps;
   /** @desc `null` to disable */
-  handleHover: (sceneId: string) => void | null
-  wrapperClass?: string
-  chartClass?: string
-} & ShowTableProps
+  handleHover: (sceneId: string) => void | null;
+  wrapperClass?: string;
+  chartClass?: string;
+} & ShowTableProps;
 
 export const ResultNumbers: React.FC<Props> = ({
   scene,
@@ -30,7 +34,7 @@ export const ResultNumbers: React.FC<Props> = ({
     <section
       className={clsx(
         wrapperClass,
-        'flex flex-col print:flex-row print:justify-between print:gap-3',
+        "flex flex-col print:flex-row print:justify-between print:gap-3",
       )}
     >
       <div>
@@ -44,14 +48,9 @@ export const ResultNumbers: React.FC<Props> = ({
         <ScoreExplanation visible={showTable} scene={scene} />
       </div>
 
-      <div
-        className={clsx(
-          chartClass,
-          'relative flex h-full flex-row gap-1 text-xs print:h-auto',
-        )}
-      >
+      <div className={clsx(chartClass, "relative flex h-full flex-row gap-1 text-xs print:h-auto")}>
         <BarChartAndHeadline
-          icon={<BikeIcon className="mr-1.5 h-8 w-8" />}
+          icon={<BikeSvg className="mr-1.5 h-8 w-8" />}
           mainBarChart
           voteScore={scene.voteScore}
           vote0Unsafe={scene.vote0Unsafe}
@@ -60,19 +59,17 @@ export const ResultNumbers: React.FC<Props> = ({
           vote3VerySave={scene.vote3VerySave}
         />
         <BarChartAndHeadline
-          icon={<PedestrianIcon className="mr-1.5 h-4 w-auto" />}
+          icon={<PedSvg className="mr-1.5 h-4 w-auto" />}
           voteScore={scene.votePedestrianScore}
           vote0Unsafe={scene.votePedestrian0Unsafe}
           vote1RatherUnsafe={scene.votePedestrian1RatherUnsafe}
           vote2Save={scene.votePedestrian2Save}
           vote3VerySave={scene.votePedestrian3VerySave}
-          handleMouseOver={
-            handleHover && (() => handleHover(scene.sceneIdPedestrian))
-          }
+          handleMouseOver={handleHover && (() => handleHover(scene.sceneIdPedestrian))}
           handleMouseOut={handleHover && (() => handleHover(scene.sceneId))}
         />
         <BarChartAndHeadline
-          icon={<CarIcon className="mr-1.5 h-auto w-5" />}
+          icon={<CarSvg className="mr-1.5 h-auto w-5" />}
           voteScore={scene.voteCarScore}
           vote0Unsafe={scene.voteCar0Unsafe}
           vote1RatherUnsafe={scene.voteCar1RatherUnsafe}
@@ -83,5 +80,5 @@ export const ResultNumbers: React.FC<Props> = ({
         />
       </div>
     </section>
-  )
-}
+  );
+};

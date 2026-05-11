@@ -1,24 +1,22 @@
 {
+  "extends": "astro/tsconfigs/base",
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
     "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "baseUrl": ".",
+    "verbatimModuleSyntax": false,
     "paths": {
-      "~/*": ["./src/*"],
-      "~/static/*": ["./static/*"]
-    }
+      "~/*": ["./src/*"]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "types": ["jest", "@testing-library/jest-dom"]
   },
-  "exclude": ["node_modules"],
-  "include": ["./src/**/*", "./__helpers__/*"]
+  "include": [
+    ".astro/types.d.ts",
+    "src",
+    "__helpers__",
+    "__mocks__",
+    "astro.config.mjs",
+    "src/content.config.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
 }
