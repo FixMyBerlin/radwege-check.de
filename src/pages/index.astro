@@ -7,5 +7,5 @@ const location = siteLocationFromUrl(Astro.url)
 ---
 
 <BaseLayout>
-  <IndexRoute client:only="react" location={location} />
+  <IndexRoute client:load="react" location={location} />
 </BaseLayout>

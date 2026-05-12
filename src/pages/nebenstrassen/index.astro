@@ -13,7 +13,7 @@ const location = siteLocationFromUrl(Astro.url)
 
 <BaseLayout>
   <NebenstrassenIndexRoute
-    client:only="react"
+    client:load="react"
     location={location}
     rawScenes={rawScenes}
   />

@@ -12,7 +12,9 @@ const srcDir = path.join(__dirname, "src");
 // https://astro.build/config
 export default defineConfig({
   site: "https://radwege-check.de",
-  trailingSlash: "never",
+  // Default Astro behavior: match both `/path` and `/path/` (production bookmarks use trailing slash).
+  // `never` breaks legacy URLs like `/hauptstrassen/?filter=…` in dev/preview with a 404.
+  trailingSlash: "ignore",
   integrations: [
     react({
       babel: {
