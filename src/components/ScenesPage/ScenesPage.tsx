@@ -3,7 +3,8 @@ import React, { useLayoutEffect } from "react";
 import { parseAsString, useQueryState } from "nuqs";
 import type { SiteLocation } from "~/lib/site-location";
 import { consumeBookmarksHandoff } from "~/lib/navigation-handoff";
-import { MetaTags } from "../Layout";
+import { DocumentMetaSync } from "~/components/seo/DocumentMetaSync";
+import { canonicalOrigin } from "~/components/utils/domain/canonicalOrigin.const";
 import { trackEvent } from "../utils";
 import { BookmarkCollector } from "./BookmarkCollector";
 import { Facets, HandleMultiChoiceProps, HandleSingleChoiceProps } from "./Facets";
@@ -153,14 +154,18 @@ export const ScenesPage = ({ rawScenes, location: _location }: Props) => {
 
   return (
     <>
-      <MetaTags
-        noindex={!seoPresetIsActive}
+      <DocumentMetaSync
         title={
           seoPresetIsActive
             ? `Radwege-Check: ${presets[currentPresetKey].title} (${seoCategoryTranslation})`
             : `Radwege-Check ${seoCategoryTranslation} – Alle Varianten filtern`
         }
-        imagePath={!seoPresetIsActive && "/social-sharing/results.jpg"}
+        noindex={!seoPresetIsActive}
+        imageUrl={
+          seoPresetIsActive
+            ? `${canonicalOrigin}/social-sharing/default.jpg`
+            : `${canonicalOrigin}/social-sharing/results.jpg`
+        }
       />
 
       <div className="flex h-screen min-h-full w-full flex-row overflow-hidden">

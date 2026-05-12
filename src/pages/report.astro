@@ -1,11 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { ReportEnRoute } from '../components/routes/ReportEnRoute'
+import { canonicalOrigin } from '../components/utils/domain/canonicalOrigin.const'
 import { siteLocationFromUrl } from '../lib/site-location'
 
 const location = siteLocationFromUrl(Astro.url)
+const alternates = [
+  { hreflang: 'de', href: `${canonicalOrigin}/auswertung` },
+  { hreflang: 'en', href: `${canonicalOrigin}/report` },
+  { hreflang: 'es', href: `${canonicalOrigin}/evaluacion` },
+]
 ---
 
-<BaseLayout>
+<BaseLayout
+  seo={{
+    article: true,
+    title: 'Study on subjective safety when travelling by bicycle',
+    description: 'Results and data from a survey of 22,000 participants.',
+    alternates,
+  }}
+>
   <ReportEnRoute client:only="react" location={location} />
 </BaseLayout>

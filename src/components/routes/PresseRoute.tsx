@@ -1,16 +1,11 @@
 import React from "react";
-import { LayoutArticle, MetaTags } from "~/components/Layout";
+import { LayoutArticle } from "~/components/Layout";
 import { Link } from "~/components/Link";
 import type { SiteLocation } from "~/lib/site-location";
 
 export const PresseRoute = ({ location }: { location: SiteLocation }) => {
   return (
     <LayoutArticle location={location}>
-      <MetaTags
-        noindex
-        title="Radwege-Check | Presseinformationen"
-        description="Der Radwege-Check erlaubt es die Umfragedaten von 1.779 Varianten an Radweg-Führungsformen zu vergleichen."
-      />
       <h1>Presseinformationen</h1>
       <p>
         Ansprechpartner für die Presse und weitere Pressinformationen zu FixMyCity finden Sie unter{" "}

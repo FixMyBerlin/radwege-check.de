@@ -2,8 +2,9 @@ import React, { useLayoutEffect, useState } from "react";
 import { parseAsArrayOf, parseAsString, useQueryState } from "nuqs";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
+import { DocumentMetaSync } from "~/components/seo/DocumentMetaSync";
 import { NuqsClientRoot } from "~/components/NuqsClientRoot";
-import { LayoutArticle, MetaTags } from "~/components/Layout";
+import { LayoutArticle } from "~/components/Layout";
 import { buttonStyles, Link, PrintButton } from "~/components/Link";
 import {
   aggregationConfigPrimary,
@@ -12,6 +13,7 @@ import {
 import { ResultColumn } from "~/components/ScenesPage/Results/ResultColumn";
 import { cleanupCsvData } from "~/components/ScenesPage/utils";
 import { fullUrl, trackContentImpression } from "~/components/utils";
+import { canonicalOrigin } from "~/components/utils/domain/canonicalOrigin.const";
 import { VergleichenPagePrintResult } from "~/components/VergleichenPagePrintResult";
 import { consumeShowBackHandoff } from "~/lib/navigation-handoff";
 import type { SiteLocation } from "~/lib/site-location";
@@ -56,6 +58,13 @@ const VergleichenInner = ({ location, rawScenesPrimary, rawScenesSecondary }: Pr
 
   const ids = bookmarksArray ?? [];
 
+  const description = [
+    bookmarkScenesPrimary.length && `${bookmarkScenesPrimary.length}✕ Hauptstaße`,
+    bookmarkScenesSecondary.length && `${bookmarkScenesSecondary.length}✕ Nebenstraße`,
+  ]
+    .filter(Boolean)
+    .join(" und ");
+
   return (
     <LayoutArticle
       location={location}
@@ -63,15 +72,10 @@ const VergleichenInner = ({ location, rawScenesPrimary, rawScenesSecondary }: Pr
       prose={false}
       printHideHeader
     >
-      <MetaTags
+      <DocumentMetaSync
         title="Ausgewählte Radverkehrsanlagen vergleichen"
-        description={[
-          bookmarkScenesPrimary.length && `${bookmarkScenesPrimary.length}✕ Hauptstaße`,
-          bookmarkScenesSecondary.length && `${bookmarkScenesSecondary.length}✕ Nebenstraße`,
-        ]
-          .filter(Boolean)
-          .join(" und ")}
-        imagePath="/social-sharing/results.jpg"
+        description={description || undefined}
+        imageUrl={`${canonicalOrigin}/social-sharing/results.jpg`}
       />
 
       <h1 className="mx-3 mb-10 text-center text-3xl font-semibold print:hidden sm:text-4xl">

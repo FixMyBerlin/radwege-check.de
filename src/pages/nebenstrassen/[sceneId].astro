@@ -5,6 +5,7 @@ import { NebenstrassenSceneRoute } from '../../components/routes/NebenstrassenSc
 import { siteLocationFromUrl } from '../../lib/site-location'
 import { cleanupCsvData } from '../../components/ScenesPage/utils/cleanupCsvData'
 import type { SceneSecondaryProps } from '../../components/ScenesPage/types'
+import { seoForSceneDetailPage } from '../../lib/build-scene-seo'
 
 export async function getStaticPaths() {
   const scenes = await getCollection('scenesSecondary')
@@ -25,8 +26,9 @@ const scene = {
   path: `/nebenstrassen/${cleaned.sceneId}`,
 } as SceneSecondaryProps
 const location = siteLocationFromUrl(Astro.url)
+const seo = seoForSceneDetailPage(scene, 'secondary')
 ---
 
-<BaseLayout>
+<BaseLayout seo={seo}>
   <NebenstrassenSceneRoute client:only="react" location={location} scene={scene} />
 </BaseLayout>

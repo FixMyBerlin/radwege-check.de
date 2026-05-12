@@ -1,5 +1,5 @@
 import React from "react";
-import { LayoutArticle, MetaTags } from "~/components/Layout";
+import { LayoutArticle } from "~/components/Layout";
 import { Link } from "~/components/Link";
 import type { SiteLocation } from "~/lib/site-location";
 
@@ -32,11 +32,6 @@ export const OpenDataRoute = ({ location }: { location: SiteLocation }) => {
 
   return (
     <LayoutArticle location={location}>
-      <MetaTags
-        noindex
-        title="Radwege-Check | OpenData, OpenSource"
-        description="Die Daten dieses Projektes sind OpenData. Der Quellcode ist OpenSource."
-      />
       <h1>OpenData, OpenSource und Lizenzen</h1>
       <p>
         Die aufbereiteten Inhalte und dahinter liegenden Daten sind unter offenen Lizenzen

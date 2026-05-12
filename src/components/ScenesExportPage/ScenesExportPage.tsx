@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, useState } from "react";
-import { MetaTags } from "../Layout";
 import { Link, linkStyles } from "../Link";
 import { SceneImage } from "../ScenesPage";
 import { useAggregationConfig } from "../ScenesPage/hooks";
@@ -44,14 +43,6 @@ export const ScenesExportPage = ({ rawScenes, experimentTextKey }: Props) => {
 
   return (
     <>
-      <MetaTags
-        article
-        noindex
-        title={`Export-Ansicht aller ${totalResults} Szenen auf ${categoryTranslation}.`}
-        description="Auf Basis eine Umfrage mit über 22.000 Teilnehmenden."
-        imagePath="/social-sharing/results.jpg"
-      />
-
       <h1 className="mb-5 text-center text-4xl font-semibold">
         Alle {totalResults} Szenen für {categoryTranslation}
       </h1>

@@ -1,11 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { AuswertungRoute } from '../components/routes/AuswertungRoute'
+import { canonicalOrigin } from '../components/utils/domain/canonicalOrigin.const'
 import { siteLocationFromUrl } from '../lib/site-location'
 
 const location = siteLocationFromUrl(Astro.url)
+const alternates = [
+  { hreflang: 'de', href: `${canonicalOrigin}/auswertung` },
+  { hreflang: 'en', href: `${canonicalOrigin}/report` },
+  { hreflang: 'es', href: `${canonicalOrigin}/evaluacion` },
+]
 ---
 
-<BaseLayout>
+<BaseLayout
+  seo={{
+    article: true,
+    title: 'Studie zur subjektiven Sicherheit im Radverkehr',
+    description: 'Ergebnisse und Datensatz einer Umfrage mit über 22.000 Teilnehmenden',
+    imagePath: '/social-sharing/auswertung.jpg',
+    alternates,
+  }}
+>
   <AuswertungRoute client:only="react" location={location} />
 </BaseLayout>

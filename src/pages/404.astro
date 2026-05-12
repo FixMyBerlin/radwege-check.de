@@ -6,6 +6,6 @@ import { siteLocationFromUrl } from '../lib/site-location'
 const location = siteLocationFromUrl(Astro.url)
 ---
 
-<BaseLayout>
+<BaseLayout seo={{ noindex: true, title: '404 | Seite nicht gefunden.' }}>
   <NotFoundRoute client:only="react" location={location} />
 </BaseLayout>

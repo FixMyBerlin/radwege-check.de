@@ -6,6 +6,13 @@ import { siteLocationFromUrl } from '../lib/site-location'
 const location = siteLocationFromUrl(Astro.url)
 ---
 
-<BaseLayout>
+<BaseLayout
+  seo={{
+    noindex: true,
+    title: 'Radwege-Check | Presseinformationen',
+    description:
+      'Der Radwege-Check erlaubt es die Umfragedaten von 1.779 Varianten an Radweg-Führungsformen zu vergleichen.',
+  }}
+>
   <PresseRoute client:only="react" location={location} />
 </BaseLayout>

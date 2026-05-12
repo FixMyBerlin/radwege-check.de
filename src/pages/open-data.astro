@@ -6,6 +6,12 @@ import { siteLocationFromUrl } from '../lib/site-location'
 const location = siteLocationFromUrl(Astro.url)
 ---
 
-<BaseLayout>
+<BaseLayout
+  seo={{
+    noindex: true,
+    title: 'Radwege-Check | OpenData, OpenSource',
+    description: 'Die Daten dieses Projektes sind OpenData. Der Quellcode ist OpenSource.',
+  }}
+>
   <OpenDataRoute client:only="react" location={location} />
 </BaseLayout>

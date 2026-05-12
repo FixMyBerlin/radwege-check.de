@@ -1,5 +1,5 @@
 import React from "react";
-import { LayoutArticle, MetaTags } from "~/components/Layout";
+import { LayoutArticle } from "~/components/Layout";
 import { Link } from "~/components/Link";
 import { TableOfContents, type TocHashLink } from "~/components/TableOfContents";
 import type { SiteLocation } from "~/lib/site-location";
@@ -34,7 +34,6 @@ export const DatenschutzRoute = ({ location }: { location: SiteLocation }) => {
 
   return (
     <LayoutArticle location={location}>
-      <MetaTags noindex title="Radwege-Check | Datenschutz" />
       <h1>Datenschutzerklärung</h1>
       <TableOfContents items={tocItems} />
       <h2 id="responsible">Einleitung</h2>

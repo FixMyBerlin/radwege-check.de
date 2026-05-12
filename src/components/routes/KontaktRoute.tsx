@@ -1,14 +1,12 @@
 import React from "react";
 import { LogoBmdv } from "~/components/Homepage/LogoBmdv";
-import { LayoutArticle, MetaTags } from "~/components/Layout";
+import { LayoutArticle } from "~/components/Layout";
 import { Link } from "~/components/Link";
 import type { SiteLocation } from "~/lib/site-location";
 
 export const KontaktRoute = ({ location }: { location: SiteLocation }) => {
   return (
     <LayoutArticle location={location}>
-      <MetaTags noindex title="Radwege-Check | Kontakt &amp; Impressum" />
-
       <h1>Kontakt</h1>
       <p>
         <Link to="hello@fixmycity.de" button>

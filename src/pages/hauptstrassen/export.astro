@@ -9,9 +9,18 @@ const rawScenes = primary.map((e) => ({
   node: e.data as Record<string, unknown>,
 }))
 const location = siteLocationFromUrl(Astro.url)
+const totalResults = Number(primary.length).toLocaleString()
 ---
 
-<BaseLayout>
+<BaseLayout
+  seo={{
+    article: true,
+    noindex: true,
+    title: `Export-Ansicht aller ${totalResults} Szenen auf Hauptstrassen.`,
+    description: 'Auf Basis eine Umfrage mit über 22.000 Teilnehmenden.',
+    imagePath: '/social-sharing/results.jpg',
+  }}
+>
   <HauptstrassenExportRoute
     client:only="react"
     location={location}

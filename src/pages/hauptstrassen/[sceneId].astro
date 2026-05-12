@@ -5,6 +5,7 @@ import { HauptstrassenSceneRoute } from '../../components/routes/HauptstrassenSc
 import { siteLocationFromUrl } from '../../lib/site-location'
 import { cleanupCsvData } from '../../components/ScenesPage/utils/cleanupCsvData'
 import type { ScenePrimaryProps } from '../../components/ScenesPage/types'
+import { seoForSceneDetailPage } from '../../lib/build-scene-seo'
 
 export async function getStaticPaths() {
   const scenes = await getCollection('scenesPrimary')
@@ -25,8 +26,9 @@ const scene = {
   path: `/hauptstrassen/${cleaned.sceneId}`,
 } as ScenePrimaryProps
 const location = siteLocationFromUrl(Astro.url)
+const seo = seoForSceneDetailPage(scene, 'primary')
 ---
 
-<BaseLayout>
+<BaseLayout seo={seo}>
   <HauptstrassenSceneRoute client:only="react" location={location} scene={scene} />
 </BaseLayout>

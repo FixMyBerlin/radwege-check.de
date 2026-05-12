@@ -1,13 +1,11 @@
 import React from "react";
-import { LayoutArticle, MetaTags } from "~/components/Layout";
+import { LayoutArticle } from "~/components/Layout";
 import { Link } from "~/components/Link";
 import type { SiteLocation } from "~/lib/site-location";
 
 export const NotFoundRoute = ({ location }: { location: SiteLocation }) => {
   return (
     <LayoutArticle location={location}>
-      <MetaTags noindex title="404 | Seite nicht gefunden." />
-
       <div className="sm:flex">
         <p className="text-4xl font-extrabold text-orange-400 sm:text-5xl">404</p>
         <div className="sm:ml-6">

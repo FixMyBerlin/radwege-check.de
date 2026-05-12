@@ -2,17 +2,15 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import React, { useEffect } from "react";
 import logoMarkup from "~/components/assets/radwegecheck-logo.svg?raw";
 import { SvgInline } from "~/components/Svg/SvgInline";
-import { MetaTags } from "../Layout";
 import { Link, PrintButton } from "../Link";
 import { Popover } from "../Popover";
 import { SceneImage } from "../ScenesPage";
 import { ResultCells } from "../ScenesPage/Results/ResultCells";
 import { ResultNumbers } from "../ScenesPage/Results/ResultNumbers";
-import { sceneImageUrl } from "../ScenesPage/SceneImage";
 import { useExperimentAggregationConfig, useExperimentTextKeyState } from "../ScenesPage/store";
 import type { ScenePrimaryProps, SceneSecondaryProps } from "../ScenesPage/types";
 import { titleScene } from "../ScenesPage/utils/titleScenes";
-import { formatNumber, fullUrl, trackContentImpression } from "../utils";
+import { fullUrl, trackContentImpression } from "../utils";
 
 type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps;
@@ -24,8 +22,6 @@ export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
   const aggregationConfig = useExperimentAggregationConfig();
 
   const categoryTranslation = experimentTextKey === "primary" ? "Hauptstrasse" : "Nebenstrasse";
-  const categoryTranslationSentencePart =
-    experimentTextKey === "primary" ? "auf einer Hauptstrasse" : "in einer Nebenstrasse";
 
   useEffect(() => {
     trackContentImpression({
@@ -37,20 +33,6 @@ export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
 
   return (
     <>
-      <MetaTags
-        article
-        title={titleScene(scene, { includeId: true })}
-        description={`Diese Führungsform ${categoryTranslationSentencePart} wurde mit ${formatNumber(
-          scene.voteScore,
-          {
-            unit: "%",
-            precision: 0,
-          },
-        )} als „(eher) sicher“ bewertet.`}
-        imageUrl={sceneImageUrl(scene.sceneId)}
-        imageSize={{ width: 1240, height: 930 }}
-      />
-
       <div className="mb-40 items-center bg-white p-3 print:mb-0 print:p-0 lg:flex lg:flex-col lg:px-0 lg:py-6">
         <div className="mb-5 flex w-full max-w-7xl items-start gap-4 print:mt-3 lg:grid lg:grid-cols-4 lg:gap-6">
           <div className="mt-1 lg:ml-5 lg:mt-0">

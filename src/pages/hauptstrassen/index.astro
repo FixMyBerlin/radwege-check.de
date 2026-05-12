@@ -11,7 +11,11 @@ const rawScenes = primary.map((e) => ({
 const location = siteLocationFromUrl(Astro.url)
 ---
 
-<BaseLayout>
+<BaseLayout
+  seo={{
+    title: 'Radwege-Check Hauptstrasse – Alle Varianten filtern',
+  }}
+>
   <HauptstrassenIndexRoute
     client:load="react"
     location={location}

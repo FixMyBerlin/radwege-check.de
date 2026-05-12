@@ -1,6 +1,5 @@
 import React from "react";
 import { FeelSafe } from "../charts";
-import { MetaTags } from "../Layout";
 import { Link } from "../Link";
 import { SceneImage } from "../ScenesPage";
 import { cleanupCsvData } from "../ScenesPage/utils";
@@ -35,14 +34,6 @@ export const ScenesAllPage = ({ rawScenes, sceneKind }: Props) => {
 
   return (
     <>
-      <MetaTags
-        article
-        noindex
-        title={`Alle ${Number(totalResults).toLocaleString()} Szenen auf ${categoryTranslation}.`}
-        description="Auf Basis eine Umfrage mit über 22.000 Teilnehmenden."
-        imagePath="/social-sharing/results.jpg"
-      />
-
       <h1 className="mb-5 text-center text-4xl font-semibold">
         Alle {totalResults} Szenen für {categoryTranslation}
       </h1>

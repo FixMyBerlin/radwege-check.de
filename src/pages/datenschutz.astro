@@ -6,6 +6,6 @@ import { siteLocationFromUrl } from '../lib/site-location'
 const location = siteLocationFromUrl(Astro.url)
 ---
 
-<BaseLayout>
+<BaseLayout seo={{ noindex: true, title: 'Radwege-Check | Datenschutz' }}>
   <DatenschutzRoute client:only="react" location={location} />
 </BaseLayout>

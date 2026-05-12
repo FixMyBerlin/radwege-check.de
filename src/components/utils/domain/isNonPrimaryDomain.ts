@@ -1,10 +1,11 @@
-import { primaryDomain } from "./domains.const";
+import { englishDomainHost, primaryDomainHost } from "./domains.const";
 
-/** @desc Domain like window.location.host */
+/** Hostname like `window.location.host` (may include port). */
 type Props = string;
 
-export const isNonPrimaryDomain = (domain: Props): undefined | boolean => {
-  if (!domain) return undefined;
+export const isNonPrimaryDomain = (host: Props): undefined | boolean => {
+  if (!host) return undefined;
 
-  return domain.toLocaleLowerCase() !== primaryDomain;
+  const h = host.split(":")[0]?.toLowerCase() ?? "";
+  return h !== primaryDomainHost.toLowerCase() && h !== englishDomainHost.toLowerCase();
 };

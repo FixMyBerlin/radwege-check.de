@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { getCollection } from 'astro:content'
 import { VergleichenRoute } from '../../components/routes/VergleichenRoute'
+import { canonicalOrigin } from '../../components/utils/domain/canonicalOrigin.const'
 import { siteLocationFromUrl } from '../../lib/site-location'
 
 const primary = await getCollection('scenesPrimary')
@@ -13,9 +14,16 @@ const rawScenesSecondary = secondary.map((e) => ({
   node: e.data as Record<string, unknown>,
 }))
 const location = siteLocationFromUrl(Astro.url)
+const defaultImage = `${canonicalOrigin}/social-sharing/results.jpg`
 ---
 
-<BaseLayout>
+<BaseLayout
+  seo={{
+    title: 'Ausgewählte Radverkehrsanlagen vergleichen',
+    description: 'Vergleiche ausgewählte Szenen aus Haupt- und Nebenstraßen im Radwege-Check.',
+    imageUrl: defaultImage,
+  }}
+>
   <VergleichenRoute
     client:only="react"
     location={location}
