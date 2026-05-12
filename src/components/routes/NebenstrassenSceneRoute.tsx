@@ -1,5 +1,4 @@
 import React, { useLayoutEffect } from "react";
-import { Layout } from "~/components/Layout";
 import { ScenePage } from "~/components/ScenePage";
 import {
   aggregationConfigSecondary,
@@ -7,14 +6,13 @@ import {
 } from "~/components/ScenesPage/constants";
 import type { SceneSecondaryProps } from "~/components/ScenesPage/types";
 import { getExperimentDataActions } from "~/components/ScenesPage/store";
-import type { SiteLocation } from "~/lib/site-location";
 
 type Props = {
-  location: SiteLocation;
+  pagePath: string;
   scene: SceneSecondaryProps | null;
 };
 
-export const NebenstrassenSceneRoute = ({ location, scene }: Props) => {
+export const NebenstrassenSceneRoute = ({ pagePath, scene }: Props) => {
   useLayoutEffect(() => {
     getExperimentDataActions().setItemJsConfig(itemJsConfigSecondary);
     getExperimentDataActions().setAggregationConfig(aggregationConfigSecondary);
@@ -23,20 +21,14 @@ export const NebenstrassenSceneRoute = ({ location, scene }: Props) => {
 
   if (!scene) {
     return (
-      <Layout location={location}>
-        <div className="flex min-h-screen items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold">404</h1>
-            <p className="mt-2 text-gray-600">Scene not found</p>
-          </div>
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold">404</h1>
+          <p className="mt-2 text-gray-600">Scene not found</p>
         </div>
-      </Layout>
+      </div>
     );
   }
 
-  return (
-    <Layout location={location}>
-      <ScenePage scene={scene} pagePath={location.pathname} />
-    </Layout>
-  );
+  return <ScenePage scene={scene} pagePath={pagePath} />;
 };

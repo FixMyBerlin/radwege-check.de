@@ -1,8 +1,6 @@
 import React from "react";
-import { LayoutArticle } from "~/components/Layout";
 import { Link } from "~/components/Link";
 import { TableOfContents, type TocHashLink } from "~/components/TableOfContents";
-import type { SiteLocation } from "~/lib/site-location";
 
 const MatomoIframe = () => {
   return (
@@ -20,7 +18,7 @@ Links
 - Original Dokument https://docs.google.com/document/d/10GbKbIwqhdDMhJLLRVWzdJX8q2_nQijO/edit
 */
 
-export const DatenschutzRoute = ({ location }: { location: SiteLocation }) => {
+export const DatenschutzRoute = () => {
   const tocItems: TocHashLink = [
     ["#responsible", "Verantwortlichkeit"],
     ["#thirdparty", "Drittdienste"],
@@ -33,7 +31,7 @@ export const DatenschutzRoute = ({ location }: { location: SiteLocation }) => {
   ];
 
   return (
-    <LayoutArticle location={location}>
+    <>
       <h1>Datenschutzerklärung</h1>
       <TableOfContents items={tocItems} />
       <h2 id="responsible">Einleitung</h2>
@@ -428,6 +426,6 @@ export const DatenschutzRoute = ({ location }: { location: SiteLocation }) => {
         behördliche Vorgaben ändern, kann es notwendig sein, diese Datenschutzhinweise zu ändern.
         Die jeweils aktuellen Datenschutzhinweise können Sie jederzeit hier abrufen.
       </p>
-    </LayoutArticle>
+    </>
   );
 };

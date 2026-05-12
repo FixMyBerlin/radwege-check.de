@@ -4,7 +4,6 @@ import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import { DocumentMetaSync } from "~/components/seo/DocumentMetaSync";
 import { NuqsClientRoot } from "~/components/NuqsClientRoot";
-import { LayoutArticle } from "~/components/Layout";
 import { buttonStyles, Link, PrintButton } from "~/components/Link";
 import {
   aggregationConfigPrimary,
@@ -16,15 +15,13 @@ import { fullUrl, trackContentImpression } from "~/components/utils";
 import { canonicalOrigin } from "~/components/utils/domain/canonicalOrigin.const";
 import { VergleichenPagePrintResult } from "~/components/VergleichenPagePrintResult";
 import { consumeShowBackHandoff } from "~/lib/navigation-handoff";
-import type { SiteLocation } from "~/lib/site-location";
 
 type Props = {
-  location: SiteLocation;
   rawScenesPrimary: { node: Record<string, unknown> }[];
   rawScenesSecondary: { node: Record<string, unknown> }[];
 };
 
-const VergleichenInner = ({ location, rawScenesPrimary, rawScenesSecondary }: Props) => {
+const VergleichenInner = ({ rawScenesPrimary, rawScenesSecondary }: Props) => {
   const flattenedPrimary = rawScenesPrimary.map((list) => list.node);
   const scenesPrimary = cleanupCsvData(flattenedPrimary).map((s) => ({
     ...s,
@@ -66,12 +63,7 @@ const VergleichenInner = ({ location, rawScenesPrimary, rawScenesSecondary }: Pr
     .join(" und ");
 
   return (
-    <LayoutArticle
-      location={location}
-      maxWidthClass="max-w-full lg:mx-5 flex items-center flex-col"
-      prose={false}
-      printHideHeader
-    >
+    <>
       <DocumentMetaSync
         title="Ausgewählte Radverkehrsanlagen vergleichen"
         description={description || undefined}
@@ -167,7 +159,7 @@ const VergleichenInner = ({ location, rawScenesPrimary, rawScenesSecondary }: Pr
       <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 print:hidden">
         <PrintButton />
       </div>
-    </LayoutArticle>
+    </>
   );
 };
 

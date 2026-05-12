@@ -1,9 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import ArticlePageLayout from '../layouts/ArticlePageLayout.astro'
 import { OpenDataRoute } from '../components/routes/OpenDataRoute'
-import { siteLocationFromUrl } from '../lib/site-location'
-
-const location = siteLocationFromUrl(Astro.url)
 ---
 
 <BaseLayout
@@ -13,5 +11,7 @@ const location = siteLocationFromUrl(Astro.url)
     description: 'Die Daten dieses Projektes sind OpenData. Der Quellcode ist OpenSource.',
   }}
 >
-  <OpenDataRoute client:only="react" location={location} />
+  <ArticlePageLayout host={Astro.url.host}>
+    <OpenDataRoute client:only="react" />
+  </ArticlePageLayout>
 </BaseLayout>

@@ -1,9 +1,7 @@
 import React from "react";
-import { LayoutArticle } from "~/components/Layout";
 import { Link } from "~/components/Link";
-import type { SiteLocation } from "~/lib/site-location";
 
-export const OpenDataRoute = ({ location }: { location: SiteLocation }) => {
+export const OpenDataRoute = () => {
   const odblLicencePart = (
     <>
       <br />
@@ -31,7 +29,7 @@ export const OpenDataRoute = ({ location }: { location: SiteLocation }) => {
   );
 
   return (
-    <LayoutArticle location={location}>
+    <>
       <h1>OpenData, OpenSource und Lizenzen</h1>
       <p>
         Die aufbereiteten Inhalte und dahinter liegenden Daten sind unter offenen Lizenzen
@@ -103,6 +101,6 @@ export const OpenDataRoute = ({ location }: { location: SiteLocation }) => {
           AGPL-3.0
         </Link>
       </p>
-    </LayoutArticle>
+    </>
   );
 };

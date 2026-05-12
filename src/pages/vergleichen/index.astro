@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import ArticlePageLayout from '../../layouts/ArticlePageLayout.astro'
 import { getCollection } from 'astro:content'
 import { VergleichenRoute } from '../../components/routes/VergleichenRoute'
 import { canonicalOrigin } from '../../components/utils/domain/canonicalOrigin.const'
-import { siteLocationFromUrl } from '../../lib/site-location'
 
 const primary = await getCollection('scenesPrimary')
 const secondary = await getCollection('scenesSecondary')
@@ -13,7 +13,6 @@ const rawScenesPrimary = primary.map((e) => ({
 const rawScenesSecondary = secondary.map((e) => ({
   node: e.data as Record<string, unknown>,
 }))
-const location = siteLocationFromUrl(Astro.url)
 const defaultImage = `${canonicalOrigin}/social-sharing/results.jpg`
 ---
 
@@ -24,10 +23,12 @@ const defaultImage = `${canonicalOrigin}/social-sharing/results.jpg`
     imageUrl: defaultImage,
   }}
 >
-  <VergleichenRoute
-    client:only="react"
-    location={location}
-    rawScenesPrimary={rawScenesPrimary}
-    rawScenesSecondary={rawScenesSecondary}
-  />
+  <ArticlePageLayout
+    host={Astro.url.host}
+    maxWidthClass="max-w-full lg:mx-5 flex items-center flex-col"
+    prose={false}
+    printHideHeader
+  >
+    <VergleichenRoute client:only="react" rawScenesPrimary={rawScenesPrimary} rawScenesSecondary={rawScenesSecondary} />
+  </ArticlePageLayout>
 </BaseLayout>

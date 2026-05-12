@@ -1,14 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import ArticlePageLayout from '../../layouts/ArticlePageLayout.astro'
 import { getCollection } from 'astro:content'
 import { NebenstrassenAlleRoute } from '../../components/routes/NebenstrassenAlleRoute'
-import { siteLocationFromUrl } from '../../lib/site-location'
 
 const secondary = await getCollection('scenesSecondary')
 const rawScenes = secondary.map((e) => ({
   node: e.data as Record<string, unknown>,
 }))
-const location = siteLocationFromUrl(Astro.url)
 const totalResults = Number(secondary.length).toLocaleString()
 ---
 
@@ -21,5 +20,7 @@ const totalResults = Number(secondary.length).toLocaleString()
     imagePath: '/social-sharing/results.jpg',
   }}
 >
-  <NebenstrassenAlleRoute client:only="react" location={location} rawScenes={rawScenes} />
+  <ArticlePageLayout host={Astro.url.host} maxWidthClass="max-w-full lg:mx-5" prose={false}>
+    <NebenstrassenAlleRoute client:only="react" rawScenes={rawScenes} />
+  </ArticlePageLayout>
 </BaseLayout>

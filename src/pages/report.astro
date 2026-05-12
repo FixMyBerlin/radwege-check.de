@@ -1,10 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import ArticlePageLayout from '../layouts/ArticlePageLayout.astro'
 import { ReportEnRoute } from '../components/routes/ReportEnRoute'
 import { canonicalOrigin } from '../components/utils/domain/canonicalOrigin.const'
-import { siteLocationFromUrl } from '../lib/site-location'
 
-const location = siteLocationFromUrl(Astro.url)
 const alternates = [
   { hreflang: 'de', href: `${canonicalOrigin}/auswertung` },
   { hreflang: 'en', href: `${canonicalOrigin}/report` },
@@ -20,5 +19,7 @@ const alternates = [
     alternates,
   }}
 >
-  <ReportEnRoute client:only="react" location={location} />
+  <ArticlePageLayout host={Astro.url.host} showEnglishLanguageTeaser={false}>
+    <ReportEnRoute client:only="react" />
+  </ArticlePageLayout>
 </BaseLayout>

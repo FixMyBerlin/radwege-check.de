@@ -1,9 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import SiteChrome from '../layouts/SiteChrome.astro'
 import { IndexRoute } from '../components/routes/IndexRoute'
-import { siteLocationFromUrl } from '../lib/site-location'
-
-const location = siteLocationFromUrl(Astro.url)
 ---
 
 <BaseLayout
@@ -13,5 +11,7 @@ const location = siteLocationFromUrl(Astro.url)
     sharingTitle: 'Vergleiche 1.779 Radinfrastrukturen. Mach den Radwege-Check.',
   }}
 >
-  <IndexRoute client:load="react" location={location} />
+  <SiteChrome host={Astro.url.host}>
+    <IndexRoute client:load="react" />
+  </SiteChrome>
 </BaseLayout>

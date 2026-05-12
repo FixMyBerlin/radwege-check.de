@@ -1,11 +1,71 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import { KontaktRoute } from '../components/routes/KontaktRoute'
-import { siteLocationFromUrl } from '../lib/site-location'
-
-const location = siteLocationFromUrl(Astro.url)
+import ArticlePageLayout from '../layouts/ArticlePageLayout.astro'
+import bmdv from '../components/Homepage/assets/bmdv-gefoerdert.png'
+import { buttonLinkClass, linkProseClass } from '../lib/link-classes'
 ---
 
 <BaseLayout seo={{ noindex: true, title: 'Radwege-Check | Kontakt & Impressum' }}>
-  <KontaktRoute client:only="react" location={location} />
+  <ArticlePageLayout host={Astro.url.host}>
+    <h1>Kontakt</h1>
+    <p>
+      <a href="mailto:hello@fixmycity.de" class={buttonLinkClass}>hello@fixmycity.de</a>
+    </p>
+    <p>
+      Sie finden uns auch auf{' '}
+      <a
+        href="https://www.linkedin.com/company/fixmycity"
+        class={linkProseClass}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>.
+    </p>
+
+    <h1 class="mt-12 border-t border-gray-300 pt-12">Impressum</h1>
+    <p>
+      <strong>FixMyCity GmbH</strong>
+      <br />
+      Oberlandstraße 26-35
+      <br />
+      12099 Berlin
+      <br />
+      <a href="mailto:hello@fixmycity.de" class={linkProseClass}>hello@fixmycity.de</a>
+      <br />
+      Telefon: 030 / 549 08 665
+      <br />
+      <a href="https://www.fixmycity.de" class={linkProseClass} target="_blank" rel="noopener noreferrer">
+        www.fixmycity.de
+      </a>,{' '}
+      <a href="https://www.fixmyberlin.de" class={linkProseClass} target="_blank" rel="noopener noreferrer">
+        www.fixmyberlin.de
+      </a>
+    </p>
+    <p>Gesellschafter: Boris Hekele und Heiko Rintelen</p>
+    <p>
+      Registergericht: Amtsgericht Berlin-Charlottenburg
+      <br />
+      Registernummer: HRB 205031 B
+    </p>
+    <p>Umsatzsteuer-Identifikationsnummer gem. § 27a UStG: DE323489466</p>
+    <p>Verantwortlicher i.S.v. § 55 Rundfunkstaatsvertrag (RStV): Boris Hekele</p>
+
+    <h1 class="mt-12 border-t border-gray-300 pt-12">Förderung</h1>
+    <p>
+      <a
+        href="https://www.mobilitaetsforum.bund.de/DE/Themen/Wissenspool/Projekte/Projektbeispiele/Projekte/RVA-Safetycheck.html"
+        class={linkProseClass}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src={bmdv.src}
+          width={200}
+          height={200}
+          alt="Gefördert durch: Bundesministerium für Digitales und Verkehr aufgrund eines Beschlusses des Deutschen Bundestages"
+        />
+      </a>
+    </p>
+  </ArticlePageLayout>
 </BaseLayout>

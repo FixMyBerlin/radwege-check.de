@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import SiteChrome from '../../layouts/SiteChrome.astro'
 import { getCollection, getEntry } from 'astro:content'
 import { NebenstrassenSceneRoute } from '../../components/routes/NebenstrassenSceneRoute'
-import { siteLocationFromUrl } from '../../lib/site-location'
 import { cleanupCsvData } from '../../components/ScenesPage/utils/cleanupCsvData'
 import type { SceneSecondaryProps } from '../../components/ScenesPage/types'
 import { seoForSceneDetailPage } from '../../lib/build-scene-seo'
@@ -25,10 +25,11 @@ const scene = {
   ...cleaned,
   path: `/nebenstrassen/${cleaned.sceneId}`,
 } as SceneSecondaryProps
-const location = siteLocationFromUrl(Astro.url)
 const seo = seoForSceneDetailPage(scene, 'secondary')
 ---
 
 <BaseLayout seo={seo}>
-  <NebenstrassenSceneRoute client:only="react" location={location} scene={scene} />
+  <SiteChrome host={Astro.url.host}>
+    <NebenstrassenSceneRoute client:only="react" pagePath={Astro.url.pathname} scene={scene} />
+  </SiteChrome>
 </BaseLayout>
