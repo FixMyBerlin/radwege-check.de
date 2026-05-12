@@ -1,6 +1,5 @@
 import itemsjs from "itemsjs";
 import React, { useLayoutEffect } from "react";
-import { Helmet } from "react-helmet";
 import { parseAsString, useQueryState } from "nuqs";
 import type { SiteLocation } from "~/lib/site-location";
 import { consumeBookmarksHandoff } from "~/lib/navigation-handoff";
@@ -28,6 +27,18 @@ type Props = {
 };
 
 export const ScenesPage = ({ rawScenes, location: _location }: Props) => {
+  useLayoutEffect(() => {
+    const prev = document.body.getAttribute("class") ?? "";
+    document.body.setAttribute("class", "fixed overflow-hidden w-full min-h-full flex");
+    return () => {
+      if (prev) {
+        document.body.setAttribute("class", prev);
+      } else {
+        document.body.removeAttribute("class");
+      }
+    };
+  }, []);
+
   const flattened = rawScenes.map((row: any) =>
     row && typeof row === "object" && "node" in row ? row.node : row,
   );
@@ -142,11 +153,6 @@ export const ScenesPage = ({ rawScenes, location: _location }: Props) => {
 
   return (
     <>
-      <Helmet
-        bodyAttributes={{
-          class: "fixed overflow-hidden w-full min-h-full flex",
-        }}
-      />
       <MetaTags
         noindex={!seoPresetIsActive}
         title={

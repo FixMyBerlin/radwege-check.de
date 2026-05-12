@@ -1,15 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import type { ReportTranslations } from "~/components/ReportPage/translations";
-import {
-  canonicalOrigin,
-  domain,
-  isDev,
-  isNonPrimaryDomain,
-  isProduction,
-} from "~/components/utils";
+import { canonicalOrigin, domain, isNonPrimaryDomain, isProduction } from "~/components/utils";
 
-// FYI, https://www.gatsbyjs.com/docs/add-seo-component/ suggest to use useStaticQuery but I don't see why, yet
 const seoDefaultValues = {
   defaultTitle: "Radwege-Check",
   defaultDescription:
@@ -30,8 +23,13 @@ type Props = {
   children?: React.ReactNode;
 };
 
+/**
+ * Per-route SEO for React islands. Astro’s own `<head>` lives in `BaseLayout.astro`; this
+ * component augments it (title, Open Graph, etc.) via react-helmet for hydration-aware pages.
+ * Prefer moving static SEO into `.astro` when a route does not need client-only head updates.
+ */
 export const MetaTags = ({
-  lang = "de",
+  lang: _lang = "de",
   noindex = false,
   canonicalPath: _canonicalPath, // UNUSED ATM
   title,
@@ -59,35 +57,12 @@ export const MetaTags = ({
 
   const noindexOnAllButProduction = !isProduction;
 
-  // Give some debugging info
-  const envInfo = isProduction
-    ? {}
-    : {
-        "data-netlify-context": process.env.CONTEXT,
-        "data-node-env": process.env.NODE_ENV,
-        "data-netlify-url": process.env.URL,
-        "data-netlify-prime-url": process.env.DEPLOY_PRIME_URL,
-        "data-isDev": isDev,
-        "data-isProduction": isProduction,
-        "data-window": typeof window !== "undefined",
-      };
-
-  // FYI, we do not inlcude the url meta tags since there was an issue with specs and `useLocation`.
-  //  Since we do not need this field, its OK to remove it.
   return (
     <Helmet>
-      <html lang={lang} className="scroll-smooth" {...envInfo} />
       <title>{withDefaults.title}</title>
       <meta property="og:title" content={sharingTitle || withDefaults.title} />
       <meta name="twitter:title" content={sharingTitle || withDefaults.title} />
 
-      {/* UNUSED ATM {canonicalPath ? (
-        <link
-          rel="canonical"
-          href={`${canonicalOrigin}${canonicalPath}`}
-          data-info-trigger="props"
-        />
-      ) : null} */}
       {canonicalForNonPrimaryDomain ? (
         <link
           rel="canonical"

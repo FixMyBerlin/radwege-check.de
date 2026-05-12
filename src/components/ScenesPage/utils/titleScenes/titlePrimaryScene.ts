@@ -1,4 +1,4 @@
-import { isDev } from "~/components/utils";
+import { allowVerboseDebug } from "~/components/utils";
 import { ScenePrimaryProps } from "../../types";
 import {
   textBicycleLaneWidth,
@@ -19,7 +19,7 @@ export const titlePrimaryScene = (
   },
 ) => {
   const optionalSceneId = includeId ? sceneId(scene) : "";
-  const debug = !process.env.DISABlE_DEBUG_FOR_JEST && isDev;
+  const debug = allowVerboseDebug;
 
   if (["shared_bus_lane", "none"].includes(scene.bicycleLaneWidth)) {
     const textIncludeTram = scene.vehicleLaneUsage === "motor_vehicle_and_tram" && "inkl. Tram,";

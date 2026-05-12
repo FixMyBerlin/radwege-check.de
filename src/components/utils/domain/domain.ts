@@ -2,29 +2,43 @@ import { canonicalOrigin } from "./canonicalOrigin.const";
 import { primaryDomain } from "./domains.const";
 import { isEnglishDomain } from "./isEnglishDomain";
 
-export const domain = () => {
-  // Docs:
-  // Using Environment Variables https://www.netlify.com/blog/2021/07/05/easy-access-environment-variables/#using-environment-variables
-  // CONTEXT https://docs.netlify.com/configure-builds/environment-variables/#build-metadata
-  //   > name of the build’s deploy context. It can be `production`, `deploy-preview` or `branch-deploy`.
-  // URL vs. DEPLOY_PRIME_URL https://docs.netlify.com/configure-builds/environment-variables/#deploy-urls-and-metadata
-  // NETLIFY https://docs.netlify.com/configure-builds/environment-variables/#build-metadata
-  const ssrDomain =
-    process.env.CONTEXT === "production" ? process.env.URL : process.env.DEPLOY_PRIME_URL;
-  const ssrFallback = primaryDomain;
+function siteOriginFromAstroConfig(): string | undefined {
+  if (typeof import.meta === "undefined" || !import.meta.env?.SITE) {
+    return undefined;
+  }
+  try {
+    return new URL(String(import.meta.env.SITE)).origin;
+  } catch {
+    return undefined;
+  }
+}
 
-  // We do this, to get the SSR domain. However, rehydration will use this utility as well,
-  // so for that case, we need to take the current hostname.
-  if (typeof window === "undefined") {
-    return ssrDomain || ssrFallback;
+/** Netlify deploy metadata — only exists in the Node SSR bundle, never in the browser. */
+function netlifyDeployOrigin(): string | undefined {
+  if (typeof process === "undefined" || !process.env) {
+    return undefined;
+  }
+  const { CONTEXT: context, URL: prodUrl, DEPLOY_PRIME_URL: primeUrl } = process.env;
+  const raw = context === "production" ? prodUrl : primeUrl;
+  if (!raw) {
+    return undefined;
+  }
+  try {
+    return new URL(raw).origin;
+  } catch {
+    return undefined;
+  }
+}
+
+export const domain = (): string => {
+  // Browser first — never touch `process` in the client bundle (Vite does not polyfill it).
+  if (typeof window !== "undefined") {
+    const browserDomain = window.location.origin;
+    const canonicalBrowserDomain = isEnglishDomain(window.location.host)
+      ? canonicalOrigin
+      : browserDomain;
+    return canonicalBrowserDomain || siteOriginFromAstroConfig() || primaryDomain;
   }
 
-  const browserDomain = window.location.origin;
-
-  // Prevent duplicate content due to the english domain.
-  const canonicalBrowserDomain = isEnglishDomain(window.location.host)
-    ? canonicalOrigin
-    : browserDomain;
-
-  return canonicalBrowserDomain || ssrDomain || ssrFallback;
+  return netlifyDeployOrigin() || siteOriginFromAstroConfig() || primaryDomain;
 };

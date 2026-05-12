@@ -1,5 +1,5 @@
 import { parse, stringify } from "query-string";
-import { isDev } from "~/components/utils";
+import { allowVerboseDebug } from "~/components/utils";
 import type { AggregationConfig } from "../constants";
 import type { SearchOptionProps } from "../types";
 
@@ -111,7 +111,7 @@ export const decodeFilter = (
   });
 
   if (removedKeys.length || removedValues.length) {
-    const debug = !process.env.DISABlE_DEBUG_FOR_JEST && isDev;
+    const debug = allowVerboseDebug;
     if (debug) {
       console.log({
         INFO: "decodeFilter() removed keys/values that where given by the URL but not recognized by the config:",
