@@ -20,10 +20,11 @@ export const EnglishLanguageButton = ({ visible, positionBottom }: Props) => {
 
   // Show only if user does not speak German
   // … but show always on DEV.
-  const speaksDe = navigator.languages.some((l) => l.includes("de"));
+  const speaksDe = navigator.languages?.some((l) => l.includes("de")) ?? false;
   if (speaksDe && !isDev) return null;
 
   const translateUrl = googleTranslateUrl(window.location);
+  if (!translateUrl) return null;
 
   return (
     <Link

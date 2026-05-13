@@ -9,7 +9,7 @@ export function TailwindResponsiveHelper() {
       className="border-xl fixed bottom-1 left-1 z-50 flex h-5 flex-row items-center space-x-1 rounded bg-pink-900 px-1 text-xs text-white shadow hover:underline print:hidden"
       href="https://tailwindcss.com/docs/responsive-design"
     >
-      <span className="text-white" title="<640px">
+      <span className="text-white" title="<640px>">
         –
       </span>
       <span className="text-white/20 sm:text-white" title="640px">

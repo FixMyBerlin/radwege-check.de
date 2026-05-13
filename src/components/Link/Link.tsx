@@ -5,7 +5,7 @@ import { isDev, trackEvent } from "../utils";
 
 type Props = {
   /** @desc Internal Link, external Link, e-mail-address (will add the `mailto:` automatically) */
-  to: string;
+  to?: string;
   state?: any; // good enough IMO
   classNameOverwrite?: string;
   className?: string;
@@ -36,7 +36,7 @@ export const buttonStyles =
 
 export const Link = React.forwardRef<HTMLAnchorElement, Props>(function Link(
   {
-    to,
+    to: toProp,
     state,
     classNameOverwrite,
     className,
@@ -47,15 +47,24 @@ export const Link = React.forwardRef<HTMLAnchorElement, Props>(function Link(
     mailSubject,
     mailBody,
     children,
+    href: hrefProp,
     ...props
   },
   _ref,
 ) {
+  const to = toProp ?? hrefProp;
+  if (to == null || to === "") {
+    if (isDev) {
+      console.warn("Link: missing `to`/`href`; rendering nothing.", { toProp, hrefProp });
+    }
+    return null;
+  }
+
   const styles = button ? buttonStyles : linkInverted ? linkStylesInverted : linkStyles;
 
   const classes = clsx(className, classNameOverwrite || styles);
 
-  let mailto: string;
+  let mailto: string | undefined;
   if (to.includes("@")) {
     const url = new URL(`mailto:${to}`);
     if (mailSubject) url.searchParams.set("subject", mailSubject);

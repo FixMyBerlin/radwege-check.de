@@ -17,7 +17,7 @@ const location = siteLocationFromUrl(Astro.url)
   }}
 >
   <HauptstrassenIndexRoute
-    client:load="react"
+    client:only="react"
     location={location}
     rawScenes={rawScenes}
   />

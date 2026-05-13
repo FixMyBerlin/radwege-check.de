@@ -22,6 +22,7 @@ export const EnglishLanguageModal = ({ visible, domain }: Props) => {
   if (!isBrowser) return null;
 
   const translateUrl = googleTranslateUrl(window.location);
+  if (!translateUrl) return null;
 
   return (
     <Modal title="Translate page" className="print:hidden">

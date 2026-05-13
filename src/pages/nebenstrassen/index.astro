@@ -17,7 +17,7 @@ const location = siteLocationFromUrl(Astro.url)
   }}
 >
   <NebenstrassenIndexRoute
-    client:load="react"
+    client:only="react"
     location={location}
     rawScenes={rawScenes}
   />
