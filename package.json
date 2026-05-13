@@ -12,7 +12,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "bun run type-check && bun run lint && bun run format:check && bun run knip && bun run test",
-    "knip": "knip",
+    "knip": "bunx knip",
     "type-check": "tsgo --noEmit -p tsconfig.json",
     "lint": "oxlint src",
     "format": "oxfmt src package.json tsconfig.json astro.config.mjs oxfmt.config.ts vitest.config.ts oxlint.config.ts knip.config.ts __helpers__ public/manifest.webmanifest taze.config.js",
