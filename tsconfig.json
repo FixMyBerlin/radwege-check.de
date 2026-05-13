@@ -8,7 +8,7 @@
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "types": ["@testing-library/jest-dom"]
+    "types": ["bun", "@testing-library/jest-dom"]
   },
   "include": [
     ".astro/types.d.ts",

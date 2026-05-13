@@ -1,5 +1,4 @@
 #!/usr/bin/env bun
-/// <reference types="bun" />
 /**
  * Remove React.FC: use explicit parameter types instead.
  *
