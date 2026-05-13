@@ -7,7 +7,7 @@
 import clsx from "clsx";
 import type * as React from "react";
 
-export type SvgInlineProps = Omit<
+type SvgInlineProps = Omit<
   React.HTMLAttributes<HTMLSpanElement>,
   "children" | "dangerouslySetInnerHTML"
 > & {

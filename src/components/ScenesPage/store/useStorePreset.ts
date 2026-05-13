@@ -15,7 +15,7 @@ type PresetActions = {
   setCurrentPresetKey: (newKey: StorePresetKey) => void;
 };
 
-export type StorePreset = PresetState & { actions: PresetActions };
+type StorePreset = PresetState & { actions: PresetActions };
 
 const presetStore = create<StorePreset>((set) => ({
   presets: {},

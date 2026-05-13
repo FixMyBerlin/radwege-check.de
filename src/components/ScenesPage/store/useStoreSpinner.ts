@@ -9,7 +9,7 @@ type SpinnerActions = {
   setShowSpinner: (newState: boolean) => void;
 };
 
-export type StoreSpinner = SpinnerState & { actions: SpinnerActions };
+type StoreSpinner = SpinnerState & { actions: SpinnerActions };
 
 const spinnerStore = create<StoreSpinner>((set) => ({
   showSpinner: true,
@@ -21,5 +21,3 @@ const spinnerStore = create<StoreSpinner>((set) => ({
 export const useShowSpinner = () => useStore(spinnerStore, (s) => s.showSpinner);
 
 export const useSpinnerActions = () => useStore(spinnerStore, (s) => s.actions);
-
-export const getSpinnerActions = () => spinnerStore.getState().actions;

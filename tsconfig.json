@@ -18,6 +18,7 @@
     "astro.config.mjs",
     "oxlint.config.ts",
     "vitest.config.ts",
+    "knip.config.ts",
     "src/content.config.ts"
   ],
   "exclude": ["node_modules", "dist"]

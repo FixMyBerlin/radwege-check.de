@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { canonicalOrigin } from "~/components/utils/domain/canonicalOrigin.const";
 
-export type DocumentMetaSyncProps = {
+type DocumentMetaSyncProps = {
   title: string;
   description?: string;
   sharingTitle?: string;

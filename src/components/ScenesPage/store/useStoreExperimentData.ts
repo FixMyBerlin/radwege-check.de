@@ -17,7 +17,7 @@ type ExperimentDataActions = {
   setExperimentTextKey: (input: ExperimentTextKey) => void;
 };
 
-export type StoreExperimentData = ExperimentDataState & { actions: ExperimentDataActions };
+type StoreExperimentData = ExperimentDataState & { actions: ExperimentDataActions };
 
 const experimentDataStore = create<StoreExperimentData>((set) => ({
   itemJsConfig: null,
@@ -37,8 +37,6 @@ export const useExperimentAggregationConfig = () =>
 
 export const useExperimentTextKeyState = () =>
   useStore(experimentDataStore, (s) => s.experimentTextKey);
-
-export const useExperimentDataActions = () => useStore(experimentDataStore, (s) => s.actions);
 
 /** Non-React reads (e.g. title helpers, dev checks, route bootstrapping). */
 export const getExperimentDataState = () => experimentDataStore.getState();

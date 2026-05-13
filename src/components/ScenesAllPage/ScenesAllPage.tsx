@@ -5,7 +5,7 @@ import { SceneImage } from "../ScenesPage";
 import { cleanupCsvData } from "../ScenesPage/utils";
 import { titleScene } from "../ScenesPage/utils/titleScenes";
 
-export type SceneKind = "primary" | "secondary";
+type SceneKind = "primary" | "secondary";
 
 type Props = {
   rawScenes: { node: Record<string, unknown> }[] | Record<string, unknown>[];

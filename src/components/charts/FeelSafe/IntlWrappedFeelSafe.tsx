@@ -9,9 +9,9 @@ import walkIconMarkup from "./assets/feelsafe-walk-icon.svg?raw";
 
 const scale = scaleLinear([10, 50, 75, 100], ["#c01d1d", "#f08141", "#abc759", "#45b834"]);
 
-export const getColorByValue = (index) => {
+function getColorByValue(index: number) {
   return index <= 10 ? "#c01d1d" : scale(index);
-};
+}
 
 export type FeelsafeIcon = "bike" | "car" | "walk";
 

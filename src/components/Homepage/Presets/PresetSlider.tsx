@@ -6,7 +6,7 @@ import { SceneCategory } from "~/components/ScenesPage/types";
 import { PresetsScenes } from "../../ScenesPage/constants";
 import { PresetSliderSlide } from "./PresetSliderSlide";
 
-export type Props = {
+type Props = {
   sceneCategory: SceneCategory;
   slides: PresetsScenes;
   className?: string;

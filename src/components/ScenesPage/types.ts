@@ -110,8 +110,6 @@ export type ScenePrimaryProps = {
   path: string;
 };
 
-export type ResultItemsProps = Array<ScenePrimaryProps | SceneSecondaryProps>;
-
 export type ResultProps = {
   data: {
     aggregations: {
@@ -122,7 +120,7 @@ export type ResultProps = {
       };
     };
     allFilteredItems: null;
-    items: ResultItemsProps;
+    items: Array<ScenePrimaryProps | SceneSecondaryProps>;
   };
   pagination: {
     page: number;

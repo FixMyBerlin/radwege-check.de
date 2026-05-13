@@ -1,6 +1,6 @@
 import type { ReportTranslations } from "~/components/ReportPage/translations";
 
-export type footerMenuItemProps = {
+type footerMenuItemProps = {
   name: string;
   to: string;
   external?: boolean;

@@ -14,8 +14,6 @@ import PinIconMarkup from "./assets/pin-icon.svg?raw";
 import { SvgInline } from "~/components/Svg/SvgInline";
 import { useIntersection } from "./utils/useIntersection";
 
-export type PrevBucketValues = { [key: string]: string | number };
-
 type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps;
   index?: number;

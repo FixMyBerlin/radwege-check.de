@@ -49,17 +49,6 @@ export const TitleBar = ({ results, searchOrder, setSearchOrder, mobileFacets }:
           </div>
         ) : null}
 
-        {/* <TwitterButtonIconCurrentUrl
-          className="hidden lg:flex"
-          onClick={() =>
-            trackEvent({
-              category: 'Twitter button click',
-              action: `Results page ${experimentTextKey}`,
-              label: 'Desktop view',
-            })
-          }
-        /> */}
-
         <SearchOrderDropdown searchOrder={searchOrder} setSearchOrder={setSearchOrder} />
       </div>
     </section>

@@ -55,25 +55,6 @@ export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
         </div>
 
         <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 print:hidden">
-          {/* <TwitterButton
-            url={pagePath}
-            text={`${titleScene(scene)} – Subjektive Sicherheit ${formatNumber(
-              scene.voteScore,
-              {
-                unit: '%',
-                precision: 0,
-              },
-            )}`}
-            hashtags="RadwegeCheck"
-            buttonText="Teilen"
-            onClick={() =>
-              trackEvent({
-                category: 'Twitter button click',
-                action: 'Details Page',
-                label: scene.sceneId,
-              })
-            }
-          /> */}
           <PrintButton />
         </div>
 

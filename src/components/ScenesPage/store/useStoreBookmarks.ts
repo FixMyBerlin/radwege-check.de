@@ -17,7 +17,7 @@ type BookmarkActions = {
   toggleBookmark: (sceneId: string) => void;
 };
 
-export type StoreBookmarksData = BookmarksState & { actions: BookmarkActions };
+type StoreBookmarksData = BookmarksState & { actions: BookmarkActions };
 
 const bookmarksStore = create<StoreBookmarksData>((set, get) => ({
   bookmarks: [],
@@ -72,5 +72,3 @@ const bookmarksStore = create<StoreBookmarksData>((set, get) => ({
 export const useBookmarksState = () => useStore(bookmarksStore, (s) => s.bookmarks);
 
 export const useBookmarkActions = () => useStore(bookmarksStore, (s) => s.actions);
-
-export const getBookmarkActions = () => bookmarksStore.getState().actions;

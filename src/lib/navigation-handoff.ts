@@ -1,6 +1,6 @@
 /** Session keys for navigation state that Gatsby previously passed via history state. */
-export const BOOKMARKS_HANDOFF_KEY = "radwege-check-bookmarks-handoff";
-export const SHOW_BACK_HANDOFF_KEY = "radwege-check-show-back-handoff";
+const BOOKMARKS_HANDOFF_KEY = "radwege-check-bookmarks-handoff";
+const SHOW_BACK_HANDOFF_KEY = "radwege-check-show-back-handoff";
 
 export function stashBookmarksForNavigation(ids: string[]) {
   if (typeof window === "undefined") return;

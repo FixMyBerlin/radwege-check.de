@@ -1,5 +1,3 @@
-export type SeoAlternate = { hreflang: string; href: string };
-
 export type SeoHeadInput = {
   title?: string;
   description?: string;
@@ -9,5 +7,5 @@ export type SeoHeadInput = {
   article?: boolean;
   noindex?: boolean;
   imageSize?: { width: number; height: number };
-  alternates?: SeoAlternate[];
+  alternates?: { hreflang: string; href: string }[];
 };

@@ -48,16 +48,6 @@ export const Facets = ({
       <div className="relative flex h-14 items-center justify-between bg-brand-light-yellow px-3 py-1 shadow-md">
         <Logo visible={showLogo} />
         <ExperimentSwitcher />
-        {/* <TwitterButtonIconCurrentUrl
-          className="lg:hidden"
-          onClick={() =>
-            trackEvent({
-              category: 'Twitter button click',
-              action: `Results page ${experimentTextKey}`,
-              label: 'Mobile view',
-            })
-          }
-        /> */}
       </div>
 
       <div className={clsx("z-0 mb-4 bg-gray-200 px-3 pb-1 pt-5 shadow-md")}>
