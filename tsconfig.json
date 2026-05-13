@@ -8,7 +8,7 @@
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "types": ["bun", "@testing-library/jest-dom"]
+    "types": ["@testing-library/jest-dom"]
   },
   "include": [
     ".astro/types.d.ts",
@@ -20,7 +20,6 @@
     "oxlint.config.ts",
     "vitest.config.ts",
     "knip.config.ts",
-    "scripts/**/*.ts",
     "src/content.config.ts"
   ],
   "exclude": ["node_modules", "dist"]
