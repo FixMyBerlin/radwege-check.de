@@ -1,13 +1,13 @@
-import { formatNumber, formatPercent } from "~/components/utils";
+import { formatNumber, formatPercent } from '~/components/utils'
 
 type Data = {
   [key: string]: {
-    divideTop?: boolean;
-    bike: string | number;
-    pedestrian: string | number;
-    car: string | number;
-  };
-};
+    divideTop?: boolean
+    bike: string | number
+    pedestrian: string | number
+    car: string | number
+  }
+}
 
 export const data = (scene, precision): Data => {
   return {
@@ -33,8 +33,8 @@ export const data = (scene, precision): Data => {
       pedestrian: formatPercent(scene.votePedestrian3VerySave, { precision }),
       car: formatPercent(scene.voteCar3VerySave, { precision }),
     },
-  };
-};
+  }
+}
 
 export const dataSecondary = (scene, precision): Data => {
   return {
@@ -49,5 +49,5 @@ export const dataSecondary = (scene, precision): Data => {
       pedestrian: Math.round(scene.votePedestrianCount),
       car: Math.round(scene.voteCarCount),
     },
-  };
-};
+  }
+}

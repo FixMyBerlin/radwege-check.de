@@ -1,21 +1,22 @@
-import { allowVerboseDebug } from "~/components/utils";
-import { SceneSecondaryProps } from "../../types";
+import { allowVerboseDebug } from '~/components/utils'
+
+import { SceneSecondaryProps } from '../../types'
 import {
   textBicycleStreetType,
   textCarriagewayDirection,
   textNoCarsAndBicycleStreetType,
   textParkingCategory,
-} from "./textSecondaryScene.const";
-import { sceneId } from "./textShared.const";
-import { OptionalOptionProps } from "./types";
-import { checkAndClean } from "./utils";
+} from './textSecondaryScene.const'
+import { sceneId } from './textShared.const'
+import { OptionalOptionProps } from './types'
+import { checkAndClean } from './utils'
 
 export type TitleSecondaryScene = Partial<SceneSecondaryProps> &
-  SceneSecondaryProps["sceneId"] &
-  SceneSecondaryProps["bicycleStreetType"] &
-  SceneSecondaryProps["motorVehicleTrafficVolumen"] &
-  SceneSecondaryProps["carriagewayDirection"] &
-  SceneSecondaryProps["parkingCategory"];
+  SceneSecondaryProps['sceneId'] &
+  SceneSecondaryProps['bicycleStreetType'] &
+  SceneSecondaryProps['motorVehicleTrafficVolumen'] &
+  SceneSecondaryProps['carriagewayDirection'] &
+  SceneSecondaryProps['parkingCategory']
 
 export const titleSecondaryScene = (
   scene: TitleSecondaryScene,
@@ -23,34 +24,34 @@ export const titleSecondaryScene = (
     includeId: false,
   },
 ) => {
-  const optionalSceneId = includeId ? sceneId(scene) : "";
-  const debug = allowVerboseDebug;
+  const optionalSceneId = includeId ? sceneId(scene) : ''
+  const debug = allowVerboseDebug
 
   if (
-    ["no_cars"].includes(scene.motorVehicleTrafficVolumen) &&
-    ["no_parking"].includes(scene.parkingCategory)
+    ['no_cars'].includes(scene.motorVehicleTrafficVolumen) &&
+    ['no_parking'].includes(scene.parkingCategory)
   ) {
     return checkAndClean([
       textNoCarsAndBicycleStreetType[scene.bicycleStreetType],
       optionalSceneId,
-      debug && "#1",
-    ]);
+      debug && '#1',
+    ])
   }
 
-  if (["no_cars"].includes(scene.motorVehicleTrafficVolumen)) {
+  if (['no_cars'].includes(scene.motorVehicleTrafficVolumen)) {
     return checkAndClean([
       textBicycleStreetType[scene.bicycleStreetType],
       textParkingCategory[scene.parkingCategory],
       optionalSceneId,
-      debug && "#2",
-    ]);
+      debug && '#2',
+    ])
   }
 
   return checkAndClean([
     textBicycleStreetType[scene.bicycleStreetType],
-    "mit Mischverkehr",
+    'mit Mischverkehr',
     textCarriagewayDirection[scene.carriagewayDirection],
     optionalSceneId,
-    debug && "#fallback",
-  ]);
-};
+    debug && '#fallback',
+  ])
+}

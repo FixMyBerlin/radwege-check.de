@@ -1,14 +1,16 @@
-import { XMarkIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
-import React from "react";
-import { Link } from "~/components/Link";
-import { SceneImage } from "../SceneImage";
-import { useBookmarkActions, useBookmarksState } from "../store";
+import { XMarkIcon, ArrowRightIcon } from '@heroicons/react/24/solid'
+import React from 'react'
+
+import { Link } from '~/components/Link'
+
+import { SceneImage } from '../SceneImage'
+import { useBookmarkActions, useBookmarksState } from '../store'
 
 export function BookmarkCollector() {
-  const bookmarks = useBookmarksState();
-  const { removeBookmark } = useBookmarkActions();
+  const bookmarks = useBookmarksState()
+  const { removeBookmark } = useBookmarkActions()
 
-  if (!bookmarks.length) return null;
+  if (!bookmarks.length) return null
 
   return (
     <div className="absolute inset-x-1 bottom-5 z-50 flex items-center justify-center">
@@ -32,7 +34,7 @@ export function BookmarkCollector() {
         ))}
         <Link
           button
-          to={`/vergleichen?sceneIds=${bookmarks.join(",")}`}
+          to={`/vergleichen?sceneIds=${bookmarks.join(',')}`}
           state={{ showBack: true }}
           className="h-10 !bg-white"
         >
@@ -41,5 +43,5 @@ export function BookmarkCollector() {
         </Link>
       </section>
     </div>
-  );
+  )
 }

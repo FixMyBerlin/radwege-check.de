@@ -1,14 +1,15 @@
-import React from "react";
-import { ScenePrimaryProps, SceneSecondaryProps } from "~/components/ScenesPage/types";
-import { formatPercent } from "~/components/utils";
+import React from 'react'
+
+import { ScenePrimaryProps, SceneSecondaryProps } from '~/components/ScenesPage/types'
+import { formatPercent } from '~/components/utils'
 
 type Props = {
-  visible: boolean;
-  scene: ScenePrimaryProps | SceneSecondaryProps;
-};
+  visible: boolean
+  scene: ScenePrimaryProps | SceneSecondaryProps
+}
 
 export const ScoreExplanation = ({ visible, scene }: Props) => {
-  if (!visible) return null;
+  if (!visible) return null
 
   return (
     <p className="mb-2 font-semi text-xs leading-tight">
@@ -19,8 +20,8 @@ export const ScoreExplanation = ({ visible, scene }: Props) => {
         formatPercent(scene.voteCarScore, { precision: 0 }),
       ]
         .filter(Boolean)
-        .join(", ")}
+        .join(', ')}
       ) entspricht der Summe „eher sicher“ und „sicher“ der jeweiligen Perspektive.
     </p>
-  );
-};
+  )
+}

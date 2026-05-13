@@ -1,23 +1,25 @@
-import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
-import React, { Fragment } from "react";
-import { Link } from "~/components/Link";
-import { useExperimentTextKeyState } from "../../store";
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import clsx from 'clsx'
+import React, { Fragment } from 'react'
+
+import { Link } from '~/components/Link'
+
+import { useExperimentTextKeyState } from '../../store'
 
 export function ExperimentSwitcher() {
-  const experimentTextKey = useExperimentTextKeyState();
+  const experimentTextKey = useExperimentTextKeyState()
 
   const experimentValues = {
     primary: {
-      name: "Hauptstraßen",
-      path: "/hauptstrassen",
+      name: 'Hauptstraßen',
+      path: '/hauptstrassen',
     },
     secondary: {
-      name: "Nebenstraßen",
-      path: "/nebenstrassen",
+      name: 'Nebenstraßen',
+      path: '/nebenstrassen',
     },
-  };
+  }
 
   return (
     <Menu as="div" className="relative z-20 inline-block text-left">
@@ -40,7 +42,7 @@ export function ExperimentSwitcher() {
         <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {Object.entries(experimentValues).map(([key, { name, path }]) => {
-              const active = experimentTextKey === key;
+              const active = experimentTextKey === key
 
               return (
                 <Menu.Item key={key}>
@@ -48,20 +50,20 @@ export function ExperimentSwitcher() {
                     to={path}
                     classNameOverwrite={clsx(
                       {
-                        "bg-brand-light-yellow text-gray-500 cursor-default": active,
+                        'bg-brand-light-yellow text-gray-500 cursor-default': active,
                       },
-                      { "hover:bg-stone-100": !active },
-                      "block w-full px-4 py-2 text-left text-sm",
+                      { 'hover:bg-stone-100': !active },
+                      'block w-full px-4 py-2 text-left text-sm',
                     )}
                   >
                     {name}
                   </Link>
                 </Menu.Item>
-              );
+              )
             })}
           </div>
         </Menu.Items>
       </Transition>
     </Menu>
-  );
+  )
 }

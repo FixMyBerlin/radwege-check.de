@@ -1,2 +1,2 @@
-export * from "./trackEvent";
-export * from "./trackContent";
+export * from './trackEvent'
+export * from './trackContent'

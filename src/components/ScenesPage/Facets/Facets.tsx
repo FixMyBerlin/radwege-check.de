@@ -1,26 +1,26 @@
-import clsx from "clsx";
-import React from "react";
+import clsx from 'clsx'
+import React from 'react'
 
-import { useExperimentAggregationConfig } from "../store";
-import { ResultProps } from "../types";
-import { ExperimentSwitcher } from "./ExperimentSwitcher";
-import { FacetsButtons, HandleMultiChoice, HandleSingleChoice } from "./FacetsButtons";
-import { FacetsHeadline } from "./FacetsHeadline";
-import { FooterLinks } from "./FooterLinks";
-import { HelpButton } from "./HelpButton";
-import { Logo } from "./Logo";
-import { PresetDropdown, PresetDropdownProps } from "./PresetDropdown";
-import { ResetFilterButton } from "./ResetFilterButton";
+import { useExperimentAggregationConfig } from '../store'
+import { ResultProps } from '../types'
+import { ExperimentSwitcher } from './ExperimentSwitcher'
+import { FacetsButtons, HandleMultiChoice, HandleSingleChoice } from './FacetsButtons'
+import { FacetsHeadline } from './FacetsHeadline'
+import { FooterLinks } from './FooterLinks'
+import { HelpButton } from './HelpButton'
+import { Logo } from './Logo'
+import { PresetDropdown, PresetDropdownProps } from './PresetDropdown'
+import { ResetFilterButton } from './ResetFilterButton'
 
 export type FacetsProps = {
-  results: ResultProps;
-  handleResetFilter: () => void;
-  handleSingleChoice: HandleSingleChoice;
-  handleMultiChoice: HandleMultiChoice;
-  className?: string;
-  showLogo: boolean;
-  resetFilterEnabled: boolean;
-} & PresetDropdownProps;
+  results: ResultProps
+  handleResetFilter: () => void
+  handleSingleChoice: HandleSingleChoice
+  handleMultiChoice: HandleMultiChoice
+  className?: string
+  showLogo: boolean
+  resetFilterEnabled: boolean
+} & PresetDropdownProps
 
 export const Facets = ({
   results,
@@ -32,25 +32,25 @@ export const Facets = ({
   showLogo,
   resetFilterEnabled,
 }: FacetsProps) => {
-  const aggregations = results?.data?.aggregations || {};
-  const aggregationConfig = useExperimentAggregationConfig();
+  const aggregations = results?.data?.aggregations || {}
+  const aggregationConfig = useExperimentAggregationConfig()
 
   const mainAggregations = Object.entries(aggregations).filter(
     ([key, _v]) => aggregationConfig[key]?.primaryGroup === true,
-  );
+  )
 
   const furtherAggregations = Object.entries(aggregations).filter(
     ([key, _v]) => !aggregationConfig[key]?.primaryGroup,
-  );
+  )
 
   return (
-    <nav className={clsx(className, "relative overflow-y-scroll overscroll-contain")}>
+    <nav className={clsx(className, 'relative overflow-y-scroll overscroll-contain')}>
       <div className="relative flex h-14 items-center justify-between bg-brand-light-yellow px-3 py-1 shadow-md">
         <Logo visible={showLogo} />
         <ExperimentSwitcher />
       </div>
 
-      <div className={clsx("z-0 mb-4 bg-gray-200 px-3 pb-1 pt-5 shadow-md")}>
+      <div className={clsx('z-0 mb-4 bg-gray-200 px-3 pb-1 pt-5 shadow-md')}>
         <h1 className="sr-only">Ergebnisse filtern</h1>
 
         <PresetDropdown handlePresetClick={handlePresetClick} />
@@ -61,10 +61,10 @@ export const Facets = ({
         </div>
 
         {mainAggregations.map(([aggregationKey, aggregation]) => {
-          const { buckets } = aggregation;
+          const { buckets } = aggregation
 
           return (
-            <section key={aggregationKey} className={clsx("mb-5")}>
+            <section key={aggregationKey} className={clsx('mb-5')}>
               <FacetsHeadline aggregationKey={aggregationKey} />
 
               <FacetsButtons
@@ -75,24 +75,24 @@ export const Facets = ({
                 handleMultiChoice={handleMultiChoice}
               />
             </section>
-          );
+          )
         })}
       </div>
       <div className="px-3">
         {furtherAggregations.map(([aggregationKey, aggregation]) => {
-          if (!aggregationConfig[aggregationKey]) return null;
+          if (!aggregationConfig[aggregationKey]) return null
 
-          const { buckets } = aggregation;
-          const { showAsIcons, groupEndIndicator } = aggregationConfig[aggregationKey];
+          const { buckets } = aggregation
+          const { showAsIcons, groupEndIndicator } = aggregationConfig[aggregationKey]
 
           return (
             <section
               key={aggregationKey}
               className={clsx(
-                { "mb-5": !groupEndIndicator },
-                { "-mt-3": showAsIcons },
+                { 'mb-5': !groupEndIndicator },
+                { '-mt-3': showAsIcons },
                 {
-                  "mb-4 border-b border-dashed border-gray-300 pb-5": groupEndIndicator,
+                  'mb-4 border-b border-dashed border-gray-300 pb-5': groupEndIndicator,
                 },
               )}
             >
@@ -106,10 +106,10 @@ export const Facets = ({
                 handleMultiChoice={handleMultiChoice}
               />
             </section>
-          );
+          )
         })}
       </div>
       <FooterLinks />
     </nav>
-  );
-};
+  )
+}

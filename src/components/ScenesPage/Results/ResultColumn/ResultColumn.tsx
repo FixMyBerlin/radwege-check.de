@@ -1,26 +1,28 @@
-import clsx from "clsx";
-import React, { useEffect, useState } from "react";
-import { Link } from "~/components/Link";
-import { fullUrl, trackContentImpression } from "~/components/utils";
-import type { AggregationConfig } from "../../constants";
-import { SceneImage } from "../../SceneImage";
-import { useBookmarkActions } from "../../store";
-import { ScenePrimaryProps, SceneSecondaryProps, SearchOptionProps } from "../../types";
-import { titleScene } from "../../utils/titleScenes";
-import { ResultCells } from "../ResultCells";
-import { ResultNumbers } from "../ResultNumbers";
-import { ShowTableProps } from "../Results";
-import PinIconMarkup from "./assets/pin-icon.svg?raw";
-import { SvgInline } from "~/components/Svg/SvgInline";
-import { useIntersection } from "./utils/useIntersection";
+import clsx from 'clsx'
+import React, { useEffect, useState } from 'react'
+
+import { Link } from '~/components/Link'
+import { SvgInline } from '~/components/Svg/SvgInline'
+import { fullUrl, trackContentImpression } from '~/components/utils'
+
+import type { AggregationConfig } from '../../constants'
+import { SceneImage } from '../../SceneImage'
+import { useBookmarkActions } from '../../store'
+import { ScenePrimaryProps, SceneSecondaryProps, SearchOptionProps } from '../../types'
+import { titleScene } from '../../utils/titleScenes'
+import { ResultCells } from '../ResultCells'
+import { ResultNumbers } from '../ResultNumbers'
+import { ShowTableProps } from '../Results'
+import PinIconMarkup from './assets/pin-icon.svg?raw'
+import { useIntersection } from './utils/useIntersection'
 
 type Props = {
-  scene: ScenePrimaryProps | SceneSecondaryProps;
-  index?: number;
-  searchFilters?: SearchOptionProps["filters"];
-  aggregationConfig?: AggregationConfig;
-  allowBookmark: boolean;
-} & ShowTableProps;
+  scene: ScenePrimaryProps | SceneSecondaryProps
+  index?: number
+  searchFilters?: SearchOptionProps['filters']
+  aggregationConfig?: AggregationConfig
+  allowBookmark: boolean
+} & ShowTableProps
 
 export const ResultColumn = ({
   scene,
@@ -31,32 +33,32 @@ export const ResultColumn = ({
   aggregationConfig,
   allowBookmark,
 }: Props) => {
-  const [sceneImage, setSceneImage] = useState(scene.sceneId);
-  const handleImageChange = (sceneId: string) => setSceneImage(sceneId);
+  const [sceneImage, setSceneImage] = useState(scene.sceneId)
+  const handleImageChange = (sceneId: string) => setSceneImage(sceneId)
 
-  const { toggleBookmark, isInBookmarks } = useBookmarkActions();
+  const { toggleBookmark, isInBookmarks } = useBookmarkActions()
 
-  const safeZoneForIosSafariNavigationBar = "mb-[40rem] lg:mb-0";
+  const safeZoneForIosSafariNavigationBar = 'mb-[40rem] lg:mb-0'
 
-  const ref = React.useRef<HTMLElement>(null);
+  const ref = React.useRef<HTMLElement>(null)
 
-  const isInViewport = useIntersection(ref, "-200px");
+  const isInViewport = useIntersection(ref, '-200px')
   useEffect(() => {
-    if (!isInViewport) return;
+    if (!isInViewport) return
 
     trackContentImpression({
       id: scene.sceneId,
-      representation: "result column",
+      representation: 'result column',
       url: fullUrl(scene.path),
-    });
-  }, [isInViewport]);
+    })
+  }, [isInViewport])
 
   return (
     <article
       ref={ref}
       className={clsx(
         safeZoneForIosSafariNavigationBar,
-        "_snap-start box-content h-full w-56 flex-none px-1.5 pb-4 first:pl-4 lg:w-48 lg:px-2",
+        '_snap-start box-content h-full w-56 flex-none px-1.5 pb-4 first:pl-4 lg:w-48 lg:px-2',
       )}
     >
       <h2 className="sr-only">
@@ -72,8 +74,8 @@ export const ResultColumn = ({
           >
             <div
               className={clsx(
-                "flex h-8 w-8 items-center justify-center rounded-full border-2 border-brand-yellow p-[0.4rem] group-hover:bg-yellow-400",
-                isInBookmarks(scene.sceneId) ? "bg-brand-yellow" : "bg-white",
+                'flex h-8 w-8 items-center justify-center rounded-full border-2 border-brand-yellow p-[0.4rem] group-hover:bg-yellow-400',
+                isInBookmarks(scene.sceneId) ? 'bg-brand-yellow' : 'bg-white',
               )}
             >
               <SvgInline src={PinIconMarkup} className="h-4 w-4" aria-hidden />
@@ -97,7 +99,7 @@ export const ResultColumn = ({
         handleHover={handleImageChange}
         showTable={showTable}
         setShowTable={setShowTable}
-        wrapperClass={clsx("border-b border-dotted py-2 lg:py-3.5", showTable ? "h-96" : "h-40")}
+        wrapperClass={clsx('border-b border-dotted py-2 lg:py-3.5', showTable ? 'h-96' : 'h-40')}
         chartClass="border-b border-dotted"
       />
 
@@ -113,5 +115,5 @@ export const ResultColumn = ({
         </Link>
       </section>
     </article>
-  );
-};
+  )
+}

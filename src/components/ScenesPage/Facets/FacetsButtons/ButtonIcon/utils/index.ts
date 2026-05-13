@@ -1,1 +1,1 @@
-export * from "./buttonIconClassNames";
+export * from './buttonIconClassNames'

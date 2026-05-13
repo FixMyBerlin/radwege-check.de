@@ -1,66 +1,65 @@
-import React, { useLayoutEffect, useState } from "react";
-import { parseAsArrayOf, parseAsString, useQueryState } from "nuqs";
-import { ArrowLeftIcon } from "@heroicons/react/24/solid";
-import clsx from "clsx";
-import { DocumentMetaSync } from "~/components/seo/DocumentMetaSync";
-import { NuqsClientRoot } from "~/components/NuqsClientRoot";
-import { buttonStyles, Link, PrintButton } from "~/components/Link";
+import { ArrowLeftIcon } from '@heroicons/react/24/solid'
+import clsx from 'clsx'
+import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
+import React, { useLayoutEffect, useState } from 'react'
+
+import { buttonStyles, Link, PrintButton } from '~/components/Link'
+import { NuqsClientRoot } from '~/components/NuqsClientRoot'
 import {
   aggregationConfigPrimary,
   aggregationConfigSecondary,
-} from "~/components/ScenesPage/constants";
-import { ResultColumn } from "~/components/ScenesPage/Results/ResultColumn";
-import { cleanupCsvData } from "~/components/ScenesPage/utils";
-import { fullUrl, trackContentImpression } from "~/components/utils";
-import { canonicalOrigin } from "~/components/utils/domain/canonicalOrigin.const";
-import { VergleichenPagePrintResult } from "~/components/VergleichenPagePrintResult";
-import { consumeShowBackHandoff } from "~/lib/navigation-handoff";
+} from '~/components/ScenesPage/constants'
+import { ResultColumn } from '~/components/ScenesPage/Results/ResultColumn'
+import { cleanupCsvData } from '~/components/ScenesPage/utils'
+import { DocumentMetaSync } from '~/components/seo/DocumentMetaSync'
+import { fullUrl, trackContentImpression } from '~/components/utils'
+import { canonicalOrigin } from '~/components/utils/domain/canonicalOrigin.const'
+import { VergleichenPagePrintResult } from '~/components/VergleichenPagePrintResult'
+import { consumeShowBackHandoff } from '~/lib/navigation-handoff'
 
 type Props = {
-  rawScenesPrimary: { node: Record<string, unknown> }[];
-  rawScenesSecondary: { node: Record<string, unknown> }[];
-};
+  rawScenesPrimary: { node: Record<string, unknown> }[]
+  rawScenesSecondary: { node: Record<string, unknown> }[]
+}
 
 const VergleichenInner = ({ rawScenesPrimary, rawScenesSecondary }: Props) => {
-  const flattenedPrimary = rawScenesPrimary.map((list) => list.node);
+  const flattenedPrimary = rawScenesPrimary.map((list) => list.node)
   const scenesPrimary = cleanupCsvData(flattenedPrimary).map((s) => ({
     ...s,
     path: `/hauptstrassen/${s.sceneId}`,
-  }));
-  const flattenedSecondary = rawScenesSecondary.map((list) => list.node);
+  }))
+  const flattenedSecondary = rawScenesSecondary.map((list) => list.node)
   const scenesSecondary = cleanupCsvData(flattenedSecondary).map((s) => ({
     ...s,
     path: `/nebenstrassen/${s.sceneId}`,
-  }));
+  }))
 
-  const [bookmarksArray] = useQueryState("sceneIds", parseAsArrayOf(parseAsString));
+  const [bookmarksArray] = useQueryState('sceneIds', parseAsArrayOf(parseAsString))
 
-  const bookmarkScenesPrimary = scenesPrimary.filter((s) => bookmarksArray?.includes(s.sceneId));
-  const bookmarkScenesSecondary = scenesSecondary.filter((s) =>
-    bookmarksArray?.includes(s.sceneId),
-  );
+  const bookmarkScenesPrimary = scenesPrimary.filter((s) => bookmarksArray?.includes(s.sceneId))
+  const bookmarkScenesSecondary = scenesSecondary.filter((s) => bookmarksArray?.includes(s.sceneId))
 
-  const [showBackButton] = useState(() => consumeShowBackHandoff());
+  const [showBackButton] = useState(() => consumeShowBackHandoff())
 
   useLayoutEffect(() => {
-    const bothScenes = [...bookmarkScenesPrimary, ...bookmarkScenesSecondary];
+    const bothScenes = [...bookmarkScenesPrimary, ...bookmarkScenesSecondary]
     bothScenes.forEach((scene) =>
       trackContentImpression({
         id: scene.sceneId,
-        representation: "result column",
+        representation: 'result column',
         url: fullUrl(scene.path),
       }),
-    );
-  }, [bookmarkScenesPrimary, bookmarkScenesSecondary]);
+    )
+  }, [bookmarkScenesPrimary, bookmarkScenesSecondary])
 
-  const ids = bookmarksArray ?? [];
+  const ids = bookmarksArray ?? []
 
   const description = [
     bookmarkScenesPrimary.length && `${bookmarkScenesPrimary.length}✕ Hauptstaße`,
     bookmarkScenesSecondary.length && `${bookmarkScenesSecondary.length}✕ Nebenstraße`,
   ]
     .filter(Boolean)
-    .join(" und ");
+    .join(' und ')
 
   return (
     <>
@@ -77,13 +76,13 @@ const VergleichenInner = ({ rawScenesPrimary, rawScenesSecondary }: Props) => {
             onClick={() => window.history.back()}
             className={clsx(
               buttonStyles,
-              "mr-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full !p-0 align-text-bottom",
+              'mr-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full !p-0 align-text-bottom',
             )}
             title="Zurück zur Suchergebnisseite"
           >
             <ArrowLeftIcon className="h-5 w-5" />
           </button>
-        )}{" "}
+        )}{' '}
         Ausgewählte Radverkehrsanlagen vergleichen
       </h1>
 
@@ -160,11 +159,11 @@ const VergleichenInner = ({ rawScenesPrimary, rawScenesSecondary }: Props) => {
         <PrintButton />
       </div>
     </>
-  );
-};
+  )
+}
 
 export const VergleichenRoute = (props: Props) => (
   <NuqsClientRoot>
     <VergleichenInner {...props} />
   </NuqsClientRoot>
-);
+)

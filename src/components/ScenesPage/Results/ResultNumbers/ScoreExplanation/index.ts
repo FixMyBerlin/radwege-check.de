@@ -1,1 +1,1 @@
-export * from "./ScoreExplanation";
+export * from './ScoreExplanation'

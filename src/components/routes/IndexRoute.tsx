@@ -1,5 +1,6 @@
-import React from "react";
-import { Hero, Logos, Presets, UsageExamples } from "~/components/Homepage";
+import React from 'react'
+
+import { Hero, Logos, Presets, UsageExamples } from '~/components/Homepage'
 
 export const IndexRoute = () => {
   return (
@@ -9,5 +10,5 @@ export const IndexRoute = () => {
       <UsageExamples />
       <Logos />
     </>
-  );
-};
+  )
+}

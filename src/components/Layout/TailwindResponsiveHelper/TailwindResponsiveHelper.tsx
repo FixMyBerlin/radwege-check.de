@@ -1,8 +1,9 @@
-import React from "react";
-import { isDev } from "~/components/utils";
+import React from 'react'
+
+import { isDev } from '~/components/utils'
 
 export function TailwindResponsiveHelper() {
-  if (!isDev) return null;
+  if (!isDev) return null
 
   return (
     <a
@@ -28,5 +29,5 @@ export function TailwindResponsiveHelper() {
         2xl
       </span>
     </a>
-  );
+  )
 }

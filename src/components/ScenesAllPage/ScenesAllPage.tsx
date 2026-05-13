@@ -1,36 +1,37 @@
-import React from "react";
-import { FeelSafe } from "../charts";
-import { Link } from "../Link";
-import { SceneImage } from "../ScenesPage";
-import { cleanupCsvData } from "../ScenesPage/utils";
-import { titleScene } from "../ScenesPage/utils/titleScenes";
+import React from 'react'
 
-type SceneKind = "primary" | "secondary";
+import { FeelSafe } from '../charts'
+import { Link } from '../Link'
+import { SceneImage } from '../ScenesPage'
+import { cleanupCsvData } from '../ScenesPage/utils'
+import { titleScene } from '../ScenesPage/utils/titleScenes'
+
+type SceneKind = 'primary' | 'secondary'
 
 type Props = {
-  rawScenes: { node: Record<string, unknown> }[] | Record<string, unknown>[];
-  sceneKind: SceneKind;
-};
+  rawScenes: { node: Record<string, unknown> }[] | Record<string, unknown>[]
+  sceneKind: SceneKind
+}
 
 export const ScenesAllPage = ({ rawScenes, sceneKind }: Props) => {
   const flattened = rawScenes.map((list: any) =>
-    list && typeof list === "object" && "node" in list ? list.node : list,
-  );
-  const clean = cleanupCsvData(flattened);
-  const base = sceneKind === "primary" ? "/hauptstrassen" : "/nebenstrassen";
+    list && typeof list === 'object' && 'node' in list ? list.node : list,
+  )
+  const clean = cleanupCsvData(flattened)
+  const base = sceneKind === 'primary' ? '/hauptstrassen' : '/nebenstrassen'
   const scenes = clean
     .sort((a, b) => a.voteScore - b.voteScore)
     .map((s) => ({
       ...s,
       path: `${base}/${s.sceneId}`,
-    }));
+    }))
 
-  const totalResults = Number(scenes.length).toLocaleString();
+  const totalResults = Number(scenes.length).toLocaleString()
 
-  const categoryTranslation = sceneKind === "primary" ? "Hauptstrassen" : "Nebenstrassen";
-  const resultsPath = sceneKind === "primary" ? "/hauptstrassen" : "/nebenstrassen";
-  const otherCategoryTranslation = sceneKind === "primary" ? "Nebenstrassen" : "Hauptstrassen";
-  const otherResultsPath = sceneKind === "primary" ? "/nebenstrassen/alle" : "/hauptstrassen/alle";
+  const categoryTranslation = sceneKind === 'primary' ? 'Hauptstrassen' : 'Nebenstrassen'
+  const resultsPath = sceneKind === 'primary' ? '/hauptstrassen' : '/nebenstrassen'
+  const otherCategoryTranslation = sceneKind === 'primary' ? 'Nebenstrassen' : 'Hauptstrassen'
+  const otherResultsPath = sceneKind === 'primary' ? '/nebenstrassen/alle' : '/hauptstrassen/alle'
 
   return (
     <>
@@ -44,7 +45,7 @@ export const ScenesAllPage = ({ rawScenes, sceneKind }: Props) => {
       <p className="text-center">
         <Link to={resultsPath} button className="mr-2">
           Ergebnisse filtern
-        </Link>{" "}
+        </Link>{' '}
         <Link to={otherResultsPath}>Zu den {otherCategoryTranslation}</Link>
       </p>
 
@@ -70,5 +71,5 @@ export const ScenesAllPage = ({ rawScenes, sceneKind }: Props) => {
         ))}
       </div>
     </>
-  );
-};
+  )
+}

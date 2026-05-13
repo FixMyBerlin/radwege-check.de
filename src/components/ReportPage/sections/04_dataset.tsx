@@ -1,14 +1,16 @@
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-import { Link } from "~/components/Link";
-import { ButtonWrapper, Headline } from "../components";
+import React from 'react'
+import { FormattedMessage, useIntl } from 'react-intl'
+
+import { Link } from '~/components/Link'
+
+import { ButtonWrapper, Headline } from '../components'
 
 export function SectionDataset() {
-  const intl = useIntl();
+  const intl = useIntl()
 
   return (
     <section>
-      <Headline id={intl.formatMessage({ id: "toc.Dataset.hash" })} as="h2">
+      <Headline id={intl.formatMessage({ id: 'toc.Dataset.hash' })} as="h2">
         <FormattedMessage id="04_dataset.heading" />
       </Headline>
       <p>
@@ -49,5 +51,5 @@ export function SectionDataset() {
         </div>
       </ButtonWrapper>
     </section>
-  );
+  )
 }

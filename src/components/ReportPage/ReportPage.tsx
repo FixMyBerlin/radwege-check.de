@@ -1,6 +1,7 @@
-import React from "react";
-import { IntlProvider } from "react-intl";
-import { LanguageSwitcher } from "./components";
+import React from 'react'
+import { IntlProvider } from 'react-intl'
+
+import { LanguageSwitcher } from './components'
 import {
   SectionAbout,
   SectionDataset,
@@ -10,13 +11,13 @@ import {
   SectionSummary,
   SectionTableOfContents,
   SectionTeam,
-} from "./sections";
-import type { ReportTranslations } from "./translations";
+} from './sections'
+import type { ReportTranslations } from './translations'
 
 type Props = {
-  lang: ReportTranslations;
-  translationKeys: Record<string, string>;
-};
+  lang: ReportTranslations
+  translationKeys: Record<string, string>
+}
 
 export const ReportPage = ({ lang, translationKeys }: Props) => {
   return (
@@ -31,5 +32,5 @@ export const ReportPage = ({ lang, translationKeys }: Props) => {
       <SectionSummary />
       <SectionTeam />
     </IntlProvider>
-  );
-};
+  )
+}

@@ -1,74 +1,74 @@
-import { create } from "zustand";
-import { useStore } from "zustand";
+import { create } from 'zustand'
+import { useStore } from 'zustand'
 
-import { trackContentInteraction } from "~/components/utils";
+import { trackContentInteraction } from '~/components/utils'
 
-type SceneIds = string;
+type SceneIds = string
 
 type BookmarksState = {
-  bookmarks: SceneIds[];
-};
+  bookmarks: SceneIds[]
+}
 
 type BookmarkActions = {
-  setBookmarks: (bookmark: SceneIds[]) => void;
-  addBookmark: (bookmark: SceneIds) => void;
-  removeBookmark: (sceneId: string) => void;
-  isInBookmarks: (sceneId: string) => boolean;
-  toggleBookmark: (sceneId: string) => void;
-};
+  setBookmarks: (bookmark: SceneIds[]) => void
+  addBookmark: (bookmark: SceneIds) => void
+  removeBookmark: (sceneId: string) => void
+  isInBookmarks: (sceneId: string) => boolean
+  toggleBookmark: (sceneId: string) => void
+}
 
-type StoreBookmarksData = BookmarksState & { actions: BookmarkActions };
+type StoreBookmarksData = BookmarksState & { actions: BookmarkActions }
 
 const bookmarksStore = create<StoreBookmarksData>((set, get) => ({
   bookmarks: [],
   actions: {
     setBookmarks: (externalBookmarks) => {
-      set({ bookmarks: externalBookmarks.sort((a, b) => a.localeCompare(b)) });
+      set({ bookmarks: externalBookmarks.sort((a, b) => a.localeCompare(b)) })
       externalBookmarks.forEach((sceneId) =>
         trackContentInteraction({
-          action: "refill bookmarks",
+          action: 'refill bookmarks',
           id: sceneId,
-          representation: "result page",
+          representation: 'result page',
           url: `#${sceneId}`,
         }),
-      );
+      )
     },
     addBookmark: (sceneId) => {
-      const { bookmarks } = get();
-      const newBookmarks = [...bookmarks, sceneId];
-      set({ bookmarks: newBookmarks.sort((a, b) => a.localeCompare(b)) });
+      const { bookmarks } = get()
+      const newBookmarks = [...bookmarks, sceneId]
+      set({ bookmarks: newBookmarks.sort((a, b) => a.localeCompare(b)) })
       trackContentInteraction({
-        action: "add bookmark",
+        action: 'add bookmark',
         id: sceneId,
-        representation: "result page",
+        representation: 'result page',
         url: `#${sceneId}`,
-      });
+      })
     },
     removeBookmark: (sceneId) => {
-      const { bookmarks } = get();
-      set({ bookmarks: bookmarks.filter((b) => b !== sceneId) });
+      const { bookmarks } = get()
+      set({ bookmarks: bookmarks.filter((b) => b !== sceneId) })
       trackContentInteraction({
-        action: "remove bookmark",
+        action: 'remove bookmark',
         id: sceneId,
-        representation: "result page",
+        representation: 'result page',
         url: `#${sceneId}`,
-      });
+      })
     },
     isInBookmarks: (sceneId) => {
-      const { bookmarks } = get();
-      return bookmarks.includes(sceneId);
+      const { bookmarks } = get()
+      return bookmarks.includes(sceneId)
     },
     toggleBookmark: (sceneId) => {
-      const { isInBookmarks, removeBookmark, addBookmark } = get().actions;
+      const { isInBookmarks, removeBookmark, addBookmark } = get().actions
       if (isInBookmarks(sceneId)) {
-        removeBookmark(sceneId);
+        removeBookmark(sceneId)
       } else {
-        addBookmark(sceneId);
+        addBookmark(sceneId)
       }
     },
   },
-}));
+}))
 
-export const useBookmarksState = () => useStore(bookmarksStore, (s) => s.bookmarks);
+export const useBookmarksState = () => useStore(bookmarksStore, (s) => s.bookmarks)
 
-export const useBookmarkActions = () => useStore(bookmarksStore, (s) => s.actions);
+export const useBookmarkActions = () => useStore(bookmarksStore, (s) => s.actions)

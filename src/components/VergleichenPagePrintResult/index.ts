@@ -1,1 +1,1 @@
-export * from "./VergleichenPagePrintResult";
+export * from './VergleichenPagePrintResult'

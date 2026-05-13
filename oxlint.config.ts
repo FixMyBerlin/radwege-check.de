@@ -1,4 +1,4 @@
-import { defineConfig } from "oxlint";
+import { defineConfig } from 'oxlint'
 
 /**
  * React Compiler enforcement matches `babel-plugin-react-compiler` in `astro.config.mjs`,
@@ -8,9 +8,9 @@ import { defineConfig } from "oxlint";
  * @see https://www.npmjs.com/package/eslint-plugin-react-compiler
  */
 export default defineConfig({
-  ignorePatterns: [".astro", "dist", "node_modules", ".cache"],
-  jsPlugins: ["eslint-plugin-react-compiler"],
+  ignorePatterns: ['.astro', 'dist', 'node_modules', '.cache'],
+  jsPlugins: ['eslint-plugin-react-compiler'],
   rules: {
-    "react-compiler/react-compiler": "error",
+    'react-compiler/react-compiler': 'error',
   },
-});
+})

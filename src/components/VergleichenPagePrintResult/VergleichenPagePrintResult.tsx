@@ -1,28 +1,30 @@
-import React from "react";
-import bikeIconMarkup from "../ScenesPage/Results/ResultNumbers/assets/bike-icon.svg?raw";
-import carIconMarkup from "../ScenesPage/Results/ResultNumbers/assets/car-icon.svg?raw";
-import pedestrianIconMarkup from "../ScenesPage/Results/ResultNumbers/assets/pedestrian-icon.svg?raw";
-import { SvgInline } from "~/components/Svg/SvgInline";
-import { SceneImage } from "../ScenesPage";
-import { AggregationConfig } from "../ScenesPage/constants";
-import { ResultCells } from "../ScenesPage/Results/ResultCells";
-import { BarChartAndHeadline } from "../ScenesPage/Results/ResultNumbers/BarChartAndHeadline";
-import { Table } from "../ScenesPage/Results/ResultNumbers/Table";
-import { ExperimentTextKey } from "../ScenesPage/store";
-import { ScenePrimaryProps, SceneSecondaryProps } from "../ScenesPage/types";
+import React from 'react'
+
+import { SvgInline } from '~/components/Svg/SvgInline'
+
+import { SceneImage } from '../ScenesPage'
+import { AggregationConfig } from '../ScenesPage/constants'
+import { ResultCells } from '../ScenesPage/Results/ResultCells'
+import bikeIconMarkup from '../ScenesPage/Results/ResultNumbers/assets/bike-icon.svg?raw'
+import carIconMarkup from '../ScenesPage/Results/ResultNumbers/assets/car-icon.svg?raw'
+import pedestrianIconMarkup from '../ScenesPage/Results/ResultNumbers/assets/pedestrian-icon.svg?raw'
+import { BarChartAndHeadline } from '../ScenesPage/Results/ResultNumbers/BarChartAndHeadline'
+import { Table } from '../ScenesPage/Results/ResultNumbers/Table'
+import { ExperimentTextKey } from '../ScenesPage/store'
+import { ScenePrimaryProps, SceneSecondaryProps } from '../ScenesPage/types'
 
 type Props = {
-  scene: ScenePrimaryProps | SceneSecondaryProps;
-  aggregationConfig: AggregationConfig;
-  experimentTextKey: ExperimentTextKey;
-};
+  scene: ScenePrimaryProps | SceneSecondaryProps
+  aggregationConfig: AggregationConfig
+  experimentTextKey: ExperimentTextKey
+}
 
 export const VergleichenPagePrintResult = ({
   scene,
   aggregationConfig,
   experimentTextKey,
 }: Props) => {
-  const experimentTitle = experimentTextKey === "primary" ? "Hauptstraße" : "Nebenstraße";
+  const experimentTitle = experimentTextKey === 'primary' ? 'Hauptstraße' : 'Nebenstraße'
 
   return (
     <section className="mb-16 break-inside-avoid-page">
@@ -85,5 +87,5 @@ export const VergleichenPagePrintResult = ({
         <ResultCells scene={scene} aggregationConfig={aggregationConfig} />
       </div>
     </section>
-  );
-};
+  )
+}

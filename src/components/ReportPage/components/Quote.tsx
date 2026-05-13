@@ -1,18 +1,18 @@
-import clsx from "clsx";
-import React from "react";
+import clsx from 'clsx'
+import React from 'react'
 
 type Props = {
-  sourceText?: string | React.ReactNode;
-  children: React.ReactNode;
-};
+  sourceText?: string | React.ReactNode
+  children: React.ReactNode
+}
 
 export const Quote = ({ sourceText, children }: Props) => {
   return (
     <section className="relative mx-auto mb-20 mt-6 flex max-w-lg flex-col">
       <div
         className={clsx(
-          "rounded bg-white px-8 py-6 text-xl font-semibold leading-normal shadow-2xl sm:text-2xl",
-          sourceText && "pb-10",
+          'rounded bg-white px-8 py-6 text-xl font-semibold leading-normal shadow-2xl sm:text-2xl',
+          sourceText && 'pb-10',
         )}
       >
         <blockquote className="m-0 border-0 p-0">{children}</blockquote>
@@ -25,5 +25,5 @@ export const Quote = ({ sourceText, children }: Props) => {
         )}
       </div>
     </section>
-  );
-};
+  )
+}

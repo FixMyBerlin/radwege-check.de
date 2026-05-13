@@ -1,2 +1,2 @@
-export * from "./ButtonSingleChoice";
-export * from "./ButtonSingleChoiceNoChoice";
+export * from './ButtonSingleChoice'
+export * from './ButtonSingleChoiceNoChoice'

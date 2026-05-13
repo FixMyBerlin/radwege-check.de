@@ -1,14 +1,16 @@
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-import { Link } from "~/components/Link";
-import { Headline } from "../components";
+import React from 'react'
+import { FormattedMessage, useIntl } from 'react-intl'
+
+import { Link } from '~/components/Link'
+
+import { Headline } from '../components'
 
 export function SectionSummary() {
-  const intl = useIntl();
+  const intl = useIntl()
 
   return (
     <section>
-      <Headline id={intl.formatMessage({ id: "toc.Summary.hash" })} as="h2">
+      <Headline id={intl.formatMessage({ id: 'toc.Summary.hash' })} as="h2">
         <FormattedMessage id="06_summary.p01.heading" />
       </Headline>
       <p>
@@ -68,5 +70,5 @@ export function SectionSummary() {
         />
       </p>
     </section>
-  );
+  )
 }

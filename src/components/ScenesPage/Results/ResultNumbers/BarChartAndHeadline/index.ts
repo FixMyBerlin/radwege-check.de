@@ -1,1 +1,1 @@
-export * from "./BarChartAndHeadline";
+export * from './BarChartAndHeadline'

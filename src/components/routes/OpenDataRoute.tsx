@@ -1,32 +1,33 @@
-import React from "react";
-import { Link } from "~/components/Link";
+import React from 'react'
+
+import { Link } from '~/components/Link'
 
 export const OpenDataRoute = () => {
   const odblLicencePart = (
     <>
       <br />
-      Lizenz:{" "}
+      Lizenz:{' '}
       <Link to="https://www.opendatacommons.org/licenses/odbl/summary/index.html" external>
         ODbL
       </Link>
     </>
-  );
+  )
   const attributionPart = (
     <>
       <br />
-      Attribution:{" "}
+      Attribution:{' '}
       <code>
-        ©{" "}
+        ©{' '}
         <a className="underline" href="https://www.fixmycity.de/">
           FixMyCity
         </a>
-        ,{" "}
+        ,{' '}
         <a className="underline" href="https://radwege-check.de/">
           radwege-check.de
         </a>
       </code>
     </>
-  );
+  )
 
   return (
     <>
@@ -52,14 +53,14 @@ export const OpenDataRoute = () => {
       </ul>
       <p>
         Auf der Seite kann zwischen den englischen und deutschen Begriffen für Spalten und Werte
-        gewechselt werden. Die ganze Seite kann per{" "}
+        gewechselt werden. Die ganze Seite kann per{' '}
         <kbd className="rounded border border-gray-200 bg-gray-100 p-1 text-xs font-semibold text-gray-800">
           STRG+A
-        </kbd>{" "}
-        und{" "}
+        </kbd>{' '}
+        und{' '}
         <kbd className="rounded border border-gray-200 bg-gray-100 p-1 text-xs font-semibold text-gray-800">
           STRG+C
-        </kbd>{" "}
+        </kbd>{' '}
         kopiert und beispielweise in ein Google Spreadsheet eingefügt werden. Im Anschluss muss das
         Spreadsheet etwas bereinigt werden.
         {odblLicencePart}
@@ -68,10 +69,10 @@ export const OpenDataRoute = () => {
 
       <h2>OpenData: Die Rohdaten der Umfrage</h2>
       <p>
-        Die{" "}
+        Die{' '}
         <Link to="/auswertung/#datensatz-der-ergebnisse">
           Rohdaten aus der Umfrage Straßencheck
-        </Link>{" "}
+        </Link>{' '}
         stehen zum Download bereit.
         {odblLicencePart}
         {attributionPart}
@@ -82,7 +83,7 @@ export const OpenDataRoute = () => {
         Wenn nicht anders angegeben stehen die auf dieser Website verwendeten Fotos, Grafiken und
         Texte unter Creative Commons-Lizenz.
         <br />
-        Lizenz:{" "}
+        Lizenz:{' '}
         <Link external to="https://creativecommons.org/licenses/by-nc/4.0">
           CC BY-NC 4.0
         </Link>
@@ -91,16 +92,16 @@ export const OpenDataRoute = () => {
 
       <h2>OpenSource: Diese Website</h2>
       <p>
-        Der Qellcode dieser Website ist OpenSource unter{" "}
+        Der Qellcode dieser Website ist OpenSource unter{' '}
         <Link external to="https://github.com/FixMyBerlin/fixmy.safetycheck">
           github.com/FixMyBerlin/fixmy.safetycheck
         </Link>
         <br />
-        Lizenz:{" "}
+        Lizenz:{' '}
         <Link external to="https://github.com/FixMyBerlin/fixmy.safetycheck/blob/main/LICENSE.md">
           AGPL-3.0
         </Link>
       </p>
     </>
-  );
-};
+  )
+}

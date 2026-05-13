@@ -1,16 +1,18 @@
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-import { Link } from "~/components/Link";
-import { Headline, LogoWrapper } from "../components";
-import bmdvLogo from "./images/logo/BMDV_Fz_2021_Office_Farbe_de.png?url";
-import senatLogo from "./images/logo/senatskanzlei-berlin.png?url";
+import React from 'react'
+import { FormattedMessage, useIntl } from 'react-intl'
+
+import { Link } from '~/components/Link'
+
+import { Headline, LogoWrapper } from '../components'
+import bmdvLogo from './images/logo/BMDV_Fz_2021_Office_Farbe_de.png?url'
+import senatLogo from './images/logo/senatskanzlei-berlin.png?url'
 
 export function SectionTeam() {
-  const intl = useIntl();
+  const intl = useIntl()
 
   return (
     <section>
-      <Headline id={intl.formatMessage({ id: "toc.Team.hash" })} as="h2">
+      <Headline id={intl.formatMessage({ id: 'toc.Team.hash' })} as="h2">
         <FormattedMessage id="07_team.p01.heading" />
       </Headline>
       <p>
@@ -59,5 +61,5 @@ export function SectionTeam() {
         </Link>
       </LogoWrapper>
     </section>
-  );
+  )
 }

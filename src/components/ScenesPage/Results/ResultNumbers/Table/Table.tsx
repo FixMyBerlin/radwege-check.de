@@ -1,21 +1,23 @@
-import clsx from "clsx";
-import React from "react";
-import bikeIconMarkup from "../assets/bike-icon.svg?raw";
-import carIconMarkup from "../assets/car-icon.svg?raw";
-import pedestrianIconMarkup from "../assets/pedestrian-icon.svg?raw";
-import { SvgInline } from "~/components/Svg/SvgInline";
-import { ScenePrimaryProps, SceneSecondaryProps } from "../../../types";
-import { barColor, barTitle } from "../utils";
-import { data, dataSecondary } from "./data";
+import clsx from 'clsx'
+import React from 'react'
+
+import { SvgInline } from '~/components/Svg/SvgInline'
+
+import { ScenePrimaryProps, SceneSecondaryProps } from '../../../types'
+import bikeIconMarkup from '../assets/bike-icon.svg?raw'
+import carIconMarkup from '../assets/car-icon.svg?raw'
+import pedestrianIconMarkup from '../assets/pedestrian-icon.svg?raw'
+import { barColor, barTitle } from '../utils'
+import { data, dataSecondary } from './data'
 
 type Props = {
-  scene: ScenePrimaryProps | SceneSecondaryProps;
-  visible: boolean;
-  precision?: 0 | 1 | 2;
-  showPedestrianColumn?: boolean;
-  showCarColumn?: boolean;
-  hideSecondaryNumber?: boolean;
-};
+  scene: ScenePrimaryProps | SceneSecondaryProps
+  visible: boolean
+  precision?: 0 | 1 | 2
+  showPedestrianColumn?: boolean
+  showCarColumn?: boolean
+  hideSecondaryNumber?: boolean
+}
 
 export const Table = ({
   scene,
@@ -28,13 +30,13 @@ export const Table = ({
   const table = {
     ...data(scene, precision),
     ...(!hideSecondaryNumber && dataSecondary(scene, precision)),
-  };
+  }
 
-  if (!visible) return null;
+  if (!visible) return null
 
   const showPedestrianColumn =
-    _showPedestrianColumn !== false ? !!table.vote0Unsafe.pedestrian : false;
-  const showCarColumn = _showCarColumn !== false ? !!table.vote0Unsafe.car : false;
+    _showPedestrianColumn !== false ? !!table.vote0Unsafe.pedestrian : false
+  const showCarColumn = _showCarColumn !== false ? !!table.vote0Unsafe.car : false
 
   return (
     <table className="my-2 w-full border-b border-dotted border-stone-200 text-xs">
@@ -68,13 +70,13 @@ export const Table = ({
             <tr
               key={key}
               className={clsx(
-                values.divideTop ? "border-dashed" : "border-dotted",
-                "border-t border-stone-200 hover:bg-stone-50",
+                values.divideTop ? 'border-dashed' : 'border-dotted',
+                'border-t border-stone-200 hover:bg-stone-50',
               )}
             >
               <th
-                className={clsx("text-left font-semi font-semibold leading-3", {
-                  "pt-2": values.divideTop,
+                className={clsx('text-left font-semi font-semibold leading-3', {
+                  'pt-2': values.divideTop,
                 })}
               >
                 {barColor[key] && (
@@ -94,11 +96,11 @@ export const Table = ({
               </th>
               <td
                 className={clsx(
-                  "w-1/5 pr-2 text-right",
+                  'w-1/5 pr-2 text-right',
                   {
-                    "pt-2": values.divideTop,
+                    'pt-2': values.divideTop,
                   },
-                  { "font-semibold": key === "score" },
+                  { 'font-semibold': key === 'score' },
                 )}
               >
                 {values.bike}
@@ -106,11 +108,11 @@ export const Table = ({
               {showPedestrianColumn ? (
                 <td
                   className={clsx(
-                    "w-1/5 pr-2 text-right",
+                    'w-1/5 pr-2 text-right',
                     {
-                      "pt-2": values.divideTop,
+                      'pt-2': values.divideTop,
                     },
-                    { "font-semibold": key === "score" },
+                    { 'font-semibold': key === 'score' },
                   )}
                 >
                   {values.pedestrian}
@@ -119,20 +121,20 @@ export const Table = ({
               {showCarColumn ? (
                 <td
                   className={clsx(
-                    "w-1/5 pr-2 text-right",
+                    'w-1/5 pr-2 text-right',
                     {
-                      "pt-2": values.divideTop,
+                      'pt-2': values.divideTop,
                     },
-                    { "font-semibold": key === "score" },
+                    { 'font-semibold': key === 'score' },
                   )}
                 >
                   {values.car}
                 </td>
               ) : null}
             </tr>
-          );
+          )
         })}
       </tbody>
     </table>
-  );
-};
+  )
+}

@@ -1,9 +1,10 @@
-import React from "react";
-import { ReportPage } from "~/components/ReportPage";
-import en from "~/components/ReportPage/translations/en.json";
+import React from 'react'
+
+import { ReportPage } from '~/components/ReportPage'
+import en from '~/components/ReportPage/translations/en.json'
 
 export const ReportEnRoute = () => {
-  const currentLanguage = "en";
+  const currentLanguage = 'en'
 
-  return <ReportPage lang={currentLanguage} translationKeys={en} />;
-};
+  return <ReportPage lang={currentLanguage} translationKeys={en} />
+}

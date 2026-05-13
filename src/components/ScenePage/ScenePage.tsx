@@ -1,35 +1,37 @@
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import React, { useEffect } from "react";
-import logoMarkup from "~/components/assets/radwegecheck-logo.svg?raw";
-import { SvgInline } from "~/components/Svg/SvgInline";
-import { Link, PrintButton } from "../Link";
-import { Popover } from "../Popover";
-import { SceneImage } from "../ScenesPage";
-import { ResultCells } from "../ScenesPage/Results/ResultCells";
-import { ResultNumbers } from "../ScenesPage/Results/ResultNumbers";
-import { useExperimentAggregationConfig, useExperimentTextKeyState } from "../ScenesPage/store";
-import type { ScenePrimaryProps, SceneSecondaryProps } from "../ScenesPage/types";
-import { titleScene } from "../ScenesPage/utils/titleScenes";
-import { fullUrl, trackContentImpression } from "../utils";
+import { InformationCircleIcon } from '@heroicons/react/24/outline'
+import React, { useEffect } from 'react'
+
+import logoMarkup from '~/components/assets/radwegecheck-logo.svg?raw'
+import { SvgInline } from '~/components/Svg/SvgInline'
+
+import { Link, PrintButton } from '../Link'
+import { Popover } from '../Popover'
+import { SceneImage } from '../ScenesPage'
+import { ResultCells } from '../ScenesPage/Results/ResultCells'
+import { ResultNumbers } from '../ScenesPage/Results/ResultNumbers'
+import { useExperimentAggregationConfig, useExperimentTextKeyState } from '../ScenesPage/store'
+import type { ScenePrimaryProps, SceneSecondaryProps } from '../ScenesPage/types'
+import { titleScene } from '../ScenesPage/utils/titleScenes'
+import { fullUrl, trackContentImpression } from '../utils'
 
 type Props = {
-  scene: ScenePrimaryProps | SceneSecondaryProps;
-  pagePath: string;
-};
+  scene: ScenePrimaryProps | SceneSecondaryProps
+  pagePath: string
+}
 
 export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
-  const experimentTextKey = useExperimentTextKeyState();
-  const aggregationConfig = useExperimentAggregationConfig();
+  const experimentTextKey = useExperimentTextKeyState()
+  const aggregationConfig = useExperimentAggregationConfig()
 
-  const categoryTranslation = experimentTextKey === "primary" ? "Hauptstrasse" : "Nebenstrasse";
+  const categoryTranslation = experimentTextKey === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
 
   useEffect(() => {
     trackContentImpression({
       id: scene.sceneId,
-      representation: "details page",
+      representation: 'details page',
       url: fullUrl(scene.path),
-    });
-  }, []);
+    })
+  }, [])
 
   return (
     <>
@@ -76,7 +78,7 @@ export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
               className="mb-5 h-96 w-full rounded object-cover object-bottom print:mb-3"
             />
             <div className="grid grid-cols-2 gap-5 text-xs print:hidden lg:text-base">
-              {"sceneIdPedestrian" in scene && scene.sceneIdPedestrian ? (
+              {'sceneIdPedestrian' in scene && scene.sceneIdPedestrian ? (
                 <figure>
                   <figcaption className="mb-0.5 font-normal">
                     Perspektive einer Fußgänger:in
@@ -90,7 +92,7 @@ export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
               ) : (
                 <div className="rounded bg-gray-50" />
               )}
-              {"sceneIdCar" in scene && scene.sceneIdCar ? (
+              {'sceneIdCar' in scene && scene.sceneIdCar ? (
                 <figure>
                   <figcaption className="mb-0.5 font-normal">
                     Perspektive einer Autofahrer:in
@@ -109,7 +111,7 @@ export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
 
           <div className="order-2 flex h-96 flex-col print:h-auto lg:order-none">
             <div className="flex items-center">
-              Durchschnittliche Bewertungen dieser Szene zur subjektiven Sicherheit.{" "}
+              Durchschnittliche Bewertungen dieser Szene zur subjektiven Sicherheit.{' '}
               <Popover
                 buttonText={
                   <>
@@ -119,7 +121,7 @@ export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
                 }
               >
                 Die Zahlen zur Bewertung der Radverkehrsführungsformen basieren aus einer
-                umfassenden Online Umfrage. Die{" "}
+                umfassenden Online Umfrage. Die{' '}
                 <Link
                   to="https://fixmyberlin.de/research/subjektive-sicherheit"
                   external
@@ -147,5 +149,5 @@ export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}

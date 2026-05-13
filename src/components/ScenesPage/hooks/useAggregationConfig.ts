@@ -1,5 +1,5 @@
-import { aggregationConfigPrimary, aggregationConfigSecondary } from "../constants";
-import { SceneCategory } from "../types";
+import { aggregationConfigPrimary, aggregationConfigSecondary } from '../constants'
+import { SceneCategory } from '../types'
 
 export const useAggregationConfig = (category: SceneCategory) =>
-  category === "primary" ? aggregationConfigPrimary : aggregationConfigSecondary;
+  category === 'primary' ? aggregationConfigPrimary : aggregationConfigSecondary

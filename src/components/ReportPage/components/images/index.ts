@@ -1,3 +1,3 @@
-export * from "./Subtitle";
-export * from "./Image";
-export * from "./TwoImagesWrapper";
+export * from './Subtitle'
+export * from './Image'
+export * from './TwoImagesWrapper'

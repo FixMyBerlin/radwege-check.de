@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "../Link";
-import { LogoBmdv } from "./LogoBmdv";
+import React from 'react'
+
+import { Link } from '../Link'
+import { LogoBmdv } from './LogoBmdv'
 
 export function Logos() {
   return (
@@ -13,5 +14,5 @@ export function Logos() {
         <LogoBmdv />
       </Link>
     </section>
-  );
+  )
 }

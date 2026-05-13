@@ -1,2 +1,2 @@
-export * from "./Link";
-export * from "./PrintButton";
+export * from './Link'
+export * from './PrintButton'

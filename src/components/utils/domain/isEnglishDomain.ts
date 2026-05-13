@@ -1,10 +1,10 @@
-import { englishDomainHostWitoutEnding } from "./domains.const";
+import { englishDomainHostWitoutEnding } from './domains.const'
 
 /** @desc Domain like window.location.host */
-type Props = string;
+type Props = string
 
 export const isEnglishDomain = (domain: Props): undefined | boolean => {
-  if (!domain) return undefined;
+  if (!domain) return undefined
 
-  return domain.toLocaleLowerCase().includes(englishDomainHostWitoutEnding);
-};
+  return domain.toLocaleLowerCase().includes(englishDomainHostWitoutEnding)
+}

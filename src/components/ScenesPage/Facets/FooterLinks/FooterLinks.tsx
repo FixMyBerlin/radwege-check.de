@@ -1,6 +1,7 @@
-import React from "react";
-import { footerLegalLinks } from "~/components/Layout/Footer/const/footerLinks.const";
-import { Link } from "~/components/Link";
+import React from 'react'
+
+import { footerLegalLinks } from '~/components/Layout/Footer/const/footerLinks.const'
+import { Link } from '~/components/Link'
 
 export function FooterLinks() {
   return (
@@ -11,5 +12,5 @@ export function FooterLinks() {
         </Link>
       ))}
     </section>
-  );
+  )
 }

@@ -1,23 +1,25 @@
-import React from "react";
-import { FeelSafe } from "~/components/charts";
-import { Link } from "~/components/Link";
-import { SceneImage } from "~/components/ScenesPage";
-import { PresetScene } from "~/components/ScenesPage/constants";
-import { SceneCategory } from "~/components/ScenesPage/types";
-import { FilterUrlBySceneCategory } from "./types";
+import React from 'react'
+
+import { FeelSafe } from '~/components/charts'
+import { Link } from '~/components/Link'
+import { SceneImage } from '~/components/ScenesPage'
+import { PresetScene } from '~/components/ScenesPage/constants'
+import { SceneCategory } from '~/components/ScenesPage/types'
+
+import { FilterUrlBySceneCategory } from './types'
 
 type Props = {
-  sceneCategory: SceneCategory;
-  preset: PresetScene;
-};
+  sceneCategory: SceneCategory
+  preset: PresetScene
+}
 
 export const PresetSliderSlide = ({ sceneCategory, preset }: Props) => {
   const filterUrlBySceneCategory: FilterUrlBySceneCategory = {
-    primary: "/hauptstrassen/?filter=",
-    secondary: "/nebenstrassen/?filter=",
-  };
+    primary: '/hauptstrassen/?filter=',
+    secondary: '/nebenstrassen/?filter=',
+  }
 
-  const url = `${filterUrlBySceneCategory[sceneCategory]}${preset.searchFilterString}`;
+  const url = `${filterUrlBySceneCategory[sceneCategory]}${preset.searchFilterString}`
   return (
     <Link
       button
@@ -44,5 +46,5 @@ export const PresetSliderSlide = ({ sceneCategory, preset }: Props) => {
         </div>
       </div>
     </Link>
-  );
-};
+  )
+}

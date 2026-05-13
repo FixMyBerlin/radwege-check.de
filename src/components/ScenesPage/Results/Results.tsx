@@ -1,31 +1,32 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useExperimentAggregationConfig } from "../store";
-import { ResultProps, SearchOptionProps } from "../types";
-import { ResultColumn } from "./ResultColumn";
+import React, { useEffect, useRef, useState } from 'react'
+
+import { useExperimentAggregationConfig } from '../store'
+import { ResultProps, SearchOptionProps } from '../types'
+import { ResultColumn } from './ResultColumn'
 
 type Props = {
-  results: ResultProps;
-  searchFilters: SearchOptionProps["filters"];
-};
+  results: ResultProps
+  searchFilters: SearchOptionProps['filters']
+}
 
 export type ShowTableProps = {
-  showTable: boolean;
-  setShowTable: null | ((showTable: boolean) => void); // null if not used
-};
+  showTable: boolean
+  setShowTable: null | ((showTable: boolean) => void) // null if not used
+}
 
 export const Results = ({ results, searchFilters }: Props) => {
-  const resultItems = results?.data?.items || [];
-  const resultsRef = useRef<HTMLDivElement>(null);
+  const resultItems = results?.data?.items || []
+  const resultsRef = useRef<HTMLDivElement>(null)
 
-  const [showTable, setShowTable] = useState(false);
+  const [showTable, setShowTable] = useState(false)
 
   // We force the scroll position to left-top whenever the results changed.
   // Otherwise users might not notice that results change "left" of what they are looking at.
   useEffect(() => {
-    resultsRef.current.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [resultItems]);
+    resultsRef.current.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  }, [resultItems])
 
-  const aggregationConfig = useExperimentAggregationConfig();
+  const aggregationConfig = useExperimentAggregationConfig()
 
   return (
     <div
@@ -45,5 +46,5 @@ export const Results = ({ results, searchFilters }: Props) => {
         />
       ))}
     </div>
-  );
-};
+  )
+}

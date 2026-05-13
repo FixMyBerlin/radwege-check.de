@@ -1,20 +1,21 @@
-import React, { useLayoutEffect } from "react";
-import { ScenePage } from "~/components/ScenePage";
-import { aggregationConfigPrimary, itemJsConfigPrimary } from "~/components/ScenesPage/constants";
-import type { ScenePrimaryProps } from "~/components/ScenesPage/types";
-import { getExperimentDataActions } from "~/components/ScenesPage/store";
+import React, { useLayoutEffect } from 'react'
+
+import { ScenePage } from '~/components/ScenePage'
+import { aggregationConfigPrimary, itemJsConfigPrimary } from '~/components/ScenesPage/constants'
+import { getExperimentDataActions } from '~/components/ScenesPage/store'
+import type { ScenePrimaryProps } from '~/components/ScenesPage/types'
 
 type Props = {
-  pagePath: string;
-  scene: ScenePrimaryProps | null;
-};
+  pagePath: string
+  scene: ScenePrimaryProps | null
+}
 
 export const HauptstrassenSceneRoute = ({ pagePath, scene }: Props) => {
   useLayoutEffect(() => {
-    getExperimentDataActions().setItemJsConfig(itemJsConfigPrimary);
-    getExperimentDataActions().setAggregationConfig(aggregationConfigPrimary);
-    getExperimentDataActions().setExperimentTextKey("primary");
-  }, []);
+    getExperimentDataActions().setItemJsConfig(itemJsConfigPrimary)
+    getExperimentDataActions().setAggregationConfig(aggregationConfigPrimary)
+    getExperimentDataActions().setExperimentTextKey('primary')
+  }, [])
 
   if (!scene) {
     return (
@@ -24,8 +25,8 @@ export const HauptstrassenSceneRoute = ({ pagePath, scene }: Props) => {
           <p className="mt-2 text-gray-600">Scene not found</p>
         </div>
       </div>
-    );
+    )
   }
 
-  return <ScenePage scene={scene} pagePath={pagePath} />;
-};
+  return <ScenePage scene={scene} pagePath={pagePath} />
+}

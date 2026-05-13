@@ -1,20 +1,21 @@
-import React from "react";
-import { AggregationConfig } from "../../constants";
-import { ScenePrimaryProps, SceneSecondaryProps, SearchOptionProps } from "../../types";
-import { ResultCell } from "./ResultCell";
+import React from 'react'
+
+import { AggregationConfig } from '../../constants'
+import { ScenePrimaryProps, SceneSecondaryProps, SearchOptionProps } from '../../types'
+import { ResultCell } from './ResultCell'
 
 type Props = {
-  scene: ScenePrimaryProps | SceneSecondaryProps;
-  searchFilters?: SearchOptionProps["filters"];
-  showHover?: boolean;
-  aggregationConfig: AggregationConfig;
-};
+  scene: ScenePrimaryProps | SceneSecondaryProps
+  searchFilters?: SearchOptionProps['filters']
+  showHover?: boolean
+  aggregationConfig: AggregationConfig
+}
 
 export const ResultCells = ({ scene, searchFilters, showHover, aggregationConfig }: Props) => {
   return (
     <>
       {Object.keys(aggregationConfig || {}).map((key) => {
-        const bucketActive = searchFilters && !!searchFilters[key];
+        const bucketActive = searchFilters && !!searchFilters[key]
 
         return (
           <ResultCell
@@ -27,8 +28,8 @@ export const ResultCells = ({ scene, searchFilters, showHover, aggregationConfig
             showHover={showHover}
             aggregationConfig={aggregationConfig}
           />
-        );
+        )
       })}
     </>
-  );
-};
+  )
+}

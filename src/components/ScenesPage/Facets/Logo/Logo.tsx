@@ -1,14 +1,15 @@
-import React from "react";
-import logoMarkup from "~/components/assets/radwegecheck-logo.svg?raw";
-import { SvgInline } from "~/components/Svg/SvgInline";
-import { Link } from "~/components/Link";
+import React from 'react'
+
+import logoMarkup from '~/components/assets/radwegecheck-logo.svg?raw'
+import { Link } from '~/components/Link'
+import { SvgInline } from '~/components/Svg/SvgInline'
 
 type Props = {
-  visible: boolean;
-};
+  visible: boolean
+}
 
 export const Logo = ({ visible }: Props) => {
-  if (!visible) return null;
+  if (!visible) return null
 
   return (
     <Link
@@ -23,5 +24,5 @@ export const Logo = ({ visible }: Props) => {
         alt="Radwege-Check"
       />
     </Link>
-  );
-};
+  )
+}

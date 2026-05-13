@@ -1,23 +1,25 @@
-import clsx from "clsx";
-import React from "react";
-import bikeIconMarkup from "./assets/bike-icon.svg?raw";
-import carIconMarkup from "./assets/car-icon.svg?raw";
-import pedestrianIconMarkup from "./assets/pedestrian-icon.svg?raw";
-import { SvgInline } from "~/components/Svg/SvgInline";
-import { ScenePrimaryProps, SceneSecondaryProps } from "../../types";
-import { ShowTableProps } from "../Results";
-import { BarChartAndHeadline } from "./BarChartAndHeadline";
-import { HeadlineButton } from "./HeadlineButton";
-import { ScoreExplanation } from "./ScoreExplanation";
-import { Table } from "./Table";
+import clsx from 'clsx'
+import React from 'react'
+
+import { SvgInline } from '~/components/Svg/SvgInline'
+
+import { ScenePrimaryProps, SceneSecondaryProps } from '../../types'
+import { ShowTableProps } from '../Results'
+import bikeIconMarkup from './assets/bike-icon.svg?raw'
+import carIconMarkup from './assets/car-icon.svg?raw'
+import pedestrianIconMarkup from './assets/pedestrian-icon.svg?raw'
+import { BarChartAndHeadline } from './BarChartAndHeadline'
+import { HeadlineButton } from './HeadlineButton'
+import { ScoreExplanation } from './ScoreExplanation'
+import { Table } from './Table'
 
 type Props = {
-  scene: ScenePrimaryProps | SceneSecondaryProps;
+  scene: ScenePrimaryProps | SceneSecondaryProps
   /** @desc `null` to disable */
-  handleHover: (sceneId: string) => void | null;
-  wrapperClass?: string;
-  chartClass?: string;
-} & ShowTableProps;
+  handleHover: (sceneId: string) => void | null
+  wrapperClass?: string
+  chartClass?: string
+} & ShowTableProps
 
 export const ResultNumbers = ({
   scene,
@@ -31,7 +33,7 @@ export const ResultNumbers = ({
     <section
       className={clsx(
         wrapperClass,
-        "flex flex-col print:flex-row print:justify-between print:gap-3",
+        'flex flex-col print:flex-row print:justify-between print:gap-3',
       )}
     >
       <div>
@@ -45,7 +47,7 @@ export const ResultNumbers = ({
         <ScoreExplanation visible={showTable} scene={scene} />
       </div>
 
-      <div className={clsx(chartClass, "relative flex h-full flex-row gap-1 text-xs print:h-auto")}>
+      <div className={clsx(chartClass, 'relative flex h-full flex-row gap-1 text-xs print:h-auto')}>
         <BarChartAndHeadline
           icon={<SvgInline src={bikeIconMarkup} className="mr-1.5 h-8 w-8" aria-hidden />}
           mainBarChart
@@ -77,5 +79,5 @@ export const ResultNumbers = ({
         />
       </div>
     </section>
-  );
-};
+  )
+}

@@ -3,9 +3,9 @@
 
 declare global {
   interface Window {
-    _paq: any[];
-    dev: boolean;
+    _paq: any[]
+    dev: boolean
   }
 }
 
-export {}; // needed when used stand alone
+export {} // needed when used stand alone

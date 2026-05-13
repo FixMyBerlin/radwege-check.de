@@ -1,1 +1,1 @@
-export * from "./SpinnerOrText";
+export * from './SpinnerOrText'

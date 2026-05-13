@@ -1,2 +1,2 @@
-export * from "./TableOfContents";
-export * from "./types";
+export * from './TableOfContents'
+export * from './types'

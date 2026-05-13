@@ -1,2 +1,2 @@
-export * from "./BarChart";
-export * from "./BarChartWrapper";
+export * from './BarChart'
+export * from './BarChartWrapper'

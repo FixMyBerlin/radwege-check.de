@@ -1,26 +1,28 @@
-import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
-import React from "react";
-import { ScenePrimaryProps, SceneSecondaryProps } from "~/components/ScenesPage/types";
-import { fullUrl, trackContentInteraction } from "~/components/utils";
-import { ShowTableProps } from "../../Results";
+import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/24/outline'
+import React from 'react'
+
+import { ScenePrimaryProps, SceneSecondaryProps } from '~/components/ScenesPage/types'
+import { fullUrl, trackContentInteraction } from '~/components/utils'
+
+import { ShowTableProps } from '../../Results'
 
 type Props = {
-  visible: boolean;
-  scene: ScenePrimaryProps | SceneSecondaryProps;
-} & ShowTableProps;
+  visible: boolean
+  scene: ScenePrimaryProps | SceneSecondaryProps
+} & ShowTableProps
 
 export const HeadlineButton = ({ visible, showTable, setShowTable, scene }: Props) => {
   const handleClick = () => {
     trackContentInteraction({
-      action: showTable ? "close table" : "open table",
+      action: showTable ? 'close table' : 'open table',
       id: scene.sceneId,
-      representation: "result page",
+      representation: 'result page',
       url: fullUrl(scene.path),
-    });
-    setShowTable(!showTable);
-  };
+    })
+    setShowTable(!showTable)
+  }
 
-  if (!visible) return null;
+  if (!visible) return null
 
   return (
     <button
@@ -41,5 +43,5 @@ export const HeadlineButton = ({ visible, showTable, setShowTable, scene }: Prop
         </span>
       )}
     </button>
-  );
-};
+  )
+}

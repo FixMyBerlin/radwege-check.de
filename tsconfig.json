@@ -16,6 +16,7 @@
     "__helpers__",
     "__mocks__",
     "astro.config.mjs",
+    "oxfmt.config.ts",
     "oxlint.config.ts",
     "vitest.config.ts",
     "knip.config.ts",

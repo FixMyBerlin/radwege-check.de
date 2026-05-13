@@ -1,14 +1,16 @@
-import React from "react";
-import { SvgInline } from "~/components/Svg/SvgInline";
-import { UsageExample } from "./UsageExample";
-import dateIconMarkup from "./assets/date-icon.svg?raw";
-import pointOfViewIconMarkup from "./assets/point-of-view-icon.svg?raw";
-import presentationIconMarkup from "./assets/presentation-icon.svg?raw";
-import tableIconMarkup from "./assets/table-icon.svg?raw";
-import tableUrl from "./assets/table.webp?url";
-import presentationUrl from "./assets/presentation.webp?url";
-import pointOfViewUrl from "./assets/point-of-view.webp?url";
-import dateUrl from "./assets/date.webp?url";
+import React from 'react'
+
+import { SvgInline } from '~/components/Svg/SvgInline'
+
+import dateIconMarkup from './assets/date-icon.svg?raw'
+import dateUrl from './assets/date.webp?url'
+import pointOfViewIconMarkup from './assets/point-of-view-icon.svg?raw'
+import pointOfViewUrl from './assets/point-of-view.webp?url'
+import presentationIconMarkup from './assets/presentation-icon.svg?raw'
+import presentationUrl from './assets/presentation.webp?url'
+import tableIconMarkup from './assets/table-icon.svg?raw'
+import tableUrl from './assets/table.webp?url'
+import { UsageExample } from './UsageExample'
 
 export function UsageExamples() {
   return (
@@ -44,7 +46,7 @@ export function UsageExamples() {
           title="Empfinden aus Rad-,  Fuß- und Autoperspektive vergleichen"
           icon={<SvgInline src={pointOfViewIconMarkup} className="h-24 w-auto" aria-hidden />}
         >
-          Bei Planungen von Radwegen im Seitenraum ist es wichtig die{" "}
+          Bei Planungen von Radwegen im Seitenraum ist es wichtig die{' '}
           <strong>Fußperspektive einzubeziehen</strong> und sicherzustellen, das auch diese sich
           sicherfühlen. Durch vergleich der Perspektiven sehen Sie sofort, welche Variante für beide
           Gruppen von Verkehrsteilnehmenden gut sind. Die Autoperspektive zeigt, welche Führungen
@@ -61,5 +63,5 @@ export function UsageExamples() {
         </UsageExample>
       </div>
     </section>
-  );
+  )
 }

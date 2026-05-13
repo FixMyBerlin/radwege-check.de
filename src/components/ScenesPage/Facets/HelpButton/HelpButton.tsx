@@ -1,11 +1,13 @@
-import { Dialog, Transition } from "@headlessui/react";
-import { VideoCameraIcon } from "@heroicons/react/24/outline";
-import React, { Fragment, useState } from "react";
-import { buttonStyles, Link } from "~/components/Link";
-import videoPreviewUrl from "./assets/video-preview.png?url";
+import { Dialog, Transition } from '@headlessui/react'
+import { VideoCameraIcon } from '@heroicons/react/24/outline'
+import React, { Fragment, useState } from 'react'
+
+import { buttonStyles, Link } from '~/components/Link'
+
+import videoPreviewUrl from './assets/video-preview.png?url'
 
 export function HelpButton() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   return (
     <>
@@ -55,7 +57,7 @@ export function HelpButton() {
                           external
                           blank
                           to="https://twitter.com/FixMyBerlin/status/1551478695231094784"
-                          className={open ? "block" : "hidden"}
+                          className={open ? 'block' : 'hidden'}
                         >
                           <img src={videoPreviewUrl} className="w-full" alt="" />
                         </Link>
@@ -82,5 +84,5 @@ export function HelpButton() {
         </Dialog>
       </Transition.Root>
     </>
-  );
+  )
 }

@@ -1,1 +1,1 @@
-export * from "./ScenesAllPage";
+export * from './ScenesAllPage'

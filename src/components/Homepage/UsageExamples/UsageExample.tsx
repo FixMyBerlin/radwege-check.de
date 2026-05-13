@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 
 type Props = {
-  image: React.ReactNode;
-  title: string;
-  icon: React.ReactNode;
-  children: React.ReactNode;
-};
+  image: React.ReactNode
+  title: string
+  icon: React.ReactNode
+  children: React.ReactNode
+}
 
 export const UsageExample = ({ image, title, icon, children }: Props) => {
   return (
@@ -19,5 +19,5 @@ export const UsageExample = ({ image, title, icon, children }: Props) => {
         <p>{children}</p>
       </div>
     </section>
-  );
-};
+  )
+}

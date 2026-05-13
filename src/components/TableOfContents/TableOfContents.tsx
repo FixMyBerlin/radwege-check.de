@@ -1,6 +1,8 @@
-import React from "react";
-import { Link } from "~/components/Link";
-import type { TocHashLink } from "./types";
+import React from 'react'
+
+import { Link } from '~/components/Link'
+
+import type { TocHashLink } from './types'
 
 /*
   We could make this more fancy…
@@ -20,7 +22,7 @@ import type { TocHashLink } from "./types";
     all the solutions above just use a querySelector.
     */
 
-type Props = { items: TocHashLink };
+type Props = { items: TocHashLink }
 
 export const TableOfContents = ({ items }: Props) => {
   return (
@@ -35,5 +37,5 @@ export const TableOfContents = ({ items }: Props) => {
         ))}
       </ul>
     </nav>
-  );
-};
+  )
+}

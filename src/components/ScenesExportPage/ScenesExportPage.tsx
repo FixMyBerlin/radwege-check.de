@@ -1,45 +1,46 @@
-import React, { useLayoutEffect, useState } from "react";
-import { Link, linkStyles } from "../Link";
-import { SceneImage } from "../ScenesPage";
-import { useAggregationConfig } from "../ScenesPage/hooks";
-import { getExperimentDataActions } from "../ScenesPage/store";
-import { cleanupCsvData } from "../ScenesPage/utils";
-import { titleScene } from "../ScenesPage/utils/titleScenes";
+import React, { useLayoutEffect, useState } from 'react'
+
+import { Link, linkStyles } from '../Link'
+import { SceneImage } from '../ScenesPage'
+import { useAggregationConfig } from '../ScenesPage/hooks'
+import { getExperimentDataActions } from '../ScenesPage/store'
+import { cleanupCsvData } from '../ScenesPage/utils'
+import { titleScene } from '../ScenesPage/utils/titleScenes'
 
 type Props = {
-  rawScenes: any;
-  experimentTextKey: "primary" | "secondary";
-};
+  rawScenes: any
+  experimentTextKey: 'primary' | 'secondary'
+}
 
 export const ScenesExportPage = ({ rawScenes, experimentTextKey }: Props) => {
-  const [translateResults, setTranslateResults] = useState(false);
+  const [translateResults, setTranslateResults] = useState(false)
 
   useLayoutEffect(() => {
-    getExperimentDataActions().setExperimentTextKey(experimentTextKey);
-  }, [experimentTextKey]);
+    getExperimentDataActions().setExperimentTextKey(experimentTextKey)
+  }, [experimentTextKey])
 
   const flattened = rawScenes.map((list: any) =>
-    list && typeof list === "object" && "node" in list ? list.node : list,
-  );
-  const clean = cleanupCsvData(flattened);
-  const base = experimentTextKey === "primary" ? "/hauptstrassen" : "/nebenstrassen";
+    list && typeof list === 'object' && 'node' in list ? list.node : list,
+  )
+  const clean = cleanupCsvData(flattened)
+  const base = experimentTextKey === 'primary' ? '/hauptstrassen' : '/nebenstrassen'
   const scenes = clean
     .sort((a, b) => a.voteScore - b.voteScore)
     .map((s) => ({
       ...s,
       path: `${base}/${s.sceneId}`,
-    }));
+    }))
 
-  const totalResults = Number(scenes.length).toLocaleString();
+  const totalResults = Number(scenes.length).toLocaleString()
 
-  const categoryTranslation = experimentTextKey === "primary" ? "Hauptstrassen" : "Nebenstrassen";
+  const categoryTranslation = experimentTextKey === 'primary' ? 'Hauptstrassen' : 'Nebenstrassen'
   const otherCategoryTranslation =
-    experimentTextKey === "primary" ? "Nebenstrassen" : "Hauptstrassen";
+    experimentTextKey === 'primary' ? 'Nebenstrassen' : 'Hauptstrassen'
   const otherResultsPath =
-    experimentTextKey === "primary" ? "/nebenstrassen/export" : "/hauptstrassen/export";
+    experimentTextKey === 'primary' ? '/nebenstrassen/export' : '/hauptstrassen/export'
 
-  const fields = Object.keys(scenes[0]).sort((a, b) => a.localeCompare(b));
-  const aggregationConfig = useAggregationConfig(experimentTextKey);
+  const fields = Object.keys(scenes[0]).sort((a, b) => a.localeCompare(b))
+  const aggregationConfig = useAggregationConfig(experimentTextKey)
 
   return (
     <>
@@ -56,7 +57,7 @@ export const ScenesExportPage = ({ rawScenes, experimentTextKey }: Props) => {
           onClick={() => setTranslateResults((prev) => !prev)}
           className={linkStyles}
         >
-          {translateResults ? "Englishe Bezeichnungen anzeigen" : "Deutsche Bezeichnungen anzeigen"}
+          {translateResults ? 'Englishe Bezeichnungen anzeigen' : 'Deutsche Bezeichnungen anzeigen'}
         </button>
         <Link to={otherResultsPath}>Zu den {otherCategoryTranslation}</Link>
       </p>
@@ -82,9 +83,9 @@ export const ScenesExportPage = ({ rawScenes, experimentTextKey }: Props) => {
                     </th>
                     {fields.map((field) => {
                       const titleTranslation =
-                        aggregationConfig[field]?.resultTitle || aggregationConfig[field]?.title;
+                        aggregationConfig[field]?.resultTitle || aggregationConfig[field]?.title
 
-                      const displayValue = translateResults ? titleTranslation : field;
+                      const displayValue = translateResults ? titleTranslation : field
 
                       return (
                         <th
@@ -94,7 +95,7 @@ export const ScenesExportPage = ({ rawScenes, experimentTextKey }: Props) => {
                         >
                           {displayValue}
                         </th>
-                      );
+                      )
                     })}
                   </tr>
                 </thead>
@@ -113,20 +114,20 @@ export const ScenesExportPage = ({ rawScenes, experimentTextKey }: Props) => {
                       </td>
 
                       {fields.map((field) => {
-                        const value = scene[field];
-                        const isNumber = typeof value === "number";
+                        const value = scene[field]
+                        const isNumber = typeof value === 'number'
 
                         const bucketTranslation =
                           aggregationConfig[field]?.resultBuckets?.[scene[field]] ||
-                          aggregationConfig[field]?.buckets[scene[field]];
+                          aggregationConfig[field]?.buckets[scene[field]]
 
-                        const displayValue = translateResults ? bucketTranslation : value;
+                        const displayValue = translateResults ? bucketTranslation : value
 
                         return (
                           <td key={field} className="px-3 py-4 text-sm text-gray-500">
                             {isNumber ? value.toLocaleString() : displayValue}
                           </td>
-                        );
+                        )
                       })}
                     </tr>
                   ))}
@@ -137,5 +138,5 @@ export const ScenesExportPage = ({ rawScenes, experimentTextKey }: Props) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}

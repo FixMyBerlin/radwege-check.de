@@ -1,32 +1,34 @@
-import React from "react";
-import { useExperimentAggregationConfig } from "~/components/ScenesPage/store";
-import { isDev } from "~/components/utils";
-import { ResultBucketProps } from "../../../types";
-import { HandleSingleChoice } from "../ButtonSingleChoice";
-import { useResults } from "../ButtonSingleChoice/useResults";
-import { Icons } from "./Icons";
-import { buttonIconClassNames } from "./utils";
+import React from 'react'
+
+import { useExperimentAggregationConfig } from '~/components/ScenesPage/store'
+import { isDev } from '~/components/utils'
+
+import { ResultBucketProps } from '../../../types'
+import { HandleSingleChoice } from '../ButtonSingleChoice'
+import { useResults } from '../ButtonSingleChoice/useResults'
+import { Icons } from './Icons'
+import { buttonIconClassNames } from './utils'
 
 type Props = {
-  aggregationKey: string;
-  bucket: ResultBucketProps;
-  handleClick: HandleSingleChoice;
-  paginationTotal: number;
-};
+  aggregationKey: string
+  bucket: ResultBucketProps
+  handleClick: HandleSingleChoice
+  paginationTotal: number
+}
 
 export const ButtonIcon = ({ aggregationKey, bucket, handleClick, paginationTotal }: Props) => {
-  const aggregationConfig = useExperimentAggregationConfig();
+  const aggregationConfig = useExperimentAggregationConfig()
 
   const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
     bucketCount: bucket?.doc_count,
     bucketSelected: bucket?.selected,
-  });
+  })
 
   const { buttonClasses, iconClasses } = buttonIconClassNames({
     uiSelected,
     uiCanpress,
-  });
+  })
 
   return (
     <button
@@ -43,8 +45,8 @@ export const ButtonIcon = ({ aggregationKey, bucket, handleClick, paginationTota
       title={[
         aggregationConfig[aggregationKey].buckets[bucket.key],
         resultFuture === 0
-          ? "Auswahl würde 0 Ergebnisse zeigen."
-          : `Ergebnisse ${resultFuture ?? "todo"}`,
+          ? 'Auswahl würde 0 Ergebnisse zeigen.'
+          : `Ergebnisse ${resultFuture ?? 'todo'}`,
         isDev &&
           JSON.stringify({
             resultFuture,
@@ -56,9 +58,9 @@ export const ButtonIcon = ({ aggregationKey, bucket, handleClick, paginationTota
           }),
       ]
         .filter(Boolean)
-        .join("\n")}
+        .join('\n')}
     >
       <Icons forValue={bucket.key} className={iconClasses} />
     </button>
-  );
-};
+  )
+}

@@ -1,7 +1,9 @@
-import React from "react";
-import logoColorMarkup from "~/components/assets/radwegecheck-logo-bildmarke-mehrfarbig.svg?raw";
-import { SvgInline } from "~/components/Svg/SvgInline";
-import { Link } from "../Link";
+import React from 'react'
+
+import logoColorMarkup from '~/components/assets/radwegecheck-logo-bildmarke-mehrfarbig.svg?raw'
+import { SvgInline } from '~/components/Svg/SvgInline'
+
+import { Link } from '../Link'
 
 export function Hero() {
   return (
@@ -16,12 +18,12 @@ export function Hero() {
 
       <p className="max-w-prose">
         Der Radwege-Check lässt dich 1.779 Straßenszenen vergleichen, basierend auf 400.000
-        Bewertungen zu ihrer subjektiven Sicherheit{" "}
+        Bewertungen zu ihrer subjektiven Sicherheit{' '}
         <Link to="https://fixmyberlin.de/research/subjektive-sicherheit" external blank>
           im Straßencheck
         </Link>
         .
       </p>
     </section>
-  );
+  )
 }

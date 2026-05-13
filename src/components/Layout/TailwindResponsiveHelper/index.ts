@@ -1,1 +1,1 @@
-export * from "./TailwindResponsiveHelper";
+export * from './TailwindResponsiveHelper'

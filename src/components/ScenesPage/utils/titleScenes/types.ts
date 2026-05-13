@@ -1,1 +1,1 @@
-export type OptionalOptionProps = { includeId?: boolean } | undefined;
+export type OptionalOptionProps = { includeId?: boolean } | undefined

@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "~/components/Link";
-import { TableOfContents, type TocHashLink } from "~/components/TableOfContents";
+import React from 'react'
+
+import { Link } from '~/components/Link'
+import { TableOfContents, type TocHashLink } from '~/components/TableOfContents'
 
 const MatomoIframe = () => {
   return (
@@ -9,8 +10,8 @@ const MatomoIframe = () => {
       className="h-52 w-full border bg-[#f0fdf4] p-2"
       src="https://s.fixmycity.de/index.php?module=CoreAdminHome&action=optOut&language=de&backgroundColor=f0fdf4&fontColor=374151&fontSize=16px&fontFamily=Arial"
     />
-  );
-};
+  )
+}
 
 /*
 Links
@@ -20,15 +21,15 @@ Links
 
 export const DatenschutzRoute = () => {
   const tocItems: TocHashLink = [
-    ["#responsible", "Verantwortlichkeit"],
-    ["#thirdparty", "Drittdienste"],
-    ["#hosting", "Bereitstellung"],
-    ["#analytics", "Webanalyse"],
-    ["#contact", "Kontaktmöglichkeit"],
-    ["#newsletter", "Newsletter"],
-    ["#rights", "Ihre Rechte"],
-    ["#updates", "Aktualität und Änderungen"],
-  ];
+    ['#responsible', 'Verantwortlichkeit'],
+    ['#thirdparty', 'Drittdienste'],
+    ['#hosting', 'Bereitstellung'],
+    ['#analytics', 'Webanalyse'],
+    ['#contact', 'Kontaktmöglichkeit'],
+    ['#newsletter', 'Newsletter'],
+    ['#rights', 'Ihre Rechte'],
+    ['#updates', 'Aktualität und Änderungen'],
+  ]
 
   return (
     <>
@@ -173,7 +174,7 @@ export const DatenschutzRoute = () => {
 
       <h2 id="analytics">Webanalyse</h2>
       <p>
-        Zusätzlich zu den oben genannten Datenverarbeitungen nutzen wir ein Statistiksystem, das{" "}
+        Zusätzlich zu den oben genannten Datenverarbeitungen nutzen wir ein Statistiksystem, das{' '}
         <strong>keine personenbezogenen Daten</strong> verarbeitet. Aus Fairness- und
         Transparenzgründen haben wir uns dennoch entschieden, die entsprechenden Details dazu
         offenzulegen:
@@ -427,5 +428,5 @@ export const DatenschutzRoute = () => {
         Die jeweils aktuellen Datenschutzhinweise können Sie jederzeit hier abrufen.
       </p>
     </>
-  );
-};
+  )
+}

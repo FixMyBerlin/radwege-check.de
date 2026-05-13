@@ -1,1 +1,1 @@
-export const canonicalOrigin = "https://radwege-check.de";
+export const canonicalOrigin = 'https://radwege-check.de'

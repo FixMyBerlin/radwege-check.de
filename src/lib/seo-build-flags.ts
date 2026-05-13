@@ -4,11 +4,11 @@
  */
 export function netlifyNonProductionNoindex(): boolean {
   if (import.meta.env.DEV) {
-    return true;
+    return true
   }
-  if (typeof process === "undefined" || !process.env) {
-    return false;
+  if (typeof process === 'undefined' || !process.env) {
+    return false
   }
-  const { NETLIFY, CONTEXT } = process.env;
-  return NETLIFY === "true" && CONTEXT != null && CONTEXT !== "production";
+  const { NETLIFY, CONTEXT } = process.env
+  return NETLIFY === 'true' && CONTEXT != null && CONTEXT !== 'production'
 }

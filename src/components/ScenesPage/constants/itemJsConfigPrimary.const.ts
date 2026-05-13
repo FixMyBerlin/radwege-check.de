@@ -6,111 +6,111 @@
 export const itemJsConfigPrimary = {
   aggregations: {
     leftOfBicycleLane: {
-      title: "leftOfBicycleLane",
+      title: 'leftOfBicycleLane',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     bicycleLaneWidth: {
-      title: "bicycleLaneWidth",
+      title: 'bicycleLaneWidth',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     parking: {
-      title: "parking",
+      title: 'parking',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     bicycleLaneSurface: {
-      title: "bicycleLaneSurface",
+      title: 'bicycleLaneSurface',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     bufferHasPhysicalProtection: {
-      title: "bufferHasPhysicalProtection",
+      title: 'bufferHasPhysicalProtection',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     bufferLeftPhysicalProtection: {
-      title: "bufferLeftPhysicalProtection",
+      title: 'bufferLeftPhysicalProtection',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     bufferLeftWidth: {
-      title: "bufferLeftWidth",
+      title: 'bufferLeftWidth',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     bufferLeftMarking: {
-      title: "bufferLeftMarking",
+      title: 'bufferLeftMarking',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     bufferRightWidth: {
-      title: "bufferRightWidth",
+      title: 'bufferRightWidth',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     bufferRightMarking: {
-      title: "bufferRightMarking",
+      title: 'bufferRightMarking',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     vehicleTrafficVolume: {
-      title: "vehicleTrafficVolume",
+      title: 'vehicleTrafficVolume',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     vehicleLaneMaxspeed: {
-      title: "vehicleLaneMaxspeed",
+      title: 'vehicleLaneMaxspeed',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     vehicleLaneUsage: {
-      title: "vehicleLaneUsage",
+      title: 'vehicleLaneUsage',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     pavementWidth: {
-      title: "pavementWidth",
+      title: 'pavementWidth',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
     pavementHasShops: {
-      title: "pavementHasShops",
+      title: 'pavementHasShops',
       size: 10,
-      sort: "term", // not used
-      order: "asc", // not used
+      sort: 'term', // not used
+      order: 'asc', // not used
       conjunction: false, // always false
     },
   },
   searchableFields: [],
   native_search_enabled: false,
-};
+}

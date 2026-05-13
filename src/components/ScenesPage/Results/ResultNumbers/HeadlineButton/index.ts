@@ -1,1 +1,1 @@
-export * from "./HeadlineButton";
+export * from './HeadlineButton'

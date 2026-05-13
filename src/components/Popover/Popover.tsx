@@ -1,10 +1,10 @@
-import { Popover as HeadlessUiPopover, Transition } from "@headlessui/react";
-import React from "react";
+import { Popover as HeadlessUiPopover, Transition } from '@headlessui/react'
+import React from 'react'
 
 type Props = {
-  buttonText: React.ReactNode | string;
-  children: React.ReactNode;
-};
+  buttonText: React.ReactNode | string
+  children: React.ReactNode
+}
 
 export const Popover = ({ buttonText, children }: Props) => {
   return (
@@ -27,5 +27,5 @@ export const Popover = ({ buttonText, children }: Props) => {
         </HeadlessUiPopover.Panel>
       </Transition>
     </HeadlessUiPopover>
-  );
-};
+  )
+}

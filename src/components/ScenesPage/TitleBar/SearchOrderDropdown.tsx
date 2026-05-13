@@ -1,31 +1,31 @@
-import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon, BarsArrowUpIcon, BarsArrowDownIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
-import React, { Fragment } from "react";
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon, BarsArrowUpIcon, BarsArrowDownIcon } from '@heroicons/react/24/outline'
+import clsx from 'clsx'
+import React, { Fragment } from 'react'
 
 export type SearchOrderDropdownProps = {
-  searchOrder: string | null;
-  setSearchOrder: (order: string | null) => void;
-};
+  searchOrder: string | null
+  setSearchOrder: (order: string | null) => void
+}
 
 export const SearchOrderDropdown = ({ searchOrder, setSearchOrder }: SearchOrderDropdownProps) => {
   const searchOrderValues = {
     desc: {
-      name: "Beste Ergebnisse zuerst",
+      name: 'Beste Ergebnisse zuerst',
       icon: <BarsArrowUpIcon className="h-4 w-4" />,
     },
     asc: {
-      name: "Schlechteste Ergebnisse zuerst",
+      name: 'Schlechteste Ergebnisse zuerst',
       icon: <BarsArrowDownIcon className="h-4 w-4" />,
     },
-  };
+  }
 
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 pl-[0.6rem] pr-[0.6rem] text-sm font-normal text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:ring-offset-2 focus:ring-offset-gray-100 lg:pr-0">
           <span className="hidden lg:inline">Sortierung</span>
-          <span className="lg:hidden">{searchOrderValues[searchOrder || "desc"].icon}</span>
+          <span className="lg:hidden">{searchOrderValues[searchOrder || 'desc'].icon}</span>
           <ChevronDownIcon className="ml-0.5 mr-1 hidden w-[18px] lg:block" aria-hidden="true" />
         </Menu.Button>
       </div>
@@ -43,30 +43,30 @@ export const SearchOrderDropdown = ({ searchOrder, setSearchOrder }: SearchOrder
           <div className="py-1">
             {Object.entries(searchOrderValues).map(([key, values]) => {
               // When no searchOrder is given, we treat that as the default 'desc'
-              const selected = searchOrder ? key === searchOrder : key === "desc";
+              const selected = searchOrder ? key === searchOrder : key === 'desc'
 
               return (
                 <Menu.Item key={key}>
                   <button
                     type="button"
-                    onClick={() => setSearchOrder(key === "desc" ? null : key)}
+                    onClick={() => setSearchOrder(key === 'desc' ? null : key)}
                     disabled={selected}
                     className={clsx(
                       {
-                        "cursor-default bg-brand-light-yellow text-gray-500": selected,
+                        'cursor-default bg-brand-light-yellow text-gray-500': selected,
                       },
-                      { "cursor-pointer hover:bg-stone-100": !selected },
-                      "block w-full px-4 py-2 text-left text-sm",
+                      { 'cursor-pointer hover:bg-stone-100': !selected },
+                      'block w-full px-4 py-2 text-left text-sm',
                     )}
                   >
                     {values.name}
                   </button>
                 </Menu.Item>
-              );
+              )
             })}
           </div>
         </Menu.Items>
       </Transition>
     </Menu>
-  );
-};
+  )
+}

@@ -1,23 +1,23 @@
-import { create } from "zustand";
-import { useStore } from "zustand";
+import { create } from 'zustand'
+import { useStore } from 'zustand'
 
-import type { AggregationConfig } from "../constants";
+import type { AggregationConfig } from '../constants'
 
-export type ExperimentTextKey = null | "primary" | "secondary";
+export type ExperimentTextKey = null | 'primary' | 'secondary'
 
 type ExperimentDataState = {
-  itemJsConfig: null | any;
-  aggregationConfig: null | AggregationConfig;
-  experimentTextKey: ExperimentTextKey;
-};
+  itemJsConfig: null | any
+  aggregationConfig: null | AggregationConfig
+  experimentTextKey: ExperimentTextKey
+}
 
 type ExperimentDataActions = {
-  setItemJsConfig: (config: any) => void;
-  setAggregationConfig: (config: AggregationConfig) => void;
-  setExperimentTextKey: (input: ExperimentTextKey) => void;
-};
+  setItemJsConfig: (config: any) => void
+  setAggregationConfig: (config: AggregationConfig) => void
+  setExperimentTextKey: (input: ExperimentTextKey) => void
+}
 
-type StoreExperimentData = ExperimentDataState & { actions: ExperimentDataActions };
+type StoreExperimentData = ExperimentDataState & { actions: ExperimentDataActions }
 
 const experimentDataStore = create<StoreExperimentData>((set) => ({
   itemJsConfig: null,
@@ -28,17 +28,17 @@ const experimentDataStore = create<StoreExperimentData>((set) => ({
     setAggregationConfig: (aggregationConfig) => set({ aggregationConfig }),
     setExperimentTextKey: (experimentTextKey) => set({ experimentTextKey }),
   },
-}));
+}))
 
-export const useExperimentItemJsConfig = () => useStore(experimentDataStore, (s) => s.itemJsConfig);
+export const useExperimentItemJsConfig = () => useStore(experimentDataStore, (s) => s.itemJsConfig)
 
 export const useExperimentAggregationConfig = () =>
-  useStore(experimentDataStore, (s) => s.aggregationConfig);
+  useStore(experimentDataStore, (s) => s.aggregationConfig)
 
 export const useExperimentTextKeyState = () =>
-  useStore(experimentDataStore, (s) => s.experimentTextKey);
+  useStore(experimentDataStore, (s) => s.experimentTextKey)
 
 /** Non-React reads (e.g. title helpers, dev checks, route bootstrapping). */
-export const getExperimentDataState = () => experimentDataStore.getState();
+export const getExperimentDataState = () => experimentDataStore.getState()
 
-export const getExperimentDataActions = () => experimentDataStore.getState().actions;
+export const getExperimentDataActions = () => experimentDataStore.getState().actions
