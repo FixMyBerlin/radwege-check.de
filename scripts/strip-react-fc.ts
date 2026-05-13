@@ -1,31 +1,32 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
+/// <reference types="bun" />
 /**
  * Remove React.FC: use explicit parameter types instead.
+ *
+ * Run: `bun scripts/strip-react-fc.ts` (or `bun run strip-react-fc`).
  */
-import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SRC = path.join(__dirname, "..", "src");
+const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+const root = path.join(scriptDir, "..");
+const srcDir = path.join(root, "src");
 
-function walk(dir, out = []) {
-  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    const p = path.join(dir, e.name);
-    if (e.isDirectory()) walk(p, out);
-    else if (e.isFile() && p.endsWith(".tsx")) out.push(p);
+async function* walkTsx(): AsyncGenerator<string> {
+  const glob = new Bun.Glob("**/*.tsx");
+  for await (const rel of glob.scan({ cwd: srcDir, onlyFiles: true })) {
+    yield path.join(srcDir, rel);
   }
-  return out;
 }
 
-function matchingParen(s, openIdx) {
+function matchingParen(s: string, openIdx: number): number {
   let depth = 0;
   let i = openIdx;
-  let inS = null;
+  let inS: "'" | '"' | "`" | null = null;
   let inLineComment = false;
   let inBlockComment = false;
   while (i < s.length) {
-    const c = s[i];
+    const c = s[i]!;
     const n = s[i + 1];
 
     if (inLineComment) {
@@ -77,7 +78,7 @@ function matchingParen(s, openIdx) {
   return -1;
 }
 
-function transform(content) {
+function transform(content: string): string {
   let s = content;
 
   s = s.replace(/^export const (\w+): React\.FC = \(\) => \{/gm, "export function $1() {");
@@ -86,7 +87,7 @@ function transform(content) {
   let search = 0;
   let out = "";
   const re = /(export )?const (\w+): React\.FC(<[^>]+>)? = \(/g;
-  let m;
+  let m: RegExpExecArray | null;
   while ((m = re.exec(s)) !== null) {
     if (m.index < search) {
       re.lastIndex = search;
@@ -102,7 +103,7 @@ function transform(content) {
     }
 
     const exportKw = m[1] || "";
-    const name = m[2];
+    const name = m[2]!;
     const typeArg = m[3];
     const typeName = typeArg ? typeArg.slice(1, -1).trim() : null;
     const openParen = m.index + m[0].length - 1;
@@ -125,7 +126,7 @@ function transform(content) {
     }
 
     const trimmed = inner.trim();
-    let newParams;
+    let newParams: string;
     if (trimmed.startsWith("{") && trimmed.endsWith("}")) {
       newParams = `{${trimmed.slice(1, -1)}}: ${typeName}`;
     } else if (/^[a-zA-Z_$][\w$]*$/.test(trimmed)) {
@@ -145,13 +146,13 @@ function transform(content) {
   return out;
 }
 
-for (const file of walk(SRC)) {
+for await (const file of walkTsx()) {
   if (file.endsWith("Link.tsx")) continue;
-  const before = fs.readFileSync(file, "utf8");
+  const before = await Bun.file(file).text();
   if (!before.includes("React.FC")) continue;
   const after = transform(before);
   if (after !== before) {
-    fs.writeFileSync(file, after);
-    console.log(path.relative(path.join(__dirname, ".."), file));
+    await Bun.write(file, after);
+    console.log(path.relative(root, file));
   }
 }

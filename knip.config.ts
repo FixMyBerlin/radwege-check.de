@@ -5,7 +5,7 @@ import type { KnipConfig } from "knip";
  * `src/pages/**`, Vitest, Oxlint, etc.).
  */
 export default {
-  entry: ["oxfmt.config.mjs", "taze.config.js", "scripts/strip-react-fc.mjs"],
+  entry: ["oxfmt.config.mjs", "taze.config.js"],
   ignoreBinaries: ["gh"],
   ignoreDependencies: [
     /** String reference in `astro.config.mjs` — not a static import. */

@@ -19,6 +19,7 @@
     "oxlint.config.ts",
     "vitest.config.ts",
     "knip.config.ts",
+    "scripts/**/*.ts",
     "src/content.config.ts"
   ],
   "exclude": ["node_modules", "dist"]
