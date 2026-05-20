@@ -1,88 +1,139 @@
 import clsx from 'clsx'
 import React from 'react'
-import BollardHigh from './assets/bollard_high-icon.svg'
-import BollardSmall from './assets/bollard_small-icon.svg'
-import DashedLine from './assets/dashed_line-icon.svg'
-import DoubleLine from './assets/double_line-icon.svg'
-import GrassVerge from './assets/grass_verge-icon.svg'
-import Hedge from './assets/hedge-icon.svg'
-import PavedVerge from './assets/paved_verge-icon.svg'
-import Planter from './assets/planter-icon.svg'
-import RestrictedArea from './assets/restricted_area-icon.svg'
-import SolidLine from './assets/solid_line-icon.svg'
-import StreetCabinet from './assets/street_cabinet-icon.svg'
+
+import { SvgInline } from '~/components/Svg/SvgInline'
+
+import bollardHighMarkup from './assets/bollard_high-icon.svg?raw'
+import bollardSmallMarkup from './assets/bollard_small-icon.svg?raw'
+import dashedLineMarkup from './assets/dashed_line-icon.svg?raw'
+import doubleLineMarkup from './assets/double_line-icon.svg?raw'
+import grassVergeMarkup from './assets/grass_verge-icon.svg?raw'
+import hedgeMarkup from './assets/hedge-icon.svg?raw'
+import pavedVergeMarkup from './assets/paved_verge-icon.svg?raw'
+import planterMarkup from './assets/planter-icon.svg?raw'
+import restrictedAreaMarkup from './assets/restricted_area-icon.svg?raw'
+import solidLineMarkup from './assets/solid_line-icon.svg?raw'
+import streetCabinetMarkup from './assets/street_cabinet-icon.svg?raw'
 
 type Props = {
   forValue: string
   className?: string
 }
 
-export const Icons: React.FC<Props> = ({ forValue, className }) => {
+export const Icons = ({ forValue, className }: Props) => {
   switch (forValue) {
     case 'none':
       return <span className={className}>Keine</span> // TODO <None />;
 
     case 'dashed_line':
       return (
-        <DashedLine className={clsx(className, 'scale-75')} title={forValue} />
+        <SvgInline
+          src={dashedLineMarkup}
+          className={clsx(className, 'scale-75')}
+          title={forValue}
+          aria-hidden
+        />
       )
 
     case 'solid_line':
       return (
-        <SolidLine className={clsx(className, 'scale-75')} title={forValue} />
+        <SvgInline
+          src={solidLineMarkup}
+          className={clsx(className, 'scale-75')}
+          title={forValue}
+          aria-hidden
+        />
       )
 
     case 'double_line':
       return (
-        <DoubleLine className={clsx(className, 'scale-75')} title={forValue} />
+        <SvgInline
+          src={doubleLineMarkup}
+          className={clsx(className, 'scale-75')}
+          title={forValue}
+          aria-hidden
+        />
       )
 
     case 'restricted_area':
       return (
-        <RestrictedArea
+        <SvgInline
+          src={restrictedAreaMarkup}
           className={clsx(className, 'scale-75')}
           title={forValue}
+          aria-hidden
         />
       )
 
     case 'paved_verge':
       return (
-        <PavedVerge className={clsx(className, 'scale-75')} title={forValue} />
+        <SvgInline
+          src={pavedVergeMarkup}
+          className={clsx(className, 'scale-75')}
+          title={forValue}
+          aria-hidden
+        />
       )
 
     case 'grass_verge':
       return (
-        <GrassVerge className={clsx(className, 'scale-75')} title={forValue} />
+        <SvgInline
+          src={grassVergeMarkup}
+          className={clsx(className, 'scale-75')}
+          title={forValue}
+          aria-hidden
+        />
       )
 
     case 'grass_verge_with_street_cabinet':
       return (
-        <StreetCabinet
+        <SvgInline
+          src={streetCabinetMarkup}
           className={clsx(className, 'scale-75')}
           title={forValue}
+          aria-hidden
         />
       )
 
     case 'bollard_high':
       return (
-        <BollardHigh className={clsx(className, 'scale-75')} title={forValue} />
+        <SvgInline
+          src={bollardHighMarkup}
+          className={clsx(className, 'scale-75')}
+          title={forValue}
+          aria-hidden
+        />
       )
 
     case 'bollard_small':
       return (
-        <BollardSmall
+        <SvgInline
+          src={bollardSmallMarkup}
           className={clsx(className, 'scale-75')}
           title={forValue}
+          aria-hidden
         />
       )
 
     case 'planter':
       return (
-        <Planter className={clsx(className, 'scale-75')} title={forValue} />
+        <SvgInline
+          src={planterMarkup}
+          className={clsx(className, 'scale-75')}
+          title={forValue}
+          aria-hidden
+        />
       )
 
     case 'hedge':
-      return <Hedge className={clsx(className, 'scale-75')} title={forValue} />
+      return (
+        <SvgInline
+          src={hedgeMarkup}
+          className={clsx(className, 'scale-75')}
+          title={forValue}
+          aria-hidden
+        />
+      )
 
     default:
       return (

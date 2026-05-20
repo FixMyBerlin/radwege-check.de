@@ -1,17 +1,9 @@
-import {
-  ScenePrimaryProps,
-  SceneSecondaryProps,
-} from '~/components/ScenesPage/types'
+import { ScenePrimaryProps, SceneSecondaryProps } from '~/components/ScenesPage/types'
 
-export const laneWidthCalculationText = (
-  scene: ScenePrimaryProps | SceneSecondaryProps,
-) => {
-  if (!('bicycleLaneWidthWithoutBufferAndDooringZoneNumber' in scene))
-    return null
+export const laneWidthCalculationText = (scene: ScenePrimaryProps | SceneSecondaryProps) => {
+  if (!('bicycleLaneWidthWithoutBufferAndDooringZoneNumber' in scene)) return null
 
-  const base = `${Number(
-    scene.bicycleLaneWidthNumber,
-  ).toLocaleString()} m Gesamtbreite`
+  const base = `${Number(scene.bicycleLaneWidthNumber).toLocaleString()} m Gesamtbreite`
 
   const left = `abzüglich ${Number(
     scene.bufferLeftWidthNumber,
@@ -32,9 +24,7 @@ export const laneWidthCalculationText = (
       ).toLocaleString()} m Dooring Zone Rechts`,
     ]
   } else {
-    right = `abzüglich ${Number(
-      scene.bufferRightWidthNumber,
-    ).toLocaleString()} m Markierung Rechts`
+    right = `abzüglich ${Number(scene.bufferRightWidthNumber).toLocaleString()} m Markierung Rechts`
   }
 
   const sum = `= ${scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber} nutzbare Breite`

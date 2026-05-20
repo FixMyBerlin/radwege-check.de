@@ -1,9 +1,11 @@
 import React from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
+
 import { Link } from '~/components/Link'
+
 import { ButtonWrapper, Headline } from '../components'
 
-export const SectionDataset: React.FC = () => {
+export function SectionDataset() {
   const intl = useIntl()
 
   return (

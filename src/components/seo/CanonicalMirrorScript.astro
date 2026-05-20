@@ -1,0 +1,20 @@
+---
+import { canonicalOrigin } from '~/components/utils/domain/canonicalOrigin.const'
+import { englishDomainHost, primaryDomainHost } from '~/components/utils/domain/domains.const'
+
+const primaryHost = primaryDomainHost
+const englishHost = englishDomainHost
+---
+
+<script is:inline define:vars={{ canonicalOrigin, primaryHost, englishHost }}>
+  ;(function () {
+    var h = (location.hostname || '').toLowerCase()
+    if (!h || h === 'localhost' || h === primaryHost || h === englishHost) return
+    var href = canonicalOrigin + location.pathname + location.search
+    var link = document.createElement('link')
+    link.rel = 'canonical'
+    link.href = href
+    link.setAttribute('data-info-trigger', 'non primary domain')
+    document.head.appendChild(link)
+  })()
+</script>

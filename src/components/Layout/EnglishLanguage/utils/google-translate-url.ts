@@ -1,8 +1,6 @@
 // Build translations URL and keep existing params
 export const googleTranslateUrl = (location: Window['location']) => {
-  const translateUrl = new URL(
-    `https://radwege--check-de.translate.goog${location.pathname}`,
-  )
+  const translateUrl = new URL(`https://radwege--check-de.translate.goog${location.pathname}`)
   const currentParams = new URLSearchParams(location.search)
   currentParams.forEach((v, k) => translateUrl.searchParams.set(k, v))
   translateUrl.searchParams.set('_x_tr_sl', 'de') // Source

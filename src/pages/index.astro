@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import SiteChrome from '../layouts/SiteChrome.astro'
+import { IndexRoute } from '../components/routes/IndexRoute'
+---
+
+<BaseLayout
+  seo={{
+    title:
+      'Radwege-Check – Vergleiche die subjektive Sicherheit von 1.779 Radinfrastrukturen.',
+    sharingTitle: 'Vergleiche 1.779 Radinfrastrukturen. Mach den Radwege-Check.',
+  }}
+>
+  <SiteChrome host={Astro.url.host}>
+    <IndexRoute client:load="react" />
+  </SiteChrome>
+</BaseLayout>

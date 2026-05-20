@@ -7,10 +7,11 @@
 
 # testing
 /coverage
-
-# gatsby
 .cache/
-public/
+
+# astro
+dist/
+.astro/
 
 # misc
 .DS_Store

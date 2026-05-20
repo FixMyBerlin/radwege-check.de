@@ -1,6 +1,7 @@
 import React from 'react'
-import { useStore } from 'zustand'
-import { useStoreExperimentData } from '~/components/ScenesPage/store'
+
+import { useExperimentAggregationConfig } from '~/components/ScenesPage/store'
+
 import { ResultBucketProps } from '../../../types'
 import { HandleSingleChoice } from './ButtonSingleChoice'
 import { buttonClassNames } from './utils'
@@ -12,13 +13,13 @@ type Props = {
   handleClick: HandleSingleChoice
 }
 
-export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
+export const ButtonSingleChoiceNoChoice = ({
   aggregationKey,
   bucketKey,
   buckets,
   handleClick,
-}) => {
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+}: Props) => {
+  const aggregationConfig = useExperimentAggregationConfig()
 
   // For our uiSelected, aggregations with no selected buckets are shows als "all selected".
   const anyOfGroupSelected = buckets.some((b) => b.selected)
@@ -36,8 +37,7 @@ export const ButtonSingleChoiceNoChoice: React.FC<Props> = ({
   })
 
   const formKey = `${aggregationKey}-${bucketKey}`
-  const bucketLabel =
-    aggregationConfig[aggregationKey].buckets[bucketKey] || 'TODO'
+  const bucketLabel = aggregationConfig[aggregationKey].buckets[bucketKey] || 'TODO'
 
   return (
     <label htmlFor={formKey} className={labelClasses} title="">

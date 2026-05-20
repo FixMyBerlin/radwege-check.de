@@ -1,11 +1,13 @@
 import clsx from 'clsx'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { useStore } from 'zustand'
-import { useStoreExperimentData } from '~/components/ScenesPage/store'
+
+import { useExperimentAggregationConfig } from '~/components/ScenesPage/store'
+import { SvgInline } from '~/components/Svg/SvgInline'
 import { isDev } from '~/components/utils'
-import BikeIcon from '../../../Results/ResultNumbers/assets/bike-icon.svg'
-import { ResultBucketProps } from '../../../types'
+
+import bikeIconMarkup from '../../../Results/ResultNumbers/assets/bike-icon.svg?raw'
+import type { ResultBucketProps } from '../../../types'
 import { useResults } from './useResults'
 
 export type HandleMultiChoiceProps = {
@@ -28,13 +30,13 @@ type Props = {
   paginationTotal: number
 }
 
-export const ButtonMultiChoice: React.FC<Props> = ({
+export const ButtonMultiChoice = ({
   aggregationKey,
   bucket,
   buckets,
   handleClick,
   paginationTotal,
-}) => {
+}: Props) => {
   const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
     bucketCount: bucket?.doc_count,
@@ -42,20 +44,18 @@ export const ButtonMultiChoice: React.FC<Props> = ({
     anySelected: buckets.some((b) => b.selected),
   })
 
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+  const aggregationConfig = useExperimentAggregationConfig()
   const { showAsList } = aggregationConfig[aggregationKey]
 
   const formKey = `${aggregationKey}-${bucket.key}`
-  const bucketLabel =
-    aggregationConfig[aggregationKey].buckets[bucket.key] || 'TODO'
+  const bucketLabel = aggregationConfig[aggregationKey].buckets[bucket.key] || 'TODO'
 
   return (
     <label
       htmlFor={formKey}
       className={clsx(
         {
-          'flex w-full flex-row items-center justify-start gap-1 px-1 py-1':
-            showAsList,
+          'flex w-full flex-row items-center justify-start gap-1 px-1 py-1': showAsList,
         },
         {
           'flex w-full flex-col items-center justify-start gap-1 px-1 py-1 text-center leading-4':
@@ -114,8 +114,7 @@ export const ButtonMultiChoice: React.FC<Props> = ({
           { 'cursor-not-allowed': !uiCanpress },
           { 'border-gray-300 text-brand-yellow/50': !uiCanpress && uiSelected },
           {
-            'border-gray-300 bg-white/30 text-brand-yellow/30':
-              !uiCanpress && !uiSelected,
+            'border-gray-300 bg-white/30 text-brand-yellow/30': !uiCanpress && !uiSelected,
           },
         )}
       />
@@ -125,7 +124,11 @@ export const ButtonMultiChoice: React.FC<Props> = ({
             'Fahrrad ',
             renderToString(
               <>
-                <BikeIcon className="inline h-3 w-auto align-baseline" />{' '}
+                <SvgInline
+                  src={bikeIconMarkup}
+                  className="inline h-3 w-auto align-baseline"
+                  aria-hidden
+                />{' '}
               </>,
             ),
           ),

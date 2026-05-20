@@ -1,6 +1,6 @@
-import { useStore } from 'zustand'
 import { isProduction } from '~/components/utils'
-import { useStoreExperimentData } from '../../store'
+
+import { getExperimentDataState } from '../../store'
 
 type Props = {
   aggregationKey: string
@@ -12,15 +12,14 @@ type Props = {
 export const checkDataConsistency = ({ aggregationKey }: Props) => {
   if (isProduction) return
 
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+  const { aggregationConfig } = getExperimentDataState()
   const { showAsIcons } = aggregationConfig[aggregationKey]
   const { choiceMode } = aggregationConfig[aggregationKey]
 
   if (
     choiceMode === 'single' &&
-    Object.keys(aggregationConfig[aggregationKey].buckets).filter(
-      (k) => k === 'noChoice',
-    ).length === 0
+    Object.keys(aggregationConfig[aggregationKey].buckets).filter((k) => k === 'noChoice')
+      .length === 0
   ) {
     console.log({
       ERROR: `When choiceMode is 'single' there needs to be "noChoice" as well.`,

@@ -2,7 +2,7 @@
 // Our own custom options like "showAsIcon"
 // Everyhting from ItemsJS is in itemJsConfig.
 
-import { AggregationConfig } from './types'
+import type { AggregationConfig } from './types'
 
 export const aggregationConfigPrimary: AggregationConfig = {
   leftOfBicycleLane: {

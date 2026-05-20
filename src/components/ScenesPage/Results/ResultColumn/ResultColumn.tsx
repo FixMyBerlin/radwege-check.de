@@ -1,24 +1,20 @@
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import { useStore } from 'zustand'
+
 import { Link } from '~/components/Link'
+import { SvgInline } from '~/components/Svg/SvgInline'
 import { fullUrl, trackContentImpression } from '~/components/utils'
-import { AggregationConfig } from '../../constants'
+
+import type { AggregationConfig } from '../../constants'
 import { SceneImage } from '../../SceneImage'
-import { useStoreBookmarks } from '../../store'
-import {
-  ScenePrimaryProps,
-  SceneSecondaryProps,
-  SearchOptionProps,
-} from '../../types'
+import { useBookmarkActions } from '../../store'
+import { ScenePrimaryProps, SceneSecondaryProps, SearchOptionProps } from '../../types'
 import { titleScene } from '../../utils/titleScenes'
 import { ResultCells } from '../ResultCells'
 import { ResultNumbers } from '../ResultNumbers'
 import { ShowTableProps } from '../Results'
-import PinIcon from './assets/pin-icon.svg'
+import PinIconMarkup from './assets/pin-icon.svg?raw'
 import { useIntersection } from './utils/useIntersection'
-
-export type PrevBucketValues = { [key: string]: string | number }
 
 type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps
@@ -28,7 +24,7 @@ type Props = {
   allowBookmark: boolean
 } & ShowTableProps
 
-export const ResultColumn: React.FC<Props> = ({
+export const ResultColumn = ({
   scene,
   index = 0,
   searchFilters = {},
@@ -36,11 +32,11 @@ export const ResultColumn: React.FC<Props> = ({
   setShowTable,
   aggregationConfig,
   allowBookmark,
-}) => {
+}: Props) => {
   const [sceneImage, setSceneImage] = useState(scene.sceneId)
   const handleImageChange = (sceneId: string) => setSceneImage(sceneId)
 
-  const { toggleBookmark, isInBookmarks } = useStore(useStoreBookmarks)
+  const { toggleBookmark, isInBookmarks } = useBookmarkActions()
 
   const safeZoneForIosSafariNavigationBar = 'mb-[40rem] lg:mb-0'
 
@@ -82,7 +78,7 @@ export const ResultColumn: React.FC<Props> = ({
                 isInBookmarks(scene.sceneId) ? 'bg-brand-yellow' : 'bg-white',
               )}
             >
-              <PinIcon className="h-4 w-4" />
+              <SvgInline src={PinIconMarkup} className="h-4 w-4" aria-hidden />
             </div>
           </button>
         </section>
@@ -103,10 +99,7 @@ export const ResultColumn: React.FC<Props> = ({
         handleHover={handleImageChange}
         showTable={showTable}
         setShowTable={setShowTable}
-        wrapperClass={clsx(
-          'border-b border-dotted py-2 lg:py-3.5',
-          showTable ? 'h-96' : 'h-40',
-        )}
+        wrapperClass={clsx('border-b border-dotted py-2 lg:py-3.5', showTable ? 'h-96' : 'h-40')}
         chartClass="border-b border-dotted"
       />
 

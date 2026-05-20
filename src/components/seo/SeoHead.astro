@@ -1,0 +1,63 @@
+---
+import { canonicalOrigin } from '~/components/utils/domain/canonicalOrigin.const'
+import { netlifyNonProductionNoindex } from '~/lib/seo-build-flags'
+import { SEO_DEFAULT_DESCRIPTION, SEO_DEFAULT_TITLE } from '~/lib/seo-defaults'
+import type { SeoHeadInput } from '~/lib/seo-head-input'
+
+const {
+  title,
+  description,
+  sharingTitle,
+  imagePath,
+  imageUrl,
+  article = false,
+  noindex = false,
+  imageSize,
+  alternates = [],
+} = Astro.props as SeoHeadInput
+
+const siteOrigin = (() => {
+  try {
+    return new URL(Astro.site ?? canonicalOrigin).origin
+  } catch {
+    return canonicalOrigin
+  }
+})()
+
+const withTitle = title?.trim() || SEO_DEFAULT_TITLE
+const withDescription = description?.trim() || SEO_DEFAULT_DESCRIPTION
+const ogTitle = sharingTitle?.trim() || withTitle
+
+const absoluteImage =
+  imageUrl?.trim() ||
+  (imagePath ? new URL(imagePath, siteOrigin).href : new URL('/social-sharing/default.jpg', siteOrigin).href)
+
+const deployNoindex = netlifyNonProductionNoindex()
+const robotsContent = deployNoindex ? 'noindex, nofollow' : noindex ? 'noindex' : null
+---
+
+<title>{withTitle}</title>
+<meta name="description" content={withDescription} />
+
+<meta property="og:title" content={ogTitle} />
+<meta name="twitter:title" content={ogTitle} />
+
+<meta property="og:description" content={withDescription} />
+<meta name="twitter:description" content={withDescription} />
+
+<meta name="image" content={absoluteImage} />
+<meta property="og:image" content={absoluteImage} />
+<meta name="twitter:image" content={absoluteImage} />
+<meta name="twitter:card" content="summary_large_image" />
+
+{article ? <meta property="og:type" content="article" /> : null}
+
+{robotsContent ? <meta name="robots" content={robotsContent} /> : null}
+
+{Object.entries(imageSize ?? {}).map(([key, value]) => (
+  <meta property={`og:image:${key}`} content={`${value}`} />
+))}
+
+{alternates.map((a) => (
+  <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+))}

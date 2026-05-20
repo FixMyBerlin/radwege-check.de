@@ -21,8 +21,7 @@ export const useResults = ({
   const allowPressWhenFutureResults = resultFuture !== 0
   const allowPressWhenResultsWouldChange = resultDiff !== 0
 
-  const uiCanpress =
-    allowPressWhenFutureResults && allowPressWhenResultsWouldChange
+  const uiCanpress = allowPressWhenFutureResults && allowPressWhenResultsWouldChange
 
   return { resultFuture, uiSelected, uiCanpress }
 }

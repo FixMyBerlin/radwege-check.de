@@ -1,0 +1,24 @@
+---
+import logoColorMarkup from '~/components/assets/radwegecheck-logo-mehrfarbig.svg?raw'
+
+interface Props {
+  printHideHeader?: boolean
+}
+
+const { printHideHeader = false } = Astro.props
+---
+
+<section
+  class:list={[
+    'flex h-48 w-full flex-col items-center bg-gradient-to-b from-brand-light-yellow via-brand-light-yellow to-white text-gray-700 print:from-white print:via-white',
+    { 'print:hidden': printHideHeader },
+  ]}
+>
+  <a href="/" class="mt-6 block" title="Zur Startseite…">
+    <span
+      class="inline-flex h-16 shrink-0 items-center justify-center text-gray-700 [&>svg]:block [&>svg]:max-h-full [&>svg]:max-w-full"
+      set:html={logoColorMarkup}
+      aria-label="Radwege-Check"
+    />
+  </a>
+</section>

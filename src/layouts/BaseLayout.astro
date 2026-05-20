@@ -1,0 +1,68 @@
+---
+import '@fontsource/barlow/300.css'
+import '@fontsource/barlow'
+import '@fontsource/barlow/600.css'
+import '@fontsource/barlow/700.css'
+import '@fontsource/barlow-semi-condensed'
+import '@fontsource/barlow-semi-condensed/500.css'
+import '@fontsource/barlow-semi-condensed/600.css'
+import '@fontsource/barlow-semi-condensed/700.css'
+import '@fontsource/barlow-condensed'
+import '@fontsource/barlow-condensed/600.css'
+import '@fontsource/barlow-condensed/700.css'
+import '../styles/global.css'
+
+import CanonicalMirrorScript from '~/components/seo/CanonicalMirrorScript.astro'
+import SeoHead from '~/components/seo/SeoHead.astro'
+import { netlifyNonProductionNoindex } from '~/lib/seo-build-flags'
+import type { SeoHeadInput } from '~/lib/seo-head-input'
+
+interface Props {
+  lang?: string
+  seo?: SeoHeadInput
+}
+
+const { lang = 'de', seo = {} } = Astro.props
+const matomoDev = !import.meta.env.PROD
+const deployNoindex = netlifyNonProductionNoindex()
+---
+
+<!doctype html>
+<html
+  lang={lang}
+  class="scroll-smooth"
+  data-seo-deploy-noindex={deployNoindex ? 'true' : 'false'}
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#fabe28" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/app-icon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <SeoHead {...seo} />
+    <CanonicalMirrorScript />
+    <script is:inline define:vars={{ matomoDev }}>
+      var _paq = (window._paq = window._paq || [])
+      _paq.push(['disableCookies'])
+      _paq.push(['trackPageView'])
+      _paq.push(['enableLinkTracking'])
+      _paq.push(['setTrackerUrl', 'https://s.fixmycity.de/matomo.php'])
+      _paq.push(['setSiteId', '6'])
+      if (matomoDev) {
+        window.dev = true
+      }
+      var d = document,
+        g = d.createElement('script'),
+        s = d.getElementsByTagName('script')[0]
+      g.async = true
+      g.src = 'https://s.fixmycity.de/matomo.js'
+      s.parentNode.insertBefore(g, s)
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

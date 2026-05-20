@@ -1,8 +1,6 @@
 import React from 'react'
-import {
-  ScenePrimaryProps,
-  SceneSecondaryProps,
-} from '~/components/ScenesPage/types'
+
+import { ScenePrimaryProps, SceneSecondaryProps } from '~/components/ScenesPage/types'
 import { formatPercent } from '~/components/utils'
 
 type Props = {
@@ -10,7 +8,7 @@ type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps
 }
 
-export const ScoreExplanation: React.FC<Props> = ({ visible, scene }) => {
+export const ScoreExplanation = ({ visible, scene }: Props) => {
   if (!visible) return null
 
   return (
@@ -23,8 +21,7 @@ export const ScoreExplanation: React.FC<Props> = ({ visible, scene }) => {
       ]
         .filter(Boolean)
         .join(', ')}
-      ) entspricht der Summe „eher sicher“ und „sicher“ der jeweiligen
-      Perspektive.
+      ) entspricht der Summe „eher sicher“ und „sicher“ der jeweiligen Perspektive.
     </p>
   )
 }

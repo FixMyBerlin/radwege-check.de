@@ -1,6 +1,8 @@
 import React from 'react'
+
 import { Link } from '~/components/Link'
-import { TocHashLink } from './types'
+
+import type { TocHashLink } from './types'
 
 /*
   We could make this more fancy…
@@ -22,7 +24,7 @@ import { TocHashLink } from './types'
 
 type Props = { items: TocHashLink }
 
-export const TableOfContents: React.FC<Props> = ({ items }) => {
+export const TableOfContents = ({ items }: Props) => {
   return (
     <nav className="not-prose absolute top-28 z-10 hidden w-40 rounded bg-white px-4 py-3 lg:left-0 lg:block lg:rounded-l-none xl:fixed xl:shadow-lg 2xl:left-8">
       <ul>

@@ -1,21 +1,14 @@
 import { Menu, Transition } from '@headlessui/react'
-import {
-  ChevronDownIcon,
-  BarsArrowUpIcon,
-  BarsArrowDownIcon,
-} from '@heroicons/react/24/outline'
+import { ChevronDownIcon, BarsArrowUpIcon, BarsArrowDownIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import React, { Fragment } from 'react'
 
 export type SearchOrderDropdownProps = {
-  searchOrder: string
-  setSearchOrder: (order: string) => void
+  searchOrder: string | null
+  setSearchOrder: (order: string | null) => void
 }
 
-export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
-  searchOrder,
-  setSearchOrder,
-}) => {
+export const SearchOrderDropdown = ({ searchOrder, setSearchOrder }: SearchOrderDropdownProps) => {
   const searchOrderValues = {
     desc: {
       name: 'Beste Ergebnisse zuerst',
@@ -32,13 +25,8 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
       <div>
         <Menu.Button className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 pl-[0.6rem] pr-[0.6rem] text-sm font-normal text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:ring-offset-2 focus:ring-offset-gray-100 lg:pr-0">
           <span className="hidden lg:inline">Sortierung</span>
-          <span className="lg:hidden">
-            {searchOrderValues[searchOrder || 'desc'].icon}
-          </span>
-          <ChevronDownIcon
-            className="ml-0.5 mr-1 hidden w-[18px] lg:block"
-            aria-hidden="true"
-          />
+          <span className="lg:hidden">{searchOrderValues[searchOrder || 'desc'].icon}</span>
+          <ChevronDownIcon className="ml-0.5 mr-1 hidden w-[18px] lg:block" aria-hidden="true" />
         </Menu.Button>
       </div>
 
@@ -55,20 +43,17 @@ export const SearchOrderDropdown: React.FC<SearchOrderDropdownProps> = ({
           <div className="py-1">
             {Object.entries(searchOrderValues).map(([key, values]) => {
               // When no searchOrder is given, we treat that as the default 'desc'
-              const selected = searchOrder
-                ? key === searchOrder
-                : key === 'desc'
+              const selected = searchOrder ? key === searchOrder : key === 'desc'
 
               return (
                 <Menu.Item key={key}>
                   <button
                     type="button"
-                    onClick={() => setSearchOrder(key)}
+                    onClick={() => setSearchOrder(key === 'desc' ? null : key)}
                     disabled={selected}
                     className={clsx(
                       {
-                        'cursor-default bg-brand-light-yellow text-gray-500':
-                          selected,
+                        'cursor-default bg-brand-light-yellow text-gray-500': selected,
                       },
                       { 'cursor-pointer hover:bg-stone-100': !selected },
                       'block w-full px-4 py-2 text-left text-sm',

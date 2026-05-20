@@ -1,12 +1,14 @@
-import React from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
-import { Link } from '~/components/Link'
 import clsx from 'clsx'
+import React from 'react'
 import { useIntl } from 'react-intl'
+
+import { Link } from '~/components/Link'
+
 import { translations } from '../translations'
 
-export const LanguageSwitcher: React.FC = () => {
+export function LanguageSwitcher() {
   const intl = useIntl()
 
   const labelForLocale = (locale: string) =>

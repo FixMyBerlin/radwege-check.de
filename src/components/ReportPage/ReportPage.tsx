@@ -1,5 +1,6 @@
 import React from 'react'
 import { IntlProvider } from 'react-intl'
+
 import { LanguageSwitcher } from './components'
 import {
   SectionAbout,
@@ -11,14 +12,14 @@ import {
   SectionTableOfContents,
   SectionTeam,
 } from './sections'
-import { ReportTranslations } from './translations'
+import type { ReportTranslations } from './translations'
 
 type Props = {
   lang: ReportTranslations
   translationKeys: Record<string, string>
 }
 
-export const ReportPage: React.FC<Props> = ({ lang, translationKeys }) => {
+export const ReportPage = ({ lang, translationKeys }: Props) => {
   return (
     <IntlProvider locale={lang} messages={translationKeys} defaultLocale="de">
       <LanguageSwitcher />

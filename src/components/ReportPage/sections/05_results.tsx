@@ -1,10 +1,12 @@
 import React from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
+
 import { BarChart, BarChartWrapper, FeelSafe } from '~/components/charts'
 import { Link } from '~/components/Link'
+
 import { Headline, Image, TwoImagesWrapper } from '../components'
 
-export const SectionResults: React.FC = () => {
+export function SectionResults() {
   const intl = useIntl()
 
   return (
@@ -24,10 +26,7 @@ export const SectionResults: React.FC = () => {
           id="05_results.p3"
           values={{
             link: (
-              <Link
-                external
-                to="https://github.com/FixMyBerlin/fixmy.survey-results"
-              >
+              <Link external to="https://github.com/FixMyBerlin/fixmy.survey-results">
                 Jupyter Notebooks
               </Link>
             ),
@@ -882,15 +881,9 @@ export const SectionResults: React.FC = () => {
       </p>
 
       <TwoImagesWrapper>
-        <Image
-          source="MS_A_1285"
-          chart={<FeelSafe value={94.68} icon="car" />}
-        />
+        <Image source="MS_A_1285" chart={<FeelSafe value={94.68} icon="car" />} />
 
-        <Image
-          source="MS_A_586"
-          chart={<FeelSafe value={28.21} icon="car" />}
-        />
+        <Image source="MS_A_586" chart={<FeelSafe value={28.21} icon="car" />} />
       </TwoImagesWrapper>
 
       <Headline as="h3">
@@ -1409,15 +1402,9 @@ export const SectionResults: React.FC = () => {
       </p>
 
       <TwoImagesWrapper>
-        <Image
-          source="CP_P_149"
-          chart={<FeelSafe value={90.52} icon="walk" />}
-        />
+        <Image source="CP_P_149" chart={<FeelSafe value={90.52} icon="walk" />} />
 
-        <Image
-          source="CP_P_778"
-          chart={<FeelSafe value={93.47} icon="walk" />}
-        />
+        <Image source="CP_P_778" chart={<FeelSafe value={93.47} icon="walk" />} />
       </TwoImagesWrapper>
 
       <Headline as="h3">

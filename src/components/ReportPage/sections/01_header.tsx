@@ -1,9 +1,12 @@
 import React from 'react'
 import { FormattedDate, FormattedMessage } from 'react-intl'
-import { Headline } from '../components'
-import AuthorIcon from './assets/author-icon.svg'
 
-export const SectionHeader: React.FC = () => {
+import { SvgInline } from '~/components/Svg/SvgInline'
+
+import { Headline } from '../components'
+import authorIconMarkup from './assets/author-icon.svg?raw'
+
+export function SectionHeader() {
   return (
     <section>
       <p className="font-light uppercase leading-5 tracking-widest">
@@ -16,7 +19,7 @@ export const SectionHeader: React.FC = () => {
 
       <p>
         <div className="mr-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-yellow">
-          <AuthorIcon />{' '}
+          <SvgInline src={authorIconMarkup} className="h-5 w-5 text-stone-800" aria-hidden />{' '}
         </div>
         <FormattedDate value={new Date('2020-06-06')} />{' '}
         <FormattedMessage id="article.attribution" /> |{' '}

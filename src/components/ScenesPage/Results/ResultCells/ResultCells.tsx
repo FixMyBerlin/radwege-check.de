@@ -1,10 +1,7 @@
 import React from 'react'
+
 import { AggregationConfig } from '../../constants'
-import {
-  ScenePrimaryProps,
-  SceneSecondaryProps,
-  SearchOptionProps,
-} from '../../types'
+import { ScenePrimaryProps, SceneSecondaryProps, SearchOptionProps } from '../../types'
 import { ResultCell } from './ResultCell'
 
 type Props = {
@@ -14,12 +11,7 @@ type Props = {
   aggregationConfig: AggregationConfig
 }
 
-export const ResultCells: React.FC<Props> = ({
-  scene,
-  searchFilters,
-  showHover,
-  aggregationConfig,
-}) => {
+export const ResultCells = ({ scene, searchFilters, showHover, aggregationConfig }: Props) => {
   return (
     <>
       {Object.keys(aggregationConfig || {}).map((key) => {

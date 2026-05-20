@@ -1,58 +1,46 @@
-import React, { useMemo } from 'react'
-import { useStore } from 'zustand'
+import React from 'react'
+
 import { FeelSafe } from '../charts'
-import { MetaTags } from '../Layout'
 import { Link } from '../Link'
 import { SceneImage } from '../ScenesPage'
-import { useStoreExperimentData } from '../ScenesPage/store'
 import { cleanupCsvData } from '../ScenesPage/utils'
 import { titleScene } from '../ScenesPage/utils/titleScenes'
 
+type SceneKind = 'primary' | 'secondary'
+
 type Props = {
-  rawScenes: any
+  rawScenes: { node: Record<string, unknown> }[] | Record<string, unknown>[]
+  sceneKind: SceneKind
 }
 
-export const ScenesAllPage: React.FC<Props> = ({ rawScenes }) => {
-  const scenes = useMemo(() => {
-    // Flatten the data by extracting the objects we want from [node: { /* object */ }, node: { /* object */ }, …]
-    const flattened = rawScenes.map((list) => list.node)
-    // Clean the data
-    const clean = cleanupCsvData(flattened)
-    return clean.sort((a, b) => a.voteScore - b.voteScore)
-  }, [rawScenes])
+export const ScenesAllPage = ({ rawScenes, sceneKind }: Props) => {
+  const flattened = rawScenes.map((list: any) =>
+    list && typeof list === 'object' && 'node' in list ? list.node : list,
+  )
+  const clean = cleanupCsvData(flattened)
+  const base = sceneKind === 'primary' ? '/hauptstrassen' : '/nebenstrassen'
+  const scenes = clean
+    .sort((a, b) => a.voteScore - b.voteScore)
+    .map((s) => ({
+      ...s,
+      path: `${base}/${s.sceneId}`,
+    }))
 
   const totalResults = Number(scenes.length).toLocaleString()
 
-  const { experimentTextKey } = useStore(useStoreExperimentData)
-  const categoryTranslation =
-    experimentTextKey === 'primary' ? 'Hauptstrassen' : 'Nebenstrassen'
-  const resultsPath =
-    experimentTextKey === 'primary' ? '/hauptstrassen' : '/nebenstrassen'
-  const otherCategoryTranslation =
-    experimentTextKey === 'primary' ? 'Nebenstrassen' : 'Hauptstrassen'
-  const otherResultsPath =
-    experimentTextKey === 'primary'
-      ? '/nebenstrassen/alle'
-      : '/hauptstrassen/alle'
+  const categoryTranslation = sceneKind === 'primary' ? 'Hauptstrassen' : 'Nebenstrassen'
+  const resultsPath = sceneKind === 'primary' ? '/hauptstrassen' : '/nebenstrassen'
+  const otherCategoryTranslation = sceneKind === 'primary' ? 'Nebenstrassen' : 'Hauptstrassen'
+  const otherResultsPath = sceneKind === 'primary' ? '/nebenstrassen/alle' : '/hauptstrassen/alle'
 
   return (
     <>
-      <MetaTags
-        article
-        noindex
-        title={`Alle ${Number(
-          totalResults,
-        ).toLocaleString()} Szenen auf ${categoryTranslation}.`}
-        description="Auf Basis eine Umfrage mit über 22.000 Teilnehmenden."
-        imagePath="/social-sharing/results.jpg"
-      />
-
       <h1 className="mb-5 text-center text-4xl font-semibold">
         Alle {totalResults} Szenen für {categoryTranslation}
       </h1>
       <p className="mb-6 text-center text-gray-500">
-        Aus dem Blickwinkel einer Fahrradfahrer:in. Die Sortierung zeigt die am
-        schlechtesten bewerteten Szenen zuerst.
+        Aus dem Blickwinkel einer Fahrradfahrer:in. Die Sortierung zeigt die am schlechtesten
+        bewerteten Szenen zuerst.
       </p>
       <p className="text-center">
         <Link to={resultsPath} button className="mr-2">

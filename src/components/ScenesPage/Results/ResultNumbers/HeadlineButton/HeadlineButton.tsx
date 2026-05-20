@@ -1,10 +1,9 @@
 import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/24/outline'
 import React from 'react'
-import {
-  ScenePrimaryProps,
-  SceneSecondaryProps,
-} from '~/components/ScenesPage/types'
+
+import { ScenePrimaryProps, SceneSecondaryProps } from '~/components/ScenesPage/types'
 import { fullUrl, trackContentInteraction } from '~/components/utils'
+
 import { ShowTableProps } from '../../Results'
 
 type Props = {
@@ -12,12 +11,7 @@ type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps
 } & ShowTableProps
 
-export const HeadlineButton: React.FC<Props> = ({
-  visible,
-  showTable,
-  setShowTable,
-  scene,
-}) => {
+export const HeadlineButton = ({ visible, showTable, setShowTable, scene }: Props) => {
   const handleClick = () => {
     trackContentInteraction({
       action: showTable ? 'close table' : 'open table',
@@ -36,9 +30,7 @@ export const HeadlineButton: React.FC<Props> = ({
       onClick={handleClick}
       className="group mb-0.5 flex w-full cursor-pointer items-center justify-between"
     >
-      <h3 className="text-xxs font-semibold">
-        Bewertung Subjektive Sicherheit
-      </h3>
+      <h3 className="text-xxs font-semibold">Bewertung Subjektive Sicherheit</h3>
       {showTable ? (
         <span>
           <span className="sr-only">weniger Details</span>

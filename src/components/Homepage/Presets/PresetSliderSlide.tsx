@@ -1,9 +1,11 @@
 import React from 'react'
+
 import { FeelSafe } from '~/components/charts'
 import { Link } from '~/components/Link'
 import { SceneImage } from '~/components/ScenesPage'
 import { PresetScene } from '~/components/ScenesPage/constants'
 import { SceneCategory } from '~/components/ScenesPage/types'
+
 import { FilterUrlBySceneCategory } from './types'
 
 type Props = {
@@ -11,10 +13,7 @@ type Props = {
   preset: PresetScene
 }
 
-export const PresetSliderSlide: React.FC<Props> = ({
-  sceneCategory,
-  preset,
-}) => {
+export const PresetSliderSlide = ({ sceneCategory, preset }: Props) => {
   const filterUrlBySceneCategory: FilterUrlBySceneCategory = {
     primary: '/hauptstrassen/?filter=',
     secondary: '/nebenstrassen/?filter=',
@@ -40,9 +39,7 @@ export const PresetSliderSlide: React.FC<Props> = ({
         )}
         <div className="absolute bottom-3 right-3 flex min-w-[8rem] flex-col items-center justify-center rounded bg-white/60 p-2 pb-1 text-center shadow backdrop-blur">
           <p className="-mb-0.5 leading-5">
-            <strong>
-              {Number(preset.resultTotal).toLocaleString()} Ergebnisse
-            </strong>
+            <strong>{Number(preset.resultTotal).toLocaleString()} Ergebnisse</strong>
             <br />Ø Score
           </p>
           <FeelSafe standalone value={preset.averageScore} />

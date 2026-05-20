@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
-import { useStore } from 'zustand'
-import { useStoreExperimentData } from '../../store'
+
+import { useExperimentAggregationConfig } from '../../store'
 import { ResultBucketProps, ResultProps } from '../../types'
 import { checkBucketValueConsistency, checkDataConsistency } from '../utils'
 import { ButtonIcon, ButtonIconNoChoice } from './ButtonIcon'
@@ -20,13 +20,13 @@ type Props = {
   handleMultiChoice?: HandleMultiChoice
 }
 
-export const FacetsButtons: React.FC<Props> = ({
+export const FacetsButtons = ({
   aggregationKey,
   results,
   buckets,
   handleSingleChoice,
   handleMultiChoice,
-}) => {
+}: Props) => {
   checkDataConsistency({ aggregationKey })
   const { keyFromItemjsMissingInTranslations } = checkBucketValueConsistency({
     aggregationKey,
@@ -36,13 +36,12 @@ export const FacetsButtons: React.FC<Props> = ({
   // We need a specific order for our Bucket values.
   // We use the order of key from our aggregationConfig for that.
   // However, for keys of type number that does not work, which is why we use a custom order via the `sortOrder` key.
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+  const aggregationConfig = useExperimentAggregationConfig()
   const sortedBuckets =
     aggregationConfig[aggregationKey]?.sortOrder ||
     Object.keys(aggregationConfig[aggregationKey].buckets)
 
-  const { showAsIcons, choiceMode, showAsList } =
-    aggregationConfig[aggregationKey]
+  const { showAsIcons, choiceMode, showAsList } = aggregationConfig[aggregationKey]
   const wrapperClass = clsx(
     'w-full font-condensed',
     {
@@ -84,9 +83,9 @@ export const FacetsButtons: React.FC<Props> = ({
             }
           }
 
-          const bucket = results.data.aggregations[
-            aggregationKey
-          ].buckets.filter((b) => b.key === bucketKey)?.[0]
+          const bucket = results.data.aggregations[aggregationKey].buckets.filter(
+            (b) => b.key === bucketKey,
+          )?.[0]
 
           // Guard for `keyFromTranslationMissingInItemjs`
           if (!bucket) return null

@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ArticlePageLayout from '../layouts/ArticlePageLayout.astro'
+import { DatenschutzRoute } from '../components/routes/DatenschutzRoute'
+---
+
+<BaseLayout seo={{ noindex: true, title: 'Radwege-Check | Datenschutz' }}>
+  <ArticlePageLayout host={Astro.url.host}>
+    <DatenschutzRoute client:only="react" />
+  </ArticlePageLayout>
+</BaseLayout>

@@ -1,8 +1,9 @@
 import clsx from 'clsx'
 import React from 'react'
-import { useStore } from 'zustand'
+
 import { TranslationMissing } from '~/components/TextHelper'
-import { useStoreExperimentData } from '../../store'
+
+import { useExperimentAggregationConfig } from '../../store'
 
 type Props = {
   aggregationKey: string
@@ -10,11 +11,8 @@ type Props = {
   forIcons?: boolean
 }
 
-export const FacetsHeadline: React.FC<Props> = ({
-  aggregationKey,
-  forIcons,
-}) => {
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+export const FacetsHeadline = ({ aggregationKey, forIcons }: Props) => {
+  const aggregationConfig = useExperimentAggregationConfig()
   const title = aggregationConfig[aggregationKey]?.title
   const text = title || <TranslationMissing value={aggregationKey} />
 

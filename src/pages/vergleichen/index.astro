@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import ArticlePageLayout from '../../layouts/ArticlePageLayout.astro'
+import { getCollection } from 'astro:content'
+import { VergleichenRoute } from '../../components/routes/VergleichenRoute'
+import { canonicalOrigin } from '../../components/utils/domain/canonicalOrigin.const'
+
+const primary = await getCollection('scenesPrimary')
+const secondary = await getCollection('scenesSecondary')
+const rawScenesPrimary = primary.map((e) => ({
+  node: e.data as Record<string, unknown>,
+}))
+const rawScenesSecondary = secondary.map((e) => ({
+  node: e.data as Record<string, unknown>,
+}))
+const defaultImage = `${canonicalOrigin}/social-sharing/results.jpg`
+---
+
+<BaseLayout
+  seo={{
+    title: 'Ausgewählte Radverkehrsanlagen vergleichen',
+    description: 'Vergleiche ausgewählte Szenen aus Haupt- und Nebenstraßen im Radwege-Check.',
+    imageUrl: defaultImage,
+  }}
+>
+  <ArticlePageLayout
+    host={Astro.url.host}
+    maxWidthClass="max-w-full lg:mx-5 flex items-center flex-col"
+    prose={false}
+    printHideHeader
+  >
+    <VergleichenRoute client:only="react" rawScenesPrimary={rawScenesPrimary} rawScenesSecondary={rawScenesSecondary} />
+  </ArticlePageLayout>
+</BaseLayout>

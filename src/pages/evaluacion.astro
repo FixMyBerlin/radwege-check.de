@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ArticlePageLayout from '../layouts/ArticlePageLayout.astro'
+import { EvaluacionRoute } from '../components/routes/EvaluacionRoute'
+import { canonicalOrigin } from '../components/utils/domain/canonicalOrigin.const'
+
+const alternates = [
+  { hreflang: 'de', href: `${canonicalOrigin}/auswertung` },
+  { hreflang: 'en', href: `${canonicalOrigin}/report` },
+  { hreflang: 'es', href: `${canonicalOrigin}/evaluacion` },
+]
+---
+
+<BaseLayout
+  seo={{
+    article: true,
+    title: 'Estudio sobre la seguridad subjetiva en la movilidad ciclista',
+    description: 'Resultados y datos de la encuesta realizada a más de 22.000 participantes',
+    alternates,
+  }}
+>
+  <ArticlePageLayout host={Astro.url.host} showEnglishLanguageTeaser={false}>
+    <EvaluacionRoute client:only="react" />
+  </ArticlePageLayout>
+</BaseLayout>

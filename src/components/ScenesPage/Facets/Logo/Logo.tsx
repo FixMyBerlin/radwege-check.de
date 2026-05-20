@@ -1,12 +1,14 @@
 import React from 'react'
-import LogoImage from '~/components/assets/radwegecheck-logo.svg'
+
+import logoMarkup from '~/components/assets/radwegecheck-logo.svg?raw'
 import { Link } from '~/components/Link'
+import { SvgInline } from '~/components/Svg/SvgInline'
 
 type Props = {
   visible: boolean
 }
 
-export const Logo: React.FC<Props> = ({ visible }) => {
+export const Logo = ({ visible }: Props) => {
   if (!visible) return null
 
   return (
@@ -16,7 +18,8 @@ export const Logo: React.FC<Props> = ({ visible }) => {
       className="focus:text-yellow-900 focus:outline-none"
       title="Zur Startseite…"
     >
-      <LogoImage
+      <SvgInline
+        src={logoMarkup}
         className="h-8 w-auto hover:text-yellow-900 "
         alt="Radwege-Check"
       />

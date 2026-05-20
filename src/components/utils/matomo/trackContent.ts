@@ -11,11 +11,7 @@ type ImpressionProps = {
   url: string
 }
 
-export const trackContentImpression = ({
-  id,
-  representation,
-  url,
-}: ImpressionProps) => {
+export const trackContentImpression = ({ id, representation, url }: ImpressionProps) => {
   if (typeof window === 'undefined') return
 
   // It is important to use bracket notation here!
@@ -38,12 +34,7 @@ type InteractionProps = {
   action: string
 } & ImpressionProps
 
-export const trackContentInteraction = ({
-  action,
-  id,
-  representation,
-  url,
-}: InteractionProps) => {
+export const trackContentInteraction = ({ action, id, representation, url }: InteractionProps) => {
   if (typeof window === 'undefined') return
 
   window['_paq'] = window['_paq'] || []

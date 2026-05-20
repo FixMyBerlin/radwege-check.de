@@ -1,19 +1,17 @@
 import React from 'react'
 import { IntlProvider } from 'react-intl'
+
 import de from '~/components/ReportPage/translations/de.json'
-import { FeelSafeProps, IntlWrappedFeelSafe } from './IntlWrappedFeelSafe'
+
+import type { FeelSafeProps } from './IntlWrappedFeelSafe'
+import { IntlWrappedFeelSafe } from './IntlWrappedFeelSafe'
 
 type Props = FeelSafeProps & {
   /** @desc Will instanciate a new IntlProvider wrapper with locale=['de] */
   standalone?: boolean
 }
 
-export const FeelSafe: React.FC<Props> = ({
-  standalone = false,
-  value,
-  big,
-  icon = 'bike',
-}) => {
+export const FeelSafe = ({ standalone = false, value, big, icon = 'bike' }: Props) => {
   if (standalone) {
     return (
       <IntlProvider locale="de" messages={de}>

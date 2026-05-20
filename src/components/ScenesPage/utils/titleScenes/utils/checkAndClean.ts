@@ -5,8 +5,7 @@ export const checkAndClean = (inputArray: string[]) => {
   inputArray.forEach((input, index) => {
     if (input === undefined && !isProduction) {
       console.error({
-        ERROR:
-          'We where not able to pick a text based on the given (now unkonwn) input.',
+        ERROR: 'We where not able to pick a text based on the given (now unkonwn) input.',
         ARRAY_INDEX: index,
         ALL_INPUT: inputArray,
       })

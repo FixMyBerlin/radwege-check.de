@@ -1,11 +1,11 @@
 import { parse, stringify } from 'query-string'
-import { isDev } from '~/components/utils'
-import { AggregationConfig } from '../constants'
-import { SearchOptionProps } from '../types'
 
-export const encodeFilter = (
-  filterObject: SearchOptionProps['filters'],
-): string => {
+import { allowVerboseDebug } from '~/components/utils'
+
+import type { AggregationConfig } from '../constants'
+import type { SearchOptionProps } from '../types'
+
+export const encodeFilter = (filterObject: SearchOptionProps['filters']): string => {
   // For Matomo and SEO, we want the same sort order ob keys and values
   //   Solution via https://stackoverflow.com/a/31102605/729221
   const orderedFilterObject = Object.keys(filterObject)
@@ -113,7 +113,7 @@ export const decodeFilter = (
   })
 
   if (removedKeys.length || removedValues.length) {
-    const debug = !process.env.DISABlE_DEBUG_FOR_JEST && isDev
+    const debug = allowVerboseDebug
     if (debug) {
       console.log({
         INFO: 'decodeFilter() removed keys/values that where given by the URL but not recognized by the config:',

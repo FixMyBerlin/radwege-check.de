@@ -1,10 +1,12 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { useStore } from 'zustand'
-import { useStoreExperimentData } from '~/components/ScenesPage/store'
+
+import { useExperimentAggregationConfig } from '~/components/ScenesPage/store'
+import { SvgInline } from '~/components/Svg/SvgInline'
 import { isDev } from '~/components/utils'
-import BikeIcon from '../../../Results/ResultNumbers/assets/bike-icon.svg'
-import { ResultBucketProps } from '../../../types'
+
+import bikeIconMarkup from '../../../Results/ResultNumbers/assets/bike-icon.svg?raw'
+import type { ResultBucketProps } from '../../../types'
 import { useResults } from './useResults'
 import { buttonClassNames } from './utils'
 
@@ -27,15 +29,15 @@ type Props = {
   paginationTotal: number
 }
 
-export const ButtonSingleChoice: React.FC<Props> = ({
+export const ButtonSingleChoice = ({
   aggregationKey,
   bucket,
   buckets,
   handleClick,
   index,
   paginationTotal,
-}) => {
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+}: Props) => {
+  const aggregationConfig = useExperimentAggregationConfig()
 
   const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,
@@ -55,8 +57,7 @@ export const ButtonSingleChoice: React.FC<Props> = ({
   })
 
   const formKey = `${aggregationKey}-${bucket.key}`
-  const bucketLabel =
-    aggregationConfig[aggregationKey].buckets[bucket.key] || 'TODO'
+  const bucketLabel = aggregationConfig[aggregationKey].buckets[bucket.key] || 'TODO'
 
   return (
     <label
@@ -103,7 +104,11 @@ export const ButtonSingleChoice: React.FC<Props> = ({
             'Fahrrad ',
             renderToString(
               <>
-                <BikeIcon className="inline h-3 w-auto align-baseline" />{' '}
+                <SvgInline
+                  src={bikeIconMarkup}
+                  className="inline h-3 w-auto align-baseline"
+                  aria-hidden
+                />{' '}
               </>,
             ),
           ),

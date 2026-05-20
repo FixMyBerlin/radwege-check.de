@@ -1,59 +1,41 @@
-import React, { useEffect, useState } from 'react'
-import LogoIcon from '~/components/assets/radwegecheck-logo-bildmarke.svg'
+import React from 'react'
+
+import logoBildmarkeMarkup from '~/components/assets/radwegecheck-logo-bildmarke.svg?raw'
 import { Link } from '~/components/Link'
 import { SpinnerOrText } from '~/components/Spinner'
+import { SvgInline } from '~/components/Svg/SvgInline'
 import { formatPercent } from '~/components/utils'
+
 import { ResultProps } from '../types'
-import {
-  SearchOrderDropdown,
-  SearchOrderDropdownProps,
-} from './SearchOrderDropdown'
+import { SearchOrderDropdown, SearchOrderDropdownProps } from './SearchOrderDropdown'
 
 type Props = {
   results: ResultProps
   mobileFacets?: React.ReactNode
 } & SearchOrderDropdownProps
 
-export const TitleBar: React.FC<Props> = ({
-  results,
-  searchOrder,
-  setSearchOrder,
-  mobileFacets,
-}) => {
+export const TitleBar = ({ results, searchOrder, setSearchOrder, mobileFacets }: Props) => {
   const resultItems = results?.data?.items || []
   const pagination = results?.pagination
 
-  const [resultScoreAverage, setResultScoreAverage] = useState(0)
-  useEffect(() => {
-    let sum = 0
-    resultItems.forEach((scene) => {
-      sum += scene.voteScore
-    })
-    // result.pagination.total wäre die Gesamtanzahl; aber hier würden wir nur die max-100 Ergebnisse für die Berechnung berücksichigen.
-    const average = Math.round(sum / resultItems.length)
-    setResultScoreAverage(average)
-  }, [resultItems])
+  let resultScoreAverage = 0
+  if (resultItems.length) {
+    const sum = resultItems.reduce((acc, scene) => acc + scene.voteScore, 0)
+    resultScoreAverage = Math.round(sum / resultItems.length)
+  }
 
   const total = pagination?.total || 0
   const perPage = pagination?.per_page || 0
 
   return (
     <section className="z-10 flex h-14 flex-none flex-row items-center justify-between gap-2 bg-brand-light-yellow px-3 py-1 text-lg shadow-[0_0px_10px_0_rgba(0,_0,_0,_0.2)] lg:px-4 lg:text-xl">
-      <Link
-        to="/"
-        classNameOverwrite="-ml-0.5 h-8 lg:hidden"
-        title="Zur Startseite…"
-      >
-        <LogoIcon className="h-8 w-8" alt="Radwege-Check" />
+      <Link to="/" classNameOverwrite="-ml-0.5 h-8 lg:hidden" title="Zur Startseite…">
+        <SvgInline src={logoBildmarkeMarkup} className="h-8 w-8" alt="Radwege-Check" />
       </Link>
       {mobileFacets}
       <h1
         className="relative flex justify-center text-center font-bold leading-none lg:mr-3 lg:justify-start lg:text-left"
-        title={
-          total > perPage
-            ? `Die ersten ${perPage} Ergebnisse werden angezeigt.`
-            : ''
-        }
+        title={total > perPage ? `Die ersten ${perPage} Ergebnisse werden angezeigt.` : ''}
       >
         <SpinnerOrText text={`${Number(total).toLocaleString()} Ergebnisse`} />
       </h1>
@@ -69,21 +51,7 @@ export const TitleBar: React.FC<Props> = ({
           </div>
         ) : null}
 
-        {/* <TwitterButtonIconCurrentUrl
-          className="hidden lg:flex"
-          onClick={() =>
-            trackEvent({
-              category: 'Twitter button click',
-              action: `Results page ${experimentTextKey}`,
-              label: 'Desktop view',
-            })
-          }
-        /> */}
-
-        <SearchOrderDropdown
-          searchOrder={searchOrder}
-          setSearchOrder={setSearchOrder}
-        />
+        <SearchOrderDropdown searchOrder={searchOrder} setSearchOrder={setSearchOrder} />
       </div>
     </section>
   )

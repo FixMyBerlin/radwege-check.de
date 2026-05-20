@@ -2,7 +2,7 @@
 // Our own custom options like "showAsIcon"
 // Everyhting from ItemsJS is in itemJsConfig.
 
-import { AggregationConfig } from './types'
+import type { AggregationConfig } from './types'
 
 export const aggregationConfigSecondary: AggregationConfig = {
   motorVehicleTrafficVolumen: {
@@ -39,8 +39,7 @@ export const aggregationConfigSecondary: AggregationConfig = {
     },
     tooltipBuckets: {
       none: 'keine Auswahl',
-      bicycle_road:
-        '"klassische" Fahrradstraße, visualisiert durch große Markierung auf dem Boden',
+      bicycle_road: '"klassische" Fahrradstraße, visualisiert durch große Markierung auf dem Boden',
       markings_bike_icon_dooring_zone:
         'Fahrradstraße mit einer Sondermarkierung (zwei Pfeile und unterbrochene Linie zu Parkständen). Basierend auf den Berliner Empfehlungen für die Gestaltung von Fahrradstraßen.',
       living_street: 'Verkehrsberuhigter Bereich',

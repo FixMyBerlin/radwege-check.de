@@ -13,7 +13,7 @@ If you find any bugs, feel free to open an issue.
 - Use `npm run` to see a list of commands like `npm run start`
 - Use `npm run mobile` to test the side with your mobile phone; more at https://github.com/gatsbyjs/gatsby/issues/5801
 - Use `npm run profile` to allow using the react dev tools profiling ([more](https://reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html))
-- Use `npx eslint --print-config .eslintrc` to check the `.eslintrc` for errors
+- Linting is **oxlint** (`bun run lint`), with React Compiler rules via `eslint-plugin-react-compiler` in `oxlint.config.ts` (the ESLint CLI is not used)
 
 ### Test the translation modal
 

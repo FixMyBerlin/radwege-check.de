@@ -1,8 +1,10 @@
 import { InformationCircleIcon } from '@heroicons/react/24/solid'
 import clsx from 'clsx'
 import React from 'react'
+
 import { TranslationMissing } from '~/components/TextHelper'
 import { formatMeter, isDev } from '~/components/utils'
+
 import { AggregationConfig } from '../../constants'
 import { Icons } from '../../Facets/FacetsButtons'
 import { ScenePrimaryProps, SceneSecondaryProps } from '../../types'
@@ -18,7 +20,7 @@ type Props = {
   aggregationConfig: AggregationConfig
 }
 
-export const ResultCell: React.FC<Props> = ({
+export const ResultCell = ({
   keyName,
   bucketActive,
   scene,
@@ -26,7 +28,7 @@ export const ResultCell: React.FC<Props> = ({
   showIcon,
   showHover = true,
   aggregationConfig,
-}) => {
+}: Props) => {
   const titleTranslation = aggregationConfig[keyName]?.resultTitle ||
     aggregationConfig[keyName]?.title || <TranslationMissing value={keyName} />
 
@@ -91,10 +93,7 @@ export const ResultCell: React.FC<Props> = ({
               <span>
                 Nutzbare Breite:{' '}
                 <span className="ml-0.5 font-light text-neutral-500">
-                  {formatMeter(
-                    scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber,
-                    {},
-                  )}
+                  {formatMeter(scene.bicycleLaneWidthWithoutBufferAndDooringZoneNumber, {})}
                 </span>
               </span>
               <InformationCircleIcon className="h-5 w-5 text-gray-200 group-hover:text-gray-600 print:hidden" />

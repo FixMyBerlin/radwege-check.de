@@ -2,17 +2,16 @@ import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import React, { Fragment } from 'react'
-import { useStore } from 'zustand'
-import { useStorePreset } from '../../store'
+
+import { usePresetCurrentKey, usePresetPresets } from '../../store'
 
 export type PresetDropdownProps = {
   handlePresetClick: (presetKey: string) => void
 }
 
-export const PresetDropdown: React.FC<PresetDropdownProps> = ({
-  handlePresetClick,
-}) => {
-  const { presets, currentPresetKey } = useStore(useStorePreset)
+export const PresetDropdown = ({ handlePresetClick }: PresetDropdownProps) => {
+  const presets = usePresetPresets()
+  const currentPresetKey = usePresetCurrentKey()
 
   const isCustom = currentPresetKey === 'custom'
   const presetTitle = presets[currentPresetKey]?.title
@@ -29,10 +28,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
           {isPreset && `Filter Voreinstellung: ${presetTitle}`}
           {!isPreset && !isCustom && 'Filter Voreinstellung auswählen'}
         </div>
-        <ChevronDownIcon
-          className="ml-2 mr-1 w-[18px] flex-none"
-          aria-hidden="true"
-        />
+        <ChevronDownIcon className="ml-2 mr-1 w-[18px] flex-none" aria-hidden="true" />
       </Menu.Button>
 
       <Transition
@@ -57,8 +53,7 @@ export const PresetDropdown: React.FC<PresetDropdownProps> = ({
                     disabled={selected}
                     className={clsx(
                       {
-                        'cursor-default bg-brand-light-yellow text-gray-500':
-                          selected,
+                        'cursor-default bg-brand-light-yellow text-gray-500': selected,
                       },
                       { 'cursor-pointer hover:bg-stone-100': !selected },
                       'block w-full px-4 py-2 text-left text-sm',

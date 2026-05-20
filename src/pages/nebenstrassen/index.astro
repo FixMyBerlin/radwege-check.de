@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { getCollection } from 'astro:content'
+import { NebenstrassenIndexRoute } from '../../components/routes/NebenstrassenIndexRoute'
+import { siteLocationFromUrl } from '../../lib/site-location'
+
+const secondary = await getCollection('scenesSecondary')
+const rawScenes = secondary.map((e) => ({
+  node: e.data as Record<string, unknown>,
+}))
+const location = siteLocationFromUrl(Astro.url)
+---
+
+<BaseLayout
+  seo={{
+    title: 'Radwege-Check Nebenstrasse – Alle Varianten filtern',
+  }}
+>
+  <NebenstrassenIndexRoute
+    client:only="react"
+    location={location}
+    rawScenes={rawScenes}
+  />
+</BaseLayout>

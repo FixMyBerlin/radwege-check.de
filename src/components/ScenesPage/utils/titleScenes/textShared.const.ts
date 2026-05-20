@@ -1,2 +1,1 @@
-export const sceneId = (scene) =>
-  `[${scene.sceneId.toUpperCase().replaceAll('_', '-')}]`
+export const sceneId = (scene) => `[${scene.sceneId.toUpperCase().replaceAll('_', '-')}]`

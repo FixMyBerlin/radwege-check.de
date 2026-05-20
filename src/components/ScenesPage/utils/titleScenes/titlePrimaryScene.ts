@@ -1,4 +1,5 @@
-import { isDev } from '~/components/utils'
+import { allowVerboseDebug } from '~/components/utils'
+
 import { ScenePrimaryProps } from '../../types'
 import {
   textBicycleLaneWidth,
@@ -19,11 +20,10 @@ export const titlePrimaryScene = (
   },
 ) => {
   const optionalSceneId = includeId ? sceneId(scene) : ''
-  const debug = !process.env.DISABlE_DEBUG_FOR_JEST && isDev
+  const debug = allowVerboseDebug
 
   if (['shared_bus_lane', 'none'].includes(scene.bicycleLaneWidth)) {
-    const textIncludeTram =
-      scene.vehicleLaneUsage === 'motor_vehicle_and_tram' && 'inkl. Tram,'
+    const textIncludeTram = scene.vehicleLaneUsage === 'motor_vehicle_and_tram' && 'inkl. Tram,'
 
     return checkAndClean([
       textBicycleLaneWidth[scene.bicycleLaneWidth],
@@ -56,10 +56,7 @@ export const titlePrimaryScene = (
     ])
   }
 
-  if (
-    ['curb'].includes(scene.leftOfBicycleLane) &&
-    ['none'].includes(scene.pavementWidth)
-  ) {
+  if (['curb'].includes(scene.leftOfBicycleLane) && ['none'].includes(scene.pavementWidth)) {
     return checkAndClean([
       textBicycleLaneWidth[scene.bicycleLaneWidth],
       textLeftOfBicycleLane[scene.leftOfBicycleLane],
@@ -83,8 +80,7 @@ export const titlePrimaryScene = (
     ['car_lanes'].includes(scene.leftOfBicycleLane) &&
     ['hedge', 'none'].includes(scene.bufferLeftPhysicalProtection)
   ) {
-    const textIncludeParking =
-      scene.parking === 'parking_lane' && 'und Kfz-Parken rechts'
+    const textIncludeParking = scene.parking === 'parking_lane' && 'und Kfz-Parken rechts'
 
     return checkAndClean([
       textBicycleLaneWidth[scene.bicycleLaneWidth],

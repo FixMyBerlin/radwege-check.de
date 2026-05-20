@@ -1,8 +1,7 @@
 export const textBicycleStreetType = {
   none: 'Radverkehrsführung in Nebenstraße',
   bicycle_road: 'Radverkehrsführung auf Fahrradstraße',
-  markings_bike_icon_dooring_zone:
-    'Radverkehrsführung auf Fahrradstraße (Sondermarkierung)',
+  markings_bike_icon_dooring_zone: 'Radverkehrsführung auf Fahrradstraße (Sondermarkierung)',
   living_street: 'Radverkehrsführung im verkehrsberuhigtem Bereich',
   green_surface: 'Radverkehrsführung auf Fahrradstraße mit grüner Oberfläche',
 }
@@ -13,8 +12,7 @@ export const textNoCarsAndBicycleStreetType = {
   markings_bike_icon_dooring_zone:
     'Radverkehrsführung in autofreier Fahrradstraße (Sondermarkierung)',
   living_street: 'Radverkehrsführung ohne Autos im verkehrsberuhigtem Bereich',
-  green_surface:
-    'Radverkehrsführung in autofreier Fahrradstraße mit grüner Oberfläche',
+  green_surface: 'Radverkehrsführung in autofreier Fahrradstraße mit grüner Oberfläche',
 }
 
 export const textCarriagewayDirection = {

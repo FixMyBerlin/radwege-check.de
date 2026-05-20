@@ -1,6 +1,4 @@
-type Props =
-  | { precision?: number; unit?: string; delimiter?: string }
-  | undefined
+type Props = { precision?: number; unit?: string; delimiter?: string } | undefined
 
 // Default unit has a non breaking space as special space character.
 export const formatNumber = (

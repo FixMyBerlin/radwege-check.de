@@ -1,11 +1,12 @@
 import clsx from 'clsx'
 import React from 'react'
+
 import { trackEvent } from '../utils'
 import { buttonStyles } from './Link'
 
 type Props = { onClick?: () => void }
 
-export const PrintButton: React.FC<Props> = ({ onClick }) => {
+export const PrintButton = ({ onClick }: Props) => {
   return (
     <button
       type="button"

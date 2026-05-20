@@ -1,12 +1,14 @@
 import { XMarkIcon, ArrowRightIcon } from '@heroicons/react/24/solid'
 import React from 'react'
-import { useStore } from 'zustand'
-import { Link } from '~/components/Link'
-import { SceneImage } from '../SceneImage'
-import { useStoreBookmarks } from '../store'
 
-export const BookmarkCollector: React.FC = () => {
-  const { bookmarks, removeBookmark } = useStore(useStoreBookmarks)
+import { Link } from '~/components/Link'
+
+import { SceneImage } from '../SceneImage'
+import { useBookmarkActions, useBookmarksState } from '../store'
+
+export function BookmarkCollector() {
+  const bookmarks = useBookmarksState()
+  const { removeBookmark } = useBookmarkActions()
 
   if (!bookmarks.length) return null
 

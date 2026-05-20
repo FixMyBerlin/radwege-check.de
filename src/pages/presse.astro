@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ArticlePageLayout from '../layouts/ArticlePageLayout.astro'
+import { linkProseClass } from '../lib/link-classes'
+---
+
+<BaseLayout
+  seo={{
+    noindex: true,
+    title: 'Radwege-Check | Presseinformationen',
+    description:
+      'Der Radwege-Check erlaubt es die Umfragedaten von 1.779 Varianten an Radweg-Führungsformen zu vergleichen.',
+  }}
+>
+  <ArticlePageLayout host={Astro.url.host}>
+    <h1>Presseinformationen</h1>
+    <p>
+      Ansprechpartner für die Presse und weitere Pressinformationen zu FixMyCity finden Sie unter{' '}
+      <a href="https://www.fixmycity.de/presse" class={linkProseClass} target="_blank" rel="noopener noreferrer">
+        fixmycity.de/presse
+      </a>.
+    </p>
+    <p>
+      Alles Bildmaterial auf dieser Seite kann für journalistische Veröffentlichungen kostenfrei unter der Lizenz CC
+      4.0 verwendet werden.
+      <br />
+      Attribution: <code>© FixMyCity GmbH, Lizenz CC BY 4.0</code>
+    </p>
+  </ArticlePageLayout>
+</BaseLayout>

@@ -1,4 +1,4 @@
-import { PresetsScenes } from './types'
+import type { PresetsScenes } from './types'
 
 export const presetsScenesSecondary: PresetsScenes = {
   noCars: {

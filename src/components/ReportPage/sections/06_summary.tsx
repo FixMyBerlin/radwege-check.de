@@ -1,9 +1,11 @@
 import React from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
+
 import { Link } from '~/components/Link'
+
 import { Headline } from '../components'
 
-export const SectionSummary: React.FC = () => {
+export function SectionSummary() {
   const intl = useIntl()
 
   return (
@@ -55,9 +57,8 @@ export const SectionSummary: React.FC = () => {
                 external
                 to="https://www.sciencedirect.com/science/article/pii/S0001457522000136?dgcid=author"
               >
-                How Safe do you feel? – A large-scale survey concerning the
-                subjective safety associated with different kinds of cycling
-                lanes
+                How Safe do you feel? – A large-scale survey concerning the subjective safety
+                associated with different kinds of cycling lanes
               </Link>
             ),
             linkVideo: (

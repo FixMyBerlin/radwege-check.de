@@ -1,6 +1,8 @@
 import clsx from 'clsx'
 import React from 'react'
+
 import { SceneImage } from '~/components/ScenesPage'
+
 import { Subtitle } from './Subtitle'
 
 type Props = {
@@ -11,15 +13,8 @@ type Props = {
   children?: React.ReactNode
 }
 
-export const Image: React.FC<Props> = ({
-  source,
-  subtitle,
-  chart,
-  children,
-}) => {
-  const image = source && (
-    <SceneImage sceneId={source} alt="" lazy className="mb-1 mt-0" />
-  )
+export const Image = ({ source, subtitle, chart, children }: Props) => {
+  const image = source && <SceneImage sceneId={source} alt="" lazy className="mb-1 mt-0" />
 
   return (
     <figure className={clsx({ relative: chart }, 'my-2')}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useStore } from 'zustand'
-import { useStoreExperimentData } from '../store'
+
+import { useExperimentAggregationConfig } from '../store'
 import { ResultProps, SearchOptionProps } from '../types'
 import { ResultColumn } from './ResultColumn'
 
@@ -14,7 +14,7 @@ export type ShowTableProps = {
   setShowTable: null | ((showTable: boolean) => void) // null if not used
 }
 
-export const Results: React.FC<Props> = ({ results, searchFilters }) => {
+export const Results = ({ results, searchFilters }: Props) => {
   const resultItems = results?.data?.items || []
   const resultsRef = useRef<HTMLDivElement>(null)
 
@@ -26,7 +26,7 @@ export const Results: React.FC<Props> = ({ results, searchFilters }) => {
     resultsRef.current.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }, [resultItems])
 
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+  const aggregationConfig = useExperimentAggregationConfig()
 
   return (
     <div

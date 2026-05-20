@@ -1,8 +1,11 @@
 import clsx from 'clsx'
 import React from 'react'
+
+import { SvgInline } from '~/components/Svg/SvgInline'
 import { isDev } from '~/components/utils'
+
 import { Link } from '../../Link'
-import GoogleTranslateLogo from './assets/google-translate-logo.svg'
+import googleTranslateLogoMarkup from './assets/google-translate-logo.svg?raw'
 import { googleTranslateUrl } from './utils'
 
 type Props = {
@@ -10,10 +13,7 @@ type Props = {
   positionBottom?: boolean
 }
 
-export const EnglishLanguageButton: React.FC<Props> = ({
-  visible,
-  positionBottom,
-}) => {
+export const EnglishLanguageButton = ({ visible, positionBottom }: Props) => {
   if (!visible) return null
 
   // Guard SSR
@@ -22,10 +22,11 @@ export const EnglishLanguageButton: React.FC<Props> = ({
 
   // Show only if user does not speak German
   // … but show always on DEV.
-  const speaksDe = navigator.languages.some((l) => l.includes('de'))
+  const speaksDe = navigator.languages?.some((l) => l.includes('de')) ?? false
   if (speaksDe && !isDev) return null
 
   const translateUrl = googleTranslateUrl(window.location)
+  if (!translateUrl) return null
 
   return (
     <Link
@@ -39,7 +40,11 @@ export const EnglishLanguageButton: React.FC<Props> = ({
         positionBottom ? 'bottom-5' : 'top-5',
       )}
     >
-      <GoogleTranslateLogo className="mr-1 mt-0.5 h-4 w-4 object-contain" />{' '}
+      <SvgInline
+        src={googleTranslateLogoMarkup}
+        className="mr-1 mt-0.5 h-4 w-4 object-contain"
+        aria-hidden
+      />{' '}
       Translate page
     </Link>
   )

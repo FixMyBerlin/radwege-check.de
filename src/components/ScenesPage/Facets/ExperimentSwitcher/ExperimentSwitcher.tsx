@@ -2,12 +2,13 @@ import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import React, { Fragment } from 'react'
-import { useStore } from 'zustand'
-import { Link } from '~/components/Link'
-import { useStoreExperimentData } from '../../store'
 
-export const ExperimentSwitcher: React.FC = () => {
-  const { experimentTextKey } = useStore(useStoreExperimentData)
+import { Link } from '~/components/Link'
+
+import { useExperimentTextKeyState } from '../../store'
+
+export function ExperimentSwitcher() {
+  const experimentTextKey = useExperimentTextKeyState()
 
   const experimentValues = {
     primary: {
@@ -25,10 +26,7 @@ export const ExperimentSwitcher: React.FC = () => {
       <div>
         <Menu.Button className="inline-flex min-h-[2.125rem] w-full items-center justify-center rounded-md border border-gray-300 pl-[0.6rem] text-sm font-normal text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:ring-offset-2 focus:ring-offset-gray-100">
           {experimentValues[experimentTextKey]?.name}
-          <ChevronDownIcon
-            className="ml-[1px] mr-1 w-[18px]"
-            aria-hidden="true"
-          />
+          <ChevronDownIcon className="ml-[1px] mr-1 w-[18px]" aria-hidden="true" />
         </Menu.Button>
       </div>
 
@@ -52,8 +50,7 @@ export const ExperimentSwitcher: React.FC = () => {
                     to={path}
                     classNameOverwrite={clsx(
                       {
-                        'bg-brand-light-yellow text-gray-500 cursor-default':
-                          active,
+                        'bg-brand-light-yellow text-gray-500 cursor-default': active,
                       },
                       { 'hover:bg-stone-100': !active },
                       'block w-full px-4 py-2 text-left text-sm',

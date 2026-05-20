@@ -41,9 +41,7 @@ const BarLabel = ({ value, isWeightGraph }) => {
 
   return (
     <div className="font-bold text-white">
-      {value < 15
-        ? '*'
-        : `${value.toLocaleString(intl.locale, { maximumFractionDigits: 0 })}%`}
+      {value < 15 ? '*' : `${value.toLocaleString(intl.locale, { maximumFractionDigits: 0 })}%`}
     </div>
   )
 }
@@ -65,17 +63,14 @@ export const BarElement = ({ title, value, index, isWeightGraph = false }) => {
   const pctValue = value.toLocaleString(intl.locale, {
     maximumFractionDigits: 2,
   })
-  const tooltipId = `barchart-tooltip-${encodeURIComponent(
-    title,
-  )}-${index}-${pctValue}`
+  const tooltipId = `barchart-tooltip-${encodeURIComponent(title)}-${index}-${pctValue}`
 
   // `overflow-hidden` fixes Tooltip on mobile. It cannot be accessed on touch anyway, so no one will see the cut of text.
   return (
     <div
-      className={clsx(
-        'group relative flex cursor-help items-center justify-center',
-        { 'overflow-hidden': !isWeightGraph },
-      )}
+      className={clsx('group relative flex cursor-help items-center justify-center', {
+        'overflow-hidden': !isWeightGraph,
+      })}
       key={`bar__${labels[index]}`}
       style={{
         width: `${value}%`,

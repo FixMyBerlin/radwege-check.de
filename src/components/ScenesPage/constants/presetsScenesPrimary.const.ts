@@ -1,4 +1,4 @@
-import { PresetsScenes } from './types'
+import type { PresetsScenes } from './types'
 
 export const presetsScenesPrimary: PresetsScenes = {
   wideBollard: {
@@ -22,8 +22,7 @@ export const presetsScenesPrimary: PresetsScenes = {
     sceneIdForImage: 'MS_C_871',
     resultTotal: 128,
     averageScore: 42,
-    searchFilterString:
-      'bicycleLaneWidth:narrow|leftOfBicycleLane:car_lanes|parking:parking_lane',
+    searchFilterString: 'bicycleLaneWidth:narrow|leftOfBicycleLane:car_lanes|parking:parking_lane',
   },
   rightOfParking: {
     title: 'Radführung rechts von Kfz-Parken',

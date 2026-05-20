@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ArticlePageLayout from '../layouts/ArticlePageLayout.astro'
+import { buttonLinkClass } from '../lib/link-classes'
+---
+
+<BaseLayout seo={{ noindex: true, title: '404 | Seite nicht gefunden.' }}>
+  <ArticlePageLayout host={Astro.url.host}>
+    <div class="sm:flex">
+      <p class="text-4xl font-extrabold text-orange-400 sm:text-5xl">404</p>
+      <div class="sm:ml-6">
+        <div class="sm:border-l sm:border-gray-200 sm:pl-6">
+          <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">Page not found</h1>
+          <p class="mt-1 text-base text-slate-500">Please check the URL in the address bar and try again.</p>
+        </div>
+        <div class="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
+          <a href="/" class={buttonLinkClass}>Startseite</a>
+        </div>
+      </div>
+    </div>
+  </ArticlePageLayout>
+</BaseLayout>

@@ -1,10 +1,13 @@
 import React from 'react'
+
+import { SvgInline } from '~/components/Svg/SvgInline'
+
 import { SceneImage } from '../ScenesPage'
 import { AggregationConfig } from '../ScenesPage/constants'
 import { ResultCells } from '../ScenesPage/Results/ResultCells'
-import BikeIcon from '../ScenesPage/Results/ResultNumbers/assets/bike-icon.svg'
-import CarIcon from '../ScenesPage/Results/ResultNumbers/assets/car-icon.svg'
-import PedestrianIcon from '../ScenesPage/Results/ResultNumbers/assets/pedestrian-icon.svg'
+import bikeIconMarkup from '../ScenesPage/Results/ResultNumbers/assets/bike-icon.svg?raw'
+import carIconMarkup from '../ScenesPage/Results/ResultNumbers/assets/car-icon.svg?raw'
+import pedestrianIconMarkup from '../ScenesPage/Results/ResultNumbers/assets/pedestrian-icon.svg?raw'
 import { BarChartAndHeadline } from '../ScenesPage/Results/ResultNumbers/BarChartAndHeadline'
 import { Table } from '../ScenesPage/Results/ResultNumbers/Table'
 import { ExperimentTextKey } from '../ScenesPage/store'
@@ -16,13 +19,12 @@ type Props = {
   experimentTextKey: ExperimentTextKey
 }
 
-export const VergleichenPagePrintResult: React.FC<Props> = ({
+export const VergleichenPagePrintResult = ({
   scene,
   aggregationConfig,
   experimentTextKey,
-}) => {
-  const experimentTitle =
-    experimentTextKey === 'primary' ? 'Hauptstraße' : 'Nebenstraße'
+}: Props) => {
+  const experimentTitle = experimentTextKey === 'primary' ? 'Hauptstraße' : 'Nebenstraße'
 
   return (
     <section className="mb-16 break-inside-avoid-page">
@@ -46,7 +48,7 @@ export const VergleichenPagePrintResult: React.FC<Props> = ({
             />
             <div className="flex flex-row gap-2">
               <BarChartAndHeadline
-                icon={<BikeIcon className="mr-1.5 h-8 w-8" />}
+                icon={<SvgInline src={bikeIconMarkup} className="mr-1.5 h-8 w-8" aria-hidden />}
                 mainBarChart
                 voteScore={scene.voteScore}
                 vote0Unsafe={scene.vote0Unsafe}
@@ -55,7 +57,9 @@ export const VergleichenPagePrintResult: React.FC<Props> = ({
                 vote3VerySave={scene.vote3VerySave}
               />
               <BarChartAndHeadline
-                icon={<PedestrianIcon className="mr-1.5 h-4 w-auto" />}
+                icon={
+                  <SvgInline src={pedestrianIconMarkup} className="mr-1.5 h-4 w-auto" aria-hidden />
+                }
                 voteScore={scene.votePedestrianScore}
                 vote0Unsafe={scene.votePedestrian0Unsafe}
                 vote1RatherUnsafe={scene.votePedestrian1RatherUnsafe}
@@ -63,7 +67,7 @@ export const VergleichenPagePrintResult: React.FC<Props> = ({
                 vote3VerySave={scene.votePedestrian3VerySave}
               />
               <BarChartAndHeadline
-                icon={<CarIcon className="mr-1.5 h-auto w-5" />}
+                icon={<SvgInline src={carIconMarkup} className="mr-1.5 h-auto w-5" aria-hidden />}
                 voteScore={scene.voteCarScore}
                 vote0Unsafe={scene.voteCar0Unsafe}
                 vote1RatherUnsafe={scene.voteCar1RatherUnsafe}

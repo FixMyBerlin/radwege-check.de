@@ -1,7 +1,8 @@
 import React from 'react'
-import { useStore } from 'zustand'
-import { useStoreExperimentData } from '~/components/ScenesPage/store'
+
+import { useExperimentAggregationConfig } from '~/components/ScenesPage/store'
 import { isDev } from '~/components/utils'
+
 import { ResultBucketProps } from '../../../types'
 import { HandleSingleChoice } from '../ButtonSingleChoice'
 import { useResults } from '../ButtonSingleChoice/useResults'
@@ -15,13 +16,8 @@ type Props = {
   paginationTotal: number
 }
 
-export const ButtonIcon: React.FC<Props> = ({
-  aggregationKey,
-  bucket,
-  handleClick,
-  paginationTotal,
-}) => {
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+export const ButtonIcon = ({ aggregationKey, bucket, handleClick, paginationTotal }: Props) => {
+  const aggregationConfig = useExperimentAggregationConfig()
 
   const { resultFuture, uiSelected, uiCanpress } = useResults({
     total: paginationTotal,

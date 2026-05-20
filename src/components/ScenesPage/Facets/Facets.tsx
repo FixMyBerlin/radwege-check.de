@@ -1,15 +1,10 @@
 import clsx from 'clsx'
-import React, { useMemo } from 'react'
-import { useStore } from 'zustand'
+import React from 'react'
 
-import { useStoreExperimentData } from '../store'
+import { useExperimentAggregationConfig } from '../store'
 import { ResultProps } from '../types'
 import { ExperimentSwitcher } from './ExperimentSwitcher'
-import {
-  FacetsButtons,
-  HandleMultiChoice,
-  HandleSingleChoice,
-} from './FacetsButtons'
+import { FacetsButtons, HandleMultiChoice, HandleSingleChoice } from './FacetsButtons'
 import { FacetsHeadline } from './FacetsHeadline'
 import { FooterLinks } from './FooterLinks'
 import { HelpButton } from './HelpButton'
@@ -24,9 +19,10 @@ export type FacetsProps = {
   handleMultiChoice: HandleMultiChoice
   className?: string
   showLogo: boolean
+  resetFilterEnabled: boolean
 } & PresetDropdownProps
 
-export const Facets: React.FC<FacetsProps> = ({
+export const Facets = ({
   results,
   handleResetFilter,
   handleSingleChoice,
@@ -34,46 +30,24 @@ export const Facets: React.FC<FacetsProps> = ({
   handlePresetClick,
   className,
   showLogo,
-}) => {
+  resetFilterEnabled,
+}: FacetsProps) => {
   const aggregations = results?.data?.aggregations || {}
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+  const aggregationConfig = useExperimentAggregationConfig()
 
-  const mainAggregations = useMemo(
-    () =>
-      Object.entries(aggregations).filter(
-        ([key, _v]) => aggregationConfig[key]?.primaryGroup === true,
-      ),
-    [aggregations, aggregationConfig],
+  const mainAggregations = Object.entries(aggregations).filter(
+    ([key, _v]) => aggregationConfig[key]?.primaryGroup === true,
   )
 
-  const furtherAggregations = useMemo(
-    () =>
-      Object.entries(aggregations).filter(
-        ([key, _v]) => !aggregationConfig[key]?.primaryGroup,
-      ),
-    [aggregations, aggregationConfig],
+  const furtherAggregations = Object.entries(aggregations).filter(
+    ([key, _v]) => !aggregationConfig[key]?.primaryGroup,
   )
 
   return (
-    <nav
-      className={clsx(
-        className,
-        'relative overflow-y-scroll overscroll-contain',
-      )}
-    >
+    <nav className={clsx(className, 'relative overflow-y-scroll overscroll-contain')}>
       <div className="relative flex h-14 items-center justify-between bg-brand-light-yellow px-3 py-1 shadow-md">
         <Logo visible={showLogo} />
         <ExperimentSwitcher />
-        {/* <TwitterButtonIconCurrentUrl
-          className="lg:hidden"
-          onClick={() =>
-            trackEvent({
-              category: 'Twitter button click',
-              action: `Results page ${experimentTextKey}`,
-              label: 'Mobile view',
-            })
-          }
-        /> */}
       </div>
 
       <div className={clsx('z-0 mb-4 bg-gray-200 px-3 pb-1 pt-5 shadow-md')}>
@@ -82,7 +56,7 @@ export const Facets: React.FC<FacetsProps> = ({
         <PresetDropdown handlePresetClick={handlePresetClick} />
 
         <div className="mb-6 flex justify-between">
-          <ResetFilterButton onClick={handleResetFilter} />
+          <ResetFilterButton enabled={resetFilterEnabled} onClick={handleResetFilter} />
           <HelpButton />
         </div>
 
@@ -109,8 +83,7 @@ export const Facets: React.FC<FacetsProps> = ({
           if (!aggregationConfig[aggregationKey]) return null
 
           const { buckets } = aggregation
-          const { showAsIcons, groupEndIndicator } =
-            aggregationConfig[aggregationKey]
+          const { showAsIcons, groupEndIndicator } = aggregationConfig[aggregationKey]
 
           return (
             <section
@@ -119,15 +92,11 @@ export const Facets: React.FC<FacetsProps> = ({
                 { 'mb-5': !groupEndIndicator },
                 { '-mt-3': showAsIcons },
                 {
-                  'mb-4 border-b border-dashed border-gray-300 pb-5':
-                    groupEndIndicator,
+                  'mb-4 border-b border-dashed border-gray-300 pb-5': groupEndIndicator,
                 },
               )}
             >
-              <FacetsHeadline
-                aggregationKey={aggregationKey}
-                forIcons={showAsIcons}
-              />
+              <FacetsHeadline aggregationKey={aggregationKey} forIcons={showAsIcons} />
 
               <FacetsButtons
                 aggregationKey={aggregationKey}

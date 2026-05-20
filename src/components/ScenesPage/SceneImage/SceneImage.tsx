@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import React from 'react'
+
 import { sceneImageUrl } from './sceneImageUrl'
 
 type Props = {
@@ -10,12 +11,7 @@ type Props = {
 }
 
 // Files are stored at https://s3.console.aws.amazon.com/s3/buckets/fmb-aws-bucket?region=eu-central-1&prefix=KatasterKI/scenes/&showversions=false
-export const SceneImage: React.FC<Props> = ({
-  sceneId,
-  className,
-  alt,
-  lazy,
-}) => {
+export const SceneImage = ({ sceneId, className, alt, lazy }: Props) => {
   // Set for images "below the fold" to optimize performance. More at https://web.dev/lcp-lazy-loading/
   type LazyLoadingImageProp = { loading: 'lazy' } | undefined
   const lazyLoad: LazyLoadingImageProp = lazy ? { loading: 'lazy' } : undefined

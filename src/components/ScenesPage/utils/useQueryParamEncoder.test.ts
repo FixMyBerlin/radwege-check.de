@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest'
+
 import { aggregationConfigPrimary } from '../constants'
 import { decodeFilter } from './useQueryParamEncoder'
 
@@ -10,18 +12,12 @@ describe('decodeFilter()', () => {
   })
 
   it('one filter, one options', () => {
-    const resultSafe = decodeFilter(
-      'leftOfBicycleLane:car_lanes',
-      aggregationConfig,
-    )
+    const resultSafe = decodeFilter('leftOfBicycleLane:car_lanes', aggregationConfig)
     expect(resultSafe).toStrictEqual({ leftOfBicycleLane: ['car_lanes'] })
   })
 
   it('one filter, two options', () => {
-    const resultSafe = decodeFilter(
-      'leftOfBicycleLane:car_lanes,parking_lane',
-      aggregationConfig,
-    )
+    const resultSafe = decodeFilter('leftOfBicycleLane:car_lanes,parking_lane', aggregationConfig)
     expect(resultSafe).toStrictEqual({
       leftOfBicycleLane: ['car_lanes', 'parking_lane'],
     })

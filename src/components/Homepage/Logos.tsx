@@ -1,8 +1,9 @@
 import React from 'react'
+
 import { Link } from '../Link'
 import { LogoBmdv } from './LogoBmdv'
 
-export const Logos: React.FC = () => {
+export function Logos() {
   return (
     <section className="flex place-content-center bg-white pb-1 pt-5">
       <Link

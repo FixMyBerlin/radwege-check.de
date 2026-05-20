@@ -1,35 +1,29 @@
 import { InformationCircleIcon } from '@heroicons/react/24/outline'
 import React, { useEffect } from 'react'
-import { useStore } from 'zustand'
-import Logo from '~/components/assets/radwegecheck-logo.svg'
-import { MetaTags } from '../Layout'
+
+import logoMarkup from '~/components/assets/radwegecheck-logo.svg?raw'
+import { SvgInline } from '~/components/Svg/SvgInline'
+
 import { Link, PrintButton } from '../Link'
 import { Popover } from '../Popover'
 import { SceneImage } from '../ScenesPage'
 import { ResultCells } from '../ScenesPage/Results/ResultCells'
 import { ResultNumbers } from '../ScenesPage/Results/ResultNumbers'
-import { sceneImageUrl } from '../ScenesPage/SceneImage'
-import { useStoreExperimentData } from '../ScenesPage/store'
-import { ScenePrimaryProps, SceneSecondaryProps } from '../ScenesPage/types'
+import { useExperimentAggregationConfig, useExperimentTextKeyState } from '../ScenesPage/store'
+import type { ScenePrimaryProps, SceneSecondaryProps } from '../ScenesPage/types'
 import { titleScene } from '../ScenesPage/utils/titleScenes'
-import { formatNumber, fullUrl, trackContentImpression } from '../utils'
+import { fullUrl, trackContentImpression } from '../utils'
 
 type Props = {
   scene: ScenePrimaryProps | SceneSecondaryProps
   pagePath: string
 }
 
-export const ScenePage: React.FC<Props> = ({ scene, pagePath: _pagePath }) => {
-  const { experimentTextKey, aggregationConfig } = useStore(
-    useStoreExperimentData,
-  )
+export const ScenePage = ({ scene, pagePath: _pagePath }: Props) => {
+  const experimentTextKey = useExperimentTextKeyState()
+  const aggregationConfig = useExperimentAggregationConfig()
 
-  const categoryTranslation =
-    experimentTextKey === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
-  const categoryTranslationSentencePart =
-    experimentTextKey === 'primary'
-      ? 'auf einer Hauptstrasse'
-      : 'in einer Nebenstrasse'
+  const categoryTranslation = experimentTextKey === 'primary' ? 'Hauptstrasse' : 'Nebenstrasse'
 
   useEffect(() => {
     trackContentImpression({
@@ -41,20 +35,6 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath: _pagePath }) => {
 
   return (
     <>
-      <MetaTags
-        article
-        title={titleScene(scene, { includeId: true })}
-        description={`Diese Führungsform ${categoryTranslationSentencePart} wurde mit ${formatNumber(
-          scene.voteScore,
-          {
-            unit: '%',
-            precision: 0,
-          },
-        )} als „(eher) sicher“ bewertet.`}
-        imageUrl={sceneImageUrl(scene.sceneId)}
-        imageSize={{ width: 1240, height: 930 }}
-      />
-
       <div className="mb-40 items-center bg-white p-3 print:mb-0 print:p-0 lg:flex lg:flex-col lg:px-0 lg:py-6">
         <div className="mb-5 flex w-full max-w-7xl items-start gap-4 print:mt-3 lg:grid lg:grid-cols-4 lg:gap-6">
           <div className="mt-1 lg:ml-5 lg:mt-0">
@@ -63,9 +43,10 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath: _pagePath }) => {
               classNameOverwrite="block h-10 w-10 overflow-hidden lg:overflow-visible lg:w-full print:hidden"
               title="Zur Startseite…"
             >
-              <Logo className="h-full" alt="Radwege-Check" />
+              <SvgInline src={logoMarkup} className="h-full" alt="Radwege-Check" />
             </Link>
-            <Logo
+            <SvgInline
+              src={logoMarkup}
               className="hidden h-10 w-full print:block"
               alt="Radwege-Check"
             />
@@ -76,25 +57,6 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath: _pagePath }) => {
         </div>
 
         <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 print:hidden">
-          {/* <TwitterButton
-            url={pagePath}
-            text={`${titleScene(scene)} – Subjektive Sicherheit ${formatNumber(
-              scene.voteScore,
-              {
-                unit: '%',
-                precision: 0,
-              },
-            )}`}
-            hashtags="RadwegeCheck"
-            buttonText="Teilen"
-            onClick={() =>
-              trackEvent({
-                category: 'Twitter button click',
-                action: 'Details Page',
-                label: scene.sceneId,
-              })
-            }
-          /> */}
           <PrintButton />
         </div>
 
@@ -106,11 +68,7 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath: _pagePath }) => {
               {categoryTranslation}
             </p>
             <div className="rounded bg-blue-50 p-6 print:grid print:grid-cols-4 print:gap-x-2 print:bg-transparent print:p-0">
-              <ResultCells
-                scene={scene}
-                showHover={false}
-                aggregationConfig={aggregationConfig}
-              />
+              <ResultCells scene={scene} showHover={false} aggregationConfig={aggregationConfig} />
             </div>
           </div>
 
@@ -153,21 +111,17 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath: _pagePath }) => {
 
           <div className="order-2 flex h-96 flex-col print:h-auto lg:order-none">
             <div className="flex items-center">
-              Durchschnittliche Bewertungen dieser Szene zur subjektiven
-              Sicherheit.{' '}
+              Durchschnittliche Bewertungen dieser Szene zur subjektiven Sicherheit.{' '}
               <Popover
                 buttonText={
                   <>
-                    <InformationCircleIcon
-                      className="h-6 w-6 print:hidden"
-                      aria-hidden="true"
-                    />
+                    <InformationCircleIcon className="h-6 w-6 print:hidden" aria-hidden="true" />
                     <span className="sr-only">Mehr erfahren…</span>
                   </>
                 }
               >
-                Die Zahlen zur Bewertung der Radverkehrsführungsformen basieren
-                aus einer umfassenden Online Umfrage. Die{' '}
+                Die Zahlen zur Bewertung der Radverkehrsführungsformen basieren aus einer
+                umfassenden Online Umfrage. Die{' '}
                 <Link
                   to="https://fixmyberlin.de/research/subjektive-sicherheit"
                   external
@@ -176,14 +130,12 @@ export const ScenePage: React.FC<Props> = ({ scene, pagePath: _pagePath }) => {
                 >
                   Ergebnisse können in unserem Report nachgelesen werden
                 </Link>
-                . Die oberste große Zahl gibt den Prozentsatz aller Bewertungen
-                „sicher“ und „eher sicher“ an. Die weiteren Zahlen und die
-                farbigen Balken entsprechen den vier Bewertungsmöglichkeiten
-                „sicher“ „eher sicher“, eher „unsicher“ und „unsicher“. Anzahl
-                der Bewertungen gibt an wie viele Bewertungen zu dieser Szene in
-                der Umfrage abgegeben wurden. Der Mittelwert gibt den
-                Durchschnitt aller Bewertungen an zwischen 0 (unsicher) und 3
-                (sicher).
+                . Die oberste große Zahl gibt den Prozentsatz aller Bewertungen „sicher“ und „eher
+                sicher“ an. Die weiteren Zahlen und die farbigen Balken entsprechen den vier
+                Bewertungsmöglichkeiten „sicher“ „eher sicher“, eher „unsicher“ und „unsicher“.
+                Anzahl der Bewertungen gibt an wie viele Bewertungen zu dieser Szene in der Umfrage
+                abgegeben wurden. Der Mittelwert gibt den Durchschnitt aller Bewertungen an zwischen
+                0 (unsicher) und 3 (sicher).
               </Popover>
             </div>
             <ResultNumbers

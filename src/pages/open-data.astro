@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ArticlePageLayout from '../layouts/ArticlePageLayout.astro'
+import { OpenDataRoute } from '../components/routes/OpenDataRoute'
+---
+
+<BaseLayout
+  seo={{
+    noindex: true,
+    title: 'Radwege-Check | OpenData, OpenSource',
+    description: 'Die Daten dieses Projektes sind OpenData. Der Quellcode ist OpenSource.',
+  }}
+>
+  <ArticlePageLayout host={Astro.url.host}>
+    <OpenDataRoute client:only="react" />
+  </ArticlePageLayout>
+</BaseLayout>

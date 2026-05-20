@@ -1,10 +1,14 @@
-import { StaticImage } from 'gatsby-plugin-image'
 import React from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { Link } from '~/components/Link'
-import { Headline, Quote } from '../components'
 
-export const SectionAbout: React.FC = () => {
+import { Link } from '~/components/Link'
+
+import { Headline, Quote } from '../components'
+import diagramDe from './images/diagram_labelled_de.jpg?url'
+import diagramEn from './images/diagram_labelled_en.jpg?url'
+import diagramEs from './images/diagram_labelled_es.jpg?url'
+
+export function SectionAbout() {
   const intl = useIntl()
 
   return (
@@ -124,24 +128,24 @@ export const SectionAbout: React.FC = () => {
         <FormattedMessage id="03_concept.p15" />
       </p>
       {intl.locale === 'de' && (
-        <StaticImage
-          src="./images/diagram_labelled_de.jpg"
+        <img
+          src={diagramDe}
           alt={intl.formatMessage({
             id: '03_concept.p15.imageLabel',
           })}
         />
       )}
       {intl.locale === 'en' && (
-        <StaticImage
-          src="./images/diagram_labelled_en.jpg"
+        <img
+          src={diagramEn}
           alt={intl.formatMessage({
             id: '03_concept.p15.imageLabel',
           })}
         />
       )}
       {intl.locale === 'es' && (
-        <StaticImage
-          src="./images/diagram_labelled_es.jpg"
+        <img
+          src={diagramEs}
           alt={intl.formatMessage({
             id: '03_concept.p15.imageLabel',
           })}

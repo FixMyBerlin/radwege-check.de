@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest'
+
 import { ScenePrimaryProps } from '../../types'
 import { titlePrimaryScene } from './titlePrimaryScene'
 import { baseScenePrimary } from './utils'
@@ -41,8 +43,7 @@ describe('titlePrimaryScene()', () => {
         vehicleLaneUsage: 'motor_vehicle_and_tram',
         parking: 'no_parking',
       }
-      const title =
-        'Radverkehrsführung im Mischverkehr inkl. Tram, ohne Kfz-Parken'
+      const title = 'Radverkehrsführung im Mischverkehr inkl. Tram, ohne Kfz-Parken'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
   })
@@ -91,8 +92,7 @@ describe('titlePrimaryScene()', () => {
         bicycleLaneWidth: 'wide',
         leftOfBicycleLane: 'parking_lane',
       }
-      const title =
-        'Breite Radverkehrsanlage (3,5 m) rechts von parkenden Autos'
+      const title = 'Breite Radverkehrsanlage (3,5 m) rechts von parkenden Autos'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
 
@@ -127,8 +127,7 @@ describe('titlePrimaryScene()', () => {
         leftOfBicycleLane: 'curb',
         bufferRightMarking: 'none',
       }
-      const title =
-        'Schmale Radverkehrsanlage (2 m) im Seitenraum ohne Trennung zum Fußverkehr'
+      const title = 'Schmale Radverkehrsanlage (2 m) im Seitenraum ohne Trennung zum Fußverkehr'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
   })
@@ -141,8 +140,7 @@ describe('titlePrimaryScene()', () => {
         leftOfBicycleLane: 'car_lanes',
         bufferLeftPhysicalProtection: 'bollard_high',
       }
-      const title =
-        'Breite Radverkehrsanlage (3,5 m) auf der Fahrbahn geschützt durch hohe Poller'
+      const title = 'Breite Radverkehrsanlage (3,5 m) auf der Fahrbahn geschützt durch hohe Poller'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
 
@@ -199,8 +197,7 @@ describe('titlePrimaryScene()', () => {
         bufferLeftMarking: 'none',
         parking: 'no_parking',
       }
-      const title =
-        'Schmale Radverkehrsanlage (2 m) auf der Fahrbahn ohne Trennung links'
+      const title = 'Schmale Radverkehrsanlage (2 m) auf der Fahrbahn ohne Trennung links'
       expect(titlePrimaryScene(scene)).toStrictEqual(title)
     })
   })

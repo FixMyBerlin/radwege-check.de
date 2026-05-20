@@ -1,4 +1,4 @@
-import { ScenePrimaryProps } from '../types'
+import type { ScenePrimaryProps } from '../types'
 
 /**
  * We paste the data from our Google Spreadsheet CSV export without further cleanup.

@@ -1,26 +1,44 @@
 import { create } from 'zustand'
-import { AggregationConfig } from '../constants'
+import { useStore } from 'zustand'
+
+import type { AggregationConfig } from '../constants'
 
 export type ExperimentTextKey = null | 'primary' | 'secondary'
 
-export type StoreExperimentData = {
+type ExperimentDataState = {
   itemJsConfig: null | any
-  setItemJsConfig: (config) => void
-
   aggregationConfig: null | AggregationConfig
-  setAggregationConfig: (config: AggregationConfig) => void
-
   experimentTextKey: ExperimentTextKey
+}
+
+type ExperimentDataActions = {
+  setItemJsConfig: (config: any) => void
+  setAggregationConfig: (config: AggregationConfig) => void
   setExperimentTextKey: (input: ExperimentTextKey) => void
 }
 
-export const useStoreExperimentData = create<StoreExperimentData>((set) => ({
+type StoreExperimentData = ExperimentDataState & { actions: ExperimentDataActions }
+
+const experimentDataStore = create<StoreExperimentData>((set) => ({
   itemJsConfig: null,
-  setItemJsConfig: (itemJsConfig) => set({ itemJsConfig }),
-
   aggregationConfig: null,
-  setAggregationConfig: (aggregationConfig) => set({ aggregationConfig }),
-
   experimentTextKey: null,
-  setExperimentTextKey: (experimentTextKey) => set({ experimentTextKey }),
+  actions: {
+    setItemJsConfig: (itemJsConfig) => set({ itemJsConfig }),
+    setAggregationConfig: (aggregationConfig) => set({ aggregationConfig }),
+    setExperimentTextKey: (experimentTextKey) => set({ experimentTextKey }),
+  },
 }))
+
+export const useExperimentItemJsConfig = () => useStore(experimentDataStore, (s) => s.itemJsConfig)
+
+export const useExperimentAggregationConfig = () =>
+  useStore(experimentDataStore, (s) => s.aggregationConfig)
+
+export const useExperimentTextKeyState = () =>
+  useStore(experimentDataStore, (s) => s.experimentTextKey)
+
+/** Non-React reads (e.g. title helpers, dev checks, route bootstrapping). */
+export const getExperimentDataState = () => experimentDataStore.getState()
+
+export const getExperimentDataActions = () => experimentDataStore.getState().actions

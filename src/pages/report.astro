@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ArticlePageLayout from '../layouts/ArticlePageLayout.astro'
+import { ReportEnRoute } from '../components/routes/ReportEnRoute'
+import { canonicalOrigin } from '../components/utils/domain/canonicalOrigin.const'
+
+const alternates = [
+  { hreflang: 'de', href: `${canonicalOrigin}/auswertung` },
+  { hreflang: 'en', href: `${canonicalOrigin}/report` },
+  { hreflang: 'es', href: `${canonicalOrigin}/evaluacion` },
+]
+---
+
+<BaseLayout
+  seo={{
+    article: true,
+    title: 'Study on subjective safety when travelling by bicycle',
+    description: 'Results and data from a survey of 22,000 participants.',
+    alternates,
+  }}
+>
+  <ArticlePageLayout host={Astro.url.host} showEnglishLanguageTeaser={false}>
+    <ReportEnRoute client:only="react" />
+  </ArticlePageLayout>
+</BaseLayout>

@@ -1,6 +1,8 @@
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import { FeelSafe, FeelsafeIcon } from '../FeelSafe'
+
+import { FeelSafe } from '../FeelSafe'
+import type { FeelsafeIcon } from '../FeelSafe'
 import { BarElement } from './BarElement'
 
 type ScaleChartProps = {
@@ -21,13 +23,7 @@ type WeightChartProps = {
 
 type BarChartProps = WeightChartProps | ScaleChartProps
 
-export const BarChart = ({
-  titleClass,
-  title,
-  data,
-  feelsafe,
-  feelsafeIcon,
-}: BarChartProps) => {
+export const BarChart = ({ titleClass, title, data, feelsafe, feelsafeIcon }: BarChartProps) => {
   const [isWeightGraph, setWeightGraph] = useState(data.length === 1)
   useEffect(() => setWeightGraph(data.length === 1), [data.length])
 

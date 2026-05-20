@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# This is `npm run check`
+# This is `bun run check` without knip/format (faster push).
 # Use `git push --no-verify` to force-skip them.
-npm run type-check
-npm run lint
-npm run test
+bun run type-check
+bun run lint
+bun run test

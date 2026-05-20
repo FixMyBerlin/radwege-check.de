@@ -1,0 +1,21 @@
+{
+  "name": "Radwege-Check",
+  "short_name": "Radwege-Check",
+  "description": "Vergleiche Radverkehrsführungsformen nach ihrer subjektiven Sicherheit.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "lang": "de",
+  "dir": "ltr",
+  "background_color": "#fff8e8",
+  "theme_color": "#fabe28",
+  "icons": [
+    {
+      "src": "/icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

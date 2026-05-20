@@ -1,0 +1,4 @@
+# Supply-chain posture: skip registry versions published within the last N seconds (5 days).
+# If `bun install --frozen-lockfile` fails on a hot package, add it under [install] minimumReleaseAgeExcludes.
+[install]
+minimumReleaseAge = 432000

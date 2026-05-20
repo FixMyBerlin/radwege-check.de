@@ -1,10 +1,9 @@
 import clsx from 'clsx'
 import React from 'react'
-import {
-  ScenePrimaryProps,
-  SceneSecondaryProps,
-} from '~/components/ScenesPage/types'
+
+import { ScenePrimaryProps, SceneSecondaryProps } from '~/components/ScenesPage/types'
 import { formatNumber } from '~/components/utils'
+
 import { BarChart } from './BarChart'
 
 type Props = {
@@ -16,23 +15,15 @@ type Props = {
 } & (
   | Pick<
       ScenePrimaryProps,
-      | 'voteScore'
-      | 'vote0Unsafe'
-      | 'vote1RatherUnsafe'
-      | 'vote2Save'
-      | 'vote3VerySave'
+      'voteScore' | 'vote0Unsafe' | 'vote1RatherUnsafe' | 'vote2Save' | 'vote3VerySave'
     >
   | Pick<
       SceneSecondaryProps,
-      | 'voteScore'
-      | 'vote0Unsafe'
-      | 'vote1RatherUnsafe'
-      | 'vote2Save'
-      | 'vote3VerySave'
+      'voteScore' | 'vote0Unsafe' | 'vote1RatherUnsafe' | 'vote2Save' | 'vote3VerySave'
     >
 )
 
-export const BarChartAndHeadline: React.FC<Props> = ({
+export const BarChartAndHeadline = ({
   mainBarChart,
   icon,
   voteScore,
@@ -42,7 +33,7 @@ export const BarChartAndHeadline: React.FC<Props> = ({
   vote3VerySave,
   handleMouseOver,
   handleMouseOut,
-}) => {
+}: Props) => {
   if (!voteScore) return null
 
   const content = (

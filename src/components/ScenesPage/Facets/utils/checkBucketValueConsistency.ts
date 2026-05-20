@@ -1,6 +1,6 @@
-import { useStore } from 'zustand'
 import { isProduction } from '~/components/utils'
-import { useStoreExperimentData } from '../../store'
+
+import { getExperimentDataState } from '../../store'
 import { ResultBucketProps } from '../../types'
 
 type Props = {
@@ -12,13 +12,10 @@ type ReturnProps = {
   keyFromTranslationMissingInItemjs?: string[]
 }
 
-export const checkBucketValueConsistency = ({
-  aggregationKey,
-  buckets,
-}: Props): ReturnProps => {
+export const checkBucketValueConsistency = ({ aggregationKey, buckets }: Props): ReturnProps => {
   if (isProduction) return {}
 
-  const { aggregationConfig } = useStore(useStoreExperimentData)
+  const { aggregationConfig } = getExperimentDataState()
   const bucketKeysFromItemJs = buckets.map((b) => b.key)
   const keyFromItemjsMissingInTranslations = bucketKeysFromItemJs.filter(
     (key) => aggregationConfig[aggregationKey].buckets[key] === undefined,
@@ -32,9 +29,7 @@ export const checkBucketValueConsistency = ({
     })
   }
 
-  const keyFromTranslationMissingInItemjs = Object.keys(
-    aggregationConfig[aggregationKey].buckets,
-  )
+  const keyFromTranslationMissingInItemjs = Object.keys(aggregationConfig[aggregationKey].buckets)
     .filter((key) => !bucketKeysFromItemJs.includes(key))
     .filter((key) => key !== 'noChoice')
 

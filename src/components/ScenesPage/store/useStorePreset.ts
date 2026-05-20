@@ -1,20 +1,35 @@
 import { create } from 'zustand'
-import { PresetsScenes } from '../constants'
+import { useStore } from 'zustand'
+
+import type { PresetsScenes } from '../constants'
 
 type StorePresetKey = null | string | 'custom'
 
-export type StorePreset = {
+type PresetState = {
   presets: PresetsScenes
-  setPresets: (presets: PresetsScenes) => void
-
   currentPresetKey: StorePresetKey
+}
+
+type PresetActions = {
+  setPresets: (presets: PresetsScenes) => void
   setCurrentPresetKey: (newKey: StorePresetKey) => void
 }
 
-export const useStorePreset = create<StorePreset>((set) => ({
-  presets: {},
-  setPresets: (presets) => set({ presets }),
+type StorePreset = PresetState & { actions: PresetActions }
 
+const presetStore = create<StorePreset>((set) => ({
+  presets: {},
   currentPresetKey: null,
-  setCurrentPresetKey: (currentPresetKey) => set({ currentPresetKey }),
+  actions: {
+    setPresets: (presets) => set({ presets }),
+    setCurrentPresetKey: (currentPresetKey) => set({ currentPresetKey }),
+  },
 }))
+
+export const usePresetPresets = () => useStore(presetStore, (s) => s.presets)
+
+export const usePresetCurrentKey = () => useStore(presetStore, (s) => s.currentPresetKey)
+
+export const usePresetActions = () => useStore(presetStore, (s) => s.actions)
+
+export const getPresetActions = () => presetStore.getState().actions

@@ -1,27 +1,25 @@
 import clsx from 'clsx'
 import React from 'react'
-import { useStore } from 'zustand'
-import { useStoreResetFilterEnabled } from '../../store/useStoreResetFilterEnabled'
 
 type Props = {
   onClick: () => void
+  /** When false, the control is disabled (no active URL filter). */
+  enabled: boolean
 }
 
-export const ResetFilterButton: React.FC<Props> = ({ onClick }) => {
-  const { resetFilterEnabled } = useStore(useStoreResetFilterEnabled)
-
+export const ResetFilterButton = ({ onClick, enabled }: Props) => {
   return (
     <p>
       <button
         type="button"
-        onClick={resetFilterEnabled ? onClick : undefined}
+        onClick={enabled ? onClick : undefined}
         className={clsx(
-          resetFilterEnabled
+          enabled
             ? 'cursor-pointer hover:text-yellow-800 hover:decoration-yellow-500 focus:text-yellow-800 focus:outline-none'
             : 'cursor-not-allowed text-gray-500 decoration-gray-300',
           'underline decoration-brand-yellow decoration-2',
         )}
-        disabled={!resetFilterEnabled}
+        disabled={!enabled}
       >
         Filter zurücksetzen
       </button>

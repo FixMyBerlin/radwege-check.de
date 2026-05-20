@@ -1,4 +1,5 @@
-import { isDev } from '~/components/utils'
+import { allowVerboseDebug } from '~/components/utils'
+
 import { SceneSecondaryProps } from '../../types'
 import {
   textBicycleStreetType,
@@ -24,7 +25,7 @@ export const titleSecondaryScene = (
   },
 ) => {
   const optionalSceneId = includeId ? sceneId(scene) : ''
-  const debug = !process.env.DISABlE_DEBUG_FOR_JEST && isDev
+  const debug = allowVerboseDebug
 
   if (
     ['no_cars'].includes(scene.motorVehicleTrafficVolumen) &&
