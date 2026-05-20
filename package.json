@@ -20,8 +20,8 @@
     "test": "DISABlE_DEBUG_FOR_JEST=true vitest run",
     "test:watch": "DISABlE_DEBUG_FOR_JEST=true vitest",
     "prepare": "husky install",
-    "updatePackages:minor": "bunx taze minor --write",
-    "updatePackages:major": "bunx taze major --write",
+    "updatePackages:minor": "bunx taze minor --write --maturity-period 5",
+    "updatePackages:major": "bunx taze major --write --maturity-period 5",
     "release": "gh pr create --base main --head develop --title \"Release $(date '+%Y-%m-%d')\" --body \"\""
   },
   "dependencies": {

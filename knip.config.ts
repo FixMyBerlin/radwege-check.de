@@ -6,7 +6,7 @@
  * or TS setups fail to resolve it for `tsgo`/`tsc` even though the `knip` CLI works.
  */
 export default {
-  entry: ['taze.config.js'],
+  entry: ['bunfig.toml', 'taze.config.js'],
   ignoreBinaries: ['gh'],
   ignoreDependencies: [
     /** String reference in `astro.config.mjs` — not a static import. */
